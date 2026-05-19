@@ -34,6 +34,7 @@
 - [x] XSS V1: Cross Site Scripting Prevention Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V1.2`、`V1.3`、`V3.2`、`V3.4` 単位へ見直す。
 - [x] XSS V2: Content Security Policy、DOM Based XSS Prevention、DOM Clobbering Prevention、XSS Filter Evasion を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V1.2`、`V3.1`、`V3.2` 単位へ見直す。
 - [x] 暗号 V1: Cryptographic Storage Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V11.1`、`V11.2`、`V11.3`、`V11.5`、`V13.3`、`V14.1` 単位へ見直す。
+- [x] 暗号 V2: Key Management、Secrets Management、Transport Layer Security、HTTP Strict Transport Security を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V3.4`、`V4.1`、`V10.1`、`V11.1`、`V11.2`、`V11.3`、`V11.5`、`V11.7`、`V12.1`、`V13.3`、`V17.1` 単位へ見直す。
 - [x] ログ V1: Logging Cheat Sheet を詳細レビューし、開発チェックリストを `V10.7`、`V16.1`、`V16.2`、`V16.3`、`V16.4` 単位へ見直す。
 - [x] サプライチェーン V1: Software Supply Chain Security Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V15.1`、`V15.2` 単位へ見直す。
 

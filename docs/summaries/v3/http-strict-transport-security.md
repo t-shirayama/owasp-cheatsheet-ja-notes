@@ -17,22 +17,26 @@
 
 ## 概要
 
-HSTSは、ブラウザにHTTPS接続を強制させ、ダウングレード攻撃やCookieの平文送信リスクを下げるHTTPヘッダーです。
+HTTP Strict Transport Security (HSTS) は、ブラウザに対象ホストへの接続を HTTPS のみに強制させるヘッダーである。HTTP へのダウングレード、初回以降の平文アクセス、Cookie の平文送信、証明書警告のクリック通過リスクを下げる。
 
 ## 要点
 
-- HTTPSを全サイトで正しく有効化してからHSTSを導入する。
-- max-age、includeSubDomains、preloadを段階的に検討する。
-- HTTPからHTTPSへのリダイレクトを整備する。
+- HSTS は HTTPS 応答の `Strict-Transport-Security` ヘッダーでのみ有効になる。
+- 短い `max-age` で開始し、問題がないことを確認して段階的に伸ばす。
+- `includeSubDomains` は全サブドメインの HTTPS 対応を確認してから使う。
+- preload は解除に時間がかかるため、要件と影響を確認してから申請する。
+- HSTS 導入前に証明書、HTTPS リダイレクト、混在コンテンツ、Cookie `Secure`、CDN/ロードバランサを確認する。
 
 ## 実装時の注意点
 
-- この要約はASVS Indexでの利用を前提にした実装者向け整理です。詳細確認時は原文を参照してください。
-- 関連する認証、認可、ログ、入力検証、暗号、通信保護の管理策と組み合わせて適用します。
+- HTTP 応答の HSTS ヘッダーはブラウザに無視される。
+- HSTS は初回接続を完全には保護しない。必要に応じて preload を検討する。
+- `includeSubDomains` は未対応サブドメインの障害につながるため、棚卸しを先に行う。
 
 ## ASVS との対応
 
 | ASVS 項目 | 関連内容 |
 | --- | --- |
-| V3, V12 | HSTSチートシート の主要な管理策 |
+| V3.4 | ブラウザ向け HTTPS 強制、Cookie 平文送信防止、混在コンテンツ対策 |
+| V12.1 | TLS 設定、HSTS ヘッダー、includeSubDomains、preload の導入と運用 |
 
