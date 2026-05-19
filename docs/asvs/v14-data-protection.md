@@ -34,7 +34,7 @@
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
 | V2.1, V2.3, V14.1, V15.1 | Abuse Case Cheat Sheet | [翻訳](../translations/v2/abuse-case.md) / [要約](../summaries/v2/abuse-case.md) / [チェックリスト](../checklists/v2/abuse-case.md) | 作成済み |
-| V11, V13, V14 | Cryptographic Storage Cheat Sheet | [翻訳](../translations/v11/cryptographic-storage.md) / [要約](../summaries/v11/cryptographic-storage.md) / [チェックリスト](../checklists/v11/cryptographic-storage.md) | 作成済み |
+| V11.1 Cryptographic Inventory and Documentation; V11.2 Secure Cryptography Implementation; V11.3 Encryption Algorithms; V11.5 Random Values; V13.3 Secret Management; V14.1 Data Protection Documentation | Cryptographic Storage Cheat Sheet | [翻訳](../translations/v11/cryptographic-storage.md) / [要約](../summaries/v11/cryptographic-storage.md) / [チェックリスト](../checklists/v11/cryptographic-storage.md) | 詳細化済み |
 | V3, V14 | HTML5 Security Cheat Sheet | [翻訳](../translations/v3/html5-security.md) / [要約](../summaries/v3/html5-security.md) / [チェックリスト](../checklists/v3/html5-security.md) | 作成済み |
 | V14 | User Privacy Protection Cheat Sheet | [翻訳](../translations/v14/user-privacy-protection.md) / [要約](../summaries/v14/user-privacy-protection.md) / [チェックリスト](../checklists/v14/user-privacy-protection.md) | 作成済み |
 

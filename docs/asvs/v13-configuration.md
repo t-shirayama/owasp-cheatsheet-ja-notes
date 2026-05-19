@@ -45,7 +45,7 @@
 
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| V11, V13, V14 | Cryptographic Storage Cheat Sheet | [翻訳](../translations/v11/cryptographic-storage.md) / [要約](../summaries/v11/cryptographic-storage.md) / [チェックリスト](../checklists/v11/cryptographic-storage.md) | 作成済み |
+| V11.1 Cryptographic Inventory and Documentation; V11.2 Secure Cryptography Implementation; V11.3 Encryption Algorithms; V11.5 Random Values; V13.3 Secret Management; V14.1 Data Protection Documentation | Cryptographic Storage Cheat Sheet | [翻訳](../translations/v11/cryptographic-storage.md) / [要約](../summaries/v11/cryptographic-storage.md) / [チェックリスト](../checklists/v11/cryptographic-storage.md) | 詳細化済み |
 | V13.4 | Django Security Cheat Sheet | [翻訳](../translations/v13/django-security.md) / [要約](../summaries/v13/django-security.md) / [チェックリスト](../checklists/v13/django-security.md) | 作成済み |
 | V13.2 | Docker Security Cheat Sheet | [翻訳](../translations/v13/docker-security.md) / [要約](../summaries/v13/docker-security.md) / [チェックリスト](../checklists/v13/docker-security.md) | 作成済み |
 | V4.3, V13.4 | GraphQL Cheat Sheet | [翻訳](../translations/v4/graphql.md) / [要約](../summaries/v4/graphql.md) / [チェックリスト](../checklists/v4/graphql.md) | 作成済み |

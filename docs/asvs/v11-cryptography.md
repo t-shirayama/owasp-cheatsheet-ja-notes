@@ -45,7 +45,7 @@
 
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| V11, V13, V14 | Cryptographic Storage Cheat Sheet | [翻訳](../translations/v11/cryptographic-storage.md) / [要約](../summaries/v11/cryptographic-storage.md) / [チェックリスト](../checklists/v11/cryptographic-storage.md) | 作成済み |
+| V11.1 Cryptographic Inventory and Documentation; V11.2 Secure Cryptography Implementation; V11.3 Encryption Algorithms; V11.5 Random Values; V13.3 Secret Management; V14.1 Data Protection Documentation | Cryptographic Storage Cheat Sheet | [翻訳](../translations/v11/cryptographic-storage.md) / [要約](../summaries/v11/cryptographic-storage.md) / [チェックリスト](../checklists/v11/cryptographic-storage.md) | 詳細化済み |
 | V11, V13 | Key Management Cheat Sheet | [翻訳](../translations/v11/key-management.md) / [要約](../summaries/v11/key-management.md) / [チェックリスト](../checklists/v11/key-management.md) | 作成済み |
 | V2.2, V11.7 | Microservices Security Cheat Sheet | [翻訳](../translations/v2/microservices-security.md) / [要約](../summaries/v2/microservices-security.md) / [チェックリスト](../checklists/v2/microservices-security.md) | 作成済み |
 | V6.5, V11.4 | Password Storage Cheat Sheet | [翻訳](../translations/v6/password-storage.md) / [要約](../summaries/v6/password-storage.md) / [チェックリスト](../checklists/v6/password-storage.md) | 作成済み |
