@@ -49,7 +49,7 @@
 
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| V6 | Authentication Cheat Sheet | [翻訳](../translations/v6/authentication.md) / [要約](../summaries/v6/authentication.md) / [チェックリスト](../checklists/v6/authentication.md) | 作成済み |
+| V6.2 Password Security; V6.3 General Authentication Security; V6.5 General Multi-factor authentication requirements; V6.7 Cryptographic authentication mechanism; V6.8 Authentication with an Identity Provider | Authentication Cheat Sheet | [翻訳](../translations/v6/authentication.md) / [要約](../summaries/v6/authentication.md) / [チェックリスト](../checklists/v6/authentication.md) | 詳細化済み |
 | V6.1, V6.3 | Credential Stuffing Prevention Cheat Sheet | [翻訳](../translations/v6/credential-stuffing-prevention.md) / [要約](../summaries/v6/credential-stuffing-prevention.md) / [チェックリスト](../checklists/v6/credential-stuffing-prevention.md) | 作成済み |
 | V6.3, V6.4, V6.6 | Forgot Password Cheat Sheet | [翻訳](../translations/v6/forgot-password.md) / [要約](../summaries/v6/forgot-password.md) / [チェックリスト](../checklists/v6/forgot-password.md) | 作成済み |
 | V6 | Multifactor Authentication Cheat Sheet | [翻訳](../translations/v6/multifactor-authentication.md) / [要約](../summaries/v6/multifactor-authentication.md) / [チェックリスト](../checklists/v6/multifactor-authentication.md) | 作成済み |

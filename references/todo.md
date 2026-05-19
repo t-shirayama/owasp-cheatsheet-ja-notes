@@ -22,6 +22,7 @@
 
 - [x] OAuth/OIDC V1: OAuth 2.0 Protocol Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V10.1` から `V10.6` 単位へ見直す。
 - [x] API V1: REST Security Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V4.1`、`V4.2`、`V4.3`、`V4.4`、`V9.2` 単位へ見直す。
+- [x] 認証 V1: Authentication Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.2`、`V6.3`、`V6.5`、`V6.7`、`V6.8` 単位へ見直す。
 
 ## 優先度中
 
