@@ -17,22 +17,27 @@
 
 ## 概要
 
-DOM Based XSSは、URL、fragment、postMessage、storageなどのクライアント側入力が危険なDOM APIへ渡されることで発生します。ソースとシンクの管理が中心です。
+DOM Based XSS は、攻撃入力がブラウザ実行時に DOM へ注入される XSS である。URL、fragment、`postMessage`、Web Storage などのソースから入った値が、`innerHTML`、`document.write`、URL 属性、CSS、文字列評価などの危険なシンクへ到達すると発生する。
 
 ## 要点
 
-- locationやpostMessageなどの入力源を未信頼として扱う。
-- innerHTMLなどの危険なシンクを避ける。
-- 必要な場合はコンテキスト別にエンコードまたはサニタイズする。
+- クライアント側入力源をすべて未信頼として扱う。
+- `innerHTML`、`outerHTML`、`document.write`、`eval`、文字列引数の `setTimeout`/`setInterval` を避ける。
+- `textContent`、`createElement`、安全な `setAttribute`、`appendChild` を優先する。
+- HTML、属性、URL、CSS、JavaScript 文字列のサブコンテキストごとに適切なエンコードを使う。
+- 信頼できないデータは表示可能なテキストとして扱い、HTML として解釈させない。
+- ソースとシンクを棚卸しし、variant analysis で回帰テストする。
 
 ## 実装時の注意点
 
-- この要約はASVS Indexでの利用を前提にした実装者向け整理です。詳細確認時は原文を参照してください。
-- 関連する認証、認可、ログ、入力検証、暗号、通信保護の管理策と組み合わせて適用します。
+- DOM XSS はサーバ側テンプレートだけのレビューでは見落とされる。フロントエンドのルーティング、状態管理、メッセージ受信も確認する。
+- ライブラリごとのエンコード差異や安全 API の例外を確認する。
+- CSP は影響低減として使い、危険シンクの除去を優先する。
 
 ## ASVS との対応
 
 | ASVS 項目 | 関連内容 |
 | --- | --- |
-| V1, V3 | DOM Based XSS防止チートシート の主要な管理策 |
+| V1.2 | クライアント側入力源、危険シンク、コンテキスト別エンコーディング |
+| V3.2 | ブラウザ側実行コンテキスト、DOM 更新、CSP と組み合わせた XSS 防御 |
 

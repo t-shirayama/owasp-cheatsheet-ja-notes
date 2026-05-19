@@ -17,22 +17,27 @@
 
 ## 概要
 
-Content Security Policy は、ブラウザが読み込めるスクリプト、スタイル、画像、フレームなどの出所を制限し、XSSやコンテンツ注入の影響を下げる防御層です。
+Content Security Policy (CSP) は、ブラウザにスクリプト、スタイル、画像、フォーム送信先、フレーム、オブジェクトなどの読み込み元と実行条件を制限させる防御層である。XSS やクリックジャッキングの影響を下げるが、コンテキスト別エンコーディングや安全な DOM 操作の代替ではない。
 
 ## 要点
 
-- default-srcを基準に許可元を絞る。
-- script-srcでunsafe-inlineや過剰なワイルドカードを避ける。
-- report-onlyで検証してから強制モードへ移行する。
+- HTTP レスポンスヘッダーで CSP を配信し、全レスポンスに適用する。
+- Report-Only で違反を収集し、正規機能への影響を確認してから強制モードへ移行する。
+- strict CSP を目指し、nonce または hash と `strict-dynamic` を検討する。
+- nonce はレスポンスごとに一度だけ使い、攻撃者が挿入した script へ機械的に付与しない。
+- `unsafe-inline`、`unsafe-eval`、過剰なワイルドカード、広すぎる CDN 許可を避ける。
+- `frame-ancestors`、`form-action`、`object-src`、`base-uri`、`connect-src`、違反レポートを用途に合わせて設定する。
 
 ## 実装時の注意点
 
-- この要約はASVS Indexでの利用を前提にした実装者向け整理です。詳細確認時は原文を参照してください。
-- 関連する認証、認可、ログ、入力検証、暗号、通信保護の管理策と組み合わせて適用します。
+- meta タグによる CSP は機能制限があるため、ヘッダー配信を優先する。
+- CSP 違反レポートには正規機能の破壊と攻撃兆候の両方が含まれるため、監視と調整を継続する。
+- CSP は防御の多層化であり、XSS 原因の修正を先送りする理由にしない。
 
 ## ASVS との対応
 
 | ASVS 項目 | 関連内容 |
 | --- | --- |
-| V3.1 | Content Security Policy チートシート の主要な管理策 |
+| V3.1 | CSP ヘッダー、strict CSP、nonce/hash、frame-ancestors、違反レポート |
+| V3.2 | XSS、DOM XSS、クリックジャッキング、XS-Leaks に対する防御の多層化 |
 
