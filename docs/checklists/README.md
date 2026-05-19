@@ -9,6 +9,7 @@
 - [logging.md](logging.md): Logging Cheat Sheet の開発チェックリスト
 - [logging-vocabulary.md](logging-vocabulary.md): Logging Vocabulary Cheat Sheet の開発チェックリスト
 - [session-management.md](session-management.md): Session Management Cheat Sheet の開発チェックリスト
+- [authorization.md](authorization.md): Authorization Cheat Sheet の開発チェックリスト
 
 ## 方針
 

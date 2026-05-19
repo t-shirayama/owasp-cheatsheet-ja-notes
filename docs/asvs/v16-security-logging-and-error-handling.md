@@ -18,7 +18,10 @@
   - 翻訳: [セッション管理チートシート 日本語訳](../translations/session-management.md)
   - 要約: [セッション管理チートシート 要約](../summaries/session-management.md)
   - チェックリスト: [セッション管理チートシート 開発チェックリスト](../checklists/session-management.md)
-- Authorization Cheat Sheet: 未作成
+- Authorization Cheat Sheet
+  - 翻訳: [認可チートシート 日本語訳](../translations/authorization.md)
+  - 要約: [認可チートシート 要約](../summaries/authorization.md)
+  - チェックリスト: [認可チートシート 開発チェックリスト](../checklists/authorization.md)
 - Error Handling Cheat Sheet: 未作成
 
 ## 章別チェック観点
@@ -36,7 +39,7 @@
 | V16.1 | Logging Vocabulary Cheat Sheet | [翻訳](../translations/logging-vocabulary.md) / [要約](../summaries/logging-vocabulary.md) / [チェックリスト](../checklists/logging-vocabulary.md) | 作成済み |
 | V16.2 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
 | V16.2 | Session Management Cheat Sheet | [翻訳](../translations/session-management.md) / [要約](../summaries/session-management.md) / [チェックリスト](../checklists/session-management.md) | 作成済み |
-| V16.3 | Authorization Cheat Sheet | 未作成 | TODO |
+| V16.3 | Authorization Cheat Sheet | [翻訳](../translations/authorization.md) / [要約](../summaries/authorization.md) / [チェックリスト](../checklists/authorization.md) | 作成済み |
 | V16.3 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
 | V16.3 | Logging Vocabulary Cheat Sheet | [翻訳](../translations/logging-vocabulary.md) / [要約](../summaries/logging-vocabulary.md) / [チェックリスト](../checklists/logging-vocabulary.md) | 作成済み |
 | V16.4 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |

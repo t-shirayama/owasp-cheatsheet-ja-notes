@@ -14,3 +14,4 @@ OWASP Cheat Sheet Series の日本語要約を置くディレクトリです。
 - [ログ記録チートシート要約](logging.md)
 - [ログ語彙チートシート要約](logging-vocabulary.md)
 - [セッション管理チートシート要約](session-management.md)
+- [認可チートシート要約](authorization.md)
