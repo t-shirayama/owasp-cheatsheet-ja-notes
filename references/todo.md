@@ -38,6 +38,7 @@
 - [x] ログ V1: Logging Cheat Sheet を詳細レビューし、開発チェックリストを `V10.7`、`V16.1`、`V16.2`、`V16.3`、`V16.4` 単位へ見直す。
 - [x] ログ V2: Error Handling、Logging Vocabulary を詳細レビューし、ASVS 対応を `V16.1`、`V16.2`、`V16.3`、`V16.5` 単位へ確認する。
 - [x] サプライチェーン V1: Software Supply Chain Security Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V15.1`、`V15.2` 単位へ見直す。
+- [x] サプライチェーン V2: Dependency Graph/SBOM、NPM Security、Threat Modeling、Attack Surface Analysis を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V15.1`、`V15.2`、`V2.1` 単位へ見直す。
 
 ## 優先度中
 
