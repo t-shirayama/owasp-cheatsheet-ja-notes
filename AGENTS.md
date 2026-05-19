@@ -27,7 +27,7 @@ This is a documentation-first repository. Treat accuracy, attribution, and licen
 For each source Cheat Sheet, create separate translation, summary, and checklist files unless the user asks for a different shape.
 
 ```markdown
-# docs/translations/<slug>.md
+# docs/translations/v<chapter>/<slug>.md
 
 ## Attribution
 
@@ -47,7 +47,7 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 ```
 
 ```markdown
-# docs/summaries/<slug>.md
+# docs/summaries/v<chapter>/<slug>.md
 
 ## Attribution
 
@@ -69,7 +69,7 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 ```
 
 ```markdown
-# docs/checklists/<slug>.md
+# docs/checklists/v<chapter>/<slug>.md
 
 ## Attribution
 
@@ -111,12 +111,13 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 ## Repository Conventions
 
 - Use Markdown files.
-- Prefer ASCII filenames with kebab-case, for example `docs/translations/password-storage.md`.
+- Prefer ASCII filenames with kebab-case, for example `docs/translations/v6/password-storage.md`.
 - Keep generated documents under `docs/` when adding topic files.
 - Use `docs/asvs/` as the ASVS-first navigation layer.
-- Use `docs/translations/` for Japanese translation files.
-- Use `docs/summaries/` for Japanese summary files.
-- Use `docs/checklists/` for development checklist files and cross-cutting checklist indexes.
+- Use `docs/translations/v1/` through `docs/translations/v17/` for Japanese translation files.
+- Use `docs/summaries/v1/` through `docs/summaries/v17/` for Japanese summary files.
+- Use `docs/checklists/v1/` through `docs/checklists/v17/` for development checklist files. Keep cross-cutting checklist indexes directly under `docs/checklists/`.
+- When a Cheat Sheet maps to multiple ASVS chapters, place the file under the first or primary ASVS chapter folder and link to that single copy from other chapters.
 - Do not duplicate a source Cheat Sheet across multiple ASVS chapter files. Link to the translation, summary, and checklist files instead.
 - Use `docs/templates/` for reusable document templates.
 - Use `references/source-map.md` for ASVS-to-source-to-local-file mapping.

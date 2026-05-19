@@ -34,17 +34,17 @@ OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-Shar
 .
 ├── docs/
 │   ├── asvs/          # ASVS 章別の入口と対応表
-│   ├── translations/  # 原文に対応する日本語訳
-│   ├── summaries/     # 短時間で把握するための日本語要約
-│   ├── checklists/    # 実装・レビュー用チェックリスト
+│   ├── translations/  # 原文に対応する日本語訳。v1/ から v17/ に章別配置
+│   ├── summaries/     # 短時間で把握するための日本語要約。v1/ から v17/ に章別配置
+│   ├── checklists/    # 実装・レビュー用チェックリスト。v1/ から v17/ に章別配置
 │   └── templates/     # 新規ドキュメント作成用テンプレート
 └── references/        # 出典対応表、ライセンス方針、運用メモ
 ```
 
 - ASVS 章から探す場合は [docs/asvs/index.md](docs/asvs/index.md) を起点にします。
-- 日本語訳は [docs/translations/](docs/translations/) に置きます。
-- 日本語要約は [docs/summaries/](docs/summaries/) に置きます。
-- 開発チェックリストは [docs/checklists/](docs/checklists/) に置きます。
+- 日本語訳は [docs/translations/](docs/translations/) 配下の `v1/` から `v17/` に置きます。
+- 日本語要約は [docs/summaries/](docs/summaries/) 配下の `v1/` から `v17/` に置きます。
+- 開発チェックリストは [docs/checklists/](docs/checklists/) 配下の `v1/` から `v17/` に置きます。
 - 出典対応表は [references/source-map.md](references/source-map.md) で管理します。
 - 残作業候補は [references/todo.md](references/todo.md) で管理します。
 
