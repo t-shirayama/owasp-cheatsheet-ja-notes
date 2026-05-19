@@ -23,5 +23,5 @@ ASVS 章順に実装・レビュー観点を集約するチェックリストで
 | V13 | Configuration | [../asvs/v13-configuration.md](../asvs/v13-configuration.md) | TODO |
 | V14 | Data Protection | [../asvs/v14-data-protection.md](../asvs/v14-data-protection.md) | TODO |
 | V15 | Secure Coding and Architecture | [../asvs/v15-secure-coding-and-architecture.md](../asvs/v15-secure-coding-and-architecture.md) | TODO |
-| V16 | Security Logging and Error Handling | [../asvs/v16-security-logging-and-error-handling.md](../asvs/v16-security-logging-and-error-handling.md) | TODO |
+| V16 | Security Logging and Error Handling | [../asvs/v16-security-logging-and-error-handling.md](../asvs/v16-security-logging-and-error-handling.md), [../cheatsheets/logging.md](../cheatsheets/logging.md) | 一部作成済み |
 | V17 | WebRTC | [../asvs/v17-webrtc.md](../asvs/v17-webrtc.md) | TODO |
