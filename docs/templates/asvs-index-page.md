@@ -19,7 +19,7 @@
 
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| <Vx.y> | <Original title> | 翻訳: `../translations/<file-name>.md` / 要約: `../summaries/<file-name>.md` / チェックリスト: `../checklists/<file-name>.md` | TODO |
+| <Vx.y> | <Original title> | 翻訳: `../translations/<file-name>.md` / 要約: `../summaries/<file-name>.md` / チェックリスト: `../checklists/<file-name>.md` | <対応状況> |
 
 ## 参考資料
 

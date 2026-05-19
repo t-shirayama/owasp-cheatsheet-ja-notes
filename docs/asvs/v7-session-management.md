@@ -6,18 +6,22 @@
 
 ## 関連 Cheat Sheet
 
-未整理です。対応する翻訳は [../translations/](../translations/)、要約は [../summaries/](../summaries/)、チェックリストは [../checklists/](../checklists/) に作成します。
+- Session Management Cheat Sheet
+  - 翻訳: [セッション管理チートシート 日本語訳](../translations/session-management.md)
+  - 要約: [セッション管理チートシート 要約](../summaries/session-management.md)
+  - チェックリスト: [セッション管理チートシート 開発チェックリスト](../checklists/session-management.md)
 
 ## 章別チェック観点
 
-- セッションの発行、保存、更新、失効、終了が安全に実装されているか確認する。
-- セッション固定、乗っ取り、再利用、長時間有効化への対策を確認する。
+- ASVS V7 に関連する Cheat Sheet の翻訳、要約、開発チェックリストを確認する。
+- 実装時はチェックリストをタスク化し、設計レビュー、コードレビュー、テストで検証する。
+- 詳細な対応関係は [../../references/source-map.md](../../references/source-map.md) を参照する。
 
 ## 対応表
 
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| V7.x | 未整理 | 未作成 | TODO |
+| V7 Session Management; V16.2 General Logging | Session Management Cheat Sheet | [翻訳](../translations/session-management.md) / [要約](../summaries/session-management.md) / [チェックリスト](../checklists/session-management.md) | 作成済み |
 
 ## 参考資料
 

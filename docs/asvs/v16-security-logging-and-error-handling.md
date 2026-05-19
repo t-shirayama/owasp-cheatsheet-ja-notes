@@ -6,6 +6,14 @@
 
 ## 関連 Cheat Sheet
 
+- Authorization Cheat Sheet
+  - 翻訳: [認可チートシート 日本語訳](../translations/authorization.md)
+  - 要約: [認可チートシート 要約](../summaries/authorization.md)
+  - チェックリスト: [認可チートシート 開発チェックリスト](../checklists/authorization.md)
+- Error Handling Cheat Sheet
+  - 翻訳: [エラーハンドリングチートシート 日本語訳](../translations/error-handling.md)
+  - 要約: [エラーハンドリングチートシート 要約](../summaries/error-handling.md)
+  - チェックリスト: [エラーハンドリングチートシート 開発チェックリスト](../checklists/error-handling.md)
 - Logging Cheat Sheet
   - 翻訳: [ログ記録チートシート 日本語訳](../translations/logging.md)
   - 要約: [ログ記録チートシート 要約](../summaries/logging.md)
@@ -18,35 +26,22 @@
   - 翻訳: [セッション管理チートシート 日本語訳](../translations/session-management.md)
   - 要約: [セッション管理チートシート 要約](../summaries/session-management.md)
   - チェックリスト: [セッション管理チートシート 開発チェックリスト](../checklists/session-management.md)
-- Authorization Cheat Sheet
-  - 翻訳: [認可チートシート 日本語訳](../translations/authorization.md)
-  - 要約: [認可チートシート 要約](../summaries/authorization.md)
-  - チェックリスト: [認可チートシート 開発チェックリスト](../checklists/authorization.md)
-- Error Handling Cheat Sheet
-  - 翻訳: [エラーハンドリングチートシート 日本語訳](../translations/error-handling.md)
-  - 要約: [エラーハンドリングチートシート 要約](../summaries/error-handling.md)
-  - チェックリスト: [エラーハンドリングチートシート 開発チェックリスト](../checklists/error-handling.md)
 
 ## 章別チェック観点
 
-- 記録すべきイベント、ログ形式、保護、監視、保持、アラートを確認する。
-- エラー応答が過度な内部情報を露出せず、調査に必要な情報を安全に残すか確認する。
-- ログ対象、ログ属性、除外データ、ログ保護、障害時の振る舞いを設計段階で決める。
-- ログが攻撃対象になる前提で、機密性、完全性、可用性、説明責任を保護する。
+- ASVS V16 に関連する Cheat Sheet の翻訳、要約、開発チェックリストを確認する。
+- 実装時はチェックリストをタスク化し、設計レビュー、コードレビュー、テストで検証する。
+- 詳細な対応関係は [../../references/source-map.md](../../references/source-map.md) を参照する。
 
 ## 対応表
 
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| V16.1 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
-| V16.1 | Logging Vocabulary Cheat Sheet | [翻訳](../translations/logging-vocabulary.md) / [要約](../summaries/logging-vocabulary.md) / [チェックリスト](../checklists/logging-vocabulary.md) | 作成済み |
-| V16.2 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
-| V16.2 | Session Management Cheat Sheet | [翻訳](../translations/session-management.md) / [要約](../summaries/session-management.md) / [チェックリスト](../checklists/session-management.md) | 作成済み |
-| V16.3 | Authorization Cheat Sheet | [翻訳](../translations/authorization.md) / [要約](../summaries/authorization.md) / [チェックリスト](../checklists/authorization.md) | 作成済み |
-| V16.3 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
-| V16.3 | Logging Vocabulary Cheat Sheet | [翻訳](../translations/logging-vocabulary.md) / [要約](../summaries/logging-vocabulary.md) / [チェックリスト](../checklists/logging-vocabulary.md) | 作成済み |
-| V16.4 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
-| V16.5 | Error Handling Cheat Sheet | [翻訳](../translations/error-handling.md) / [要約](../summaries/error-handling.md) / [チェックリスト](../checklists/error-handling.md) | 作成済み |
+| V8 Authorization; V16.3 Security Events | Authorization Cheat Sheet | [翻訳](../translations/authorization.md) / [要約](../summaries/authorization.md) / [チェックリスト](../checklists/authorization.md) | 作成済み |
+| V16.5 Error Handling; V16.2 General Logging | Error Handling Cheat Sheet | [翻訳](../translations/error-handling.md) / [要約](../summaries/error-handling.md) / [チェックリスト](../checklists/error-handling.md) | 作成済み |
+| V10.7 Consent Management; V16.1 Security Logging Documentation; V16.2 General Logging; V16.3 Security Events; V16.4 Log Protection | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
+| V16.1 Security Logging Documentation; V16.3 Security Events | Logging Vocabulary Cheat Sheet | [翻訳](../translations/logging-vocabulary.md) / [要約](../summaries/logging-vocabulary.md) / [チェックリスト](../checklists/logging-vocabulary.md) | 作成済み |
+| V7 Session Management; V16.2 General Logging | Session Management Cheat Sheet | [翻訳](../translations/session-management.md) / [要約](../summaries/session-management.md) / [チェックリスト](../checklists/session-management.md) | 作成済み |
 
 ## 参考資料
 
