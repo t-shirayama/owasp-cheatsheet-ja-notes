@@ -46,6 +46,7 @@ OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-Shar
 - 日本語要約は [docs/summaries/](docs/summaries/) に置きます。
 - 開発チェックリストは [docs/checklists/](docs/checklists/) に置きます。
 - 出典対応表は [references/source-map.md](references/source-map.md) で管理します。
+- 残作業候補は [references/todo.md](references/todo.md) で管理します。
 
 ## 参考資料
 
