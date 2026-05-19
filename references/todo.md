@@ -23,6 +23,7 @@
 - [x] OAuth/OIDC V1: OAuth 2.0 Protocol Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V10.1` から `V10.6` 単位へ見直す。
 - [x] API V1: REST Security Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V4.1`、`V4.2`、`V4.3`、`V4.4`、`V9.2` 単位へ見直す。
 - [x] 認証 V1: Authentication Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.2`、`V6.3`、`V6.5`、`V6.7`、`V6.8` 単位へ見直す。
+- [x] 認証 V2: Multifactor Authentication Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.2`、`V6.3`、`V6.4`、`V6.5`、`V6.8` 単位へ見直す。
 - [x] 認可 V1: Authorization Cheat Sheet を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V8.1`、`V8.2`、`V8.4`、`V16.3` 単位へ見直す。
 - [x] XSS V1: Cross Site Scripting Prevention Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V1.2`、`V1.3`、`V3.2`、`V3.4` 単位へ見直す。
 - [x] 暗号 V1: Cryptographic Storage Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V11.1`、`V11.2`、`V11.3`、`V11.5`、`V13.3`、`V14.1` 単位へ見直す。
