@@ -27,6 +27,7 @@
 - [x] 認証 V2: Forgot Password Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.3`、`V6.4`、`V6.6` 単位へ見直す。
 - [x] 認証 V2: Credential Stuffing Prevention Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.1`、`V6.2`、`V6.3`、`V6.6` 単位へ見直す。
 - [x] 認証/暗号 V2: Password Storage Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.5`、`V11.4` 単位へ見直す。
+- [x] 認証 V2: Choosing and Using Security Questions Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.4` 単位へ見直す。
 - [x] 認可 V1: Authorization Cheat Sheet を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V8.1`、`V8.2`、`V8.4`、`V16.3` 単位へ見直す。
 - [x] XSS V1: Cross Site Scripting Prevention Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V1.2`、`V1.3`、`V3.2`、`V3.4` 単位へ見直す。
 - [x] 暗号 V1: Cryptographic Storage Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V11.1`、`V11.2`、`V11.3`、`V11.5`、`V13.3`、`V14.1` 単位へ見直す。
