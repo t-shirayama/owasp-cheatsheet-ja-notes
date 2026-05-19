@@ -41,7 +41,7 @@
 
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| V8 Authorization; V16.3 Security Events | Authorization Cheat Sheet | [翻訳](../translations/v8/authorization.md) / [要約](../summaries/v8/authorization.md) / [チェックリスト](../checklists/v8/authorization.md) | 作成済み |
+| V8.1 Authorization Documentation; V8.2 General Authorization Design; V8.4 Other Authorization Considerations; V16.3 Security Events | Authorization Cheat Sheet | [翻訳](../translations/v8/authorization.md) / [要約](../summaries/v8/authorization.md) / [チェックリスト](../checklists/v8/authorization.md) | 詳細化済み |
 | V8.1 | Authorization Testing Automation Cheat Sheet | [翻訳](../translations/v8/authorization-testing-automation.md) / [要約](../summaries/v8/authorization-testing-automation.md) / [チェックリスト](../checklists/v8/authorization-testing-automation.md) | 作成済み |
 | V8.2 | Insecure Direct Object Reference Prevention Cheat Sheet | [翻訳](../translations/v8/idor-prevention.md) / [要約](../summaries/v8/idor-prevention.md) / [チェックリスト](../checklists/v8/idor-prevention.md) | 作成済み |
 | V8.4 | Multi Tenant Security Cheat Sheet | [翻訳](../translations/v8/multi-tenant-security.md) / [要約](../summaries/v8/multi-tenant-security.md) / [チェックリスト](../checklists/v8/multi-tenant-security.md) | 作成済み |

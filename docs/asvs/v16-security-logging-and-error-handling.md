@@ -37,7 +37,7 @@
 
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| V8 Authorization; V16.3 Security Events | Authorization Cheat Sheet | [翻訳](../translations/v8/authorization.md) / [要約](../summaries/v8/authorization.md) / [チェックリスト](../checklists/v8/authorization.md) | 作成済み |
+| V8.1 Authorization Documentation; V8.2 General Authorization Design; V8.4 Other Authorization Considerations; V16.3 Security Events | Authorization Cheat Sheet | [翻訳](../translations/v8/authorization.md) / [要約](../summaries/v8/authorization.md) / [チェックリスト](../checklists/v8/authorization.md) | 詳細化済み |
 | V16.5 Error Handling; V16.2 General Logging | Error Handling Cheat Sheet | [翻訳](../translations/v16/error-handling.md) / [要約](../summaries/v16/error-handling.md) / [チェックリスト](../checklists/v16/error-handling.md) | 作成済み |
 | V10.7 Consent Management; V16.1 Security Logging Documentation; V16.2 General Logging; V16.3 Security Events; V16.4 Log Protection | Logging Cheat Sheet | [翻訳](../translations/v10/logging.md) / [要約](../summaries/v10/logging.md) / [チェックリスト](../checklists/v10/logging.md) | 作成済み |
 | V16.1 Security Logging Documentation; V16.3 Security Events | Logging Vocabulary Cheat Sheet | [翻訳](../translations/v16/logging-vocabulary.md) / [要約](../summaries/v16/logging-vocabulary.md) / [チェックリスト](../checklists/v16/logging-vocabulary.md) | 作成済み |
