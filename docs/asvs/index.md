@@ -28,4 +28,4 @@ OWASP Cheat Sheet Series の ASVS Index を起点に、ASVS 5.0.x の各章か�
 
 - Source: https://cheatsheetseries.owasp.org/IndexASVS.html
 - ASVS version: 5.0.x
-- Retrieved: 2026-05-19
+- Retrieved: 2026-05-20

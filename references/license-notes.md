@@ -19,8 +19,20 @@
 - Copyright: <Copyright holder or author shown by source>
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: Japanese translation, summary, and development checklist added.
+- Changes: Japanese translation added.
 - Retrieved: YYYY-MM-DD
+```
+
+要約ファイルでは `Changes` を次のようにします。
+
+```markdown
+- Changes: Japanese summary added.
+```
+
+チェックリストファイルでは `Changes` を次のようにします。
+
+```markdown
+- Changes: Development checklist added.
 ```
 
 ## 参考資料

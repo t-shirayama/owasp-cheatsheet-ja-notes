@@ -6,7 +6,10 @@
 
 ## 関連 Cheat Sheet
 
-- <Cheat Sheet 日本語タイトル>: `../cheatsheets/<file-name>.md`
+- <Cheat Sheet 日本語タイトル>
+  - 翻訳: `../translations/<file-name>.md`
+  - 要約: `../summaries/<file-name>.md`
+  - チェックリスト: `../checklists/<file-name>.md`
 
 ## 章別チェック観点
 
@@ -14,9 +17,9 @@
 
 ## 対応表
 
-| ASVS 項目 | Cheat Sheet | ローカル正本 | 状態 |
+| ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| <Vx.y> | <Original title> | `../cheatsheets/<file-name>.md` | TODO |
+| <Vx.y> | <Original title> | 翻訳: `../translations/<file-name>.md` / 要約: `../summaries/<file-name>.md` / チェックリスト: `../checklists/<file-name>.md` | TODO |
 
 ## 参考資料
 

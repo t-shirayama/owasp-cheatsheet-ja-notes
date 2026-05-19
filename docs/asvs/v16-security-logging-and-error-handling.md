@@ -6,8 +6,14 @@
 
 ## 関連 Cheat Sheet
 
-- [ログ記録チートシート](../cheatsheets/logging.md)
-- [ログ語彙チートシート](../cheatsheets/logging-vocabulary.md)
+- Logging Cheat Sheet
+  - 翻訳: [ログ記録チートシート 日本語訳](../translations/logging.md)
+  - 要約: [ログ記録チートシート 要約](../summaries/logging.md)
+  - チェックリスト: [ログ記録チートシート 開発チェックリスト](../checklists/logging.md)
+- Logging Vocabulary Cheat Sheet
+  - 翻訳: [ログ語彙チートシート 日本語訳](../translations/logging-vocabulary.md)
+  - 要約: [ログ語彙チートシート 要約](../summaries/logging-vocabulary.md)
+  - チェックリスト: [ログ語彙チートシート 開発チェックリスト](../checklists/logging-vocabulary.md)
 - Session Management Cheat Sheet: 未作成
 - Authorization Cheat Sheet: 未作成
 - Error Handling Cheat Sheet: 未作成
@@ -21,19 +27,19 @@
 
 ## 対応表
 
-| ASVS 項目 | Cheat Sheet | ローカル正本 | 状態 |
+| ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| V16.1 | Logging Cheat Sheet | [../cheatsheets/logging.md](../cheatsheets/logging.md) | 作成済み |
-| V16.1 | Logging Vocabulary Cheat Sheet | [../cheatsheets/logging-vocabulary.md](../cheatsheets/logging-vocabulary.md) | 作成済み |
-| V16.2 | Logging Cheat Sheet | [../cheatsheets/logging.md](../cheatsheets/logging.md) | 作成済み |
+| V16.1 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
+| V16.1 | Logging Vocabulary Cheat Sheet | [翻訳](../translations/logging-vocabulary.md) / [要約](../summaries/logging-vocabulary.md) / [チェックリスト](../checklists/logging-vocabulary.md) | 作成済み |
+| V16.2 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
 | V16.2 | Session Management Cheat Sheet | 未作成 | TODO |
 | V16.3 | Authorization Cheat Sheet | 未作成 | TODO |
-| V16.3 | Logging Cheat Sheet | [../cheatsheets/logging.md](../cheatsheets/logging.md) | 作成済み |
-| V16.3 | Logging Vocabulary Cheat Sheet | [../cheatsheets/logging-vocabulary.md](../cheatsheets/logging-vocabulary.md) | 作成済み |
-| V16.4 | Logging Cheat Sheet | [../cheatsheets/logging.md](../cheatsheets/logging.md) | 作成済み |
+| V16.3 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
+| V16.3 | Logging Vocabulary Cheat Sheet | [翻訳](../translations/logging-vocabulary.md) / [要約](../summaries/logging-vocabulary.md) / [チェックリスト](../checklists/logging-vocabulary.md) | 作成済み |
+| V16.4 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
 | V16.5 | Error Handling Cheat Sheet | 未作成 | TODO |
 
 ## 参考資料
 
 - Source: https://cheatsheetseries.owasp.org/IndexASVS.html
-- Retrieved: 2026-05-19
+- Retrieved: 2026-05-20

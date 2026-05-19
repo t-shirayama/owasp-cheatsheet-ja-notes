@@ -18,16 +18,16 @@ This is a documentation-first repository. Treat accuracy, attribution, and licen
 - OWASP Cheat Sheet Series and ASVS materials are generally published under Creative Commons Attribution-ShareAlike 4.0 International. When deriving from them, preserve CC BY-SA 4.0 obligations.
 - Every translated, summarized, or checklist document derived from OWASP content must include an `Attribution` section near the top.
 - The `Attribution` section must include original title, source URL, copyright or author information available from the source, license name, license URL, change description, and retrieval date.
-- Mark adaptations honestly, for example: `Japanese translation, summary, and development checklist added.`
+- Mark adaptations honestly, for example: `Japanese translation added.`, `Japanese summary added.`, or `Development checklist added.`
 - If a document incorporates non-OWASP third-party material, record that source and license separately.
 - Do not copy large unrelated sections from source documents. Translate and summarize only the material needed for the target page.
 
 ## Required Document Shape
 
-Use this structure for new documents unless the user asks for a different shape:
+For each source Cheat Sheet, create separate translation, summary, and checklist files unless the user asks for a different shape.
 
 ```markdown
-# <Japanese title>
+# docs/translations/<slug>.md
 
 ## Attribution
 
@@ -36,18 +36,57 @@ Use this structure for new documents unless the user asks for a different shape:
 - Copyright: <Copyright holder or author shown by source>
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: Japanese translation, summary, and development checklist added.
+- Changes: Japanese translation added.
 - Retrieved: YYYY-MM-DD
+
+## 関連ファイル
+
+## 日本語訳
+
+## ASVS との対応
+```
+
+```markdown
+# docs/summaries/<slug>.md
+
+## Attribution
+
+- Original: <Original title>
+- Source: <Source URL>
+- Copyright: <Copyright holder or author shown by source>
+- License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+- License URL: https://creativecommons.org/licenses/by-sa/4.0/
+- Changes: Japanese summary added.
+- Retrieved: YYYY-MM-DD
+
+## 関連ファイル
 
 ## 概要
 
-## 日本語訳・要約
+## 要点
+
+## 実装時の注意点
+```
+
+```markdown
+# docs/checklists/<slug>.md
+
+## Attribution
+
+- Original: <Original title>
+- Source: <Source URL>
+- Copyright: <Copyright holder or author shown by source>
+- License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+- License URL: https://creativecommons.org/licenses/by-sa/4.0/
+- Changes: Development checklist added.
+- Retrieved: YYYY-MM-DD
+
+## 関連ファイル
 
 ## 開発チェックリスト
 
-## 実装時の注意点
+## ASVS との対応
 
-## 参考資料
 ```
 
 ## Japanese Writing Style
@@ -72,12 +111,13 @@ Use this structure for new documents unless the user asks for a different shape:
 ## Repository Conventions
 
 - Use Markdown files.
-- Prefer ASCII filenames with kebab-case, for example `docs/asvs/v2-authentication/password-storage.md`.
+- Prefer ASCII filenames with kebab-case, for example `docs/translations/password-storage.md`.
 - Keep generated documents under `docs/` when adding topic files.
 - Use `docs/asvs/` as the ASVS-first navigation layer.
-- Use `docs/cheatsheets/` as the canonical home for Japanese translations, summaries, and development checklists.
-- Do not duplicate a Cheat Sheet translation across multiple ASVS chapter files. Link to the canonical file instead.
-- Use `docs/checklists/` for cross-cutting review checklists.
+- Use `docs/translations/` for Japanese translation files.
+- Use `docs/summaries/` for Japanese summary files.
+- Use `docs/checklists/` for development checklist files and cross-cutting checklist indexes.
+- Do not duplicate a source Cheat Sheet across multiple ASVS chapter files. Link to the translation, summary, and checklist files instead.
 - Use `docs/templates/` for reusable document templates.
 - Use `references/source-map.md` for ASVS-to-source-to-local-file mapping.
 - Use `references/license-notes.md` for license and attribution operating notes.
@@ -96,6 +136,6 @@ Use this structure for new documents unless the user asks for a different shape:
 
 - Read the relevant source page before drafting.
 - Identify title, source URL, copyright or author statement, license statement, and retrieval date.
-- Draft the Japanese document using the required shape.
+- Draft separate translation, summary, and checklist files using the required shape.
 - Preserve the original meaning and mark changes in the Attribution section.
 - Summarize completed changes in the final response and mention any source or license uncertainty.

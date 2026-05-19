@@ -1,4 +1,4 @@
-# ログ語彙チートシート
+# ログ語彙チートシート 日本語訳
 
 ## Attribution
 
@@ -7,16 +7,15 @@
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: Japanese translation, summary, and development checklist added.
-- Retrieved: 2026-05-19
+- Changes: Japanese translation added.
+- Retrieved: 2026-05-20
 
-## 概要
+## 関連ファイル
 
-ログ語彙は、アプリケーションごとにばらばらになりがちなセキュリティイベント名を統一し、監視、アラート、調査をしやすくするための標準です。開発者が同じ意味のイベントに同じ名前を付ければ、SRE、SOC、インシデント対応チームはアプリケーション横断で検知ルールを作りやすくなります。
+- 要約: [../summaries/logging-vocabulary.md](../summaries/logging-vocabulary.md)
+- 開発チェックリスト: [../checklists/logging-vocabulary.md](../checklists/logging-vocabulary.md)
 
-この Cheat Sheet は、ログの保存先や保護策そのものよりも、イベントの命名、分類、形式、導入方法に焦点を当てます。ログへ何を記録し、何を記録しないかの詳細は [ログ記録チートシート](logging.md) と合わせて扱います。
-
-## 日本語訳・要約
+## 日本語訳
 
 ### 目的
 
@@ -71,40 +70,9 @@
 
 ログ語彙を使っても、記録してはいけない情報まで記録してよいわけではありません。秘密情報、秘密鍵、証明書、ソースコード、パスワード、セッション ID、アクセストークン、機微な個人情報などはログから除外します。必要な相関がある場合は、直接値ではなく安全な識別子やソルト付きハッシュを使います。
 
-## 開発チェックリスト
-
-- [ ] セキュリティイベント名のカテゴリ接頭辞をチームで統一する。
-- [ ] 認証イベントに `authn` 系の語彙を使う。
-- [ ] 認可イベントに `authz` 系の語彙を使う。
-- [ ] セッション作成、更新、期限切れ、期限切れ後利用を `session` 系イベントとして記録する。
-- [ ] 入力検証失敗を `input` 系イベントとして記録する。
-- [ ] 攻撃シグナルを `malicious` 系イベントとして分類する。
-- [ ] 機密データ操作を `sensitive` 系イベントとして記録する。
-- [ ] ユーザー管理操作を `user` 系イベントとして記録する。
-- [ ] システム起動、停止、クラッシュ、監視設定変更を `sys` 系イベントとして記録する。
-- [ ] 日時を UTC オフセット付き ISO 8601 形式で記録する。
-- [ ] アプリケーション ID、イベント名、レベル、説明、送信元、対象リソースを構造化フィールドとして記録する。
-- [ ] 監視基盤や SIEM がイベント名をパースできる形式にする。
-- [ ] イベント語彙をログ設計書、実装規約、レビュー観点に含める。
-- [ ] ログイベントの単体テストまたは統合テストで、イベント名と主要属性を検証する。
-- [ ] パスワード、秘密鍵、アクセストークン、直接のセッション ID をイベント名や属性に含めない。
-
-## 実装時の注意点
-
-- 語彙の統一は監視ルールのための設計です。イベント名を人間に読みやすくするだけでなく、機械的に集計、相関、アラート化できる形式にします。
-- ログレベルはイベントの意味と運用方針に合わせます。すべてを `ERROR` にするとアラート疲れを招き、すべてを `INFO` にすると重要な兆候が埋もれます。
-- ユーザー ID、リソース ID、IP アドレスなどは調査に役立ちますが、個人情報や機密情報としての取り扱いを確認します。
-- イベント名に自由入力値を混ぜないでください。ログインジェクションや監視ルールの誤作動につながります。
-- 語彙を追加する場合は、既存カテゴリで表現できないか確認し、追加理由、重要度、必要属性、監視方法を記録します。
-
 ## ASVS との対応
 
 | ASVS 項目 | 関連内容 |
 | --- | --- |
 | V16.1 Security Logging Documentation | ログイベント名、分類、属性、レベルの標準化 |
 | V16.3 Security Events | 認証、認可、セッション、機密データ、システムイベントの語彙化 |
-
-## 参考資料
-
-- Logging Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
-- OWASP ASVS Index: https://cheatsheetseries.owasp.org/IndexASVS.html

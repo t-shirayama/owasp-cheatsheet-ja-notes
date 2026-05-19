@@ -2,7 +2,7 @@
 
 ## 概要
 
-開発者が機能や実装トピックから確認しやすいように整理するチェックリストです。詳細な根拠や翻訳本文は [../cheatsheets/](../cheatsheets/) の正本を参照します。
+開発者が機能や実装トピックから確認しやすいように整理するチェックリストです。詳細な本文訳は [../translations/](../translations/) を、要約は [../summaries/](../summaries/) を参照します。
 
 ## チェックリスト
 
@@ -12,4 +12,4 @@
 | セッション管理 | セッション ID、タイムアウト、終了、悪用対策 | V7 | [../asvs/v7-session-management.md](../asvs/v7-session-management.md) | TODO |
 | 認可 | 操作レベル認可、オブジェクトレベル認可、権限昇格対策 | V8 | [../asvs/v8-authorization.md](../asvs/v8-authorization.md) | TODO |
 | 入力検証 | 型、範囲、構文、業務ルール、インジェクション対策 | V1, V2 | [../asvs/v1-encoding-and-sanitization.md](../asvs/v1-encoding-and-sanitization.md) | TODO |
-| ログとエラー | セキュリティイベント、ログ保護、エラー応答 | V16 | [../asvs/v16-security-logging-and-error-handling.md](../asvs/v16-security-logging-and-error-handling.md), [../cheatsheets/logging.md](../cheatsheets/logging.md) | 一部作成済み |
+| ログとエラー | セキュリティイベント、ログ保護、エラー応答 | V16 | [../asvs/v16-security-logging-and-error-handling.md](../asvs/v16-security-logging-and-error-handling.md), [logging.md](logging.md), [logging-vocabulary.md](logging-vocabulary.md) | 一部作成済み |
