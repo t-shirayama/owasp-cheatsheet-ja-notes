@@ -17,22 +17,30 @@
 
 ## 概要
 
-XSSは、信頼できないデータがブラウザでスクリプトとして解釈されることで発生します。出力コンテキストに応じたエンコード、HTMLサニタイズ、CSP、危険なDOM APIの回避が重要です。
+XSS は、信頼できないデータがブラウザでコードとして実行されることで発生します。防御は入力検証だけでは不十分で、変数が使われるコンテキストごとに出力エンコーディング、HTML サニタイズ、安全な sink、CSP などを組み合わせます。
 
 ## 要点
 
-- 入力検証だけでなく出力エンコードを行う。
-- HTML、属性、JavaScript、CSS、URLでエンコード方法を分ける。
-- 信頼できないHTMLは安全なサニタイザで処理する。
+- フレームワークの自動エスケープを使い、escape hatch や危険な DOM 操作を重点レビューする。
+- HTML、HTML 属性、JavaScript、CSS、URL でエンコード方法を分ける。
+- JavaScript 内で変数を置ける安全な場所は引用されたデータ値だけに限定する。
+- `script`、HTML コメント、`style`、動的なタグ名や属性名、イベントハンドラ、`eval()` などの危険なコンテキストへ変数を入れない。
+- ユーザー生成 HTML は DOMPurify などでサニタイズし、サニタイズ後に再加工して安全性を壊さない。
+- `innerHTML` を避け、`textContent`、`insertAdjacentText`、安全な `setAttribute` などの safe sink を使う。
+- CSP は多層防御として使い、CSP だけに依存しない。
+- HTTP インターセプタの一律エンコードは、コンテキスト不一致、二重エンコード、DOM based XSS の見落としを起こしやすい。
 
 ## 実装時の注意点
 
-- この要約はASVS Indexでの利用を前提にした実装者向け整理です。詳細確認時は原文を参照してください。
-- 関連する認証、認可、ログ、入力検証、暗号、通信保護の管理策と組み合わせて適用します。
+- URL を HTML 属性に入れる場合は、URL エンコード後に HTML 属性エンコーディングを行います。
+- JSON 応答は `application/json` を返し、`text/html` として解釈されないようにします。
+- サニタイズライブラリはブラウザ挙動や回避手法の変化に追従するため、定期的に更新します。
 
 ## ASVS との対応
 
 | ASVS 項目 | 関連内容 |
 | --- | --- |
-| V1, V3 | XSS防止チートシート の主要な管理策 |
-
+| V1.2 Injection Prevention | コンテキスト別出力エンコーディング、危険なコンテキスト回避 |
+| V1.3 Sanitization | HTML サニタイズ、サニタイズ後の変異防止 |
+| V3.2 Unintended Content Interpretation | Content-Type、HTML/CSS/JS/URL の誤解釈防止 |
+| V3.4 Browser Security Mechanism Headers | CSP を補助防御として利用 |

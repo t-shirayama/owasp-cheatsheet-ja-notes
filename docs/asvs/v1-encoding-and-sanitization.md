@@ -110,7 +110,7 @@
 | V1.3, V5.3, V13 | Server Side Request Forgery Prevention Cheat Sheet | [翻訳](../translations/v1/ssrf-prevention.md) / [要約](../summaries/v1/ssrf-prevention.md) / [チェックリスト](../checklists/v1/ssrf-prevention.md) | 作成済み |
 | V1, V9 | XML Security Cheat Sheet | [翻訳](../translations/v1/xml-security.md) / [要約](../summaries/v1/xml-security.md) / [チェックリスト](../checklists/v1/xml-security.md) | 作成済み |
 | V1.2 | XSS Filter Evasion Cheat Sheet | [翻訳](../translations/v1/xss-filter-evasion.md) / [要約](../summaries/v1/xss-filter-evasion.md) / [チェックリスト](../checklists/v1/xss-filter-evasion.md) | 作成済み |
-| V1, V3 | Cross Site Scripting Prevention Cheat Sheet | [翻訳](../translations/v1/xss-prevention.md) / [要約](../summaries/v1/xss-prevention.md) / [チェックリスト](../checklists/v1/xss-prevention.md) | 作成済み |
+| V1.2 Injection Prevention; V1.3 Sanitization; V3.2 Unintended Content Interpretation; V3.4 Browser Security Mechanism Headers | Cross Site Scripting Prevention Cheat Sheet | [翻訳](../translations/v1/xss-prevention.md) / [要約](../summaries/v1/xss-prevention.md) / [チェックリスト](../checklists/v1/xss-prevention.md) | 詳細化済み |
 | V1 | XML External Entity Prevention Cheat Sheet | [翻訳](../translations/v1/xxe-prevention.md) / [要約](../summaries/v1/xxe-prevention.md) / [チェックリスト](../checklists/v1/xxe-prevention.md) | 作成済み |
 
 ## 参考資料

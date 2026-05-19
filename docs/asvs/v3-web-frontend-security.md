@@ -61,7 +61,7 @@
 | V3, V12 | HTTP Strict Transport Security Cheat Sheet | [翻訳](../translations/v3/http-strict-transport-security.md) / [要約](../summaries/v3/http-strict-transport-security.md) / [チェックリスト](../checklists/v3/http-strict-transport-security.md) | 作成済み |
 | V3, V15 | Third Party Javascript Management Cheat Sheet | [翻訳](../translations/v3/third-party-javascript-management.md) / [要約](../summaries/v3/third-party-javascript-management.md) / [チェックリスト](../checklists/v3/third-party-javascript-management.md) | 作成済み |
 | V3, V4, V10, V11, V12, V17 | Transport Layer Security Cheat Sheet | [翻訳](../translations/v3/transport-layer-security.md) / [要約](../summaries/v3/transport-layer-security.md) / [チェックリスト](../checklists/v3/transport-layer-security.md) | 作成済み |
-| V1, V3 | Cross Site Scripting Prevention Cheat Sheet | [翻訳](../translations/v1/xss-prevention.md) / [要約](../summaries/v1/xss-prevention.md) / [チェックリスト](../checklists/v1/xss-prevention.md) | 作成済み |
+| V1.2 Injection Prevention; V1.3 Sanitization; V3.2 Unintended Content Interpretation; V3.4 Browser Security Mechanism Headers | Cross Site Scripting Prevention Cheat Sheet | [翻訳](../translations/v1/xss-prevention.md) / [要約](../summaries/v1/xss-prevention.md) / [チェックリスト](../checklists/v1/xss-prevention.md) | 詳細化済み |
 
 ## 参考資料
 
