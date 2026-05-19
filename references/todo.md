@@ -26,6 +26,7 @@
 - [x] 認可 V1: Authorization Cheat Sheet を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V8.1`、`V8.2`、`V8.4`、`V16.3` 単位へ見直す。
 - [x] XSS V1: Cross Site Scripting Prevention Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V1.2`、`V1.3`、`V3.2`、`V3.4` 単位へ見直す。
 - [x] 暗号 V1: Cryptographic Storage Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V11.1`、`V11.2`、`V11.3`、`V11.5`、`V13.3`、`V14.1` 単位へ見直す。
+- [x] ログ V1: Logging Cheat Sheet を詳細レビューし、開発チェックリストを `V10.7`、`V16.1`、`V16.2`、`V16.3`、`V16.4` 単位へ見直す。
 
 ## 優先度中
 
