@@ -7,7 +7,7 @@
 ## 関連 Cheat Sheet
 
 - [ログ記録チートシート](../cheatsheets/logging.md)
-- Logging Vocabulary Cheat Sheet: 未作成
+- [ログ語彙チートシート](../cheatsheets/logging-vocabulary.md)
 - Session Management Cheat Sheet: 未作成
 - Authorization Cheat Sheet: 未作成
 - Error Handling Cheat Sheet: 未作成
@@ -24,12 +24,12 @@
 | ASVS 項目 | Cheat Sheet | ローカル正本 | 状態 |
 | --- | --- | --- | --- |
 | V16.1 | Logging Cheat Sheet | [../cheatsheets/logging.md](../cheatsheets/logging.md) | 作成済み |
-| V16.1 | Logging Vocabulary Cheat Sheet | 未作成 | TODO |
+| V16.1 | Logging Vocabulary Cheat Sheet | [../cheatsheets/logging-vocabulary.md](../cheatsheets/logging-vocabulary.md) | 作成済み |
 | V16.2 | Logging Cheat Sheet | [../cheatsheets/logging.md](../cheatsheets/logging.md) | 作成済み |
 | V16.2 | Session Management Cheat Sheet | 未作成 | TODO |
 | V16.3 | Authorization Cheat Sheet | 未作成 | TODO |
 | V16.3 | Logging Cheat Sheet | [../cheatsheets/logging.md](../cheatsheets/logging.md) | 作成済み |
-| V16.3 | Logging Vocabulary Cheat Sheet | 未作成 | TODO |
+| V16.3 | Logging Vocabulary Cheat Sheet | [../cheatsheets/logging-vocabulary.md](../cheatsheets/logging-vocabulary.md) | 作成済み |
 | V16.4 | Logging Cheat Sheet | [../cheatsheets/logging.md](../cheatsheets/logging.md) | 作成済み |
 | V16.5 | Error Handling Cheat Sheet | 未作成 | TODO |
 
