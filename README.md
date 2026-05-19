@@ -11,56 +11,6 @@
 - セキュリティレビュー、設計レビュー、実装タスク化に使える形で整理する
 - 出典、著作者、ライセンス、変更有無を明示して再利用しやすくする
 
-## 想定するドキュメント
-
-各 Cheat Sheet は、原則として翻訳、要約、開発チェックリストを別ファイルとして作成します。
-
-```markdown
-# docs/translations/<slug>.md
-
-## Attribution
-
-- Original: <原文タイトル>
-- Source: <原文URL>
-- Copyright: OWASP Foundation / Cheat Sheets Series Team など、原文に記載された著作者・権利者
-- License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
-- License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: Japanese translation added.
-- Retrieved: YYYY-MM-DD
-
-## 関連ファイル
-
-## 日本語訳
-
-## ASVS との対応
-```
-
-```markdown
-# docs/summaries/<slug>.md
-
-## Attribution
-
-## 関連ファイル
-
-## 概要
-
-## 要点
-
-## 実装時の注意点
-```
-
-```markdown
-# docs/checklists/<slug>.md
-
-## Attribution
-
-## 関連ファイル
-
-## チェックリスト
-
-## ASVS との対応
-```
-
 ## ライセンスと Attribution
 
 OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-ShareAlike 4.0 International と表示されています。Creative Commons の CC BY-SA 4.0 では、共有や翻案が許可される一方で、適切なクレジット表示、ライセンスへのリンク、変更有無の表示、同一ライセンスでの共有が求められます。
@@ -96,23 +46,6 @@ OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-Shar
 - 日本語要約は [docs/summaries/](docs/summaries/) に置きます。
 - 開発チェックリストは [docs/checklists/](docs/checklists/) に置きます。
 - 出典対応表は [references/source-map.md](references/source-map.md) で管理します。
-
-## Codex への依頼例
-
-```text
-OWASP Cheat Sheet Series の <対象ページURL> を確認して、
-AGENTS.md のルールに従い、日本語翻訳・要約・開発チェックリストを作成してください。
-翻訳、要約、チェックリストは別ファイルに分け、Attribution セクションを必ず入れてください。
-```
-
-## 品質方針
-
-- 原文の意味を変えない
-- MUST、SHOULD、MAY などの規範的な強さを保つ
-- セキュリティ上の条件、例外、前提を省略しない
-- チェックリストは実装者が行動できる粒度にする
-- 不明点や原文の曖昧さは推測で補わず、注記として残す
-- 古い情報の可能性がある場合は、原文の確認日を明示する
 
 ## 参考資料
 
