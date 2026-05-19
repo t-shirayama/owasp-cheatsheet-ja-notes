@@ -22,7 +22,10 @@
   - 翻訳: [認可チートシート 日本語訳](../translations/authorization.md)
   - 要約: [認可チートシート 要約](../summaries/authorization.md)
   - チェックリスト: [認可チートシート 開発チェックリスト](../checklists/authorization.md)
-- Error Handling Cheat Sheet: 未作成
+- Error Handling Cheat Sheet
+  - 翻訳: [エラーハンドリングチートシート 日本語訳](../translations/error-handling.md)
+  - 要約: [エラーハンドリングチートシート 要約](../summaries/error-handling.md)
+  - チェックリスト: [エラーハンドリングチートシート 開発チェックリスト](../checklists/error-handling.md)
 
 ## 章別チェック観点
 
@@ -43,7 +46,7 @@
 | V16.3 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
 | V16.3 | Logging Vocabulary Cheat Sheet | [翻訳](../translations/logging-vocabulary.md) / [要約](../summaries/logging-vocabulary.md) / [チェックリスト](../checklists/logging-vocabulary.md) | 作成済み |
 | V16.4 | Logging Cheat Sheet | [翻訳](../translations/logging.md) / [要約](../summaries/logging.md) / [チェックリスト](../checklists/logging.md) | 作成済み |
-| V16.5 | Error Handling Cheat Sheet | 未作成 | TODO |
+| V16.5 | Error Handling Cheat Sheet | [翻訳](../translations/error-handling.md) / [要約](../summaries/error-handling.md) / [チェックリスト](../checklists/error-handling.md) | 作成済み |
 
 ## 参考資料
 

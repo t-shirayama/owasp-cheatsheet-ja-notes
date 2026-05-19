@@ -22,6 +22,7 @@ ASVS 項目、公式 Cheat Sheet、ローカルの翻訳・要約・チェック
 | V16.3 | Logging Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html | [docs/translations/logging.md](../docs/translations/logging.md) | [docs/summaries/logging.md](../docs/summaries/logging.md) | [docs/checklists/logging.md](../docs/checklists/logging.md) | 作成済み | Security Events |
 | V16.3 | Logging Vocabulary Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html | [docs/translations/logging-vocabulary.md](../docs/translations/logging-vocabulary.md) | [docs/summaries/logging-vocabulary.md](../docs/summaries/logging-vocabulary.md) | [docs/checklists/logging-vocabulary.md](../docs/checklists/logging-vocabulary.md) | 作成済み | Security Events |
 | V16.4 | Logging Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html | [docs/translations/logging.md](../docs/translations/logging.md) | [docs/summaries/logging.md](../docs/summaries/logging.md) | [docs/checklists/logging.md](../docs/checklists/logging.md) | 作成済み | Log Protection |
+| V16.5 | Error Handling Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html | [docs/translations/error-handling.md](../docs/translations/error-handling.md) | [docs/summaries/error-handling.md](../docs/summaries/error-handling.md) | [docs/checklists/error-handling.md](../docs/checklists/error-handling.md) | 作成済み | Error Handling |
 
 ## 参考資料
 
