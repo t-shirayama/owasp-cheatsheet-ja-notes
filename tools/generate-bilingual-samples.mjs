@@ -1089,6 +1089,31 @@ function extractPanel(text, panelClass) {
   return normalized.slice(contentStart, contentStart + closing.index).trim();
 }
 
+function splitReferenceSection(markdown) {
+  const normalized = normalizeNewlines(markdown).trim();
+  const lines = normalized.split('\n');
+  const start = lines.findIndex((line) => /^##\s+References?\s*$/i.test(line.trim()));
+  if (start === -1) {
+    return { body: normalized, references: '' };
+  }
+  const endOffset = lines
+    .slice(start + 1)
+    .findIndex((line) => /^##\s+\S/.test(line.trim()));
+  const end = endOffset === -1 ? lines.length : start + 1 + endOffset;
+  const body = [...lines.slice(0, start), ...lines.slice(end)].join('\n').trim();
+  const references = lines.slice(start, end).join('\n').trim();
+  return { body, references };
+}
+
+function stripReferenceSections(markdown) {
+  let current = normalizeNewlines(markdown).trim();
+  for (const heading of ['References?', '参考資料', 'リファレンス']) {
+    const pattern = new RegExp(`(^|\\n)##\\s+${heading}\\s*\\n[\\s\\S]*?(?=\\n##\\s+\\S|$)`, 'i');
+    current = current.replace(pattern, '\n').trim();
+  }
+  return current;
+}
+
 function sanitizeMarkdown(text) {
   const lines = normalizeNewlines(text).split('\n');
   let inFence = false;
@@ -1616,6 +1641,19 @@ async function localChecklist(page) {
 
 function pageMarkdown(page, english, japanese, summary, checklist) {
   const sourceUrl = officialPageUrl(page);
+  const englishParts = splitReferenceSection(english);
+  const englishBody = englishParts.body;
+  const japaneseBody = stripReferenceSections(japanese);
+  const references = englishParts.references
+    ? `## References
+
+<div className="referenceFooter">
+
+${englishParts.references.replace(/^##\s+References?\s*\n/i, '')}
+
+</div>
+`
+    : '';
   return `---
 title: ${page.title}
 hide_title: true
@@ -1647,13 +1685,13 @@ hide_title: true
 
 <section id="${page.slug}-original-panel" className="tabPanel originalPanel contentPanel">
 
-${english}
+${englishBody}
 
 </section>
 
 <section id="${page.slug}-translation-panel" className="tabPanel translationPanel contentPanel">
 
-${japanese}
+${japaneseBody}
 
 </section>
 
@@ -1671,10 +1709,12 @@ ${checklist}
 
 <section id="${page.slug}-bilingual-panel" className="tabPanel bilingualPanel">
 
-${bilingualPairs(english, japanese)}
+${bilingualPairs(englishBody, japaneseBody)}
 
 </section>
 </div>
+
+${references}
 
 ## Attribution
 

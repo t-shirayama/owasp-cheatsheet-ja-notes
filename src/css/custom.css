@@ -544,7 +544,7 @@ html[data-theme='dark'] .docHero[data-category='logging-monitoring'] {
 
 .contentTabs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  grid-template-columns: repeat(5, minmax(110px, 1fr));
   margin: 20px 0;
   border: 1px solid var(--page-border);
   border-radius: 8px;
@@ -567,6 +567,7 @@ html[data-theme='dark'] .docHero[data-category='logging-monitoring'] {
 }
 
 .contentTabs label:hover,
+[id$="-original"]:checked ~ .contentTabs label[for$="-original"],
 [id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
 [id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
 [id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
@@ -581,6 +582,7 @@ html[data-theme='dark'] .docHero[data-category='logging-monitoring'] {
 }
 
 [id$="-translation"]:checked ~ .translationPanel,
+[id$="-original"]:checked ~ .originalPanel,
 [id$="-summary"]:checked ~ .summaryPanel,
 [id$="-checklist"]:checked ~ .checklistPanel,
 [id$="-bilingual"]:checked ~ .bilingualPanel {
@@ -622,6 +624,18 @@ html[data-theme='dark'] .docHero[data-category='logging-monitoring'] {
   padding-top: 18px;
   color: var(--page-muted);
   font-size: 0.92rem;
+}
+
+.referenceFooter {
+  margin-top: 12px;
+  border-top: 1px solid var(--page-border);
+  padding-top: 18px;
+  color: var(--page-muted);
+  font-size: 0.92rem;
+}
+
+.referenceFooter ul {
+  margin-bottom: 0;
 }
 
 .bilingualPair {
@@ -757,6 +771,7 @@ html[data-theme='dark'] .pilotCard {
 }
 
 html[data-theme='dark'] .contentTabs label:hover,
+html[data-theme='dark'] [id$="-original"]:checked ~ .contentTabs label[for$="-original"],
 html[data-theme='dark'] [id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
 html[data-theme='dark'] [id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
 html[data-theme='dark'] [id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
@@ -956,6 +971,7 @@ body {
 }
 
 .breadcrumbs {
+  padding-left: 0;
   margin-bottom: 22px;
   color: var(--doc-muted);
   font-size: 0.86rem;
@@ -1001,7 +1017,7 @@ body {
 }
 
 .contentTabs {
-  grid-template-columns: repeat(4, minmax(110px, 1fr));
+  grid-template-columns: repeat(5, minmax(100px, 1fr));
   margin: 20px 0;
   border: 1px solid var(--doc-line);
   border-radius: 8px;
@@ -1021,6 +1037,7 @@ body {
 }
 
 [id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
+[id$="-original"]:checked ~ .contentTabs label[for$="-original"],
 [id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
 [id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
 [id$="-bilingual"]:checked ~ .contentTabs label[for$="-bilingual"] {
@@ -1222,6 +1239,7 @@ html[data-theme='dark'] .menu__list-item-collapsible:hover {
 }
 
 html[data-theme='dark'] [id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
+html[data-theme='dark'] [id$="-original"]:checked ~ .contentTabs label[for$="-original"],
 html[data-theme='dark'] [id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
 html[data-theme='dark'] [id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
 html[data-theme='dark'] [id$="-bilingual"]:checked ~ .contentTabs label[for$="-bilingual"] {

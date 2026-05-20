@@ -147,14 +147,18 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 - Use the local bundled fonts (`@fontsource-variable/inter` and `@fontsource-variable/noto-sans-jp`) so the site does not depend on remote font delivery.
 - Maintain both light and dark modes. In dark mode, English and Japanese bilingual blocks must be visually distinguishable by background/accent color.
 - Code blocks should use fenced language identifiers where possible and keep the VS Code-like framed style and syntax highlighting.
+- For visual design changes, follow the four basic design principles: proximity, alignment, repetition, and contrast. Related elements should be grouped, edges and starting positions should align intentionally, recurring UI patterns should be consistent, and meaningful differences should be visible through size, color, weight, or spacing.
+- Before finishing layout work, check obvious alignment relationships such as header/sidebar spacing, breadcrumb/title start positions, tab/card widths, and footer/content alignment.
 
 ## Bilingual Page Rules
 
 - Web-facing bilingual pages live directly under `docs/bilingual/<slug>.md`; do not place them under `v1/` through `v17/` folders.
 - English original source documents live directly under `docs/originals/<slug>.md`; keep them separate from `docs/translations/` and `docs/bilingual/`.
 - `docs/originals/<slug>.md` should preserve the official English source Markdown as closely as practical. Add only the local Attribution wrapper and do not translate or summarize that body.
-- Bilingual pages should have four display modes: `翻訳`, `要点`, `チェックリスト`, and `対比表示`. Only the selected mode should be visible.
+- Bilingual pages should have five display modes in this order: `原本`, `翻訳`, `要点`, `チェックリスト`, and `対比表示`. Only the selected mode should be visible.
+- The `原本` mode should show the English original before translation so readers can inspect the source text without the bilingual comparison cards.
 - `翻訳`, `要点`, and `チェックリスト` should not show repository maintenance sections such as `関連ファイル` on the web page.
+- Source reference/link sections such as `References` should not be translated. Move them out of the main reading tabs and render them near the bottom as English reference metadata, similar to Attribution.
 - Place web-facing Attribution near the bottom of the page, after the main reading experience, while still preserving all required attribution fields.
 - `対比表示` must preserve the official source order and should be full-page coverage for Full pages.
 - For Full bilingual pages, the Japanese translation must be a full translation of the same source coverage, not a short summary. Do not rely on a summary-style translation panel to satisfy a Full page.
@@ -167,6 +171,18 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 - If a heading applies only to a following code block or image, attach that heading to the common card instead of creating an empty English/Japanese text pair.
 - Keep original code, configuration, commands, identifiers, and protocol names unchanged unless the source itself is being corrected. Add Japanese explanation around them rather than translating identifiers.
 - When updating `tools/generate-bilingual-samples.mjs`, regenerate the affected pages and inspect the diff. If the generator updates unrelated pages, revert unrelated generated diffs before committing unless the user asked for a broad regeneration.
+
+## Documentation Maintenance Order
+
+For each Cheat Sheet maintenance or expansion task, proceed in this order unless the user explicitly requests a different scope:
+
+1. Update the English original source document under `docs/originals/<slug>.md` from the current official OWASP source.
+2. Update the Japanese translation under `docs/translations/<slug>.md` so it tracks the current English source without omitting meaningful content.
+3. Update the Japanese summary under `docs/summaries/<slug>.md`, reflecting the revised source and translation.
+4. Update the development checklist under `docs/checklists/<slug>.md`, keeping checks actionable and source-backed.
+5. Regenerate or update the web-facing bilingual page under `docs/bilingual/<slug>.md`, including `原本`, `翻訳`, `要点`, `チェックリスト`, and `対比表示`.
+
+Do not update the bilingual display first and leave the source documents stale. The bilingual page is a generated/public reading layer, while `docs/originals/`, `docs/translations/`, `docs/summaries/`, and `docs/checklists/` are the maintainable source layers.
 
 ## Validation
 

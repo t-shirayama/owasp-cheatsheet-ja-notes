@@ -13,17 +13,25 @@ hide_title: true
 </div>
 
 <div className="tabbedContent">
+  <input className="tabInput" type="radio" name="injection-prevention-in-java-view" id="injection-prevention-in-java-original" />
   <input className="tabInput" type="radio" name="injection-prevention-in-java-view" id="injection-prevention-in-java-translation" defaultChecked />
   <input className="tabInput" type="radio" name="injection-prevention-in-java-view" id="injection-prevention-in-java-summary" />
   <input className="tabInput" type="radio" name="injection-prevention-in-java-view" id="injection-prevention-in-java-checklist" />
   <input className="tabInput" type="radio" name="injection-prevention-in-java-view" id="injection-prevention-in-java-bilingual" />
 
   <div className="contentTabs">
+    <label htmlFor="injection-prevention-in-java-original">原本</label>
     <label htmlFor="injection-prevention-in-java-translation">翻訳</label>
     <label htmlFor="injection-prevention-in-java-summary">要点</label>
     <label htmlFor="injection-prevention-in-java-checklist">チェックリスト</label>
     <label htmlFor="injection-prevention-in-java-bilingual">対比表示</label>
   </div>
+
+<section id="injection-prevention-in-java-original-panel" className="tabPanel originalPanel contentPanel">
+
+This information has been moved to the dedicated [Java Security CheatSheet](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html#injection-prevention-in-java)
+
+</section>
 
 <section id="injection-prevention-in-java-translation-panel" className="tabPanel translationPanel contentPanel">
 
@@ -121,6 +129,8 @@ Javaアプリケーションでは、SQL、LDAP、XML、式言語、OSコマン�
 
 </section>
 </div>
+
+
 
 ## Attribution
 
