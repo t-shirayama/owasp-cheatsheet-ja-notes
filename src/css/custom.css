@@ -101,19 +101,23 @@ html[data-theme='dark'] .navbar__search-input {
 
 .homeHero {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
   gap: 36px;
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 76px 0 44px;
+  padding: 74px 0 34px;
   align-items: center;
 }
 
 .heroCopy h1 {
   margin: 16px 0 18px;
   color: var(--page-ink);
-  font-size: clamp(2.1rem, 4vw, 4.2rem);
+  font-size: clamp(2.1rem, 4vw, 3.9rem);
   line-height: 1.05;
+}
+
+.heroCopy h1 span {
+  display: block;
 }
 
 .heroCopy p {
@@ -151,49 +155,158 @@ html[data-theme='dark'] .docPill {
   margin-top: 28px;
 }
 
-.heroVisual {
+.heroBilingualVisual {
   position: relative;
-  min-height: 330px;
+  min-height: 360px;
   border: 1px solid rgba(91, 128, 210, 0.18);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.72);
+  padding: 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 246, 255, 0.76)),
+    url('../../static/img/hero-cryptographic-storage.svg') right bottom / 58% auto no-repeat;
   overflow: hidden;
 }
 
-.heroShield,
-.heroLock {
-  position: absolute;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(21, 101, 255, 0.18);
-  background: rgba(255, 255, 255, 0.84);
-  color: #155bea;
+.visualHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  color: var(--page-ink);
+}
+
+.visualHeader span,
+.visualFooter span,
+.cardBadges span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border: 1px solid #cfe0ff;
+  border-radius: 999px;
+  padding: 3px 9px;
+  background: rgba(238, 245, 255, 0.9);
+  color: #1354d5;
+  font-size: 0.74rem;
   font-weight: 800;
 }
 
-.heroShield {
-  top: 54px;
-  left: 46px;
-  width: 132px;
-  height: 132px;
-  border-radius: 8px;
-  font-size: 1.1rem;
+.comparisonStack {
+  display: grid;
+  gap: 12px;
+  width: min(360px, 100%);
 }
 
-.heroLock {
-  right: 52px;
-  bottom: 46px;
-  width: 172px;
-  height: 172px;
+.comparisonBlock {
+  border: 1px solid var(--page-border);
   border-radius: 8px;
-  font-size: 1.55rem;
-  box-shadow: 0 30px 70px rgba(21, 101, 255, 0.18);
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 20px 50px rgba(21, 101, 255, 0.08);
+}
+
+.comparisonBlock span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.comparisonBlock p {
+  margin: 0;
+  color: var(--page-ink);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.comparisonBlock.english {
+  border-left: 4px solid var(--page-accent);
+}
+
+.comparisonBlock.english span {
+  color: var(--page-accent);
+}
+
+.comparisonBlock.japanese {
+  border-left: 4px solid #20c982;
+}
+
+.comparisonBlock.japanese span {
+  color: #139d65;
+}
+
+.visualFooter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.visualLock {
+  position: absolute;
+  right: 42px;
+  bottom: 42px;
+  width: 92px;
+  height: 72px;
+  border-radius: 8px;
+  background: rgba(21, 101, 255, 0.16);
+}
+
+.visualLock::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: -42px;
+  width: 44px;
+  height: 54px;
+  border: 10px solid rgba(21, 101, 255, 0.24);
+  border-bottom: 0;
+  border-radius: 28px 28px 0 0;
+}
+
+.visualLock span {
+  position: absolute;
+  left: 41px;
+  top: 28px;
+  width: 10px;
+  height: 20px;
+  border-radius: 999px;
+  background: #ffffff;
 }
 
 .homeSection {
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 22px 0 72px;
+  padding: 28px 0 76px;
+}
+
+.featureSection {
+  padding-top: 8px;
+  padding-bottom: 28px;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.featureCard {
+  border: 1px solid var(--page-border);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--page-surface-raised);
+}
+
+.featureCard strong {
+  display: block;
+  color: var(--page-ink);
+  font-size: 1rem;
+}
+
+.featureCard p {
+  margin: 8px 0 0;
+  color: var(--page-muted);
+  line-height: 1.7;
 }
 
 .sectionHeading p {
@@ -210,15 +323,15 @@ html[data-theme='dark'] .docPill {
 
 .pilotGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
 .pilotCard {
   border: 1px solid var(--page-border);
   border-radius: 8px;
-  padding: 18px;
-  background: var(--page-surface);
+  padding: 20px;
+  background: var(--page-surface-raised);
   color: inherit;
   text-decoration: none;
 }
@@ -228,17 +341,42 @@ html[data-theme='dark'] .docPill {
   text-decoration: none;
 }
 
-.pilotCard span,
-.pilotCard small {
-  display: block;
+.cardTopline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   color: var(--page-muted);
+  font-size: 0.84rem;
+  font-weight: 750;
 }
 
 .pilotCard strong {
   display: block;
-  margin: 8px 0;
+  margin: 10px 0 6px;
   color: var(--page-ink);
-  font-size: 1.04rem;
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.pilotCard p {
+  margin: 0;
+  color: var(--page-muted);
+}
+
+.cardBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.pilotCard em {
+  display: inline-flex;
+  margin-top: 16px;
+  color: var(--ifm-color-primary);
+  font-style: normal;
+  font-weight: 850;
 }
 
 .docHero {
@@ -540,15 +678,34 @@ html[data-theme='dark'] .siteHome {
     url('../../static/img/security-panel.svg') right top / min(54vw, 780px) auto no-repeat;
 }
 
-html[data-theme='dark'] .heroVisual,
-html[data-theme='dark'] .heroShield,
-html[data-theme='dark'] .heroLock {
+html[data-theme='dark'] .heroBilingualVisual,
+html[data-theme='dark'] .comparisonBlock,
+html[data-theme='dark'] .featureCard {
   border-color: var(--page-border);
   background: rgba(19, 21, 24, 0.82);
   color: var(--page-accent);
 }
 
-html[data-theme='dark'] .heroLock {
+html[data-theme='dark'] .heroBilingualVisual {
+  background:
+    linear-gradient(135deg, rgba(19, 21, 24, 0.98), rgba(15, 16, 19, 0.84)),
+    url('../../static/img/hero-cryptographic-storage.svg') right bottom / 58% auto no-repeat;
+}
+
+html[data-theme='dark'] .comparisonBlock p {
+  color: var(--page-ink);
+}
+
+html[data-theme='dark'] .visualHeader span,
+html[data-theme='dark'] .visualFooter span,
+html[data-theme='dark'] .cardBadges span {
+  border-color: #1e5d50;
+  background: #10231f;
+  color: var(--page-accent);
+}
+
+html[data-theme='dark'] .visualLock {
+  background: rgba(79, 224, 186, 0.12);
   box-shadow: 0 28px 70px rgba(79, 224, 186, 0.08);
 }
 
@@ -587,10 +744,11 @@ html[data-theme='dark'] .footer--light {
     padding-top: 48px;
   }
 
-  .heroVisual {
-    min-height: 220px;
+  .heroBilingualVisual {
+    min-height: 300px;
   }
 
+  .featureGrid,
   .pilotGrid,
   .contentTabs {
     grid-template-columns: 1fr;
