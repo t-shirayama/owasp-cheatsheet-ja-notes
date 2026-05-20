@@ -141,23 +141,188 @@ const pages = [
 ];
 
 const asvsChapters = [
-  { id: 1, title: 'Encoding and Sanitization' },
-  { id: 2, title: 'Validation and Business Logic' },
-  { id: 3, title: 'Web Frontend Security' },
-  { id: 4, title: 'API and Web Service' },
-  { id: 5, title: 'File Handling' },
-  { id: 6, title: 'Authentication' },
-  { id: 7, title: 'Session Management' },
-  { id: 8, title: 'Authorization' },
-  { id: 9, title: 'Self-contained Tokens' },
-  { id: 10, title: 'OAuth and OIDC' },
-  { id: 11, title: 'Cryptography' },
-  { id: 12, title: 'Secure Communication' },
-  { id: 13, title: 'Configuration' },
-  { id: 14, title: 'Data Protection' },
-  { id: 15, title: 'Secure Coding and Architecture' },
-  { id: 16, title: 'Security Logging and Error Handling' },
-  { id: 17, title: 'WebRTC' },
+  {
+    id: 1,
+    title: 'Encoding and Sanitization',
+    sections: [
+      { id: 'V1.1', title: 'Encoding and Sanitization Architecture' },
+      { id: 'V1.2', title: 'Injection Prevention' },
+      { id: 'V1.3', title: 'Sanitization' },
+      { id: 'V1.4', title: 'Memory, String, and Unmanaged Code' },
+      { id: 'V1.5', title: 'Safe Deserialization' },
+    ],
+  },
+  {
+    id: 2,
+    title: 'Validation and Business Logic',
+    sections: [
+      { id: 'V2.1', title: 'Validation and Business Logic Documentation' },
+      { id: 'V2.2', title: 'Input Validation' },
+      { id: 'V2.3', title: 'Business Logic Security' },
+      { id: 'V2.4', title: 'Anti-automation' },
+    ],
+  },
+  {
+    id: 3,
+    title: 'Web Frontend Security',
+    sections: [
+      { id: 'V3.1', title: 'Web Frontend Security Documentation' },
+      { id: 'V3.2', title: 'Unintended Content Interpretation' },
+      { id: 'V3.3', title: 'Cookie Setup' },
+      { id: 'V3.4', title: 'Browser Security Mechanism Headers' },
+      { id: 'V3.5', title: 'Browser Origin Separation' },
+      { id: 'V3.6', title: 'External Resource Integrity' },
+      { id: 'V3.7', title: 'Other Browser Security Considerations' },
+    ],
+  },
+  {
+    id: 4,
+    title: 'API and Web Service',
+    sections: [
+      { id: 'V4.1', title: 'Generic Web Service Security' },
+      { id: 'V4.2', title: 'HTTP Message Structure Validation' },
+      { id: 'V4.3', title: 'GraphQL' },
+      { id: 'V4.4', title: 'WebSocket' },
+    ],
+  },
+  {
+    id: 5,
+    title: 'File Handling',
+    sections: [
+      { id: 'V5.1', title: 'File Handling Documentation' },
+      { id: 'V5.2', title: 'File Upload and Content' },
+      { id: 'V5.3', title: 'File Storage' },
+      { id: 'V5.4', title: 'File Download' },
+    ],
+  },
+  {
+    id: 6,
+    title: 'Authentication',
+    sections: [
+      { id: 'V6.1', title: 'Authentication Documentation' },
+      { id: 'V6.2', title: 'Password Security' },
+      { id: 'V6.3', title: 'General Authentication Security' },
+      { id: 'V6.4', title: 'Authentication Factor Lifecycle and Recovery' },
+      { id: 'V6.5', title: 'General Multi-factor authentication requirements' },
+      { id: 'V6.6', title: 'Out-of-Band authentication mechanisms' },
+      { id: 'V6.7', title: 'Cryptographic authentication mechanism' },
+      { id: 'V6.8', title: 'Authentication with an Identity Provider' },
+    ],
+  },
+  {
+    id: 7,
+    title: 'Session Management',
+    sections: [
+      { id: 'V7.1', title: 'Session Management Documentation' },
+      { id: 'V7.2', title: 'Fundamental Session Management Security' },
+      { id: 'V7.3', title: 'Session Timeout' },
+      { id: 'V7.4', title: 'Session Termination' },
+      { id: 'V7.5', title: 'Defenses Against Session Abuse' },
+      { id: 'V7.6', title: 'Federated Re-authentication' },
+    ],
+  },
+  {
+    id: 8,
+    title: 'Authorization',
+    sections: [
+      { id: 'V8.1', title: 'Authorization Documentation' },
+      { id: 'V8.2', title: 'General Authorization Design' },
+      { id: 'V8.3', title: 'Operation Level Authorization' },
+      { id: 'V8.4', title: 'Other Authorization Considerations' },
+    ],
+  },
+  {
+    id: 9,
+    title: 'Self-contained Tokens',
+    sections: [
+      { id: 'V9.1', title: 'Token source and integrity' },
+      { id: 'V9.2', title: 'Token content' },
+    ],
+  },
+  {
+    id: 10,
+    title: 'OAuth and OIDC',
+    sections: [
+      { id: 'V10.1', title: 'Generic OAuth and OIDC Security' },
+      { id: 'V10.2', title: 'OAuth Client' },
+      { id: 'V10.3', title: 'OAuth Resource Server' },
+      { id: 'V10.4', title: 'OAuth Authorization Server' },
+      { id: 'V10.5', title: 'OIDC Client' },
+      { id: 'V10.6', title: 'OpenID Provider' },
+      { id: 'V10.7', title: 'Consent Management' },
+    ],
+  },
+  {
+    id: 11,
+    title: 'Cryptography',
+    sections: [
+      { id: 'V11.1', title: 'Cryptographic Inventory and Documentation' },
+      { id: 'V11.2', title: 'Secure Cryptography Implementation' },
+      { id: 'V11.3', title: 'Encryption Algorithms' },
+      { id: 'V11.4', title: 'Hashing and Hash-based Functions' },
+      { id: 'V11.5', title: 'Random Values' },
+      { id: 'V11.6', title: 'Public Key Cryptography' },
+      { id: 'V11.7', title: 'In-Use Data Cryptography' },
+    ],
+  },
+  {
+    id: 12,
+    title: 'Secure Communication',
+    sections: [
+      { id: 'V12.1', title: 'General TLS Security Guidance' },
+      { id: 'V12.2', title: 'HTTPS Communication with External Facing Services' },
+      { id: 'V12.3', title: 'General Service to Service Communication Security' },
+    ],
+  },
+  {
+    id: 13,
+    title: 'Configuration',
+    sections: [
+      { id: 'V13.1', title: 'Configuration Documentation' },
+      { id: 'V13.2', title: 'Backend Communication Configuration' },
+      { id: 'V13.3', title: 'Secret Management' },
+      { id: 'V13.4', title: 'Unintended Information Leakage' },
+    ],
+  },
+  {
+    id: 14,
+    title: 'Data Protection',
+    sections: [
+      { id: 'V14.1', title: 'Data Protection Documentation' },
+      { id: 'V14.2', title: 'General Data Protection' },
+      { id: 'V14.3', title: 'Client-side Data Protection' },
+    ],
+  },
+  {
+    id: 15,
+    title: 'Secure Coding and Architecture',
+    sections: [
+      { id: 'V15.1', title: 'Secure Coding and Architecture Documentation' },
+      { id: 'V15.2', title: 'Security Architecture and Dependencies' },
+      { id: 'V15.3', title: 'Defensive Coding' },
+      { id: 'V15.4', title: 'Safe Concurrency' },
+    ],
+  },
+  {
+    id: 16,
+    title: 'Security Logging and Error Handling',
+    sections: [
+      { id: 'V16.1', title: 'Security Logging Documentation' },
+      { id: 'V16.2', title: 'General Logging' },
+      { id: 'V16.3', title: 'Security Events' },
+      { id: 'V16.4', title: 'Log Protection' },
+      { id: 'V16.5', title: 'Error Handling' },
+    ],
+  },
+  {
+    id: 17,
+    title: 'WebRTC',
+    sections: [
+      { id: 'V17.1', title: 'TURN Server' },
+      { id: 'V17.2', title: 'Media' },
+      { id: 'V17.3', title: 'Signaling' },
+    ],
+  },
 ];
 
 function mdPath(...parts) {
@@ -175,8 +340,36 @@ function asvsChapterIds(asvs) {
   return [...ids].sort((left, right) => left - right);
 }
 
+function asvsSectionIds(asvs) {
+  const ids = new Set();
+  for (const match of asvs.matchAll(/\bV(\d{1,2})\.(\d+)\b/g)) {
+    const chapter = Number.parseInt(match[1], 10);
+    const section = Number.parseInt(match[2], 10);
+    if (chapter >= 1 && chapter <= 17) {
+      ids.add(`V${chapter}.${section}`);
+    }
+  }
+  return [...ids].sort((left, right) => {
+    const [leftChapter, leftSection] = left.slice(1).split('.').map(Number);
+    const [rightChapter, rightSection] = right.slice(1).split('.').map(Number);
+    return leftChapter - rightChapter || leftSection - rightSection;
+  });
+}
+
 function pagesForChapter(chapterId) {
   return pages.filter((page) => asvsChapterIds(page.asvs).includes(chapterId));
+}
+
+function pagesForSection(sectionId) {
+  return pages.filter((page) => asvsSectionIds(page.asvs).includes(sectionId));
+}
+
+function pagesForWholeChapter(chapterId) {
+  return pages.filter((page) => {
+    const chapters = asvsChapterIds(page.asvs);
+    const sections = asvsSectionIds(page.asvs);
+    return chapters.includes(chapterId) && !sections.some((sectionId) => sectionId.startsWith(`V${chapterId}.`));
+  });
 }
 
 async function readIfExists(file) {
@@ -634,14 +827,36 @@ ${bilingualPairs(english, japanese)}
 async function writeSidebars() {
   const groups = asvsChapters
     .map((chapter) => {
-      const chapterPages = pagesForChapter(chapter.id);
-      const items = [`'asvs/v${chapter.id}'`, ...chapterPages.map((page) => `'${page.slug}'`)];
+      const wholeChapterPages = pagesForWholeChapter(chapter.id);
+      const chapterWideItems = wholeChapterPages.length > 0
+        ? [`
+        {
+          type: 'category',
+          label: 'V${chapter.id} 全般',
+          collapsed: true,
+          items: [
+${wholeChapterPages.map((page) => `            '${page.slug}',`).join('\n')}
+          ],
+        },`]
+        : [];
+      const sectionItems = chapter.sections.map((section) => {
+        const sectionPages = pagesForSection(section.id);
+        return `        {
+          type: 'category',
+          label: '${section.id}: ${section.title}',
+          collapsed: true,
+          items: [
+${sectionPages.length > 0 ? sectionPages.map((page) => `            '${page.slug}',`).join('\n') : `            'asvs/${section.id.toLowerCase().replace('.', '-')}',`}
+          ],
+        },`;
+      });
       return `    {
       type: 'category',
       label: 'V${chapter.id}: ${chapter.title}',
-      collapsed: false,
+      collapsed: ${chapter.id === 1 ? 'false' : 'true'},
       items: [
-${items.map((item) => `        ${item},`).join('\n')}
+        'asvs/v${chapter.id}',
+${[...chapterWideItems, ...sectionItems].join('\n')}
       ],
     }`;
     })
@@ -667,9 +882,20 @@ async function writeAsvsChapterPages() {
     const pageLinks = chapterPages.length > 0
       ? chapterPages.map((page) => `- [${page.title}](../${page.slug}.md)`).join('\n')
       : '- 現在、この章に対応する公開済み対訳ページはありません。';
+    const sectionLinks = chapter.sections
+      .map((section) => {
+        const sectionPages = pagesForSection(section.id);
+        const count = sectionPages.length;
+        return `- [${section.id}: ${section.title}](${section.id.toLowerCase().replace('.', '-')}.md) (${count}件)`;
+      })
+      .join('\n');
     const content = `# V${chapter.id}: ${chapter.title}
 
 OWASP ASVS Index の V${chapter.id} に対応する英日対訳ページの一覧です。
+
+## ASVS 小項目
+
+${sectionLinks}
 
 ## 掲載中の対訳ページ
 
@@ -680,6 +906,30 @@ ${pageLinks}
 未掲載の Cheat Sheet は、対訳ページの作成後にこの章へ追加します。
 `;
     await fs.writeFile(mdPath('docs', 'bilingual', 'asvs', `v${chapter.id}.md`), content, 'utf8');
+
+    for (const section of chapter.sections) {
+      const sectionPages = pagesForSection(section.id);
+      const sectionPageLinks = sectionPages.length > 0
+        ? sectionPages.map((page) => `- [${page.title}](../${page.slug}.md)`).join('\n')
+        : '- 現在、この小項目に対応する公開済み対訳ページはありません。';
+      const sectionContent = `# ${section.id}: ${section.title}
+
+OWASP ASVS Index の ${section.id} に対応する英日対訳ページの一覧です。
+
+## 掲載中の対訳ページ
+
+${sectionPageLinks}
+
+## 補足
+
+未掲載の Cheat Sheet は、対訳ページの作成後にこの小項目へ追加します。
+`;
+      await fs.writeFile(
+        mdPath('docs', 'bilingual', 'asvs', `${section.id.toLowerCase().replace('.', '-')}.md`),
+        sectionContent,
+        'utf8',
+      );
+    }
   }
 }
 
