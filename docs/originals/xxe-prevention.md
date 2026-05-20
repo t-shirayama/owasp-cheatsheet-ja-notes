@@ -180,7 +180,7 @@ The`DocumentBuilderFactory,` `SAXParserFactory` and `DOM4J` `XML` parsers can be
 
 **For brevity, we will only show you how to protect the `DocumentBuilderFactory` parser. Additional instructions for protecting this parser are embedded within the example code**
 
- The JAXP `DocumentBuilderFactory` [setFeature](https://docs.oracle.com/javase/7/docs/api/javax/xml/parsers/DocumentBuilderFactory.html#setFeature(java.lang.String,%20boolean)) method allows a developer to control which implementation-specific XML processor features are enabled or disabled.
+ The JAXP `DocumentBuilderFactory` [setFeature](https://docs.oracle.com/javase/7/docs/api/javax/xml/parsers/DocumentBuilderFactory.html#setFeature%28java.lang.String,%20boolean)) method allows a developer to control which implementation-specific XML processor features are enabled or disabled.
 
 These features can either be set on the factory or the underlying `XMLReader` [setFeature](https://docs.oracle.com/javase/7/docs/api/org/xml/sax/XMLReader.html#setFeature%28java.lang.String,%20boolean%29) method.
 
@@ -788,37 +788,37 @@ Below are the rules for different XML parsers in Java
 #### Digester
 
 Identifying XXE vulnerability in the `org.apache.commons.digester3.Digester` library
-Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-Digester](https://semgrep.dev/s/salecharohit:xxe-Digester)
+Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-Digester]%28https://semgrep.dev/s/salecharohit:xxe-Digester)
 
 #### DocumentBuilderFactory
 
 Identifying XXE vulnerability in the `javax.xml.parsers.DocumentBuilderFactory` library
-Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-dbf](https://semgrep.dev/s/salecharohit:xxe-dbf)
+Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-dbf]%28https://semgrep.dev/s/salecharohit:xxe-dbf)
 
 #### SAXBuilder
 
 Identifying XXE vulnerability in the `org.jdom2.input.SAXBuilder` library
-Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-saxbuilder](https://semgrep.dev/s/salecharohit:xxe-saxbuilder)
+Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-saxbuilder]%28https://semgrep.dev/s/salecharohit:xxe-saxbuilder)
 
 #### SAXParserFactory
 
 Identifying XXE vulnerability in the `javax.xml.parsers.SAXParserFactory` library
-Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-SAXParserFactory](https://semgrep.dev/s/salecharohit:xxe-SAXParserFactory)
+Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-SAXParserFactory]%28https://semgrep.dev/s/salecharohit:xxe-SAXParserFactory)
 
 #### SAXReader
 
 Identifying XXE vulnerability in the `org.dom4j.io.SAXReader` library
-Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-SAXReader](https://semgrep.dev/s/salecharohit:xxe-SAXReader)
+Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-SAXReader]%28https://semgrep.dev/s/salecharohit:xxe-SAXReader)
 
 #### XMLInputFactory
 
 Identifying XXE vulnerability in the `javax.xml.stream.XMLInputFactory` library
-Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-XMLInputFactory](https://semgrep.dev/s/salecharohit:xxe-XMLInputFactory)
+Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-XMLInputFactory]%28https://semgrep.dev/s/salecharohit:xxe-XMLInputFactory)
 
 #### XMLReader
 
 Identifying XXE vulnerability in the `org.xml.sax.XMLReader` library
-Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-XMLReader](https://semgrep.dev/s/salecharohit:xxe-XMLReader)
+Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-XMLReader]%28https://semgrep.dev/s/salecharohit:xxe-XMLReader)
 
 ## References
 

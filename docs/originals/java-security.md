@@ -33,7 +33,7 @@ The following point can be applied, in a general way, to prevent *Injection* iss
 1. Apply **Input Validation** (using allowlist approach) combined with **Output Sanitizing+Escaping** on user input/output.
 2. If you need to interact with system, try to use API features provided by your technology stack (Java / .Net / PHP...) instead of building command.
 
-Additional advice is provided on this [cheatsheet](Input_Validation_Cheat_Sheet.md).
+Additional advice is provided on this [cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
 
 ## Specific Injection types
 
@@ -104,7 +104,7 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
 
 #### References
 
-- [SQL Injection Prevention Cheat Sheet](SQL_Injection_Prevention_Cheat_Sheet.md)
+- [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
 
 ### JPA
 
@@ -318,7 +318,7 @@ if (!finalSafeOutputExpected.equals(safeOutput))
 
 ### LDAP
 
-A dedicated [cheatsheet](LDAP_Injection_Prevention_Cheat_Sheet.md) has been created.
+A dedicated [cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html) has been created.
 
 ### NoSQL
 
@@ -408,7 +408,7 @@ To prevent an attacker from writing malicious content into the application log, 
 - Use structured log formats, such as JSON, instead of unstructured text formats.
   Unstructured formats are susceptible to **C**arriage **R**eturn (CR) and **L**ine **F**eed (LF) injection (see [CWE-93](https://cwe.mitre.org/data/definitions/93.html)).
 - Limit the size of the user input value used to create the log message.
-- Make sure [all XSS defenses](Cross_Site_Scripting_Prevention_Cheat_Sheet.md) are applied when viewing log files in a web browser.
+- Make sure [all XSS defenses](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) are applied when viewing log files in a web browser.
 
 #### Example using Log4j Core 2
 
@@ -545,7 +545,7 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ### General cryptography guidance
 
 - **Never, ever write your own cryptographic functions.**
-- Wherever possible, try and avoid writing any cryptographic code at all. Instead try and either use pre-existing secret management solutions or the secret management solution provided by your cloud provider. For more information, see the [OWASP Secrets Management Cheat Sheet](Secrets_Management_Cheat_Sheet.md).
+- Wherever possible, try and avoid writing any cryptographic code at all. Instead try and either use pre-existing secret management solutions or the secret management solution provided by your cloud provider. For more information, see the [OWASP Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html).
 - If you cannot use a pre-existing secret management solution, try and use a trusted and well known implementation library rather than using the libraries built into JCA/JCE as it is far too easy to make cryptographic errors with them.
 - Make sure your application or protocol can easily support a future change of cryptographic algorithms.
 - Use your package manager wherever possible to keep all of your packages up to date. Watch the updates on your development setup, and plan updates to your applications accordingly.
@@ -553,7 +553,7 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
 
 ### Encryption for storage
 
-Follow the algorithm guidance in the [OWASP Cryptographic Storage Cheat Sheet](Cryptographic_Storage_Cheat_Sheet.md#algorithms).
+Follow the algorithm guidance in the [OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms).
 
 #### Symmetric example using Google Tink
 

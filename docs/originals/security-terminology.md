@@ -130,6 +130,6 @@ When working with OAuth2, SAML, or OIDC, these terms are frequently used:
 ## References
 
 - [OWASP ASVS Standard](https://owasp.org/www-project-application-security-verification-standard/)
-- [OWASP Key Management Cheat Sheet](Key_Management_Cheat_Sheet.md)
-- [OWASP Password Storage Cheat Sheet](Password_Storage_Cheat_Sheet.md)
-- [OWASP Input Validation Cheat Sheet](Input_Validation_Cheat_Sheet.md)
+- [OWASP Key Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Key_Management_Cheat_Sheet.html)
+- [OWASP Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
+- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)

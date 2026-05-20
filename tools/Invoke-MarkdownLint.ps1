@@ -80,8 +80,16 @@ foreach ($file in $markdownFiles) {
     }
 
     $previousHeadingLevel = 0
+    $inFence = $false
     for ($i = 0; $i -lt $logicalLines.Count; $i++) {
         $line = $logicalLines[$i]
+        if ($line -match "^\s*```") {
+            $inFence = -not $inFence
+            continue
+        }
+        if ($inFence) {
+            continue
+        }
         if ($line -match "^(#{1,6})\s+\S") {
             $level = $Matches[1].Length
             if ($previousHeadingLevel -gt 0 -and $level -gt ($previousHeadingLevel + 1)) {

@@ -922,6 +922,10 @@ function officialPageUrl(page) {
 }
 
 function originalSourceMarkdown(page, official) {
+  const original = smoothHeadings(rewriteOfficialLinks(normalizeNewlines(official).trim()))
+    .split('\n')
+    .map((line) => line.replace(/[ \t]+$/g, ''))
+    .join('\n');
   return `# ${page.title}
 
 ## Attribution
@@ -936,7 +940,7 @@ function originalSourceMarkdown(page, official) {
 
 ## English Original
 
-${normalizeNewlines(official).trim()}
+${original}
 `;
 }
 
@@ -1964,7 +1968,9 @@ async function main() {
   const generatedSlugs = new Set(pages.map((page) => page.slug));
   const originalsOnly = process.argv.includes('--originals-only');
 
-  for (const configuredPage of pages) {
+  const originalTargetPages = originalsOnly ? indexedPages : pages;
+
+  for (const configuredPage of originalTargetPages) {
     const page = indexedBySlug.get(configuredPage.slug) ?? configuredPage;
     const official = await fetchOfficialMarkdown(page);
     await writeOriginalSource(page, official);

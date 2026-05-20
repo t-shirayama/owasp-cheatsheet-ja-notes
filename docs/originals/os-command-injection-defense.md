@@ -36,7 +36,7 @@ when executed, it changes the meaning of the initial intended value.
 
 Now, both the *Calculator* application and the value *test* are displayed:
 
-![CommandInjection](../assets/OS_Command_Injection_Defense_Cheat_Sheet_CmdInjection.png)
+![CommandInjection](https://cheatsheetseries.owasp.org/assets/OS_Command_Injection_Defense_Cheat_Sheet_CmdInjection.png)
 
 The problem is exacerbated if the compromised process does not follow the principle of least privileges and attacker-controlled commands end up running with special system privileges that increase the amount of damage.
 
@@ -226,7 +226,7 @@ Process p = pb.start();
 
 ### .Net
 
-See relevant details in the [DotNet Security Cheat Sheet](DotNet_Security_Cheat_Sheet.md#os-injection)
+See relevant details in the [DotNet Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html#os-injection)
 
 ### PHP
 

@@ -24,11 +24,11 @@ One advantage of this approach is that the validation constraints and the corres
 
 ### Typical Validation
 
-![Typical](../assets/Bean_Validation_Cheat_Sheet_Typical.png)
+![Typical](https://cheatsheetseries.owasp.org/assets/Bean_Validation_Cheat_Sheet_Typical.png)
 
 ### Bean Validation
 
-![JSR](../assets/Bean_Validation_Cheat_Sheet_JSR.png)
+![JSR](https://cheatsheetseries.owasp.org/assets/Bean_Validation_Cheat_Sheet_JSR.png)
 
 ## Setup
 

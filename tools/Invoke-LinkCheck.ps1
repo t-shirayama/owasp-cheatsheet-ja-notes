@@ -30,8 +30,16 @@ function Add-Issue {
 foreach ($file in $markdownFiles) {
     $content = [System.Text.Encoding]::UTF8.GetString([System.IO.File]::ReadAllBytes($file.FullName))
     $lines = $content -split "`r?`n"
+    $inFence = $false
     for ($lineIndex = 0; $lineIndex -lt $lines.Count; $lineIndex++) {
         $line = $lines[$lineIndex]
+        if ($line -match "^\s*```") {
+            $inFence = -not $inFence
+            continue
+        }
+        if ($inFence) {
+            continue
+        }
         foreach ($match in $linkPattern.Matches($line)) {
             $target = $match.Groups["target"].Value.Trim()
             if ($target.Length -eq 0) {

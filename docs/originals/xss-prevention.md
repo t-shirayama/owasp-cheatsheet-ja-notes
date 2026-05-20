@@ -263,7 +263,7 @@ Sample Defense: HTML validation (JSoup, AntiSamy, HTML Sanitizer...).
 Data Type: String
 Context: DOM XSS
 Code: `<script>document.write("UNTRUSTED INPUT: " + document.location.hash );<script/>`
-Sample Defense: [DOM based XSS Prevention Cheat Sheet](DOM_based_XSS_Prevention_Cheat_Sheet.md) |
+Sample Defense: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html) |
 
 ### Output Encoding Rules Summary
 
