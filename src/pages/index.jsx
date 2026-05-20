@@ -20,7 +20,7 @@ export default function Home() {
             <span className="versionPill">ASVS Index focused</span>
             <h1>
               ASVS Index 対応
-              <span>OWASP ASVS Cheat Sheet 日本語訳</span>
+              <span>{SITE_TITLE}</span>
             </h1>
             <p>
               OWASP Cheat Sheet Series の ASVS Index に対応する原文と日本語訳を、パラグラフ単位で比較しながら読める非公式の日本語訳サイトです。要点整理とチェックリストで、理解と実務確認を支援します。
