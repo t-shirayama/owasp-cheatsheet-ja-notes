@@ -1,6 +1,6 @@
 # Cross-Site Request Forgery Prevention Cheat Sheet
 
-<div className="docHero">
+<div className="docHero docHero--encoding">
   <h1>Cross-Site Request Forgery Prevention Cheat Sheet</h1>
   <p className="docSubtitle">CSRF防止チートシート</p>
   <div className="docMeta">

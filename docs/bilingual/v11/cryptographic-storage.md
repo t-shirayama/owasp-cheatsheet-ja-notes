@@ -1,6 +1,6 @@
 # Cryptographic Storage Cheat Sheet
 
-<div className="docHero">
+<div className="docHero docHero--crypto">
   <h1>Cryptographic Storage Cheat Sheet</h1>
   <p className="docSubtitle">暗号化ストレージチートシート</p>
   <div className="docMeta">

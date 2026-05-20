@@ -1,6 +1,6 @@
 # Bean Validation Cheat Sheet
 
-<div className="docHero">
+<div className="docHero docHero--encoding">
   <h1>Bean Validation Cheat Sheet</h1>
   <p className="docSubtitle">Bean Validation チートシート</p>
   <div className="docMeta">

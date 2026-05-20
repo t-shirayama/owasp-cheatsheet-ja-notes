@@ -248,17 +248,41 @@ html[data-theme='dark'] .docPill {
   padding: 24px;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(245, 249, 255, 0.74)),
-    url('../../static/img/security-panel.svg') right center / auto 100% no-repeat;
+    url('../../static/img/hero-encoding-sanitization.svg') right center / auto 100% no-repeat;
 }
 
 .theme-doc-markdown > h1:first-child:has(+ .docHero) {
   display: none;
 }
 
+.docHero--encoding {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(241, 248, 255, 0.74)),
+    url('../../static/img/hero-encoding-sanitization.svg') right center / auto 100% no-repeat;
+}
+
+.docHero--crypto {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(244, 246, 255, 0.72)),
+    url('../../static/img/hero-cryptographic-storage.svg') right center / auto 100% no-repeat;
+}
+
 html[data-theme='dark'] .docHero {
   background:
     linear-gradient(90deg, rgba(19, 21, 24, 0.98), rgba(15, 16, 19, 0.92)),
-    url('../../static/img/security-panel.svg') right center / auto 100% no-repeat;
+    url('../../static/img/hero-encoding-sanitization.svg') right center / auto 100% no-repeat;
+}
+
+html[data-theme='dark'] .docHero--encoding {
+  background:
+    linear-gradient(90deg, rgba(19, 21, 24, 0.98), rgba(12, 18, 24, 0.9)),
+    url('../../static/img/hero-encoding-sanitization.svg') right center / auto 100% no-repeat;
+}
+
+html[data-theme='dark'] .docHero--crypto {
+  background:
+    linear-gradient(90deg, rgba(19, 21, 24, 0.98), rgba(17, 16, 28, 0.9)),
+    url('../../static/img/hero-cryptographic-storage.svg') right center / auto 100% no-repeat;
 }
 
 .docHero h1 {

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260" role="img" aria-labelledby="title desc">
+  <title id="title">Encoding and Sanitization hero art</title>
+  <desc id="desc">Input fields, filtering funnel, and escaped code symbols representing validation, encoding, and sanitization.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#e9f3ff"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#2563eb" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect width="900" height="260" fill="url(#panel)"/>
+  <g opacity=".34">
+    <path d="M718 30h118v22H718zM684 68h190v22H684zM734 106h122v22H734z" fill="#bfdbfe"/>
+    <path d="M642 154h82v18h-82zM742 154h116v18H742zM676 190h180v18H676z" fill="#dbeafe"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="566" y="42" width="212" height="160" rx="18" fill="#ffffff" stroke="#bfdbfe"/>
+    <rect x="590" y="70" width="164" height="18" rx="9" fill="#dbeafe"/>
+    <rect x="590" y="105" width="128" height="18" rx="9" fill="#dbeafe"/>
+    <rect x="590" y="140" width="150" height="18" rx="9" fill="#dbeafe"/>
+    <path d="M642 102h60l-18 30v31l-24 15v-46z" fill="url(#accent)"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="372" y="62" width="126" height="126" rx="24" fill="#eff6ff" stroke="#bfdbfe"/>
+    <path d="M428 98l-28 32 28 32" fill="none" stroke="#2563eb" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M446 98l28 32-28 32" fill="none" stroke="#2563eb" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g opacity=".82">
+    <rect x="784" y="28" width="34" height="34" rx="8" fill="#93c5fd"/>
+    <rect x="816" y="64" width="28" height="28" rx="7" fill="#bfdbfe"/>
+    <rect x="786" y="178" width="42" height="42" rx="10" fill="#dbeafe"/>
+    <path d="M830 132l23-13 23 13v27l-23 13-23-13z" fill="#bfdbfe"/>
+  </g>
+</svg>
