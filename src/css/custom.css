@@ -777,7 +777,40 @@ html[data-theme='dark'] .footer--light {
   color: var(--page-muted);
 }
 
+body:has(.theme-doc-sidebar-container) .footer {
+  margin-left: var(--doc-sidebar-width);
+  border-top: 1px solid var(--doc-line);
+  background: transparent;
+}
+
+body:has(.theme-doc-sidebar-container) .footer__links,
+body:has(.theme-doc-sidebar-container) .footer__bottom {
+  width: min(100%, 1120px);
+  max-width: calc(100% - clamp(48px, 7vw, 128px));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+body:has(.theme-doc-sidebar-container) .footer__links {
+  padding-top: 24px;
+}
+
+body:has(.theme-doc-sidebar-container) .footer__bottom {
+  padding-bottom: 24px;
+}
+
 @media (max-width: 996px) {
+  body:has(.theme-doc-sidebar-container) .footer {
+    margin-left: 0;
+  }
+
+  body:has(.theme-doc-sidebar-container) .footer__links,
+  body:has(.theme-doc-sidebar-container) .footer__bottom {
+    max-width: calc(100% - 32px);
+  }
+
   .homeHero {
     grid-template-columns: 1fr;
     padding-top: 48px;
