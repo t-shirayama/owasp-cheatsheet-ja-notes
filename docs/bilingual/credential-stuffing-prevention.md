@@ -257,7 +257,6 @@ Details related to current or recent logins should also be made visible to the u
 - Project: [OAT-008 Credential Stuffing](https://owasp.org/www-community/attacks/Credential_stuffing), which is one of 20 defined threats in the [OWASP Automated Threat Handbook](https://owasp.org/www-pdf-archive/Automated-threat-handbook.pdf) this project produced.
 
 </div>
-
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -281,6 +280,7 @@ IP 対策では、単純なブロックを主防御にしない。住宅回線�
 
 </div>
 </div>
+
 
 </section>
 </div>

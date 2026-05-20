@@ -191,6 +191,84 @@ Once an authenticated session has been established, the session ID (or token) is
 
 HTTP is a stateless protocol ([RFC2616](https://www.ietf.org/rfc/rfc2616.txt) section 5), where each request and response pair is independent of other web interactions. Therefore, in order to introduce the concept of a session, it is required to implement session management capabilities that link both the authentication and access control (or authorization) modules commonly available in web applications:
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 概要
+
+Web セッションは、同じユーザーに関連付けられた一連の HTTP リクエストとレスポンスです。HTTP はステートレスであるため、認証状態、アクセス権、ローカライズ設定、処理中の状態などを複数リクエストにまたがって扱うには、セッション管理が必要です。
+
+認証済みセッションが確立されると、セッション ID またはトークンは、そのアプリケーションが利用した最も強い認証方式と一時的に同等の価値を持ちます。セッション ID の漏えい、予測、総当たり、固定化が起きると、攻撃者は被害者になりすましてアプリケーションを利用できます。
+
+### セッション ID の性質
+
+セッション ID は、セッション作成時にユーザーへ割り当てられ、セッション中の各 HTTP リクエストで交換されます。セキュアなセッション ID には、推測困難性、十分なエントロピー、意味のない値、不要な情報を含めないことが求められます。
+
+セッション ID 名は、利用しているフレームワークや言語を推測させる名前を避けます。`PHPSESSID` や `JSESSIONID` などの既定名は技術情報の手がかりになるため、可能であれば汎用的な名前へ変更します。
+
+セッション ID には、少なくとも 64 ビットのエントロピーが必要です。生成には暗号論的に安全な疑似乱数生成器を使います。独自に生成する必要がある場合は、128 ビット以上のサイズを持つ一意な値を使います。値の一部が固定または予測可能であれば実効エントロピーは下がるため、長さだけでなくランダム性を確認します。
+
+セッション ID の値には、ユーザー名、メールアドレス、権限、内部状態、個人情報などを含めません。クライアント側のセッション ID は単なる識別子にし、意味や業務ロジックはサーバー側のセッションストアに保持します。セッションストアに機密情報を含める場合は、保存先を暗号化し、アクセス制御を適用します。
+
+### セッション ID の交換方法
+
+セッション ID の交換方法は、Cookie が推奨されます。URL パラメータ、GET 引数、POST の hidden フィールドなどでセッション ID を渡すと、履歴、ログ、Referer、ブックマーク、共有 URL などを通じて漏えいしやすくなります。アプリケーションは、想定する交換方法だけを受け入れ、不要な経路で送られたセッション ID を拒否します。
+
+セッションを保護するには、全セッションで TLS を使用します。ログイン後だけ HTTPS にするのではなく、未認証状態から一貫して HTTPS を使い、セッション ID の平文送信を防ぎます。
+
+### Cookie 属性
+
+Cookie でセッション ID を扱う場合は、属性を安全に設定します。
+
+- `Secure`: HTTPS 接続でのみ Cookie を送信します。
+- `HttpOnly`: JavaScript から Cookie を読み取れないようにし、XSS による窃取リスクを下げます。
+- `SameSite`: クロスサイトリクエストで Cookie が送信される条件を制限し、CSRF リスクを下げます。
+- Cookie 名プレフィックス: `__Host-` や `__Secure-` を使うことで、ブラウザ側の追加制約を活用できます。
+- `Domain` と `Path`: Cookie の送信範囲を必要最小限にします。
+- `Expires` と `Max-Age`: 永続 Cookie が必要かを検討し、不要な長期保存を避けます。
+
+### Web Storage と Web Workers
+
+`localStorage` はブラウザを閉じてもデータが残り、同一オリジン内のすべてのタブやウィンドウからアクセスされます。セッション ID など高価値な秘密を保存すると、XSS の影響が大きくなります。
+
+`sessionStorage` はタブ単位で保持され、タブを閉じると破棄されますが、JavaScript からアクセス可能である点は変わりません。Web Workers は秘密をメモリ内で扱う選択肢になり得ますが、XSS がメッセージ経由で操作を呼び出せる場合は影響を受けます。いずれも Cookie の属性による保護とは性質が異なるため、保存場所の選択は脅威モデルに基づいて行います。
+
+### セッション ID のライフサイクル
+
+セッション管理は strict mode を採用します。アプリケーションが生成したセッション ID だけを受け入れ、ユーザーが任意に提示した未知のセッション ID を採用してはいけません。未知の ID を受け入れる permissive mode は、セッション固定攻撃を助長します。
+
+セッション ID は他のユーザー入力と同様に扱い、形式、長さ、文字種、既知セッションであることを検証します。権限レベルが変わるタイミング、たとえばログイン、ロール変更、管理機能への昇格では、セッション ID を更新します。
+
+パスワード変更、メールアドレス変更、MFA 設定変更、支払い情報変更、高リスク操作などのリスクイベント後には、再認証を要求します。複数 Cookie を使う場合は、匿名状態、認証状態、補助用途の Cookie が混同されないよう、責務と更新タイミングを分けます。
+
+### セッション有効期限
+
+セッションには、自動期限切れと手動終了の両方が必要です。
+
+アイドルタイムアウトは、一定時間操作がなければセッションを無効化します。絶対タイムアウトは、操作の有無に関わらず一定時間後にセッションを終了します。更新タイムアウトを使う場合は、一定時間ごとにセッション ID を更新し、古い ID を短い猶予期間の後に無効化します。
+
+ログアウト機能は、ユーザーが手動でセッションを終了できるようにします。ログアウト時には、サーバー側セッションを無効化し、クライアント側 Cookie も期限切れにします。機密ページがブラウザキャッシュに残らないよう、必要に応じてキャッシュ制御や `Clear-Site-Data` を使います。
+
+### セッション攻撃の検知
+
+セッション ID の推測や総当たり、異常な利用、期限切れセッションの再利用、複数拠点からの同時利用などは検知対象にします。セッションの作成、利用、更新、失効、破棄をログ化し、攻撃の兆候を監視します。
+
+セッションを IP アドレスや User-Agent などの属性へ結び付ける方法は、検知には有用ですが、モバイル回線やプロキシ、正当な環境変化で誤検知を起こす可能性があります。強制遮断に使う場合は、利用者影響を慎重に評価します。
+
+</div>
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+![SessionDiagram](https://cheatsheetseries.owasp.org/assets/Session_Management_Cheat_Sheet_Diagram.png)
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 The session ID or token binds the user authentication credentials (in the form of a user session) to the user HTTP traffic and the appropriate access controls enforced by the web application. The complexity of these three components (authentication, session management, and access control) in modern web applications, plus the fact that its implementation and binding resides on the web developer's hands (as web development frameworks do not provide strict relationships between these modules), makes the implementation of a secure session management module very challenging.
 
 The disclosure, capture, prediction, brute force, or fixation of the session ID will lead to session hijacking (or sidejacking) attacks, where an attacker is able to fully impersonate a victim user in the web application. Attackers can perform two types of session hijacking attacks, targeted or generic. In a targeted attack, the attacker's goal is to impersonate a specific (or privileged) web application victim user. For generic attacks, the attacker's goal is to impersonate (or get access as) any valid or legitimate user in the web application.
@@ -323,6 +401,22 @@ Use cookie name prefixes to bind cookies to security properties at the browser l
 - `__Secure-` — the cookie must be set with `Secure`. Use only when subdomain sharing is required.
 
 Example:
+
+</div>
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+```http
+Set-Cookie: __Host-SessionID=<value>; Secure; HttpOnly; SameSite=Strict; Path=/
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ### Domain and Path Attributes
 
@@ -614,82 +708,9 @@ On the other hand, more advanced capabilities can be implemented to allow the WA
 The open-source ModSecurity WAF, plus the OWASP [Core Rule Set](https://owasp.org/www-project-modsecurity-core-rule-set/), provide capabilities to detect and apply security cookie attributes, countermeasures against session fixation attacks, and session tracking features to enforce sticky sessions.
 
 </div>
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-![SessionDiagram](https://cheatsheetseries.owasp.org/assets/Session_Management_Cheat_Sheet_Diagram.png)
-
-```http
-Set-Cookie: __Host-SessionID=<value>; Secure; HttpOnly; SameSite=Strict; Path=/
-```
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-## 概要
-
-Web セッションは、同じユーザーに関連付けられた一連の HTTP リクエストとレスポンスです。HTTP はステートレスであるため、認証状態、アクセス権、ローカライズ設定、処理中の状態などを複数リクエストにまたがって扱うには、セッション管理が必要です。
-
-認証済みセッションが確立されると、セッション ID またはトークンは、そのアプリケーションが利用した最も強い認証方式と一時的に同等の価値を持ちます。セッション ID の漏えい、予測、総当たり、固定化が起きると、攻撃者は被害者になりすましてアプリケーションを利用できます。
-
-### セッション ID の性質
-
-セッション ID は、セッション作成時にユーザーへ割り当てられ、セッション中の各 HTTP リクエストで交換されます。セキュアなセッション ID には、推測困難性、十分なエントロピー、意味のない値、不要な情報を含めないことが求められます。
-
-セッション ID 名は、利用しているフレームワークや言語を推測させる名前を避けます。`PHPSESSID` や `JSESSIONID` などの既定名は技術情報の手がかりになるため、可能であれば汎用的な名前へ変更します。
-
-セッション ID には、少なくとも 64 ビットのエントロピーが必要です。生成には暗号論的に安全な疑似乱数生成器を使います。独自に生成する必要がある場合は、128 ビット以上のサイズを持つ一意な値を使います。値の一部が固定または予測可能であれば実効エントロピーは下がるため、長さだけでなくランダム性を確認します。
-
-セッション ID の値には、ユーザー名、メールアドレス、権限、内部状態、個人情報などを含めません。クライアント側のセッション ID は単なる識別子にし、意味や業務ロジックはサーバー側のセッションストアに保持します。セッションストアに機密情報を含める場合は、保存先を暗号化し、アクセス制御を適用します。
-
-### セッション ID の交換方法
-
-セッション ID の交換方法は、Cookie が推奨されます。URL パラメータ、GET 引数、POST の hidden フィールドなどでセッション ID を渡すと、履歴、ログ、Referer、ブックマーク、共有 URL などを通じて漏えいしやすくなります。アプリケーションは、想定する交換方法だけを受け入れ、不要な経路で送られたセッション ID を拒否します。
-
-セッションを保護するには、全セッションで TLS を使用します。ログイン後だけ HTTPS にするのではなく、未認証状態から一貫して HTTPS を使い、セッション ID の平文送信を防ぎます。
-
-### Cookie 属性
-
-Cookie でセッション ID を扱う場合は、属性を安全に設定します。
-
-- `Secure`: HTTPS 接続でのみ Cookie を送信します。
-- `HttpOnly`: JavaScript から Cookie を読み取れないようにし、XSS による窃取リスクを下げます。
-- `SameSite`: クロスサイトリクエストで Cookie が送信される条件を制限し、CSRF リスクを下げます。
-- Cookie 名プレフィックス: `__Host-` や `__Secure-` を使うことで、ブラウザ側の追加制約を活用できます。
-- `Domain` と `Path`: Cookie の送信範囲を必要最小限にします。
-- `Expires` と `Max-Age`: 永続 Cookie が必要かを検討し、不要な長期保存を避けます。
-
-### Web Storage と Web Workers
-
-`localStorage` はブラウザを閉じてもデータが残り、同一オリジン内のすべてのタブやウィンドウからアクセスされます。セッション ID など高価値な秘密を保存すると、XSS の影響が大きくなります。
-
-`sessionStorage` はタブ単位で保持され、タブを閉じると破棄されますが、JavaScript からアクセス可能である点は変わりません。Web Workers は秘密をメモリ内で扱う選択肢になり得ますが、XSS がメッセージ経由で操作を呼び出せる場合は影響を受けます。いずれも Cookie の属性による保護とは性質が異なるため、保存場所の選択は脅威モデルに基づいて行います。
-
-### セッション ID のライフサイクル
-
-セッション管理は strict mode を採用します。アプリケーションが生成したセッション ID だけを受け入れ、ユーザーが任意に提示した未知のセッション ID を採用してはいけません。未知の ID を受け入れる permissive mode は、セッション固定攻撃を助長します。
-
-セッション ID は他のユーザー入力と同様に扱い、形式、長さ、文字種、既知セッションであることを検証します。権限レベルが変わるタイミング、たとえばログイン、ロール変更、管理機能への昇格では、セッション ID を更新します。
-
-パスワード変更、メールアドレス変更、MFA 設定変更、支払い情報変更、高リスク操作などのリスクイベント後には、再認証を要求します。複数 Cookie を使う場合は、匿名状態、認証状態、補助用途の Cookie が混同されないよう、責務と更新タイミングを分けます。
-
-### セッション有効期限
-
-セッションには、自動期限切れと手動終了の両方が必要です。
-
-アイドルタイムアウトは、一定時間操作がなければセッションを無効化します。絶対タイムアウトは、操作の有無に関わらず一定時間後にセッションを終了します。更新タイムアウトを使う場合は、一定時間ごとにセッション ID を更新し、古い ID を短い猶予期間の後に無効化します。
-
-ログアウト機能は、ユーザーが手動でセッションを終了できるようにします。ログアウト時には、サーバー側セッションを無効化し、クライアント側 Cookie も期限切れにします。機密ページがブラウザキャッシュに残らないよう、必要に応じてキャッシュ制御や `Clear-Site-Data` を使います。
-
-### セッション攻撃の検知
-
-セッション ID の推測や総当たり、異常な利用、期限切れセッションの再利用、複数拠点からの同時利用などは検知対象にします。セッションの作成、利用、更新、失効、破棄をログ化し、攻撃の兆候を監視します。
-
-セッションを IP アドレスや User-Agent などの属性へ結び付ける方法は、検知には有用ですが、モバイル回線やプロキシ、正当な環境変化で誤検知を起こす可能性があります。強制遮断に使う場合は、利用者影響を慎重に評価します。
-
-</div>
-</div>
 
 </section>
 </div>

@@ -620,7 +620,6 @@ This method is widely used in modern authentication systems to balance usability
 - [Google Cloud Adding MFA](https://cloud.google.com/identity-platform/docs/web/mfa)
 
 </div>
-
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -648,6 +647,7 @@ MFA as a Service を利用する場合は、導入の容易さだけで判断し
 
 </div>
 </div>
+
 
 </section>
 </div>

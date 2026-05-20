@@ -516,118 +516,6 @@ The service responsible for collecting IT events, including security events, is 
 
 For example, all external requests from users go through the API management service, see application in MIDDLEWARE 2 segment.
 
-As you can see in the image above, at the network level, the processes of saving and downloading logs require opening different network accesses (ports), arrows are highlighted in different colors. Also, saving and downloading are performed by different applications.
-
-Full network segmentation cheat sheet by [sergiomarotco](https://github.com/sergiomarotco): [link](https://github.com/sergiomarotco/Network-segmentation-cheat-sheet)
-
-## Deployment and operation
-
-### Release
-
-- Provide security configuration information by adding details about the logging mechanisms to release documentation
-- Brief the application/process owner about the application logging mechanisms
-- Ensure the outputs of the monitoring (see below) are integrated with incident response processes
-
-### Operation
-
-Enable processes to detect whether logging has stopped, and to identify tampering or unauthorized access and deletion (see protection below).
-
-### Protection
-
-The logging mechanisms and collected event data must be protected from mis-use such as tampering in transit, and unauthorized access, modification and deletion once stored. Logs may contain personal and other sensitive information, or the data may contain information regarding the application's code and logic.
-
-In addition, the collected information in the logs may itself have business value (to competitors, gossip-mongers, journalists and activists) such as allowing the estimate of revenues, or providing performance information about employees.
-
-This data may be held on end devices, at intermediate points, in centralized repositories and in archives and backups.
-
-Consider whether parts of the data may need to be excluded, masked, sanitized, hashed, or encrypted during examination or extraction.
-
-At rest:
-
-- Build in tamper detection so you know if a record has been modified or deleted
-- Store or copy log data to read-only media as soon as possible
-- All access to the logs must be recorded and monitored (and may need prior approval)
-- The privileges to read log data should be restricted and reviewed periodically
-
-In transit:
-
-- If log data is sent over untrusted networks (e.g. for collection, for dispatch elsewhere, for analysis, for reporting), use a secure transmission protocol
-- Consider whether the origin of the event data needs to be verified
-- Perform due diligence checks (regulatory and security) before sending event data to third parties
-
-See `NIST SP 800-92` Guide to Computer Security Log Management for more guidance.
-
-### Monitoring of events
-
-The logged event data needs to be available to review and there are processes in place for appropriate monitoring, alerting, and reporting:
-
-- Incorporate the application logging into any existing log management systems/infrastructure e.g. centralized logging and analysis systems
-- Ensure event information is available to appropriate teams
-- Enable alerting and signal the responsible teams about more serious events immediately
-- Share relevant event information with other detection systems, to related organizations and centralized intelligence gathering/sharing systems
-
-### Disposal of logs
-
-Log data, temporary debug logs, and backups/copies/extractions, must not be destroyed before the duration of the required data retention period, and must not be kept beyond this time.
-
-Legal, regulatory and contractual obligations may impact on these periods.
-
-## Attacks on Logs
-
-Because of their usefulness as a defense, logs may be a target of attacks. See also OWASP [Log Injection](https://owasp.org/www-community/attacks/Log_Injection) and [CWE-117](https://cwe.mitre.org/data/definitions/117.html).
-
-### Confidentiality
-
-Who should be able to read what? A confidentiality attack enables an unauthorized party to access sensitive information stored in logs.
-
-- Logs contain PII of users. Attackers gather PII, then either release it or use it as a stepping stone for further attacks on those users.
-- Logs contain technical secrets such as passwords. Attackers use it as a stepping stone for deeper attacks.
-
-### Integrity
-
-Which information should be modifiable by whom?
-
-- An attacker with read access to a log uses it to exfiltrate secrets.
-- An attack leverages logs to connect with exploitable facets of logging platforms, such as sending in a payload over syslog in order to cause an out-of-bounds write.
-
-### Availability
-
-What downtime is acceptable?
-
-- An attacker floods log files in order to exhaust disk space available for non-logging facets of system functioning. For example, the same disk used for log files might be used for SQL storage of application data.
-- An attacker floods log files in order to exhaust disk space available for further logging.
-- An attacker uses one log entry to destroy other log entries.
-- An attacker leverages poor performance of logging code to reduce application performance
-
-### Accountability
-
-Who is responsible for harm?
-
-- An attacker prevent writes in order to cover their tracks.
-- An attacker prevent damages the log in order to cover their tracks.
-- An attacker causes the wrong identity to be logged in order to conceal the responsible party.
-
-## Related articles
-
-- OWASP [ESAPI Documentation](https://owasp.org/www-project-enterprise-security-api/).
-- OWASP [Logging Project](https://owasp.org/www-project-security-logging/).
-- IETF [syslog protocol](https://tools.ietf.org/rfc/rfc5424.txt).
-- Mitre [Common Event Expression (CEE)](https://cee.mitre.org/) (as of 2014 no longer actively developed).
-- NIST [SP 800-92 Guide to Computer Security Log Management](https://csrc.nist.gov/publications/nistpubs/800-92/SP800-92.pdf).
-- PCISSC [PCI DSS v2.0 Requirement 10 and PA-DSS v2.0 Requirement 4](https://www.pcisecuritystandards.org/security_standards/documents.php).
-- W3C [Extended Log File Format](https://www.w3.org/TR/WD-logfile.html).
-- Other [Build Visibility In, Richard Bejtlich, TaoSecurity blog](https://taosecurity.blogspot.co.uk/2009/08/build-visibility-in.html).
-- Other [Common Event Format (CEF), Arcsight](https://community.microfocus.com/t5/ArcSight-Connectors/ArcSight-Common-Event-Format-CEF-Implementation-Standard/ta-p/1645557).
-- Other [Log Event Extended Format (**LEEF**), IBM](https://www.ibm.com/developerworks/community/wikis/form/anonymous/api/wiki/9989d3d7-02c1-444e-92be-576b33d2f2be/page/3dc63f46-4a33-4e0b-98bf-4e55b74e556b/attachment/a19b9122-5940-4c89-ba3e-4b4fc25e2328/media/QRadar_LEEF_Format_Guide.pdf).
-- Other [Common Log File System (CLFS), Microsoft](https://msdn.microsoft.com/en-us/library/windows/desktop/bb986747%28v=vs.85).aspx).
-- Other [Building Secure Applications: Consistent Logging, Rohit Sethi & Nish Bhalla, Symantec Connect](https://www.symantec.com/connect/articles/building-secure-applications-consistent-logging).
-
-</div>
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-![MIDDLEWARE](https://raw.githubusercontent.com/OWASP/CheatSheetSeries/master/assets/Logging_Cheat_Sheet.drawio.png)
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -736,6 +624,127 @@ Who is responsible for harm?
 
 </div>
 </div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+![MIDDLEWARE](https://raw.githubusercontent.com/OWASP/CheatSheetSeries/master/assets/Logging_Cheat_Sheet.drawio.png)
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+As you can see in the image above, at the network level, the processes of saving and downloading logs require opening different network accesses (ports), arrows are highlighted in different colors. Also, saving and downloading are performed by different applications.
+
+Full network segmentation cheat sheet by [sergiomarotco](https://github.com/sergiomarotco): [link](https://github.com/sergiomarotco/Network-segmentation-cheat-sheet)
+
+## Deployment and operation
+
+### Release
+
+- Provide security configuration information by adding details about the logging mechanisms to release documentation
+- Brief the application/process owner about the application logging mechanisms
+- Ensure the outputs of the monitoring (see below) are integrated with incident response processes
+
+### Operation
+
+Enable processes to detect whether logging has stopped, and to identify tampering or unauthorized access and deletion (see protection below).
+
+### Protection
+
+The logging mechanisms and collected event data must be protected from mis-use such as tampering in transit, and unauthorized access, modification and deletion once stored. Logs may contain personal and other sensitive information, or the data may contain information regarding the application's code and logic.
+
+In addition, the collected information in the logs may itself have business value (to competitors, gossip-mongers, journalists and activists) such as allowing the estimate of revenues, or providing performance information about employees.
+
+This data may be held on end devices, at intermediate points, in centralized repositories and in archives and backups.
+
+Consider whether parts of the data may need to be excluded, masked, sanitized, hashed, or encrypted during examination or extraction.
+
+At rest:
+
+- Build in tamper detection so you know if a record has been modified or deleted
+- Store or copy log data to read-only media as soon as possible
+- All access to the logs must be recorded and monitored (and may need prior approval)
+- The privileges to read log data should be restricted and reviewed periodically
+
+In transit:
+
+- If log data is sent over untrusted networks (e.g. for collection, for dispatch elsewhere, for analysis, for reporting), use a secure transmission protocol
+- Consider whether the origin of the event data needs to be verified
+- Perform due diligence checks (regulatory and security) before sending event data to third parties
+
+See `NIST SP 800-92` Guide to Computer Security Log Management for more guidance.
+
+### Monitoring of events
+
+The logged event data needs to be available to review and there are processes in place for appropriate monitoring, alerting, and reporting:
+
+- Incorporate the application logging into any existing log management systems/infrastructure e.g. centralized logging and analysis systems
+- Ensure event information is available to appropriate teams
+- Enable alerting and signal the responsible teams about more serious events immediately
+- Share relevant event information with other detection systems, to related organizations and centralized intelligence gathering/sharing systems
+
+### Disposal of logs
+
+Log data, temporary debug logs, and backups/copies/extractions, must not be destroyed before the duration of the required data retention period, and must not be kept beyond this time.
+
+Legal, regulatory and contractual obligations may impact on these periods.
+
+## Attacks on Logs
+
+Because of their usefulness as a defense, logs may be a target of attacks. See also OWASP [Log Injection](https://owasp.org/www-community/attacks/Log_Injection) and [CWE-117](https://cwe.mitre.org/data/definitions/117.html).
+
+### Confidentiality
+
+Who should be able to read what? A confidentiality attack enables an unauthorized party to access sensitive information stored in logs.
+
+- Logs contain PII of users. Attackers gather PII, then either release it or use it as a stepping stone for further attacks on those users.
+- Logs contain technical secrets such as passwords. Attackers use it as a stepping stone for deeper attacks.
+
+### Integrity
+
+Which information should be modifiable by whom?
+
+- An attacker with read access to a log uses it to exfiltrate secrets.
+- An attack leverages logs to connect with exploitable facets of logging platforms, such as sending in a payload over syslog in order to cause an out-of-bounds write.
+
+### Availability
+
+What downtime is acceptable?
+
+- An attacker floods log files in order to exhaust disk space available for non-logging facets of system functioning. For example, the same disk used for log files might be used for SQL storage of application data.
+- An attacker floods log files in order to exhaust disk space available for further logging.
+- An attacker uses one log entry to destroy other log entries.
+- An attacker leverages poor performance of logging code to reduce application performance
+
+### Accountability
+
+Who is responsible for harm?
+
+- An attacker prevent writes in order to cover their tracks.
+- An attacker prevent damages the log in order to cover their tracks.
+- An attacker causes the wrong identity to be logged in order to conceal the responsible party.
+
+## Related articles
+
+- OWASP [ESAPI Documentation](https://owasp.org/www-project-enterprise-security-api/).
+- OWASP [Logging Project](https://owasp.org/www-project-security-logging/).
+- IETF [syslog protocol](https://tools.ietf.org/rfc/rfc5424.txt).
+- Mitre [Common Event Expression (CEE)](https://cee.mitre.org/) (as of 2014 no longer actively developed).
+- NIST [SP 800-92 Guide to Computer Security Log Management](https://csrc.nist.gov/publications/nistpubs/800-92/SP800-92.pdf).
+- PCISSC [PCI DSS v2.0 Requirement 10 and PA-DSS v2.0 Requirement 4](https://www.pcisecuritystandards.org/security_standards/documents.php).
+- W3C [Extended Log File Format](https://www.w3.org/TR/WD-logfile.html).
+- Other [Build Visibility In, Richard Bejtlich, TaoSecurity blog](https://taosecurity.blogspot.co.uk/2009/08/build-visibility-in.html).
+- Other [Common Event Format (CEF), Arcsight](https://community.microfocus.com/t5/ArcSight-Connectors/ArcSight-Common-Event-Format-CEF-Implementation-Standard/ta-p/1645557).
+- Other [Log Event Extended Format (**LEEF**), IBM](https://www.ibm.com/developerworks/community/wikis/form/anonymous/api/wiki/9989d3d7-02c1-444e-92be-576b33d2f2be/page/3dc63f46-4a33-4e0b-98bf-4e55b74e556b/attachment/a19b9122-5940-4c89-ba3e-4b4fc25e2328/media/QRadar_LEEF_Format_Guide.pdf).
+- Other [Common Log File System (CLFS), Microsoft](https://msdn.microsoft.com/en-us/library/windows/desktop/bb986747%28v=vs.85).aspx).
+- Other [Building Secure Applications: Consistent Logging, Rohit Sethi & Nish Bhalla, Symantec Connect](https://www.symantec.com/connect/articles/building-secure-applications-consistent-logging).
+
+</div>
+
+</div>
+
 
 </section>
 </div>

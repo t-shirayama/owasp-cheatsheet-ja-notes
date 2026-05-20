@@ -1247,6 +1247,61 @@ function extractSharedBlocks(markdown) {
   };
 }
 
+function splitSharedSegments(markdown) {
+  const lines = normalizeNewlines(markdown).split('\n');
+  const segments = [];
+  let text = [];
+  let shared = [];
+  let inFence = false;
+  let fence = [];
+
+  const flush = () => {
+    const body = text.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+    if (body || shared.length > 0) {
+      segments.push({ text: body, shared });
+    }
+    text = [];
+    shared = [];
+  };
+
+  const pushFence = () => {
+    const content = fence.join('\n').trim();
+    if (content) {
+      shared.push({ key: `code:${content}`, content });
+      flush();
+    }
+    fence = [];
+  };
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('```')) {
+      fence.push(line);
+      inFence = !inFence;
+      if (!inFence) {
+        pushFence();
+      }
+      continue;
+    }
+    if (inFence) {
+      fence.push(line);
+      continue;
+    }
+    if (/^!\[[^\]]*]\([^)]+\)\s*$/.test(trimmed) || /^<img\b/i.test(trimmed)) {
+      shared.push({ key: imageKey(trimmed), content: trimmed });
+      flush();
+      continue;
+    }
+    text.push(line);
+  }
+
+  if (fence.length > 0) {
+    text.push(...fence);
+  }
+  flush();
+  return segments;
+}
+
 function uniqueSharedBlocks(...groups) {
   const seen = new Set();
   const shared = [];
@@ -1275,43 +1330,49 @@ function bilingualPairs(english, japanese) {
   const chunks = [];
 
   for (let index = 0; index < count; index++) {
-    const enParts = extractSharedBlocks(englishBlocks[index] ? smoothHeadings(englishBlocks[index]) : '');
-    const jaParts = extractSharedBlocks(japaneseBlocks[index] ? smoothHeadings(japaneseBlocks[index]) : '');
-    const en = enParts.text;
-    const ja = jaParts.text;
-    const shared = uniqueSharedBlocks(enParts.shared, jaParts.shared).join('\n\n');
-    const englishBlock = en
-      ? `<div className="bilingualBlock english">
+    const enSegments = splitSharedSegments(englishBlocks[index] || '');
+    const jaSegments = splitSharedSegments(japaneseBlocks[index] || '');
+    const segmentCount = Math.max(enSegments.length, jaSegments.length);
+
+    for (let segmentIndex = 0; segmentIndex < segmentCount; segmentIndex++) {
+      const enParts = enSegments[segmentIndex] ?? { text: '', shared: [] };
+      const jaParts = jaSegments[segmentIndex] ?? { text: '', shared: [] };
+      const en = enParts.text;
+      const ja = jaParts.text;
+      const shared = uniqueSharedBlocks(enParts.shared, jaParts.shared).join('\n\n');
+      const englishBlock = en
+        ? `<div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
 ${en}
 
 </div>`
-      : '';
-    const sharedBlock = shared
-      ? `<div className="bilingualCommon">
+        : '';
+      const sharedBlock = shared
+        ? `<div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ${shared}
 
 </div>`
-      : '';
-    const japaneseBlock = ja
-      ? `<div className="bilingualBlock japanese">
+        : '';
+      const japaneseBlock = ja
+        ? `<div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ${ja}
 
 </div>`
-      : '';
-    chunks.push(`<div className="bilingualPair">
+        : '';
+      chunks.push(`<div className="bilingualPair">
 ${englishBlock}
-${sharedBlock}
 ${japaneseBlock}
-</div>`);
+</div>
+${sharedBlock}`);
+    }
   }
 
-  return chunks.join('\n\n');
+  return smoothHeadings(chunks.join('\n\n'));
 }
 
 async function fetchOfficialMarkdown(page) {

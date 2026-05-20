@@ -612,8 +612,7 @@ html[data-theme='dark'] .docHero[data-category='logging-monitoring'] {
 }
 
 .bilingualBlock + .bilingualBlock,
-.bilingualBlock + .bilingualCommon,
-.bilingualCommon + .bilingualBlock {
+.bilingualBlock + .bilingualCommon {
   border-top: 1px solid var(--page-border);
 }
 
@@ -645,8 +644,12 @@ html[data-theme='dark'] .docHero[data-category='logging-monitoring'] {
 }
 
 .bilingualCommon {
+  margin: 10px 0 18px;
+  border: 1px solid var(--page-border);
+  border-radius: 8px;
   border-left: 4px solid #7c5cff;
   background: rgba(124, 92, 255, 0.05);
+  overflow: hidden;
 }
 
 .noticeBox {
@@ -975,6 +978,12 @@ body {
 .bilingualPair {
   border-color: var(--doc-line);
   background: var(--doc-card-bg);
+  box-shadow: var(--doc-shadow);
+}
+
+.bilingualCommon {
+  border-color: var(--doc-line);
+  background: #f7f5ff;
   box-shadow: var(--doc-shadow);
 }
 
