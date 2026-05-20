@@ -1250,7 +1250,7 @@ html[data-theme="dark"] .navbar__search-input:focus {
   padding: 36px 44px;
   background: var(--doc-card-bg);
   box-shadow: var(--doc-shadow);
-  color: #172033;
+  color: var(--doc-text);
   font-size: 1.03rem;
 }
 
@@ -1311,6 +1311,7 @@ html[data-theme="dark"] .navbar__search-input:focus {
 .bilingualBlock,
 .bilingualCommon {
   padding: 24px 30px;
+  color: var(--doc-text);
 }
 
 .bilingualBlock p,
@@ -1466,6 +1467,10 @@ html[data-theme="dark"] .contentTabs label[title]:focus-visible::after {
   background: #11161a;
   color: #ecfdf7;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
+}
+
+html[data-theme="dark"] .contentTabs label {
+  color: #cfd6df;
 }
 
 html[data-theme="dark"]
