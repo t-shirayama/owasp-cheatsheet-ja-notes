@@ -565,7 +565,7 @@ Bean Validation、別名 [Jakarta Validation](https://beanvalidation.org/) は�
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-<strong className="bilingualCommonTitle">Typical Validation</strong>
+### Typical Validation
 
 
 ![Typical](/img/owasp-cheatsheets/bean-validation/typical.png)
@@ -574,7 +574,7 @@ Bean Validation、別名 [Jakarta Validation](https://beanvalidation.org/) は�
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-<strong className="bilingualCommonTitle">Bean Validation</strong>
+### Bean Validation
 
 
 ![JSR](/img/owasp-cheatsheets/bean-validation/jsr.png)

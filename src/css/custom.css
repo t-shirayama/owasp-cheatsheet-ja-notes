@@ -635,8 +635,11 @@ html[data-theme='dark'] .docHero[data-category='logging-monitoring'] {
   color: #7c5cff;
 }
 
-.bilingualCommonTitle {
-  display: block;
+.bilingualCommon h2,
+.bilingualCommon h3,
+.bilingualCommon h4,
+.bilingualCommon h5,
+.bilingualCommon h6 {
   margin: 0 0 14px;
   color: var(--page-ink);
   font-size: 1.08rem;

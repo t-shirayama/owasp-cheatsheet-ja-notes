@@ -1337,11 +1337,14 @@ function takeTrailingHeading(text) {
   };
 }
 
-function sharedHeadingTitle(englishHeading, japaneseHeading) {
+function sharedHeading(englishHeading, japaneseHeading) {
   if (!englishHeading && !japaneseHeading) {
-    return '';
+    return null;
   }
-  return englishHeading?.title ?? japaneseHeading.title;
+  return {
+    level: englishHeading?.level ?? japaneseHeading.level,
+    title: englishHeading?.title ?? japaneseHeading.title,
+  };
 }
 
 function bilingualPairs(english, japanese) {
@@ -1369,7 +1372,7 @@ function bilingualPairs(english, japanese) {
       const jaText = shared ? takeTrailingHeading(jaParts.text) : { text: jaParts.text, heading: null };
       const en = enText.text;
       const ja = jaText.text;
-      const heading = sharedHeadingTitle(enText.heading, jaText.heading);
+      const heading = sharedHeading(enText.heading, jaText.heading);
       const englishBlock = en
         ? `<div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
@@ -1381,7 +1384,7 @@ ${en}
       const sharedBlock = shared
         ? `<div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-${heading ? `<strong className="bilingualCommonTitle">${heading}</strong>\n` : ''}
+${heading ? `${'#'.repeat(heading.level)} ${heading.title}\n` : ''}
 
 ${shared}
 
