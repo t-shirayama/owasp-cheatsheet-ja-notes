@@ -2,78 +2,9 @@
 
 このリポジトリの残作業候補です。
 
-## 現在の到達点
+## 未完了タスク
 
-- [x] ASVS Index に掲載されている対象 Cheat Sheet のローカル対応表を作成する。
-- [x] 対象 Cheat Sheet ごとに翻訳、要約、開発チェックリストを分離して配置する。
-- [x] 各翻訳ファイルに Attribution、原文 URL、ライセンス、取得日を記載する。
-- [x] ASVS 章ページから関連する翻訳、要約、チェックリストへリンクする。
-- [x] `references/source-map.md` に ASVS 項目、公式 Cheat Sheet、ローカルファイルの対応をまとめる。
-
-## 優先度高
-
-- [x] 重要トピックから順に、現在の日本語訳を原文全文ベースの詳細翻訳へ拡張する。
-- [x] OAuth/OIDC、API、認証、認可、XSS、暗号、ログ、サプライチェーン関連ページを重点レビューする。
-- [x] 用語表記を統一する。例: 認証、認可、検証、妥当性確認、エンコード、サニタイズ、トークン、シークレット。
-- [x] 各チェックリストを、実装時にそのまま Issue 化できる粒度へ見直す。
-- [x] ASVS 項目との対応が粗いページを見直し、必要に応じて `Vx.y` 単位へ細分化する。
-
-### 優先度高の完了範囲
-
-- OAuth/OIDC、API、認証、認可、XSS、暗号、ログ、サプライチェーンの重点領域について、翻訳、要約、開発チェックリスト、ASVS 対応、用語表記の重点レビューを完了した。
-- ASVS Index coverage として作成済みの非重点ページには、今後の全文詳細化候補が残る。これは優先度中の段階的詳細化タスクとして扱う。
-
-### 優先度高の進行メモ
-
-- [x] OAuth/OIDC V1: OAuth 2.0 Protocol Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V10.1` から `V10.6` 単位へ見直す。
-- [x] API V1: REST Security Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V4.1`、`V4.2`、`V4.3`、`V4.4`、`V9.2` 単位へ見直す。
-- [x] 認証 V1: Authentication Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.2`、`V6.3`、`V6.5`、`V6.7`、`V6.8` 単位へ見直す。
-- [x] 認証 V2: Multifactor Authentication Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.2`、`V6.3`、`V6.4`、`V6.5`、`V6.8` 単位へ見直す。
-- [x] 認証 V2: Forgot Password Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.3`、`V6.4`、`V6.6` 単位へ見直す。
-- [x] 認証 V2: Credential Stuffing Prevention Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.1`、`V6.2`、`V6.3`、`V6.6` 単位へ見直す。
-- [x] 認証/暗号 V2: Password Storage Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.5`、`V11.4` 単位へ見直す。
-- [x] 認証 V2: Choosing and Using Security Questions Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.4` 単位へ見直す。
-- [x] 認証/認可 V2: Transaction Authorization Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V6.5`、`V8.3`、`V15.1`、`V15.4` 単位へ見直す。
-- [x] 認可 V1: Authorization Cheat Sheet を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V8.1`、`V8.2`、`V8.4`、`V16.3` 単位へ見直す。
-- [x] 認可 V2: IDOR Prevention、Multi Tenant Security、Authorization Testing Automation を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V8.1`、`V8.2`、`V8.4`、`V16.3` 単位へ見直す。
-- [x] XSS V1: Cross Site Scripting Prevention Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V1.2`、`V1.3`、`V3.2`、`V3.4` 単位へ見直す。
-- [x] XSS V2: Content Security Policy、DOM Based XSS Prevention、DOM Clobbering Prevention、XSS Filter Evasion を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V1.2`、`V3.1`、`V3.2` 単位へ見直す。
-- [x] 暗号 V1: Cryptographic Storage Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V11.1`、`V11.2`、`V11.3`、`V11.5`、`V13.3`、`V14.1` 単位へ見直す。
-- [x] 暗号 V2: Key Management、Secrets Management、Transport Layer Security、HTTP Strict Transport Security を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V3.4`、`V4.1`、`V10.1`、`V11.1`、`V11.2`、`V11.3`、`V11.5`、`V11.7`、`V12.1`、`V13.3`、`V17.1` 単位へ見直す。
-- [x] ログ V1: Logging Cheat Sheet を詳細レビューし、開発チェックリストを `V10.7`、`V16.1`、`V16.2`、`V16.3`、`V16.4` 単位へ見直す。
-- [x] ログ V2: Error Handling、Logging Vocabulary を詳細レビューし、ASVS 対応を `V16.1`、`V16.2`、`V16.3`、`V16.5` 単位へ確認する。
-- [x] サプライチェーン V1: Software Supply Chain Security Cheat Sheet を詳細翻訳へ拡張し、要約、開発チェックリスト、ASVS 対応を `V15.1`、`V15.2` 単位へ見直す。
-- [x] サプライチェーン V2: Dependency Graph/SBOM、NPM Security、Threat Modeling、Attack Surface Analysis を詳細レビューし、要約、開発チェックリスト、ASVS 対応を `V15.1`、`V15.2`、`V2.1` 単位へ見直す。
-
-## 優先度中
-
-- [x] Markdown lint を導入し、見出し、表、リンク、末尾改行などを自動検査する。
-- [x] Markdown link checker を導入し、内部リンクと外部リンクを継続的に確認する。
-- [x] `Retrieved` の更新ルールを決め、OWASP 原文更新への追従手順を作る。
-- [x] 章別チェック観点を、抽象的な観点から具体的な設計・実装・テスト観点へ拡張する。
-- [x] README に「現状は ASVS Index coverage の要約翻訳であり、全文詳細翻訳は段階的に拡張する」旨を明記するか検討する。
-- [x] 非重点ページに残る ASVS Index coverage の短い翻訳、要約、チェックリストを、優先順位を付けて段階的に詳細化する。
-
-### 優先度中の完了範囲
-
-- Markdown lint と link checker は [../tools/](../tools/) 配下の PowerShell スクリプトとして導入した。
-- 原文確認日と `Retrieved` 更新ルールは [source-update-policy.md](source-update-policy.md) にまとめた。
-- 章別チェック観点は [../docs/checklists/by-asvs.md](../docs/checklists/by-asvs.md) に Issue 化しやすい確認観点として追加した。
-- 非重点ページの段階的詳細化順は [non-priority-detailing-plan.md](non-priority-detailing-plan.md) に Wave 1 から Wave 3 として整理した。
-
-## 優先度低
-
-- [x] 静的サイトジェネレータを導入するか検討する。
-- [x] 検索しやすいタグ、カテゴリ、重要度、対象ロールを各ページに付与するか検討する。
-- [x] 変更履歴やレビュー履歴の記録方法を決める。
-- [x] 非公式翻訳であることを各主要入口ページでより明確に表示するか確認する。
-
-### 優先度低の完了範囲
-
-- 静的サイトジェネレータは現時点では導入せず、Markdown と GitHub 表示を主導線にする方針を [site-and-taxonomy-policy.md](site-and-taxonomy-policy.md) にまとめた。
-- タグ、カテゴリ、重要度、対象ロールは各ページへの front matter 追加ではなく、当面は `source-map`、章別索引、トピック別索引で集約管理する方針を [site-and-taxonomy-policy.md](site-and-taxonomy-policy.md) にまとめた。
-- 変更履歴とレビュー履歴は Git commit、`references/source-map.md`、関連運用メモを組み合わせて記録する方針を [change-review-history-policy.md](change-review-history-policy.md) にまとめた。
-- README、`docs/`、`docs/asvs/`、翻訳、要約、チェックリストの主要入口ページに、非公式翻訳であることと公式原文確認の注意書きを追加した。
+現在、未完了の TODO はありません。
 
 ## 完了判定の目安
 
