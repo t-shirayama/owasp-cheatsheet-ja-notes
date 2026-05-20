@@ -154,6 +154,10 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 - `翻訳`, `要点`, and `チェックリスト` should not show repository maintenance sections such as `関連ファイル` on the web page.
 - Place web-facing Attribution near the bottom of the page, after the main reading experience, while still preserving all required attribution fields.
 - `対比表示` must preserve the official source order and should be full-page coverage for Full pages.
+- For Full bilingual pages, the Japanese translation must be a full translation of the same source coverage, not a short summary. Do not rely on a summary-style translation panel to satisfy a Full page.
+- Every meaningful English heading, paragraph, list item, and table row in a Full bilingual page should have a corresponding Japanese translation. Avoid leaving English-only bilingual pair cards unless the segment is a shared code block, image, separator, or intentionally untranslated technical artifact.
+- When expanding a page from Sample to Full, update the source translation file under `docs/translations/<slug>.md` first, then regenerate `docs/bilingual/<slug>.md` so the translation tab and comparison tab stay aligned.
+- Before finalizing Full bilingual work, inspect the generated page for missing `日本語 (翻訳)` blocks and for translation panels that are substantially shorter than the source.
 - In `対比表示`, keep each English original segment and corresponding Japanese translation in the same bilingual pair card. Split long text by paragraph; split long top-level lists by list item so a single card does not become too tall.
 - Shared code blocks and images must not be inserted between `English (原文)` and `日本語 (翻訳)`. Put shared code/images after the Japanese translation in a separate `コード・画像 (共通)` card.
 - Do not duplicate identical code blocks or images in both English and Japanese blocks. Shared technical artifacts should appear once in the common card.

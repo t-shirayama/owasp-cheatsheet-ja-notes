@@ -21,7 +21,8 @@
   --ifm-menu-color: #334155;
   --ifm-menu-color-active: #0f5be8;
   --ifm-menu-color-background-active: #edf5ff;
-  --doc-sidebar-width: 380px;
+  --doc-sidebar-width: 500px;
+  --doc-sidebar-outer-margin: 24px;
   --page-border: #d8e1f2;
   --page-muted: #60708f;
   --page-ink: #081434;
@@ -771,44 +772,10 @@ html[data-theme='dark'] .bilingualCommon {
   background: rgba(124, 92, 255, 0.12);
 }
 
-html[data-theme='dark'] .footer--light {
-  border-top: 1px solid var(--page-border);
-  background: var(--ifm-footer-background-color);
-  color: var(--page-muted);
-}
-
-body:has(.theme-doc-sidebar-container) .footer {
-  margin-left: var(--doc-sidebar-width);
-  border-top: 1px solid var(--doc-line);
-  background: transparent;
-}
-
-body:has(.theme-doc-sidebar-container) .footer__links,
-body:has(.theme-doc-sidebar-container) .footer__bottom {
-  width: min(100%, 1120px);
-  max-width: calc(100% - clamp(48px, 7vw, 128px));
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 0;
-  padding-left: 0;
-}
-
-body:has(.theme-doc-sidebar-container) .footer__links {
-  padding-top: 24px;
-}
-
-body:has(.theme-doc-sidebar-container) .footer__bottom {
-  padding-bottom: 24px;
-}
-
 @media (max-width: 996px) {
-  body:has(.theme-doc-sidebar-container) .footer {
+  .theme-doc-sidebar-container {
     margin-left: 0;
-  }
-
-  body:has(.theme-doc-sidebar-container) .footer__links,
-  body:has(.theme-doc-sidebar-container) .footer__bottom {
-    max-width: calc(100% - 32px);
+    border-left: 0;
   }
 
   .homeHero {
@@ -882,7 +849,9 @@ body {
 }
 
 .theme-doc-sidebar-container {
+  margin-left: var(--doc-sidebar-outer-margin);
   border-right: 2px solid #c8d7ea !important;
+  border-left: 1px solid #e2ebf7;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 249, 254, 0.96)),
     #f7faff;
@@ -891,8 +860,19 @@ body {
     inset -1px 0 0 rgba(15, 91, 232, 0.08);
 }
 
+@media (min-width: 997px) {
+  .theme-doc-sidebar-container {
+    margin-top: calc(-1 * var(--ifm-navbar-height) + 24px) !important;
+  }
+
+  .theme-doc-sidebar-container [class*='sidebarViewport'] {
+    top: 24px;
+    max-height: calc(100vh - 24px);
+  }
+}
+
 .theme-doc-sidebar-container .menu {
-  padding: 24px 24px 26px;
+  padding: 24px 18px 26px;
   color: #334155;
   font-size: 0.94rem;
 }
@@ -939,6 +919,9 @@ body {
   line-height: 1.35;
   opacity: 1;
   text-shadow: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .menu__link:hover,

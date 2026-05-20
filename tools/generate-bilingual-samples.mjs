@@ -1555,24 +1555,26 @@ async function fetchOfficialMarkdown(page) {
 }
 
 async function localJapanese(page) {
+  const translation = await readIfExists(mdPath('docs', 'translations', `${page.slug}.md`));
+  const translationBody = smoothHeadings(extractSection(translation, '日本語訳', ['ASVS との対応']) || stripAttributionSections(translation));
+
   if (page.jaMode === 'bilingualTranslationPanel') {
     const current = await readIfExists(mdPath('docs', 'bilingual', `${page.slug}.md`));
     const panel = extractPanel(current, 'translationPanel');
-    if (panel && panel.length > 3000) {
-      return smoothHeadings(panel);
-    }
     const committed = readFromHead(`docs/bilingual/${page.slug}.md`);
     const committedPanel = extractPanel(committed, 'translationPanel');
-    if (committedPanel && committedPanel.length > panel.length) {
-      return smoothHeadings(committedPanel);
+    const existingPanel = [panel, committedPanel]
+      .filter(Boolean)
+      .sort((left, right) => right.length - left.length)[0];
+    if (translationBody && (!existingPanel || translationBody.length >= existingPanel.length || existingPanel.length < 3000)) {
+      return translationBody;
     }
-    if (panel) {
-      return smoothHeadings(panel);
+    if (existingPanel) {
+      return smoothHeadings(existingPanel);
     }
   }
 
-  const translation = await readIfExists(mdPath('docs', 'translations', `${page.slug}.md`));
-  return smoothHeadings(extractSection(translation, '日本語訳', ['ASVS との対応']) || stripAttributionSections(translation));
+  return translationBody;
 }
 
 async function localSummary(page) {

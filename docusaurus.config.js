@@ -79,47 +79,6 @@ const config = {
         },
       ],
     },
-    footer: {
-      style: 'light',
-      links: [
-        {
-          title: 'Repository',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/t-shirayama/owasp-cheatsheet-ja-notes',
-            },
-            {
-              label: 'Source map',
-              href: 'https://github.com/t-shirayama/owasp-cheatsheet-ja-notes/blob/main/references/source-map.md',
-            },
-            {
-              label: 'Bilingual map',
-              href: 'https://github.com/t-shirayama/owasp-cheatsheet-ja-notes/blob/main/references/bilingual-map.md',
-            },
-          ],
-        },
-        {
-          title: 'Official Sources',
-          items: [
-            {
-              label: 'OWASP Cheat Sheet Series',
-              href: 'https://cheatsheetseries.owasp.org/',
-            },
-            {
-              label: 'OWASP ASVS',
-              href: 'https://owasp.org/www-project-application-security-verification-standard/',
-            },
-            {
-              label: 'CC BY-SA 4.0',
-              href: 'https://creativecommons.org/licenses/by-sa/4.0/',
-            },
-          ],
-        },
-      ],
-      copyright:
-        'This is an unofficial Japanese notes site. OWASP content is attributed on each page and reused under CC BY-SA 4.0 where applicable.',
-    },
     colorMode: {
       defaultMode: 'light',
       respectPrefersColorScheme: true,
