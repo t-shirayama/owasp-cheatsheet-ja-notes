@@ -6,7 +6,7 @@ hide_title: true
 <div className="docHero" data-category="encoding-and-sanitization">
   <h1>セキュリティ用語チートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">最終更新: 2026-05-21</span>
     <span className="docPill">読了時間: 約 15 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
@@ -802,6 +802,6 @@ OAuth2、SAML、OIDC を扱うとき、次の用語がよく使われます。
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-20
+- Retrieved: 2026-05-21
 
 </div>

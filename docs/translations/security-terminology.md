@@ -8,7 +8,7 @@
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: Japanese translation added.
-- Retrieved: 2026-05-20
+- Retrieved: 2026-05-21
 
 ## 日本語訳
 
