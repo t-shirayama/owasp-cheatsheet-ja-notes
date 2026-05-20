@@ -140,39 +140,43 @@ const pages = [
   },
 ];
 
-const categoryGroups = [
-  {
-    label: 'Encoding and Sanitization',
-    items: ['bean-validation', 'csrf-prevention'],
-  },
-  {
-    label: 'Authentication',
-    items: ['authentication', 'credential-stuffing-prevention', 'forgot-password', 'multifactor-authentication'],
-  },
-  {
-    label: 'Authorization',
-    items: ['authorization'],
-  },
-  {
-    label: 'API and Web Service',
-    items: ['oauth2', 'rest-security'],
-  },
-  {
-    label: 'Cryptographic Storage',
-    items: ['cryptographic-storage', 'password-storage'],
-  },
-  {
-    label: 'Session Management',
-    items: ['session-management'],
-  },
-  {
-    label: 'Logging and Monitoring',
-    items: ['logging'],
-  },
+const asvsChapters = [
+  { id: 1, title: 'Encoding and Sanitization' },
+  { id: 2, title: 'Validation and Business Logic' },
+  { id: 3, title: 'Web Frontend Security' },
+  { id: 4, title: 'API and Web Service' },
+  { id: 5, title: 'File Handling' },
+  { id: 6, title: 'Authentication' },
+  { id: 7, title: 'Session Management' },
+  { id: 8, title: 'Authorization' },
+  { id: 9, title: 'Self-contained Tokens' },
+  { id: 10, title: 'OAuth and OIDC' },
+  { id: 11, title: 'Cryptography' },
+  { id: 12, title: 'Secure Communication' },
+  { id: 13, title: 'Configuration' },
+  { id: 14, title: 'Data Protection' },
+  { id: 15, title: 'Secure Coding and Architecture' },
+  { id: 16, title: 'Security Logging and Error Handling' },
+  { id: 17, title: 'WebRTC' },
 ];
 
 function mdPath(...parts) {
   return path.join(root, ...parts);
+}
+
+function asvsChapterIds(asvs) {
+  const ids = new Set();
+  for (const match of asvs.matchAll(/\bV(\d{1,2})(?:\.\d+)?\b/g)) {
+    const id = Number.parseInt(match[1], 10);
+    if (id >= 1 && id <= 17) {
+      ids.add(id);
+    }
+  }
+  return [...ids].sort((left, right) => left - right);
+}
+
+function pagesForChapter(chapterId) {
+  return pages.filter((page) => asvsChapterIds(page.asvs).includes(chapterId));
 }
 
 async function readIfExists(file) {
@@ -628,15 +632,19 @@ ${bilingualPairs(english, japanese)}
 }
 
 async function writeSidebars() {
-  const groups = categoryGroups
-    .map((group) => `    {
+  const groups = asvsChapters
+    .map((chapter) => {
+      const chapterPages = pagesForChapter(chapter.id);
+      const items = [`'asvs/v${chapter.id}'`, ...chapterPages.map((page) => `'${page.slug}'`)];
+      return `    {
       type: 'category',
-      label: '${group.label}',
+      label: 'V${chapter.id}: ${chapter.title}',
       collapsed: false,
       items: [
-${group.items.map((item) => `        '${item}',`).join('\n')}
+${items.map((item) => `        ${item},`).join('\n')}
       ],
-    }`)
+    }`;
+    })
     .join(',\n');
 
   const content = `const sidebars = {
@@ -649,6 +657,30 @@ ${groups},
 module.exports = sidebars;
 `;
   await fs.writeFile(mdPath('sidebars.js'), content, 'utf8');
+}
+
+async function writeAsvsChapterPages() {
+  await fs.mkdir(mdPath('docs', 'bilingual', 'asvs'), { recursive: true });
+
+  for (const chapter of asvsChapters) {
+    const chapterPages = pagesForChapter(chapter.id);
+    const pageLinks = chapterPages.length > 0
+      ? chapterPages.map((page) => `- [${page.title}](../${page.slug}.md)`).join('\n')
+      : '- 現在、この章に対応する公開済み対訳ページはありません。';
+    const content = `# V${chapter.id}: ${chapter.title}
+
+OWASP ASVS Index の V${chapter.id} に対応する英日対訳ページの一覧です。
+
+## 掲載中の対訳ページ
+
+${pageLinks}
+
+## 補足
+
+未掲載の Cheat Sheet は、対訳ページの作成後にこの章へ追加します。
+`;
+    await fs.writeFile(mdPath('docs', 'bilingual', 'asvs', `v${chapter.id}.md`), content, 'utf8');
+  }
 }
 
 async function writeBilingualIndex() {
@@ -691,6 +723,7 @@ async function writeBilingualMap() {
 - Full/Sample に進めるページでは、公式ページの見出し、段落、箇条書き、表、コードブロック、画像を可能な限り同じ順序で再現する。
 - 公式ページ内の画像は、必要に応じてローカル保存し、対訳ページから \`static/img/owasp-cheatsheets/<slug>/\` 配下のファイルを参照する。
 - 各対訳ファイルには Attribution を置き、英語原文を比較用に保持していることを \`Changes\` に明記する。
+- Docusaurus のサイドバーは OWASP ASVS Index と同じ V1〜V17 章ベースで構成し、複数章対応ページは該当するすべての章に掲載する。
 
 ## 対応表
 
@@ -714,6 +747,7 @@ async function main() {
   }
 
   await writeSidebars();
+  await writeAsvsChapterPages();
   await writeBilingualIndex();
   await writeBilingualMap();
 }
