@@ -19,8 +19,8 @@ const sidebars = {
             id: 'asvs/v1-1',
           },
           items: [
-            'security-terminology',
-            'xss-prevention',
+            { type: 'doc', id: 'security-terminology' },
+            { type: 'doc', id: 'xss-prevention' },
           ],
         },
         {
@@ -32,20 +32,20 @@ const sidebars = {
             id: 'asvs/v1-2',
           },
           items: [
-            'bean-validation',
-            'xss-prevention',
-            'dom-based-xss-prevention',
-            'file-upload',
-            'injection-prevention',
-            'input-validation',
-            'java-security',
-            'ldap-injection-prevention',
-            'os-command-injection-defense',
-            'query-parameterization',
-            'sql-injection-prevention',
-            'xml-security',
-            'xss-filter-evasion',
-            'xxe-prevention',
+            { type: 'doc', id: 'bean-validation' },
+            { type: 'doc', id: 'xss-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'dom-based-xss-prevention' },
+            { type: 'doc', id: 'file-upload' },
+            { type: 'doc', id: 'injection-prevention' },
+            { type: 'doc', id: 'input-validation' },
+            { type: 'doc', id: 'java-security' },
+            { type: 'doc', id: 'ldap-injection-prevention' },
+            { type: 'doc', id: 'os-command-injection-defense' },
+            { type: 'doc', id: 'query-parameterization' },
+            { type: 'doc', id: 'sql-injection-prevention' },
+            { type: 'doc', id: 'xml-security' },
+            { type: 'doc', id: 'xss-filter-evasion' },
+            { type: 'doc', id: 'xxe-prevention' },
           ],
         },
         {
@@ -57,15 +57,15 @@ const sidebars = {
             id: 'asvs/v1-3',
           },
           items: [
-            'csrf-prevention',
-            'xss-prevention',
-            'dom-based-xss-prevention',
-            'injection-prevention',
-            'injection-prevention-in-java',
-            'input-validation',
-            'ldap-injection-prevention',
-            'ssrf-prevention',
-            'xxe-prevention',
+            { type: 'doc', id: 'csrf-prevention' },
+            { type: 'doc', id: 'xss-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'dom-based-xss-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'injection-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'injection-prevention-in-java' },
+            { type: 'doc', id: 'input-validation', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'ldap-injection-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'ssrf-prevention' },
+            { type: 'doc', id: 'xxe-prevention', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -89,10 +89,10 @@ const sidebars = {
             id: 'asvs/v1-5',
           },
           items: [
-            'deserialization',
-            'ssrf-prevention',
-            'xml-security',
-            'xxe-prevention',
+            { type: 'doc', id: 'deserialization' },
+            { type: 'doc', id: 'ssrf-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'xml-security', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'xxe-prevention', customProps: { sidebarDuplicate: true } },
           ],
         },
       ],
@@ -115,7 +115,7 @@ const sidebars = {
             id: 'asvs/v2-1',
           },
           items: [
-            'abuse-case',
+            { type: 'doc', id: 'abuse-case' },
           ],
         },
         {
@@ -127,9 +127,9 @@ const sidebars = {
             id: 'asvs/v2-2',
           },
           items: [
-            'input-validation',
-            'microservices-security',
-            'web-service-security',
+            { type: 'doc', id: 'input-validation', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'microservices-security' },
+            { type: 'doc', id: 'web-service-security' },
           ],
         },
         {
@@ -141,7 +141,7 @@ const sidebars = {
             id: 'asvs/v2-3',
           },
           items: [
-            'abuse-case',
+            { type: 'doc', id: 'abuse-case', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -153,7 +153,7 @@ const sidebars = {
             id: 'asvs/v2-4',
           },
           items: [
-            'denial-of-service',
+            { type: 'doc', id: 'denial-of-service' },
           ],
         },
       ],
@@ -176,9 +176,9 @@ const sidebars = {
             id: 'asvs/v3-1',
           },
           items: [
-            'content-security-policy',
-            'csrf-prevention',
-            'http-strict-transport-security',
+            { type: 'doc', id: 'content-security-policy' },
+            { type: 'doc', id: 'csrf-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'http-strict-transport-security' },
           ],
         },
         {
@@ -190,10 +190,10 @@ const sidebars = {
             id: 'asvs/v3-2',
           },
           items: [
-            'csrf-prevention',
-            'dom-clobbering-prevention',
-            'html5-security',
-            'third-party-javascript-management',
+            { type: 'doc', id: 'csrf-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'dom-clobbering-prevention' },
+            { type: 'doc', id: 'html5-security' },
+            { type: 'doc', id: 'third-party-javascript-management' },
           ],
         },
         {
@@ -205,9 +205,9 @@ const sidebars = {
             id: 'asvs/v3-3',
           },
           items: [
-            'csrf-prevention',
-            'session-management',
-            'transport-layer-security',
+            { type: 'doc', id: 'csrf-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'session-management' },
+            { type: 'doc', id: 'transport-layer-security' },
           ],
         },
         {
@@ -219,9 +219,9 @@ const sidebars = {
             id: 'asvs/v3-4',
           },
           items: [
-            'csrf-prevention',
-            'html5-security',
-            'http-strict-transport-security',
+            { type: 'doc', id: 'csrf-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'html5-security', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'http-strict-transport-security', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -233,8 +233,8 @@ const sidebars = {
             id: 'asvs/v3-5',
           },
           items: [
-            'csrf-prevention',
-            'html5-security',
+            { type: 'doc', id: 'csrf-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'html5-security', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -246,7 +246,7 @@ const sidebars = {
             id: 'asvs/v3-6',
           },
           items: [
-            'third-party-javascript-management',
+            { type: 'doc', id: 'third-party-javascript-management', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -258,10 +258,10 @@ const sidebars = {
             id: 'asvs/v3-7',
           },
           items: [
-            'csrf-prevention',
-            'http-strict-transport-security',
-            'third-party-javascript-management',
-            'unvalidated-redirects-forwards',
+            { type: 'doc', id: 'csrf-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'http-strict-transport-security', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'third-party-javascript-management', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'unvalidated-redirects-forwards' },
           ],
         },
       ],
@@ -284,11 +284,11 @@ const sidebars = {
             id: 'asvs/v4-1',
           },
           items: [
-            'csrf-prevention',
-            'rest-assessment',
-            'rest-security',
-            'transport-layer-security',
-            'web-service-security',
+            { type: 'doc', id: 'csrf-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'rest-assessment' },
+            { type: 'doc', id: 'rest-security' },
+            { type: 'doc', id: 'transport-layer-security', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'web-service-security', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -300,8 +300,8 @@ const sidebars = {
             id: 'asvs/v4-2',
           },
           items: [
-            'rest-security',
-            'web-service-security',
+            { type: 'doc', id: 'rest-security', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'web-service-security', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -313,7 +313,7 @@ const sidebars = {
             id: 'asvs/v4-3',
           },
           items: [
-            'graphql',
+            { type: 'doc', id: 'graphql' },
           ],
         },
         {
@@ -325,8 +325,8 @@ const sidebars = {
             id: 'asvs/v4-4',
           },
           items: [
-            'websocket-security',
-            'transport-layer-security',
+            { type: 'doc', id: 'websocket-security' },
+            { type: 'doc', id: 'transport-layer-security', customProps: { sidebarDuplicate: true } },
           ],
         },
       ],
@@ -349,8 +349,8 @@ const sidebars = {
             id: 'asvs/v5-1',
           },
           items: [
-            'input-validation',
-            'file-upload',
+            { type: 'doc', id: 'input-validation', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'file-upload', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -362,8 +362,8 @@ const sidebars = {
             id: 'asvs/v5-2',
           },
           items: [
-            'input-validation',
-            'file-upload',
+            { type: 'doc', id: 'input-validation', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'file-upload', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -375,8 +375,8 @@ const sidebars = {
             id: 'asvs/v5-3',
           },
           items: [
-            'input-validation',
-            'ssrf-prevention',
+            { type: 'doc', id: 'input-validation', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'ssrf-prevention', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -388,7 +388,7 @@ const sidebars = {
             id: 'asvs/v5-4',
           },
           items: [
-            'file-upload',
+            { type: 'doc', id: 'file-upload', customProps: { sidebarDuplicate: true } },
           ],
         },
       ],
@@ -411,8 +411,8 @@ const sidebars = {
             id: 'asvs/v6-1',
           },
           items: [
-            'security-terminology',
-            'credential-stuffing-prevention',
+            { type: 'doc', id: 'security-terminology', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'credential-stuffing-prevention' },
           ],
         },
         {
@@ -424,7 +424,7 @@ const sidebars = {
             id: 'asvs/v6-2',
           },
           items: [
-            'authentication',
+            { type: 'doc', id: 'authentication' },
           ],
         },
         {
@@ -436,9 +436,9 @@ const sidebars = {
             id: 'asvs/v6-3',
           },
           items: [
-            'authentication',
-            'credential-stuffing-prevention',
-            'forgot-password',
+            { type: 'doc', id: 'authentication', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'credential-stuffing-prevention', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'forgot-password' },
           ],
         },
         {
@@ -450,9 +450,9 @@ const sidebars = {
             id: 'asvs/v6-4',
           },
           items: [
-            'security-questions',
-            'forgot-password',
-            'multifactor-authentication',
+            { type: 'doc', id: 'security-questions' },
+            { type: 'doc', id: 'forgot-password', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'multifactor-authentication' },
           ],
         },
         {
@@ -464,10 +464,10 @@ const sidebars = {
             id: 'asvs/v6-5',
           },
           items: [
-            'authentication',
-            'multifactor-authentication',
-            'password-storage',
-            'transaction-authorization',
+            { type: 'doc', id: 'authentication', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'multifactor-authentication', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'password-storage' },
+            { type: 'doc', id: 'transaction-authorization' },
           ],
         },
         {
@@ -479,8 +479,8 @@ const sidebars = {
             id: 'asvs/v6-6',
           },
           items: [
-            'forgot-password',
-            'multifactor-authentication',
+            { type: 'doc', id: 'forgot-password', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'multifactor-authentication', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -492,8 +492,8 @@ const sidebars = {
             id: 'asvs/v6-7',
           },
           items: [
-            'authentication',
-            'multifactor-authentication',
+            { type: 'doc', id: 'authentication', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'multifactor-authentication', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -505,7 +505,7 @@ const sidebars = {
             id: 'asvs/v6-8',
           },
           items: [
-            'authentication',
+            { type: 'doc', id: 'authentication', customProps: { sidebarDuplicate: true } },
           ],
         },
       ],
@@ -528,7 +528,7 @@ const sidebars = {
             id: 'asvs/v7-1',
           },
           items: [
-            'session-management',
+            { type: 'doc', id: 'session-management', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -540,7 +540,7 @@ const sidebars = {
             id: 'asvs/v7-2',
           },
           items: [
-            'session-management',
+            { type: 'doc', id: 'session-management', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -552,7 +552,7 @@ const sidebars = {
             id: 'asvs/v7-3',
           },
           items: [
-            'session-management',
+            { type: 'doc', id: 'session-management', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -564,7 +564,7 @@ const sidebars = {
             id: 'asvs/v7-4',
           },
           items: [
-            'session-management',
+            { type: 'doc', id: 'session-management', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -576,7 +576,7 @@ const sidebars = {
             id: 'asvs/v7-5',
           },
           items: [
-            'session-management',
+            { type: 'doc', id: 'session-management', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -588,7 +588,7 @@ const sidebars = {
             id: 'asvs/v7-6',
           },
           items: [
-            'session-management',
+            { type: 'doc', id: 'session-management', customProps: { sidebarDuplicate: true } },
           ],
         },
       ],
@@ -611,9 +611,9 @@ const sidebars = {
             id: 'asvs/v8-1',
           },
           items: [
-            'security-terminology',
-            'authorization',
-            'authorization-testing-automation',
+            { type: 'doc', id: 'security-terminology', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'authorization' },
+            { type: 'doc', id: 'authorization-testing-automation' },
           ],
         },
         {
@@ -625,9 +625,9 @@ const sidebars = {
             id: 'asvs/v8-2',
           },
           items: [
-            'authorization',
-            'idor-prevention',
-            'session-management',
+            { type: 'doc', id: 'authorization', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'idor-prevention' },
+            { type: 'doc', id: 'session-management', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -639,7 +639,7 @@ const sidebars = {
             id: 'asvs/v8-3',
           },
           items: [
-            'transaction-authorization',
+            { type: 'doc', id: 'transaction-authorization', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -651,8 +651,8 @@ const sidebars = {
             id: 'asvs/v8-4',
           },
           items: [
-            'authorization',
-            'multi-tenant-security',
+            { type: 'doc', id: 'authorization', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'multi-tenant-security' },
           ],
         },
       ],
@@ -675,8 +675,8 @@ const sidebars = {
             id: 'asvs/v9-1',
           },
           items: [
-            'json-web-token-for-java',
-            'saml-security',
+            { type: 'doc', id: 'json-web-token-for-java' },
+            { type: 'doc', id: 'saml-security' },
           ],
         },
         {
@@ -688,7 +688,7 @@ const sidebars = {
             id: 'asvs/v9-2',
           },
           items: [
-            'rest-security',
+            { type: 'doc', id: 'rest-security', customProps: { sidebarDuplicate: true } },
           ],
         },
       ],
@@ -711,7 +711,7 @@ const sidebars = {
             id: 'asvs/v10-1',
           },
           items: [
-            'oauth2',
+            { type: 'doc', id: 'oauth2' },
           ],
         },
         {
@@ -723,7 +723,7 @@ const sidebars = {
             id: 'asvs/v10-2',
           },
           items: [
-            'oauth2',
+            { type: 'doc', id: 'oauth2', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -735,8 +735,8 @@ const sidebars = {
             id: 'asvs/v10-3',
           },
           items: [
-            'oauth2',
-            'transport-layer-security',
+            { type: 'doc', id: 'oauth2', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'transport-layer-security', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -748,9 +748,9 @@ const sidebars = {
             id: 'asvs/v10-4',
           },
           items: [
-            'oauth2',
-            'transport-layer-security',
-            'unvalidated-redirects-forwards',
+            { type: 'doc', id: 'oauth2', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'transport-layer-security', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'unvalidated-redirects-forwards', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -762,7 +762,7 @@ const sidebars = {
             id: 'asvs/v10-5',
           },
           items: [
-            'oauth2',
+            { type: 'doc', id: 'oauth2', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -774,7 +774,7 @@ const sidebars = {
             id: 'asvs/v10-6',
           },
           items: [
-            'oauth2',
+            { type: 'doc', id: 'oauth2', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -786,8 +786,8 @@ const sidebars = {
             id: 'asvs/v10-7',
           },
           items: [
-            'browser-extension-vulnerabilities',
-            'logging',
+            { type: 'doc', id: 'browser-extension-vulnerabilities' },
+            { type: 'doc', id: 'logging' },
           ],
         },
       ],
@@ -810,9 +810,9 @@ const sidebars = {
             id: 'asvs/v11-1',
           },
           items: [
-            'security-terminology',
-            'cryptographic-storage',
-            'key-management',
+            { type: 'doc', id: 'security-terminology', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'cryptographic-storage' },
+            { type: 'doc', id: 'key-management' },
           ],
         },
         {
@@ -824,7 +824,7 @@ const sidebars = {
             id: 'asvs/v11-2',
           },
           items: [
-            'cryptographic-storage',
+            { type: 'doc', id: 'cryptographic-storage', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -836,8 +836,8 @@ const sidebars = {
             id: 'asvs/v11-3',
           },
           items: [
-            'cryptographic-storage',
-            'key-management',
+            { type: 'doc', id: 'cryptographic-storage', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'key-management', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -849,7 +849,7 @@ const sidebars = {
             id: 'asvs/v11-4',
           },
           items: [
-            'password-storage',
+            { type: 'doc', id: 'password-storage', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -861,7 +861,7 @@ const sidebars = {
             id: 'asvs/v11-5',
           },
           items: [
-            'cryptographic-storage',
+            { type: 'doc', id: 'cryptographic-storage', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -873,7 +873,7 @@ const sidebars = {
             id: 'asvs/v11-6',
           },
           items: [
-            'transport-layer-security',
+            { type: 'doc', id: 'transport-layer-security', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -885,9 +885,9 @@ const sidebars = {
             id: 'asvs/v11-7',
           },
           items: [
-            'key-management',
-            'microservices-security',
-            'secrets-management',
+            { type: 'doc', id: 'key-management', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'microservices-security', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'secrets-management' },
           ],
         },
       ],
@@ -910,7 +910,7 @@ const sidebars = {
             id: 'asvs/v12-1',
           },
           items: [
-            'transport-layer-security',
+            { type: 'doc', id: 'transport-layer-security', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -922,7 +922,7 @@ const sidebars = {
             id: 'asvs/v12-2',
           },
           items: [
-            'transport-layer-security',
+            { type: 'doc', id: 'transport-layer-security', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -934,7 +934,7 @@ const sidebars = {
             id: 'asvs/v12-3',
           },
           items: [
-            'transport-layer-security',
+            { type: 'doc', id: 'transport-layer-security', customProps: { sidebarDuplicate: true } },
           ],
         },
       ],
@@ -957,7 +957,7 @@ const sidebars = {
             id: 'asvs/v13-1',
           },
           items: [
-            'ssrf-prevention',
+            { type: 'doc', id: 'ssrf-prevention', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -969,8 +969,8 @@ const sidebars = {
             id: 'asvs/v13-2',
           },
           items: [
-            'docker-security',
-            'ssrf-prevention',
+            { type: 'doc', id: 'docker-security' },
+            { type: 'doc', id: 'ssrf-prevention', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -982,8 +982,8 @@ const sidebars = {
             id: 'asvs/v13-3',
           },
           items: [
-            'cryptographic-storage',
-            'key-management',
+            { type: 'doc', id: 'cryptographic-storage', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'key-management', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -995,11 +995,11 @@ const sidebars = {
             id: 'asvs/v13-4',
           },
           items: [
-            'django-security',
-            'graphql',
-            'laravel-security',
-            'npm-security',
-            'symfony',
+            { type: 'doc', id: 'django-security' },
+            { type: 'doc', id: 'graphql', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'laravel-security' },
+            { type: 'doc', id: 'npm-security' },
+            { type: 'doc', id: 'symfony' },
           ],
         },
       ],
@@ -1022,9 +1022,9 @@ const sidebars = {
             id: 'asvs/v14-1',
           },
           items: [
-            'abuse-case',
-            'cryptographic-storage',
-            'user-privacy-protection',
+            { type: 'doc', id: 'abuse-case', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'cryptographic-storage', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'user-privacy-protection' },
           ],
         },
         {
@@ -1036,8 +1036,8 @@ const sidebars = {
             id: 'asvs/v14-2',
           },
           items: [
-            'html5-security',
-            'user-privacy-protection',
+            { type: 'doc', id: 'html5-security', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'user-privacy-protection', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -1049,7 +1049,7 @@ const sidebars = {
             id: 'asvs/v14-3',
           },
           items: [
-            'html5-security',
+            { type: 'doc', id: 'html5-security', customProps: { sidebarDuplicate: true } },
           ],
         },
       ],
@@ -1072,13 +1072,13 @@ const sidebars = {
             id: 'asvs/v15-1',
           },
           items: [
-            'security-terminology',
-            'abuse-case',
-            'attack-surface-analysis',
-            'dependency-graph-sbom',
-            'software-supply-chain-security',
-            'third-party-javascript-management',
-            'threat-modeling',
+            { type: 'doc', id: 'security-terminology', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'abuse-case', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'attack-surface-analysis' },
+            { type: 'doc', id: 'dependency-graph-sbom' },
+            { type: 'doc', id: 'software-supply-chain-security' },
+            { type: 'doc', id: 'third-party-javascript-management', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'threat-modeling' },
           ],
         },
         {
@@ -1090,10 +1090,10 @@ const sidebars = {
             id: 'asvs/v15-2',
           },
           items: [
-            'software-supply-chain-security',
-            'third-party-javascript-management',
-            'virtual-patching',
-            'vulnerable-dependency-management',
+            { type: 'doc', id: 'software-supply-chain-security', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'third-party-javascript-management', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'virtual-patching' },
+            { type: 'doc', id: 'vulnerable-dependency-management' },
           ],
         },
         {
@@ -1105,9 +1105,9 @@ const sidebars = {
             id: 'asvs/v15-3',
           },
           items: [
-            'mass-assignment',
-            'prototype-pollution-prevention',
-            'unvalidated-redirects-forwards',
+            { type: 'doc', id: 'mass-assignment' },
+            { type: 'doc', id: 'prototype-pollution-prevention' },
+            { type: 'doc', id: 'unvalidated-redirects-forwards', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -1119,8 +1119,8 @@ const sidebars = {
             id: 'asvs/v15-4',
           },
           items: [
-            'secure-code-review',
-            'transaction-authorization',
+            { type: 'doc', id: 'secure-code-review' },
+            { type: 'doc', id: 'transaction-authorization', customProps: { sidebarDuplicate: true } },
           ],
         },
       ],
@@ -1143,8 +1143,8 @@ const sidebars = {
             id: 'asvs/v16-1',
           },
           items: [
-            'logging',
-            'logging-vocabulary',
+            { type: 'doc', id: 'logging', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'logging-vocabulary' },
           ],
         },
         {
@@ -1156,8 +1156,8 @@ const sidebars = {
             id: 'asvs/v16-2',
           },
           items: [
-            'logging',
-            'session-management',
+            { type: 'doc', id: 'logging', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'session-management', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -1169,9 +1169,9 @@ const sidebars = {
             id: 'asvs/v16-3',
           },
           items: [
-            'authorization',
-            'logging',
-            'logging-vocabulary',
+            { type: 'doc', id: 'authorization', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'logging', customProps: { sidebarDuplicate: true } },
+            { type: 'doc', id: 'logging-vocabulary', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -1183,7 +1183,7 @@ const sidebars = {
             id: 'asvs/v16-4',
           },
           items: [
-            'logging',
+            { type: 'doc', id: 'logging', customProps: { sidebarDuplicate: true } },
           ],
         },
         {
@@ -1195,7 +1195,7 @@ const sidebars = {
             id: 'asvs/v16-5',
           },
           items: [
-            'error-handling',
+            { type: 'doc', id: 'error-handling' },
           ],
         },
       ],
@@ -1230,7 +1230,7 @@ const sidebars = {
             id: 'asvs/v17-2',
           },
           items: [
-            'transport-layer-security',
+            { type: 'doc', id: 'transport-layer-security', customProps: { sidebarDuplicate: true } },
           ],
         },
         {

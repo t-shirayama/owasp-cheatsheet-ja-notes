@@ -1789,6 +1789,13 @@ hide_title: true
 }
 
 async function writeSidebars() {
+  const seenSidebarDocs = new Set();
+  const sidebarDocItem = (page) => {
+    const duplicate = seenSidebarDocs.has(page.slug);
+    seenSidebarDocs.add(page.slug);
+    const customProps = duplicate ? ", customProps: { sidebarDuplicate: true }" : "";
+    return `            { type: 'doc', id: '${page.slug}'${customProps} },`;
+  };
   const groups = asvsChapters
     .map((chapter) => {
       const sectionItems = chapter.sections.map((section) => {
@@ -1802,7 +1809,7 @@ async function writeSidebars() {
             id: 'asvs/${section.id.toLowerCase().replace('.', '-')}',
           },
           items: [
-${sectionPages.map((page) => `            '${page.slug}',`).join('\n')}
+${sectionPages.map(sidebarDocItem).join('\n')}
           ],
         },`;
       });
@@ -1967,6 +1974,15 @@ async function main() {
   const indexedBySlug = new Map(indexedPages.map((page) => [page.slug, page]));
   const generatedSlugs = new Set(pages.map((page) => page.slug));
   const originalsOnly = process.argv.includes('--originals-only');
+  const navigationOnly = process.argv.includes('--navigation-only');
+
+  if (navigationOnly) {
+    await writeSidebars();
+    await writeAsvsChapterPages();
+    await writeBilingualIndex();
+    await writeBilingualMap();
+    return;
+  }
 
   const originalTargetPages = originalsOnly ? indexedPages : pages;
 
