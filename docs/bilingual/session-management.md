@@ -402,14 +402,13 @@ Use cookie name prefixes to bind cookies to security properties at the browser l
 - `__Host-` — the cookie must be set with `Secure`, must not have a `Domain` attribute, and must use `Path=/`. Prevents subdomain forgery and HTTPS downgrade attacks. **Recommended for session IDs.**
 - `__Secure-` — the cookie must be set with `Secure`. Use only when subdomain sharing is required.
 
-Example:
-
 </div>
 
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Example
 
 
 ```http

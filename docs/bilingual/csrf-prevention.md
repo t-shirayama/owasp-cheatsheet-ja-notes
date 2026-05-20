@@ -389,8 +389,6 @@ CSRF tokens prevent CSRF because without a CSRF token, an attacker cannot create
 
 The CSRF token can be transmitted to the client as part of a response payload, such as a HTML or JSON response, then it can be transmitted back to the server as a hidden field on a form submission or via an AJAX request as a custom header value or part of a JSON payload. A CSRF token should not be transmitted in a cookie for synchronized patterns. A CSRF token must not be leaked in the server logs or in the URL. GET requests can potentially leak CSRF tokens at several locations, such as the browser history, log files, network utilities that log the first line of a HTTP request, and Referer headers if the protected site links to an external site.
 
-For example:
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -456,6 +454,7 @@ CSRF トークンは、HTML または JSON レスポンスなどのレスポン�
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### For example
 
 
 ```html
@@ -1165,14 +1164,13 @@ If a website wants to maintain a user's logged-in session after the user arrives
 
 For more details on the `SameSite` values, check the following [section](https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7.1) from the [rfc](https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02).
 
-Example of cookies using this attribute:
-
 </div>
 
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Example of cookies using this attribute
 
 
 ```text
@@ -1324,14 +1322,13 @@ The **POST**, **PUT**, **PATCH**, and **DELETE** methods, being state changing v
 
 A CSRF token can be included in the `<meta>` tag as shown below. All subsequent calls in the page can extract the CSRF token from this `<meta>` tag. It can also be stored in a JavaScript variable or anywhere on the DOM. However, it is not recommended to store the CSRF token in cookies or browser local storage.
 
-The following code snippet can be used to include a CSRF token as a `<meta>` tag:
-
 </div>
 
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### The following code snippet can be used to include a CSRF token as a `<meta>` tag
 
 
 ```html
@@ -1354,14 +1351,13 @@ Several JavaScript libraries allow you to override default settings to have a he
 
 XMLHttpRequest's open() method can be overridden to set the `X-CSRF-Token` header whenever the `open()` method is invoked next. The function `csrfSafeMethod()` defined below will filter out the safe HTTP methods and only add the header to unsafe HTTP methods.
 
-This can be done as demonstrated in the following code snippet:
-
 </div>
 
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### This can be done as demonstrated in the following code snippet
 
 
 ```html
@@ -1693,18 +1689,9 @@ export const appConfig: ApplicationConfig = {
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-For a custom HTTP interceptor that handles CSRF tokens:
-
-</div>
-
-</div>
-
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### For a custom HTTP interceptor that handles CSRF tokens
 
 
 ```typescript
@@ -1763,14 +1750,13 @@ export class CsrfInterceptor implements HttpInterceptor {
 
 #### React with TypeScript
 
-Here's a TypeScript implementation for React applications using axios:
-
 </div>
 
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Here's a TypeScript implementation for React applications using axios
 
 
 ```typescript
@@ -1852,18 +1838,9 @@ function getCsrfToken(cookieName: string): string {
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-For React applications using fetch API with TypeScript:
-
-</div>
-
-</div>
-
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### For React applications using fetch API with TypeScript
 
 
 ```typescript

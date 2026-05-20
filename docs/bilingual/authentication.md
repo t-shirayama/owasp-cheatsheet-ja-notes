@@ -458,8 +458,6 @@ ENDIF
 
 It can be clearly seen that if the user doesn't exist, the application will directly throw an error. Otherwise, when the user exists and the password doesn't, it is apparent that there will be more processing before the application errors out. In return, the response time will be different for the same error, allowing the attacker to differentiate between a wrong username and a wrong password.
 
-- Second implementation without relying on the "quick exit" approach:
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -473,6 +471,7 @@ It can be clearly seen that if the user doesn't exist, the application will dire
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+### - Second implementation without relying on the "quick exit" approach
 
 
 ```text
@@ -495,9 +494,9 @@ The problem with returning a generic error message for the user is a User Experi
 
 Regarding the user enumeration itself, protection against [brute-force attacks](#protect-against-automated-attacks) is also effective because it prevents an attacker from applying the enumeration at scale. Usage of [CAPTCHA](https://en.wikipedia.org/wiki/CAPTCHA) can be applied to a feature for which a *generic error message* cannot be returned because the *user experience* must be preserved.
 
-### Incorrect and correct response examples
+#### Incorrect and correct response examples
 
-#### Login
+##### Login
 
 Incorrect response examples:
 
@@ -510,7 +509,7 @@ Correct response example:
 
 - "Login failed; Invalid user ID or password."
 
-##### Password recovery
+###### Password recovery
 
 Incorrect response examples:
 

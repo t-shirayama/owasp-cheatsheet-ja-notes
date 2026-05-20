@@ -589,8 +589,6 @@ Bean Validation、別名 [Jakarta Validation](https://beanvalidation.org/) は�
 
 The examples in this guide use Hibernate Validator.
 
-Add Hibernate Validator to your **pom.xml**:
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -606,6 +604,7 @@ Hibernate Validator を **pom.xml** に追加します。
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+### Add Hibernate Validator to your **pom.xml**
 
 
 ```xml
@@ -619,12 +618,7 @@ Hibernate Validator を **pom.xml** に追加します。
 </div>
 
 <div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
-Enable bean validation support in Spring's **context.xml**:
-
-</div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -635,6 +629,7 @@ Spring の **context.xml** で Bean Validation サポートを有効にします
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Enable bean validation support in Spring's **context.xml**
 
 
 ```xml
@@ -737,8 +732,6 @@ Checks if the annotated string matches the regular expression regex considering 
 
 [Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
 
-**Model**:
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -763,13 +756,12 @@ Checks if the annotated string matches the regular expression regex considering 
 
 [Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
 
-**Model**:
-
 </div>
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Model
 
 
 ```java
@@ -793,23 +785,9 @@ public class Article  {
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-**Controller**:
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-**Controller**:
-
-</div>
-</div>
-
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Controller
 
 
 ```java
@@ -863,8 +841,6 @@ Checks whether the annotated value is a number having up to integer digits and f
 
 [Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
 
-**Model**:
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -887,13 +863,12 @@ Checks whether the annotated value is a number having up to integer digits and f
 
 [Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
 
-**Model**:
-
 </div>
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Model
 
 
 ```java
@@ -938,23 +913,9 @@ public class Customer {
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-**Controller**:
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-**Controller**:
-
-</div>
-</div>
-
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Controller
 
 
 ```java
@@ -1010,8 +971,6 @@ Checks if the annotated element's size is between min and max (inclusive)
 
 [Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
 
-**Model**:
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -1034,13 +993,12 @@ Checks if the annotated element's size is between min and max (inclusive)
 
 [Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
 
-**Model**:
-
 </div>
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Model
 
 
 ```java
@@ -1087,23 +1045,9 @@ public class Message {
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-**Controller**:
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-**Controller**:
-
-</div>
-</div>
-
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Controller
 
 
 ```java
@@ -1188,8 +1132,6 @@ Checks whether the annotated date is in the past / future
 
 [Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
 
-**Model**:
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -1212,13 +1154,12 @@ Checks whether the annotated date is in the past / future
 
 [Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
 
-**Model**:
-
 </div>
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Model
 
 
 ```java
@@ -1291,23 +1232,9 @@ public class DoctorVisit {
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-**Controller**:
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-**Controller**:
-
-</div>
-</div>
-
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Controller
 
 
 ```java
@@ -1394,8 +1321,6 @@ Checks whether the annotated value is higher/lower than or equal to the specifie
 
 [Documentation](https://docs.jboss.org/hibernate/validator/9.0/reference/en-US/html_single/#section-builtin-constraints)
 
-**Model**:
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -1420,13 +1345,12 @@ Checks whether the annotated value is higher/lower than or equal to the specifie
 
 [Documentation](https://docs.jboss.org/hibernate/validator/9.0/reference/en-US/html_single/#section-builtin-constraints)
 
-**Model**:
-
 </div>
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Model
 
 
 ```java
@@ -1475,23 +1399,9 @@ public class Review {
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-**Controller**:
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-**Controller**:
-
-</div>
-</div>
-
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Controller
 
 
 ```java

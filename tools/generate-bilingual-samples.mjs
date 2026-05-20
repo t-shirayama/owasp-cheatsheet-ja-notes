@@ -1323,16 +1323,28 @@ function takeTrailingHeading(text) {
     lines.pop();
   }
   const lastLine = lines[lines.length - 1] ?? '';
-  const match = /^(#{2,6})\s+(.+?)\s*$/.exec(lastLine);
-  if (!match) {
+  const headingMatch = /^(#{2,6})\s+(.+?)\s*$/.exec(lastLine);
+  if (headingMatch) {
+    lines.pop();
+    return {
+      text: lines.join('\n').replace(/\n{3,}/g, '\n\n').trim(),
+      heading: {
+        level: headingMatch[1].length,
+        title: headingMatch[2],
+      },
+    };
+  }
+
+  const labelMatch = /^\*\*(.+?)\*\*:\s*$/.exec(lastLine) || /^(.+?):\s*$/.exec(lastLine);
+  if (!labelMatch || labelMatch[1].length > 80) {
     return { text: text.trim(), heading: null };
   }
   lines.pop();
   return {
     text: lines.join('\n').replace(/\n{3,}/g, '\n\n').trim(),
     heading: {
-      level: match[1].length,
-      title: match[2],
+      level: 4,
+      title: labelMatch[1],
     },
   };
 }
