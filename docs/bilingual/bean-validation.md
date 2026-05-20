@@ -981,24 +981,9 @@ Spring MVC は、定義済みの `MessageSource` から ID `article.title.error`
 
 <section id="bean-validation-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-Bean Validation は、Java アプリケーションでオブジェクトや入力値に対する制約を宣言的に定義するための仕組みです。型、範囲、形式、必須条件をモデルに近い場所で表現できます。
-
-## 要点
-
 - 入力値の制約をアノテーションとして明示する。
 - 境界値、null、文字列長、形式を検証する。
 - Bean Validationだけで認可や出力エンコードを代替しない。
-
-## 実装時の注意点
-
-- この要約はASVS Indexでの利用を前提にした実装者向け整理です。詳細確認時は原文を参照してください。
-- 関連する認証、認可、ログ、入力検証、暗号、通信保護の管理策と組み合わせて適用します。
-
-## ASVS との対応
-
-| ASVS 項目 | 関連内容 |
-| --- | --- |
-| V1.2 | Bean Validation チートシート の主要な管理策 |
 
 </section>
 
