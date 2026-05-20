@@ -4,6 +4,8 @@
 
 公式翻訳ではありません。正確な判断が必要な場合は、必ず OWASP の原文と最新の公式資料を確認してください。
 
+現在は ASVS Index coverage を入口に、対象 Cheat Sheet の翻訳、要約、開発チェックリストを揃えています。重点領域は詳細翻訳と実装チェック粒度まで拡張済みです。非重点ページには短い要約翻訳のままのページが残るため、段階的に詳細化します。
+
 ## 目的
 
 - OWASP Cheat Sheet Series と ASVS の内容を日本語で読みやすくする
@@ -46,6 +48,7 @@ OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-Shar
 - 日本語要約は [docs/summaries/](docs/summaries/) 配下の `v1/` から `v17/` に置きます。
 - 開発チェックリストは [docs/checklists/](docs/checklists/) 配下の `v1/` から `v17/` に置きます。
 - 出典対応表は [references/source-map.md](references/source-map.md) で管理します。
+- 原文確認日と `Retrieved` の更新ルールは [references/source-update-policy.md](references/source-update-policy.md) で管理します。
 - 残作業候補は [references/todo.md](references/todo.md) で管理します。
 
 ## 検証
