@@ -393,13 +393,6 @@ The CSRF token can be transmitted to the client as part of a response payload, s
 
 For example:
 
-```html
-<form action="/transfer.do" method="post">
-<input type="hidden" name="CSRFToken" value="OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA==">
-[...]
-</form>
-```
-
 Since requests with custom headers are automatically subject to the same-origin policy, it is more secure to insert the CSRF token in a custom HTTP request header via JavaScript than adding a CSRF token in the hidden field form parameter.
 
 ### ALTERNATIVE: Using A Double-Submit Cookie Pattern
@@ -430,54 +423,7 @@ It's a common misconception to include timestamps as a value to specify the CSRF
 
 Below is an example in pseudo-code that demonstrates the implementation steps described above:
 
-```code
-// Gather the values
-secret = getSecretSecurely("CSRF_SECRET") // HMAC secret key
-sessionID = session.sessionID // Current authenticated user session
-randomValue = cryptographic.randomValue(64) // Cryptographic random value
-
-// Create the CSRF Token
-message = sessionID.length + "!" + sessionID + "!" + randomValue.length + "!" + randomValue.toHex() // HMAC message payload
-hmac = hmac("SHA256", secret, message) // Generate the HMAC hash
-// Add the `randomValue` to the HMAC hash to create the final CSRF token.
-// Avoid using the `message` because it contains the sessionID in plain text,
-// which the server already stores separately.
-csrfToken = hmac.toHex() + "." + randomValue.toHex()
-
-// Store the CSRF Token in a cookie
-response.setCookie("csrf_token=" + csrfToken + "; Secure") // Set Cookie without HttpOnly flag
-```
-
 Below is an example in pseudo-code that demonstrates validation of the CSRF token once it is sent back from the client:
-
-```code
-// Get the CSRF token from the request
-csrfToken = request.getParameter("csrf_token") // From header or form field (NOT cookie)
-
-// Split the token to get the randomValue
-const tokenParts = csrfToken.split(".");
-const hmacFromRequest = tokenParts[0];
-const randomValue = tokenParts[1];
-
-// Recreate the HMAC with the current session and the randomValue from the request
-secret = getSecretSecurely("CSRF_SECRET") // HMAC secret key
-sessionID = session.sessionID // Current authenticated user session
-message = sessionID.length + "!" + sessionID + "!" + randomValue.length + "!" + randomValue
-
-// Generate the expected HMAC
-expectedHmac = hmac("SHA256", secret, message)
-
-// Compare the HMAC from the request with the expected HMAC
-if (!constantTimeEquals(hmacFromRequest, expectedHmac)) {
-    // HMAC validation failed, reject the request
-    response.sendError(403, "Invalid CSRF token")
-    logError("Invalid CSRF token", hmacFromRequest, expectedHmac)
-    return
-}
-
-// CSRF validation passed, continue processing the request
-// ...
-```
 
 Note: The `constantTimeEquals` function should be used to compare the HMACs to prevent timing attacks. This function compares two strings in constant time, regardless of how many characters match.
 
@@ -530,48 +476,9 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
 
    1.1. Treat cross-site as untrusted for state-changing actions. By default, reject non-safe methods (POST / PUT / PATCH / DELETE) when `Sec-Fetch-Site: cross-site`.
 
-   ```JavaScript
-   const SAFE_METHODS = new Set(['GET','HEAD','OPTIONS']);
-   const site = req.get('Sec-Fetch-Site'); // e.g. 'cross-site','same-site','same-origin','none'
-
-   if (site === 'cross-site' && !SAFE_METHODS.has(req.method)) {
-     return false; // forbid this request
-   }
-   ```
-
    1.2 If your application relies on [safe HTTP methods](https://developer.mozilla.org/en-US/docs/Glossary/Safe/HTTP) (GET, HEAD, or OPTIONS) for state‑changing actions, you should explicitly reflect that in your policy – e.g., by requiring a Fetch‑Metadata header review for requests to those endpoints. This can be enforced with a policy rule like:
 
-   ```JavaScript
-   const SAFE_METHODS = new Set(['GET','HEAD','OPTIONS']);
-   const SENSITIVE_ENDPOINTS = new Set([
-     '/user/profile',
-     '/account/details',
-   ]);
-
-   const site = req.get('Sec-Fetch-Site');
-   const path = req.path;
-
-   // Block if cross-site + unsafe method OR cross-site + sensitive endpoint
-   if (site === 'cross-site' && (!SAFE_METHODS.has(req.method) || SENSITIVE_ENDPOINTS.has(path))) {
-     return false; // forbid this request
-   }
-   ```
-
    1.3. Allow `same-origin`. Treat `same-site` as allowed only if your threat model trusts sibling subdomains; otherwise handle `same-site` conservatively (for example, require additional validation).
-
-   ```JavaScript
-   const trustSameSite = false; // set true only if you trust sibling subdomains
-
-   if (site === 'same-origin') {
-     return true;
-   } else if (site === 'same-site') {
-     // handle same-site separately so the subcondition is clearly scoped to same-site
-     if (!trustSameSite && !SAFE_METHODS.has(req.method)) {
-       return false; // treat same-site as untrusted for state-changing methods
-     }
-     return true;
-   }
-   ```
 
    1.4. Allow none for user-driven top-level navigations (bookmarks, typed URLs, explicit form submits) where appropriate.
 
@@ -582,15 +489,6 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
 3. Additional options
 
    3.1 To ensure that your site can still be linked from other sites, you have to allow simple (HTTP GET) top-level navigation.
-
-   ```JavaScript
-   if (req.get('Sec-Fetch-Mode') === 'navigate' &&
-       req.method === 'GET' &&
-       req.get('Sec-Fetch-Dest') !== 'object' &&
-       req.get('Sec-Fetch-Dest') !== 'embed') {
-     return true; // Allow this request
-   }
-   ```
 
    3.2 Whitelist explicit cross-origin flows. If certain endpoints intentionally accept cross-origin requests (CORS JSON APIs, third-party integrations, webhooks), explicitly exempt those endpoints from the global Sec-Fetch deny policy and secure them with proper CORS configuration, authentication, and logging.
 
@@ -631,10 +529,6 @@ Both the synchronizer token and the double-submit cookie are used to prevent for
 
 In this pattern, the client appends a custom header to requests that require CSRF protection. The header can be any arbitrary key-value pair, as long as it does not conflict with existing headers.
 
-```
-X-CSRF-Token: RANDOM-TOKEN-VALUE
-```
-
 Many popular frameworks use standardized header names for CSRF protection:
 
 - `X-CSRF-Token` - Ruby on Rails, Laravel, Django
@@ -657,17 +551,7 @@ Cookies are not set on cross-origin requests (CORS) by default. To enable cookie
 
 As an example, you might configure your backend to allow CORS with cookies from `http://www.yoursite.com` and `http://mobile.yoursite.com`, so that the only possible preflight responses are:
 
-```
-Access-Control-Allow-Origin=http://mobile.yoursite.com
-Access-Control-Allow-Credentials=true
-```
-
 or
-
-```
-Access-Control-Allow-Origin=http://www.yoursite.com
-Access-Control-Allow-Credentials=true
-```
 
 A less secure configuration would be to configure your backend server to allow CORS from all subdomains of your site using a regular expression. If an attacker is able to [take over a subdomain](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/10-Test_for_Subdomain_Takeover) (not uncommon with cloud services) your CORS configuration would allow them to bypass the same origin policy and forge a request with your custom header.
 
@@ -684,42 +568,6 @@ For more information about client-side CSRF vulnerabilities, see Sections 2 and 
 ### Client-side CSRF Example
 
 The following code snippet demonstrates a simple example of a client-side CSRF vulnerability.
-
-```html
-<script type="text/javascript">
-    const csrf_token = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-
-    const ajaxLoad = () => {
-        // process the URL hash fragment
-        const hashFragment = window.location.hash.slice(1);
-
-        // hash fragment should be of the format: /^(get|post);(.*)$/
-        // e.g., https://site.com/index/#post;/profile
-        if (hashFragment.length > 0 && hashFragment.includes(';')) {
-            const params = hashFragment.match(/^(get|post);(.*)$/);
-
-            if (params && params.length) {
-                const requestMethod = params[1];
-                const requestEndpoint = params[3];
-
-                fetch(requestEndpoint, {
-                    method: requestMethod,
-                    headers: {
-                        'X-CSRF-Token': csrf_token,
-                        // [...]
-                    },
-                    // [...]
-                })
-                .then(response => { /* [...] */ })
-                .catch(error => console.error('Request failed:', error));
-            }
-        }
-    };
-
-    // trigger the async request on page load - better practice is to use event listeners
-    window.addEventListener('DOMContentLoaded', ajaxLoad);
-</script>
-```
 
 **Vulnerability:** In this snippet, the program invokes a function `ajaxLoad()` upon the page load, which is responsible for loading various webpage elements. The function reads the value of the [URL hash fragment](https://developer.mozilla.org/en-US/docs/Web/API/Location/hash) (line 4), and extracts two pieces of information from it (i.e., request method and endpoint) to generate an asynchronous HTTP request (lines 11-13). The vulnerability occurs in lines 15-22, when the JavaScript program uses URL fragments to obtain the server-side endpoint for the asynchronous HTTP request (line 15) and the request method. However, both inputs can be controlled by web attackers, who can pick the value of their choosing, and craft a malicious URL containing the attack payload.
 
@@ -748,11 +596,6 @@ If a website wants to maintain a user's logged-in session after the user arrives
 For more details on the `SameSite` values, check the following [section](https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7.1) from the [rfc](https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02).
 
 Example of cookies using this attribute:
-
-```text
-Set-Cookie: JSESSIONID=xxxxx; SameSite=Strict
-Set-Cookie: JSESSIONID=xxxxx; SameSite=Lax
-```
 
 All modern desktop and mobile browsers support the `SameSite` attribute. The main exceptions are legacy browsers including Opera Mini (all versions), UC Browser for Android, and older mobile browsers (iOS Safari < 13.2, Android Browser < 97). To track the browsers implementing it and know how the attribute is used, refer to the following [service](https://caniuse.com/#feat=same-site-cookie-attribute). Chrome implemented `SameSite=Lax` as the default behavior in 2020, and Firefox and Edge have followed suit. Additionally, the `Secure` flag is required for cookies that are marked as `SameSite=None`.
 
@@ -894,10 +737,6 @@ A CSRF token can be included in the `<meta>` tag as shown below. All subsequent 
 
 The following code snippet can be used to include a CSRF token as a `<meta>` tag:
 
-```html
-<meta name="csrf-token" content="{{ csrf_token() }}">
-```
-
 The exact syntax of populating the content attribute would depend on your web application's backend programming language.
 
 ### Overriding Defaults to Set Custom Header
@@ -909,6 +748,236 @@ Several JavaScript libraries allow you to override default settings to have a he
 XMLHttpRequest's open() method can be overridden to set the `X-CSRF-Token` header whenever the `open()` method is invoked next. The function `csrfSafeMethod()` defined below will filter out the safe HTTP methods and only add the header to unsafe HTTP methods.
 
 This can be done as demonstrated in the following code snippet:
+
+#### CSRF Prevention in modern Frameworks
+
+Modern Single Page Application (SPA) frameworks like Angular, React, and Vue typically rely on the cookie-to-header pattern to mitigate Cross-Site Request Forgery (CSRF) attacks. This approach leverages the fact that browsers automatically attach cookies to cross-origin requests, but only JavaScript running on the same origin can read values and set custom headers—making it possible to detect and block forged requests. The cookie-to-header pattern works as follows:
+
+1. Server generates a CSRF token: When a user authenticates or loads the app, the server sets a CSRF token in a cookie (e.g., `XSRF-TOKEN`). This cookie is accessible via JavaScript (i.e., not `HttpOnly`) and typically has `SameSite=Lax` or `Strict`.
+2. Client reads the token: The SPA (often using a library like Angular's HttpClient or axios in React/Vue) reads the CSRF token from the cookie.
+3. Client attaches the token to a custom header: For each state-changing request (`POST`, `PUT`, `DELETE`, etc.), the client sets the token as a custom HTTP header (commonly `X-XSRF-TOKEN` or `X-CSRF-TOKEN`).
+4. Server validates the token: The server checks whether the token from the header matches the one from the cookie. If they match, the request is accepted; if not, it is rejected as potentially forged.
+
+Angular provides this pattern out of the box, automatically handling steps 2 and 3 via its HttpClient.
+In contrast, frameworks like React and Vue require developers to implement this logic manually or with helper libraries such as axios interceptors. This pattern ensures that even if a browser includes cookies with a forged request, the attacker cannot set the matching custom header from another origin.
+
+#### Angular
+
+Angular's HttpClient supports the Cookie-to-Header Pattern used to prevent XSRF attacks. When performing HTTP requests, an interceptor reads a token from a cookie, by default `XSRF-TOKEN`, and sets it as an HTTP header, `X-XSRF-TOKEN`. Further documentation can be found at Angular's documentation for [HttpClient XSRF/CSRF security](https://angular.dev/best-practices/security#httpclient-xsrf-csrf-security).
+
+This code snippet has been tested with Angular version 19.2.11.
+
+#### React
+
+For React applications, you can use axios interceptors to implement the cookie-to-header pattern:
+
+#### Axios
+
+[Axios](https://github.com/axios/axios) allows us to set default headers for the POST, PUT, DELETE and PATCH actions.
+
+This code snippet has been tested with Axios version 1.9.0.
+
+#### jQuery
+
+JQuery exposes an API called `$.ajaxSetup()` which can be used to add the `X-CSRF-Token` header to the AJAX request. API documentation for `$.ajaxSetup()` can be found here. The function `csrfSafeMethod()` defined below will filter out the safe HTTP methods and only add the header to unsafe HTTP methods.
+
+You can configure jQuery to automatically add the token to all request headers by adopting the following code snippet. This provides a simple and convenient CSRF protection for your AJAX based applications:
+
+This code snippet has been tested with jQuery version 3.7.1.
+
+### TypeScript Utilities for CSRF Protection
+
+TypeScript allows you to create strongly typed utilities for CSRF protection. Here's a reusable utility module for CSRF token management:
+
+#### Angular with TypeScript
+
+Angular is built with TypeScript, making it a natural fit for strongly-typed CSRF protection. The example below shows how to configure Angular's CSRF protection with TypeScript:
+
+For a custom HTTP interceptor that handles CSRF tokens:
+
+#### React with TypeScript
+
+Here's a TypeScript implementation for React applications using axios:
+
+For React applications using fetch API with TypeScript:
+
+## References in Related Cheat Sheets
+
+### CSRF
+
+- [OWASP Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf)
+- [PortSwigger Web Security Academy](https://portswigger.net/web-security/csrf)
+- [Mozilla Web Security Cheat Sheet](https://infosec.mozilla.org/guidelines/web_security#csrf-prevention)
+- [Common CSRF Prevention Misconceptions](https://medium.com/keylogged/common-csrf-prevention-misconceptions-67fd026d94a8)
+- [Robust Defenses for Cross-Site Request Forgery](https://seclab.stanford.edu/websec/csrf/csrf.pdf)
+- For Java: OWASP [CSRF Guard](https://owasp.org/www-project-csrfguard/) or [Spring Security](https://docs.spring.io/spring-security/site/docs/5.5.x-SNAPSHOT/reference/html5/#csrf)
+- For PHP and Apache: [CSRFProtector Project](https://github.com/OWASP/www-project-csrfprotector)
+- For Angular: [Cross-Site Request Forgery (XSRF) Protection](https://angular.dev/best-practices/security#httpclient-xsrf-csrf-security)
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+```html
+<form action="/transfer.do" method="post">
+<input type="hidden" name="CSRFToken" value="OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA==">
+[...]
+</form>
+```
+
+```code
+// Gather the values
+secret = getSecretSecurely("CSRF_SECRET") // HMAC secret key
+sessionID = session.sessionID // Current authenticated user session
+randomValue = cryptographic.randomValue(64) // Cryptographic random value
+
+// Create the CSRF Token
+message = sessionID.length + "!" + sessionID + "!" + randomValue.length + "!" + randomValue.toHex() // HMAC message payload
+hmac = hmac("SHA256", secret, message) // Generate the HMAC hash
+// Add the `randomValue` to the HMAC hash to create the final CSRF token.
+// Avoid using the `message` because it contains the sessionID in plain text,
+// which the server already stores separately.
+csrfToken = hmac.toHex() + "." + randomValue.toHex()
+
+// Store the CSRF Token in a cookie
+response.setCookie("csrf_token=" + csrfToken + "; Secure") // Set Cookie without HttpOnly flag
+```
+
+```code
+// Get the CSRF token from the request
+csrfToken = request.getParameter("csrf_token") // From header or form field (NOT cookie)
+
+// Split the token to get the randomValue
+const tokenParts = csrfToken.split(".");
+const hmacFromRequest = tokenParts[0];
+const randomValue = tokenParts[1];
+
+// Recreate the HMAC with the current session and the randomValue from the request
+secret = getSecretSecurely("CSRF_SECRET") // HMAC secret key
+sessionID = session.sessionID // Current authenticated user session
+message = sessionID.length + "!" + sessionID + "!" + randomValue.length + "!" + randomValue
+
+// Generate the expected HMAC
+expectedHmac = hmac("SHA256", secret, message)
+
+// Compare the HMAC from the request with the expected HMAC
+if (!constantTimeEquals(hmacFromRequest, expectedHmac)) {
+    // HMAC validation failed, reject the request
+    response.sendError(403, "Invalid CSRF token")
+    logError("Invalid CSRF token", hmacFromRequest, expectedHmac)
+    return
+}
+
+// CSRF validation passed, continue processing the request
+// ...
+```
+
+```JavaScript
+   const SAFE_METHODS = new Set(['GET','HEAD','OPTIONS']);
+   const site = req.get('Sec-Fetch-Site'); // e.g. 'cross-site','same-site','same-origin','none'
+
+   if (site === 'cross-site' && !SAFE_METHODS.has(req.method)) {
+     return false; // forbid this request
+   }
+   ```
+
+```JavaScript
+   const SAFE_METHODS = new Set(['GET','HEAD','OPTIONS']);
+   const SENSITIVE_ENDPOINTS = new Set([
+     '/user/profile',
+     '/account/details',
+   ]);
+
+   const site = req.get('Sec-Fetch-Site');
+   const path = req.path;
+
+   // Block if cross-site + unsafe method OR cross-site + sensitive endpoint
+   if (site === 'cross-site' && (!SAFE_METHODS.has(req.method) || SENSITIVE_ENDPOINTS.has(path))) {
+     return false; // forbid this request
+   }
+   ```
+
+```JavaScript
+   const trustSameSite = false; // set true only if you trust sibling subdomains
+
+   if (site === 'same-origin') {
+     return true;
+   } else if (site === 'same-site') {
+     // handle same-site separately so the subcondition is clearly scoped to same-site
+     if (!trustSameSite && !SAFE_METHODS.has(req.method)) {
+       return false; // treat same-site as untrusted for state-changing methods
+     }
+     return true;
+   }
+   ```
+
+```JavaScript
+   if (req.get('Sec-Fetch-Mode') === 'navigate' &&
+       req.method === 'GET' &&
+       req.get('Sec-Fetch-Dest') !== 'object' &&
+       req.get('Sec-Fetch-Dest') !== 'embed') {
+     return true; // Allow this request
+   }
+   ```
+
+```
+X-CSRF-Token: RANDOM-TOKEN-VALUE
+```
+
+```
+Access-Control-Allow-Origin=http://mobile.yoursite.com
+Access-Control-Allow-Credentials=true
+```
+
+```
+Access-Control-Allow-Origin=http://www.yoursite.com
+Access-Control-Allow-Credentials=true
+```
+
+```html
+<script type="text/javascript">
+    const csrf_token = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+
+    const ajaxLoad = () => {
+        // process the URL hash fragment
+        const hashFragment = window.location.hash.slice(1);
+
+        // hash fragment should be of the format: /^(get|post);(.*)$/
+        // e.g., https://site.com/index/#post;/profile
+        if (hashFragment.length > 0 && hashFragment.includes(';')) {
+            const params = hashFragment.match(/^(get|post);(.*)$/);
+
+            if (params && params.length) {
+                const requestMethod = params[1];
+                const requestEndpoint = params[3];
+
+                fetch(requestEndpoint, {
+                    method: requestMethod,
+                    headers: {
+                        'X-CSRF-Token': csrf_token,
+                        // [...]
+                    },
+                    // [...]
+                })
+                .then(response => { /* [...] */ })
+                .catch(error => console.error('Request failed:', error));
+            }
+        }
+    };
+
+    // trigger the async request on page load - better practice is to use event listeners
+    window.addEventListener('DOMContentLoaded', ajaxLoad);
+</script>
+```
+
+```text
+Set-Cookie: JSESSIONID=xxxxx; SameSite=Strict
+Set-Cookie: JSESSIONID=xxxxx; SameSite=Lax
+```
+
+```html
+<meta name="csrf-token" content="{{ csrf_token() }}">
+```
 
 ```html
 <script type="text/javascript">
@@ -932,22 +1001,6 @@ This can be done as demonstrated in the following code snippet:
 </script>
 ```
 
-#### CSRF Prevention in modern Frameworks
-
-Modern Single Page Application (SPA) frameworks like Angular, React, and Vue typically rely on the cookie-to-header pattern to mitigate Cross-Site Request Forgery (CSRF) attacks. This approach leverages the fact that browsers automatically attach cookies to cross-origin requests, but only JavaScript running on the same origin can read values and set custom headers—making it possible to detect and block forged requests. The cookie-to-header pattern works as follows:
-
-1. Server generates a CSRF token: When a user authenticates or loads the app, the server sets a CSRF token in a cookie (e.g., `XSRF-TOKEN`). This cookie is accessible via JavaScript (i.e., not `HttpOnly`) and typically has `SameSite=Lax` or `Strict`.
-2. Client reads the token: The SPA (often using a library like Angular's HttpClient or axios in React/Vue) reads the CSRF token from the cookie.
-3. Client attaches the token to a custom header: For each state-changing request (`POST`, `PUT`, `DELETE`, etc.), the client sets the token as a custom HTTP header (commonly `X-XSRF-TOKEN` or `X-CSRF-TOKEN`).
-4. Server validates the token: The server checks whether the token from the header matches the one from the cookie. If they match, the request is accepted; if not, it is rejected as potentially forged.
-
-Angular provides this pattern out of the box, automatically handling steps 2 and 3 via its HttpClient.
-In contrast, frameworks like React and Vue require developers to implement this logic manually or with helper libraries such as axios interceptors. This pattern ensures that even if a browser includes cookies with a forged request, the attacker cannot set the matching custom header from another origin.
-
-#### Angular
-
-Angular's HttpClient supports the Cookie-to-Header Pattern used to prevent XSRF attacks. When performing HTTP requests, an interceptor reads a token from a cookie, by default `XSRF-TOKEN`, and sets it as an HTTP header, `X-XSRF-TOKEN`. Further documentation can be found at Angular's documentation for [HttpClient XSRF/CSRF security](https://angular.dev/best-practices/security#httpclient-xsrf-csrf-security).
-
 ```typescript
 // app.config.ts
 export const appConfig: ApplicationConfig = {
@@ -957,12 +1010,6 @@ export const appConfig: ApplicationConfig = {
   ],
 };
 ```
-
-This code snippet has been tested with Angular version 19.2.11.
-
-#### React
-
-For React applications, you can use axios interceptors to implement the cookie-to-header pattern:
 
 ```jsx
 // csrf-protection.js
@@ -992,10 +1039,6 @@ api.interceptors.request.use(config => {
 export default api;
 ```
 
-#### Axios
-
-[Axios](https://github.com/axios/axios) allows us to set default headers for the POST, PUT, DELETE and PATCH actions.
-
 ```html
 <script type="text/javascript">
     const csrf_token = document.querySelector("meta[name='csrf-token']").getAttribute("content");
@@ -1022,14 +1065,6 @@ export default api;
 </script>
 ```
 
-This code snippet has been tested with Axios version 1.9.0.
-
-#### jQuery
-
-JQuery exposes an API called `$.ajaxSetup()` which can be used to add the `X-CSRF-Token` header to the AJAX request. API documentation for `$.ajaxSetup()` can be found here. The function `csrfSafeMethod()` defined below will filter out the safe HTTP methods and only add the header to unsafe HTTP methods.
-
-You can configure jQuery to automatically add the token to all request headers by adopting the following code snippet. This provides a simple and convenient CSRF protection for your AJAX based applications:
-
 ```html
 <script type="text/javascript">
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
@@ -1048,12 +1083,6 @@ You can configure jQuery to automatically add the token to all request headers b
     });
 </script>
 ```
-
-This code snippet has been tested with jQuery version 3.7.1.
-
-### TypeScript Utilities for CSRF Protection
-
-TypeScript allows you to create strongly typed utilities for CSRF protection. Here's a reusable utility module for CSRF token management:
 
 ```typescript
 // csrf-protection.ts
@@ -1127,10 +1156,6 @@ export class CSRFProtection {
 // const headers = csrfProtection.addTokenToHeaders('POST', {});
 ```
 
-#### Angular with TypeScript
-
-Angular is built with TypeScript, making it a natural fit for strongly-typed CSRF protection. The example below shows how to configure Angular's CSRF protection with TypeScript:
-
 ```typescript
 // app.config.ts
 import { ApplicationConfig } from '@angular/core';
@@ -1152,8 +1177,6 @@ export const appConfig: ApplicationConfig = {
   ]
 };
 ```
-
-For a custom HTTP interceptor that handles CSRF tokens:
 
 ```typescript
 // csrf.interceptor.ts
@@ -1202,10 +1225,6 @@ export class CsrfInterceptor implements HttpInterceptor {
   }
 }
 ```
-
-#### React with TypeScript
-
-Here's a TypeScript implementation for React applications using axios:
 
 ```typescript
 // csrf-axios.ts
@@ -1283,8 +1302,6 @@ function getCsrfToken(cookieName: string): string {
 //   // Rest of component...
 // }
 ```
-
-For React applications using fetch API with TypeScript:
 
 ```typescript
 // csrf-fetch.ts
@@ -1392,19 +1409,6 @@ export class CSRFProtectedFetch {
 // };
 ```
 
-## References in Related Cheat Sheets
-
-### CSRF
-
-- [OWASP Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf)
-- [PortSwigger Web Security Academy](https://portswigger.net/web-security/csrf)
-- [Mozilla Web Security Cheat Sheet](https://infosec.mozilla.org/guidelines/web_security#csrf-prevention)
-- [Common CSRF Prevention Misconceptions](https://medium.com/keylogged/common-csrf-prevention-misconceptions-67fd026d94a8)
-- [Robust Defenses for Cross-Site Request Forgery](https://seclab.stanford.edu/websec/csrf/csrf.pdf)
-- For Java: OWASP [CSRF Guard](https://owasp.org/www-project-csrfguard/) or [Spring Security](https://docs.spring.io/spring-security/site/docs/5.5.x-SNAPSHOT/reference/html5/#csrf)
-- For PHP and Apache: [CSRFProtector Project](https://github.com/OWASP/www-project-csrfprotector)
-- For Angular: [Cross-Site Request Forgery (XSRF) Protection](https://angular.dev/best-practices/security#httpclient-xsrf-csrf-security)
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -1464,13 +1468,6 @@ CSRF トークンがなければ攻撃者はバックエンドサーバーに対
 #### Transmitting CSRF Tokens in Synchronized Patterns
 
 CSRF トークンは、HTML または JSON レスポンスなどのレスポンスペイロードの一部としてクライアントへ送信できます。その後、フォーム送信時の hidden フィールド、AJAX リクエストのカスタムヘッダー、または JSON ペイロードの一部としてサーバーへ返送できます。Synchronizer Pattern では CSRF トークンを Cookie で送信すべきではありません。CSRF トークンはサーバーログや URL に漏えいさせてはいけません。
-
-```html
-<form action="/transfer.do" method="post">
-<input type="hidden" name="CSRFToken" value="OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA==">
-[...]
-</form>
-```
 
 カスタムヘッダー付きリクエストは自動的に同一オリジンポリシーの対象になるため、hidden フォームパラメータに CSRF トークンを追加するより、JavaScript でカスタム HTTP リクエストヘッダーに挿入する方が安全です。
 
@@ -1624,10 +1621,6 @@ JavaScript のガイダンスでは、既定で **GET**、**HEAD**、**OPTIONS**
 ### Storing the CSRF Token Value in the DOM
 
 CSRF トークンは次のように `<meta>` タグへ含めることができます。以後のページ内呼び出しは、この `<meta>` タグから CSRF トークンを抽出できます。JavaScript 変数や DOM 上の任意の場所に保存することもできますが、Cookie やブラウザ local storage に保存することは推奨されません。
-
-```html
-<meta name="csrf-token" content="{{ csrf_token() }}">
-```
 
 ### Overriding Defaults to Set Custom Header
 

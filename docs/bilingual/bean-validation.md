@@ -552,9 +552,13 @@ One advantage of this approach is that the validation constraints and the corres
 
 ### Typical Validation
 
-![Typical](/img/owasp-cheatsheets/bean-validation/typical.png)
-
 ### Bean Validation
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+![Typical](/img/owasp-cheatsheets/bean-validation/typical.png)
 
 ![JSR](/img/owasp-cheatsheets/bean-validation/jsr.png)
 
@@ -572,11 +576,7 @@ Bean Validation、別名 [Jakarta Validation](https://beanvalidation.org/) は�
 
 ### Typical Validation
 
-![Typical validation flow](/img/owasp-cheatsheets/bean-validation/typical.png)
-
 ### Bean Validation
-
-![Bean Validation flow](/img/owasp-cheatsheets/bean-validation/jsr.png)
 
 </div>
 </div>
@@ -590,6 +590,10 @@ Bean Validation、別名 [Jakarta Validation](https://beanvalidation.org/) は�
 The examples in this guide use Hibernate Validator.
 
 Add Hibernate Validator to your **pom.xml**:
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```xml
 <dependency>
@@ -609,14 +613,6 @@ Add Hibernate Validator to your **pom.xml**:
 
 Hibernate Validator を **pom.xml** に追加します。
 
-```xml
-<dependency>
-   <groupId>org.hibernate</groupId>
-   <artifactId>hibernate-validator</artifactId>
-   <version>USE_LATEST_VERSION</version>
-</dependency>
-```
-
 </div>
 </div>
 
@@ -625,6 +621,10 @@ Hibernate Validator を **pom.xml** に追加します。
 <span className="bilingualLabel english">English (原文)</span>
 
 Enable bean validation support in Spring's **context.xml**:
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```xml
 <beans:beans ...
@@ -640,14 +640,6 @@ Enable bean validation support in Spring's **context.xml**:
 
 Spring の **context.xml** で Bean Validation サポートを有効にします。
 
-```xml
-<beans:beans ...
-   ...
-   <mvc:annotation-driven />
-   ...
-</beans:beans>
-```
-
 </div>
 </div>
 
@@ -658,6 +650,7 @@ Spring の **context.xml** で Bean Validation サポートを有効にします
 For more info, please see the [setup guide](https://hibernate.org/validator/documentation/getting-started/)
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -691,6 +684,7 @@ For the sake of simplicity all the examples below feature field constraints and 
 When it comes to error handling, the Hibernate Validator returns a `BindingResult` object which contains a `List&lt;ObjectError>`. The examples below feature simplistic error handling, while a production ready application would have a more elaborate design that takes care of logging and error page redirection.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -743,6 +737,10 @@ Checks if the annotated string matches the regular expression regex considering 
 
 **Model**:
 
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
 ```java
 import org.hibernate.validator.constraints.Pattern;
 
@@ -788,25 +786,6 @@ public class Article  {
 
 **Model**:
 
-```java
-import org.hibernate.validator.constraints.Pattern;
-
-public class Article  {
- //Constraint: Alpha Numeric article titles only using a regular expression
- @Pattern(regexp = "[a-zA-Z0-9 ]")
- private String articleTitle;
- public String getArticleTitle()  {
-  return  articleTitle;
- }
- public void setArticleTitle(String  articleTitle)  {
-   this.articleTitle  =  articleTitle;
-  }
-
-  ...
-
-}
-```
-
 </div>
 </div>
 
@@ -815,6 +794,10 @@ public class Article  {
 <span className="bilingualLabel english">English (原文)</span>
 
 **Controller**:
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```java
 import javax.validation.Valid;
@@ -849,33 +832,6 @@ public class ArticleController  {
 
 **Controller**:
 
-```java
-import javax.validation.Valid;
-import com.company.app.model.Article;
-
-@Controller
-public class ArticleController  {
-
- ...
-
- @RequestMapping(value = "/postArticle",  method = RequestMethod.POST)
- public @ResponseBody String postArticle(@Valid  Article  article,  BindingResult  result,
- HttpServletResponse  response) {
-  if (result.hasErrors()) {
-   String errorMessage  =  "";
-   response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-   List<ObjectError> errors = result.getAllErrors();
-   for(ObjectError  e :  errors) {
-    errorMessage += "ERROR: " +  e.getDefaultMessage();
-   }
-   return  errorMessage;
-  } else {
-   return  "Validation Successful";
-  }
- }
-}
-```
-
 </div>
 </div>
 
@@ -903,6 +859,10 @@ Checks whether the annotated value is a number having up to integer digits and f
 
 **Model**:
 
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
 ```java
 import org.hibernate.validator.constraints.Digits;
 
@@ -917,6 +877,26 @@ public class Customer {
 
   public void setAge(String age)  {
       this.age = age;
+    }
+
+    ...
+}
+```
+
+```java
+import org.hibernate.validator.constraints.Digits;
+
+public class Customer {
+  //Constraint: Age can only be 3 digits long or less
+  @Digits(integer = 3, fraction = 0)
+  private int age;
+
+  public String getAge()  {
+    return age;
+  }
+
+  public void setAge(String age)  {
+      this.age = age;
     }
 
     ...
@@ -947,26 +927,6 @@ public class Customer {
 
 **Model**:
 
-```java
-import org.hibernate.validator.constraints.Digits;
-
-public class Customer {
-  //Constraint: Age can only be 3 digits long or less
-  @Digits(integer = 3, fraction = 0)
-  private int age;
-
-  public String getAge()  {
-    return age;
-  }
-
-  public void setAge(String age)  {
-      this.age = age;
-    }
-
-    ...
-}
-```
-
 </div>
 </div>
 
@@ -975,6 +935,10 @@ public class Customer {
 <span className="bilingualLabel english">English (原文)</span>
 
 **Controller**:
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```java
 import javax.validation.Valid;
@@ -1011,35 +975,6 @@ public class CustomerController  {
 
 **Controller**:
 
-```java
-import javax.validation.Valid;
-import com.company.app.model.Customer;
-
-@Controller
-public class CustomerController  {
-
- ...
-
- @RequestMapping(value = "/registerCustomer",  method = RequestMethod.POST)
- public @ResponseBody String registerCustomer(@Valid Customer customer, BindingResult result,
- HttpServletResponse  response) {
-
-  if (result.hasErrors()) {
-   String errorMessage = "";
-   response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-   List<ObjectError> errors = result.getAllErrors();
-
-   for( ObjectError  e :  errors) {
-    errorMessage += "ERROR: "  +  e.getDefaultMessage();
-   }
-   return  errorMessage;
-  } else {
-   return  "Validation Successful";
-  }
- }
-}
-```
-
 </div>
 </div>
 
@@ -1067,6 +1002,10 @@ Checks if the annotated element's size is between min and max (inclusive)
 
 **Model**:
 
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
 ```java
 import org.hibernate.validator.constraints.Size;
 
@@ -1082,6 +1021,27 @@ public class Message {
 
    public void setMessage(String message) {
       this.message = message;
+   }
+
+...
+}
+```
+
+```java
+import org.hibernate.validator.constraints.Size;
+
+public class Message {
+
+   //Constraint: Message must be at least 10 characters long, but less than 500
+   @Size(min = 10, max = 500)
+   private String message;
+
+   public String getMessage() {
+      return message;
+   }
+
+   public void setMessage(String message) {
+      this.message = message;
    }
 
 ...
@@ -1112,27 +1072,6 @@ public class Message {
 
 **Model**:
 
-```java
-import org.hibernate.validator.constraints.Size;
-
-public class Message {
-
-   //Constraint: Message must be at least 10 characters long, but less than 500
-   @Size(min = 10, max = 500)
-   private String message;
-
-   public String getMessage() {
-      return message;
-   }
-
-   public void setMessage(String message) {
-      this.message = message;
-   }
-
-...
-}
-```
-
 </div>
 </div>
 
@@ -1141,6 +1080,10 @@ public class Message {
 <span className="bilingualLabel english">English (原文)</span>
 
 **Controller**:
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```java
 import javax.validation.Valid;
@@ -1170,12 +1113,6 @@ HttpServletResponse response){
 }
 }
 ```
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-**Controller**:
 
 ```java
 import javax.validation.Valid;
@@ -1207,6 +1144,12 @@ HttpServletResponse response){
 ```
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Controller**:
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -1232,6 +1175,10 @@ Checks whether the annotated date is in the past / future
 [Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
 
 **Model**:
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```java
 import org.hibernate.validator.constraints.Past;
@@ -1266,30 +1213,6 @@ public class DoctorVisit {
 ...
 }
 ```
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## @Past / @Future
-
-**Annotation**:
-
-`@Past`, `@Future`
-
-**Data Type**:
-
-`java.util.Date`、`java.util.Calendar`、`java.time.chrono.ChronoZonedDateTime`、`java.time.Instant`、`java.time.OffsetDateTime`
-
-**Use**:
-
-アノテーションが付いた日付が過去または未来であるかを確認します。
-
-**Reference**:
-
-[Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
-
-**Model**:
 
 ```java
 import org.hibernate.validator.constraints.Past;
@@ -1326,6 +1249,30 @@ public class DoctorVisit {
 ```
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## @Past / @Future
+
+**Annotation**:
+
+`@Past`, `@Future`
+
+**Data Type**:
+
+`java.util.Date`、`java.util.Calendar`、`java.time.chrono.ChronoZonedDateTime`、`java.time.Instant`、`java.time.OffsetDateTime`
+
+**Use**:
+
+アノテーションが付いた日付が過去または未来であるかを確認します。
+
+**Reference**:
+
+[Documentation](https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch02.html#section-builtin-constraints)
+
+**Model**:
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -1333,6 +1280,10 @@ public class DoctorVisit {
 <span className="bilingualLabel english">English (原文)</span>
 
 **Controller**:
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```java
 import javax.validation.Valid;
@@ -1362,12 +1313,6 @@ public class DoctorVisitController {
    }
 }
 ```
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-**Controller**:
 
 ```java
 import javax.validation.Valid;
@@ -1399,6 +1344,12 @@ public class DoctorVisitController {
 ```
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Controller**:
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -1427,6 +1378,10 @@ Checks whether the annotated value is higher/lower than or equal to the specifie
 
 **Model**:
 
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
 ```java
 import org.hibernate.validator.constraints.Min;
 import org.hibernate.validator.constraints.Max;
@@ -1446,6 +1401,28 @@ public class Review {
    this.reviewRating = reviewRating;
 }
  ...
+}
+```
+
+```java
+import org.hibernate.validator.constraints.Min;
+import org.hibernate.validator.constraints.Max;
+
+public class Review {
+
+ //Constraint: Review rating must be between 1 and 5
+ @Min(1)
+ @Max(5)
+ private int reviewRating;
+
+ public int getReviewRating() {
+   return reviewRating;
+ }
+
+ public void setReviewRating(int reviewRating) {
+   this.reviewRating = reviewRating;
+}
+ ...
 }
 ```
 
@@ -1475,28 +1452,6 @@ public class Review {
 
 **Model**:
 
-```java
-import org.hibernate.validator.constraints.Min;
-import org.hibernate.validator.constraints.Max;
-
-public class Review {
-
- //Constraint: Review rating must be between 1 and 5
- @Min(1)
- @Max(5)
- private int reviewRating;
-
- public int getReviewRating() {
-   return reviewRating;
- }
-
- public void setReviewRating(int reviewRating) {
-   this.reviewRating = reviewRating;
-}
- ...
-}
-```
-
 </div>
 </div>
 
@@ -1505,6 +1460,10 @@ public class Review {
 <span className="bilingualLabel english">English (原文)</span>
 
 **Controller**:
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```java
 import javax.validation.Valid;
@@ -1534,12 +1493,6 @@ public class ReviewController {
    }
 }
 ```
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-**Controller**:
 
 ```java
 import javax.validation.Valid;
@@ -1571,6 +1524,12 @@ public class ReviewController {
 ```
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Controller**:
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -1598,6 +1557,7 @@ Take a look at this [list](https://docs.jboss.org/hibernate/validator/9.0/refere
 Note that `@SafeHtml`, a previously valid constraint, has been deprecated according to the [Hibernate Validator 6.1.0.Final and 6.0.18.Final release blogpost](https://in.relation.to/2019/11/20/hibernate-validator-610-6018-released/). Please refrain from using the `@SafeHtml` constraint.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -1635,6 +1595,7 @@ One of the most powerful features of bean validation is the ability to define yo
 Creating custom constraints is beyond the scope of this guide. Please see this [documentation](https://docs.jboss.org/hibernate/validator/).
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -1655,9 +1616,18 @@ Bean Validation の最も強力な機能の一つは、組み込み制約が提�
 
 It is possible to specify a message ID with the validation annotation, so that error messages are customized :
 
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
 ```java
 @Pattern(regexp = "[a-zA-Z0-9 ]", message="article.title.error")
 private String articleTitle;
+```
+
+```java
+@Pattern(regexp = "[a-zA-Z0-9 ]", message="article.title.error")
+private String articleTitle;
 ```
 
 </div>
@@ -1667,11 +1637,6 @@ private String articleTitle;
 ## Error Messages
 
 検証アノテーションでメッセージ ID を指定し、エラーメッセージをカスタマイズできます。
-
-```java
-@Pattern(regexp = "[a-zA-Z0-9 ]", message="article.title.error")
-private String articleTitle;
-```
 
 </div>
 </div>
@@ -1683,6 +1648,7 @@ private String articleTitle;
 Spring MVC will then look up a message with ID *article.title.error* in a defined MessageSource. More on this [documentation](https://www.silverbaytech.com/2013/04/16/custom-messages-in-spring-validation/).
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 

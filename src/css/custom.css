@@ -468,11 +468,14 @@ html[data-theme='dark'] .docHero[data-category='logging-monitoring'] {
   overflow: hidden;
 }
 
-.bilingualBlock {
+.bilingualBlock,
+.bilingualCommon {
   padding: 14px 18px 16px;
 }
 
-.bilingualBlock + .bilingualBlock {
+.bilingualBlock + .bilingualBlock,
+.bilingualBlock + .bilingualCommon,
+.bilingualCommon + .bilingualBlock {
   border-top: 1px solid var(--page-border);
 }
 
@@ -491,12 +494,21 @@ html[data-theme='dark'] .docHero[data-category='logging-monitoring'] {
   color: #20c982;
 }
 
+.bilingualLabel.common {
+  color: #7c5cff;
+}
+
 .bilingualBlock.english {
   border-left: 4px solid var(--page-accent);
 }
 
 .bilingualBlock.japanese {
   border-left: 4px solid #20c982;
+}
+
+.bilingualCommon {
+  border-left: 4px solid #7c5cff;
+  background: rgba(124, 92, 255, 0.05);
 }
 
 .noticeBox {
@@ -557,6 +569,10 @@ html[data-theme='dark'] [id$="-bilingual"]:checked ~ .contentTabs label[for$="-b
 
 html[data-theme='dark'] .bilingualBlock.japanese {
   background: #151b1a;
+}
+
+html[data-theme='dark'] .bilingualCommon {
+  background: rgba(124, 92, 255, 0.12);
 }
 
 html[data-theme='dark'] .footer--light {

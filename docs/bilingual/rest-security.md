@@ -221,6 +221,7 @@ Another key feature of REST applications is the use of standard HTTP verbs and e
 Another key feature of REST applications is the use of [HATEOAS or Hypermedia As The Engine of Application State](https://en.wikipedia.org/wiki/HATEOAS). This provides REST applications a self-documenting nature making it easier for developers to interact with a REST service without prior knowledge.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -242,6 +243,7 @@ See the [Transport Layer Security Cheat Sheet](https://cheatsheetseries.owasp.or
 Consider the use of mutually authenticated client-side certificates to provide additional protection for highly privileged web services.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -264,6 +266,7 @@ Non-public REST services must perform access control at each API endpoint. Web s
 - user authentication should be centralised in a Identity Provider (IdP), which issues access tokens
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -302,6 +305,7 @@ Some claims have been standardized and should be present in JWT used for access 
 As JWTs contain details of the authenticated entity (user etc.) a disconnect can occur between the JWT and the current state of the users session, for example, if the session is terminated earlier than the expiration time due to an explicit logout or an idle timeout. When an explicit session termination event occurs, a digest or hash of any associated JWTs should be submitted to a denylist on the API which will invalidate that JWT for any requests until the expiration of the token. See the [JSON_Web_Token_for_Java_Cheat_Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html#token-explicit-revocation-by-the-user) for further details.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -328,6 +332,7 @@ API keys can reduce the impact of denial-of-service attacks. However, when they 
 - Do not rely exclusively on API keys to protect sensitive, critical or high-value resources.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -351,6 +356,7 @@ API キーはクライアントや呼び出し元システムの識別に使え�
 In Java EE in particular, this can be difficult to implement properly. See [Bypassing Web Authentication and Authorization with HTTP Verb Tampering](https://cheatsheetseries.owasp.org/assets/REST_Security_Cheat_Sheet_Bypassing_VBAAC_with_HTTP_Verb_Tampering.pdf) for an explanation of this common misconfiguration.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -383,6 +389,10 @@ Because each endpoint may be individually authenticated and authorized, traditio
 
 A checkout workflow expects the following sequence:
 
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
 ```http
 POST /checkout/create
 POST /checkout/pay
@@ -405,6 +415,10 @@ REST API の入力は、パス、クエリ、ヘッダー、Cookie、本文、�
 <span className="bilingualLabel english">English (原文)</span>
 
 If the backend does not validate workflow state transitions, an attacker could directly invoke:
+
+</div>
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```http
 POST /checkout/confirm
@@ -443,6 +457,7 @@ without completing payment.
 - Are invalid state transitions consistently rejected?
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -473,6 +488,7 @@ without completing payment.
 - Use a secure parser for parsing the incoming messages. If you are using XML, make sure to use a parser that is not vulnerable to [XXE](https://owasp.org/www-community/vulnerabilities/XML_External_Entity_%28XXE%29_Processing) and similar attacks.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -515,6 +531,7 @@ Services including script code (e.g. JavaScript) in their responses must be espe
 - Ensure sending intended content type headers in your response matching your body content e.g. `application/json` and not `application/javascript`.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -537,6 +554,7 @@ Services including script code (e.g. JavaScript) in their responses must be espe
 - Restrict access to these endpoints by firewall rules  or use of access control lists.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -557,6 +575,7 @@ Cross-Origin Resource Sharing (CORS) は、必要な origin、メソッド、ヘ
 - Do not pass technical details (e.g. call stacks or other internal hints) to the client.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -578,6 +597,7 @@ API 応答にも適切なセキュリティヘッダーを設定します。ブ�
 - Take care of log injection attacks by sanitizing log data beforehand.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -616,6 +636,7 @@ The headers below are only intended to provide additional security when response
 | Referrer-Policy | `Referrer-Policy: no-referrer` | Non-HTML responses should not trigger additional requests. |
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -638,6 +659,7 @@ Cross-Origin Resource Sharing (CORS) is a W3C standard to flexibly specify what 
 - Be as specific as possible and as general as necessary when setting the origins of cross-domain calls.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -670,6 +692,7 @@ RESTful web services should be careful to prevent leaking credentials. Passwords
 `https://example.com/controller/123/action?apiKey=a53f435643de32` because the apiKey is in the URL.
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -714,12 +737,8 @@ Here is a non-exhaustive selection of security related REST API **status codes**
 Additional information about HTTP return code usage in REST API can be found [here](https://www.restapitutorial.com/httpstatuscodes.html) and [here](https://restfulapi.net/http-status-codes).
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 
-
-</div>
 </div>
 
 </section>

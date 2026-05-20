@@ -622,6 +622,7 @@ This method is widely used in modern authentication systems to balance usability
 - [Google Cloud Adding MFA](https://cloud.google.com/identity-platform/docs/web/mfa)
 
 </div>
+
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 

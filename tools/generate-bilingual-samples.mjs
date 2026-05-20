@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
 
@@ -182,6 +183,18 @@ async function readIfExists(file) {
   }
 }
 
+function readFromHead(repoPath) {
+  try {
+    return execFileSync('git', ['show', `HEAD:${repoPath}`], {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
+  } catch {
+    return '';
+  }
+}
+
 function normalizeNewlines(text) {
   return text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 }
@@ -217,11 +230,11 @@ function extractPanel(text, panelClass) {
     return '';
   }
   const contentStart = normalized.indexOf('\n', start) + 1;
-  const end = normalized.indexOf('\n  </section>', contentStart);
-  if (end === -1) {
+  const closing = /\n\s*<\/section>/.exec(normalized.slice(contentStart));
+  if (!closing) {
     return '';
   }
-  return normalized.slice(contentStart, end).trim();
+  return normalized.slice(contentStart, contentStart + closing.index).trim();
 }
 
 function sanitizeMarkdown(text) {
@@ -373,6 +386,79 @@ function splitSections(text) {
   return sections;
 }
 
+function imageKey(line) {
+  const markdown = /!\[[^\]]*]\(([^)]+)\)/.exec(line);
+  if (markdown) {
+    return `image:${markdown[1].trim()}`;
+  }
+  const html = /<img[^>]+src=["']([^"']+)["'][^>]*>/i.exec(line);
+  if (html) {
+    return `image:${html[1].trim()}`;
+  }
+  return `image:${line.trim()}`;
+}
+
+function extractSharedBlocks(markdown) {
+  const lines = normalizeNewlines(markdown).split('\n');
+  const body = [];
+  const shared = [];
+  let inFence = false;
+  let fence = [];
+
+  const pushFence = () => {
+    const content = fence.join('\n').trim();
+    if (content) {
+      shared.push({ key: `code:${content}`, content });
+    }
+    fence = [];
+  };
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('```')) {
+      fence.push(line);
+      inFence = !inFence;
+      if (!inFence) {
+        pushFence();
+      }
+      continue;
+    }
+    if (inFence) {
+      fence.push(line);
+      continue;
+    }
+    if (/^!\[[^\]]*]\([^)]+\)\s*$/.test(trimmed) || /^<img\b/i.test(trimmed)) {
+      shared.push({ key: imageKey(trimmed), content: trimmed });
+      continue;
+    }
+    body.push(line);
+  }
+
+  if (fence.length > 0) {
+    body.push(...fence);
+  }
+
+  return {
+    text: body.join('\n').replace(/\n{3,}/g, '\n\n').trim(),
+    shared,
+  };
+}
+
+function uniqueSharedBlocks(...groups) {
+  const seen = new Set();
+  const shared = [];
+  for (const group of groups) {
+    for (const block of group) {
+      if (seen.has(block.key)) {
+        continue;
+      }
+      seen.add(block.key);
+      shared.push(block.content);
+    }
+  }
+  return shared;
+}
+
 function bilingualPairs(english, japanese) {
   const englishSections = splitSections(english);
   const japaneseSections = splitSections(japanese);
@@ -386,21 +472,39 @@ function bilingualPairs(english, japanese) {
   const chunks = [];
 
   for (let index = 0; index < count; index++) {
-    const en = englishBlocks[index] ? smoothHeadings(englishBlocks[index]) : '';
-    const ja = japaneseBlocks[index] ? smoothHeadings(japaneseBlocks[index]) : '';
-    chunks.push(`<div className="bilingualPair">
-<div className="bilingualBlock english">
+    const enParts = extractSharedBlocks(englishBlocks[index] ? smoothHeadings(englishBlocks[index]) : '');
+    const jaParts = extractSharedBlocks(japaneseBlocks[index] ? smoothHeadings(japaneseBlocks[index]) : '');
+    const en = enParts.text;
+    const ja = jaParts.text;
+    const shared = uniqueSharedBlocks(enParts.shared, jaParts.shared).join('\n\n');
+    const englishBlock = en
+      ? `<div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
 ${en}
 
-</div>
-<div className="bilingualBlock japanese">
+</div>`
+      : '';
+    const sharedBlock = shared
+      ? `<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+${shared}
+
+</div>`
+      : '';
+    const japaneseBlock = ja
+      ? `<div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ${ja}
 
-</div>
+</div>`
+      : '';
+    chunks.push(`<div className="bilingualPair">
+${englishBlock}
+${sharedBlock}
+${japaneseBlock}
 </div>`);
   }
 
@@ -420,6 +524,14 @@ async function localJapanese(page) {
   if (page.jaMode === 'bilingualTranslationPanel') {
     const current = await readIfExists(mdPath('docs', 'bilingual', `${page.slug}.md`));
     const panel = extractPanel(current, 'translationPanel');
+    if (panel && panel.length > 3000) {
+      return smoothHeadings(panel);
+    }
+    const committed = readFromHead(`docs/bilingual/${page.slug}.md`);
+    const committedPanel = extractPanel(committed, 'translationPanel');
+    if (committedPanel && committedPanel.length > panel.length) {
+      return smoothHeadings(committedPanel);
+    }
     if (panel) {
       return smoothHeadings(panel);
     }
