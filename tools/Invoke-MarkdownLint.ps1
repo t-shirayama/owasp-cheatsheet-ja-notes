@@ -6,7 +6,12 @@ $ErrorActionPreference = "Stop"
 
 $resolvedRoot = (Resolve-Path -LiteralPath $Root).Path
 $markdownFiles = Get-ChildItem -LiteralPath $resolvedRoot -Recurse -File -Filter "*.md" |
-    Where-Object { $_.FullName -notmatch "\\.git\\" }
+    Where-Object {
+        $_.FullName -notmatch "\\.git\\" -and
+        $_.FullName -notmatch "\\node_modules\\" -and
+        $_.FullName -notmatch "\\build\\" -and
+        $_.FullName -notmatch "\\.docusaurus\\"
+    }
 
 $issues = New-Object System.Collections.Generic.List[string]
 

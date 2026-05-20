@@ -4,33 +4,34 @@
 
 ## 静的サイトジェネレータ
 
-現時点では、静的サイトジェネレータは導入しません。
+GitHub Pages 公開用の静的サイトジェネレータとして Docusaurus を Pilot 導入します。
 
 理由:
 
 - このリポジトリはドキュメント本文、出典対応表、チェックリストを管理することが主目的である。
-- 現在の Markdown 構成は、GitHub 上で直接閲覧でき、追加のビルド手順なしで運用できる。
-- パッケージマネージャ、ビルド設定、テーマ、生成物管理を追加すると、翻訳・要約・チェックリストの更新よりも運用負荷が増える。
-- 検索性と導線は、ASVS 章別索引、トピック別チェックリスト、source map、非重点ページ詳細化計画で当面補える。
+- 既存の Markdown 構成は、GitHub 上で直接閲覧できる状態を維持する。
+- 画像イメージに近いサイドバー、検索、タブ風導線、対訳カード表示を GitHub Pages で提供するには、Docusaurus が適している。
+- Docusaurus の docs plugin は `docs/bilingual/` だけを読み込み対象にし、既存の `docs/translations/`、`docs/summaries/`、`docs/checklists/` は従来どおりのリポジトリ文書として残す。
+- GitHub Pages へのデプロイは GitHub Actions で `npm run build` した成果物を公開する。
 
-導入を再検討する条件:
+Pilot で確認する条件:
 
-- GitHub 上の Markdown 閲覧だけでは検索性や横断導線が不足する。
-- タグ、カテゴリ、重要度、対象ロールをページ単位で機械的に扱う必要が出る。
-- 公開サイトとして継続運用する方針が決まり、生成物の配置、URL、ライセンス表示、非公式翻訳表示を保てる。
-- Markdown lint、link checker、外部リンク確認、Attribution 検査をサイト生成ワークフローへ統合できる。
+- 対訳ページで英語原文と日本語訳をパラグラフ単位で比較できる。
+- サイドバー、検索、ナビゲーション、非公式翻訳表示、Attribution が表示できる。
+- Markdown lint、link checker、Docusaurus build を通常検証に組み込める。
+- Pilot 対象の `csrf-prevention`、`bean-validation`、`cryptographic-storage` を確認した後、全文展開に進める。
 
-導入する場合の候補:
+採用候補の比較:
 
 | 候補 | 適する場合 | 注意点 |
 | --- | --- | --- |
-| GitHub Pages + Jekyll | GitHub 標準の軽い公開サイトで十分な場合 | テーマと front matter の管理が必要 |
+| GitHub Pages + Jekyll | GitHub 標準の軽い公開サイトで十分な場合 | 対訳カード、検索、タブ風 UI の追加実装が必要 |
 | MkDocs | ドキュメントサイトの検索、ナビゲーション、階層管理を重視する場合 | Python 依存と設定ファイルが増える |
-| Docusaurus | 多言語化、タグ、検索、将来の拡張を重視する場合 | Node.js 依存とビルド運用が重くなる |
+| Docusaurus | 多言語化、タグ、検索、将来の拡張を重視する場合 | Node.js 依存とビルド運用が増えるが、今回採用する |
 
 ## タグとカテゴリ
 
-現時点では、全ページへの front matter 付与は行いません。かわりに、中央管理の分類表と既存インデックスで検索性を確保します。
+現時点では、全ページへの front matter 付与は行いません。かわりに、中央管理の分類表、既存インデックス、Docusaurus の sidebar で検索性を確保します。
 
 理由:
 
@@ -48,7 +49,7 @@
 | トピック | 入力検証、認証、認可、暗号、ログ、サプライチェーン | [../docs/checklists/by-topic.md](../docs/checklists/by-topic.md) |
 | 重要度 | high, medium, low | [todo.md](todo.md), [non-priority-detailing-plan.md](non-priority-detailing-plan.md) |
 | 対象ロール | developer, reviewer, architect, sre, incident-response | [../docs/checklists/by-asvs.md](../docs/checklists/by-asvs.md) |
-| 文書種別 | translation, summary, checklist, asvs-index, reference | フォルダ構成 |
+| 文書種別 | bilingual, translation, summary, checklist, asvs-index, reference | フォルダ構成 |
 
 ## 将来 front matter を導入する場合
 

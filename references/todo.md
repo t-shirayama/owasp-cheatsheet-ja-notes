@@ -10,6 +10,11 @@
 
 注: `docs/translations/v1/injection-prevention-in-java.md` は、現在の原文が Java Security Cheat Sheet への移動告知のみであるため、この不足候補から除外する。
 
+### GitHub Pages 対訳サイトの残作業
+
+- [ ] Pilot 対訳ページの `docs/bilingual/v1/csrf-prevention.md`、`docs/bilingual/v1/bean-validation.md`、`docs/bilingual/v11/cryptographic-storage.md` を公式原文全文に対応する段落ペアへ拡張する。
+- [ ] Pilot 確認後、`references/bilingual-map.md` に対象を追加しながら、残りの Cheat Sheet へ `docs/bilingual/` 対訳ページを展開する。
+
 - [ ] [docs/translations/v1/bean-validation.md](../docs/translations/v1/bean-validation.md): Bean Validation Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.03, 見出し 1/15。
 - [ ] [docs/translations/v1/csrf-prevention.md](../docs/translations/v1/csrf-prevention.md): Cross-Site Request Forgery Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0, 見出し 1/46。
 - [ ] [docs/translations/v1/deserialization.md](../docs/translations/v1/deserialization.md): Deserialization Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/27。

@@ -6,6 +6,8 @@
 
 現在は ASVS Index coverage を入口に、対象 Cheat Sheet の翻訳、要約、開発チェックリストを揃えています。重点領域は詳細翻訳と実装チェック粒度まで拡張済みです。非重点ページには短い要約翻訳のままのページが残るため、段階的に詳細化します。
 
+GitHub Pages 公開用の Docusaurus サイトも Pilot として導入しています。対訳表示では、英語原文と日本語訳をパラグラフ単位で上下に並べて比較できます。
+
 ## 目的
 
 - OWASP Cheat Sheet Series と ASVS の内容を日本語で読みやすくする
@@ -36,18 +38,23 @@ OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-Shar
 .
 ├── docs/
 │   ├── asvs/          # ASVS 章別の入口と対応表
+│   ├── bilingual/     # GitHub Pages 用の英日対訳表示。v1/ から v17/ に章別配置
 │   ├── translations/  # 原文に対応する日本語訳。v1/ から v17/ に章別配置
 │   ├── summaries/     # 短時間で把握するための日本語要約。v1/ から v17/ に章別配置
 │   ├── checklists/    # 実装・レビュー用チェックリスト。v1/ から v17/ に章別配置
 │   └── templates/     # 新規ドキュメント作成用テンプレート
+├── src/               # Docusaurus のページとスタイル
+├── static/            # Docusaurus の静的アセット
 └── references/        # 出典対応表、ライセンス方針、運用メモ
 ```
 
 - ASVS 章から探す場合は [docs/asvs/index.md](docs/asvs/index.md) を起点にします。
+- 英日対訳表示は [docs/bilingual/](docs/bilingual/) 配下の `v1/` から `v17/` に置きます。
 - 日本語訳は [docs/translations/](docs/translations/) 配下の `v1/` から `v17/` に置きます。
 - 日本語要約は [docs/summaries/](docs/summaries/) 配下の `v1/` から `v17/` に置きます。
 - 開発チェックリストは [docs/checklists/](docs/checklists/) 配下の `v1/` から `v17/` に置きます。
 - 出典対応表は [references/source-map.md](references/source-map.md) で管理します。
+- 対訳表示の Pilot 対応表は [references/bilingual-map.md](references/bilingual-map.md) で管理します。
 - 原文確認日と `Retrieved` の更新ルールは [references/source-update-policy.md](references/source-update-policy.md) で管理します。
 - 非重点ページの段階的な詳細化順は [references/non-priority-detailing-plan.md](references/non-priority-detailing-plan.md) で管理します。
 - 静的サイト化と分類情報の扱いは [references/site-and-taxonomy-policy.md](references/site-and-taxonomy-policy.md) で管理します。
@@ -65,6 +72,16 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-LinkCheck.ps1
 
 - `Invoke-MarkdownLint.ps1` は H1、見出し階層、表区切り、末尾改行、翻訳/要約/チェックリスト本文の Attribution 欄を確認します。
 - `Invoke-LinkCheck.ps1` は Markdown の内部リンク先の存在と外部 URL の形式を確認します。外部サイトへ通信しないため、ネットワークがない環境でも実行できます。
+
+Docusaurus サイトは Node.js でビルドします。
+
+```powershell
+npm install
+npm run build
+```
+
+- `npm run dev` でローカル開発サーバーを起動できます。
+- GitHub Pages へのデプロイは `.github/workflows/deploy-pages.yml` で行います。
 
 ## 参考資料
 
