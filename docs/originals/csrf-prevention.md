@@ -653,7 +653,7 @@ const getCsrfToken = () => {
   const tokenCookie = document.cookie
     .split('; ')
     .find(cookie => cookie.startsWith('XSRF-TOKEN='));
-  
+
   return tokenCookie ? tokenCookie.split('=')[1] : '';
 };
 
@@ -933,7 +933,7 @@ function getCsrfToken(cookieName: string): string {
   const tokenCookie = document.cookie
     .split('; ')
     .find(cookie => cookie.startsWith(`${cookieName}=`));
-  
+
   return tokenCookie ? tokenCookie.split('=')[1] : '';
 }
 
@@ -948,7 +948,7 @@ function getCsrfToken(cookieName: string): string {
 
 // In a React component:
 // import { api } from './api';
-// 
+//
 // function UserProfile() {
 //   const updateUser = async (userData: UserData) => {
 //     try {
@@ -959,7 +959,7 @@ function getCsrfToken(cookieName: string): string {
 //       console.error('Failed to update profile', error);
 //     }
 //   };
-//   
+//
 //   // Rest of component...
 // }
 ```
@@ -997,7 +997,7 @@ export class CSRFProtectedFetch {
    * Performs a fetch request with CSRF protection
    */
   public async fetch<T>(
-    url: string, 
+    url: string,
     options: RequestInit = {}
   ): Promise<T> {
     const { method = 'GET' } = options;
@@ -1060,7 +1060,7 @@ export class CSRFProtectedFetch {
 //   baseUrl: '/api',
 //   csrfHeaderName: 'X-CSRF-Token'
 // });
-// 
+//
 // // In React component
 // const updateUser = async (userData: UserData) => {
 //   try {

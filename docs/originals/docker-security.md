@@ -203,9 +203,9 @@ Refer to the [Docker and iptables documentation](https://docs.docker.com/engine/
 
 **Runtime Security Improvements:**
 
-- **Behavioral Monitoring**: Use tools like [Falco](https://falco.org/), [Tetragon](https://tetragon.io/), or [Cilium eBPF](https://cilium.io/) to detect unexpected or malicious container activity. Examples: Unexpected exec calls, privilege escalation attempts, unusual network connections.  
+- **Behavioral Monitoring**: Use tools like [Falco](https://falco.org/), [Tetragon](https://tetragon.io/), or [Cilium eBPF](https://cilium.io/) to detect unexpected or malicious container activity. Examples: Unexpected exec calls, privilege escalation attempts, unusual network connections.
 
-- **Anomaly Detection**: Continuously monitor container processes, filesystem changes, and network activity to identify abnormal patterns in real time.  
+- **Anomaly Detection**: Continuously monitor container processes, filesystem changes, and network activity to identify abnormal patterns in real time.
 
 - **Kubernetes Security Context**: Configure pods or containers with seccomp and AppArmor profiles in Kubernetes. [Configure a Security Context for a Pod or Container](https://kubernetes.io/docs/tutorials/security/seccomp/)
 

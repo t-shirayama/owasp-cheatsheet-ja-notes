@@ -83,7 +83,7 @@ foreach ($file in $markdownFiles) {
     $inFence = $false
     for ($i = 0; $i -lt $logicalLines.Count; $i++) {
         $line = $logicalLines[$i]
-        if ($line -match "^\s*```") {
+        if ($line -match '^\s*```') {
             $inFence = -not $inFence
             continue
         }

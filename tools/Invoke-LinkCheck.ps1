@@ -33,14 +33,15 @@ foreach ($file in $markdownFiles) {
     $inFence = $false
     for ($lineIndex = 0; $lineIndex -lt $lines.Count; $lineIndex++) {
         $line = $lines[$lineIndex]
-        if ($line -match "^\s*```") {
+        if ($line -match '^\s*```') {
             $inFence = -not $inFence
             continue
         }
         if ($inFence) {
             continue
         }
-        foreach ($match in $linkPattern.Matches($line)) {
+        $linkLine = [regex]::Replace($line, '`[^`]*`', '')
+        foreach ($match in $linkPattern.Matches($linkLine)) {
             $target = $match.Groups["target"].Value.Trim()
             if ($target.Length -eq 0) {
                 Add-Issue $file.FullName ($lineIndex + 1) "empty Markdown link target"

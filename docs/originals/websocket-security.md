@@ -72,7 +72,7 @@ const wss = new WebSocket.Server({
 
 Ensure reverse proxies, load balancers, and CDNs are configured to handle WebSocket upgrades:
 
-- Configure proxy to support HTTP/1.1 upgrade mechanism  
+- Configure proxy to support HTTP/1.1 upgrade mechanism
 - Pass `Upgrade` and `Connection: upgrade` headers correctly
 - Set proper read timeouts for long-lived connections
 - Ensure WebSocket traffic isn't blocked by security policies
@@ -151,13 +151,13 @@ Don't assume WebSocket connection equals unlimited access. Check authorization f
 ```javascript
 ws.on('message', (data) => {
   const message = JSON.parse(data);
-  
+
   // Check authorization for each action
   if (message.action === 'delete_user' && !user.hasRole('admin')) {
     ws.send(JSON.stringify({type: 'error', message: 'Access denied'}));
     return;
   }
-  
+
   handleAuthorizedMessage(ws, user, message);
 });
 ```
@@ -178,14 +178,14 @@ ws.on('message', (data, isBinary) => {
       ws.close(1009, 'Message too large');
       return;
     }
-    
+
     // Check file type by magic numbers
     if (!isValidFileType(data)) {
       ws.close(1008, 'Invalid file type');
       return;
     }
   }
-  
+
   processBinaryData(data);
 });
 ```
@@ -195,7 +195,7 @@ ws.on('message', (data, isBinary) => {
 ```javascript
 ws.on('message', (data) => {
   const message = JSON.parse(data);
-  
+
   // Check timestamp or nonce to prevent replay
   if (!isValidNonce(message.nonce)) {
     ws.close(1008, 'Replay detected');
