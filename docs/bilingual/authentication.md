@@ -148,12 +148,6 @@ Reauthentication is critical when an account has experienced high-risk activity 
 - **Secure Session Management**
   Invalidate sessions after reauthentication and rotate tokens—see the [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
 
-#### References
-
-- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-- OWASP ASVS – 2.2.2: Reauthentication requirements
-- NIST 800-63B: Digital Identity Guidelines – Authentication Assurance Levels
-
 ### Consider Strong Transaction Authentication
 
 Some applications should use a second factor to check whether a user may perform sensitive operations. For more information, see the [Transaction Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html).
@@ -1139,38 +1133,6 @@ Reauthentication is critical when an account has experienced high-risk activity 
 
 - **Secure Session Management**
   Invalidate sessions after reauthentication and rotate tokens—see the [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-#### References
-
-- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- OWASP ASVS – 2.2.2: Reauthentication requirements
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- NIST 800-63B: Digital Identity Guidelines – Authentication Assurance Levels
 
 </div>
 
@@ -2831,6 +2793,15 @@ Web アプリケーションは、パスワードマネージャーの利用を�
 </section>
 </div>
 
+## References
+
+<div className="referenceFooter">
+
+- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
+- OWASP ASVS – 2.2.2: Reauthentication requirements
+- NIST 800-63B: Digital Identity Guidelines – Authentication Assurance Levels
+
+</div>
 
 
 ## Attribution

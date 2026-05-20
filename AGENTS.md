@@ -130,8 +130,18 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 - Use `references/license-notes.md` for license and attribution operating notes.
 - Use relative links for internal repository references.
 - Do not add build systems, formatters, or package managers unless the user explicitly asks.
+- Add repository-specific Codex skills, local helper hooks, or git hooks when they materially improve repeatability, validation, or maintenance safety. Keep them scoped to this repository's documentation workflow and document how they are used.
+- Do not add broad automation hooks that silently rewrite content, fetch network resources, or change generated files unless the user asked for that workflow or the hook is clearly opt-in.
 - Before editing, check the working tree with `git status --short`.
 - Use `rg` or `rg --files` for searching when available.
+
+## Commit Rules
+
+- Prefer one task per commit. A task should be a coherent unit such as one document expansion, one generator behavior change plus its generated outputs, or one visual/layout adjustment.
+- Do not mix unrelated documentation content changes, generator logic changes, and visual design changes in the same commit unless they are required for the same user-requested task.
+- When a generator change produces broad output, commit the generator change and its necessary generated files together, but revert unrelated generated diffs before committing.
+- If the user asks for multiple tasks, split commits by task or by a sensible V1/pilot-sized unit.
+- Before committing, review `git status --short` and `git diff --stat` to confirm the commit scope matches the task.
 
 ## Docusaurus Site Rules
 
@@ -157,6 +167,7 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 - `docs/originals/<slug>.md` should preserve the official English source Markdown as closely as practical. Add only the local Attribution wrapper and do not translate or summarize that body.
 - Bilingual pages should have five display modes in this order: `原本`, `翻訳`, `要点`, `チェックリスト`, and `対比表示`. Only the selected mode should be visible.
 - The `原本` mode should show the English original before translation so readers can inspect the source text without the bilingual comparison cards.
+- The web-facing `要点` mode should be a simple summary of the translation. Do not include `実装時の注意点` or `ASVS との対応` in that tab; keep implementation checks in `チェックリスト` and ASVS mapping in source/reference files.
 - `翻訳`, `要点`, and `チェックリスト` should not show repository maintenance sections such as `関連ファイル` on the web page.
 - Source reference/link sections such as `References` should not be translated. Move them out of the main reading tabs and render them near the bottom as English reference metadata, similar to Attribution.
 - Place web-facing Attribution near the bottom of the page, after the main reading experience, while still preserving all required attribution fields.

@@ -523,14 +523,6 @@ This method is widely used in modern authentication systems to balance usability
 
 **Example Use Case**: A user logs in from a trusted device in a usual location — no additional prompt is needed. But if they log in from a new country using a Tor exit node, the system requires SMS verification or triggers an account lock until further verification.
 
-## References and Further Reading
-
-- [NIST SP 800-63](https://pages.nist.gov/800-63-3/sp800-63b.html)
-- [Your Pa$$word doesn't matter](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-Identity/Your-Pa-word-doesn-t-matter/ba-p/731984)
-- [FIDO2](https://fidoalliance.org/fido2/)
-- [ENISA Handbook on Security of Personal Data Processing](https://www.enisa.europa.eu/publications/handbook-on-security-of-personal-data-processing/@@download/fullReport)
-- [Google Cloud Adding MFA](https://cloud.google.com/identity-platform/docs/web/mfa)
-
 </section>
 
 <section id="multifactor-authentication-translation-panel" className="tabPanel translationPanel contentPanel">
@@ -3144,61 +3136,20 @@ This method is widely used in modern authentication systems to balance usability
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-## References and Further Reading
-
-- [NIST SP 800-63](https://pages.nist.gov/800-63-3/sp800-63b.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [Your Pa$$word doesn't matter](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-Identity/Your-Pa-word-doesn-t-matter/ba-p/731984)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [FIDO2](https://fidoalliance.org/fido2/)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [ENISA Handbook on Security of Personal Data Processing](https://www.enisa.europa.eu/publications/handbook-on-security-of-personal-data-processing/@@download/fullReport)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [Google Cloud Adding MFA](https://cloud.google.com/identity-platform/docs/web/mfa)
-
-</div>
-
-</div>
-
 </section>
 </div>
 
+## References
+
+<div className="referenceFooter">
+
+- [NIST SP 800-63](https://pages.nist.gov/800-63-3/sp800-63b.html)
+- [Your Pa$$word doesn't matter](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-Identity/Your-Pa-word-doesn-t-matter/ba-p/731984)
+- [FIDO2](https://fidoalliance.org/fido2/)
+- [ENISA Handbook on Security of Personal Data Processing](https://www.enisa.europa.eu/publications/handbook-on-security-of-personal-data-processing/@@download/fullReport)
+- [Google Cloud Adding MFA](https://cloud.google.com/identity-platform/docs/web/mfa)
+
+</div>
 
 
 ## Attribution

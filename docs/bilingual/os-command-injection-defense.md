@@ -309,10 +309,6 @@ In addition, it is good security practice to follow these recommendations:
 
 - [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/) article on [Testing for Command Injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/12-Testing_for_Command_Injection.html).
 
-### External References
-
-- [CWE Entry 77 on Command Injection](https://cwe.mitre.org/data/definitions/77.html).
-
 </section>
 
 <section id="os-command-injection-defense-translation-panel" className="tabPanel translationPanel contentPanel">
@@ -1210,21 +1206,16 @@ In addition, it is good security practice to follow these recommendations:
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
+</section>
+</div>
 
-### External References
+## References
+
+<div className="referenceFooter">
 
 - [CWE Entry 77 on Command Injection](https://cwe.mitre.org/data/definitions/77.html).
 
 </div>
-
-</div>
-
-</section>
-</div>
-
 
 
 ## Attribution

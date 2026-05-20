@@ -254,13 +254,6 @@ The standards do not require `sessionStorage` data to be encrypted-at-rest, mean
 
 WHATWG suggests the use of `sessionStorage` for data that is relevant for one-instance of a workflow, such as details for a ticket booking, but where multiple workflows could be performed in other tabs concurrently. The window/tab bound nature will keep the data from leaking between workflows in separate tabs.
 
-### References
-
-- [Web Storage APIs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
-- [LocalStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
-- [SessionStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
-- [WHATWG Web Storage Spec](https://html.spec.whatwg.org/multipage/webstorage.html#webstorage)
-
 ## Web Workers
 
 Web Workers run JavaScript code in a global context separate from the one of the current window. A communication channel with the main execution window exists, which is called `MessageChannel`.
@@ -1787,48 +1780,6 @@ WHATWG suggests the use of `sessionStorage` for data that is relevant for one-in
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-### References
-
-- [Web Storage APIs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [LocalStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [SessionStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- [WHATWG Web Storage Spec](https://html.spec.whatwg.org/multipage/webstorage.html#webstorage)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ## Web Workers
 
 Web Workers run JavaScript code in a global context separate from the one of the current window. A communication channel with the main execution window exists, which is called `MessageChannel`.
@@ -2649,6 +2600,16 @@ The open-source ModSecurity WAF, plus the OWASP [Core Rule Set](https://owasp.or
 </section>
 </div>
 
+## References
+
+<div className="referenceFooter">
+
+- [Web Storage APIs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
+- [LocalStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+- [SessionStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
+- [WHATWG Web Storage Spec](https://html.spec.whatwg.org/multipage/webstorage.html#webstorage)
+
+</div>
 
 
 ## Attribution

@@ -1092,26 +1092,43 @@ function extractPanel(text, panelClass) {
 function splitReferenceSection(markdown) {
   const normalized = normalizeNewlines(markdown).trim();
   const lines = normalized.split('\n');
-  const start = lines.findIndex((line) => /^##\s+References?\s*$/i.test(line.trim()));
-  if (start === -1) {
-    return { body: normalized, references: '' };
+  const body = [];
+  const references = [];
+  let index = 0;
+
+  const heading = (line) => /^(#{2,6})\s+(.+?)\s*$/.exec(line.trim());
+  const isReferenceHeading = (title) => /\breferences?\b|^reference\b|参考資料|リファレンス/i.test(title);
+
+  while (index < lines.length) {
+    const match = heading(lines[index]);
+    if (!match || !isReferenceHeading(match[2])) {
+      body.push(lines[index]);
+      index += 1;
+      continue;
+    }
+
+    const level = match[1].length;
+    const section = [lines[index]];
+    index += 1;
+    while (index < lines.length) {
+      const nextHeading = heading(lines[index]);
+      if (nextHeading && nextHeading[1].length <= level) {
+        break;
+      }
+      section.push(lines[index]);
+      index += 1;
+    }
+    references.push(section.join('\n').trim());
   }
-  const endOffset = lines
-    .slice(start + 1)
-    .findIndex((line) => /^##\s+\S/.test(line.trim()));
-  const end = endOffset === -1 ? lines.length : start + 1 + endOffset;
-  const body = [...lines.slice(0, start), ...lines.slice(end)].join('\n').trim();
-  const references = lines.slice(start, end).join('\n').trim();
-  return { body, references };
+
+  return {
+    body: body.join('\n').replace(/\n{3,}/g, '\n\n').replace(/\n{0,2}---\s*$/, '').trim(),
+    references: references.join('\n\n').replace(/\n{3,}/g, '\n\n').trim(),
+  };
 }
 
 function stripReferenceSections(markdown) {
-  let current = normalizeNewlines(markdown).trim();
-  for (const heading of ['References?', '参考資料', 'リファレンス']) {
-    const pattern = new RegExp(`(^|\\n)##\\s+${heading}\\s*\\n[\\s\\S]*?(?=\\n##\\s+\\S|$)`, 'i');
-    current = current.replace(pattern, '\n').trim();
-  }
-  return current;
+  return splitReferenceSection(markdown).body;
 }
 
 function sanitizeMarkdown(text) {
@@ -1472,7 +1489,7 @@ function splitTextCards(text) {
     .trim()
     .split(/\n{2,}/)
     .map((block) => block.trim())
-    .filter(Boolean);
+    .filter((block) => block && !/^(?:-{3,}|\*{3,}|_{3,})$/.test(block));
   const cards = [];
   let pendingHeading = '';
 
@@ -1627,8 +1644,11 @@ async function localJapanese(page) {
 
 async function localSummary(page) {
   const summary = await readIfExists(mdPath('docs', 'summaries', `${page.slug}.md`));
-  const body = stripAttributionSections(summary)
+  const body = extractSection(summary, '要点', ['実装時の注意点', 'ASVS との対応'])
+    || stripAttributionSections(summary)
     .replace(/^## 概要\n?/, '')
+    .replace(/## 実装時の注意点[\s\S]*?(?=\n## |\n$)/g, '')
+    .replace(/## ASVS との対応[\s\S]*?(?=\n## |\n$)/g, '')
     .trim();
   return smoothHeadings(body || '<p>要点は今後拡充します。</p>');
 }
@@ -1644,12 +1664,16 @@ function pageMarkdown(page, english, japanese, summary, checklist) {
   const englishParts = splitReferenceSection(english);
   const englishBody = englishParts.body;
   const japaneseBody = stripReferenceSections(japanese);
+  const referenceBody = englishParts.references
+    .replace(/^#{2,6}\s+.*(?:\breferences?\b|^reference\b|参考資料|リファレンス).*$/gim, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
   const references = englishParts.references
     ? `## References
 
 <div className="referenceFooter">
 
-${englishParts.references.replace(/^##\s+References?\s*\n/i, '')}
+${referenceBody}
 
 </div>
 `

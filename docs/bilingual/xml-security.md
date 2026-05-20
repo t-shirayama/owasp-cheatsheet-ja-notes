@@ -720,19 +720,6 @@ nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false
 root:*:0:0:System Administrator:/var/root:/bin/sh
 ```
 
-#### Recursive Entity Reference
-
-**When the definition of an element `A` is another element `B`, and that element `B` is defined as element `A`, that schema describes a circular reference between elements:**
-
-```xml
-<!DOCTYPE A [
- <!ELEMENT A ANY>
- <!ENTITY A "<A>&B;</A>">
- <!ENTITY B "&A;">
-]>
-<A>&A;</A>
-```
-
 #### Quadratic Blowup
 
 **Instead of defining multiple small, deeply nested entities, the attacker in this scenario defines one very large entity and refers to it as many times as possible, resulting in a quadratic expansion (*O(n^2)*).**
@@ -2498,33 +2485,6 @@ root:*:0:0:System Administrator:/var/root:/bin/sh
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### Recursive Entity Reference
-
-**When the definition of an element `A` is another element `B`, and that element `B` is defined as element `A`, that schema describes a circular reference between elements:**
-
-</div>
-
-</div>
-
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-
-```xml
-<!DOCTYPE A [
- <!ELEMENT A ANY>
- <!ENTITY A "<A>&B;</A>">
- <!ENTITY B "&A;">
-]>
-<A>&A;</A>
-```
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 #### Quadratic Blowup
 
 **Instead of defining multiple small, deeply nested entities, the attacker in this scenario defines one very large entity and refers to it as many times as possible, resulting in a quadratic expansion (*O(n^2)*).**
@@ -2900,6 +2860,22 @@ java.io.IOException: Server returned HTTP response code: 401 for URL: http://192
 </section>
 </div>
 
+## References
+
+<div className="referenceFooter">
+
+**When the definition of an element `A` is another element `B`, and that element `B` is defined as element `A`, that schema describes a circular reference between elements:**
+
+```xml
+<!DOCTYPE A [
+ <!ELEMENT A ANY>
+ <!ENTITY A "<A>&B;</A>">
+ <!ENTITY B "&A;">
+]>
+<A>&A;</A>
+```
+
+</div>
 
 
 ## Attribution

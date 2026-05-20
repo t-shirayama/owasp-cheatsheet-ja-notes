@@ -140,8 +140,6 @@ When working with OAuth2, SAML, or OIDC, these terms are frequently used:
 | **Service Provider (SP)** | In SAML, the equivalent of a Relying Party. | Your enterprise app using SAML |
 | **Principal** | The entity (user, service, or device) being authenticated. | The user logging in |
 
----
-
 </section>
 
 <section id="security-terminology-translation-panel" className="tabPanel translationPanel contentPanel">
@@ -278,8 +276,6 @@ OAuth2、SAML、OIDC を扱うとき、次の用語がよく使われます。
 | **Relying Party (RP)** | IdP に依存して利用者を認証するアプリケーションまたはサービスです。 | 「Google でログイン」を使う Web アプリ |
 | **Service Provider (SP)** | SAML において Relying Party に相当するものです。 | SAML を使うエンタープライズアプリ |
 | **Principal** | 認証されるエンティティ、つまり利用者、サービス、またはデバイスです。 | ログインする利用者 |
-
----
 
 </section>
 
@@ -698,21 +694,6 @@ These terms relate to how data is transformed for transport, storage, or display
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
----
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
----
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ## Cryptography: Encryption, Hashing, and Signatures
 
 These terms relate to protecting the confidentiality, integrity, and authenticity of data.
@@ -939,21 +920,6 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
----
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
----
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ## Identity: Authentication and Authorization
 
 ### Authentication (AuthN)
@@ -1071,21 +1037,6 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
----
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
----
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ## Federated Identity Terms
 
 When working with OAuth2, SAML, or OIDC, these terms are frequently used:
@@ -1122,21 +1073,6 @@ OAuth2、SAML、OIDC を扱うとき、次の用語がよく使われます。
 | **Relying Party (RP)** | IdP に依存して利用者を認証するアプリケーションまたはサービスです。 | 「Google でログイン」を使う Web アプリ |
 | **Service Provider (SP)** | SAML において Relying Party に相当するものです。 | SAML を使うエンタープライズアプリ |
 | **Principal** | 認証されるエンティティ、つまり利用者、サービス、またはデバイスです。 | ログインする利用者 |
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
----
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
----
 
 </div>
 </div>
