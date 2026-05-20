@@ -251,6 +251,8 @@ html[data-theme='dark'] .docPill {
     url('../../static/img/hero-encoding-sanitization.svg') right center / auto 100% no-repeat;
 }
 
+body:has(.docHero) .theme-doc-markdown > h1:first-child,
+body:has(.docHero) .theme-doc-markdown > h1:first-of-type,
 .theme-doc-markdown > h1:first-child:has(+ .docHero) {
   display: none;
 }
