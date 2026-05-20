@@ -2,36 +2,33 @@
 
 ## Project Overview
 
-This repository contains unofficial Japanese translations, local English originals, and bilingual pages derived from OWASP Cheat Sheet Series pages mapped through the ASVS index.
+This repository contains unofficial Japanese translations, local English originals, and web-facing bilingual pages derived from OWASP Cheat Sheet Series pages mapped through the ASVS index.
 
 Primary source:
 
 - https://cheatsheetseries.owasp.org/IndexASVS.html
 
-This is a documentation-first repository. Treat accuracy, attribution, and license handling as part of the deliverable, not as optional polish.
+This is a documentation-first repository. Treat accuracy, attribution, license handling, and clear unofficial status as part of the deliverable.
 
 ## Source And License Rules
 
 - Use official OWASP pages as the primary source. Prefer `cheatsheetseries.owasp.org`, `owasp.org`, and official OWASP GitHub repositories.
 - Verify the current source URL before creating or substantially updating a document.
 - Do not present this repository as an official OWASP translation.
-- OWASP Cheat Sheet Series and ASVS materials are generally published under Creative Commons Attribution-ShareAlike 4.0 International. When deriving from them, preserve CC BY-SA 4.0 obligations.
-- Every translated, original-reference, or bilingual document derived from OWASP content must include an `Attribution` section.
-- The `Attribution` section must include original title, source URL, copyright or author information available from the source, license name, license URL, change description, and retrieval date.
-- Mark adaptations honestly, for example: `Japanese translation added.` or `English original retained for comparison. Japanese translation added.`
-- For bilingual pages that retain the English original and add Japanese translation, use a change note such as `English original retained for comparison. Japanese translation added. Source images stored locally.`
+- OWASP Cheat Sheet Series and ASVS materials are generally published under Creative Commons Attribution-ShareAlike 4.0 International. Preserve CC BY-SA 4.0 obligations when deriving from them.
+- Every translated, original-reference, or bilingual document derived from OWASP content must include Attribution.
+- Attribution must include original title, source URL, copyright or author information available from the source, license name, license URL, change description, and retrieval date.
+- Mark adaptations honestly, for example `Japanese translation added.` or `English original retained for comparison. Japanese translation added.`
 - If a document incorporates non-OWASP third-party material, record that source and license separately.
-- Do not copy large unrelated sections from source documents. Translate only the material needed for the target page.
-- For web-facing bilingual pages, prefer complete page coverage: preserve the source page order and reproduce all relevant headings, paragraphs, lists, tables, code blocks, and images unless there is a documented reason to omit a section.
-- Store reused source images locally instead of hotlinking to the official site. Place them under `static/img/owasp-cheatsheets/<slug>/`, preserve the original meaning, and record image source URLs and change notes in the page attribution.
-- Treat OWASP logos and trademarks separately from CC BY-SA content. Do not use OWASP branding in a way that suggests official endorsement or official translation status.
+- Store reused source images locally instead of hotlinking to the official site. Place them under `static/img/owasp-cheatsheets/<slug>/` and record image source URLs and change notes in Attribution.
+- Treat OWASP logos and trademarks separately from CC BY-SA content. Do not use OWASP branding in a way that suggests official endorsement.
 
-## Required Document Shape
+## Document Shape
 
-For each source Cheat Sheet, maintain the local English original, Japanese translation, and web-facing bilingual page unless the user asks for a different shape.
+Translation files live directly under `docs/translations/`.
 
 ```markdown
-# docs/translations/<slug>.md
+# <日本語タイトル> 日本語訳
 
 ## Attribution
 
@@ -48,6 +45,10 @@ For each source Cheat Sheet, maintain the local English original, Japanese trans
 ## ASVS との対応
 ```
 
+Original files live directly under `docs/originals/` and should preserve the official English Markdown as closely as practical, with only the local Attribution wrapper added.
+
+Bilingual pages live directly under `docs/bilingual/` and are the public reading layer. They should be generated or updated from the original and translation source layers.
+
 ## Japanese Writing Style
 
 - Write in clear, practical Japanese for software developers.
@@ -56,100 +57,86 @@ For each source Cheat Sheet, maintain the local English original, Japanese trans
 - Do not soften security requirements into vague advice.
 - If a term is ambiguous, include the English term in parentheses on first use.
 - If the source is unclear or version-dependent, add a short note instead of guessing.
+- Keep original code, configuration, commands, identifiers, protocol names, and product names unchanged unless the source itself is being corrected.
 
 ## Repository Conventions
 
 - Use Markdown files.
 - Prefer ASCII filenames with kebab-case, for example `docs/translations/password-storage.md`.
-- Keep generated documents under `docs/` when adding topic files.
 - Use `docs/asvs/` as the ASVS-first navigation layer.
-- Use `docs/translations/` directly for Japanese translation files; do not create ASVS chapter subdirectories such as `v1/`.
-- Use `docs/originals/` directly for English original source files. These files should keep the official English Markdown content for local reference and include Attribution.
-- Use `docs/bilingual/` directly for web-facing bilingual pages; Docusaurus doc IDs should be slug-only.
-- When a Cheat Sheet maps to multiple ASVS chapters, keep one slug-named copy under the relevant parent folder and link to that single copy from all ASVS pages.
-- Do not duplicate a source Cheat Sheet across multiple ASVS chapter files. Link to the translation and bilingual files instead.
+- Use `docs/originals/`, `docs/translations/`, and `docs/bilingual/` directly. Do not create ASVS chapter subdirectories such as `v1/`.
+- Do not duplicate a source Cheat Sheet across multiple ASVS chapter files. Link to the single slug-named original, translation, or bilingual page instead.
 - Use `docs/templates/` for reusable document templates.
 - Use `references/source-map.md` for ASVS-to-source-to-local-file mapping.
+- Use `references/bilingual-map.md` for public bilingual page coverage and status.
 - Use `references/license-notes.md` for license and attribution operating notes.
 - Use relative links for internal repository references.
-- Do not add build systems, formatters, or package managers unless the user explicitly asks.
-- Add repository-specific Codex skills, local helper hooks, or git hooks when they materially improve repeatability, validation, or maintenance safety. Keep them scoped to this repository's documentation workflow and document how they are used.
-- Do not add broad automation hooks that silently rewrite content, fetch network resources, or change generated files unless the user asked for that workflow or the hook is clearly opt-in.
 - Before editing, check the working tree with `git status --short`.
 - Use `rg` or `rg --files` for searching when available.
 
-## Commit Rules
-
-- Prefer one task per commit. A task should be a coherent unit such as one document expansion, one generator behavior change plus its generated outputs, or one visual/layout adjustment.
-- Do not mix unrelated documentation content changes, generator logic changes, and visual design changes in the same commit unless they are required for the same user-requested task.
-- When a generator change produces broad output, commit the generator change and its necessary generated files together, but revert unrelated generated diffs before committing.
-- If the user asks for multiple tasks, split commits by task or by a sensible V1/pilot-sized unit.
-- Before committing, review `git status --short` and `git diff --stat` to confirm the commit scope matches the task.
-
 ## Docusaurus Site Rules
 
-- This repository publishes an unofficial ASVS-focused bilingual site with Docusaurus. The web-facing content source is `docs/bilingual/`.
-- Keep the public site clearly unofficial. The site title, page footer or attribution must not imply an official OWASP translation.
-- The left sidebar is ASVS-first, not topic-category-first. Keep V1 through V17 visible in ASVS order, with Vx.y child sections below each V chapter. Place matching Cheat Sheets under the relevant Vx.y sections; if a web-facing bilingual page is not ready, use a lightweight shell page/link so the navigation structure remains complete.
-- Do not add top-level navigation links such as `ASVS Cheat Sheets` or `はじめに` back into the header unless the user explicitly asks. Avoid duplicating the same page title in both header/sidebar and page content.
-- The right-side page TOC is intentionally disabled. Do not reintroduce a right sidebar or right-side table of contents; it does not reliably match the selected tabbed view.
-- Page content should be centered with left and right margin similar to the official OWASP Cheat Sheet pages. Keep the left sidebar wide enough for long ASVS and Cheat Sheet labels; the current design uses `--doc-sidebar-width` in `src/css/custom.css`.
+- The public site is an unofficial ASVS-focused bilingual site. The web-facing content source is `docs/bilingual/`.
+- Keep the public site clearly unofficial. Site title, footer, and Attribution must not imply an official OWASP translation.
+- The left sidebar is ASVS-first. Keep V1 through V17 visible in ASVS order, with Vx.y child sections below each chapter.
+- Do not add top-level navigation links such as `ASVS Cheat Sheets` or `はじめに` back into the header unless explicitly requested.
+- The right-side page TOC is intentionally disabled. Do not reintroduce a right sidebar or right-side table of contents.
 - Cheat Sheet pages should use the banner/hero as the only page title area. Hide Docusaurus' default generated title when a `docHero` is present.
-- Banner content should be minimal: page title, Japanese title where useful, last updated date, reading time, and ASVS/category. Do not show labels such as `ASVS bilingual view` in the banner.
-- Banner imagery should vary by major ASVS/category theme and should use local assets under `static/img/`.
-- Use the local bundled fonts (`@fontsource-variable/inter` and `@fontsource-variable/noto-sans-jp`) so the site does not depend on remote font delivery.
+- Banner content should be minimal: page title, Japanese title where useful, last updated date, reading time, and ASVS/category.
+- Use local bundled fonts (`@fontsource-variable/inter` and `@fontsource-variable/noto-sans-jp`) so the site does not depend on remote font delivery.
 - Maintain both light and dark modes. In dark mode, English and Japanese bilingual blocks must be visually distinguishable by background/accent color.
 - Code blocks should use fenced language identifiers where possible and keep the VS Code-like framed style and syntax highlighting.
-- For visual design changes, follow the four basic design principles: proximity, alignment, repetition, and contrast. Related elements should be grouped, edges and starting positions should align intentionally, recurring UI patterns should be consistent, and meaningful differences should be visible through size, color, weight, or spacing.
-- Before finishing layout work, check obvious alignment relationships such as header/sidebar spacing, breadcrumb/title start positions, tab/card widths, and footer/content alignment.
+- For visual changes, check obvious alignment relationships such as header/sidebar spacing, breadcrumb/title start positions, tab widths, and footer/content alignment.
 
 ## Bilingual Page Rules
 
-- Web-facing bilingual pages live directly under `docs/bilingual/<slug>.md`; do not place them under `v1/` through `v17/` folders.
-- English original source documents live directly under `docs/originals/<slug>.md`; keep them separate from `docs/translations/` and `docs/bilingual/`.
-- `docs/originals/<slug>.md` should preserve the official English source Markdown as closely as practical. Add only the local Attribution wrapper and do not translate or summarize that body.
-- Bilingual pages should have three display modes in this order: `原文`, `翻訳`, and `対比表示`. Only the selected mode should be visible.
-- The `原文` mode should show the English original before translation so readers can inspect the source text without the bilingual comparison cards.
-- The `翻訳` mode should not show repository maintenance sections such as `関連ファイル` on the web page.
-- Source reference/link sections such as `References` should not be translated. Move them out of the main reading tabs and render them near the bottom as English reference metadata, similar to Attribution.
-- Place web-facing Attribution near the bottom of the page, after the main reading experience, while still preserving all required attribution fields.
+- Bilingual pages have three display modes in this order: `原文`, `翻訳`, `対比表示`.
+- Only the selected mode should be visible.
+- `原文` shows the English original before translation so readers can inspect the source text without comparison cards.
+- `翻訳` shows the Japanese translation and should not include repository maintenance sections such as `関連ファイル`.
 - `対比表示` must preserve the official source order and should be full-page coverage for Full pages.
-- For Full bilingual pages, the Japanese translation must be a full translation of the same source coverage.
-- Every meaningful English heading, paragraph, list item, and table row in a Full bilingual page should have a corresponding Japanese translation. Avoid leaving English-only bilingual pair cards unless the segment is a shared code block, image, separator, or intentionally untranslated technical artifact.
-- When expanding a page from Sample to Full, update the source translation file under `docs/translations/<slug>.md` first, then regenerate `docs/bilingual/<slug>.md` so the translation tab and comparison tab stay aligned.
-- Before finalizing Full bilingual work, inspect the generated page for missing `日本語 (翻訳)` blocks and for translation panels that are substantially shorter than the source.
-- In `対比表示`, keep each English original segment and corresponding Japanese translation in the same bilingual pair card. Split long text by paragraph, but keep each contiguous bullet or numbered list block together in one card so list context is not lost. Align English and Japanese card granularity; do not let one side split list items into separate cards when the other side presents the list as one block.
-- Shared code blocks and images must not be inserted between `English (原文)` and `日本語 (翻訳)`. Put shared code/images after the Japanese translation in a separate `コード・画像 (共通)` card.
-- Do not duplicate identical code blocks or images in both English and Japanese blocks. Shared technical artifacts should appear once in the common card.
-- If a heading applies only to a following code block or image, attach that heading to the common card instead of creating an empty English/Japanese text pair.
-- Keep original code, configuration, commands, identifiers, and protocol names unchanged unless the source itself is being corrected. Add Japanese explanation around them rather than translating identifiers.
-- When updating `tools/generate-bilingual-samples.mjs`, regenerate the affected pages and inspect the diff. If the generator updates unrelated pages, revert unrelated generated diffs before committing unless the user asked for a broad regeneration.
+- For Full bilingual pages, every meaningful English heading, paragraph, list item, and table row should have a corresponding Japanese translation.
+- Avoid English-only pair cards unless the segment is a shared code block, image, separator, or intentionally untranslated technical artifact.
+- Shared code blocks and images must not be duplicated in both English and Japanese blocks. Put shared artifacts after the Japanese translation in a `コード・画像 (共通)` card.
+- Source reference/link sections such as `References` should not be translated. Render them near the bottom as English reference metadata, similar to Attribution.
+- Place public-page Attribution near the bottom of the page after the main reading experience.
 
-## Documentation Maintenance Order
+## Maintenance Order
 
 For each Cheat Sheet maintenance or expansion task, proceed in this order unless the user explicitly requests a different scope:
 
-1. Update the English original source document under `docs/originals/<slug>.md` from the current official OWASP source.
-2. Update the Japanese translation under `docs/translations/<slug>.md` so it tracks the current English source without omitting meaningful content.
-3. Regenerate or update the web-facing bilingual page under `docs/bilingual/<slug>.md`, including `原文`, `翻訳`, and `対比表示`.
+1. Update the English original under `docs/originals/<slug>.md` from the current official OWASP source.
+2. Update the Japanese translation under `docs/translations/<slug>.md`.
+3. Regenerate or update the public bilingual page under `docs/bilingual/<slug>.md`.
+4. Update `references/source-map.md` and `references/bilingual-map.md` if status, source URL, or coverage changed.
 
-Do not update the bilingual display first and leave the source documents stale. The bilingual page is a generated/public reading layer, while `docs/originals/` and `docs/translations/` are the maintainable source layers.
+Do not update the bilingual display first and leave the source documents stale. The bilingual page is a generated/public reading layer; `docs/originals/` and `docs/translations/` are the maintainable source layers.
+
+## Generator Rules
+
+- When updating `tools/generate-bilingual-samples.mjs`, regenerate affected pages and inspect the diff.
+- If the generator updates unrelated pages, revert unrelated generated diffs unless the user asked for broad regeneration.
+- Do not add broad automation hooks that silently rewrite content, fetch network resources, or change generated files unless explicitly requested or clearly opt-in.
 
 ## Validation
 
 - For Markdown-only changes, review headings, links, and attribution fields manually.
-- If a Markdown linter or link checker is later added to this repository, run it before finalizing relevant changes.
-- When source URLs are used, ensure they point to official pages and include the retrieval date in the document.
-- For Docusaurus layout or CSS changes, prefer `npm run dev` hot reload plus a local browser check during iteration. Do not run `npm run build` repeatedly just to inspect visual tweaks.
-- Run `npm run build` for final production verification, deployment-related changes, Docusaurus config changes, or when the user explicitly asks for a build check.
 - Always run `git diff --check` before finalizing code, CSS, or generated-file changes.
-- If a change affects generated bilingual pages, run `node tools\generate-bilingual-samples.mjs` when needed and verify that changed files match the requested scope.
+- Run `powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-MarkdownLint.ps1` for broad Markdown/documentation changes.
+- Run `powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-LinkCheck.ps1` when links or file locations change.
+- Run `npm run build` for final production verification, deployment-related changes, Docusaurus config changes, generator changes that affect public pages, or when the user explicitly asks for a build check.
 - For layout or visual changes, prefer a local browser check when tooling is available. If browser automation is unavailable, state that limitation and still run build/static checks.
+
+## Commit Rules
+
+- Prefer one task per commit.
+- Do not mix unrelated documentation content changes, generator logic changes, and visual design changes in the same commit unless they are required for the same user-requested task.
+- When a generator change produces broad output, commit the generator change and its necessary generated files together.
+- Before committing, review `git status --short` and `git diff --stat` to confirm the commit scope matches the task.
 
 ## Codex Workflow
 
 - Read the relevant source page before drafting.
 - Identify title, source URL, copyright or author statement, license statement, and retrieval date.
-- Draft translation and bilingual files using the required shape.
-- Preserve the original meaning and mark changes in the Attribution section.
+- Preserve the original meaning and mark changes in Attribution.
 - Summarize completed changes in the final response and mention any source or license uncertainty.

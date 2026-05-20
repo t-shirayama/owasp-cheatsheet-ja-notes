@@ -1,25 +1,24 @@
 # OWASP ASVS Cheat Sheet Japanese Notes
 
-このリポジトリは、[OWASP Cheat Sheet Series - Index ASVS](https://cheatsheetseries.owasp.org/IndexASVS.html) を起点に、ASVS 項目に対応する OWASP Cheat Sheet Series の内容を日本語で翻訳し、英日対訳で確認しやすく整理する非公式ドキュメント集です。
+このリポジトリは、[OWASP Cheat Sheet Series - Index ASVS](https://cheatsheetseries.owasp.org/IndexASVS.html) を起点に、ASVS 項目に対応する OWASP Cheat Sheet Series を日本語で読みやすくする非公式ドキュメント集です。
 
 公式翻訳ではありません。正確な判断が必要な場合は、必ず OWASP の原文と最新の公式資料を確認してください。
 
-現在は ASVS Index coverage を入口に、対象 Cheat Sheet の英語原文、日本語訳、公開用の英日対訳ページを管理しています。非重点ページには短い翻訳のままのページが残るため、段階的に全文翻訳へ詳細化します。
+## このリポジトリで管理するもの
 
-GitHub Pages 公開用の Docusaurus サイトも導入しています。ASVS Index に対応する Cheat Sheet の対訳表示では、英語原文と日本語訳をパラグラフ単位で上下に並べて比較できます。
+- 公式英語原文のローカル参照
+- Cheat Sheet 単位の日本語訳
+- GitHub Pages / Docusaurus 用の英日対訳ページ
+- ASVS 項目、公式 URL、ローカルファイルの対応表
+- Attribution、ライセンス、原文確認日などの運用メモ
 
-## 目的
-
-- ASVS Index から参照される OWASP Cheat Sheet Series の内容を日本語で読みやすくする
-- 公式原文と日本語訳を並べ、差分や意味を確認しやすくする
-- セキュリティレビュー、設計レビュー、実装タスク化の前提資料として使える形で整理する
-- 出典、著作者、ライセンス、変更有無を明示して再利用しやすくする
+公開用の対訳ページでは、`原文`、`翻訳`、`対比表示` の3モードで内容を確認できます。`対比表示` では、英語原文と日本語訳を同じ順序のブロックとして並べます。
 
 ## ライセンスと Attribution
 
-OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-ShareAlike 4.0 International と表示されています。Creative Commons の CC BY-SA 4.0 では、共有や翻案が許可される一方で、適切なクレジット表示、ライセンスへのリンク、変更有無の表示、同一ライセンスでの共有が求められます。
+OWASP Cheat Sheet Series は Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) として公開されています。OWASP 由来の内容を翻訳・再構成する場合は、各文書に Attribution を残します。
 
-このリポジトリで作成する翻訳や英日対訳ページなど、OWASP の CC BY-SA 4.0 コンテンツを翻案したドキュメントは、原則として CC BY-SA 4.0 のもとで公開します。各ページには必ず Attribution セクションを置き、少なくとも次を記載してください。
+Attribution には少なくとも次を含めます。
 
 - 原文タイトル
 - 原文 URL
@@ -32,8 +31,6 @@ OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-Shar
 
 ## フォルダ構成
 
-このリポジトリは、ASVS 章別を主導線にしつつ、英語原文、日本語訳、公開用の英日対訳ページを用途別に分けて管理します。同じ Cheat Sheet が複数の ASVS 項目に紐づく場合でも、各成果物は重複させず、ASVS 側から該当ファイルへリンクします。
-
 ```text
 .
 ├── docs/
@@ -44,42 +41,46 @@ OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-Shar
 │   └── templates/     # 新規ドキュメント作成用テンプレート
 ├── src/               # Docusaurus のページとスタイル
 ├── static/            # Docusaurus の静的アセット
-└── references/        # 出典対応表、ライセンス方針、運用メモ
+├── tools/             # 生成・検証用スクリプト
+└── references/        # 対応表、ライセンス方針、運用メモ
 ```
 
-- ASVS 章から探す場合は [docs/asvs/index.md](docs/asvs/index.md) を起点にします。
-- 英日対訳表示は [docs/bilingual/](docs/bilingual/) に置きます。
-- 公式英語原文のローカル参照は [docs/originals/](docs/originals/) に置きます。
-- 日本語訳は [docs/translations/](docs/translations/) に置きます。
-- 出典対応表は [references/source-map.md](references/source-map.md) で管理します。
-- 対訳表示の Pilot 対応表は [references/bilingual-map.md](references/bilingual-map.md) で管理します。
-- 原文確認日と `Retrieved` の更新ルールは [references/source-update-policy.md](references/source-update-policy.md) で管理します。
-- 非重点ページの段階的な詳細化順は [references/non-priority-detailing-plan.md](references/non-priority-detailing-plan.md) で管理します。
-- 静的サイト化と分類情報の扱いは [references/site-and-taxonomy-policy.md](references/site-and-taxonomy-policy.md) で管理します。
-- 変更履歴とレビュー履歴の記録方針は [references/change-review-history-policy.md](references/change-review-history-policy.md) で管理します。
-- 残作業候補は [references/todo.md](references/todo.md) で管理します。
+よく使う入口:
+
+- [docs/bilingual/](docs/bilingual/) - 公開サイト用の英日対訳ページ
+- [docs/originals/](docs/originals/) - 公式英語原文のローカル参照
+- [docs/translations/](docs/translations/) - 日本語訳
+- [references/source-map.md](references/source-map.md) - ASVS-to-source-to-local-file 対応表
+- [references/bilingual-map.md](references/bilingual-map.md) - 公開用対訳ページ対応表
+- [references/todo.md](references/todo.md) - 残作業候補
+
+## 更新の流れ
+
+1. 公式 OWASP 原文の URL と内容を確認します。
+2. `docs/originals/<slug>.md` を必要に応じて更新します。
+3. `docs/translations/<slug>.md` を原文に追従させます。
+4. `tools/generate-bilingual-samples.mjs` で `docs/bilingual/<slug>.md` を更新します。
+5. `references/source-map.md` と `references/bilingual-map.md` の状態を必要に応じて更新します。
+
+生成系の変更後は、意図しない広範囲差分が出ていないか確認してください。
 
 ## 検証
 
-Markdown の基本形とリンクは、リポジトリ内の PowerShell スクリプトで確認できます。パッケージマネージャや外部依存は不要です。
+Markdown の基本形とリンク確認:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-MarkdownLint.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-LinkCheck.ps1
 ```
 
-- `Invoke-MarkdownLint.ps1` は H1、見出し階層、表区切り、末尾改行、翻訳や対訳ページの Attribution 欄を確認します。
-- `Invoke-LinkCheck.ps1` は Markdown の内部リンク先の存在と外部 URL の形式を確認します。外部サイトへ通信しないため、ネットワークがない環境でも実行できます。
-
-Docusaurus サイトは Node.js でビルドします。
+Docusaurus サイトの確認:
 
 ```powershell
 npm install
 npm run build
 ```
 
-- `npm run dev` でローカル開発サーバーを起動できます。
-- GitHub Pages へのデプロイは `.github/workflows/deploy-pages.yml` で行います。
+`npm run dev` でローカル開発サーバーを起動できます。GitHub Pages へのデプロイは `.github/workflows/deploy-pages.yml` で行います。
 
 ## 参考資料
 
@@ -87,4 +88,3 @@ npm run build
 - [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
 - [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
 - [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/)
-- [AGENTS.md](https://agents.md/)
