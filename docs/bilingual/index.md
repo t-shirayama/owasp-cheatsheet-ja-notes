@@ -7,9 +7,9 @@
 ## ASVS 対応ページ
 
 <div className="quickLinks">
-  <a href="/owasp-cheatsheet-ja-notes/cheatsheets/v1/csrf-prevention">CSRF Prevention</a>
-  <a href="/owasp-cheatsheet-ja-notes/cheatsheets/v1/bean-validation">Bean Validation</a>
-  <a href="/owasp-cheatsheet-ja-notes/cheatsheets/v11/cryptographic-storage">Cryptographic Storage</a>
+  <a href="/owasp-cheatsheet-ja-notes/cheatsheets/csrf-prevention">CSRF Prevention</a>
+  <a href="/owasp-cheatsheet-ja-notes/cheatsheets/bean-validation">Bean Validation</a>
+  <a href="/owasp-cheatsheet-ja-notes/cheatsheets/cryptographic-storage">Cryptographic Storage</a>
 </div>
 
 ## 表示方針

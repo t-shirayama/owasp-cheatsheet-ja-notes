@@ -12,8 +12,8 @@
 
 ## 関連ファイル
 
-- 日本語訳: `../../translations/v<chapter>/<file-name>.md`
-- 要約: `../../summaries/v<chapter>/<file-name>.md`
+- 日本語訳: `../translations/<file-name>.md`
+- 要約: `../summaries/<file-name>.md`
 
 ## チェックリスト
 

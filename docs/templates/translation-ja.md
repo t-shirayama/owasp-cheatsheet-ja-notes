@@ -12,8 +12,8 @@
 
 ## 関連ファイル
 
-- 要約: `../../summaries/v<chapter>/<file-name>.md`
-- 開発チェックリスト: `../../checklists/v<chapter>/<file-name>.md`
+- 要約: `../summaries/<file-name>.md`
+- 開発チェックリスト: `../checklists/<file-name>.md`
 
 ## 日本語訳
 

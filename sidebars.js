@@ -6,8 +6,8 @@ const sidebars = {
       label: 'Encoding and Sanitization',
       collapsed: false,
       items: [
-        'v1/bean-validation',
-        'v1/csrf-prevention',
+        'bean-validation',
+        'csrf-prevention',
       ],
     },
     {
@@ -15,7 +15,7 @@ const sidebars = {
       label: 'Cryptographic Storage',
       collapsed: false,
       items: [
-        'v11/cryptographic-storage',
+        'cryptographic-storage',
       ],
     },
   ],

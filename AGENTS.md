@@ -31,7 +31,7 @@ This is a documentation-first repository. Treat accuracy, attribution, and licen
 For each source Cheat Sheet, create separate translation, summary, and checklist files unless the user asks for a different shape.
 
 ```markdown
-# docs/translations/v<chapter>/<slug>.md
+# docs/translations/<slug>.md
 
 ## Attribution
 
@@ -51,7 +51,7 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 ```
 
 ```markdown
-# docs/summaries/v<chapter>/<slug>.md
+# docs/summaries/<slug>.md
 
 ## Attribution
 
@@ -73,7 +73,7 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 ```
 
 ```markdown
-# docs/checklists/v<chapter>/<slug>.md
+# docs/checklists/<slug>.md
 
 ## Attribution
 
@@ -115,13 +115,14 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 ## Repository Conventions
 
 - Use Markdown files.
-- Prefer ASCII filenames with kebab-case, for example `docs/translations/v6/password-storage.md`.
+- Prefer ASCII filenames with kebab-case, for example `docs/translations/password-storage.md`.
 - Keep generated documents under `docs/` when adding topic files.
 - Use `docs/asvs/` as the ASVS-first navigation layer.
-- Use `docs/translations/v1/` through `docs/translations/v17/` for Japanese translation files.
-- Use `docs/summaries/v1/` through `docs/summaries/v17/` for Japanese summary files.
-- Use `docs/checklists/v1/` through `docs/checklists/v17/` for development checklist files. Keep cross-cutting checklist indexes directly under `docs/checklists/`.
-- When a Cheat Sheet maps to multiple ASVS chapters, place the file under the first or primary ASVS chapter folder and link to that single copy from other chapters.
+- Use `docs/translations/` directly for Japanese translation files; do not create ASVS chapter subdirectories such as `v1/`.
+- Use `docs/summaries/` directly for Japanese summary files; do not create ASVS chapter subdirectories such as `v1/`.
+- Use `docs/checklists/` directly for development checklist files. Keep cross-cutting checklist indexes directly under `docs/checklists/`.
+- Use `docs/bilingual/` directly for web-facing bilingual pages; Docusaurus doc IDs should be slug-only.
+- When a Cheat Sheet maps to multiple ASVS chapters, keep one slug-named copy under the relevant parent folder and link to that single copy from all ASVS pages.
 - Do not duplicate a source Cheat Sheet across multiple ASVS chapter files. Link to the translation, summary, and checklist files instead.
 - Use `docs/templates/` for reusable document templates.
 - Use `references/source-map.md` for ASVS-to-source-to-local-file mapping.

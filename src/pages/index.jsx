@@ -5,19 +5,19 @@ const pilotItems = [
   {
     title: 'Cross-Site Request Forgery Prevention',
     ja: 'CSRF防止',
-    href: '/cheatsheets/v1/csrf-prevention',
+    href: '/cheatsheets/csrf-prevention',
     category: 'Encoding and Sanitization',
   },
   {
     title: 'Bean Validation',
     ja: 'Bean Validation',
-    href: '/cheatsheets/v1/bean-validation',
+    href: '/cheatsheets/bean-validation',
     category: 'Encoding and Sanitization',
   },
   {
     title: 'Cryptographic Storage',
     ja: '暗号化ストレージ',
-    href: '/cheatsheets/v11/cryptographic-storage',
+    href: '/cheatsheets/cryptographic-storage',
     category: 'Cryptographic Storage',
   },
 ];

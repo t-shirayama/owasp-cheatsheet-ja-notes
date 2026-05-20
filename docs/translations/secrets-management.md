@@ -1,0 +1,36 @@
+# シークレット管理チートシート 日本語訳
+
+## Attribution
+
+- Original: Secrets Management Cheat Sheet
+- Source: https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html
+- Copyright: Cheat Sheets Series Team
+- License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+- License URL: https://creativecommons.org/licenses/by-sa/4.0/
+- Changes: Japanese translation added.
+- Retrieved: 2026-05-20
+
+## 関連ファイル
+
+- 要約: [../summaries/secrets-management.md](../summaries/secrets-management.md)
+- 開発チェックリスト: [../checklists/secrets-management.md](../checklists/secrets-management.md)
+
+## 日本語訳
+
+シークレット管理は、API キー、パスワード、トークン、証明書、秘密鍵、接続文字列など、認証や暗号処理に使う秘密値を安全に作成、保存、配布、利用、ローテーション、失効、監査する実践である。シークレットは漏えいすると、認証、認可、データ保護、サプライチェーン全体の侵害につながる。
+
+シークレットはコード、リポジトリ、コンテナイメージ、CI ログ、エラーログ、チケット、チャット、ドキュメントへ埋め込まない。専用のシークレット管理システムを使い、保存時暗号化、アクセス制御、監査ログ、バージョン管理、ローテーション、失効を行う。シークレットは環境ごと、サービスごと、用途ごとに分離し、最小権限でアクセスさせる。
+
+シークレットのライフサイクルを定義する。生成時は十分なエントロピーを使い、配布時は安全なチャネルを使い、利用時は必要なプロセスだけが読み取れるようにし、保管時は専用ストアで保護し、不要になったら失効と削除を行う。ローテーションは手動運用だけに依存せず、自動化し、アプリケーションが複数バージョンのシークレットを短期間扱えるようにする。
+
+CI/CD では、シークレットをビルド成果物に混入させず、ジョブ権限を最小化し、ログマスキングを設定する。リポジトリと成果物に対するシークレットスキャンを導入し、検出時には値の削除だけでなく即時失効と再発行を行う。実行環境では、環境変数、ファイルマウント、メタデータサービス、Kubernetes Secret などの露出経路を評価する。
+
+監査では、誰が、いつ、どのシークレットへアクセスしたか、どのシークレットがローテーションされたか、失効されたかを記録する。ログにはシークレット値を含めず、検出・マスキング・保持期間を設計する。
+
+## ASVS との対応
+
+| ASVS 項目 | 関連内容 |
+| --- | --- |
+| V11.7 | シークレットの生成、保存、配布、利用、ローテーション、失効、監査 |
+| V13.3 | CI/CD、クラウド、コンテナ、Kubernetes、証明書、秘密鍵の安全な取り扱い |
+
