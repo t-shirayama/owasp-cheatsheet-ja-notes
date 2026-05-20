@@ -1,3 +1,3 @@
-import TOC from '@theme-original/TOC';
-
-export default TOC;
+export default function TOC() {
+  return null;
+}

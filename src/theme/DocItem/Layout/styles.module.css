@@ -3,20 +3,6 @@
   margin-top: 0;
 }
 
-.docLayoutRow {
-  align-items: flex-start;
-}
-
-.docItemCol {
-  min-width: 0;
-}
-
-.docTocCol {
-  flex: 0 0 240px;
-  max-width: 240px;
-  padding-left: 24px;
-}
-
 .siteInfoBlock {
   max-width: 980px;
   margin: 28px auto 0;
@@ -61,10 +47,6 @@
 }
 
 @media (max-width: 640px) {
-  .docTocCol {
-    display: none;
-  }
-
   .siteInfoColumns {
     grid-template-columns: 1fr;
     gap: 16px;
