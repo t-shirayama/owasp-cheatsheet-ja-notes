@@ -27,33 +27,6 @@ hide_table_of_contents: true
     <label htmlFor="bean-validation-bilingual">対比表示</label>
   </div>
 
-  <aside className="viewToc" aria-label="表示中の目次">
-    <strong>目次</strong>
-    <nav className="viewTocPanel translationToc">
-      <a href="#introduction">Introduction</a>
-      <a href="#setup">Setup</a>
-      <a href="#basics">Basics</a>
-      <a href="#predefined-constraints">Predefined Constraints</a>
-      <a href="#custom-constraints">Custom Constraints</a>
-      <a href="#error-messages">Error Messages</a>
-    </nav>
-    <nav className="viewTocPanel summaryToc">
-      <a href="#bean-validation-summary-panel">要点</a>
-    </nav>
-    <nav className="viewTocPanel checklistToc">
-      <a href="#bean-validation-checklist-panel">チェックリスト</a>
-    </nav>
-    <nav className="viewTocPanel bilingualToc">
-      <a href="#bean-validation-bilingual-panel">対比表示</a>
-      <a href="#introduction-1">Introduction</a>
-      <a href="#setup-1">Setup</a>
-      <a href="#basics-1">Basics</a>
-      <a href="#predefined-constraints-1">Predefined Constraints</a>
-      <a href="#custom-constraints-1">Custom Constraints</a>
-      <a href="#error-messages-1">Error Messages</a>
-    </nav>
-  </aside>
-
   <section id="bean-validation-translation-panel" className="tabPanel translationPanel contentPanel">
 
 ## Introduction

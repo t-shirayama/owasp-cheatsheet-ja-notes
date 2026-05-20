@@ -27,31 +27,6 @@ hide_table_of_contents: true
     <label htmlFor="cryptographic-storage-bilingual">対比表示</label>
   </div>
 
-  <aside className="viewToc" aria-label="表示中の目次">
-    <strong>目次</strong>
-    <nav className="viewTocPanel translationToc">
-      <a href="#introduction">Introduction</a>
-      <a href="#architectural-design">Architectural Design</a>
-      <a href="#algorithms">Algorithms</a>
-      <a href="#key-management">Key Management</a>
-      <a href="#key-storage">Key Storage</a>
-    </nav>
-    <nav className="viewTocPanel summaryToc">
-      <a href="#cryptographic-storage-summary-panel">要点</a>
-    </nav>
-    <nav className="viewTocPanel checklistToc">
-      <a href="#cryptographic-storage-checklist-panel">チェックリスト</a>
-    </nav>
-    <nav className="viewTocPanel bilingualToc">
-      <a href="#cryptographic-storage-bilingual-panel">対比表示</a>
-      <a href="#introduction-1">Introduction</a>
-      <a href="#architectural-design-1">Architectural Design</a>
-      <a href="#algorithms-1">Algorithms</a>
-      <a href="#secure-random-number-generation-1">Secure Random Number Generation</a>
-      <a href="#key-management-and-storage">Key Management and Storage</a>
-    </nav>
-  </aside>
-
   <section id="cryptographic-storage-translation-panel" className="tabPanel translationPanel contentPanel">
 
 ## Introduction

@@ -27,32 +27,6 @@ hide_table_of_contents: true
     <label htmlFor="csrf-prevention-bilingual">対比表示</label>
   </div>
 
-  <aside className="viewToc" aria-label="表示中の目次">
-    <strong>目次</strong>
-    <nav className="viewTocPanel translationToc">
-      <a href="#introduction">Introduction</a>
-      <a href="#token-based-mitigation">Token-Based Mitigation</a>
-      <a href="#fetch-metadata-headers">Fetch Metadata headers</a>
-      <a href="#disallowing-simple-requests">Disallowing simple requests</a>
-      <a href="#dealing-with-client-side-csrf-attacks-important">Client-Side CSRF</a>
-      <a href="#defense-in-depth-techniques">Defense In Depth</a>
-      <a href="#possible-csrf-vulnerabilities-in-login-forms">Login Forms</a>
-      <a href="#references-in-related-cheat-sheets">Related Cheat Sheets</a>
-    </nav>
-    <nav className="viewTocPanel summaryToc">
-      <a href="#csrf-prevention-summary-panel">要点</a>
-    </nav>
-    <nav className="viewTocPanel checklistToc">
-      <a href="#csrf-prevention-checklist-panel">チェックリスト</a>
-    </nav>
-    <nav className="viewTocPanel bilingualToc">
-      <a href="#csrf-prevention-bilingual-panel">対比表示</a>
-      <a href="#introduction-1">Introduction</a>
-      <a href="#token-based-mitigation-1">Token-Based Mitigation</a>
-      <a href="#fetch-metadata-and-defense-in-depth">Fetch Metadata and Defense in Depth</a>
-    </nav>
-  </aside>
-
   <section id="csrf-prevention-translation-panel" className="tabPanel translationPanel contentPanel">
 
 ## Introduction
