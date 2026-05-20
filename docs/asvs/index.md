@@ -2,7 +2,7 @@
 
 ## 概要
 
-OWASP Cheat Sheet Series の ASVS Index を起点に、ASVS 5.0.x の各章から関連 Cheat Sheet の日本語翻訳・要約・開発チェックリストへ移動するための索引です。
+OWASP Cheat Sheet Series の ASVS Index を起点に、ASVS 5.0.x の各章から関連 Cheat Sheet の日本語翻訳と公開用英日対訳ページへ移動するための索引です。
 
 この索引とリンク先の文書は OWASP 公式翻訳ではありません。正確な判断には、各ページの Attribution にある公式原文を確認してください。
 

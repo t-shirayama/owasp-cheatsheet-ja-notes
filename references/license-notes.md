@@ -4,7 +4,7 @@
 
 ## 基本方針
 
-- OWASP 由来の翻訳、要約、チェックリストは Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) の条件に従います。
+- OWASP 由来の翻訳、英語原文のローカル参照、英日対訳ページは Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) の条件に従います。
 - 各ドキュメントには `Attribution` セクションを置きます。
 - 原文タイトル、原文 URL、著作者または権利者、ライセンス、ライセンス URL、変更内容、取得日を記載します。
 - このリポジトリは非公式であり、OWASP 公式翻訳として表示しません。
@@ -24,18 +24,6 @@
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: Japanese translation added.
 - Retrieved: YYYY-MM-DD
-```
-
-要約ファイルでは `Changes` を次のようにします。
-
-```markdown
-- Changes: Japanese summary added.
-```
-
-チェックリストファイルでは `Changes` を次のようにします。
-
-```markdown
-- Changes: Development checklist added.
 ```
 
 対訳ページで英語原文、翻訳、ローカル保存画像を含める場合は `Changes` を次のようにします。

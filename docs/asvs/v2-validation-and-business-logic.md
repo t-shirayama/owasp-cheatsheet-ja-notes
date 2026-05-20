@@ -8,40 +8,30 @@
 
 - Abuse Case Cheat Sheet
   - 翻訳: [悪用ケースチートシート 日本語訳](../translations/abuse-case.md)
-  - 要約: [悪用ケースチートシート 要約](../summaries/abuse-case.md)
-  - チェックリスト: [悪用ケースチートシート 開発チェックリスト](../checklists/abuse-case.md)
 - Denial of Service Cheat Sheet
   - 翻訳: [サービス拒否対策チートシート 日本語訳](../translations/denial-of-service.md)
-  - 要約: [サービス拒否対策チートシート 要約](../summaries/denial-of-service.md)
-  - チェックリスト: [サービス拒否対策チートシート 開発チェックリスト](../checklists/denial-of-service.md)
 - Input Validation Cheat Sheet
   - 翻訳: [入力検証チートシート 日本語訳](../translations/input-validation.md)
-  - 要約: [入力検証チートシート 要約](../summaries/input-validation.md)
-  - チェックリスト: [入力検証チートシート 開発チェックリスト](../checklists/input-validation.md)
 - Microservices Security Cheat Sheet
   - 翻訳: [マイクロサービスセキュリティチートシート 日本語訳](../translations/microservices-security.md)
-  - 要約: [マイクロサービスセキュリティチートシート 要約](../summaries/microservices-security.md)
-  - チェックリスト: [マイクロサービスセキュリティチートシート 開発チェックリスト](../checklists/microservices-security.md)
 - Web Service Security Cheat Sheet
   - 翻訳: [Webサービスセキュリティチートシート 日本語訳](../translations/web-service-security.md)
-  - 要約: [Webサービスセキュリティチートシート 要約](../summaries/web-service-security.md)
-  - チェックリスト: [Webサービスセキュリティチートシート 開発チェックリスト](../checklists/web-service-security.md)
 
-## 章別チェック観点
+## 章別確認観点
 
-- ASVS V2 に関連する Cheat Sheet の翻訳、要約、開発チェックリストを確認する。
-- 実装時はチェックリストをタスク化し、設計レビュー、コードレビュー、テストで検証する。
+- ASVS V2 に関連する Cheat Sheet の翻訳と公開用英日対訳ページを確認する。
+- 実装時は公式原文と日本語訳を照合し、設計レビュー、コードレビュー、テスト観点へ落とし込む。
 - 詳細な対応関係は [../../references/source-map.md](../../references/source-map.md) を参照する。
 
 ## 対応表
 
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| V2.1, V2.3, V14.1, V15.1 | Abuse Case Cheat Sheet | [翻訳](../translations/abuse-case.md) / [要約](../summaries/abuse-case.md) / [チェックリスト](../checklists/abuse-case.md) | 作成済み |
-| V2.4 | Denial of Service Cheat Sheet | [翻訳](../translations/denial-of-service.md) / [要約](../summaries/denial-of-service.md) / [チェックリスト](../checklists/denial-of-service.md) | 作成済み |
-| V1, V2, V5 | Input Validation Cheat Sheet | [翻訳](../translations/input-validation.md) / [要約](../summaries/input-validation.md) / [チェックリスト](../checklists/input-validation.md) | 作成済み |
-| V2.2, V11.7 | Microservices Security Cheat Sheet | [翻訳](../translations/microservices-security.md) / [要約](../summaries/microservices-security.md) / [チェックリスト](../checklists/microservices-security.md) | 作成済み |
-| V2.2, V4 | Web Service Security Cheat Sheet | [翻訳](../translations/web-service-security.md) / [要約](../summaries/web-service-security.md) / [チェックリスト](../checklists/web-service-security.md) | 作成済み |
+| V2.1, V2.3, V14.1, V15.1 | Abuse Case Cheat Sheet | [翻訳](../translations/abuse-case.md) | 作成済み |
+| V2.4 | Denial of Service Cheat Sheet | [翻訳](../translations/denial-of-service.md) | 作成済み |
+| V1, V2, V5 | Input Validation Cheat Sheet | [翻訳](../translations/input-validation.md) | 作成済み |
+| V2.2, V11.7 | Microservices Security Cheat Sheet | [翻訳](../translations/microservices-security.md) | 作成済み |
+| V2.2, V4 | Web Service Security Cheat Sheet | [翻訳](../translations/web-service-security.md) | 作成済み |
 
 ## 参考資料
 
