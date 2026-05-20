@@ -1073,7 +1073,26 @@ body {
 }
 
 .theme-doc-toc-desktop {
-  padding-left: 22px;
+  display: none !important;
+}
+
+[class*='docItemCol'] {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
+
+[class*='docMainContainer'] .container {
+  width: min(100%, 1120px);
+  max-width: calc(100% - clamp(48px, 7vw, 128px));
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.theme-doc-markdown,
+.pagination-nav {
+  max-width: 980px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .table-of-contents {
