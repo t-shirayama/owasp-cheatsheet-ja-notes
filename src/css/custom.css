@@ -87,6 +87,15 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+:where(a, button, input, label[role="tab"], .menu__link):focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
+
+html[data-theme="dark"] :where(a, button, input, label[role="tab"], .menu__link):focus-visible {
+  outline-color: #fbbf24;
+}
+
 .navbar {
   border-bottom: 1px solid var(--page-border);
   box-shadow: none;
@@ -1197,6 +1206,12 @@ html[data-theme="dark"] .navbar__search-input:focus {
   color: var(--doc-link-hover);
 }
 
+.contentTabs label[aria-selected="true"] {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
 .contentTabs label[title]:hover::after,
 .contentTabs label[title]:focus-visible::after {
   content: attr(title);
@@ -1493,6 +1508,10 @@ html[data-theme="dark"] .menu__link:hover,
 html[data-theme="dark"] .menu__list-item-collapsible:hover {
   background: #10231f;
   color: var(--doc-link-hover);
+}
+
+html[data-theme="dark"] .contentTabs label[aria-selected="true"] {
+  text-decoration-color: var(--doc-current);
 }
 
 html[data-theme="dark"] .contentTabs label[title]:hover::after,
