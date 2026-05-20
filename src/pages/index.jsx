@@ -113,7 +113,7 @@ const featureItems = [
 export default function Home() {
   return (
     <Layout
-      title="OWASP ASVS Cheat Sheet 日本語ノート"
+      title="OWASP ASVS Cheat Sheet 日本語訳"
       description="Unofficial Japanese ASVS-focused bilingual notes for OWASP Cheat Sheet Series"
     >
       <main className="siteHome">
@@ -122,10 +122,10 @@ export default function Home() {
             <span className="versionPill">ASVS Index focused</span>
             <h1>
               ASVS Index 対応
-              <span>OWASP Cheat Sheet 日本語ノート</span>
+              <span>OWASP ASVS Cheat Sheet 日本語訳</span>
             </h1>
             <p>
-              OWASP Cheat Sheet Series の ASVS Index に対応する原文と日本語訳を、パラグラフ単位で比較しながら読める非公式の日本語ノートです。要点整理とチェックリストで、理解と実務確認を支援します。
+              OWASP Cheat Sheet Series の ASVS Index に対応する原文と日本語訳を、パラグラフ単位で比較しながら読める非公式の日本語訳サイトです。要点整理とチェックリストで、理解と実務確認を支援します。
             </p>
             <div className="heroActions">
               <Link className="button button--primary" to="/cheatsheets/">

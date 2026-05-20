@@ -1,5 +1,5 @@
 const config = {
-  title: 'OWASP ASVS Cheat Sheet 日本語ノート',
+  title: 'OWASP ASVS Cheat Sheet 日本語訳',
   tagline: 'Unofficial Japanese ASVS-focused notes and bilingual views for OWASP Cheat Sheet Series',
   favicon: 'img/logo.svg',
 
@@ -56,7 +56,7 @@ const config = {
   themeConfig: {
     image: 'img/site-card.png',
     navbar: {
-      title: 'OWASP ASVS Cheat Sheet 日本語ノート',
+      title: 'OWASP ASVS Cheat Sheet 日本語訳',
       logo: {
         alt: 'OWASP Cheat Sheet Japanese Notes',
         src: 'img/logo.svg',
