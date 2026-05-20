@@ -648,7 +648,6 @@ MFA as a Service を利用する場合は、導入の容易さだけで判断し
 </div>
 </div>
 
-
 </section>
 </div>
 

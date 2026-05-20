@@ -453,8 +453,10 @@ CSRF トークンは、HTML または JSON レスポンスなどのレスポン�
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```html
 <form action="/transfer.do" method="post">
@@ -658,8 +660,10 @@ CSRF トークンは次のように `<meta>` タグへ含めることができ�
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```code
 // Gather the values
@@ -741,8 +745,10 @@ React では、axios 用の `createCSRFProtectedAxios` や fetch API をラッ�
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```code
 // Get the CSRF token from the request
@@ -833,8 +839,10 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```JavaScript
    const SAFE_METHODS = new Set(['GET','HEAD','OPTIONS']);
@@ -856,8 +864,10 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```JavaScript
    const SAFE_METHODS = new Set(['GET','HEAD','OPTIONS']);
@@ -886,8 +896,10 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```JavaScript
    const trustSameSite = false; // set true only if you trust sibling subdomains
@@ -922,8 +934,10 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```JavaScript
    if (req.get('Sec-Fetch-Mode') === 'navigate' &&
@@ -982,8 +996,10 @@ In this pattern, the client appends a custom header to requests that require CSR
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```
 X-CSRF-Token: RANDOM-TOKEN-VALUE
@@ -1020,8 +1036,10 @@ As an example, you might configure your backend to allow CORS with cookies from 
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```
 Access-Control-Allow-Origin=http://mobile.yoursite.com
@@ -1039,8 +1057,10 @@ or
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```
 Access-Control-Allow-Origin=http://www.yoursite.com
@@ -1072,8 +1092,10 @@ The following code snippet demonstrates a simple example of a client-side CSRF v
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```html
 <script type="text/javascript">
@@ -1148,8 +1170,10 @@ Example of cookies using this attribute:
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```text
 Set-Cookie: JSESSIONID=xxxxx; SameSite=Strict
@@ -1305,8 +1329,10 @@ The following code snippet can be used to include a CSRF token as a `<meta>` tag
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```html
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -1333,8 +1359,10 @@ This can be done as demonstrated in the following code snippet:
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```html
 <script type="text/javascript">
@@ -1383,8 +1411,10 @@ Angular's HttpClient supports the Cookie-to-Header Pattern used to prevent XSRF 
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```typescript
 // app.config.ts
@@ -1411,8 +1441,10 @@ For React applications, you can use axios interceptors to implement the cookie-t
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```jsx
 // csrf-protection.js
@@ -1455,8 +1487,10 @@ export default api;
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```html
 <script type="text/javascript">
@@ -1501,8 +1535,10 @@ You can configure jQuery to automatically add the token to all request headers b
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```html
 <script type="text/javascript">
@@ -1538,8 +1574,10 @@ TypeScript allows you to create strongly typed utilities for CSRF protection. He
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```typescript
 // csrf-protection.ts
@@ -1626,8 +1664,10 @@ Angular is built with TypeScript, making it a natural fit for strongly-typed CSR
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```typescript
 // app.config.ts
@@ -1662,8 +1702,10 @@ For a custom HTTP interceptor that handles CSRF tokens:
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```typescript
 // csrf.interceptor.ts
@@ -1726,8 +1768,10 @@ Here's a TypeScript implementation for React applications using axios:
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```typescript
 // csrf-axios.ts
@@ -1817,8 +1861,10 @@ For React applications using fetch API with TypeScript:
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```typescript
 // csrf-fetch.ts
@@ -1948,7 +1994,6 @@ export class CSRFProtectedFetch {
 </div>
 
 </div>
-
 
 </section>
 </div>

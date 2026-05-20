@@ -548,8 +548,6 @@ Bean validation (aka [Jakarta Validation](https://beanvalidation.org/)) is one o
 
 One advantage of this approach is that the validation constraints and the corresponding validators are only written once, thus reducing duplication of effort and ensuring uniformity:
 
-### Typical Validation
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -562,33 +560,22 @@ Bean Validation、別名 [Jakarta Validation](https://beanvalidation.org/) は�
 
 この方式の利点の一つは、検証制約と対応するバリデータを一度だけ記述すればよいことです。これにより作業の重複が減り、一貫性を保てます。
 
-### Typical Validation
+</div>
+</div>
 
-</div>
-</div>
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+<strong className="bilingualCommonTitle">Typical Validation（Typical Validation）</strong>
+
 
 ![Typical](/img/owasp-cheatsheets/bean-validation/typical.png)
 
 </div>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-### Bean Validation
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### Bean Validation
-
-</div>
-</div>
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+<strong className="bilingualCommonTitle">Bean Validation（Bean Validation）</strong>
+
 
 ![JSR](/img/owasp-cheatsheets/bean-validation/jsr.png)
 
@@ -616,8 +603,10 @@ Hibernate Validator を **pom.xml** に追加します。
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```xml
 <dependency>
@@ -643,8 +632,10 @@ Spring の **context.xml** で Bean Validation サポートを有効にします
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```xml
 <beans:beans ...
@@ -670,7 +661,6 @@ For more info, please see the [setup guide](https://hibernate.org/validator/docu
 
 </div>
 </div>
-
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -722,7 +712,6 @@ Bean Validation 1.1 では、さらに次の場所にも適用できます。
 
 </div>
 </div>
-
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -778,8 +767,10 @@ Checks if the annotated string matches the regular expression regex considering 
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 import org.hibernate.validator.constraints.Pattern;
@@ -816,8 +807,10 @@ public class Article  {
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 import javax.validation.Valid;
@@ -898,8 +891,10 @@ Checks whether the annotated value is a number having up to integer digits and f
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 import org.hibernate.validator.constraints.Digits;
@@ -957,8 +952,10 @@ public class Customer {
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 import javax.validation.Valid;
@@ -1041,8 +1038,10 @@ Checks if the annotated element's size is between min and max (inclusive)
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 import org.hibernate.validator.constraints.Size;
@@ -1102,8 +1101,10 @@ public class Message {
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 import javax.validation.Valid;
@@ -1215,8 +1216,10 @@ Checks whether the annotated date is in the past / future
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 import org.hibernate.validator.constraints.Past;
@@ -1302,8 +1305,10 @@ public class DoctorVisit {
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 import javax.validation.Valid;
@@ -1419,8 +1424,10 @@ Checks whether the annotated value is higher/lower than or equal to the specifie
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 import org.hibernate.validator.constraints.Min;
@@ -1482,8 +1489,10 @@ public class Review {
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 import javax.validation.Valid;
@@ -1596,7 +1605,6 @@ Hibernate Validator は JSR303 制約一式に加えて、利便性のために�
 </div>
 </div>
 
-
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
@@ -1620,7 +1628,6 @@ Bean Validation の最も強力な機能の一つは、組み込み制約が提�
 </div>
 </div>
 
-
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
@@ -1639,8 +1646,10 @@ It is possible to specify a message ID with the validation annotation, so that e
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```java
 @Pattern(regexp = "[a-zA-Z0-9 ]", message="article.title.error")
@@ -1668,7 +1677,6 @@ Spring MVC は、定義済みの `MessageSource` から ID `article.title.error`
 
 </div>
 </div>
-
 
 </section>
 </div>

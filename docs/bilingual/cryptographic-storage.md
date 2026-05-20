@@ -332,7 +332,6 @@ Passwords should not be stored using reversible encryption - secure password has
 </div>
 </div>
 
-
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
@@ -389,7 +388,6 @@ The best way to protect sensitive information is to not store it in the first pl
 
 </div>
 </div>
-
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -548,7 +546,6 @@ Universally unique identifier（UUID または GUID）は、ランダム文字�
 </div>
 </div>
 
-
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
@@ -635,7 +632,6 @@ It is important that the code and processes required to rotate a key are in plac
 
 </div>
 </div>
-
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -747,7 +743,6 @@ KEK も DEK と少なくとも同等の強度を持つべきです。Google の 
 
 </div>
 </div>
-
 
 </section>
 </div>

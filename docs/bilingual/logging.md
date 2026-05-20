@@ -624,8 +624,10 @@ For example, all external requests from users go through the API management serv
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ![MIDDLEWARE](https://raw.githubusercontent.com/OWASP/CheatSheetSeries/master/assets/Logging_Cheat_Sheet.drawio.png)
 
@@ -744,7 +746,6 @@ Who is responsible for harm?
 </div>
 
 </div>
-
 
 </section>
 </div>

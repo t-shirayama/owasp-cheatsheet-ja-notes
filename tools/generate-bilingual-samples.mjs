@@ -1317,6 +1317,35 @@ function uniqueSharedBlocks(...groups) {
   return shared;
 }
 
+function takeTrailingHeading(text) {
+  const lines = normalizeNewlines(text).trimEnd().split('\n');
+  while (lines.length > 0 && lines[lines.length - 1].trim() === '') {
+    lines.pop();
+  }
+  const lastLine = lines[lines.length - 1] ?? '';
+  const match = /^(#{2,6})\s+(.+?)\s*$/.exec(lastLine);
+  if (!match) {
+    return { text: text.trim(), heading: null };
+  }
+  lines.pop();
+  return {
+    text: lines.join('\n').replace(/\n{3,}/g, '\n\n').trim(),
+    heading: {
+      level: match[1].length,
+      title: match[2],
+    },
+  };
+}
+
+function sharedHeadingTitle(englishHeading, japaneseHeading) {
+  if (!englishHeading && !japaneseHeading) {
+    return '';
+  }
+  const englishTitle = englishHeading?.title ?? japaneseHeading.title;
+  const japaneseTitle = japaneseHeading?.title ?? englishTitle;
+  return `${englishTitle}（${japaneseTitle}）`;
+}
+
 function bilingualPairs(english, japanese) {
   const englishSections = splitSections(english);
   const japaneseSections = splitSections(japanese);
@@ -1337,9 +1366,12 @@ function bilingualPairs(english, japanese) {
     for (let segmentIndex = 0; segmentIndex < segmentCount; segmentIndex++) {
       const enParts = enSegments[segmentIndex] ?? { text: '', shared: [] };
       const jaParts = jaSegments[segmentIndex] ?? { text: '', shared: [] };
-      const en = enParts.text;
-      const ja = jaParts.text;
       const shared = uniqueSharedBlocks(enParts.shared, jaParts.shared).join('\n\n');
+      const enText = shared ? takeTrailingHeading(enParts.text) : { text: enParts.text, heading: null };
+      const jaText = shared ? takeTrailingHeading(jaParts.text) : { text: jaParts.text, heading: null };
+      const en = enText.text;
+      const ja = jaText.text;
+      const heading = sharedHeadingTitle(enText.heading, jaText.heading);
       const englishBlock = en
         ? `<div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
@@ -1351,6 +1383,7 @@ ${en}
       const sharedBlock = shared
         ? `<div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+${heading ? `<strong className="bilingualCommonTitle">${heading}</strong>\n` : ''}
 
 ${shared}
 
@@ -1364,11 +1397,15 @@ ${ja}
 
 </div>`
         : '';
-      chunks.push(`<div className="bilingualPair">
+      if (englishBlock || japaneseBlock) {
+        chunks.push(`<div className="bilingualPair">
 ${englishBlock}
 ${japaneseBlock}
-</div>
-${sharedBlock}`);
+</div>`);
+      }
+      if (sharedBlock) {
+        chunks.push(sharedBlock);
+      }
     }
   }
 

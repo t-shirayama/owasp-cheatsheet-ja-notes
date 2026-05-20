@@ -258,8 +258,10 @@ Cookie でセッション ID を扱う場合は、属性を安全に設定しま
 
 </div>
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ![SessionDiagram](https://cheatsheetseries.owasp.org/assets/Session_Management_Cheat_Sheet_Diagram.png)
 
@@ -405,8 +407,10 @@ Example:
 </div>
 
 </div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
 
 ```http
 Set-Cookie: __Host-SessionID=<value>; Secure; HttpOnly; SameSite=Strict; Path=/
@@ -710,7 +714,6 @@ The open-source ModSecurity WAF, plus the OWASP [Core Rule Set](https://owasp.or
 </div>
 
 </div>
-
 
 </section>
 </div>
