@@ -35,7 +35,7 @@
 - [ ] [docs/translations/xxe-prevention.md](../docs/translations/xxe-prevention.md): XML External Entity Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/60。
 - [ ] [docs/translations/browser-extension-vulnerabilities.md](../docs/translations/browser-extension-vulnerabilities.md): Browser Extension Vulnerabilities Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/53。
 - [ ] [docs/translations/logging.md](../docs/translations/logging.md): Logging Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.15, 見出し 11/26。
-- [ ] [docs/translations/cryptographic-storage.md](../docs/translations/cryptographic-storage.md): Cryptographic Storage Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.15, 見出し 7/18。
+- [x] [docs/translations/cryptographic-storage.md](../docs/translations/cryptographic-storage.md): Cryptographic Storage Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳へ拡張。
 - [ ] [docs/translations/key-management.md](../docs/translations/key-management.md): Key Management Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.04, 見出し 0/25。
 - [ ] [docs/translations/secrets-management.md](../docs/translations/secrets-management.md): Secrets Management Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.01, 見出し 0/70。
 - [ ] [docs/translations/django-security.md](../docs/translations/django-security.md): Django Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.02, 見出し 1/13。

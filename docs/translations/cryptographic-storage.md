@@ -8,63 +8,202 @@
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: Japanese translation added.
-- Retrieved: 2026-05-20
+- Retrieved: 2026-05-21
 
 ## 日本語訳
 
-このチートシートは、保存データを保護するための暗号化ストレージ設計の基本モデルを示します。パスワードは可逆暗号で保存せず、Password Storage Cheat Sheet に従って安全なパスワードハッシュを使います。
+## Introduction
 
-## アーキテクチャ設計
+この記事は、保存データを保護するソリューションを実装する際に従うための単純なモデルを提供します。
 
-暗号化の設計は、まず脅威モデルから始めます。物理盗難、データベース侵害、アプリケーション侵害、内部者、クラウド管理面の侵害など、誰からどのデータを守るのかで適切な層が変わります。専用のシークレット管理または鍵管理システムは追加の保護と運用容易性を提供しますが、複雑さと管理負荷も増えます。クラウド環境では、可能な限り KMS や Key Vault などのマネージドサービスを利用します。
+パスワードは可逆暗号で保存してはいけません。代わりに安全なパスワードハッシュアルゴリズムを使用する必要があります。[Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html) には、パスワード保存に関する追加のガイダンスがあります。
 
-暗号化は、アプリケーション、データベース、ファイルシステム、ハードウェアの各層で実施できます。ハードウェア暗号化は物理盗難には有効ですが、サーバーがリモート侵害された場合の保護にはなりません。どの層で暗号化するかは脅威モデルに基づいて決めます。
+## Architectural Design
 
-機密情報を守る最良の方法は、そもそも保存しないことです。特にカード情報のような攻撃価値が高く規制要件の厳しい情報は、保存を避けられるかを優先して検討します。
+アプリケーション設計の最初のステップは、システム全体のアーキテクチャを検討することです。これは技術的な実装に大きな影響を与えるためです。
 
-## アルゴリズム
+このプロセスは、アプリケーションの [脅威モデル](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html) を検討することから始めるべきです。つまり、誰からそのデータを保護しようとしているのかを明確にします。
 
-対称暗号では、少なくとも 128 bit、理想的には 256 bit の鍵を持つ AES と安全なモードを優先します。非対称暗号では、Curve25519 など安全な曲線を用いた ECC を優先します。ECC が利用できず RSA を使う場合は、少なくとも 2048 bit の鍵を使います。
+専用のシークレット管理または鍵管理システムを使用すると、追加のセキュリティ保護層を提供でき、シークレット管理も大幅に容易になります。ただし、複雑さと管理上のオーバーヘッドが増えるため、すべてのアプリケーションで実現可能とは限りません。多くのクラウド環境ではこれらのサービスが提供されているため、可能な場合は活用すべきです。このトピックの詳細は [Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) を参照してください。
 
-アルゴリズム選定では、鍵長、既知の攻撃と弱点、成熟度、NIST など第三者による承認、暗号化と復号の性能、ライブラリ品質、移植性、FIPS や PCI DSS などの規制要件を考慮します。独自暗号は作らず、使いません。
+### Where to Perform Encryption
 
-## 暗号モードとパディング
+暗号化は、アプリケーションスタックのさまざまなレベルで実行できます。
 
-ブロック暗号のモードはセキュリティ特性が異なります。利用可能な場合は、機密性だけでなく完全性と真正性も提供する認証付きモードを使います。第一候補は GCM または CCM です。利用できない場合は CTR または CBC を使い、Encrypt-then-MAC などで別途認証を実装します。ECB は非常に限定的な例外を除き使用しません。
+- アプリケーションレベル
+- データベースレベル（例: [SQL Server TDE](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15)）
+- ファイルシステムレベル（例: BitLocker または LUKS）
+- ハードウェアレベル（例: 暗号化 RAID カードまたは SSD）
 
-RSA ではランダムパディング、つまり OAEP を有効化します。これは既知平文攻撃に対する防御として、ペイロードの先頭にランダム性を加えるものです。
+どの層が最も適切かは、脅威モデルによって異なります。たとえば、ハードウェアレベルの暗号化はサーバーの物理的盗難に対して有効ですが、攻撃者がリモートからサーバーを侵害できる場合には保護になりません。
 
-## セキュア乱数
+### Minimise the Storage of Sensitive Information
 
-暗号鍵、IV、セッション ID、CSRF トークン、パスワードリセットトークンなど、セキュリティ上重要な値には CSPRNG を使います。通常の PRNG は高速ですが、攻撃者が出力を推測できる可能性があるため、セキュリティ用途に使ってはいけません。`Math.random()`、`java.util.Random`、Python の `random()` などを鍵やトークン生成に使わないようにします。
+機密情報を保護する最良の方法は、そもそも保存しないことです。これはあらゆる種類の情報に当てはまりますが、攻撃者にとって価値が高く、PCI DSS が保存方法に厳格な要件を課しているクレジットカード情報に特に当てはまります。可能な限り、機密情報の保存は避けるべきです。
 
-UUID/GUID はランダム文字列生成の簡易手段として使われることがありますが、バージョンによって性質が異なります。Version 1 UUID は時刻と MAC アドレスに基づくためランダムではありません。Version 4 UUID でも、実装が CSPRNG を使うことが確認できない限り、セキュリティ上重要な乱数として依存しません。
+## Algorithms
 
-## 多層防御
+対称暗号では、少なくとも **128 bit**、理想的には **256 bit** の鍵を持つ **AES** と安全な [モード](#cipher-modes) を優先アルゴリズムとして使用すべきです。
 
-暗号制御が失敗しても安全性が保たれるように設計します。暗号化された情報も、認可、アクセス制御、監査ログ、ネットワーク分離など追加の保護で守ります。暗号化された URL パラメータの安全性だけに依存せず、サーバー側で強いアクセス制御を実施します。
+非対称暗号では、**Curve25519** などの安全な曲線を用いる楕円曲線暗号（ECC）を優先アルゴリズムとして使用します。ECC が利用できず **RSA** を使用しなければならない場合は、鍵長が少なくとも **2048 bit** であることを確認します。
 
-## 鍵管理
+他にも多数の対称・非対称アルゴリズムがあり、それぞれ長所と短所があります。特定のユースケースでは AES や Curve25519 より適している場合も、不適切な場合もあります。検討時には、次の要素を考慮します。
 
-鍵管理には、鍵の生成、保管、必要な相手への配布、アプリケーションサーバーへの展開、古い鍵のローテーションと廃止を含む正式なプロセスを実装し、テストします。鍵は CSPRNG で生成し、一般的な単語、フレーズ、手入力のランダム風文字列に基づいて作ってはいけません。データ暗号化鍵と鍵暗号化鍵など複数の鍵を使う場合は、互いに独立させます。
+- 鍵長
+- アルゴリズムに対する既知の攻撃と弱点
+- アルゴリズムの成熟度
+- [NIST のアルゴリズム検証プログラム](https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program) など第三者による承認
+- 性能（暗号化と復号の両方）
+- 利用可能なライブラリの品質
+- アルゴリズムの移植性、つまりどの程度広くサポートされているか
 
-鍵は、侵害の疑い、アクセス権を持つ人物の離職、暗号期間の経過、一定量のデータ暗号化、アルゴリズムへの新しい攻撃などを契機にローテーションします。古いデータは復号して新鍵で再暗号化するか、データごとに鍵 ID を記録して複数鍵で復号可能にします。可能であれば前者が単純ですが、バックアップ復号のために廃止鍵を一定期間保管する必要がある場合があります。侵害時に迅速にローテーションできるよう、必要なコードと手順を事前に用意します。
+場合によっては、[FIPS 140-2](https://csrc.nist.gov/csrc/media/publications/fips/140/2/final/documents/fips1402annexa.pdf) や [PCI DSS](https://www.pcisecuritystandards.org/pci_security/glossary#Strong%20Cryptography) など、使用できるアルゴリズムを制限する規制要件が存在することがあります。
 
-## 鍵保管
+### Custom Algorithms
 
-鍵の安全な保管は難しい課題です。可能な場合は、HSM、仮想 HSM、AWS KMS や Azure Key Vault などの key vault、HashiCorp Vault など外部シークレット管理、OS やフレームワークの安全な保管 API を利用します。これにより、鍵の集中管理、ローテーション、セキュア生成、規制対応、鍵のエクスポート困難化が可能になります。
+これを行ってはいけません。
 
-最低限のルールとして、鍵をソースコードへハードコードしない、バージョン管理へコミットしない、鍵を含む設定ファイルに厳格な権限を設定する、環境変数への保存を避けることが必要です。環境変数は `phpinfo()` や `/proc/self/environ` などを通じて露出する可能性があります。
+### Cipher Modes
 
-鍵と暗号化データは可能な限り別の場所へ保管します。データがデータベースにあるなら鍵をファイルシステムや別システムへ置くなど、SQL インジェクションやディレクトリトラバーサルの片方だけで鍵とデータの両方を取られないようにします。鍵自体も暗号化して保存できる場合は、データ暗号化鍵 (DEK) と鍵暗号化鍵 (KEK) を分離し、KEK を DEK と別の場所へ保管します。
+AES などのブロック暗号が、ストリーム暗号と同じように任意量のデータを暗号化できるようにするために、さまざまな [モード](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) を使用できます。これらのモードには異なるセキュリティ特性と性能特性があり、詳細な議論はこのチートシートの範囲外です。一部のモードでは安全な初期化ベクトル（IV）やその他の属性の生成が必要ですが、これはライブラリによって自動的に処理されるべきです。
+
+利用可能な場合は、認証付きモードを常に使用すべきです。これらは機密性に加えて、データの完全性と真正性を保証します。最も一般的に使われる認証付きモードは **[GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode)** と **[CCM](https://en.wikipedia.org/wiki/CCM_mode)** であり、第一候補として使用すべきです。
+
+GCM または CCM が利用できない場合は、[CTR](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_%28CTR%29) モードまたは [CBC](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_Block_Chaining_%28CBC%29) モードを使用すべきです。これらはデータの真正性を保証しないため、[Encrypt-then-MAC](https://en.wikipedia.org/wiki/Authenticated_encryption#Encrypt-then-MAC_%28EtM%29) などを使って別途認証を実装する必要があります。この方法を [可変長メッセージ](https://en.wikipedia.org/wiki/CBC-MAC#Security_with_fixed_and_variable-length_messages) に使用する際には注意が必要です。
+
+[ECB](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#ECB) は、非常に特殊な状況を除いて使用すべきではありません。
+
+### Random Padding
+
+RSA では Random Padding を有効にすることが不可欠です。Random Padding は OAEP、つまり Optimal Asymmetric Encryption Padding とも呼ばれます。この防御は、ペイロードの先頭にランダム性を追加することで、既知平文攻撃から保護します。
+
+通常、この場合は [PKCS#1](https://wikipedia.org/wiki/RSA_(cryptosystem)#Padding_schemes) の Padding Schema が使用されます。
+
+### Secure Random Number Generation
+
+暗号鍵、IV、セッション ID、CSRF トークン、パスワードリセットトークンなど、セキュリティ上重要な機能では乱数または文字列が必要です。そのため、これらは安全に生成され、攻撃者が推測または予測できないようにすることが重要です。
+
+コンピュータが特殊なハードウェアなしで真の乱数を生成することは一般にできないため、多くのシステムと言語では2種類のランダム性が提供されます。
+
+疑似乱数生成器（PRNG）は品質の低いランダム性を提供しますが、高速であり、ページ上の結果の並び替えや UI 要素のランダム化など、セキュリティに関係しない機能に使用できます。しかし、攻撃者が出力を推測または予測できる場合が多いため、セキュリティ上重要な用途には **絶対に使用してはいけません**。
+
+暗号学的に安全な疑似乱数生成器（CSPRNG）は、より高品質なランダム性、より厳密にはより大きなエントロピーを生成するように設計されており、セキュリティに敏感な機能に安全に使用できます。ただし、より低速で CPU 負荷が高く、大量のランダムデータが要求される場合には状況によってブロックされることがあります。そのため、セキュリティに関係しない大量のランダム性が必要な場合には適さないことがあります。
+
+次の表は、各言語で推奨されるアルゴリズムと、使用してはいけない安全でない関数を示します。
+
+| Language | Unsafe Functions | Cryptographically Secure Functions |
+| --- | --- | --- |
+| C | `random()`, `rand()` | [getrandom(2)](http://man7.org/linux/man-pages/man2/getrandom.2.html) |
+| Java | `Math.random()`, `StrictMath.random()`, `java.util.Random`, `java.util.SplittableRandom`, `java.util.concurrent.ThreadLocalRandom` | [java.security.SecureRandom](https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html), [java.util.UUID.randomUUID()](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#randomUUID--) |
+| PHP | `array_rand()`, `lcg_value()`, `mt_rand()`, `rand()`, `uniqid()` | [random_bytes()](https://www.php.net/manual/en/function.random-bytes.php), [Random\Engine\Secure](https://www.php.net/manual/en/class.random-engine-secure.php), [random_int()](https://www.php.net/manual/en/function.random-int.php), [openssl_random_pseudo_bytes()](https://www.php.net/manual/en/function.openssl-random-pseudo-bytes.php) |
+| .NET/C# | `Random()` | [RandomNumberGenerator](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.randomnumbergenerator?view=net-6.0) |
+| Objective-C | `arc4random()`/`arc4random_uniform()`、`GKRandomSource` のサブクラス、`rand()`、`random()` | [SecRandomCopyBytes](https://developer.apple.com/documentation/security/1399291-secrandomcopybytes?language=objc) |
+| Python | `random()` | [secrets()](https://docs.python.org/3/library/secrets.html#module-secrets) |
+| Ruby | `rand()`, `Random` | [SecureRandom](https://ruby-doc.org/stdlib-2.5.1/libdoc/securerandom/rdoc/SecureRandom.html) |
+| Go | `math/rand` パッケージの `rand` | [crypto.rand](https://golang.org/pkg/crypto/rand/) パッケージ |
+| Rust | `rand::prng::XorShiftRng` | [rand::prng::chacha::ChaChaRng](https://docs.rs/rand/0.5.0/rand/prng/chacha/struct.ChaChaRng.html) と Rust ライブラリの [CSPRNGs](https://docs.rs/rand/0.5.0/rand/prng/index.html#cryptographically-secure-pseudo-random-number-generators-csprngs) |
+| Node.js | `Math.random()` | [crypto.randomBytes()](https://nodejs.org/api/crypto.html#cryptorandombytessize-callback), [crypto.randomInt()](https://nodejs.org/api/crypto.html#cryptorandomintmin-max-callback), [crypto.randomUUID()](https://nodejs.org/api/crypto.html#cryptorandomuuidoptions) |
+
+#### UUIDs and GUIDs
+
+Universally unique identifier（UUID または GUID）は、ランダム文字列を生成する手軽な方法として使われることがあります。ある程度のランダム性を提供する場合もありますが、それは作成される UUID の [タイプまたはバージョン](https://en.wikipedia.org/wiki/Universally_unique_identifier#Versions) に依存します。
+
+具体的には、バージョン 1 UUID は高精度タイムスタンプと生成したシステムの MAC アドレスで構成されるため、**ランダムではありません**（タイムスタンプが 100ns 単位であるため推測しにくい場合はあります）。タイプ 4 UUID はランダムに生成されますが、CSPRNG を使用するかどうかは実装に依存します。特定の言語またはフレームワークで安全であることが分かっていない限り、UUID のランダム性に依存すべきではありません。
+
+### Defence in Depth
+
+アプリケーションは、暗号制御が失敗した場合でも安全であり続けるように設計すべきです。暗号化形式で保存される情報も、追加のセキュリティ層で保護すべきです。また、暗号化された URL パラメータの安全性だけに依存せず、情報への不正アクセスを防ぐために強力なアクセス制御を実施すべきです。
+
+## Key Management
+
+### Processes
+
+鍵管理のすべての側面をカバーする正式なプロセスを実装し、テストすべきです。これには次が含まれます。
+
+- 新しい鍵の生成と保存
+- 必要な相手への鍵の配布
+- アプリケーションサーバーへの鍵の展開
+- 古い鍵のローテーションと廃止
+
+### Key Generation
+
+鍵は、[Secure Random Number Generation](#secure-random-number-generation) セクションで説明したような暗号学的に安全な関数を使ってランダムに生成すべきです。鍵は一般的な単語やフレーズ、またはキーボードを適当に叩いて生成した「ランダム」文字列に基づいてはいけません。
+
+複数の鍵を使用する場合（データ暗号化鍵と鍵暗号化鍵など）は、それらを互いに完全に独立させるべきです。
+
+### Key Lifetimes and Rotation
+
+暗号鍵は、次のような複数の基準に基づいて変更またはローテーションすべきです。
+
+- 以前の鍵が侵害されたことが分かっている、または疑われる場合
+  - これは鍵にアクセスできた人物が組織を離れた場合にも発生し得ます。
+- 指定された期間、つまり暗号期間が経過した場合
+  - 適切な暗号期間に影響する要素は、鍵のサイズ、データの機密性、システムの脅威モデルなど多数あります。詳細は [NIST SP 800-57](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) の 5.3 節を参照してください。
+- 鍵が特定量のデータを暗号化するために使用された場合
+  - これは通常、64 bit 鍵で `2^35` バイト（約 34GB）、128 bit ブロックサイズで `2^68` バイト（約 295 エクサバイト）です。
+- 新しい攻撃が発表されるなど、アルゴリズムが提供するセキュリティに重大な変化があった場合
+
+これらの基準のいずれかに該当したら、新しい鍵を生成し、新しいデータの暗号化に使用すべきです。古い鍵で暗号化された既存データの扱いには、主に2つの方式があります。
+
+1. 復号して新しい鍵で再暗号化する。
+2. 各項目に暗号化に使われた鍵 ID を付与し、古いデータを復号できるように複数の鍵を保管する。
+
+通常は1つ目の方式が望ましいです。アプリケーションコードと鍵管理プロセスの両方を大幅に単純化できるためです。ただし、常に実現可能とは限りません。古いバックアップやデータコピーを復号する必要がある場合に備えて、廃止された古い鍵を一定期間保存する必要があることにも注意してください。
+
+鍵が侵害された場合に迅速にローテーションできるよう、鍵ローテーションに必要なコードとプロセスは、それが必要になる **前に** 用意しておくことが重要です。さらに、アルゴリズムまたは実装に新しい脆弱性が見つかった場合に備えて、暗号アルゴリズムまたはライブラリを変更できるプロセスも実装すべきです。
+
+## Key Storage
+
+暗号鍵を安全に保存することは、解決が最も難しい問題の一つです。アプリケーションはデータを復号するために常に何らかのレベルで鍵へアクセスする必要があるためです。アプリケーションを完全に侵害した攻撃者から鍵を完全に保護することはできない場合がありますが、鍵の取得を難しくするためにいくつかの対策を取ることができます。
+
+利用可能な場合は、OS、フレームワーク、またはクラウドサービスプロバイダが提供する安全な保存メカニズムを使用すべきです。これには次が含まれます。
+
+- 物理 Hardware Security Module（HSM）
+- 仮想 HSM
+- [Amazon KMS](https://aws.amazon.com/kms/) や [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/) などの key vault
+- [Conjur](https://github.com/cyberark/conjur) や [HashiCorp Vault](https://github.com/hashicorp/vault) などの外部シークレット管理サービス
+- .NET Framework の [ProtectedData](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata?redirectedfrom=MSDN&view=netframework-4.8) クラスが提供する安全な保存 API
+
+この種の安全な保存を使用することには、単に設定ファイルへ鍵を置く場合と比べて多くの利点があります。具体的な内容は使用するソリューションによって異なりますが、次のようなものがあります。
+
+- 特にコンテナ化環境での鍵の集中管理
+- 鍵の容易なローテーションと置換
+- 安全な鍵生成
+- FIPS 140 や PCI DSS などの規制標準への準拠の簡素化
+- 攻撃者が鍵をエクスポートまたは窃取することの困難化
+
+共有ホスティング環境など、これらを利用できない場合もあります。その場合、暗号鍵に高い保護を与えることはできません。しかし、次の基本ルールには従えます。
+
+- 鍵をアプリケーションソースコードにハードコードしない。
+- 鍵をバージョン管理システムにコミットしない。
+- 鍵を含む設定ファイルを制限的な権限で保護する。
+- 鍵を環境変数に保存することを避ける。環境変数は [phpinfo()](https://www.php.net/manual/en/function.phpinfo.php) や `/proc/self/environ` ファイルを通じて偶発的に露出する可能性があります。
+
+[Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) には、シークレットを安全に保存するための詳細があります。
+
+### Separation of Keys and Data
+
+可能な場合、暗号鍵は暗号化データとは別の場所に保存すべきです。たとえばデータがデータベースに保存されている場合、鍵はファイルシステムに保存します。これにより、攻撃者がディレクトリトラバーサルや SQL インジェクションなどで片方にしかアクセスできない場合、鍵とデータの両方へアクセスすることを防げます。
+
+環境のアーキテクチャによっては、鍵とデータを別々のシステムに保存できる場合があり、これにより分離の度合いを高められます。
+
+### Encrypting Stored Keys
+
+可能な場合、暗号鍵自体も暗号化された形式で保存すべきです。そのためには少なくとも2つの別々の鍵が必要です。
+
+- Data Encryption Key（DEK）はデータの暗号化に使用します。
+- Key Encryption Key（KEK）は DEK の暗号化に使用します。
+
+これを有効にするには、KEK を DEK とは別に保存する必要があります。暗号化された DEK はデータと一緒に保存できますが、別システムに保存された KEK も入手しない限り、攻撃者はそれを使用できません。
+
+KEK も DEK と少なくとも同等の強度を持つべきです。Google の [envelope encryption](https://cloud.google.com/kms/docs/envelope-encryption) ガイダンスには、DEK と KEK の管理方法に関する詳細があります。
+
+共有ホスティング環境のように KEK と DEK を分離して保存できない単純なアプリケーションアーキテクチャでは、この方式の価値は限定的です。攻撃者が両方の鍵を同時に入手できる可能性が高いためです。ただし、熟練していない攻撃者に対する追加の障壁にはなり得ます。
+
+鍵導出関数（KDF）を使用して、ユーザーが入力したパスフレーズなどから KEK を生成し、それを使ってランダムに生成された DEK を暗号化することもできます。これにより、DEK は同じまま、ユーザーがパスフレーズを変更したときに KEK を容易に変更できます。
 
 ## ASVS との対応
 
 | ASVS 項目 | 関連内容 |
 | --- | --- |
-| V11.1 Cryptographic Inventory and Documentation | 保護対象データ、暗号化層、アルゴリズム、鍵管理プロセスの文書化 |
-| V11.2 Secure Cryptography Implementation | 標準ライブラリ、独自暗号禁止、認証付き暗号、RSA OAEP、多層防御 |
-| V11.3 Encryption Algorithms | AES、ECC、RSA 鍵長、GCM/CCM、ECB 禁止 |
-| V11.5 Random Values | CSPRNG、UUID/GUID の扱い、鍵・IV・トークン生成 |
-| V13.3 Secret Management | KMS、Vault、HSM、鍵保管、鍵とデータの分離、環境変数回避 |
-| V14.1 Data Protection Documentation | 保存しない設計、データ分類、保存場所、規制要件 |
+| V11.1, V11.2, V11.3, V11.5, V13.3, V14.1 | 保存データ保護、暗号アルゴリズム、乱数生成、鍵管理、鍵保管 |

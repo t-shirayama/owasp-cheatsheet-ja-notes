@@ -6,7 +6,7 @@ hide_title: true
 <div className="docHero" data-category="cryptographic-storage">
   <h1>暗号化ストレージチートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">最終更新: 2026-05-21</span>
     <span className="docPill">読了時間: 約 9 分</span>
     <span className="docPill">カテゴリ: 暗号</span>
   </div>
@@ -1427,6 +1427,6 @@ A key derivation function (KDF) could be used to generate a KEK from user-suppli
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-20
+- Retrieved: 2026-05-21
 
 </div>
