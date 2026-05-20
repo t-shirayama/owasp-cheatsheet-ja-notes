@@ -23,7 +23,7 @@
   --ifm-menu-color: #334155;
   --ifm-menu-color-active: #0f5be8;
   --ifm-menu-color-background-active: #edf5ff;
-  --doc-sidebar-width-value: 500px;
+  --doc-sidebar-width-value: 460px;
   --doc-sidebar-width: var(--doc-sidebar-width-value);
   --doc-sidebar-outer-margin: 24px;
   --page-border: #d8e1f2;
@@ -894,8 +894,8 @@ html[data-theme="dark"] .bilingualCommon {
   --doc-blue-soft: #eef5ff;
   --doc-current: #0f55c8;
   --doc-current-strong: #0b49ad;
-  --doc-link: #165fd7;
-  --doc-link-hover: #0e4fb6;
+  --doc-link: #2b5f9e;
+  --doc-link-hover: #174f93;
   --doc-meta-bg: #f4f8ff;
   --doc-meta-border: #d6e5ff;
   --doc-meta-text: #34527d;
@@ -1070,16 +1070,16 @@ body {
 .menu__link--active:not(.menu__link--sublist),
 .menu__list-item-collapsible--active {
   border: 1px solid #c7dcff;
-  border-left: 4px solid var(--doc-current);
+  border-left: 5px solid var(--doc-current);
   background: #f5f9ff;
   color: var(--doc-current);
-  box-shadow: 0 8px 22px rgba(21, 101, 255, 0.08);
+  box-shadow: 0 10px 24px rgba(21, 101, 255, 0.1);
 }
 
 .menu__list-item-collapsible--active .menu__link,
 .menu__link--active {
   color: var(--doc-current);
-  font-weight: 850;
+  font-weight: 900;
 }
 
 .menu__list .menu__list .menu__link {
@@ -1089,7 +1089,7 @@ body {
 
 .menu__list .menu__list .menu__link--active {
   color: var(--doc-current);
-  font-weight: 850;
+  font-weight: 900;
 }
 
 .breadcrumbs {
@@ -1122,20 +1122,23 @@ body {
 }
 
 .docMeta {
-  gap: 10px;
+  gap: 8px;
   margin-top: 0;
 }
 
 .docPill {
-  min-height: 30px;
+  min-height: 28px;
   border-color: var(--doc-meta-border);
+  padding: 2px 10px;
   background: var(--doc-meta-bg);
   color: var(--doc-meta-text);
+  font-size: 0.78rem;
+  font-weight: 680;
   box-shadow: none;
 }
 
 .tabbedContent {
-  margin-top: 18px;
+  margin-top: 26px;
 }
 
 .contentTabs {
@@ -1205,6 +1208,19 @@ body {
 
 .contentPanel img {
   max-width: 100%;
+}
+
+.contentPanel a:not(.button),
+.bilingualBlock a:not(.button),
+.bilingualCommon a:not(.button) {
+  color: var(--doc-link);
+  font-weight: 650;
+}
+
+.contentPanel a:not(.button):hover,
+.bilingualBlock a:not(.button):hover,
+.bilingualCommon a:not(.button):hover {
+  color: var(--doc-link-hover);
 }
 
 .bilingualPair {
@@ -1323,8 +1339,8 @@ html[data-theme="dark"] {
   --doc-blue-soft: #10231f;
   --doc-current: #4fe0ba;
   --doc-current-strong: #32cfa6;
-  --doc-link: #74e9cc;
-  --doc-link-hover: #95efd9;
+  --doc-link: #8ccfc0;
+  --doc-link-hover: #b5eadc;
   --doc-meta-bg: #141b20;
   --doc-meta-border: #273842;
   --doc-meta-text: #a9b8c4;
