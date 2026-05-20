@@ -19,8 +19,12 @@ This is a documentation-first repository. Treat accuracy, attribution, and licen
 - Every translated, summarized, or checklist document derived from OWASP content must include an `Attribution` section near the top.
 - The `Attribution` section must include original title, source URL, copyright or author information available from the source, license name, license URL, change description, and retrieval date.
 - Mark adaptations honestly, for example: `Japanese translation added.`, `Japanese summary added.`, or `Development checklist added.`
+- For bilingual pages that retain the English original and add Japanese translation, use a change note such as `English original retained for comparison. Japanese translation added. Source images stored locally.`
 - If a document incorporates non-OWASP third-party material, record that source and license separately.
 - Do not copy large unrelated sections from source documents. Translate and summarize only the material needed for the target page.
+- For web-facing bilingual pages, prefer complete page coverage: preserve the source page order and reproduce all relevant headings, paragraphs, lists, tables, code blocks, and images unless there is a documented reason to omit a section.
+- Store reused source images locally instead of hotlinking to the official site. Place them under `static/img/owasp-cheatsheets/<slug>/`, preserve the original meaning, and record image source URLs and change notes in the page attribution.
+- Treat OWASP logos and trademarks separately from CC BY-SA content. Do not use OWASP branding in a way that suggests official endorsement or official translation status.
 
 ## Required Document Shape
 

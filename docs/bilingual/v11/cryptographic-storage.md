@@ -6,7 +6,7 @@
   <div className="docMeta">
     <span className="docPill">Retrieved: 2026-05-20</span>
     <span className="docPill">Category: Cryptographic Storage</span>
-    <span className="docPill">ASVS: V11.1, V11.2, V11.3, V11.5</span>
+    <span className="docPill">ASVS: V11</span>
     <span className="docPill">Unofficial translation</span>
   </div>
 </div>
@@ -25,37 +25,242 @@
   </div>
 
   <section className="tabPanel translationPanel contentPanel">
-    <h2>翻訳</h2>
-    <p>このチートシートは、保存データを保護するための暗号化ストレージ設計の基本モデルを示します。パスワードは可逆暗号で保存せず、Password Storage Cheat Sheet に従って安全なパスワードハッシュを使います。</p>
+
+## 翻訳
+
+## Introduction
+
+この記事は、保存データを保護するソリューションを実装する際に従うための単純なモデルを提供します。
+
+パスワードは可逆暗号で保存してはいけません。代わりに安全なパスワードハッシュアルゴリズムを使用する必要があります。[Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html) には、パスワード保存に関する追加のガイダンスがあります。
+
+## Architectural Design
+
+アプリケーション設計の最初のステップは、システム全体のアーキテクチャを検討することです。これは技術的な実装に大きな影響を与えるためです。
+
+このプロセスは、アプリケーションの [脅威モデル](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html) を検討することから始めるべきです。つまり、誰からそのデータを保護しようとしているのかを明確にします。
+
+専用のシークレット管理または鍵管理システムを使用すると、追加のセキュリティ保護層を提供でき、シークレット管理も大幅に容易になります。ただし、複雑さと管理上のオーバーヘッドが増えるため、すべてのアプリケーションで実現可能とは限りません。多くのクラウド環境ではこれらのサービスが提供されているため、可能な場合は活用すべきです。このトピックの詳細は [Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) を参照してください。
+
+### Where to Perform Encryption
+
+暗号化は、アプリケーションスタックのさまざまなレベルで実行できます。
+
+- アプリケーションレベル
+- データベースレベル（例: [SQL Server TDE](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15)）
+- ファイルシステムレベル（例: BitLocker または LUKS）
+- ハードウェアレベル（例: 暗号化 RAID カードまたは SSD）
+
+どの層が最も適切かは、脅威モデルによって異なります。たとえば、ハードウェアレベルの暗号化はサーバーの物理的盗難に対して有効ですが、攻撃者がリモートからサーバーを侵害できる場合には保護になりません。
+
+### Minimise the Storage of Sensitive Information
+
+機密情報を保護する最良の方法は、そもそも保存しないことです。これはあらゆる種類の情報に当てはまりますが、攻撃者にとって価値が高く、PCI DSS が保存方法に厳格な要件を課しているクレジットカード情報に特に当てはまります。可能な限り、機密情報の保存は避けるべきです。
+
+## Algorithms
+
+対称暗号では、少なくとも **128 bit**、理想的には **256 bit** の鍵を持つ **AES** と安全な [モード](#cipher-modes) を優先アルゴリズムとして使用すべきです。
+
+非対称暗号では、**Curve25519** などの安全な曲線を用いる楕円曲線暗号（ECC）を優先アルゴリズムとして使用します。ECC が利用できず **RSA** を使用しなければならない場合は、鍵長が少なくとも **2048 bit** であることを確認します。
+
+他にも多数の対称・非対称アルゴリズムがあり、それぞれ長所と短所があります。特定のユースケースでは AES や Curve25519 より適している場合も、不適切な場合もあります。検討時には、次の要素を考慮します。
+
+- 鍵長
+- アルゴリズムに対する既知の攻撃と弱点
+- アルゴリズムの成熟度
+- [NIST のアルゴリズム検証プログラム](https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program) など第三者による承認
+- 性能（暗号化と復号の両方）
+- 利用可能なライブラリの品質
+- アルゴリズムの移植性、つまりどの程度広くサポートされているか
+
+場合によっては、[FIPS 140-2](https://csrc.nist.gov/csrc/media/publications/fips/140/2/final/documents/fips1402annexa.pdf) や [PCI DSS](https://www.pcisecuritystandards.org/pci_security/glossary#Strong%20Cryptography) など、使用できるアルゴリズムを制限する規制要件が存在することがあります。
+
+### Custom Algorithms
+
+これを行ってはいけません。
+
+### Cipher Modes
+
+AES などのブロック暗号が、ストリーム暗号と同じように任意量のデータを暗号化できるようにするために、さまざまな [モード](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) を使用できます。これらのモードには異なるセキュリティ特性と性能特性があり、詳細な議論はこのチートシートの範囲外です。一部のモードでは安全な初期化ベクトル（IV）やその他の属性の生成が必要ですが、これはライブラリによって自動的に処理されるべきです。
+
+利用可能な場合は、認証付きモードを常に使用すべきです。これらは機密性に加えて、データの完全性と真正性を保証します。最も一般的に使われる認証付きモードは **[GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode)** と **[CCM](https://en.wikipedia.org/wiki/CCM_mode)** であり、第一候補として使用すべきです。
+
+GCM または CCM が利用できない場合は、[CTR](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_%28CTR%29) モードまたは [CBC](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_Block_Chaining_%28CBC%29) モードを使用すべきです。これらはデータの真正性を保証しないため、[Encrypt-then-MAC](https://en.wikipedia.org/wiki/Authenticated_encryption#Encrypt-then-MAC_%28EtM%29) などを使って別途認証を実装する必要があります。この方法を [可変長メッセージ](https://en.wikipedia.org/wiki/CBC-MAC#Security_with_fixed_and_variable-length_messages) に使用する際には注意が必要です。
+
+[ECB](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#ECB) は、非常に特殊な状況を除いて使用すべきではありません。
+
+### Random Padding
+
+RSA では Random Padding を有効にすることが不可欠です。Random Padding は OAEP、つまり Optimal Asymmetric Encryption Padding とも呼ばれます。この防御は、ペイロードの先頭にランダム性を追加することで、既知平文攻撃から保護します。
+
+通常、この場合は [PKCS#1](https://wikipedia.org/wiki/RSA_(cryptosystem)#Padding_schemes) の Padding Schema が使用されます。
+
+### Secure Random Number Generation
+
+暗号鍵、IV、セッション ID、CSRF トークン、パスワードリセットトークンなど、セキュリティ上重要な機能では乱数または文字列が必要です。そのため、これらは安全に生成され、攻撃者が推測または予測できないようにすることが重要です。
+
+コンピュータが特殊なハードウェアなしで真の乱数を生成することは一般にできないため、多くのシステムと言語では2種類のランダム性が提供されます。
+
+疑似乱数生成器（PRNG）は品質の低いランダム性を提供しますが、高速であり、ページ上の結果の並び替えや UI 要素のランダム化など、セキュリティに関係しない機能に使用できます。しかし、攻撃者が出力を推測または予測できる場合が多いため、セキュリティ上重要な用途には **絶対に使用してはいけません**。
+
+暗号学的に安全な疑似乱数生成器（CSPRNG）は、より高品質なランダム性、より厳密にはより大きなエントロピーを生成するように設計されており、セキュリティに敏感な機能に安全に使用できます。ただし、より低速で CPU 負荷が高く、大量のランダムデータが要求される場合には状況によってブロックされることがあります。そのため、セキュリティに関係しない大量のランダム性が必要な場合には適さないことがあります。
+
+次の表は、各言語で推奨されるアルゴリズムと、使用してはいけない安全でない関数を示します。
+
+| Language | Unsafe Functions | Cryptographically Secure Functions |
+| --- | --- | --- |
+| C | `random()`, `rand()` | [getrandom(2)](http://man7.org/linux/man-pages/man2/getrandom.2.html) |
+| Java | `Math.random()`, `StrictMath.random()`, `java.util.Random`, `java.util.SplittableRandom`, `java.util.concurrent.ThreadLocalRandom` | [java.security.SecureRandom](https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html), [java.util.UUID.randomUUID()](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#randomUUID--) |
+| PHP | `array_rand()`, `lcg_value()`, `mt_rand()`, `rand()`, `uniqid()` | [random_bytes()](https://www.php.net/manual/en/function.random-bytes.php), [Random\Engine\Secure](https://www.php.net/manual/en/class.random-engine-secure.php), [random_int()](https://www.php.net/manual/en/function.random-int.php), [openssl_random_pseudo_bytes()](https://www.php.net/manual/en/function.openssl-random-pseudo-bytes.php) |
+| .NET/C# | `Random()` | [RandomNumberGenerator](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.randomnumbergenerator?view=net-6.0) |
+| Objective-C | `arc4random()`/`arc4random_uniform()`、`GKRandomSource` のサブクラス、`rand()`、`random()` | [SecRandomCopyBytes](https://developer.apple.com/documentation/security/1399291-secrandomcopybytes?language=objc) |
+| Python | `random()` | [secrets()](https://docs.python.org/3/library/secrets.html#module-secrets) |
+| Ruby | `rand()`, `Random` | [SecureRandom](https://ruby-doc.org/stdlib-2.5.1/libdoc/securerandom/rdoc/SecureRandom.html) |
+| Go | `math/rand` パッケージの `rand` | [crypto.rand](https://golang.org/pkg/crypto/rand/) パッケージ |
+| Rust | `rand::prng::XorShiftRng` | [rand::prng::chacha::ChaChaRng](https://docs.rs/rand/0.5.0/rand/prng/chacha/struct.ChaChaRng.html) と Rust ライブラリの [CSPRNGs](https://docs.rs/rand/0.5.0/rand/prng/index.html#cryptographically-secure-pseudo-random-number-generators-csprngs) |
+| Node.js | `Math.random()` | [crypto.randomBytes()](https://nodejs.org/api/crypto.html#cryptorandombytessize-callback), [crypto.randomInt()](https://nodejs.org/api/crypto.html#cryptorandomintmin-max-callback), [crypto.randomUUID()](https://nodejs.org/api/crypto.html#cryptorandomuuidoptions) |
+
+#### UUIDs and GUIDs
+
+Universally unique identifier（UUID または GUID）は、ランダム文字列を生成する手軽な方法として使われることがあります。ある程度のランダム性を提供する場合もありますが、それは作成される UUID の [タイプまたはバージョン](https://en.wikipedia.org/wiki/Universally_unique_identifier#Versions) に依存します。
+
+具体的には、バージョン 1 UUID は高精度タイムスタンプと生成したシステムの MAC アドレスで構成されるため、**ランダムではありません**（タイムスタンプが 100ns 単位であるため推測しにくい場合はあります）。タイプ 4 UUID はランダムに生成されますが、CSPRNG を使用するかどうかは実装に依存します。特定の言語またはフレームワークで安全であることが分かっていない限り、UUID のランダム性に依存すべきではありません。
+
+### Defence in Depth
+
+アプリケーションは、暗号制御が失敗した場合でも安全であり続けるように設計すべきです。暗号化形式で保存される情報も、追加のセキュリティ層で保護すべきです。また、暗号化された URL パラメータの安全性だけに依存せず、情報への不正アクセスを防ぐために強力なアクセス制御を実施すべきです。
+
+## Key Management
+
+### Processes
+
+鍵管理のすべての側面をカバーする正式なプロセスを実装し、テストすべきです。これには次が含まれます。
+
+- 新しい鍵の生成と保存
+- 必要な相手への鍵の配布
+- アプリケーションサーバーへの鍵の展開
+- 古い鍵のローテーションと廃止
+
+### Key Generation
+
+鍵は、[Secure Random Number Generation](#secure-random-number-generation) セクションで説明したような暗号学的に安全な関数を使ってランダムに生成すべきです。鍵は一般的な単語やフレーズ、またはキーボードを適当に叩いて生成した「ランダム」文字列に基づいてはいけません。
+
+複数の鍵を使用する場合（データ暗号化鍵と鍵暗号化鍵など）は、それらを互いに完全に独立させるべきです。
+
+### Key Lifetimes and Rotation
+
+暗号鍵は、次のような複数の基準に基づいて変更またはローテーションすべきです。
+
+- 以前の鍵が侵害されたことが分かっている、または疑われる場合
+  - これは鍵にアクセスできた人物が組織を離れた場合にも発生し得ます。
+- 指定された期間、つまり暗号期間が経過した場合
+  - 適切な暗号期間に影響する要素は、鍵のサイズ、データの機密性、システムの脅威モデルなど多数あります。詳細は [NIST SP 800-57](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) の 5.3 節を参照してください。
+- 鍵が特定量のデータを暗号化するために使用された場合
+  - これは通常、64 bit 鍵で `2^35` バイト（約 34GB）、128 bit ブロックサイズで `2^68` バイト（約 295 エクサバイト）です。
+- 新しい攻撃が発表されるなど、アルゴリズムが提供するセキュリティに重大な変化があった場合
+
+これらの基準のいずれかに該当したら、新しい鍵を生成し、新しいデータの暗号化に使用すべきです。古い鍵で暗号化された既存データの扱いには、主に2つの方式があります。
+
+1. 復号して新しい鍵で再暗号化する。
+2. 各項目に暗号化に使われた鍵 ID を付与し、古いデータを復号できるように複数の鍵を保管する。
+
+通常は1つ目の方式が望ましいです。アプリケーションコードと鍵管理プロセスの両方を大幅に単純化できるためです。ただし、常に実現可能とは限りません。古いバックアップやデータコピーを復号する必要がある場合に備えて、廃止された古い鍵を一定期間保存する必要があることにも注意してください。
+
+鍵が侵害された場合に迅速にローテーションできるよう、鍵ローテーションに必要なコードとプロセスは、それが必要になる **前に** 用意しておくことが重要です。さらに、アルゴリズムまたは実装に新しい脆弱性が見つかった場合に備えて、暗号アルゴリズムまたはライブラリを変更できるプロセスも実装すべきです。
+
+## Key Storage
+
+暗号鍵を安全に保存することは、解決が最も難しい問題の一つです。アプリケーションはデータを復号するために常に何らかのレベルで鍵へアクセスする必要があるためです。アプリケーションを完全に侵害した攻撃者から鍵を完全に保護することはできない場合がありますが、鍵の取得を難しくするためにいくつかの対策を取ることができます。
+
+利用可能な場合は、OS、フレームワーク、またはクラウドサービスプロバイダが提供する安全な保存メカニズムを使用すべきです。これには次が含まれます。
+
+- 物理 Hardware Security Module（HSM）
+- 仮想 HSM
+- [Amazon KMS](https://aws.amazon.com/kms/) や [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/) などの key vault
+- [Conjur](https://github.com/cyberark/conjur) や [HashiCorp Vault](https://github.com/hashicorp/vault) などの外部シークレット管理サービス
+- .NET Framework の [ProtectedData](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata?redirectedfrom=MSDN&view=netframework-4.8) クラスが提供する安全な保存 API
+
+この種の安全な保存を使用することには、単に設定ファイルへ鍵を置く場合と比べて多くの利点があります。具体的な内容は使用するソリューションによって異なりますが、次のようなものがあります。
+
+- 特にコンテナ化環境での鍵の集中管理
+- 鍵の容易なローテーションと置換
+- 安全な鍵生成
+- FIPS 140 や PCI DSS などの規制標準への準拠の簡素化
+- 攻撃者が鍵をエクスポートまたは窃取することの困難化
+
+共有ホスティング環境など、これらを利用できない場合もあります。その場合、暗号鍵に高い保護を与えることはできません。しかし、次の基本ルールには従えます。
+
+- 鍵をアプリケーションソースコードにハードコードしない。
+- 鍵をバージョン管理システムにコミットしない。
+- 鍵を含む設定ファイルを制限的な権限で保護する。
+- 鍵を環境変数に保存することを避ける。環境変数は [phpinfo()](https://www.php.net/manual/en/function.phpinfo.php) や `/proc/self/environ` ファイルを通じて偶発的に露出する可能性があります。
+
+[Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) には、シークレットを安全に保存するための詳細があります。
+
+### Separation of Keys and Data
+
+可能な場合、暗号鍵は暗号化データとは別の場所に保存すべきです。たとえばデータがデータベースに保存されている場合、鍵はファイルシステムに保存します。これにより、攻撃者がディレクトリトラバーサルや SQL インジェクションなどで片方にしかアクセスできない場合、鍵とデータの両方へアクセスすることを防げます。
+
+環境のアーキテクチャによっては、鍵とデータを別々のシステムに保存できる場合があり、これにより分離の度合いを高められます。
+
+### Encrypting Stored Keys
+
+可能な場合、暗号鍵自体も暗号化された形式で保存すべきです。そのためには少なくとも2つの別々の鍵が必要です。
+
+- Data Encryption Key（DEK）はデータの暗号化に使用します。
+- Key Encryption Key（KEK）は DEK の暗号化に使用します。
+
+これを有効にするには、KEK を DEK とは別に保存する必要があります。暗号化された DEK はデータと一緒に保存できますが、別システムに保存された KEK も入手しない限り、攻撃者はそれを使用できません。
+
+KEK も DEK と少なくとも同等の強度を持つべきです。Google の [envelope encryption](https://cloud.google.com/kms/docs/envelope-encryption) ガイダンスには、DEK と KEK の管理方法に関する詳細があります。
+
+共有ホスティング環境のように KEK と DEK を分離して保存できない単純なアプリケーションアーキテクチャでは、この方式の価値は限定的です。攻撃者が両方の鍵を同時に入手できる可能性が高いためです。ただし、熟練していない攻撃者に対する追加の障壁にはなり得ます。
+
+鍵導出関数（KDF）を使用して、ユーザーが入力したパスフレーズなどから KEK を生成し、それを使ってランダムに生成された DEK を暗号化することもできます。これにより、DEK は同じまま、ユーザーがパスフレーズを変更したときに KEK を容易に変更できます。
+
   </section>
 
   <section className="tabPanel summaryPanel contentPanel">
-    <h2>要点</h2>
-    <ul>
-      <li>パスワードは可逆暗号で保存せず、安全なパスワードハッシュを使う。</li>
-      <li>最初に脅威モデルを定義し、どの層で暗号化するか決める。</li>
-      <li>対称暗号は AES 128 bit 以上、理想的には 256 bit と安全なモードを使う。</li>
-      <li>独自暗号を作らない。GCM/CCM など認証付き暗号を優先する。</li>
-      <li>鍵、IV、セッション ID、CSRF トークン、パスワードリセットトークンには CSPRNG を使う。</li>
-    </ul>
+
+## 要点
+
+<ul>
+  <li>何を誰から守るかを脅威モデルで定義してから、暗号化する層を決めます。</li>
+  <li>保存しなくてよい機密情報は保存しないことが最も強い保護です。</li>
+  <li>対称暗号は AES、非対称暗号は ECC を優先し、独自暗号は使用しません。</li>
+  <li>GCM/CCM などの認証付き暗号モードを優先し、ECB は原則として使いません。</li>
+  <li>鍵、IV、トークンには CSPRNG を使用し、通常の PRNG や不明な UUID 実装に依存しません。</li>
+  <li>鍵管理には生成、配布、展開、ローテーション、廃止、保管の正式なプロセスが必要です。</li>
+  <li>鍵は KMS、Vault、HSM などに保管し、データとは分離します。</li>
+</ul>
+
   </section>
 
   <section className="tabPanel checklistPanel contentPanel">
-    <h2>チェックリスト</h2>
-    <ul className="checklistView">
-      <li><input type="checkbox" disabled />保護対象データ、保存場所、暗号化層、使用アルゴリズム、鍵 ID、鍵保管場所を一覧化する。</li>
-      <li><input type="checkbox" disabled />独自暗号、独自モード、独自パディングを禁止する。</li>
-      <li><input type="checkbox" disabled />利用可能な場合は GCM または CCM などの認証付き暗号を使う。</li>
-      <li><input type="checkbox" disabled />鍵、IV、トークンは CSPRNG で生成する。</li>
-      <li><input type="checkbox" disabled />鍵をソースコード、バージョン管理、環境変数へ置かない。</li>
-    </ul>
+
+## チェックリスト
+
+<ul className="checklistView">
+  <li><input type="checkbox" disabled />保存データの脅威モデルを文書化する。</li>
+  <li><input type="checkbox" disabled />不要な機密情報を保存しない設計にする。</li>
+  <li><input type="checkbox" disabled />AES、ECC、RSA 鍵長、暗号モードの選定理由を記録する。</li>
+  <li><input type="checkbox" disabled />独自暗号と ECB の使用を禁止する。</li>
+  <li><input type="checkbox" disabled />鍵、IV、セッション ID、CSRF トークン、リセットトークンを CSPRNG で生成する。</li>
+  <li><input type="checkbox" disabled />鍵をソースコード、リポジトリ、平文設定、環境変数へ置かない。</li>
+  <li><input type="checkbox" disabled />KMS、Vault、HSM などの鍵保管サービスを優先する。</li>
+  <li><input type="checkbox" disabled />鍵ローテーション手順を事前に実装し、テストする。</li>
+  <li><input type="checkbox" disabled />鍵と暗号化データを可能な限り分離する。</li>
+  <li><input type="checkbox" disabled />DEK と KEK の分離または envelope encryption を検討する。</li>
+</ul>
+
   </section>
 
   <section className="tabPanel bilingualPanel">
-    <h2>対比表示</h2>
+
+## 対比表示
 
 <div className="noticeBox">
-  初期版では、対訳 UI と運用形を確認するため、導入、設計、アルゴリズム、乱数、鍵管理の主要段落を先行して対訳化しています。全文展開時は同じカード形式で残りの原文段落を追加します。
+  コード例や表は翻訳タブに完全な形で保持しています。対比表示では、公式ページの主要な説明ブロックを原文と翻訳で比較できるようにしています。
 </div>
 
 ## Introduction
@@ -67,18 +272,18 @@
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>この記事は、保存データを保護するソリューションを実装するときに従うべき単純なモデルを示します。</p>
+    <p>この記事は、保存データを保護するソリューションを実装する際に従うための単純なモデルを提供します。</p>
   </div>
 </div>
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
     <span className="bilingualLabel english">English (原文)</span>
-    <p>Passwords should not be stored using reversible encryption. Secure password hashing algorithms should be used instead.</p>
+    <p>Passwords should not be stored using reversible encryption - secure password hashing algorithms should be used instead. The Password Storage Cheat Sheet contains further guidance on storing passwords.</p>
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>パスワードは可逆暗号で保存してはいけません。代わりに安全なパスワードハッシュアルゴリズムを使用する必要があります。</p>
+    <p>パスワードは可逆暗号で保存してはいけません。代わりに安全なパスワードハッシュアルゴリズムを使用する必要があります。Password Storage Cheat Sheet には、パスワード保存に関する追加のガイダンスがあります。</p>
   </div>
 </div>
 
@@ -91,29 +296,29 @@
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>あらゆるアプリケーション設計の最初のステップは、システム全体のアーキテクチャを検討することです。これは技術的な実装に大きな影響を与えるためです。</p>
+    <p>アプリケーション設計の最初のステップは、システム全体のアーキテクチャを検討することです。これは技術的な実装に大きな影響を与えるためです。</p>
   </div>
 </div>
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
     <span className="bilingualLabel english">English (原文)</span>
-    <p>This process should begin with considering the threat model of the application, meaning who you are trying to protect that data against.</p>
+    <p>This process should begin with considering the threat model of the application: who you are trying to protect that data against.</p>
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>このプロセスは、アプリケーションの脅威モデル、つまりそのデータを誰から守ろうとしているのかを検討するところから始める必要があります。</p>
+    <p>このプロセスは、アプリケーションの脅威モデル、つまり誰からそのデータを保護しようとしているのかを検討することから始めるべきです。</p>
   </div>
 </div>
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
     <span className="bilingualLabel english">English (原文)</span>
-    <p>Dedicated secret or key management systems can provide an additional layer of security protection and make secrets easier to manage, but they add complexity and administrative overhead.</p>
+    <p>The use of dedicated secret or key management systems can provide an additional layer of security protection, as well as making the management of secrets significantly easier, but it comes at the cost of additional complexity and administrative overhead.</p>
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>専用のシークレット管理または鍵管理システムは、追加のセキュリティ保護層を提供し、シークレット管理を大幅に容易にできます。一方で、複雑さと管理負荷も増えます。</p>
+    <p>専用のシークレット管理または鍵管理システムは、追加のセキュリティ保護層を提供し、シークレット管理も大幅に容易にします。ただし、複雑さと管理上のオーバーヘッドが増えます。</p>
   </div>
 </div>
 
@@ -122,33 +327,22 @@
 <div className="bilingualPair">
   <div className="bilingualBlock english">
     <span className="bilingualLabel english">English (原文)</span>
-    <p>For symmetric encryption, AES with a key that is at least 128 bits, ideally 256 bits, and a secure mode should be used as the preferred algorithm.</p>
+    <p>For symmetric encryption AES with a key that's at least 128 bits, ideally 256 bits, and a secure mode should be used as the preferred algorithm.</p>
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>対称暗号では、少なくとも 128 bit、理想的には 256 bit の鍵を持つ AES と安全なモードを、優先アルゴリズムとして使用する必要があります。</p>
+    <p>対称暗号では、少なくとも 128 bit、理想的には 256 bit の鍵を持つ AES と安全なモードを優先アルゴリズムとして使用すべきです。</p>
   </div>
 </div>
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
     <span className="bilingualLabel english">English (原文)</span>
-    <p>For asymmetric encryption, use elliptic curve cryptography with a secure curve such as Curve25519 as a preferred algorithm. If ECC is not available and RSA must be used, ensure that the key is at least 2048 bits.</p>
+    <p>For asymmetric encryption, use elliptical curve cryptography with a secure curve such as Curve25519 as a preferred algorithm. If RSA must be used, ensure that the key is at least 2048 bits.</p>
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>非対称暗号では、Curve25519 など安全な曲線を用いた楕円曲線暗号を優先アルゴリズムとして使用します。ECC が利用できず RSA を使用する必要がある場合は、鍵長が少なくとも 2048 bit であることを確認します。</p>
-  </div>
-</div>
-
-<div className="bilingualPair">
-  <div className="bilingualBlock english">
-    <span className="bilingualLabel english">English (原文)</span>
-    <p>Do not create custom algorithms.</p>
-  </div>
-  <div className="bilingualBlock japanese">
-    <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>独自アルゴリズムを作成してはいけません。</p>
+    <p>非対称暗号では Curve25519 などの安全な曲線を用いる楕円曲線暗号を優先します。RSA を使用しなければならない場合は、鍵長が少なくとも 2048 bit であることを確認します。</p>
   </div>
 </div>
 
@@ -157,57 +351,57 @@
 <div className="bilingualPair">
   <div className="bilingualBlock english">
     <span className="bilingualLabel english">English (原文)</span>
-    <p>Random numbers or strings are needed for security-critical functionality such as generating encryption keys, IVs, session IDs, CSRF tokens, or password reset tokens. They must be generated securely so that attackers cannot guess or predict them.</p>
+    <p>Random numbers or strings are needed for security critical functionality such as generating encryption keys, IVs, session IDs, CSRF tokens or password reset tokens. These must be generated securely and must not be guessable or predictable.</p>
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>暗号鍵、IV、セッション ID、CSRF トークン、パスワードリセットトークンなど、セキュリティ上重要な機能には乱数またはランダム文字列が必要です。攻撃者が推測または予測できないよう、安全に生成する必要があります。</p>
+    <p>暗号鍵、IV、セッション ID、CSRF トークン、パスワードリセットトークンなど、セキュリティ上重要な機能では乱数または文字列が必要です。これらは安全に生成され、推測または予測できない必要があります。</p>
   </div>
 </div>
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
     <span className="bilingualLabel english">English (原文)</span>
-    <p>Pseudo-Random Number Generators provide low-quality randomness that is faster and can be used for non-security functionality. They must not be used for security-critical purposes because attackers may be able to guess or predict the output.</p>
+    <p>PRNGs provide low-quality randomness and must not be used for anything security critical. CSPRNGs are designed for security-sensitive functionality, but may be slower and more CPU intensive.</p>
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>疑似乱数生成器は低品質ながら高速なランダム性を提供し、セキュリティに関係しない機能には使用できます。しかし、攻撃者が出力を推測または予測できる可能性があるため、セキュリティ上重要な用途には使用してはいけません。</p>
+    <p>PRNG は品質の低いランダム性を提供するため、セキュリティ上重要な用途には使用してはいけません。CSPRNG はセキュリティに敏感な機能向けに設計されていますが、より低速で CPU 負荷が高い場合があります。</p>
+  </div>
+</div>
+
+## Key Management and Storage
+
+<div className="bilingualPair">
+  <div className="bilingualBlock english">
+    <span className="bilingualLabel english">English (原文)</span>
+    <p>Formal processes should be implemented and tested to cover key generation, storage, distribution, deployment, rotation, and decommissioning.</p>
+  </div>
+  <div className="bilingualBlock japanese">
+    <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+    <p>鍵の生成、保管、配布、展開、ローテーション、廃止をカバーする正式なプロセスを実装し、テストすべきです。</p>
   </div>
 </div>
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
     <span className="bilingualLabel english">English (原文)</span>
-    <p>Cryptographically Secure Pseudo-Random Number Generators are designed to produce a much higher quality of randomness, making them safe for security-sensitive functionality.</p>
+    <p>Keys should be randomly generated using a cryptographically secure function and should not be based on common words, phrases, or keyboard-mashed characters.</p>
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>暗号学的に安全な疑似乱数生成器は、より高品質なランダム性を生成するよう設計されており、セキュリティ上重要な機能に安全に使用できます。</p>
-  </div>
-</div>
-
-## Key Management
-
-<div className="bilingualPair">
-  <div className="bilingualBlock english">
-    <span className="bilingualLabel english">English (原文)</span>
-    <p>Formal processes should be implemented and tested to cover all aspects of key management, including generating and storing new keys, distributing keys, deploying keys to application servers, and rotating or decommissioning old keys.</p>
-  </div>
-  <div className="bilingualBlock japanese">
-    <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>新しい鍵の生成と保管、鍵の配布、アプリケーションサーバーへの展開、古い鍵のローテーションまたは廃止など、鍵管理のすべての側面を扱う正式なプロセスを実装し、テストする必要があります。</p>
+    <p>鍵は暗号学的に安全な関数でランダムに生成すべきであり、一般的な単語、フレーズ、キーボードを適当に叩いた文字列に基づいてはいけません。</p>
   </div>
 </div>
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
     <span className="bilingualLabel english">English (原文)</span>
-    <p>Keys should be randomly generated using a cryptographically secure function. They should not be based on common words, phrases, or random-looking characters generated by mashing the keyboard.</p>
+    <p>Where possible, encryption keys should be stored in a separate location from encrypted data, and stored keys should themselves be encrypted using separate data-encryption and key-encryption keys.</p>
   </div>
   <div className="bilingualBlock japanese">
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-    <p>鍵は暗号学的に安全な関数を使ってランダムに生成する必要があります。一般的な単語やフレーズ、キーボードを適当に叩いて生成したランダム風の文字列に基づいてはいけません。</p>
+    <p>可能な場合、暗号鍵は暗号化データとは別の場所に保存し、保存された鍵自体もデータ暗号化鍵と鍵暗号化鍵を分離して暗号化すべきです。</p>
   </div>
 </div>
 

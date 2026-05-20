@@ -8,6 +8,9 @@
 - 各ドキュメントには `Attribution` セクションを置きます。
 - 原文タイトル、原文 URL、著作者または権利者、ライセンス、ライセンス URL、変更内容、取得日を記載します。
 - このリポジトリは非公式であり、OWASP 公式翻訳として表示しません。
+- Web 公開用の対訳ページでは、公式ページの見出し、段落、箇条書き、表、コードブロック、画像を可能な限り同じ順序で再現します。
+- 公式ページ内の画像を再利用する場合は、ホットリンクせず `static/img/owasp-cheatsheets/<slug>/` にローカル保存し、各ページの `Attribution` に画像の公式ソース URL と変更内容を記録します。
+- OWASP のロゴや商標は CC BY-SA の著作権許諾とは別に扱い、公式翻訳または OWASP による承認を示唆する見せ方を避けます。
 
 ## Attribution テンプレート
 
@@ -33,6 +36,12 @@
 
 ```markdown
 - Changes: Development checklist added.
+```
+
+対訳ページで英語原文、翻訳、ローカル保存画像を含める場合は `Changes` を次のようにします。
+
+```markdown
+- Changes: English original retained for comparison. Japanese translation added. Source images stored locally.
 ```
 
 ## 参考資料
