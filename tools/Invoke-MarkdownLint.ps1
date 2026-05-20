@@ -34,7 +34,7 @@ function Add-Issue {
 foreach ($file in $markdownFiles) {
     $bytes = [System.IO.File]::ReadAllBytes($file.FullName)
     $content = [System.Text.Encoding]::UTF8.GetString($bytes)
-    $lines = $content -split "`r?`n", -1
+    $lines = $content -split '\r?\n'
     if ($lines.Count -gt 0 -and $lines[-1] -eq "") {
         $logicalLines = $lines[0..($lines.Count - 2)]
     }
@@ -46,8 +46,18 @@ foreach ($file in $markdownFiles) {
         Add-Issue $file.FullName 0 "missing trailing newline"
     }
 
+    $contentStartIndex = 0
+    if ($logicalLines.Count -gt 0 -and $logicalLines[0] -eq "---") {
+        for ($i = 1; $i -lt $logicalLines.Count; $i++) {
+            if ($logicalLines[$i] -eq "---") {
+                $contentStartIndex = $i + 1
+                break
+            }
+        }
+    }
+
     $firstNonEmptyIndex = -1
-    for ($i = 0; $i -lt $logicalLines.Count; $i++) {
+    for ($i = $contentStartIndex; $i -lt $logicalLines.Count; $i++) {
         if ($logicalLines[$i].Trim().Length -gt 0) {
             $firstNonEmptyIndex = $i
             break

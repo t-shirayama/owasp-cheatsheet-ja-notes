@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Bean Validation Cheat Sheet
 
 <div className="docHero docHero--encoding">

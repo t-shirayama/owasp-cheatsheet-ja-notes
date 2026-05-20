@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Cross-Site Request Forgery Prevention Cheat Sheet
 
 <div className="docHero docHero--encoding">
