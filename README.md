@@ -50,6 +50,8 @@ OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-Shar
 - 出典対応表は [references/source-map.md](references/source-map.md) で管理します。
 - 原文確認日と `Retrieved` の更新ルールは [references/source-update-policy.md](references/source-update-policy.md) で管理します。
 - 非重点ページの段階的な詳細化順は [references/non-priority-detailing-plan.md](references/non-priority-detailing-plan.md) で管理します。
+- 静的サイト化と分類情報の扱いは [references/site-and-taxonomy-policy.md](references/site-and-taxonomy-policy.md) で管理します。
+- 変更履歴とレビュー履歴の記録方針は [references/change-review-history-policy.md](references/change-review-history-policy.md) で管理します。
 - 残作業候補は [references/todo.md](references/todo.md) で管理します。
 
 ## 検証

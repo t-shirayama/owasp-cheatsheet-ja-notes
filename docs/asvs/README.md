@@ -4,6 +4,10 @@ ASVS 章別の入口です。
 
 このディレクトリでは、OWASP Cheat Sheet Series の ASVS Index をもとに、ASVS の各章から関連する翻訳、要約、開発チェックリストへリンクします。本文はここに複製せず、[../translations/](../translations/)、[../summaries/](../summaries/)、[../checklists/](../checklists/) に分けて置きます。
 
+## 非公式性について
+
+このディレクトリの索引とリンク先文書は OWASP 公式翻訳ではありません。正確な判断、監査、実装基準への適用では、必ず各ページの Attribution にある公式原文を確認してください。
+
 ## 入口
 
 - [ASVS 全章索引](index.md)
