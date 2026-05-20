@@ -119,6 +119,7 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 - Keep generated documents under `docs/` when adding topic files.
 - Use `docs/asvs/` as the ASVS-first navigation layer.
 - Use `docs/translations/` directly for Japanese translation files; do not create ASVS chapter subdirectories such as `v1/`.
+- Use `docs/originals/` directly for English original source files. These files should keep the official English Markdown content for local reference and include Attribution.
 - Use `docs/summaries/` directly for Japanese summary files; do not create ASVS chapter subdirectories such as `v1/`.
 - Use `docs/checklists/` directly for development checklist files. Keep cross-cutting checklist indexes directly under `docs/checklists/`.
 - Use `docs/bilingual/` directly for web-facing bilingual pages; Docusaurus doc IDs should be slug-only.
@@ -150,6 +151,8 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 ## Bilingual Page Rules
 
 - Web-facing bilingual pages live directly under `docs/bilingual/<slug>.md`; do not place them under `v1/` through `v17/` folders.
+- English original source documents live directly under `docs/originals/<slug>.md`; keep them separate from `docs/translations/` and `docs/bilingual/`.
+- `docs/originals/<slug>.md` should preserve the official English source Markdown as closely as practical. Add only the local Attribution wrapper and do not translate or summarize that body.
 - Bilingual pages should have four display modes: `翻訳`, `要点`, `チェックリスト`, and `対比表示`. Only the selected mode should be visible.
 - `翻訳`, `要点`, and `チェックリスト` should not show repository maintenance sections such as `関連ファイル` on the web page.
 - Place web-facing Attribution near the bottom of the page, after the main reading experience, while still preserving all required attribution fields.

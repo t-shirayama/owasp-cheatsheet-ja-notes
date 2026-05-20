@@ -917,6 +917,29 @@ function mdPath(...parts) {
   return path.join(root, ...parts);
 }
 
+function officialPageUrl(page) {
+  return `https://cheatsheetseries.owasp.org/cheatsheets/${page.sourceName}.html`;
+}
+
+function originalSourceMarkdown(page, official) {
+  return `# ${page.title}
+
+## Attribution
+
+- Original: ${page.title}
+- Source: ${officialPageUrl(page)}
+- Copyright: Cheat Sheets Series Team
+- License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+- License URL: https://creativecommons.org/licenses/by-sa/4.0/
+- Changes: English original source Markdown stored locally for reference.
+- Retrieved: 2026-05-20
+
+## English Original
+
+${normalizeNewlines(official).trim()}
+`;
+}
+
 function chapterForSection(sectionId) {
   const chapterId = Number.parseInt(sectionId.match(/^V(\d{1,2})\./)?.[1] ?? '0', 10);
   return asvsChapters.find((chapter) => chapter.id === chapterId);
@@ -1592,7 +1615,7 @@ async function localChecklist(page) {
 }
 
 function pageMarkdown(page, english, japanese, summary, checklist) {
-  const sourceUrl = `https://cheatsheetseries.owasp.org/cheatsheets/${page.sourceName}.html`;
+  const sourceUrl = officialPageUrl(page);
   return `---
 title: ${page.title}
 hide_title: true
@@ -1608,17 +1631,25 @@ hide_title: true
 </div>
 
 <div className="tabbedContent">
+  <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-original" />
   <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-translation" defaultChecked />
   <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-summary" />
   <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-checklist" />
   <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-bilingual" />
 
   <div className="contentTabs">
+    <label htmlFor="${page.slug}-original">原本</label>
     <label htmlFor="${page.slug}-translation">翻訳</label>
     <label htmlFor="${page.slug}-summary">要点</label>
     <label htmlFor="${page.slug}-checklist">チェックリスト</label>
     <label htmlFor="${page.slug}-bilingual">対比表示</label>
   </div>
+
+<section id="${page.slug}-original-panel" className="tabPanel originalPanel contentPanel">
+
+${english}
+
+</section>
 
 <section id="${page.slug}-translation-panel" className="tabPanel translationPanel contentPanel">
 
@@ -1662,7 +1693,7 @@ ${bilingualPairs(english, japanese)}
 }
 
 function scaffoldMarkdown(page) {
-  const sourceUrl = `https://cheatsheetseries.owasp.org/cheatsheets/${page.sourceName}.html`;
+  const sourceUrl = officialPageUrl(page);
   return `---
 title: ${page.title}
 hide_title: true
@@ -1841,12 +1872,13 @@ async function existingRepoLink(label, repoPath) {
 async function writeBilingualMap() {
   const rows = await Promise.all(buildPageIndex()
     .map(async (page) => {
-      const sourceUrl = `https://cheatsheetseries.owasp.org/cheatsheets/${page.sourceName}.html`;
+      const sourceUrl = officialPageUrl(page);
       const bilingual = await existingRepoLink(`docs/bilingual/${page.slug}.md`, `docs/bilingual/${page.slug}.md`);
+      const original = await existingRepoLink(`docs/originals/${page.slug}.md`, `docs/originals/${page.slug}.md`);
       const translation = await existingRepoLink(`docs/translations/${page.slug}.md`, `docs/translations/${page.slug}.md`);
       const summary = await existingRepoLink(`docs/summaries/${page.slug}.md`, `docs/summaries/${page.slug}.md`);
       const checklist = await existingRepoLink(`docs/checklists/${page.slug}.md`, `docs/checklists/${page.slug}.md`);
-      return `| ${page.asvs} | ${page.title} | ${sourceUrl} | ${bilingual} | ${translation} | ${summary} | ${checklist} | ${page.status} |`;
+      return `| ${page.asvs} | ${page.title} | ${sourceUrl} | ${bilingual} | ${original} | ${translation} | ${summary} | ${checklist} | ${page.status} |`;
     }));
   const content = `# Bilingual Map
 
@@ -1855,6 +1887,7 @@ async function writeBilingualMap() {
 ## 方針
 
 - 対訳ファイルは \`docs/bilingual/<slug>.md\` に置く。
+- 英語原文のローカル参照ファイルは \`docs/originals/<slug>.md\` に置く。
 - 既存の \`docs/translations/\`、\`docs/summaries/\`、\`docs/checklists/\` は残し、対訳表示は別系統で管理する。
 - Full/Sample に進めるページでは、公式ページの見出し、段落、箇条書き、表、コードブロック、画像を可能な限り同じ順序で再現する。
 - 公式ページ内の画像は、必要に応じてローカル保存し、対訳ページから \`static/img/owasp-cheatsheets/<slug>/\` 配下のファイルを参照する。
@@ -1863,21 +1896,32 @@ async function writeBilingualMap() {
 
 ## 対応表
 
-| ASVS 項目 | 公式 Cheat Sheet | 公式 URL | 対訳 | 翻訳 | 要約 | チェックリスト | 状態 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| ASVS 項目 | 公式 Cheat Sheet | 公式 URL | 対訳 | 英語原文 | 翻訳 | 要約 | チェックリスト | 状態 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
 ${rows.join('\n')}
 `;
   await fs.writeFile(mdPath('references', 'bilingual-map.md'), content, 'utf8');
+}
+
+async function writeOriginalSource(page, official) {
+  await fs.mkdir(mdPath('docs', 'originals'), { recursive: true });
+  await fs.writeFile(mdPath('docs', 'originals', `${page.slug}.md`), originalSourceMarkdown(page, official), 'utf8');
 }
 
 async function main() {
   const indexedPages = buildPageIndex();
   const indexedBySlug = new Map(indexedPages.map((page) => [page.slug, page]));
   const generatedSlugs = new Set(pages.map((page) => page.slug));
+  const originalsOnly = process.argv.includes('--originals-only');
 
   for (const configuredPage of pages) {
     const page = indexedBySlug.get(configuredPage.slug) ?? configuredPage;
     const official = await fetchOfficialMarkdown(page);
+    await writeOriginalSource(page, official);
+    if (originalsOnly) {
+      console.log(`generated original ${page.slug}`);
+      continue;
+    }
     const english = normalizeOfficialMarkdown(official, page);
     const japanese = await localJapanese(page);
     const summary = await localSummary(page);
@@ -1885,6 +1929,11 @@ async function main() {
     const content = pageMarkdown(page, english, japanese, summary, checklist);
     await fs.writeFile(mdPath('docs', 'bilingual', `${page.slug}.md`), content, 'utf8');
     console.log(`generated ${page.slug}`);
+  }
+
+  if (originalsOnly) {
+    await writeBilingualMap();
+    return;
   }
 
   for (const page of indexedPages.filter((candidate) => !generatedSlugs.has(candidate.slug))) {
