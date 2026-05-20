@@ -18,7 +18,7 @@ hide_title: true
 
 - 公式ページ: [Logging Vocabulary Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html)
 - ASVS 対応: V16.1, V16.3
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+- 状態: 本文、翻訳、対比表示は今後追加します。
 
 </div>
 

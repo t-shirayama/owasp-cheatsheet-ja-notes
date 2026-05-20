@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/software-supply-chain-security.md](../summaries/software-supply-chain-security.md)
-- 開発チェックリスト: [../checklists/software-supply-chain-security.md](../checklists/software-supply-chain-security.md)
-
 ## 日本語訳
 
 ソフトウェアは真空中で開発されるものではなく、IDE、内部コード、サードパーティライブラリ、バージョン管理、ビルドツール、CI/CD、構成管理、パッケージマネージャーなどからなるソフトウェアサプライチェーン (SSC) に組み込まれています。依存関係の脆弱性、VCS の誤設定、CI/CD の侵害、成果物の改ざんなど、1つの構成要素の欠陥がサプライチェーン全体を危険にします。

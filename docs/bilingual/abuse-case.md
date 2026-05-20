@@ -18,7 +18,7 @@ hide_title: true
 
 - 公式ページ: [Abuse Case Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Abuse_Case_Cheat_Sheet.html)
 - ASVS 対応: V2.1, V2.3, V14.1, V15.1
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+- 状態: 本文、翻訳、対比表示は今後追加します。
 
 </div>
 

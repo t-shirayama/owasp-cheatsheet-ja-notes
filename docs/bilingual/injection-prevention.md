@@ -12,20 +12,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">インジェクション防止チートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">インジェクション防止チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="injection-prevention-view" id="injection-prevention-original" />
   <input className="tabInput" type="radio" name="injection-prevention-view" id="injection-prevention-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="injection-prevention-view" id="injection-prevention-summary" />
-  <input className="tabInput" type="radio" name="injection-prevention-view" id="injection-prevention-checklist" />
   <input className="tabInput" type="radio" name="injection-prevention-view" id="injection-prevention-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="injection-prevention-original" title="OWASP 原文">原文</label>
     <label htmlFor="injection-prevention-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="injection-prevention-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="injection-prevention-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="injection-prevention-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -369,23 +365,7 @@ If a parameterized API is not available, you should carefully escape special cha
 
 </section>
 
-<section id="injection-prevention-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- 文字列連結で命令を組み立てない。
-- 構造化された安全なAPIを使う。
-- 入力検証と出力先別エンコードを分けて実施する。
-
-</section>
-
-<section id="injection-prevention-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] SQLやコマンドを文字列連結で作らない。
-- [ ] パラメータ化クエリを使う。
-- [ ] 許可リストで入力を検証する。
-- [ ] 動的式評価を避ける。
-- [ ] インジェクションテストをCIに含める。
-
-</section>
 
 <section id="injection-prevention-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -1374,7 +1354,7 @@ If a parameterized API is not available, you should carefully escape special cha
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

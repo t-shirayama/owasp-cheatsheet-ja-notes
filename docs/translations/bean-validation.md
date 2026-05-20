@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/bean-validation.md](../summaries/bean-validation.md)
-- 開発チェックリスト: [../checklists/bean-validation.md](../checklists/bean-validation.md)
-
 ## 日本語訳
 
 Bean Validation は、Java アプリケーションでオブジェクトや入力値に対する制約を宣言的に定義するための仕組みです。型、範囲、形式、必須条件をモデルに近い場所で表現できます。

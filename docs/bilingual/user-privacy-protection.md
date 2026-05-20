@@ -18,7 +18,7 @@ hide_title: true
 
 - 公式ページ: [User Privacy Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/User_Privacy_Protection_Cheat_Sheet.html)
 - ASVS 対応: V14.1, V14.2
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+- 状態: 本文、翻訳、対比表示は今後追加します。
 
 </div>
 

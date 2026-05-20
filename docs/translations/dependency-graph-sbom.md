@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/dependency-graph-sbom.md](../summaries/dependency-graph-sbom.md)
-- 開発チェックリスト: [../checklists/dependency-graph-sbom.md](../checklists/dependency-graph-sbom.md)
-
 ## 日本語訳
 
 依存関係グラフと SBOM (Software Bill of Materials) は、製品に含まれるコンポーネント、バージョン、チェックサム、ライセンス、直接依存、推移的依存、生成元を機械処理可能な形で把握するための基盤である。これにより、脆弱性管理、コンプライアンス、インシデント対応、影響範囲調査を素早く行える。

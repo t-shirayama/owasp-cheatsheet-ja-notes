@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/query-parameterization.md](../summaries/query-parameterization.md)
-- 開発チェックリスト: [../checklists/query-parameterization.md](../checklists/query-parameterization.md)
-
 ## 日本語訳
 
 クエリパラメータ化は、SQLなどのクエリ構造とデータ値を分離し、入力が命令として解釈されることを防ぐ基本対策です。

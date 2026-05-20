@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/xss-prevention.md](../summaries/xss-prevention.md)
-- 開発チェックリスト: [../checklists/xss-prevention.md](../checklists/xss-prevention.md)
-
 ## 日本語訳
 
 ## Introduction

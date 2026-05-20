@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/sql-injection-prevention.md](../summaries/sql-injection-prevention.md)
-- 開発チェックリスト: [../checklists/sql-injection-prevention.md](../checklists/sql-injection-prevention.md)
-
 ## 日本語訳
 
 SQLインジェクションは、入力がSQL構文として解釈されることで発生します。パラメータ化クエリ、許可リスト、最小権限、エラー情報制御を組み合わせます。

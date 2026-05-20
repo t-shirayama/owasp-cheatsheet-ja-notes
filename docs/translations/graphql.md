@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/graphql.md](../summaries/graphql.md)
-- 開発チェックリスト: [../checklists/graphql.md](../checklists/graphql.md)
-
 ## 日本語訳
 
 GraphQLでは、単一エンドポイントに複雑なクエリが集中するため、認可、クエリ複雑度、深さ制限、イントロスペクション、エラー応答、バッチ処理を制御します。

@@ -12,20 +12,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">DOM based XSS 防止チートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">DOM based XSS 防止チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="dom-based-xss-prevention-view" id="dom-based-xss-prevention-original" />
   <input className="tabInput" type="radio" name="dom-based-xss-prevention-view" id="dom-based-xss-prevention-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="dom-based-xss-prevention-view" id="dom-based-xss-prevention-summary" />
-  <input className="tabInput" type="radio" name="dom-based-xss-prevention-view" id="dom-based-xss-prevention-checklist" />
   <input className="tabInput" type="radio" name="dom-based-xss-prevention-view" id="dom-based-xss-prevention-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="dom-based-xss-prevention-original" title="OWASP 原文">原文</label>
     <label htmlFor="dom-based-xss-prevention-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="dom-based-xss-prevention-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="dom-based-xss-prevention-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="dom-based-xss-prevention-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -631,32 +627,7 @@ DOM XSS の修正では、ソースとシンクを棚卸しし、信頼できな
 
 </section>
 
-<section id="dom-based-xss-prevention-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- クライアント側入力源をすべて未信頼として扱う。
-- `innerHTML`、`outerHTML`、`document.write`、`eval`、文字列引数の `setTimeout`/`setInterval` を避ける。
-- `textContent`、`createElement`、安全な `setAttribute`、`appendChild` を優先する。
-- HTML、属性、URL、CSS、JavaScript 文字列のサブコンテキストごとに適切なエンコードを使う。
-- 信頼できないデータは表示可能なテキストとして扱い、HTML として解釈させない。
-- ソースとシンクを棚卸しし、variant analysis で回帰テストする。
-
-</section>
-
-<section id="dom-based-xss-prevention-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] URL、fragment、query、`postMessage`、Web Storage、Cookie、リファラ、外部 API を入力源として棚卸しする。
-- [ ] `innerHTML`、`outerHTML`、`document.write`、危険な URL 属性、CSS 書き込みを棚卸しする。
-- [ ] `eval`、文字列引数の `setTimeout`/`setInterval`、JSON の `eval` 変換を禁止する。
-- [ ] 信頼できない値を `textContent` または安全な DOM API で挿入する。
-- [ ] `postMessage` 受信時に `origin`、送信元、メッセージ構造を検証する。
-- [ ] HTML、属性、URL、CSS、JavaScript 文字列の各コンテキストでエンコード処理を確認する。
-- [ ] 信頼できない HTML が必要な場合は、安全なサニタイザと許可リストを使う。
-- [ ] 動的 URL 生成で `javascript:`、data URL、プロトコル相対 URL を制限する。
-- [ ] オブジェクトプロパティアクセスで攻撃者がキーを制御できる箇所をレビューする。
-- [ ] variant analysis で、同じシンクに到達する複数入力源をテストする。
-- [ ] CSP を設定し、DOM XSS の影響低減を確認する。
-
-</section>
 
 <section id="dom-based-xss-prevention-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -2275,7 +2246,7 @@ Semgrep rule to identify above dom xss [link](https://semgrep.dev/s/we30).
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

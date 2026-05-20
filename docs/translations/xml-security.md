@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/xml-security.md](../summaries/xml-security.md)
-- 開発チェックリスト: [../checklists/xml-security.md](../checklists/xml-security.md)
-
 ## 日本語訳
 
 XML処理では、外部エンティティ、DTD、巨大入力、XPath、署名検証、スキーマ検証などのリスクがあります。パーサ設定と入力制限が重要です。

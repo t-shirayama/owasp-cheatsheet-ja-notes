@@ -18,7 +18,7 @@ hide_title: true
 
 - 公式ページ: [HTTP Strict Transport Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html)
 - ASVS 対応: V3.1, V3.4, V3.7
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+- 状態: 本文、翻訳、対比表示は今後追加します。
 
 </div>
 

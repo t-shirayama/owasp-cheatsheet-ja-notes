@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/secure-code-review.md](../summaries/secure-code-review.md)
-- 開発チェックリスト: [../checklists/secure-code-review.md](../checklists/secure-code-review.md)
-
 ## 日本語訳
 
 セキュアコードレビューは、ソースコードを手動で確認し、自動ツールだけでは見逃しやすい脆弱性を特定する活動です。ビジネスロジック、データフロー、認証、認可、入力検証、暗号実装、エラー処理など、文脈理解が必要な領域を重点的に扱います。

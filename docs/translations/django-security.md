@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/django-security.md](../summaries/django-security.md)
-- 開発チェックリスト: [../checklists/django-security.md](../checklists/django-security.md)
-
 ## 日本語訳
 
 Djangoのセキュリティ設定では、DEBUG無効化、ALLOWED_HOSTS、CSRF、Cookie属性、HTTPS、シークレット管理、ORMの安全な利用が重要です。

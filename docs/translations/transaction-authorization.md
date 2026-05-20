@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/transaction-authorization.md](../summaries/transaction-authorization.md)
-- 開発チェックリスト: [../checklists/transaction-authorization.md](../checklists/transaction-authorization.md)
-
 ## 日本語訳
 
 トランザクション認可は、送金、アカウント解除、権限変更などの機微な操作について、利用者がその操作を実行する権限を持ち、かつ具体的な操作内容を認識して承認したことを確認する仕組みである。金融システムでよく使われるが、秘密コードやリンクでアカウントを解除するメールのように、インターネット上の多くの高リスク操作にも同じ考え方が適用できる。

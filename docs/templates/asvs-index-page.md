@@ -8,10 +8,8 @@
 
 - <Cheat Sheet 日本語タイトル>
   - 翻訳: `../translations/<file-name>.md`
-  - 要約: `../summaries/<file-name>.md`
-  - チェックリスト: `../checklists/<file-name>.md`
 
-## 章別チェック観点
+## 章別確認観点
 
 - <この章で特に確認する観点を書く。>
 
@@ -19,7 +17,7 @@
 
 | ASVS 項目 | Cheat Sheet | 成果物 | 状態 |
 | --- | --- | --- | --- |
-| <Vx.y> | <Original title> | 翻訳: `../translations/<file-name>.md` / 要約: `../summaries/<file-name>.md` / チェックリスト: `../checklists/<file-name>.md` | <対応状況> |
+| <Vx.y> | <Original title> | 翻訳: `../translations/<file-name>.md` | <対応状況> |
 
 ## 参考資料
 

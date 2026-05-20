@@ -9,9 +9,8 @@ OWASP Cheat Sheet Series の日本語訳を置くディレクトリです。
 ## 方針
 
 - 1つの原文 Cheat Sheet につき、原則として1つの日本語訳ファイルを作成します。
-- ファイルは主所属の ASVS 章ごとに `v1/` から `v17/` のサブディレクトリへ置きます。
-- 複数章に関連する Cheat Sheet も複製せず、主所属フォルダに1ファイルだけ置きます。
-- 要約や開発チェックリストはこのディレクトリに混ぜず、[../summaries/](../summaries/) と [../checklists/](../checklists/) に分けます。
+- ファイルは `docs/translations/` 直下に置き、ASVS 章別サブディレクトリは作りません。
+- 複数章に関連する Cheat Sheet も複製せず、1ファイルだけ置きます。
 - 各ファイルには必ず Attribution セクションを置きます。
 - ファイル名は原文タイトルに対応する ASCII kebab-case にします。
 

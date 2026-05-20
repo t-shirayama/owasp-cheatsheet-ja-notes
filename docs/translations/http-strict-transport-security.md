@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/http-strict-transport-security.md](../summaries/http-strict-transport-security.md)
-- 開発チェックリスト: [../checklists/http-strict-transport-security.md](../checklists/http-strict-transport-security.md)
-
 ## 日本語訳
 
 HTTP Strict Transport Security (HSTS) は、ブラウザに対して対象ホストへの接続を HTTPS のみに強制させる HTTP ヘッダーである。HSTS により、HTTP へのダウングレード、初回以降の平文アクセス、Cookie の平文送信、利用者が証明書警告をクリックして進むリスクを下げられる。

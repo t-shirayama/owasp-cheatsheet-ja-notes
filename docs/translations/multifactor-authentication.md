@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/multifactor-authentication.md](../summaries/multifactor-authentication.md)
-- 開発チェックリスト: [../checklists/multifactor-authentication.md](../checklists/multifactor-authentication.md)
-
 ## 日本語訳
 
 多要素認証 (MFA) は、利用者がシステムに認証するときに複数種類の証拠を提示する仕組みである。要素には、知っているもの、持っているもの、本人の身体的特徴、いる場所、行動特性がある。ただし、実際の Web アプリケーションで一般的に使われるのは、パスワードなどの知識要素、OTP トークンや証明書などの所持要素、生体認証などの本人要素である。

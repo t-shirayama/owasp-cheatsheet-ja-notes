@@ -16,15 +16,11 @@ hide_title: true
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="session-management-view" id="session-management-original" />
   <input className="tabInput" type="radio" name="session-management-view" id="session-management-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="session-management-view" id="session-management-summary" />
-  <input className="tabInput" type="radio" name="session-management-view" id="session-management-checklist" />
   <input className="tabInput" type="radio" name="session-management-view" id="session-management-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="session-management-original" title="OWASP 原文">原文</label>
     <label htmlFor="session-management-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="session-management-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="session-management-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="session-management-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -530,68 +526,7 @@ Cookie でセッション ID を扱う場合は、属性を安全に設定しま
 
 </section>
 
-<section id="session-management-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- セッション ID は意味のないランダム値にし、少なくとも 64 ビットのエントロピーを確保する。
-- セッション ID にはユーザー情報、権限、個人情報、内部状態を含めない。
-- セッション ID の交換には Cookie を使い、URL や hidden フィールドで渡さない。
-- Cookie には `Secure`、`HttpOnly`、`SameSite`、適切な `Domain` / `Path` / 有効期限を設定する。
-- アプリケーションが発行したセッション ID だけを受け入れる strict mode にする。
-- ログイン、権限変更、重要操作の前後でセッション ID 更新や再認証を行う。
-- アイドルタイムアウト、絶対タイムアウト、ログアウトを実装する。
-- セッションライフサイクルをログ化し、推測、異常利用、期限切れ後利用、同時ログオンを監視する。
-
-</section>
-
-<section id="session-management-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-## セッション ID
-
-- [ ] セッション ID は暗号論的に安全な乱数で生成する。
-- [ ] セッション ID は少なくとも 64 ビットのエントロピーを持つ。
-- [ ] 独自生成が必要な場合は、128 ビット以上の一意な値を使う。
-- [ ] セッション ID 名からフレームワークや言語を推測されないようにする。
-- [ ] セッション ID の値にユーザー情報、権限、個人情報、内部状態を含めない。
-- [ ] セッション ID をログへ直接記録しない。
-
-### Cookie と通信
-
-- [ ] セッション ID は Cookie で交換し、URL パラメータや hidden フィールドで渡さない。
-- [ ] セッション Cookie に `Secure` を設定する。
-- [ ] セッション Cookie に `HttpOnly` を設定する。
-- [ ] セッション Cookie に用途に応じた `SameSite` を設定する。
-- [ ] `Domain` と `Path` を必要最小限にする。
-- [ ] 未認証状態を含め、セッションを扱う全画面で HTTPS を強制する。
-
-### ライフサイクル
-
-- [ ] アプリケーションが発行したセッション ID だけを受け入れる。
-- [ ] 未知のセッション ID を受け入れず、新規セッションへ採用しない。
-- [ ] セッション ID を他の入力と同様に検証する。
-- [ ] ログイン後にセッション ID を更新する。
-- [ ] 権限レベル変更後にセッション ID を更新する。
-- [ ] パスワード変更、MFA 設定変更、支払い情報変更などのリスクイベントで再認証を要求する。
-- [ ] アイドルタイムアウトを実装する。
-- [ ] 絶対タイムアウトを実装する。
-- [ ] ログアウト時にサーバー側セッションを無効化する。
-- [ ] ログアウト時にクライアント側 Cookie を期限切れにする。
-
-### 保存とクライアント側
-
-- [ ] セッションストアに機密情報を保存する場合は暗号化とアクセス制御を適用する。
-- [ ] `localStorage` にセッション ID を保存しない。
-- [ ] `sessionStorage` を使う場合は XSS の影響を評価する。
-- [ ] 機密ページのブラウザキャッシュ制御を設定する。
-
-### 監視と検知
-
-- [ ] セッション作成、利用、更新、期限切れ、ログアウト、破棄を記録する。
-- [ ] 期限切れセッション ID の再利用を検知する。
-- [ ] セッション ID 推測や総当たりの兆候を検知する。
-- [ ] 同一アカウントの異常な同時セッションを検知する。
-- [ ] IP アドレスや User-Agent との結び付けを使う場合は、誤検知時のユーザー影響を評価する。
-
-</section>
 
 <section id="session-management-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -2395,7 +2330,7 @@ The open-source ModSecurity WAF, plus the OWASP [Core Rule Set](https://owasp.or
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

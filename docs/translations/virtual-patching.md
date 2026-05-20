@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/virtual-patching.md](../summaries/virtual-patching.md)
-- 開発チェックリスト: [../checklists/virtual-patching.md](../checklists/virtual-patching.md)
-
 ## 日本語訳
 
 仮想パッチ(Virtual Patching)は、既知の脆弱性に対する悪用試行をアプリケーション手前のセキュリティ制御層で検出、遮断、記録する手法です。ソースコード自体を変更しなくても、WAF、IPS、Webサーバプラグイン、アプリケーション層フィルタなどで攻撃トラフィックが脆弱な処理へ到達しないようにします。

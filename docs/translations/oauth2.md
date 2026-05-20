@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/oauth2.md](../summaries/oauth2.md)
-- 開発チェックリスト: [../checklists/oauth2.md](../checklists/oauth2.md)
-
 ## 日本語訳
 
 このチートシートは、OAuth 2.0 の RFC から導かれる現在の推奨セキュリティプラクティスを説明します。OAuth は API 保護の標準になり、OpenID Connect によるフェデレーションログインの基盤にもなっています。OpenID Connect 1.0 は OAuth 2.0 プロトコルの上に構築された単純なアイデンティティ層です。クライアントは、認可サーバーが実施した認証に基づいてエンドユーザーの本人性を検証し、相互運用可能で REST 風の方法により基本的なプロファイル情報を取得できます。

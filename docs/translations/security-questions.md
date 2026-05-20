@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/security-questions.md](../summaries/security-questions.md)
-- 開発チェックリスト: [../checklists/security-questions.md](../checklists/security-questions.md)
-
 ## 日本語訳
 
 秘密の質問は、NIST SP 800-63 の観点では受け入れ可能な認証要素とはみなされない。アカウント回復は認証の代替経路であり、通常の認証より弱くしてはならない。このチートシートは、安全なソフトウェアで秘密の質問を推奨するものではなく、レガシー用途で残さざるを得ない場合のリスク低減策を示す。

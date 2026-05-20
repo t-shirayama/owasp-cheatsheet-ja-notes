@@ -18,7 +18,7 @@ hide_title: true
 
 - 公式ページ: [Threat Modeling Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html)
 - ASVS 対応: V15.1
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+- 状態: 本文、翻訳、対比表示は今後追加します。
 
 </div>
 

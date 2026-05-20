@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/dom-clobbering-prevention.md](../summaries/dom-clobbering-prevention.md)
-- 開発チェックリスト: [../checklists/dom-clobbering-prevention.md](../checklists/dom-clobbering-prevention.md)
-
 ## 日本語訳
 
 DOM Clobbering は、攻撃者が `id` や `name` 属性を持つ HTML 要素を注入し、`window` や `document` の名前付きプロパティ解決を悪用して、セキュリティ上重要な変数やブラウザ API を上書きまたは覆い隠す攻撃である。スクリプトタグの注入がサニタイズや CSP で防がれている場合でも、非スクリプト HTML の注入だけで安全だったマークアップを実行可能コードへ変えられることがある。

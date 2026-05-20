@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/user-privacy-protection.md](../summaries/user-privacy-protection.md)
-- 開発チェックリスト: [../checklists/user-privacy-protection.md](../checklists/user-privacy-protection.md)
-
 ## 日本語訳
 
 ユーザープライバシー保護では、個人データの収集、利用、保存、共有、削除、同意、透明性を設計し、必要最小限のデータ処理にします。

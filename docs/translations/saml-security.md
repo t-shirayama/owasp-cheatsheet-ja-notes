@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/saml-security.md](../summaries/saml-security.md)
-- 開発チェックリスト: [../checklists/saml-security.md](../checklists/saml-security.md)
-
 ## 日本語訳
 
 SAMLはXMLベースの認証・連携プロトコルであり、署名検証、受信者、Audience、時刻、リプレイ防止、XML処理の安全性が重要です。

@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/web-service-security.md](../summaries/web-service-security.md)
-- 開発チェックリスト: [../checklists/web-service-security.md](../checklists/web-service-security.md)
-
 ## 日本語訳
 
 Webサービスでは、認証、認可、入力検証、メッセージ整合性、TLS、エラー応答、ログをAPI境界で一貫して実装します。

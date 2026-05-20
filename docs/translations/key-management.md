@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/key-management.md](../summaries/key-management.md)
-- 開発チェックリスト: [../checklists/key-management.md](../checklists/key-management.md)
-
 ## 日本語訳
 
 鍵管理は、暗号鍵の生成、配布、保管、利用、ローテーション、失効、バックアップ、復旧、廃棄を扱う。暗号アルゴリズムが強くても、鍵が弱い乱数で生成される、コードに埋め込まれる、用途が混在する、失効できない、侵害時の復旧手順がない場合、保護は破綻する。

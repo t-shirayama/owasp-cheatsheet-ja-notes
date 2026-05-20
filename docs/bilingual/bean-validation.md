@@ -16,15 +16,11 @@ hide_title: true
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="bean-validation-view" id="bean-validation-original" />
   <input className="tabInput" type="radio" name="bean-validation-view" id="bean-validation-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="bean-validation-view" id="bean-validation-summary" />
-  <input className="tabInput" type="radio" name="bean-validation-view" id="bean-validation-checklist" />
   <input className="tabInput" type="radio" name="bean-validation-view" id="bean-validation-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="bean-validation-original" title="OWASP 原文">原文</label>
     <label htmlFor="bean-validation-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="bean-validation-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="bean-validation-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="bean-validation-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -980,23 +976,7 @@ Spring MVC は、定義済みの `MessageSource` から ID `article.title.error`
 
 </section>
 
-<section id="bean-validation-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- 入力値の制約をアノテーションとして明示する。
-- 境界値、null、文字列長、形式を検証する。
-- Bean Validationだけで認可や出力エンコードを代替しない。
-
-</section>
-
-<section id="bean-validation-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] DTOやフォームモデルに制約を定義する。
-- [ ] サーバー側で必ず検証を実行する。
-- [ ] カスタムバリデータをテストする。
-- [ ] エラーメッセージに内部情報を含めない。
-- [ ] 検証後の値も出力先に応じてエンコードする。
-
-</section>
 
 <section id="bean-validation-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -2404,7 +2384,7 @@ Spring MVC は、定義済みの `MessageSource` から ID `article.title.error`
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

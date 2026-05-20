@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/idor-prevention.md](../summaries/idor-prevention.md)
-- 開発チェックリスト: [../checklists/idor-prevention.md](../checklists/idor-prevention.md)
-
 ## 日本語訳
 
 Insecure Direct Object Reference (IDOR) は、URL、POST ボディ、隠しフィールド、API パラメータなどに含まれる識別子を攻撃者が変更することで、本来アクセスできないオブジェクトを参照または変更できる脆弱性である。原因は識別子の推測しやすさではなく、対象オブジェクトに対する認可チェックが欠落していることである。

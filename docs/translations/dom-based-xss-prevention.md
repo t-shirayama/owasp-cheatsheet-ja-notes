@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/dom-based-xss-prevention.md](../summaries/dom-based-xss-prevention.md)
-- 開発チェックリスト: [../checklists/dom-based-xss-prevention.md](../checklists/dom-based-xss-prevention.md)
-
 ## 日本語訳
 
 DOM Based XSS は、攻撃入力がサーバ側処理ではなくブラウザ実行時に DOM へ注入される XSS である。URL、fragment、`postMessage`、Web Storage、Cookie、リファラ、DOM 属性、外部 API などのクライアント側入力が、`innerHTML`、`outerHTML`、`document.write`、URL 属性、CSS、JavaScript 実行コンテキストなどの危険なシンクへ渡されると発生する。

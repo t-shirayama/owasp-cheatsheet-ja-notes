@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/npm-security.md](../summaries/npm-security.md)
-- 開発チェックリスト: [../checklists/npm-security.md](../checklists/npm-security.md)
-
 ## 日本語訳
 
 NPM エコシステムでは、依存関係の数、推移的依存、インストールスクリプト、パッケージ公開権限、アクセストークン、typosquatting、依存関係混乱、パッケージ乗っ取りがリスクになる。Node.js アプリケーションでは、パッケージの選定、ロック、監査、公開、CI/CD 実行を一体で管理する。

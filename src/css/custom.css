@@ -602,7 +602,7 @@ html[data-theme="dark"] .docHero[data-category="logging-monitoring"] {
 
 .contentTabs {
   display: grid;
-  grid-template-columns: repeat(5, minmax(110px, 1fr));
+  grid-template-columns: repeat(3, minmax(110px, 1fr));
   margin: 20px 0;
   border: 1px solid var(--page-border);
   border-radius: 8px;
@@ -627,8 +627,6 @@ html[data-theme="dark"] .docHero[data-category="logging-monitoring"] {
 .contentTabs label:hover,
 [id$="-original"]:checked ~ .contentTabs label[for$="-original"],
 [id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
-[id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
-[id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
 [id$="-bilingual"]:checked ~ .contentTabs label[for$="-bilingual"] {
   background: var(--page-accent-soft);
   color: var(--page-accent);
@@ -641,8 +639,6 @@ html[data-theme="dark"] .docHero[data-category="logging-monitoring"] {
 
 [id$="-translation"]:checked ~ .translationPanel,
 [id$="-original"]:checked ~ .originalPanel,
-[id$="-summary"]:checked ~ .summaryPanel,
-[id$="-checklist"]:checked ~ .checklistPanel,
 [id$="-bilingual"]:checked ~ .bilingualPanel {
   display: block;
 }
@@ -657,23 +653,6 @@ html[data-theme="dark"] .docHero[data-category="logging-monitoring"] {
 .contentPanel h2,
 .contentPanel h3 {
   margin-top: 0;
-}
-
-.checklistView {
-  display: grid;
-  gap: 10px;
-  padding-left: 0;
-  list-style: none;
-}
-
-.checklistView li {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-
-.checklistView input {
-  margin-top: 0.35rem;
 }
 
 .attributionFooter {
@@ -839,14 +818,6 @@ html[data-theme="dark"]
   [id$="-translation"]:checked
   ~ .contentTabs
   label[for$="-translation"],
-html[data-theme="dark"]
-  [id$="-summary"]:checked
-  ~ .contentTabs
-  label[for$="-summary"],
-html[data-theme="dark"]
-  [id$="-checklist"]:checked
-  ~ .contentTabs
-  label[for$="-checklist"],
 html[data-theme="dark"]
   [id$="-bilingual"]:checked
   ~ .contentTabs
@@ -1186,7 +1157,7 @@ html[data-theme="dark"] .navbar__search-input:focus {
 }
 
 .contentTabs {
-  grid-template-columns: repeat(5, minmax(100px, 1fr));
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
   margin: 20px 0;
   border: 1px solid var(--doc-line);
   border-radius: 8px;
@@ -1236,8 +1207,6 @@ html[data-theme="dark"] .navbar__search-input:focus {
 
 [id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
 [id$="-original"]:checked ~ .contentTabs label[for$="-original"],
-[id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
-[id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
 [id$="-bilingual"]:checked ~ .contentTabs label[for$="-bilingual"] {
   background: linear-gradient(180deg, var(--doc-current), var(--doc-current-strong));
   color: #ffffff;
@@ -1481,14 +1450,6 @@ html[data-theme="dark"]
   [id$="-original"]:checked
   ~ .contentTabs
   label[for$="-original"],
-html[data-theme="dark"]
-  [id$="-summary"]:checked
-  ~ .contentTabs
-  label[for$="-summary"],
-html[data-theme="dark"]
-  [id$="-checklist"]:checked
-  ~ .contentTabs
-  label[for$="-checklist"],
 html[data-theme="dark"]
   [id$="-bilingual"]:checked
   ~ .contentTabs

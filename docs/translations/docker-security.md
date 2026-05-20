@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/docker-security.md](../summaries/docker-security.md)
-- 開発チェックリスト: [../checklists/docker-security.md](../checklists/docker-security.md)
-
 ## 日本語訳
 
 Docker環境では、イメージ、Dockerfile、権限、ネットワーク、シークレット、ホスト境界を安全に扱う必要があります。コンテナは万能な防御境界ではありません。

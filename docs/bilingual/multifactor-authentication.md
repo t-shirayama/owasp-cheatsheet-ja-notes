@@ -16,15 +16,11 @@ hide_title: true
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="multifactor-authentication-view" id="multifactor-authentication-original" />
   <input className="tabInput" type="radio" name="multifactor-authentication-view" id="multifactor-authentication-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="multifactor-authentication-view" id="multifactor-authentication-summary" />
-  <input className="tabInput" type="radio" name="multifactor-authentication-view" id="multifactor-authentication-checklist" />
   <input className="tabInput" type="radio" name="multifactor-authentication-view" id="multifactor-authentication-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="multifactor-authentication-original" title="OWASP 原文">原文</label>
     <label htmlFor="multifactor-authentication-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="multifactor-authentication-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="multifactor-authentication-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="multifactor-authentication-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -552,45 +548,7 @@ MFA as a Service を利用する場合は、導入の容易さだけで判断し
 
 </section>
 
-<section id="multifactor-authentication-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- 同じ種類の要素を複数要求しても MFA ではない。知識、所持、本人要素など、独立した要素を組み合わせる。
-- すべての利用者に MFA を提供し、管理者や高権限利用者、重要操作では必須にする。
-- Web UI、API、モバイルアプリ、管理画面など、すべての認証経路に MFA または同等の保護を適用する。
-- OTP は短い有効期限、単回使用、試行回数制限、成功時失効を実装し、ログ出力や長期平文保存を禁止する。
-- パスキー、U2F、WebAuthn/FIDO2 など、フィッシング耐性の高い方式を優先する。
-- SMS や電話によるコードは制限付き認証器として扱い、高価値または PII 取り扱いアプリでは避ける。
-- MFA リセットや要素変更はアカウント乗っ取りの迂回経路になり得るため、再認証、本人確認、通知、遅延適用を組み合わせる。
-- リスクベース認証により、新端末、新しい場所、高リスク操作でステップアップ認証を求める。
-
-</section>
-
-<section id="multifactor-authentication-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] MFA で使う要素が独立していることを確認する。同じ攻撃で侵害されるパスワードと PIN だけの組み合わせを MFA として扱わない。
-- [ ] すべての利用者に MFA を提供し、管理者、高権限利用者、高価値アカウントでは MFA を必須にする。
-- [ ] Web UI、API、モバイルアプリ、管理画面など、すべてのログイン経路で MFA または同等の保護を要求する。
-- [ ] パスワード変更、秘密の質問変更、メールアドレス変更、MFA 無効化、管理者権限への昇格で再認証またはステップアップ MFA を要求する。
-- [ ] TOTP を実装する場合は、標準方式を採用し、利用者を特定ベンダー専用アプリに固定しない。
-- [ ] OTP に短い有効期限を設定し、検証成功時または再送時に既存 OTP を失効させる。
-- [ ] OTP の試行回数をアカウント単位とセッション単位で制限し、総当たりやリプレイを検知する。
-- [ ] OTP、TOTP シード、復旧コードをログ、メトリクス、エラーレポート、デバッグ出力に含めない。
-- [ ] OTP を長期に平文保存しない。短時間の露出を抑えるため、保存が必要な OTP はハッシュ化する。
-- [ ] 復旧コードは単回使用にし、発行時だけ表示し、保存時はシークレットとして扱う。
-- [ ] SMS または電話コードを使う場合は、高価値または PII 取り扱いアプリで禁止するか、リスク受容、レート制限、SIM スワップ監視、移行計画を記録する。
-- [ ] パスキー、U2F、WebAuthn/FIDO2 などフィッシング耐性の高い方式を優先候補として評価する。
-- [ ] MFA 失敗時に、別要素の試行、復旧手続き、利用者への通知を提供し、不審な試行ではパスワード変更を促す。
-- [ ] MFA 失敗通知には、時刻、ブラウザ、接続元の地理的情報など、利用者が不審性を判断できる情報を含める。
-- [ ] MFA リセット手続きで、本人確認、単回復旧コード、複数要素登録、サポート承認など、通常認証より弱くならない制御を実装する。
-- [ ] MFA 要素の変更前に、既存の登録済み要素で再認証を要求し、アクティブセッションだけに依存しない。
-- [ ] MFA 要素の変更、無効化、復旧コード再発行をアウトオブバンド経路で通知する。
-- [ ] 高価値アカウントでは、MFA 要素変更に遅延適用または追加承認を設定する。
-- [ ] リスクベース認証で、新端末、新しい場所、高リスク地域、重要操作を検知し、追加 MFA を要求する。
-- [ ] MFA as a Service を使う場合は、外部サービス障害、侵害、ログ取得、シークレット管理、契約上の通知要件をレビューする。
-- [ ] MFA 登録、失敗、リセット、要素変更、無効化のイベントを監査ログに記録し、シークレット値は記録しない。
-- [ ] テストで、OTP 再利用、期限切れ OTP、過剰試行、別ログイン経路からの MFA バイパス、MFA リセット悪用を検証する。
-
-</section>
 
 <section id="multifactor-authentication-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -2053,7 +2011,7 @@ This method is widely used in modern authentication systems to balance usability
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

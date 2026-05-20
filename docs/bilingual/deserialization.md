@@ -12,20 +12,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">デシリアライゼーションチートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">デシリアライゼーションチートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="deserialization-view" id="deserialization-original" />
   <input className="tabInput" type="radio" name="deserialization-view" id="deserialization-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="deserialization-view" id="deserialization-summary" />
-  <input className="tabInput" type="radio" name="deserialization-view" id="deserialization-checklist" />
   <input className="tabInput" type="radio" name="deserialization-view" id="deserialization-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="deserialization-original" title="OWASP 原文">原文</label>
     <label htmlFor="deserialization-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="deserialization-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="deserialization-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="deserialization-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -400,23 +396,7 @@ If the application knows before deserialization which messages will need to be p
 
 </section>
 
-<section id="deserialization-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- 信頼できない入力をデシリアライズしない。
-- 許可リストで型を制限する。
-- 署名や完全性検証で改ざんを検知する。
-
-</section>
-
-<section id="deserialization-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] デシリアライズ箇所を棚卸しする。
-- [ ] 危険な汎用オブジェクト復元を避ける。
-- [ ] 許可された型だけを復元する。
-- [ ] シリアライズデータの署名を検証する。
-- [ ] 既知のガジェットチェーン対策を適用する。
-
-</section>
 
 <section id="deserialization-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -1442,7 +1422,7 @@ If the application knows before deserialization which messages will need to be p
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

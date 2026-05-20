@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/forgot-password.md](../summaries/forgot-password.md)
-- 開発チェックリスト: [../checklists/forgot-password.md](../checklists/forgot-password.md)
-
 ## 日本語訳
 
 パスワードリセット機能は、利用者がパスワードを忘れたときにアカウントへ再びアクセスできるようにするための機能である。一見単純に見えるが、アカウント列挙、リセットトークンの推測、リセット通知の大量送信、Host ヘッダー注入、リファラ経由のトークン漏えい、既存セッションの取り扱い不備など、アカウント乗っ取りに直結する脆弱性が入りやすい。

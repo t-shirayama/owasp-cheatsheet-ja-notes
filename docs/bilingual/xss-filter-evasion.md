@@ -12,20 +12,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">XSS フィルター回避チートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">XSS フィルター回避チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="xss-filter-evasion-view" id="xss-filter-evasion-original" />
   <input className="tabInput" type="radio" name="xss-filter-evasion-view" id="xss-filter-evasion-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="xss-filter-evasion-view" id="xss-filter-evasion-summary" />
-  <input className="tabInput" type="radio" name="xss-filter-evasion-view" id="xss-filter-evasion-checklist" />
   <input className="tabInput" type="radio" name="xss-filter-evasion-view" id="xss-filter-evasion-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="xss-filter-evasion-original" title="OWASP 原文">原文</label>
     <label htmlFor="xss-filter-evasion-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="xss-filter-evasion-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="xss-filter-evasion-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="xss-filter-evasion-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -1145,30 +1141,7 @@ XSS Filter Evasion は、XSS テスト担当者向けに、入力フィルタや
 
 </section>
 
-<section id="xss-filter-evasion-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- ブラックリスト型フィルタや危険文字削除を主要防御にしない。
-- HTML、属性、URL、CSS、JavaScript、DOM シンクごとに処理を分ける。
-- 文字参照、混合エンコード、タブ、改行、不完全 HTML、SVG、CSS、BASE、IFRAME、HTTP Parameter Pollution をテスト観点に含める。
-- WAF は補助策として扱い、アプリケーション本体の出力制御を必須にする。
-- ペイロード集を教育、テスト、回帰検証に使う。
-
-</section>
-
-<section id="xss-filter-evasion-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] ブラックリスト型フィルタ、文字列置換、危険文字削除を主要防御にしない。
-- [ ] HTML、属性、URL、CSS、JavaScript、DOM シンクごとの出力エンコーディングを確認する。
-- [ ] HTML サニタイザを許可リスト方式で設定する。
-- [ ] 不完全 HTML、イベントハンドラ、引用符省略、文字参照、16進/10進エンコード、タブ、改行、NULL をテストする。
-- [ ] SVG、CSS、META、IFRAME、BASE、OBJECT、URL エンコード、混合エンコードをテストする。
-- [ ] HTTP Parameter Pollution により XSS 影響が拡大しないことを確認する。
-- [ ] WAF や入力フィルタの検知を補助策として扱い、アプリケーション側の出力制御を確認する。
-- [ ] 保存型、反射型、DOM Based XSS、リダイレクト経由の各フローで回帰テストを用意する。
-- [ ] CSP が主要ペイロードの実行を抑制することを確認する。
-- [ ] テスト結果を、入力源、出力先コンテキスト、実行ブラウザ、期待される防御に紐付けて記録する。
-
-</section>
 
 <section id="xss-filter-evasion-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -3837,7 +3810,7 @@ This attack is also viable against the filter for the string `$tmp\\_string=\\~ 
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

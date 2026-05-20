@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/rest-security.md](../summaries/rest-security.md)
-- 開発チェックリスト: [../checklists/rest-security.md](../checklists/rest-security.md)
-
 ## 日本語訳
 
 RESTful Web サービスは、認証、認可、セッション管理、入力検証、出力エンコーディングなど、Web アプリケーションと同じセキュリティ課題を持ちます。REST API はステートレスであることが一般的ですが、各リクエストで認証情報と認可判断を検証する必要があります。API の境界では、トランスポート保護、トークン検証、HTTP メソッド制御、CORS、監査ログ、エラー応答を一貫して扱います。

@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/cryptographic-storage.md](../summaries/cryptographic-storage.md)
-- 開発チェックリスト: [../checklists/cryptographic-storage.md](../checklists/cryptographic-storage.md)
-
 ## 日本語訳
 
 このチートシートは、保存データを保護するための暗号化ストレージ設計の基本モデルを示します。パスワードは可逆暗号で保存せず、Password Storage Cheat Sheet に従って安全なパスワードハッシュを使います。

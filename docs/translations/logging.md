@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/logging.md](../summaries/logging.md)
-- 開発チェックリスト: [../checklists/logging.md](../checklists/logging.md)
-
 ## 日本語訳
 
 ### 目的

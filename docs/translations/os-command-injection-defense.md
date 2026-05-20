@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/os-command-injection-defense.md](../summaries/os-command-injection-defense.md)
-- 開発チェックリスト: [../checklists/os-command-injection-defense.md](../checklists/os-command-injection-defense.md)
-
 ## 日本語訳
 
 OSコマンドインジェクションは、ユーザー入力がシェルやOSコマンドとして解釈されることで発生します。可能な限りOSコマンド実行を避け、APIで代替します。

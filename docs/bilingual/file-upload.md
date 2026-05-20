@@ -12,20 +12,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">ファイルアップロードチートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">ファイルアップロードチートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="file-upload-view" id="file-upload-original" />
   <input className="tabInput" type="radio" name="file-upload-view" id="file-upload-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="file-upload-view" id="file-upload-summary" />
-  <input className="tabInput" type="radio" name="file-upload-view" id="file-upload-checklist" />
   <input className="tabInput" type="radio" name="file-upload-view" id="file-upload-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="file-upload-original" title="OWASP 原文">原文</label>
     <label htmlFor="file-upload-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="file-upload-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="file-upload-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="file-upload-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -202,23 +198,7 @@ The application should set proper request limits as well for the download servic
 
 </section>
 
-<section id="file-upload-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- 許可するファイル種別を明示する。
-- 保存名と保存場所をユーザー入力から分離する。
-- アップロード後の公開と実行を制御する。
-
-</section>
-
-<section id="file-upload-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] 拡張子とMIMEと内容を検証する。
-- [ ] ファイルサイズを制限する。
-- [ ] アップロードファイル名をそのまま使わない。
-- [ ] Webルート外に保存する。
-- [ ] マルウェアスキャンと隔離処理を検討する。
-
-</section>
 
 <section id="file-upload-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -751,7 +731,7 @@ The application should set proper request limits as well for the download servic
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/input-validation.md](../summaries/input-validation.md)
-- 開発チェックリスト: [../checklists/input-validation.md](../checklists/input-validation.md)
-
 ## 日本語訳
 
 入力検証は、アプリケーションが受け入れるデータの型、形式、範囲、長さ、業務ルールを明確にし、不正または想定外のデータを拒否する防御です。

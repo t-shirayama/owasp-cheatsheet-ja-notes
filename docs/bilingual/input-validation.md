@@ -12,20 +12,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">入力検証チートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">入力検証チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-original" />
   <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-summary" />
-  <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-checklist" />
   <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="input-validation-original" title="OWASP 原文">原文</label>
     <label htmlFor="input-validation-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="input-validation-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="input-validation-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="input-validation-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -285,23 +281,7 @@ Because it could allow users to register multiple accounts with a single email a
 
 </section>
 
-<section id="input-validation-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- 許可リスト方式で検証する。
-- クライアント側ではなくサーバー側で検証する。
-- 構文検証と業務ルール検証を分ける。
-
-</section>
-
-<section id="input-validation-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] 全入力点を棚卸しする。
-- [ ] 型、長さ、範囲、形式を定義する。
-- [ ] 許可リストで検証する。
-- [ ] ファイルやJSONなど構造化入力も検証する。
-- [ ] 検証失敗を安全にログ記録する。
-
-</section>
 
 <section id="input-validation-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -1121,7 +1101,7 @@ Because it could allow users to register multiple accounts with a single email a
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

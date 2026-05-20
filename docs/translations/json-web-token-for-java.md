@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/json-web-token-for-java.md](../summaries/json-web-token-for-java.md)
-- 開発チェックリスト: [../checklists/json-web-token-for-java.md](../checklists/json-web-token-for-java.md)
-
 ## 日本語訳
 
 JWTは署名付きの自己完結型トークンです。Javaで扱う場合は、署名検証、アルゴリズム固定、期限、発行者、対象者、秘密情報の非格納を徹底します。

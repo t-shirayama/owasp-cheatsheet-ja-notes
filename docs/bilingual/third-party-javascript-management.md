@@ -18,7 +18,7 @@ hide_title: true
 
 - 公式ページ: [Third Party Javascript Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Third_Party_Javascript_Management_Cheat_Sheet.html)
 - ASVS 対応: V3.2, V3.6, V3.7, V15.1, V15.2
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+- 状態: 本文、翻訳、対比表示は今後追加します。
 
 </div>
 

@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/secrets-management.md](../summaries/secrets-management.md)
-- 開発チェックリスト: [../checklists/secrets-management.md](../checklists/secrets-management.md)
-
 ## 日本語訳
 
 シークレット管理は、API キー、パスワード、トークン、証明書、秘密鍵、接続文字列など、認証や暗号処理に使う秘密値を安全に作成、保存、配布、利用、ローテーション、失効、監査する実践である。シークレットは漏えいすると、認証、認可、データ保護、サプライチェーン全体の侵害につながる。

@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/authorization.md](../summaries/authorization.md)
-- 開発チェックリスト: [../checklists/authorization.md](../checklists/authorization.md)
-
 ## 日本語訳
 
 ### 概要

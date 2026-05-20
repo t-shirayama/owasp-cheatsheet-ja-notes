@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/injection-prevention-in-java.md](../summaries/injection-prevention-in-java.md)
-- 開発チェックリスト: [../checklists/injection-prevention-in-java.md](../checklists/injection-prevention-in-java.md)
-
 ## 日本語訳
 
 Javaアプリケーションでは、SQL、LDAP、XML、式言語、OSコマンドなど複数のインジェクション経路があります。安全なAPI選択とパラメータ化が基本です。

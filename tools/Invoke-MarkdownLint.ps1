@@ -111,7 +111,7 @@ foreach ($file in $markdownFiles) {
         }
     }
 
-    if ($file.FullName -match "\\docs\\(translations|summaries|checklists)\\v\d+\\") {
+    if ($file.Name -ne "README.md" -and $file.FullName -match "\\docs\\(translations|originals)\\") {
         $requiredFields = @(
             "## Attribution",
             "- Original:",

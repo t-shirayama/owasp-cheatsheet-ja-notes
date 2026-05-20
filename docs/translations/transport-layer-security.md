@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/transport-layer-security.md](../summaries/transport-layer-security.md)
-- 開発チェックリスト: [../checklists/transport-layer-security.md](../checklists/transport-layer-security.md)
-
 ## 日本語訳
 
 TLS は、通信の機密性、完全性、サーバ認証を提供する基盤である。TLS は万能ではなく、脆弱なプロトコルバージョン、弱い暗号スイート、誤った証明書検証、秘密鍵漏えい、HSTS 未設定、混在コンテンツ、バックエンド通信の平文化があると保護は崩れる。

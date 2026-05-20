@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/denial-of-service.md](../summaries/denial-of-service.md)
-- 開発チェックリスト: [../checklists/denial-of-service.md](../checklists/denial-of-service.md)
-
 ## 日本語訳
 
 サービス拒否攻撃は、計算資源、メモリ、ストレージ、ネットワーク、外部依存を枯渇させます。レート制限、入力サイズ制限、タイムアウト、キュー制御、容量計画が必要です。

@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/session-management.md](../summaries/session-management.md)
-- 開発チェックリスト: [../checklists/session-management.md](../checklists/session-management.md)
-
 ## 日本語訳
 
 ### 概要

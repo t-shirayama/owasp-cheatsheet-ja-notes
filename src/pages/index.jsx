@@ -23,7 +23,7 @@ export default function Home() {
               <span>{SITE_TITLE}</span>
             </h1>
             <p>
-              OWASP Cheat Sheet Series の ASVS Index に対応する原文と日本語訳を、パラグラフ単位で比較しながら読める非公式の日本語訳サイトです。要点整理とチェックリストで、理解と実務確認を支援します。
+              OWASP Cheat Sheet Series の ASVS Index に対応する原文と日本語訳を、パラグラフ単位で比較しながら読める非公式の日本語訳サイトです。
             </p>
             <div className="heroActions">
               <Link className="button button--primary" to="/cheatsheets/">
@@ -53,9 +53,9 @@ export default function Home() {
               </div>
             </div>
             <div className="visualFooter">
-              <span>対訳あり</span>
-              <span>要点あり</span>
-              <span>チェックリストあり</span>
+              <span>原文</span>
+              <span>翻訳</span>
+              <span>対比表示</span>
             </div>
             <div className="visualLock">
               <span />
@@ -89,9 +89,9 @@ export default function Home() {
                 <strong>{item.title}</strong>
                 <p>{item.ja}</p>
                 <div className="cardBadges">
-                  <span>対訳あり</span>
-                  <span>要点あり</span>
-                  <span>チェックリストあり</span>
+                  <span>原文</span>
+                  <span>翻訳</span>
+                  <span>対比表示</span>
                 </div>
                 <em>開く</em>
               </Link>

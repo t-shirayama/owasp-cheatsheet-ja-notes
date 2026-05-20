@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/injection-prevention.md](../summaries/injection-prevention.md)
-- 開発チェックリスト: [../checklists/injection-prevention.md](../checklists/injection-prevention.md)
-
 ## 日本語訳
 
 インジェクションは、信頼できない入力が命令や構文として解釈されることで発生します。構造化API、パラメータ化、エンコード、入力検証を組み合わせます。

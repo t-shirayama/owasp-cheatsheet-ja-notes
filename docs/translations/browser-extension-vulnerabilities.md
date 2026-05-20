@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/browser-extension-vulnerabilities.md](../summaries/browser-extension-vulnerabilities.md)
-- 開発チェックリスト: [../checklists/browser-extension-vulnerabilities.md](../checklists/browser-extension-vulnerabilities.md)
-
 ## 日本語訳
 
 ブラウザ拡張機能は通常のWebページより強い権限やブラウザAPIを扱うため、権限過多、メッセージ処理、コンテンツスクリプト、外部通信が主要なリスクになります。

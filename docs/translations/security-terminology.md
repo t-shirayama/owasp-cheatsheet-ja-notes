@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/security-terminology.md](../summaries/security-terminology.md)
-- 開発チェックリスト: [../checklists/security-terminology.md](../checklists/security-terminology.md)
-
 ## 日本語訳
 
 ## Introduction

@@ -12,20 +12,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">XML セキュリティチートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">XML セキュリティチートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="xml-security-view" id="xml-security-original" />
   <input className="tabInput" type="radio" name="xml-security-view" id="xml-security-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="xml-security-view" id="xml-security-summary" />
-  <input className="tabInput" type="radio" name="xml-security-view" id="xml-security-checklist" />
   <input className="tabInput" type="radio" name="xml-security-view" id="xml-security-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="xml-security-original" title="OWASP 原文">原文</label>
     <label htmlFor="xml-security-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="xml-security-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="xml-security-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="xml-security-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -893,23 +889,7 @@ XML処理では、外部エンティティ、DTD、巨大入力、XPath、署名
 
 </section>
 
-<section id="xml-security-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- DTDと外部エンティティを無効化する。
-- XMLサイズと展開量を制限する。
-- 署名やスキーマを正しく検証する。
-
-</section>
-
-<section id="xml-security-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] XMLパーサの安全設定を確認する。
-- [ ] 外部エンティティを無効化する。
-- [ ] DTD処理を無効化または制限する。
-- [ ] XPathに入力を連結しない。
-- [ ] 巨大XMLやエンティティ展開攻撃をテストする。
-
-</section>
 
 <section id="xml-security-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -2830,7 +2810,7 @@ java.io.IOException: Server returned HTTP response code: 401 for URL: http://192
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

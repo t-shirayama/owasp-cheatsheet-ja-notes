@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/attack-surface-analysis.md](../summaries/attack-surface-analysis.md)
-- 開発チェックリスト: [../checklists/attack-surface-analysis.md](../checklists/attack-surface-analysis.md)
-
 ## 日本語訳
 
 攻撃対象領域分析は、攻撃者がアプリケーションへ入力、接続、操作、影響を与えられる場所を把握し、変更によって増減したリスクを管理する活動である。対象には、Web/API エンドポイント、管理画面、認証・認可境界、ファイルアップロード、外部連携、メッセージキュー、バッチ、バックエンドサービス、クラウド設定、サードパーティ依存が含まれる。

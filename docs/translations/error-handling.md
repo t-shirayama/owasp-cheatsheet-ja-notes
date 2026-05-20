@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/error-handling.md](../summaries/error-handling.md)
-- 開発チェックリスト: [../checklists/error-handling.md](../checklists/error-handling.md)
-
 ## 日本語訳
 
 ### 概要

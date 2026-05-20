@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/microservices-security.md](../summaries/microservices-security.md)
-- 開発チェックリスト: [../checklists/microservices-security.md](../checklists/microservices-security.md)
-
 ## 日本語訳
 
 マイクロサービスでは、サービス間通信、認証、認可、設定、シークレット、可観測性、障害分離を分散環境で一貫して管理する必要があります。

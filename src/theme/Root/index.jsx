@@ -40,7 +40,7 @@ function updateContentTabs() {
       }
 
       const panelId = input.id.replace(
-        /-(original|translation|summary|checklist|bilingual)$/,
+        /-(original|translation|bilingual)$/,
         '-$1-panel',
       );
       const labelId = `${input.id}-tab`;

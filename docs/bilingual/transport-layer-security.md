@@ -18,7 +18,7 @@ hide_title: true
 
 - 公式ページ: [Transport Layer Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html)
 - ASVS 対応: V3.3, V4.1, V4.4, V10.3, V10.4, V11.6, V12.1, V12.2, V12.3, V17.2
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+- 状態: 本文、翻訳、対比表示は今後追加します。
 
 </div>
 

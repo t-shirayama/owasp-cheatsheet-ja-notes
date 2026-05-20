@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/vulnerable-dependency-management.md](../summaries/vulnerable-dependency-management.md)
-- 開発チェックリスト: [../checklists/vulnerable-dependency-management.md](../checklists/vulnerable-dependency-management.md)
-
 ## 日本語訳
 
 脆弱な依存関係管理は、サードパーティライブラリや推移的依存関係に既知脆弱性が見つかった場合の検出、判断、対応を扱います。多くのプロジェクトは、HTTP通信、ファイル生成、データ解析などを依存関係に委ねています。そのため、アプリケーションのセキュリティは依存先の保守状態と脆弱性対応にも左右されます。

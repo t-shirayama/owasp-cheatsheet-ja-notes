@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/authentication.md](../summaries/authentication.md)
-- 開発チェックリスト: [../checklists/authentication.md](../checklists/authentication.md)
-
 ## 日本語訳
 
 認証 (Authentication / AuthN) は、個人、エンティティ、Web サイトが主張どおりの主体であることを、パスワード、指紋、セキュリティトークンなどの認証器の妥当性を確認して検証するプロセスです。デジタルアイデンティティは、オンライン取引に参加する主体の一意な表現です。特定のデジタルサービス内では一意である必要がありますが、必ずしも現実世界の特定人物へ追跡可能である必要はありません。

@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/content-security-policy.md](../summaries/content-security-policy.md)
-- 開発チェックリスト: [../checklists/content-security-policy.md](../checklists/content-security-policy.md)
-
 ## 日本語訳
 
 Content Security Policy (CSP) は、サーバが `Content-Security-Policy` ヘッダーを返すことで、ブラウザに対してスクリプト、スタイル、画像、フォーム送信先、フレーム、オブジェクトなどの読み込み元と実行条件を制限させる防御層である。CSP は XSS、クリックジャッキング、クロスサイトリークの影響を下げるが、脆弱な出力処理そのものを修正するものではない。XSS 防止の基本であるコンテキスト別出力エンコーディングと安全な DOM 操作の上に追加する。

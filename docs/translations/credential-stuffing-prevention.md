@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/credential-stuffing-prevention.md](../summaries/credential-stuffing-prevention.md)
-- 開発チェックリスト: [../checklists/credential-stuffing-prevention.md](../checklists/credential-stuffing-prevention.md)
-
 ## 日本語訳
 
 このチートシートは、クレデンシャルスタッフィング、パスワードスプレー、総当たり攻撃に対する防御を扱う。総当たり攻撃は辞書などから複数のパスワードを単一アカウントへ試す攻撃である。クレデンシャルスタッフィングは、別サイトの侵害で得られた利用者名とパスワードの組み合わせを試す攻撃である。パスワードスプレーは、単一の弱いパスワードを多数のアカウントへ試す攻撃である。攻撃の形は異なるが、多くの防御策は共通して有効である。

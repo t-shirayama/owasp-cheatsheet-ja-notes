@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/html5-security.md](../summaries/html5-security.md)
-- 開発チェックリスト: [../checklists/html5-security.md](../checklists/html5-security.md)
-
 ## 日本語訳
 
 HTML5の各種APIは、ストレージ、通信、位置情報、CORS、postMessageなど強力な機能を提供します。APIごとの信頼境界とデータ保護が必要です。

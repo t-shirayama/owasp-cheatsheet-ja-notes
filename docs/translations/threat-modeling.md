@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/threat-modeling.md](../summaries/threat-modeling.md)
-- 開発チェックリスト: [../checklists/threat-modeling.md](../checklists/threat-modeling.md)
-
 ## 日本語訳
 
 脅威モデリングは、アプリケーションや変更について「何を作っているか」「何が悪用され得るか」「それに対して何をするか」「対策が十分か」を体系的に考える活動である。設計初期だけでなく、重要な変更、外部連携追加、認証・認可変更、データフロー変更、サプライチェーン変更のたびに軽量に実施する。

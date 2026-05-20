@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/xxe-prevention.md](../summaries/xxe-prevention.md)
-- 開発チェックリスト: [../checklists/xxe-prevention.md](../checklists/xxe-prevention.md)
-
 ## 日本語訳
 
 XXEは、XML外部エンティティによりローカルファイル読取、SSRF、DoSが発生する攻撃です。DTDと外部エンティティを無効化し、安全なパーサ設定を適用します。

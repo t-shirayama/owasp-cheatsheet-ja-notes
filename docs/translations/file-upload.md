@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/file-upload.md](../summaries/file-upload.md)
-- 開発チェックリスト: [../checklists/file-upload.md](../checklists/file-upload.md)
-
 ## 日本語訳
 
 ファイルアップロードは、マルウェア、パストラバーサル、拡張子偽装、巨大ファイル、公開ディレクトリ配置、処理系脆弱性を招きます。検証、保存、配信、スキャンを分けて設計します。

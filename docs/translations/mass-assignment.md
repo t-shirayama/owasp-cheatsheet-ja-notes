@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/mass-assignment.md](../summaries/mass-assignment.md)
-- 開発チェックリスト: [../checklists/mass-assignment.md](../checklists/mass-assignment.md)
-
 ## 日本語訳
 
 マスアサインメントは、リクエストのパラメータをモデルやドメインオブジェクトへ自動的にバインドする機能が、利用者に編集を許可していない属性まで更新してしまう問題です。攻撃者は`isAdmin`、`role`、`accountBalance`などの隠れたフィールドをリクエストに追加し、権限昇格やデータ改ざんを狙います。

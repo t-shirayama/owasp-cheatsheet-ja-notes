@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/rest-assessment.md](../summaries/rest-assessment.md)
-- 開発チェックリスト: [../checklists/rest-assessment.md](../checklists/rest-assessment.md)
-
 ## 日本語訳
 
 REST評価は、REST APIの認証、認可、入力検証、HTTPメソッド、ステータス、エラー、ログ、TLS、レート制限を体系的に確認する観点集です。

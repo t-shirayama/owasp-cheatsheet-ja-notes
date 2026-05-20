@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/ldap-injection-prevention.md](../summaries/ldap-injection-prevention.md)
-- 開発チェックリスト: [../checklists/ldap-injection-prevention.md](../checklists/ldap-injection-prevention.md)
-
 ## 日本語訳
 
 LDAPインジェクションは、ユーザー入力がLDAPフィルタやDNとして解釈されることで発生します。入力検証、エスケープ、最小権限のLDAPアカウントが重要です。

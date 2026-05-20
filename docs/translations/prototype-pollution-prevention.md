@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/prototype-pollution-prevention.md](../summaries/prototype-pollution-prevention.md)
-- 開発チェックリスト: [../checklists/prototype-pollution-prevention.md](../checklists/prototype-pollution-prevention.md)
-
 ## 日本語訳
 
 プロトタイプ汚染(Prototype Pollution)は、攻撃者がJavaScriptオブジェクトのプロトタイプや継承プロパティを変更し、アプリケーション全体のオブジェクト挙動を汚染する脆弱性です。認可バイパス、権限昇格、データ漏えい、場合によってはリモートコード実行につながることがあります。

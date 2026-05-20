@@ -12,20 +12,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">XXE 防止チートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">XXE 防止チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="xxe-prevention-view" id="xxe-prevention-original" />
   <input className="tabInput" type="radio" name="xxe-prevention-view" id="xxe-prevention-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="xxe-prevention-view" id="xxe-prevention-summary" />
-  <input className="tabInput" type="radio" name="xxe-prevention-view" id="xxe-prevention-checklist" />
   <input className="tabInput" type="radio" name="xxe-prevention-view" id="xxe-prevention-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="xxe-prevention-original" title="OWASP 原文">原文</label>
     <label htmlFor="xxe-prevention-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="xxe-prevention-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="xxe-prevention-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="xxe-prevention-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -851,23 +847,7 @@ XXEは、XML外部エンティティによりローカルファイル読取、SS
 
 </section>
 
-<section id="xxe-prevention-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- 外部エンティティを無効化する。
-- DTD処理を無効化または制限する。
-- XML入力のサイズと取得先を制限する。
-
-</section>
-
-<section id="xxe-prevention-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] 利用XMLパーサを棚卸しする。
-- [ ] パーサごとのXXE防止設定を有効化する。
-- [ ] 外部DTD取得を禁止する。
-- [ ] XMLアップロードやAPI入力でXXEテストを行う。
-- [ ] パーサ設定を回帰テストで固定する。
-
-</section>
 
 <section id="xxe-prevention-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -2936,7 +2916,7 @@ Rule can be played here [https://semgrep.dev/s/salecharohit:xxe-XMLReader]%28htt
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

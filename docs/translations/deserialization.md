@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/deserialization.md](../summaries/deserialization.md)
-- 開発チェックリスト: [../checklists/deserialization.md](../checklists/deserialization.md)
-
 ## 日本語訳
 
 安全でないデシリアライゼーションは、任意コード実行、認可迂回、データ改ざんにつながります。信頼できないデータをオブジェクトとして復元しない設計が基本です。

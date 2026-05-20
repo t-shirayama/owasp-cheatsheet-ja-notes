@@ -12,20 +12,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">セキュリティ用語チートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">セキュリティ用語チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="security-terminology-view" id="security-terminology-original" />
   <input className="tabInput" type="radio" name="security-terminology-view" id="security-terminology-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="security-terminology-view" id="security-terminology-summary" />
-  <input className="tabInput" type="radio" name="security-terminology-view" id="security-terminology-checklist" />
   <input className="tabInput" type="radio" name="security-terminology-view" id="security-terminology-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="security-terminology-original" title="OWASP 原文">原文</label>
     <label htmlFor="security-terminology-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="security-terminology-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="security-terminology-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="security-terminology-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -281,26 +277,7 @@ OAuth2、SAML、OIDC を扱うとき、次の用語がよく使われます。
 
 </section>
 
-<section id="security-terminology-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- エンコーディングは互換性のための形式変換であり、単独では防御策ではない。
-- エスケープはインタプリタが入力をコードとして解釈しないようにする。
-- サニタイゼーションは補助的な防御であり、パラメータ化や出力エンコーディングを優先する。
-- 暗号化、ハッシュ、署名は目的と可逆性が異なる。
-- 認証は「誰か」、認可は「何を許可するか」を扱う。
-
-</section>
-
-<section id="security-terminology-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] 認証(AuthN)と認可(AuthZ)を設計、実装、テストで区別する。
-- [ ] エンコーディングをセキュリティ制御として過大評価していないことを確認する。
-- [ ] インジェクション対策では、入力サニタイズだけでなくパラメータ化や適切な出力エンコーディングを実装する。
-- [ ] 暗号化、ハッシュ、デジタル署名の目的を設計書に明記する。
-- [ ] 信頼できないデータのデシリアライズを禁止または厳格に制御する。
-- [ ] レビューで用語の誤用による要件漏れやテスト漏れを確認する。
-
-</section>
 
 <section id="security-terminology-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -824,7 +801,7 @@ OAuth2、SAML、OIDC を扱うとき、次の用語がよく使われます。
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/password-storage.md](../summaries/password-storage.md)
-- 開発チェックリスト: [../checklists/password-storage.md](../checklists/password-storage.md)
-
 ## 日本語訳
 
 パスワードは、アプリケーションやデータベースが侵害された場合でも攻撃者から保護されるように保存しなければならない。平文保存は禁止する。暗号化は復号可能であるため、ほとんどの状況でパスワード保存には適さない。パスワード検証には、Argon2id、scrypt、bcrypt、PBKDF2 のような、低速で適応的なパスワードハッシュ関数を使う。

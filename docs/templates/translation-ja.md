@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: YYYY-MM-DD
 
-## 関連ファイル
-
-- 要約: `../summaries/<file-name>.md`
-- 開発チェックリスト: `../checklists/<file-name>.md`
-
 ## 日本語訳
 
 <原文の意味を変えずに日本語訳を書く。>

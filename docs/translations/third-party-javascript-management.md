@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/third-party-javascript-management.md](../summaries/third-party-javascript-management.md)
-- 開発チェックリスト: [../checklists/third-party-javascript-management.md](../checklists/third-party-javascript-management.md)
-
 ## 日本語訳
 
 サードパーティJavaScriptは、ページ上で高い権限を持つ外部コードです。供給元、読み込み範囲、SRI、CSP、監視、契約上の管理が必要です。

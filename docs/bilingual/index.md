@@ -1,10 +1,10 @@
 # ASVS Index 対応 Cheat Sheet 英日対訳
 
-OWASP Cheat Sheet Series の ASVS Index 対応ページを、日本語訳、要点、チェックリスト、英日対比表示で確認するための Docusaurus 公開用ドキュメントです。
+OWASP Cheat Sheet Series の ASVS Index 対応ページを、日本語訳と英日対比表示で確認するための Docusaurus 公開用ドキュメントです。
 
 ## 表示方針
 
-- `翻訳`、`要点`、`チェックリスト`、`対比表示` を同じ Cheat Sheet ページ内で確認できるようにする。
+- `原文`、`翻訳`、`対比表示` を同じ Cheat Sheet ページ内で確認できるようにする。
 - `対比表示` は、公式原文と日本語訳を同じ順序のブロックとして上下に並べる。
 - このサイトは OWASP 公式翻訳ではありません。各ページ下部の Attribution を確認してください。
 

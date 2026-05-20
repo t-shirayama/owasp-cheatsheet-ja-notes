@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/xss-filter-evasion.md](../summaries/xss-filter-evasion.md)
-- 開発チェックリスト: [../checklists/xss-filter-evasion.md](../checklists/xss-filter-evasion.md)
-
 ## 日本語訳
 
 XSS Filter Evasion は、XSS テスト担当者向けに、入力フィルタや WAF がどのように迂回されるかを示す資料である。多様なペイロード例は、単純なブラックリスト、文字列置換、正規表現、危険文字の部分的削除だけでは XSS を防げないことを示している。

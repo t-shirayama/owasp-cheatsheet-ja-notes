@@ -18,7 +18,7 @@ hide_title: true
 
 - 公式ページ: [Key Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Key_Management_Cheat_Sheet.html)
 - ASVS 対応: V11.1, V11.3, V11.7, V13.3
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+- 状態: 本文、翻訳、対比表示は今後追加します。
 
 </div>
 

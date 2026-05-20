@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/multi-tenant-security.md](../summaries/multi-tenant-security.md)
-- 開発チェックリスト: [../checklists/multi-tenant-security.md](../checklists/multi-tenant-security.md)
-
 ## 日本語訳
 
 マルチテナントアプリケーションは、複数の顧客または組織を、共有インフラ、共有コードベース、ときには共有データベース上で提供する。この構成では、単一の脆弱性や設定ミスが複数テナントのデータ漏えいにつながり、あるテナントのリソース消費が別テナントの可用性へ影響する。テナント境界は主要なセキュリティ境界として扱う。

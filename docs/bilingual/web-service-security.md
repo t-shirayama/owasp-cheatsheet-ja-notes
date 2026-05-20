@@ -18,7 +18,7 @@ hide_title: true
 
 - 公式ページ: [Web Service Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Web_Service_Security_Cheat_Sheet.html)
 - ASVS 対応: V2.2, V4.1, V4.2
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+- 状態: 本文、翻訳、対比表示は今後追加します。
 
 </div>
 

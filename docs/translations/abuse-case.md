@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/abuse-case.md](../summaries/abuse-case.md)
-- 開発チェックリスト: [../checklists/abuse-case.md](../checklists/abuse-case.md)
-
 ## 日本語訳
 
 悪用ケースは、攻撃者や不正利用者がシステムをどのように悪用するかを設計段階で明確にするための手法です。通常のユースケースだけでなく、業務ルールの迂回、権限濫用、データ不正利用を想定します。

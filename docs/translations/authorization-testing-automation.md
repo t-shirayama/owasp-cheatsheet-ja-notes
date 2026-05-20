@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/authorization-testing-automation.md](../summaries/authorization-testing-automation.md)
-- 開発チェックリスト: [../checklists/authorization-testing-automation.md](../checklists/authorization-testing-automation.md)
-
 ## 日本語訳
 
 認可テスト自動化は、認可要件をマトリクスとして明文化し、ロール、利用者、リソース、操作、HTTP メソッド、期待される結果の組み合わせを継続的に検証する手法である。手動のスポットチェックでは、水平権限昇格、垂直権限昇格、メソッド差し替え、ID 改ざん、匿名アクセスの漏れを見落としやすい。

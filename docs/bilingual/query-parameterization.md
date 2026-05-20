@@ -12,20 +12,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">クエリパラメータ化チートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">クエリパラメータ化チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="query-parameterization-view" id="query-parameterization-original" />
   <input className="tabInput" type="radio" name="query-parameterization-view" id="query-parameterization-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="query-parameterization-view" id="query-parameterization-summary" />
-  <input className="tabInput" type="radio" name="query-parameterization-view" id="query-parameterization-checklist" />
   <input className="tabInput" type="radio" name="query-parameterization-view" id="query-parameterization-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="query-parameterization-original" title="OWASP 原文">原文</label>
     <label htmlFor="query-parameterization-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="query-parameterization-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="query-parameterization-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="query-parameterization-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -261,23 +257,7 @@ END
 
 </section>
 
-<section id="query-parameterization-summary-panel" className="tabPanel summaryPanel contentPanel">
 
-- プレースホルダとバインド変数を使う。
-- 識別子やORDER BYなどパラメータ化できない箇所は許可リスト化する。
-- ORM利用時も動的クエリ生成をレビューする。
-
-</section>
-
-<section id="query-parameterization-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-- [ ] 全SQLでパラメータ化を使用する。
-- [ ] 文字列連結SQLを禁止する。
-- [ ] 動的な列名やソート条件を許可リスト化する。
-- [ ] ストアドプロシージャの動的SQLをレビューする。
-- [ ] SQLインジェクションテストを実施する。
-
-</section>
 
 <section id="query-parameterization-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -720,7 +700,7 @@ END
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>

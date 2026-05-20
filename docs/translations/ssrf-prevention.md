@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/ssrf-prevention.md](../summaries/ssrf-prevention.md)
-- 開発チェックリスト: [../checklists/ssrf-prevention.md](../checklists/ssrf-prevention.md)
-
 ## 日本語訳
 
 SSRFは、サーバーに攻撃者指定のURLや内部アドレスへリクエストさせる攻撃です。送信先検証、ネットワーク制御、リダイレクト制御、DNS対策が必要です。

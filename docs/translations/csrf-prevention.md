@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/csrf-prevention.md](../summaries/csrf-prevention.md)
-- 開発チェックリスト: [../checklists/csrf-prevention.md](../checklists/csrf-prevention.md)
-
 ## 日本語訳
 
 CSRFは、ユーザーの認証済み状態を悪用して意図しないリクエストを送らせる攻撃です。トークン、SameSite Cookie、Origin/Referer検証、危険操作の再認証を組み合わせて防ぎます。

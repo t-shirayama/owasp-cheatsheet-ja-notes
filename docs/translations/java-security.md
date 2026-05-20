@@ -10,11 +10,6 @@
 - Changes: Japanese translation added.
 - Retrieved: 2026-05-20
 
-## 関連ファイル
-
-- 要約: [../summaries/java-security.md](../summaries/java-security.md)
-- 開発チェックリスト: [../checklists/java-security.md](../checklists/java-security.md)
-
 ## 日本語訳
 
 Javaアプリケーションでは、入力処理、シリアライズ、暗号、XML、ファイル、ログ、例外、依存関係など広い領域で安全なAPI利用が必要です。

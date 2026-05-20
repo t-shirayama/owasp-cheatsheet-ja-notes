@@ -1632,24 +1632,7 @@ async function localJapanese(page) {
   return translationBody;
 }
 
-async function localSummary(page) {
-  const summary = await readIfExists(mdPath('docs', 'summaries', `${page.slug}.md`));
-  const body = extractSection(summary, '要点', ['実装時の注意点', 'ASVS との対応'])
-    || stripAttributionSections(summary)
-    .replace(/^## 概要\n?/, '')
-    .replace(/## 実装時の注意点[\s\S]*?(?=\n## |\n$)/g, '')
-    .replace(/## ASVS との対応[\s\S]*?(?=\n## |\n$)/g, '')
-    .trim();
-  return smoothHeadings(body || '<p>要点は今後拡充します。</p>');
-}
-
-async function localChecklist(page) {
-  const checklist = await readIfExists(mdPath('docs', 'checklists', `${page.slug}.md`));
-  const body = extractSection(checklist, '開発チェックリスト', ['ASVS との対応']) || stripAttributionSections(checklist);
-  return smoothHeadings(body || '<p>チェックリストは今後拡充します。</p>');
-}
-
-function pageMarkdown(page, english, japanese, summary, checklist) {
+function pageMarkdown(page, english, japanese) {
   const sourceUrl = officialPageUrl(page);
   const englishParts = splitReferenceSection(english);
   const englishBody = englishParts.body;
@@ -1682,20 +1665,16 @@ hide_title: true
   </div>
 </div>
 
-<p className="docLead">${page.subtitle}を、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+<p className="docLead">${page.subtitle}を、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-original" />
   <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-translation" defaultChecked />
-  <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-summary" />
-  <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-checklist" />
   <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-bilingual" />
 
   <div className="contentTabs">
     <label htmlFor="${page.slug}-original" title="OWASP 原文">原文</label>
     <label htmlFor="${page.slug}-translation" title="日本語訳">翻訳</label>
-    <label htmlFor="${page.slug}-summary" title="短くまとめた内容">要点</label>
-    <label htmlFor="${page.slug}-checklist" title="実装確認用">チェックリスト</label>
     <label htmlFor="${page.slug}-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
@@ -1708,18 +1687,6 @@ ${englishBody}
 <section id="${page.slug}-translation-panel" className="tabPanel translationPanel contentPanel">
 
 ${japaneseBody}
-
-</section>
-
-<section id="${page.slug}-summary-panel" className="tabPanel summaryPanel contentPanel">
-
-${summary}
-
-</section>
-
-<section id="${page.slug}-checklist-panel" className="tabPanel checklistPanel contentPanel">
-
-${checklist}
 
 </section>
 
@@ -1741,7 +1708,7 @@ ${references}
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
 - Retrieved: 2026-05-20
 
 </div>
@@ -1770,7 +1737,7 @@ hide_title: true
 
 - 公式ページ: [${page.title}](${sourceUrl})
 - ASVS 対応: ${page.asvs}
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+- 状態: 本文、翻訳、対比表示は今後追加します。
 
 </div>
 
@@ -1871,7 +1838,7 @@ ${pageLinks}
 
 ## 補足
 
-Shell のページはサイドメニュー完成用の準備中ページです。本文、要点、チェックリスト、対比表示は順次追加します。
+Shell のページはサイドメニュー完成用の準備中ページです。本文、翻訳、対比表示は順次追加します。
 `;
     await fs.writeFile(mdPath('docs', 'bilingual', 'asvs', `v${chapter.id}.md`), content, 'utf8');
 
@@ -1890,7 +1857,7 @@ ${sectionPageLinks}
 
 ## 補足
 
-Shell のページはサイドメニュー完成用の準備中ページです。本文、要点、チェックリスト、対比表示は順次追加します。
+Shell のページはサイドメニュー完成用の準備中ページです。本文、翻訳、対比表示は順次追加します。
 `;
       await fs.writeFile(
         mdPath('docs', 'bilingual', 'asvs', `${section.id.toLowerCase().replace('.', '-')}.md`),
@@ -1907,11 +1874,11 @@ async function writeBilingualIndex() {
     .join('\n');
   const content = `# ASVS Index 対応 Cheat Sheet 英日対訳
 
-OWASP Cheat Sheet Series の ASVS Index 対応ページを、日本語訳、要点、チェックリスト、英日対比表示で確認するための Docusaurus 公開用ドキュメントです。
+OWASP Cheat Sheet Series の ASVS Index 対応ページを、日本語訳と英日対比表示で確認するための Docusaurus 公開用ドキュメントです。
 
 ## 表示方針
 
-- \`翻訳\`、\`要点\`、\`チェックリスト\`、\`対比表示\` を同じ Cheat Sheet ページ内で確認できるようにする。
+- \`原文\`、\`翻訳\`、\`対比表示\` を同じ Cheat Sheet ページ内で確認できるようにする。
 - \`対比表示\` は、公式原文と日本語訳を同じ順序のブロックとして上下に並べる。
 - このサイトは OWASP 公式翻訳ではありません。各ページ下部の Attribution を確認してください。
 
@@ -1939,9 +1906,7 @@ async function writeBilingualMap() {
       const bilingual = await existingRepoLink(`docs/bilingual/${page.slug}.md`, `docs/bilingual/${page.slug}.md`);
       const original = await existingRepoLink(`docs/originals/${page.slug}.md`, `docs/originals/${page.slug}.md`);
       const translation = await existingRepoLink(`docs/translations/${page.slug}.md`, `docs/translations/${page.slug}.md`);
-      const summary = await existingRepoLink(`docs/summaries/${page.slug}.md`, `docs/summaries/${page.slug}.md`);
-      const checklist = await existingRepoLink(`docs/checklists/${page.slug}.md`, `docs/checklists/${page.slug}.md`);
-      return `| ${page.asvs} | ${page.title} | ${sourceUrl} | ${bilingual} | ${original} | ${translation} | ${summary} | ${checklist} | ${page.status} |`;
+      return `| ${page.asvs} | ${page.title} | ${sourceUrl} | ${bilingual} | ${original} | ${translation} | ${page.status} |`;
     }));
   const content = `# Bilingual Map
 
@@ -1951,7 +1916,7 @@ async function writeBilingualMap() {
 
 - 対訳ファイルは \`docs/bilingual/<slug>.md\` に置く。
 - 英語原文のローカル参照ファイルは \`docs/originals/<slug>.md\` に置く。
-- 既存の \`docs/translations/\`、\`docs/summaries/\`、\`docs/checklists/\` は残し、対訳表示は別系統で管理する。
+- 既存の \`docs/translations/\` は翻訳の維持管理元として残し、対訳表示は \`docs/bilingual/\` で管理する。
 - Full/Sample に進めるページでは、公式ページの見出し、段落、箇条書き、表、コードブロック、画像を可能な限り同じ順序で再現する。
 - 公式ページ内の画像は、必要に応じてローカル保存し、対訳ページから \`static/img/owasp-cheatsheets/<slug>/\` 配下のファイルを参照する。
 - 各対訳ファイルには Attribution を置き、英語原文を比較用に保持していることを \`Changes\` に明記する。
@@ -1959,8 +1924,8 @@ async function writeBilingualMap() {
 
 ## 対応表
 
-| ASVS 項目 | 公式 Cheat Sheet | 公式 URL | 対訳 | 英語原文 | 翻訳 | 要約 | チェックリスト | 状態 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ASVS 項目 | 公式 Cheat Sheet | 公式 URL | 対訳 | 英語原文 | 翻訳 | 状態 |
+| --- | --- | --- | --- | --- | --- | --- |
 ${rows.join('\n')}
 `;
   await fs.writeFile(mdPath('references', 'bilingual-map.md'), content, 'utf8');
@@ -1998,9 +1963,7 @@ async function main() {
     }
     const english = normalizeOfficialMarkdown(official, page);
     const japanese = await localJapanese(page);
-    const summary = await localSummary(page);
-    const checklist = await localChecklist(page);
-    const content = pageMarkdown(page, english, japanese, summary, checklist);
+    const content = pageMarkdown(page, english, japanese);
     await fs.writeFile(mdPath('docs', 'bilingual', `${page.slug}.md`), content, 'utf8');
     console.log(`generated ${page.slug}`);
   }

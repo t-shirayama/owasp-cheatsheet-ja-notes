@@ -1,47 +1,46 @@
 # OWASP ASVS Cheat Sheet Japanese Notes
 
-このリポジトリは、[OWASP Cheat Sheet Series - Index ASVS](https://cheatsheetseries.owasp.org/IndexASVS.html) を起点に、ASVS 項目に対応する OWASP Cheat Sheet Series の内容を日本語で翻訳・要約し、開発チェックリストとして使いやすく整理する非公式ドキュメント集です。
+このリポジトリは、[OWASP Cheat Sheet Series - Index ASVS](https://cheatsheetseries.owasp.org/IndexASVS.html) を起点に、ASVS 項目に対応する OWASP Cheat Sheet Series の内容を日本語で翻訳し、英日対訳で確認しやすく整理する非公式ドキュメント集です。
 
 公式翻訳ではありません。正確な判断が必要な場合は、必ず OWASP の原文と最新の公式資料を確認してください。
 
-現在は ASVS Index coverage を入口に、対象 Cheat Sheet の翻訳、要約、開発チェックリストを揃えています。重点領域は詳細翻訳と実装チェック粒度まで拡張済みです。非重点ページには短い要約翻訳のままのページが残るため、段階的に詳細化します。
+現在は ASVS Index coverage を入口に、対象 Cheat Sheet の英語原文、日本語訳、公開用の英日対訳ページを管理しています。非重点ページには短い翻訳のままのページが残るため、段階的に全文翻訳へ詳細化します。
 
 GitHub Pages 公開用の Docusaurus サイトも導入しています。ASVS Index に対応する Cheat Sheet の対訳表示では、英語原文と日本語訳をパラグラフ単位で上下に並べて比較できます。
 
 ## 目的
 
 - ASVS Index から参照される OWASP Cheat Sheet Series の内容を日本語で読みやすくする
-- 開発者が実装時に確認できるチェックリストへ落とし込む
-- セキュリティレビュー、設計レビュー、実装タスク化に使える形で整理する
+- 公式原文と日本語訳を並べ、差分や意味を確認しやすくする
+- セキュリティレビュー、設計レビュー、実装タスク化の前提資料として使える形で整理する
 - 出典、著作者、ライセンス、変更有無を明示して再利用しやすくする
 
 ## ライセンスと Attribution
 
 OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-ShareAlike 4.0 International と表示されています。Creative Commons の CC BY-SA 4.0 では、共有や翻案が許可される一方で、適切なクレジット表示、ライセンスへのリンク、変更有無の表示、同一ライセンスでの共有が求められます。
 
-このリポジトリで作成する翻訳・要約・チェックリストなど、OWASP の CC BY-SA 4.0 コンテンツを翻案したドキュメントは、原則として CC BY-SA 4.0 のもとで公開します。各ページには必ず Attribution セクションを置き、少なくとも次を記載してください。
+このリポジトリで作成する翻訳や英日対訳ページなど、OWASP の CC BY-SA 4.0 コンテンツを翻案したドキュメントは、原則として CC BY-SA 4.0 のもとで公開します。各ページには必ず Attribution セクションを置き、少なくとも次を記載してください。
 
 - 原文タイトル
 - 原文 URL
 - 著作者または権利者
 - ライセンス名とライセンス URL
-- 翻訳、要約、チェックリスト化などの変更内容
+- 翻訳、英語原文保持、英日対訳化などの変更内容
 - 原文を確認した日付
 
 コード、設定ファイル、スクリプトなど、OWASP 文書の翻案ではない成果物を追加する場合は、別ライセンスにするか、このリポジトリ全体のライセンス方針を明示してください。
 
 ## フォルダ構成
 
-このリポジトリは、ASVS 章別を主導線にしつつ、翻訳、要約、開発チェックリストを用途別に分けて管理します。同じ Cheat Sheet が複数の ASVS 項目に紐づく場合でも、各成果物は重複させず、ASVS 側から該当ファイルへリンクします。
+このリポジトリは、ASVS 章別を主導線にしつつ、英語原文、日本語訳、公開用の英日対訳ページを用途別に分けて管理します。同じ Cheat Sheet が複数の ASVS 項目に紐づく場合でも、各成果物は重複させず、ASVS 側から該当ファイルへリンクします。
 
 ```text
 .
 ├── docs/
 │   ├── asvs/          # ASVS 章別の入口と対応表
-│   ├── bilingual/     # GitHub Pages 用の英日対訳表示。v1/ から v17/ に章別配置
-│   ├── translations/  # 原文に対応する日本語訳。v1/ から v17/ に章別配置
-│   ├── summaries/     # 短時間で把握するための日本語要約。v1/ から v17/ に章別配置
-│   ├── checklists/    # 実装・レビュー用チェックリスト。v1/ から v17/ に章別配置
+│   ├── bilingual/     # GitHub Pages 用の英日対訳表示
+│   ├── originals/     # 公式英語原文のローカル参照
+│   ├── translations/  # 原文に対応する日本語訳
 │   └── templates/     # 新規ドキュメント作成用テンプレート
 ├── src/               # Docusaurus のページとスタイル
 ├── static/            # Docusaurus の静的アセット
@@ -49,10 +48,9 @@ OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-Shar
 ```
 
 - ASVS 章から探す場合は [docs/asvs/index.md](docs/asvs/index.md) を起点にします。
-- 英日対訳表示は [docs/bilingual/](docs/bilingual/) 配下の `v1/` から `v17/` に置きます。
-- 日本語訳は [docs/translations/](docs/translations/) 配下の `v1/` から `v17/` に置きます。
-- 日本語要約は [docs/summaries/](docs/summaries/) 配下の `v1/` から `v17/` に置きます。
-- 開発チェックリストは [docs/checklists/](docs/checklists/) 配下の `v1/` から `v17/` に置きます。
+- 英日対訳表示は [docs/bilingual/](docs/bilingual/) に置きます。
+- 公式英語原文のローカル参照は [docs/originals/](docs/originals/) に置きます。
+- 日本語訳は [docs/translations/](docs/translations/) に置きます。
 - 出典対応表は [references/source-map.md](references/source-map.md) で管理します。
 - 対訳表示の Pilot 対応表は [references/bilingual-map.md](references/bilingual-map.md) で管理します。
 - 原文確認日と `Retrieved` の更新ルールは [references/source-update-policy.md](references/source-update-policy.md) で管理します。
@@ -70,7 +68,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-MarkdownLint.ps
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-LinkCheck.ps1
 ```
 
-- `Invoke-MarkdownLint.ps1` は H1、見出し階層、表区切り、末尾改行、翻訳/要約/チェックリスト本文の Attribution 欄を確認します。
+- `Invoke-MarkdownLint.ps1` は H1、見出し階層、表区切り、末尾改行、翻訳や対訳ページの Attribution 欄を確認します。
 - `Invoke-LinkCheck.ps1` は Markdown の内部リンク先の存在と外部 URL の形式を確認します。外部サイトへ通信しないため、ネットワークがない環境でも実行できます。
 
 Docusaurus サイトは Node.js でビルドします。
