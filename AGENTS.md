@@ -132,11 +132,43 @@ For each source Cheat Sheet, create separate translation, summary, and checklist
 - Before editing, check the working tree with `git status --short`.
 - Use `rg` or `rg --files` for searching when available.
 
+## Docusaurus Site Rules
+
+- This repository publishes an unofficial ASVS-focused bilingual site with Docusaurus. The web-facing content source is `docs/bilingual/`.
+- Keep the public site clearly unofficial. The site title, page footer or attribution must not imply an official OWASP translation.
+- The left sidebar is ASVS-first, not topic-category-first. Keep V1 through V17 visible in ASVS order, with Vx.y child sections below each V chapter. Place matching Cheat Sheets under the relevant Vx.y sections; if a web-facing bilingual page is not ready, use a lightweight shell page/link so the navigation structure remains complete.
+- Do not add top-level navigation links such as `ASVS Cheat Sheets` or `はじめに` back into the header unless the user explicitly asks. Avoid duplicating the same page title in both header/sidebar and page content.
+- The right-side page TOC is intentionally disabled. Do not reintroduce a right sidebar or right-side table of contents unless the user explicitly asks.
+- Page content should be centered with left and right margin similar to the official OWASP Cheat Sheet pages. Keep the left sidebar wide enough for long ASVS and Cheat Sheet labels; the current design uses `--doc-sidebar-width` in `src/css/custom.css`.
+- Cheat Sheet pages should use the banner/hero as the only page title area. Hide Docusaurus' default generated title when a `docHero` is present.
+- Banner content should be minimal: page title, Japanese title where useful, last updated date, reading time, and ASVS/category. Do not show labels such as `ASVS bilingual view` in the banner.
+- Banner imagery should vary by major ASVS/category theme and should use local assets under `static/img/`.
+- Use the local bundled fonts (`@fontsource-variable/inter` and `@fontsource-variable/noto-sans-jp`) so the site does not depend on remote font delivery.
+- Maintain both light and dark modes. In dark mode, English and Japanese bilingual blocks must be visually distinguishable by background/accent color.
+- Code blocks should use fenced language identifiers where possible and keep the VS Code-like framed style and syntax highlighting.
+
+## Bilingual Page Rules
+
+- Web-facing bilingual pages live directly under `docs/bilingual/<slug>.md`; do not place them under `v1/` through `v17/` folders.
+- Bilingual pages should have four display modes: `翻訳`, `要点`, `チェックリスト`, and `対比表示`. Only the selected mode should be visible.
+- `翻訳`, `要点`, and `チェックリスト` should not show repository maintenance sections such as `関連ファイル` on the web page.
+- Place web-facing Attribution near the bottom of the page, after the main reading experience, while still preserving all required attribution fields.
+- `対比表示` must preserve the official source order and should be full-page coverage for Full pages.
+- In `対比表示`, keep each English original segment and corresponding Japanese translation in the same bilingual pair card. Split long text by paragraph; split long top-level lists by list item so a single card does not become too tall.
+- Shared code blocks and images must not be inserted between `English (原文)` and `日本語 (翻訳)`. Put shared code/images after the Japanese translation in a separate `コード・画像 (共通)` card.
+- Do not duplicate identical code blocks or images in both English and Japanese blocks. Shared technical artifacts should appear once in the common card.
+- If a heading applies only to a following code block or image, attach that heading to the common card instead of creating an empty English/Japanese text pair.
+- Keep original code, configuration, commands, identifiers, and protocol names unchanged unless the source itself is being corrected. Add Japanese explanation around them rather than translating identifiers.
+- When updating `tools/generate-bilingual-samples.mjs`, regenerate the affected pages and inspect the diff. If the generator updates unrelated pages, revert unrelated generated diffs before committing unless the user asked for a broad regeneration.
+
 ## Validation
 
 - For Markdown-only changes, review headings, links, attribution fields, and checklist completeness manually.
 - If a Markdown linter or link checker is later added to this repository, run it before finalizing relevant changes.
 - When source URLs are used, ensure they point to official pages and include the retrieval date in the document.
+- For Docusaurus/site changes, run `npm run build` and `git diff --check`.
+- If a change affects generated bilingual pages, run `node tools\generate-bilingual-samples.mjs` when needed and verify that changed files match the requested scope.
+- For layout or visual changes, prefer a local browser check when tooling is available. If browser automation is unavailable, state that limitation and still run build/static checks.
 
 ## Codex Workflow
 
