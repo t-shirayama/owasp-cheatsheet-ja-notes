@@ -20,11 +20,11 @@ hide_title: true
   <input className="tabInput" type="radio" name="query-parameterization-view" id="query-parameterization-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="query-parameterization-original">原本</label>
-    <label htmlFor="query-parameterization-translation">翻訳</label>
-    <label htmlFor="query-parameterization-summary">要点</label>
-    <label htmlFor="query-parameterization-checklist">チェックリスト</label>
-    <label htmlFor="query-parameterization-bilingual">対比表示</label>
+    <label htmlFor="query-parameterization-original" title="OWASP 原文">原本</label>
+    <label htmlFor="query-parameterization-translation" title="日本語訳">翻訳</label>
+    <label htmlFor="query-parameterization-summary" title="短くまとめた内容">要点</label>
+    <label htmlFor="query-parameterization-checklist" title="実装確認用">チェックリスト</label>
+    <label htmlFor="query-parameterization-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
 <section id="query-parameterization-original-panel" className="tabPanel originalPanel contentPanel">

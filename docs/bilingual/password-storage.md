@@ -20,11 +20,11 @@ hide_title: true
   <input className="tabInput" type="radio" name="password-storage-view" id="password-storage-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="password-storage-original">原本</label>
-    <label htmlFor="password-storage-translation">翻訳</label>
-    <label htmlFor="password-storage-summary">要点</label>
-    <label htmlFor="password-storage-checklist">チェックリスト</label>
-    <label htmlFor="password-storage-bilingual">対比表示</label>
+    <label htmlFor="password-storage-original" title="OWASP 原文">原本</label>
+    <label htmlFor="password-storage-translation" title="日本語訳">翻訳</label>
+    <label htmlFor="password-storage-summary" title="短くまとめた内容">要点</label>
+    <label htmlFor="password-storage-checklist" title="実装確認用">チェックリスト</label>
+    <label htmlFor="password-storage-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
 <section id="password-storage-original-panel" className="tabPanel originalPanel contentPanel">

@@ -20,11 +20,11 @@ hide_title: true
   <input className="tabInput" type="radio" name="authentication-view" id="authentication-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="authentication-original">原本</label>
-    <label htmlFor="authentication-translation">翻訳</label>
-    <label htmlFor="authentication-summary">要点</label>
-    <label htmlFor="authentication-checklist">チェックリスト</label>
-    <label htmlFor="authentication-bilingual">対比表示</label>
+    <label htmlFor="authentication-original" title="OWASP 原文">原本</label>
+    <label htmlFor="authentication-translation" title="日本語訳">翻訳</label>
+    <label htmlFor="authentication-summary" title="短くまとめた内容">要点</label>
+    <label htmlFor="authentication-checklist" title="実装確認用">チェックリスト</label>
+    <label htmlFor="authentication-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
 <section id="authentication-original-panel" className="tabPanel originalPanel contentPanel">

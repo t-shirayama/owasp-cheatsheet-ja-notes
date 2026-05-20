@@ -20,11 +20,11 @@ hide_title: true
   <input className="tabInput" type="radio" name="credential-stuffing-prevention-view" id="credential-stuffing-prevention-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="credential-stuffing-prevention-original">原本</label>
-    <label htmlFor="credential-stuffing-prevention-translation">翻訳</label>
-    <label htmlFor="credential-stuffing-prevention-summary">要点</label>
-    <label htmlFor="credential-stuffing-prevention-checklist">チェックリスト</label>
-    <label htmlFor="credential-stuffing-prevention-bilingual">対比表示</label>
+    <label htmlFor="credential-stuffing-prevention-original" title="OWASP 原文">原本</label>
+    <label htmlFor="credential-stuffing-prevention-translation" title="日本語訳">翻訳</label>
+    <label htmlFor="credential-stuffing-prevention-summary" title="短くまとめた内容">要点</label>
+    <label htmlFor="credential-stuffing-prevention-checklist" title="実装確認用">チェックリスト</label>
+    <label htmlFor="credential-stuffing-prevention-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
 <section id="credential-stuffing-prevention-original-panel" className="tabPanel originalPanel contentPanel">

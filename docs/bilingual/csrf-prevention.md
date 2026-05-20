@@ -20,11 +20,11 @@ hide_title: true
   <input className="tabInput" type="radio" name="csrf-prevention-view" id="csrf-prevention-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="csrf-prevention-original">原本</label>
-    <label htmlFor="csrf-prevention-translation">翻訳</label>
-    <label htmlFor="csrf-prevention-summary">要点</label>
-    <label htmlFor="csrf-prevention-checklist">チェックリスト</label>
-    <label htmlFor="csrf-prevention-bilingual">対比表示</label>
+    <label htmlFor="csrf-prevention-original" title="OWASP 原文">原本</label>
+    <label htmlFor="csrf-prevention-translation" title="日本語訳">翻訳</label>
+    <label htmlFor="csrf-prevention-summary" title="短くまとめた内容">要点</label>
+    <label htmlFor="csrf-prevention-checklist" title="実装確認用">チェックリスト</label>
+    <label htmlFor="csrf-prevention-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
 <section id="csrf-prevention-original-panel" className="tabPanel originalPanel contentPanel">

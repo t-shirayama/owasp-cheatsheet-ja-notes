@@ -20,11 +20,11 @@ hide_title: true
   <input className="tabInput" type="radio" name="xss-prevention-view" id="xss-prevention-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="xss-prevention-original">原本</label>
-    <label htmlFor="xss-prevention-translation">翻訳</label>
-    <label htmlFor="xss-prevention-summary">要点</label>
-    <label htmlFor="xss-prevention-checklist">チェックリスト</label>
-    <label htmlFor="xss-prevention-bilingual">対比表示</label>
+    <label htmlFor="xss-prevention-original" title="OWASP 原文">原本</label>
+    <label htmlFor="xss-prevention-translation" title="日本語訳">翻訳</label>
+    <label htmlFor="xss-prevention-summary" title="短くまとめた内容">要点</label>
+    <label htmlFor="xss-prevention-checklist" title="実装確認用">チェックリスト</label>
+    <label htmlFor="xss-prevention-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
 <section id="xss-prevention-original-panel" className="tabPanel originalPanel contentPanel">

@@ -936,8 +936,34 @@ body {
 }
 
 .navbar__search-input {
+  width: clamp(220px, 18vw, 320px) !important;
+  border: 1px solid #d7e1ef;
   border-radius: 999px;
   background: #f4f7fb;
+  color: var(--doc-text);
+  font-weight: 560;
+  transition:
+    width 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.navbar__search-input:focus {
+  width: clamp(280px, 24vw, 380px) !important;
+  border-color: var(--doc-current);
+  background: #ffffff;
+  outline: none;
+}
+
+html[data-theme="dark"] .navbar__search-input {
+  border-color: #273842;
+  background: #17191d;
+  color: var(--doc-text);
+}
+
+html[data-theme="dark"] .navbar__search-input:focus {
+  border-color: var(--doc-current);
+  background: #11161a;
 }
 
 .theme-doc-sidebar-container,
@@ -1151,6 +1177,7 @@ body {
 }
 
 .contentTabs label {
+  position: relative;
   min-height: 46px;
   color: #172033;
   font-weight: 850;
@@ -1159,6 +1186,28 @@ body {
 .contentTabs label:hover {
   background: var(--doc-blue-soft);
   color: var(--doc-link-hover);
+}
+
+.contentTabs label[title]:hover::after,
+.contentTabs label[title]:focus-visible::after {
+  content: attr(title);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  z-index: 5;
+  width: max-content;
+  max-width: min(220px, 70vw);
+  transform: translateX(-50%);
+  border: 1px solid #c9d8eb;
+  border-radius: 8px;
+  padding: 7px 10px;
+  background: #ffffff;
+  color: #1f2a3d;
+  font-size: 0.78rem;
+  font-weight: 760;
+  line-height: 1.35;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.16);
+  pointer-events: none;
 }
 
 [id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
@@ -1415,6 +1464,14 @@ html[data-theme="dark"] .menu__link:hover,
 html[data-theme="dark"] .menu__list-item-collapsible:hover {
   background: #10231f;
   color: var(--doc-link-hover);
+}
+
+html[data-theme="dark"] .contentTabs label[title]:hover::after,
+html[data-theme="dark"] .contentTabs label[title]:focus-visible::after {
+  border-color: #2c3b48;
+  background: #11161a;
+  color: #ecfdf7;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
 }
 
 html[data-theme="dark"]

@@ -20,11 +20,11 @@ hide_title: true
   <input className="tabInput" type="radio" name="logging-view" id="logging-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="logging-original">原本</label>
-    <label htmlFor="logging-translation">翻訳</label>
-    <label htmlFor="logging-summary">要点</label>
-    <label htmlFor="logging-checklist">チェックリスト</label>
-    <label htmlFor="logging-bilingual">対比表示</label>
+    <label htmlFor="logging-original" title="OWASP 原文">原本</label>
+    <label htmlFor="logging-translation" title="日本語訳">翻訳</label>
+    <label htmlFor="logging-summary" title="短くまとめた内容">要点</label>
+    <label htmlFor="logging-checklist" title="実装確認用">チェックリスト</label>
+    <label htmlFor="logging-bilingual" title="原文と翻訳を並べて確認">対比表示</label>
   </div>
 
 <section id="logging-original-panel" className="tabPanel originalPanel contentPanel">
