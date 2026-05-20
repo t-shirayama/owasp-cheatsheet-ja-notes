@@ -4,7 +4,7 @@ hide_table_of_contents: true
 
 # Bean Validation Cheat Sheet
 
-<div className="docHero docHero--encoding">
+<div className="docHero" data-category="encoding-and-sanitization">
   <h1>Bean Validation Cheat Sheet</h1>
   <p className="docSubtitle">Bean Validation チートシート</p>
   <div className="docMeta">
