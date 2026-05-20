@@ -1,16 +1,14 @@
 ---
 title: Choosing and Using Security Questions Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v6">
-  <h1>Choosing and Using Security Questions Cheat Sheet</h1>
-  <p className="docSubtitle">秘密の質問の選択と利用チートシート</p>
+  <h1>秘密の質問の選択と利用チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: Authentication</span>
+    <span className="docPill">カテゴリ: 認証</span>
   </div>
 </div>
 

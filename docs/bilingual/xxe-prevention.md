@@ -1,16 +1,14 @@
 ---
 title: XML External Entity Prevention Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v1">
-  <h1>XML External Entity Prevention Cheat Sheet</h1>
-  <p className="docSubtitle">XXE 防止チートシート</p>
+  <h1>XXE 防止チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: Encoding and Sanitization</span>
+    <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
 </div>
 

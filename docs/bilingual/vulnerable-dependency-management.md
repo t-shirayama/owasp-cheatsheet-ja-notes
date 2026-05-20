@@ -1,16 +1,14 @@
 ---
 title: Vulnerable Dependency Management Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v15">
-  <h1>Vulnerable Dependency Management Cheat Sheet</h1>
-  <p className="docSubtitle">脆弱な依存関係管理チートシート</p>
+  <h1>脆弱な依存関係管理チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: Secure Coding and Architecture</span>
+    <span className="docPill">カテゴリ: セキュアコーディングとアーキテクチャ</span>
   </div>
 </div>
 

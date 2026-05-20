@@ -1,16 +1,14 @@
 ---
 title: OAuth 2.0 Protocol Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="api-and-web-service">
-  <h1>OAuth 2.0 Protocol Cheat Sheet</h1>
-  <p className="docSubtitle">OAuth 2.0 プロトコルチートシート</p>
+  <h1>OAuth 2.0 プロトコルチートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 18 分</span>
-    <span className="docPill">カテゴリ: API and Web Service</span>
+    <span className="docPill">カテゴリ: OAuth と OIDC</span>
   </div>
 </div>
 

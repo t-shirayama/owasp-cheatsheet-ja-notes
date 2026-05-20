@@ -1,16 +1,14 @@
 ---
 title: Session Management Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="session-management">
-  <h1>Session Management Cheat Sheet</h1>
-  <p className="docSubtitle">セッション管理チートシート</p>
+  <h1>セッション管理チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 14 分</span>
-    <span className="docPill">カテゴリ: Session Management</span>
+    <span className="docPill">カテゴリ: Web フロントエンドセキュリティ</span>
   </div>
 </div>
 

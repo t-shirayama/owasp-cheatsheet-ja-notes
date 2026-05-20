@@ -1,16 +1,14 @@
 ---
 title: OS Command Injection Defense Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v1">
-  <h1>OS Command Injection Defense Cheat Sheet</h1>
-  <p className="docSubtitle">OS コマンドインジェクション防御チートシート</p>
+  <h1>OS コマンドインジェクション防御チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: Encoding and Sanitization</span>
+    <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
 </div>
 

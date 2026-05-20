@@ -1,16 +1,14 @@
 ---
 title: Server Side Request Forgery Prevention Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v13">
-  <h1>Server Side Request Forgery Prevention Cheat Sheet</h1>
-  <p className="docSubtitle">SSRF 防止チートシート</p>
+  <h1>SSRF 防止チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: Configuration</span>
+    <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
 </div>
 

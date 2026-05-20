@@ -1,16 +1,14 @@
 ---
 title: Cryptographic Storage Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="cryptographic-storage">
-  <h1>Cryptographic Storage Cheat Sheet</h1>
-  <p className="docSubtitle">暗号化ストレージチートシート</p>
+  <h1>暗号化ストレージチートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 9 分</span>
-    <span className="docPill">カテゴリ: Cryptographic Storage</span>
+    <span className="docPill">カテゴリ: 暗号</span>
   </div>
 </div>
 

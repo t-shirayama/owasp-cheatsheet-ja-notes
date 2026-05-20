@@ -1,16 +1,14 @@
 ---
 title: Logging Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="logging-monitoring">
-  <h1>Logging Cheat Sheet</h1>
-  <p className="docSubtitle">ロギングチートシート</p>
+  <h1>ロギングチートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 18 分</span>
-    <span className="docPill">カテゴリ: Logging and Monitoring</span>
+    <span className="docPill">カテゴリ: OAuth と OIDC</span>
   </div>
 </div>
 

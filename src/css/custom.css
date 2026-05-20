@@ -763,3 +763,331 @@ html[data-theme='dark'] .footer--light {
     border-bottom: 0;
   }
 }
+
+/* Documentation page redesign */
+:root {
+  --doc-page-bg: #f8fbff;
+  --doc-card-bg: #ffffff;
+  --doc-subtle-bg: #f3f7fc;
+  --doc-blue: #125bd8;
+  --doc-blue-strong: #0f55c8;
+  --doc-blue-soft: #eef5ff;
+  --doc-text: #111827;
+  --doc-muted: #5d6b82;
+  --doc-line: #d9e3f2;
+  --doc-shadow: 0 18px 48px rgba(31, 72, 124, 0.08);
+}
+
+body {
+  background:
+    radial-gradient(circle at 82% 16%, rgba(18, 91, 216, 0.08), transparent 28rem),
+    var(--doc-page-bg);
+}
+
+.navbar {
+  min-height: 70px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(18px);
+}
+
+.navbar__brand {
+  margin-right: 28px;
+}
+
+.navbar__title {
+  color: var(--doc-text);
+  font-size: 1rem;
+}
+
+.navbar__link {
+  color: var(--doc-text);
+  font-weight: 760;
+}
+
+.navbar__search-input {
+  border-radius: 999px;
+  background: #f4f7fb;
+}
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--doc-line) !important;
+  background: linear-gradient(180deg, #fbfdff, #f6f9fd);
+}
+
+.theme-doc-sidebar-container .menu {
+  padding: 18px 14px 22px;
+  font-size: 0.92rem;
+}
+
+.theme-doc-sidebar-container .menu::before {
+  content: "ASVS インデックス対応\Aチートシート（英日対訳）";
+  display: block;
+  margin: 0 6px 16px;
+  white-space: pre-line;
+  color: #263850;
+  font-weight: 850;
+  line-height: 1.45;
+}
+
+.menu__list-item {
+  margin: 2px 0;
+}
+
+.menu__list .menu__list {
+  margin: 4px 0 8px 12px;
+  padding-left: 10px;
+  border-left: 1px solid #e1e8f3;
+}
+
+.menu__link,
+.menu__caret {
+  border-radius: 8px;
+}
+
+.menu__link {
+  color: #5c6878;
+  font-weight: 730;
+  line-height: 1.35;
+}
+
+.menu__link:hover,
+.menu__list-item-collapsible:hover {
+  background: #eef4ff;
+}
+
+.menu__link--active:not(.menu__link--sublist),
+.menu__list-item-collapsible--active {
+  border: 1px solid #c7dcff;
+  border-left: 4px solid var(--doc-blue);
+  background: #f5f9ff;
+  color: var(--doc-blue);
+}
+
+.breadcrumbs {
+  margin-bottom: 22px;
+  color: var(--doc-muted);
+  font-size: 0.86rem;
+  font-weight: 720;
+}
+
+.breadcrumbs__link {
+  border-radius: 999px;
+}
+
+.docHero {
+  margin: 0 0 24px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.docHero h1 {
+  max-width: 980px;
+  margin: 0 0 18px;
+  color: var(--doc-text);
+  font-size: clamp(2.35rem, 5vw, 3.35rem);
+  line-height: 1.08;
+  font-weight: 900;
+}
+
+.docMeta {
+  gap: 10px;
+  margin-top: 0;
+}
+
+.docPill {
+  min-height: 30px;
+  border-color: #bfd7ff;
+  background: var(--doc-blue-soft);
+  color: var(--doc-blue);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.tabbedContent {
+  margin-top: 18px;
+}
+
+.contentTabs {
+  grid-template-columns: repeat(4, minmax(110px, 1fr));
+  margin: 20px 0;
+  border: 1px solid var(--doc-line);
+  border-radius: 8px;
+  background: var(--doc-card-bg);
+  box-shadow: 0 10px 24px rgba(31, 72, 124, 0.05);
+}
+
+.contentTabs label {
+  min-height: 46px;
+  color: #172033;
+  font-weight: 850;
+}
+
+.contentTabs label:hover {
+  background: var(--doc-blue-soft);
+  color: var(--doc-blue);
+}
+
+[id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
+[id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
+[id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
+[id$="-bilingual"]:checked ~ .contentTabs label[for$="-bilingual"] {
+  background: linear-gradient(180deg, #1768e8, var(--doc-blue-strong));
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.contentPanel {
+  border: 1px solid var(--doc-line);
+  border-radius: 8px;
+  padding: 28px 32px;
+  background: var(--doc-card-bg);
+  box-shadow: var(--doc-shadow);
+  color: #172033;
+}
+
+.contentPanel h2 {
+  margin: 0 0 18px;
+  color: var(--doc-text);
+  font-size: 1.7rem;
+  font-weight: 900;
+}
+
+.contentPanel h3 {
+  margin-top: 28px;
+  color: var(--doc-text);
+  font-weight: 860;
+}
+
+.contentPanel p,
+.contentPanel li {
+  line-height: 1.85;
+}
+
+.contentPanel hr {
+  border-color: var(--doc-line);
+}
+
+.contentPanel img {
+  max-width: 100%;
+}
+
+.bilingualPair {
+  border-color: var(--doc-line);
+  background: var(--doc-card-bg);
+  box-shadow: var(--doc-shadow);
+}
+
+.bilingualBlock,
+.bilingualCommon {
+  padding: 18px 22px;
+}
+
+.theme-doc-toc-desktop {
+  padding-left: 22px;
+}
+
+.table-of-contents {
+  border-left: 0;
+  border-radius: 8px;
+  padding: 20px 18px;
+  background: rgba(246, 249, 253, 0.94);
+  box-shadow: 0 18px 45px rgba(31, 72, 124, 0.07);
+}
+
+.table-of-contents::before {
+  content: "このページ";
+  display: block;
+  margin: 0 0 12px;
+  color: var(--doc-text);
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.table-of-contents__link {
+  color: var(--doc-muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.table-of-contents__link--active,
+.table-of-contents__link:hover {
+  color: var(--doc-blue);
+  font-weight: 820;
+}
+
+.pagination-nav {
+  margin-top: 28px;
+}
+
+.pagination-nav__link {
+  border-color: var(--doc-line);
+  border-radius: 8px;
+  background: var(--doc-card-bg);
+  box-shadow: 0 10px 24px rgba(31, 72, 124, 0.05);
+}
+
+html[data-theme='dark'] {
+  --doc-page-bg: #0f1013;
+  --doc-card-bg: #17191d;
+  --doc-subtle-bg: #131518;
+  --doc-blue: #4fe0ba;
+  --doc-blue-strong: #32cfa6;
+  --doc-blue-soft: #10231f;
+  --doc-text: #eceff3;
+  --doc-muted: #8c929b;
+  --doc-line: #25282e;
+  --doc-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+}
+
+html[data-theme='dark'] body {
+  background: var(--doc-page-bg);
+}
+
+html[data-theme='dark'] .navbar,
+html[data-theme='dark'] .theme-doc-sidebar-container,
+html[data-theme='dark'] .table-of-contents {
+  background: var(--doc-subtle-bg);
+}
+
+html[data-theme='dark'] .contentTabs,
+html[data-theme='dark'] .contentPanel,
+html[data-theme='dark'] .bilingualPair,
+html[data-theme='dark'] .pagination-nav__link {
+  border-color: var(--doc-line);
+  background: var(--doc-card-bg);
+}
+
+html[data-theme='dark'] .theme-doc-sidebar-container .menu::before,
+html[data-theme='dark'] .docHero h1,
+html[data-theme='dark'] .contentPanel h2,
+html[data-theme='dark'] .contentPanel h3,
+html[data-theme='dark'] .table-of-contents::before {
+  color: var(--doc-text);
+}
+
+html[data-theme='dark'] .menu__list .menu__list {
+  border-left-color: var(--doc-line);
+}
+
+html[data-theme='dark'] [id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
+html[data-theme='dark'] [id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
+html[data-theme='dark'] [id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
+html[data-theme='dark'] [id$="-bilingual"]:checked ~ .contentTabs label[for$="-bilingual"] {
+  background: var(--doc-blue-soft);
+  color: var(--doc-blue);
+}
+
+@media (max-width: 996px) {
+  .theme-doc-sidebar-container .menu::before {
+    display: none;
+  }
+
+  .docHero h1 {
+    font-size: 2.2rem;
+  }
+
+  .contentPanel {
+    padding: 22px 18px;
+  }
+}

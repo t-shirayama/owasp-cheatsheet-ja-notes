@@ -1,16 +1,14 @@
 ---
 title: Secrets Management Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v11">
-  <h1>Secrets Management Cheat Sheet</h1>
-  <p className="docSubtitle">シークレット管理チートシート</p>
+  <h1>シークレット管理チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: Cryptography</span>
+    <span className="docPill">カテゴリ: 暗号</span>
   </div>
 </div>
 

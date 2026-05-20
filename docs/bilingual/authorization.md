@@ -1,16 +1,14 @@
 ---
 title: Authorization Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="authorization">
-  <h1>Authorization Cheat Sheet</h1>
-  <p className="docSubtitle">認可チートシート</p>
+  <h1>認可チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 12 分</span>
-    <span className="docPill">カテゴリ: Authorization</span>
+    <span className="docPill">カテゴリ: 認可</span>
   </div>
 </div>
 

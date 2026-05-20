@@ -3,7 +3,7 @@ const sidebars = {
     'index',
     {
       type: 'category',
-      label: 'V1: Encoding and Sanitization',
+      label: 'V1: 入力検証とサニタイズ',
       collapsed: false,
       link: {
         type: 'doc',
@@ -12,7 +12,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V1.1: Encoding and Sanitization Architecture',
+          label: 'V1.1: 入力検証アーキテクチャ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -25,7 +25,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V1.2: Injection Prevention',
+          label: 'V1.2: インジェクション対策',
           collapsed: true,
           link: {
             type: 'doc',
@@ -50,7 +50,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V1.3: Sanitization',
+          label: 'V1.3: データサニタイズ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -70,7 +70,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V1.4: Memory, String, and Unmanaged Code',
+          label: 'V1.4: メモリ・文字列・アンマネージドコード',
           collapsed: true,
           link: {
             type: 'doc',
@@ -82,7 +82,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V1.5: Safe Deserialization',
+          label: 'V1.5: 安全なシリアライズ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -99,7 +99,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V2: Validation and Business Logic',
+      label: 'V2: 検証とビジネスロジック',
       collapsed: true,
       link: {
         type: 'doc',
@@ -108,7 +108,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V2.1: Validation and Business Logic Documentation',
+          label: 'V2.1: 検証とビジネスロジック文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -120,7 +120,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V2.2: Input Validation',
+          label: 'V2.2: 入力検証',
           collapsed: true,
           link: {
             type: 'doc',
@@ -134,7 +134,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V2.3: Business Logic Security',
+          label: 'V2.3: ビジネスロジックセキュリティ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -146,7 +146,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V2.4: Anti-automation',
+          label: 'V2.4: 自動化対策',
           collapsed: true,
           link: {
             type: 'doc',
@@ -160,7 +160,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V3: Web Frontend Security',
+      label: 'V3: Web フロントエンドセキュリティ',
       collapsed: true,
       link: {
         type: 'doc',
@@ -169,7 +169,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V3.1: Web Frontend Security Documentation',
+          label: 'V3.1: Web フロントエンド文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -183,7 +183,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V3.2: Unintended Content Interpretation',
+          label: 'V3.2: 意図しないコンテンツ解釈',
           collapsed: true,
           link: {
             type: 'doc',
@@ -198,7 +198,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V3.3: Cookie Setup',
+          label: 'V3.3: Cookie 設定',
           collapsed: true,
           link: {
             type: 'doc',
@@ -212,7 +212,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V3.4: Browser Security Mechanism Headers',
+          label: 'V3.4: ブラウザセキュリティヘッダー',
           collapsed: true,
           link: {
             type: 'doc',
@@ -226,7 +226,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V3.5: Browser Origin Separation',
+          label: 'V3.5: ブラウザオリジン分離',
           collapsed: true,
           link: {
             type: 'doc',
@@ -239,7 +239,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V3.6: External Resource Integrity',
+          label: 'V3.6: 外部リソース完全性',
           collapsed: true,
           link: {
             type: 'doc',
@@ -251,7 +251,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V3.7: Other Browser Security Considerations',
+          label: 'V3.7: その他のブラウザセキュリティ考慮事項',
           collapsed: true,
           link: {
             type: 'doc',
@@ -268,7 +268,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V4: API and Web Service',
+      label: 'V4: API と Web サービス',
       collapsed: true,
       link: {
         type: 'doc',
@@ -277,7 +277,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V4.1: Generic Web Service Security',
+          label: 'V4.1: 一般的な Web サービスセキュリティ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -293,7 +293,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V4.2: HTTP Message Structure Validation',
+          label: 'V4.2: HTTP メッセージ構造検証',
           collapsed: true,
           link: {
             type: 'doc',
@@ -333,7 +333,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V5: File Handling',
+      label: 'V5: ファイル処理',
       collapsed: true,
       link: {
         type: 'doc',
@@ -342,7 +342,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V5.1: File Handling Documentation',
+          label: 'V5.1: ファイル処理文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -355,7 +355,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V5.2: File Upload and Content',
+          label: 'V5.2: ファイルアップロードとコンテンツ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -368,7 +368,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V5.3: File Storage',
+          label: 'V5.3: ファイル保存',
           collapsed: true,
           link: {
             type: 'doc',
@@ -381,7 +381,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V5.4: File Download',
+          label: 'V5.4: ファイルダウンロード',
           collapsed: true,
           link: {
             type: 'doc',
@@ -395,7 +395,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V6: Authentication',
+      label: 'V6: 認証',
       collapsed: true,
       link: {
         type: 'doc',
@@ -404,7 +404,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V6.1: Authentication Documentation',
+          label: 'V6.1: 認証文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -417,7 +417,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V6.2: Password Security',
+          label: 'V6.2: パスワードセキュリティ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -429,7 +429,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V6.3: General Authentication Security',
+          label: 'V6.3: 一般的な認証セキュリティ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -443,7 +443,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V6.4: Authentication Factor Lifecycle and Recovery',
+          label: 'V6.4: 認証要素のライフサイクルと復旧',
           collapsed: true,
           link: {
             type: 'doc',
@@ -457,7 +457,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V6.5: General Multi-factor authentication requirements',
+          label: 'V6.5: 一般的な多要素認証要件',
           collapsed: true,
           link: {
             type: 'doc',
@@ -472,7 +472,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V6.6: Out-of-Band authentication mechanisms',
+          label: 'V6.6: アウトオブバンド認証機構',
           collapsed: true,
           link: {
             type: 'doc',
@@ -485,7 +485,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V6.7: Cryptographic authentication mechanism',
+          label: 'V6.7: 暗号学的認証機構',
           collapsed: true,
           link: {
             type: 'doc',
@@ -498,7 +498,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V6.8: Authentication with an Identity Provider',
+          label: 'V6.8: ID プロバイダによる認証',
           collapsed: true,
           link: {
             type: 'doc',
@@ -512,7 +512,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V7: Session Management',
+      label: 'V7: セッション管理',
       collapsed: true,
       link: {
         type: 'doc',
@@ -521,7 +521,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V7.1: Session Management Documentation',
+          label: 'V7.1: セッション管理文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -533,7 +533,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V7.2: Fundamental Session Management Security',
+          label: 'V7.2: 基本的なセッション管理セキュリティ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -545,7 +545,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V7.3: Session Timeout',
+          label: 'V7.3: セッションタイムアウト',
           collapsed: true,
           link: {
             type: 'doc',
@@ -557,7 +557,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V7.4: Session Termination',
+          label: 'V7.4: セッション終了',
           collapsed: true,
           link: {
             type: 'doc',
@@ -569,7 +569,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V7.5: Defenses Against Session Abuse',
+          label: 'V7.5: セッション悪用への防御',
           collapsed: true,
           link: {
             type: 'doc',
@@ -581,7 +581,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V7.6: Federated Re-authentication',
+          label: 'V7.6: 連携再認証',
           collapsed: true,
           link: {
             type: 'doc',
@@ -595,7 +595,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V8: Authorization',
+      label: 'V8: 認可',
       collapsed: true,
       link: {
         type: 'doc',
@@ -604,7 +604,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V8.1: Authorization Documentation',
+          label: 'V8.1: 認可文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -618,7 +618,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V8.2: General Authorization Design',
+          label: 'V8.2: 一般的な認可設計',
           collapsed: true,
           link: {
             type: 'doc',
@@ -632,7 +632,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V8.3: Operation Level Authorization',
+          label: 'V8.3: 操作レベル認可',
           collapsed: true,
           link: {
             type: 'doc',
@@ -644,7 +644,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V8.4: Other Authorization Considerations',
+          label: 'V8.4: その他の認可考慮事項',
           collapsed: true,
           link: {
             type: 'doc',
@@ -659,7 +659,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V9: Self-contained Tokens',
+      label: 'V9: セルフコンテインドトークン',
       collapsed: true,
       link: {
         type: 'doc',
@@ -668,7 +668,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V9.1: Token source and integrity',
+          label: 'V9.1: トークンの出所と完全性',
           collapsed: true,
           link: {
             type: 'doc',
@@ -681,7 +681,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V9.2: Token content',
+          label: 'V9.2: トークン内容',
           collapsed: true,
           link: {
             type: 'doc',
@@ -695,7 +695,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V10: OAuth and OIDC',
+      label: 'V10: OAuth と OIDC',
       collapsed: true,
       link: {
         type: 'doc',
@@ -704,7 +704,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V10.1: Generic OAuth and OIDC Security',
+          label: 'V10.1: 一般的な OAuth / OIDC セキュリティ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -716,7 +716,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V10.2: OAuth Client',
+          label: 'V10.2: OAuth クライアント',
           collapsed: true,
           link: {
             type: 'doc',
@@ -728,7 +728,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V10.3: OAuth Resource Server',
+          label: 'V10.3: OAuth リソースサーバ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -741,7 +741,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V10.4: OAuth Authorization Server',
+          label: 'V10.4: OAuth 認可サーバ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -755,7 +755,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V10.5: OIDC Client',
+          label: 'V10.5: OIDC クライアント',
           collapsed: true,
           link: {
             type: 'doc',
@@ -779,7 +779,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V10.7: Consent Management',
+          label: 'V10.7: 同意管理',
           collapsed: true,
           link: {
             type: 'doc',
@@ -794,7 +794,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V11: Cryptography',
+      label: 'V11: 暗号',
       collapsed: true,
       link: {
         type: 'doc',
@@ -803,7 +803,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V11.1: Cryptographic Inventory and Documentation',
+          label: 'V11.1: 暗号インベントリと文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -817,7 +817,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V11.2: Secure Cryptography Implementation',
+          label: 'V11.2: 安全な暗号実装',
           collapsed: true,
           link: {
             type: 'doc',
@@ -829,7 +829,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V11.3: Encryption Algorithms',
+          label: 'V11.3: 暗号アルゴリズム',
           collapsed: true,
           link: {
             type: 'doc',
@@ -842,7 +842,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V11.4: Hashing and Hash-based Functions',
+          label: 'V11.4: ハッシュとハッシュベース関数',
           collapsed: true,
           link: {
             type: 'doc',
@@ -854,7 +854,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V11.5: Random Values',
+          label: 'V11.5: 乱数値',
           collapsed: true,
           link: {
             type: 'doc',
@@ -866,7 +866,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V11.6: Public Key Cryptography',
+          label: 'V11.6: 公開鍵暗号',
           collapsed: true,
           link: {
             type: 'doc',
@@ -878,7 +878,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V11.7: In-Use Data Cryptography',
+          label: 'V11.7: 使用中データの暗号化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -894,7 +894,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V12: Secure Communication',
+      label: 'V12: 安全な通信',
       collapsed: true,
       link: {
         type: 'doc',
@@ -903,7 +903,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V12.1: General TLS Security Guidance',
+          label: 'V12.1: 一般的な TLS セキュリティガイダンス',
           collapsed: true,
           link: {
             type: 'doc',
@@ -915,7 +915,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V12.2: HTTPS Communication with External Facing Services',
+          label: 'V12.2: 外部公開サービスとの HTTPS 通信',
           collapsed: true,
           link: {
             type: 'doc',
@@ -927,7 +927,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V12.3: General Service to Service Communication Security',
+          label: 'V12.3: サービス間通信セキュリティ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -941,7 +941,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V13: Configuration',
+      label: 'V13: 設定',
       collapsed: true,
       link: {
         type: 'doc',
@@ -950,7 +950,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V13.1: Configuration Documentation',
+          label: 'V13.1: 設定文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -962,7 +962,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V13.2: Backend Communication Configuration',
+          label: 'V13.2: バックエンド通信設定',
           collapsed: true,
           link: {
             type: 'doc',
@@ -975,7 +975,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V13.3: Secret Management',
+          label: 'V13.3: シークレット管理',
           collapsed: true,
           link: {
             type: 'doc',
@@ -988,7 +988,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V13.4: Unintended Information Leakage',
+          label: 'V13.4: 意図しない情報漏えい',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1006,7 +1006,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V14: Data Protection',
+      label: 'V14: データ保護',
       collapsed: true,
       link: {
         type: 'doc',
@@ -1015,7 +1015,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V14.1: Data Protection Documentation',
+          label: 'V14.1: データ保護文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1029,7 +1029,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V14.2: General Data Protection',
+          label: 'V14.2: 一般的なデータ保護',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1042,7 +1042,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V14.3: Client-side Data Protection',
+          label: 'V14.3: クライアント側データ保護',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1056,7 +1056,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V15: Secure Coding and Architecture',
+      label: 'V15: セキュアコーディングとアーキテクチャ',
       collapsed: true,
       link: {
         type: 'doc',
@@ -1065,7 +1065,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V15.1: Secure Coding and Architecture Documentation',
+          label: 'V15.1: セキュアコーディングとアーキテクチャ文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1083,7 +1083,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V15.2: Security Architecture and Dependencies',
+          label: 'V15.2: セキュリティアーキテクチャと依存関係',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1098,7 +1098,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V15.3: Defensive Coding',
+          label: 'V15.3: 防御的コーディング',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1112,7 +1112,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V15.4: Safe Concurrency',
+          label: 'V15.4: 安全な並行処理',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1127,7 +1127,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'V16: Security Logging and Error Handling',
+      label: 'V16: セキュリティログとエラーハンドリング',
       collapsed: true,
       link: {
         type: 'doc',
@@ -1136,7 +1136,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V16.1: Security Logging Documentation',
+          label: 'V16.1: セキュリティログ文書化',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1149,7 +1149,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V16.2: General Logging',
+          label: 'V16.2: 一般的なロギング',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1162,7 +1162,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V16.3: Security Events',
+          label: 'V16.3: セキュリティイベント',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1176,7 +1176,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V16.4: Log Protection',
+          label: 'V16.4: ログ保護',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1188,7 +1188,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V16.5: Error Handling',
+          label: 'V16.5: エラーハンドリング',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1211,7 +1211,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'V17.1: TURN Server',
+          label: 'V17.1: TURN サーバ',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1223,7 +1223,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V17.2: Media',
+          label: 'V17.2: メディア',
           collapsed: true,
           link: {
             type: 'doc',
@@ -1235,7 +1235,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'V17.3: Signaling',
+          label: 'V17.3: シグナリング',
           collapsed: true,
           link: {
             type: 'doc',

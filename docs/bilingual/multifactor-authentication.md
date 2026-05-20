@@ -1,16 +1,14 @@
 ---
 title: Multifactor Authentication Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="authentication">
-  <h1>Multifactor Authentication Cheat Sheet</h1>
-  <p className="docSubtitle">多要素認証チートシート</p>
+  <h1>多要素認証チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 12 分</span>
-    <span className="docPill">カテゴリ: Authentication</span>
+    <span className="docPill">カテゴリ: 認証</span>
   </div>
 </div>
 

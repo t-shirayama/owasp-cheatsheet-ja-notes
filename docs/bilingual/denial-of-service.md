@@ -1,16 +1,14 @@
 ---
 title: Denial of Service Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v2">
-  <h1>Denial of Service Cheat Sheet</h1>
-  <p className="docSubtitle">Denial of Service チートシート</p>
+  <h1>Denial of Service チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: Validation and Business Logic</span>
+    <span className="docPill">カテゴリ: 検証とビジネスロジック</span>
   </div>
 </div>
 

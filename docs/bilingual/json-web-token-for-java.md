@@ -1,16 +1,14 @@
 ---
 title: JSON Web Token Cheat Sheet for Java
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v9">
-  <h1>JSON Web Token Cheat Sheet for Java</h1>
-  <p className="docSubtitle">Java 向け JSON Web Token チートシート</p>
+  <h1>Java 向け JSON Web Token チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: Self-contained Tokens</span>
+    <span className="docPill">カテゴリ: セルフコンテインドトークン</span>
   </div>
 </div>
 

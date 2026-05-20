@@ -1,16 +1,14 @@
 ---
 title: Authorization Testing Automation Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v8">
-  <h1>Authorization Testing Automation Cheat Sheet</h1>
-  <p className="docSubtitle">認可テスト自動化チートシート</p>
+  <h1>認可テスト自動化チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: Authorization</span>
+    <span className="docPill">カテゴリ: 認可</span>
   </div>
 </div>
 

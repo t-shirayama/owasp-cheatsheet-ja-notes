@@ -1,16 +1,14 @@
 ---
 title: GraphQL Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v13">
-  <h1>GraphQL Cheat Sheet</h1>
-  <p className="docSubtitle">GraphQL チートシート</p>
+  <h1>GraphQL チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: Configuration</span>
+    <span className="docPill">カテゴリ: API と Web サービス</span>
   </div>
 </div>
 

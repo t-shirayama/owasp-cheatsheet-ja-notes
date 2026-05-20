@@ -1,16 +1,14 @@
 ---
 title: Input Validation Cheat Sheet
 hide_title: true
-hide_table_of_contents: true
 ---
 
 <div className="docHero" data-category="asvs-v5">
-  <h1>Input Validation Cheat Sheet</h1>
-  <p className="docSubtitle">入力検証チートシート</p>
+  <h1>入力検証チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 準備中</span>
-    <span className="docPill">カテゴリ: File Handling</span>
+    <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
 </div>
 
