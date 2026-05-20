@@ -22,7 +22,7 @@ hide_title: true
   <input className="tabInput" type="radio" name="java-security-view" id="java-security-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="java-security-original" title="OWASP 原文">原本</label>
+    <label htmlFor="java-security-original" title="OWASP 原文">原文</label>
     <label htmlFor="java-security-translation" title="日本語訳">翻訳</label>
     <label htmlFor="java-security-summary" title="短くまとめた内容">要点</label>
     <label htmlFor="java-security-checklist" title="実装確認用">チェックリスト</label>

@@ -21,7 +21,7 @@ hide_title: true
   <input className="tabInput" type="radio" name="password-storage-view" id="password-storage-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="password-storage-original" title="OWASP 原文">原本</label>
+    <label htmlFor="password-storage-original" title="OWASP 原文">原文</label>
     <label htmlFor="password-storage-translation" title="日本語訳">翻訳</label>
     <label htmlFor="password-storage-summary" title="短くまとめた内容">要点</label>
     <label htmlFor="password-storage-checklist" title="実装確認用">チェックリスト</label>

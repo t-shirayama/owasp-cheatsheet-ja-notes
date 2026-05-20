@@ -21,7 +21,7 @@ hide_title: true
   <input className="tabInput" type="radio" name="bean-validation-view" id="bean-validation-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="bean-validation-original" title="OWASP 原文">原本</label>
+    <label htmlFor="bean-validation-original" title="OWASP 原文">原文</label>
     <label htmlFor="bean-validation-translation" title="日本語訳">翻訳</label>
     <label htmlFor="bean-validation-summary" title="短くまとめた内容">要点</label>
     <label htmlFor="bean-validation-checklist" title="実装確認用">チェックリスト</label>

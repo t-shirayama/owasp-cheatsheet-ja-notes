@@ -21,7 +21,7 @@ hide_title: true
   <input className="tabInput" type="radio" name="cryptographic-storage-view" id="cryptographic-storage-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="cryptographic-storage-original" title="OWASP 原文">原本</label>
+    <label htmlFor="cryptographic-storage-original" title="OWASP 原文">原文</label>
     <label htmlFor="cryptographic-storage-translation" title="日本語訳">翻訳</label>
     <label htmlFor="cryptographic-storage-summary" title="短くまとめた内容">要点</label>
     <label htmlFor="cryptographic-storage-checklist" title="実装確認用">チェックリスト</label>

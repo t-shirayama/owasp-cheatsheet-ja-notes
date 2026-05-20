@@ -21,7 +21,7 @@ hide_title: true
   <input className="tabInput" type="radio" name="multifactor-authentication-view" id="multifactor-authentication-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="multifactor-authentication-original" title="OWASP 原文">原本</label>
+    <label htmlFor="multifactor-authentication-original" title="OWASP 原文">原文</label>
     <label htmlFor="multifactor-authentication-translation" title="日本語訳">翻訳</label>
     <label htmlFor="multifactor-authentication-summary" title="短くまとめた内容">要点</label>
     <label htmlFor="multifactor-authentication-checklist" title="実装確認用">チェックリスト</label>

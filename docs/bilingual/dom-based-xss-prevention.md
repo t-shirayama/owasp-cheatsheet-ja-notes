@@ -22,7 +22,7 @@ hide_title: true
   <input className="tabInput" type="radio" name="dom-based-xss-prevention-view" id="dom-based-xss-prevention-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="dom-based-xss-prevention-original" title="OWASP 原文">原本</label>
+    <label htmlFor="dom-based-xss-prevention-original" title="OWASP 原文">原文</label>
     <label htmlFor="dom-based-xss-prevention-translation" title="日本語訳">翻訳</label>
     <label htmlFor="dom-based-xss-prevention-summary" title="短くまとめた内容">要点</label>
     <label htmlFor="dom-based-xss-prevention-checklist" title="実装確認用">チェックリスト</label>

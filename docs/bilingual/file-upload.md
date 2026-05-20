@@ -22,7 +22,7 @@ hide_title: true
   <input className="tabInput" type="radio" name="file-upload-view" id="file-upload-bilingual" />
 
   <div className="contentTabs">
-    <label htmlFor="file-upload-original" title="OWASP 原文">原本</label>
+    <label htmlFor="file-upload-original" title="OWASP 原文">原文</label>
     <label htmlFor="file-upload-translation" title="日本語訳">翻訳</label>
     <label htmlFor="file-upload-summary" title="短くまとめた内容">要点</label>
     <label htmlFor="file-upload-checklist" title="実装確認用">チェックリスト</label>
