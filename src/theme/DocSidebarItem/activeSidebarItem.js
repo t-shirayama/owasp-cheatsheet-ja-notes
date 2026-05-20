@@ -64,13 +64,14 @@ export function rememberActiveSidebarItem(item) {
 }
 
 export function useActiveSidebarSelection() {
-  const [selection, setSelection] = useState(readActiveSidebarSelection);
+  const [selection, setSelection] = useState(undefined);
 
   useEffect(() => {
     const syncSelection = () => {
       setSelection(readActiveSidebarSelection());
     };
 
+    syncSelection();
     window.addEventListener(CHANGE_EVENT, syncSelection);
     window.addEventListener('storage', syncSelection);
 
