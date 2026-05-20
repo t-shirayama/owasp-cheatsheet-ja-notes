@@ -47,12 +47,19 @@
 
 ## 優先度中
 
-- [ ] Markdown lint を導入し、見出し、表、リンク、末尾改行などを自動検査する。
-- [ ] Markdown link checker を導入し、内部リンクと外部リンクを継続的に確認する。
-- [ ] `Retrieved` の更新ルールを決め、OWASP 原文更新への追従手順を作る。
-- [ ] 章別チェック観点を、抽象的な観点から具体的な設計・実装・テスト観点へ拡張する。
-- [ ] README に「現状は ASVS Index coverage の要約翻訳であり、全文詳細翻訳は段階的に拡張する」旨を明記するか検討する。
-- [ ] 非重点ページに残る ASVS Index coverage の短い翻訳、要約、チェックリストを、優先順位を付けて段階的に詳細化する。
+- [x] Markdown lint を導入し、見出し、表、リンク、末尾改行などを自動検査する。
+- [x] Markdown link checker を導入し、内部リンクと外部リンクを継続的に確認する。
+- [x] `Retrieved` の更新ルールを決め、OWASP 原文更新への追従手順を作る。
+- [x] 章別チェック観点を、抽象的な観点から具体的な設計・実装・テスト観点へ拡張する。
+- [x] README に「現状は ASVS Index coverage の要約翻訳であり、全文詳細翻訳は段階的に拡張する」旨を明記するか検討する。
+- [x] 非重点ページに残る ASVS Index coverage の短い翻訳、要約、チェックリストを、優先順位を付けて段階的に詳細化する。
+
+### 優先度中の完了範囲
+
+- Markdown lint と link checker は [../tools/](../tools/) 配下の PowerShell スクリプトとして導入した。
+- 原文確認日と `Retrieved` 更新ルールは [source-update-policy.md](source-update-policy.md) にまとめた。
+- 章別チェック観点は [../docs/checklists/by-asvs.md](../docs/checklists/by-asvs.md) に Issue 化しやすい確認観点として追加した。
+- 非重点ページの段階的詳細化順は [non-priority-detailing-plan.md](non-priority-detailing-plan.md) に Wave 1 から Wave 3 として整理した。
 
 ## 優先度低
 

@@ -20,3 +20,14 @@
 | セキュア開発 | 脅威モデリング、サプライチェーン、依存関係、コードレビュー | V15 | [../asvs/v15-secure-coding-and-architecture.md](../asvs/v15-secure-coding-and-architecture.md), [threat-modeling.md](./v15/threat-modeling.md), [software-supply-chain-security.md](./v15/software-supply-chain-security.md), [secure-code-review.md](./v15/secure-code-review.md) | 作成済み |
 | ログとエラー | セキュリティイベント、ログ保護、エラー応答 | V16 | [../asvs/v16-security-logging-and-error-handling.md](../asvs/v16-security-logging-and-error-handling.md), [logging.md](./v10/logging.md), [logging-vocabulary.md](./v16/logging-vocabulary.md), [error-handling.md](./v16/error-handling.md) | 作成済み |
 | WebRTC | TURN、メディア、シグナリング、TLS | V17 | [../asvs/v17-webrtc.md](../asvs/v17-webrtc.md), [transport-layer-security.md](./v3/transport-layer-security.md) | 作成済み |
+
+## Issue 化テンプレート
+
+各トピックを実装タスクへ落とすときは、次の情報を含めます。
+
+- 対象機能、エンドポイント、画面、ジョブ、または設定。
+- 関連 ASVS 章と参照する翻訳、要約、チェックリスト。
+- 実装する制御、禁止する挙動、許容する例外。
+- テスト観点。正常系だけでなく、迂回、改ざん、権限不足、過剰入力、再利用、期限切れを含める。
+- ログまたは監査観点。イベント名、主体、対象リソース、相関 ID、秘密情報を記録しない条件を明示する。
+- 完了条件。コード、設定、ドキュメント、テスト、レビュー結果のどれで確認するかを明示する。
