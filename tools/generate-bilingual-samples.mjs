@@ -1388,6 +1388,57 @@ function sharedHeading(englishHeading, japaneseHeading) {
   };
 }
 
+function splitTextCards(text) {
+  const blocks = normalizeNewlines(text)
+    .trim()
+    .split(/\n{2,}/)
+    .map((block) => block.trim())
+    .filter(Boolean);
+  const cards = [];
+  let pendingHeading = '';
+
+  const splitListBlock = (block) => {
+    const lines = block.split('\n');
+    if (!lines.some((line) => /^\s{0,3}(?:[-*+]|\d+[.)])\s+/.test(line))) {
+      return [block];
+    }
+
+    const items = [];
+    let current = [];
+    for (const line of lines) {
+      const startsTopLevelItem = /^\s{0,3}(?:[-*+]|\d+[.)])\s+/.test(line);
+      if (startsTopLevelItem && current.length > 0) {
+        items.push(current.join('\n').trim());
+        current = [];
+      }
+      current.push(line);
+    }
+    if (current.length > 0) {
+      items.push(current.join('\n').trim());
+    }
+    return items.length > 1 ? items : [block];
+  };
+
+  for (const block of blocks) {
+    const isHeadingOnly = /^#{2,6}\s+.+$/.test(block);
+    if (isHeadingOnly) {
+      pendingHeading = pendingHeading ? `${pendingHeading}\n\n${block}` : block;
+      continue;
+    }
+
+    for (const [index, card] of splitListBlock(block).entries()) {
+      cards.push(index === 0 && pendingHeading ? `${pendingHeading}\n\n${card}` : card);
+    }
+    pendingHeading = '';
+  }
+
+  if (pendingHeading) {
+    cards.push(pendingHeading);
+  }
+
+  return cards;
+}
+
 function bilingualPairs(english, japanese) {
   const englishSections = splitSections(english);
   const japaneseSections = splitSections(japanese);
@@ -1416,14 +1467,35 @@ function bilingualPairs(english, japanese) {
       const en = enText.text;
       const ja = jaText.text;
       const heading = sharedHeading(enText.heading, jaText.heading);
-      const englishBlock = en
-        ? `<div className="bilingualBlock english">
+      const enCards = splitTextCards(en);
+      const jaCards = splitTextCards(ja);
+      const cardCount = Math.max(enCards.length, jaCards.length);
+
+      for (let cardIndex = 0; cardIndex < cardCount; cardIndex++) {
+        const englishBlock = enCards[cardIndex]
+          ? `<div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-${en}
+${enCards[cardIndex]}
 
 </div>`
-        : '';
+          : '';
+        const japaneseBlock = jaCards[cardIndex]
+          ? `<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+${jaCards[cardIndex]}
+
+</div>`
+          : '';
+        if (englishBlock || japaneseBlock) {
+          chunks.push(`<div className="bilingualPair">
+${englishBlock}
+${japaneseBlock}
+</div>`);
+        }
+      }
+
       const sharedBlock = shared
         ? `<div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
@@ -1433,20 +1505,6 @@ ${shared}
 
 </div>`
         : '';
-      const japaneseBlock = ja
-        ? `<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-${ja}
-
-</div>`
-        : '';
-      if (englishBlock || japaneseBlock) {
-        chunks.push(`<div className="bilingualPair">
-${englishBlock}
-${japaneseBlock}
-</div>`);
-      }
       if (sharedBlock) {
         chunks.push(sharedBlock);
       }
