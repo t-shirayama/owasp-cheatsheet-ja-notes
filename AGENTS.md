@@ -200,7 +200,9 @@ Do not update the bilingual display first and leave the source documents stale. 
 - For Markdown-only changes, review headings, links, attribution fields, and checklist completeness manually.
 - If a Markdown linter or link checker is later added to this repository, run it before finalizing relevant changes.
 - When source URLs are used, ensure they point to official pages and include the retrieval date in the document.
-- For Docusaurus/site changes, run `npm run build` and `git diff --check`.
+- For Docusaurus layout or CSS changes, prefer `npm run dev` hot reload plus a local browser check during iteration. Do not run `npm run build` repeatedly just to inspect visual tweaks.
+- Run `npm run build` for final production verification, deployment-related changes, Docusaurus config changes, or when the user explicitly asks for a build check.
+- Always run `git diff --check` before finalizing code, CSS, or generated-file changes.
 - If a change affects generated bilingual pages, run `node tools\generate-bilingual-samples.mjs` when needed and verify that changed files match the requested scope.
 - For layout or visual changes, prefer a local browser check when tooling is available. If browser automation is unavailable, state that limitation and still run build/static checks.
 
