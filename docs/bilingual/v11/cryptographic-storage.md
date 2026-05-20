@@ -1,7 +1,7 @@
 # Cryptographic Storage Cheat Sheet
 
 <div className="docHero">
-  <span className="docPill">Pilot bilingual view</span>
+  <span className="docPill">ASVS bilingual view</span>
   <p className="docSubtitle">暗号化ストレージチートシート</p>
   <div className="docMeta">
     <span className="docPill">Retrieved: 2026-05-20</span>
@@ -62,7 +62,7 @@
 </div>
 
 <div className="noticeBox">
-  Pilot 版では、対訳 UI と運用形を確認するため、導入、設計、アルゴリズム、乱数、鍵管理の主要段落を先行して対訳化しています。全文展開時は同じカード形式で残りの原文段落を追加します。
+  初期版では、対訳 UI と運用形を確認するため、導入、設計、アルゴリズム、乱数、鍵管理の主要段落を先行して対訳化しています。全文展開時は同じカード形式で残りの原文段落を追加します。
 </div>
 
 ### Introduction

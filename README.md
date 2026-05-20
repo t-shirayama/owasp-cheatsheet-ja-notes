@@ -1,16 +1,16 @@
-# OWASP Cheat Sheet Series ASVS Japanese Notes
+# OWASP ASVS Cheat Sheet Japanese Notes
 
-このリポジトリは、[OWASP Cheat Sheet Series - Index ASVS](https://cheatsheetseries.owasp.org/IndexASVS.html) を起点に、関連する OWASP Cheat Sheet Series / ASVS の内容を日本語で翻訳・要約し、開発チェックリストとして使いやすく整理する非公式ドキュメント集です。
+このリポジトリは、[OWASP Cheat Sheet Series - Index ASVS](https://cheatsheetseries.owasp.org/IndexASVS.html) を起点に、ASVS 項目に対応する OWASP Cheat Sheet Series の内容を日本語で翻訳・要約し、開発チェックリストとして使いやすく整理する非公式ドキュメント集です。
 
 公式翻訳ではありません。正確な判断が必要な場合は、必ず OWASP の原文と最新の公式資料を確認してください。
 
 現在は ASVS Index coverage を入口に、対象 Cheat Sheet の翻訳、要約、開発チェックリストを揃えています。重点領域は詳細翻訳と実装チェック粒度まで拡張済みです。非重点ページには短い要約翻訳のままのページが残るため、段階的に詳細化します。
 
-GitHub Pages 公開用の Docusaurus サイトも Pilot として導入しています。対訳表示では、英語原文と日本語訳をパラグラフ単位で上下に並べて比較できます。
+GitHub Pages 公開用の Docusaurus サイトも導入しています。ASVS Index に対応する Cheat Sheet の対訳表示では、英語原文と日本語訳をパラグラフ単位で上下に並べて比較できます。
 
 ## 目的
 
-- OWASP Cheat Sheet Series と ASVS の内容を日本語で読みやすくする
+- ASVS Index から参照される OWASP Cheat Sheet Series の内容を日本語で読みやすくする
 - 開発者が実装時に確認できるチェックリストへ落とし込む
 - セキュリティレビュー、設計レビュー、実装タスク化に使える形で整理する
 - 出典、著作者、ライセンス、変更有無を明示して再利用しやすくする

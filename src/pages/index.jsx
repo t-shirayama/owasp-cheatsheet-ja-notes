@@ -25,16 +25,16 @@ const pilotItems = [
 export default function Home() {
   return (
     <Layout
-      title="OWASP Cheat Sheet 日本語ノート"
-      description="Unofficial Japanese bilingual notes for OWASP Cheat Sheet Series"
+      title="OWASP ASVS Cheat Sheet 日本語ノート"
+      description="Unofficial Japanese ASVS-focused bilingual notes for OWASP Cheat Sheet Series"
     >
       <main className="siteHome">
         <section className="homeHero">
           <div className="heroCopy">
-            <span className="versionPill">v2026.05.20 pilot</span>
-            <h1>OWASP Cheat Sheet 日本語ノート</h1>
+            <span className="versionPill">ASVS Index focused</span>
+            <h1>OWASP ASVS Cheat Sheet 日本語ノート</h1>
             <p>
-              OWASP Cheat Sheet Series の原文と日本語訳をパラグラフごとに比較できる、非公式の日本語ノートです。
+              OWASP Cheat Sheet Series の ASVS Index に対応する原文と日本語訳を、パラグラフごとに比較できる非公式の日本語ノートです。
             </p>
             <div className="heroActions">
               <Link className="button button--primary" to="/cheatsheets/">
@@ -53,8 +53,8 @@ export default function Home() {
 
         <section className="homeSection">
           <div className="sectionHeading">
-            <p>pilot documents</p>
-            <h2>対訳表示を先行実装した Cheat Sheets</h2>
+            <p>ASVS mapped documents</p>
+            <h2>ASVS Index 対応 Cheat Sheets</h2>
           </div>
           <div className="pilotGrid">
             {pilotItems.map((item) => (

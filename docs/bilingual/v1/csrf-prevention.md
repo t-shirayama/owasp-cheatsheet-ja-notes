@@ -1,7 +1,7 @@
 # Cross-Site Request Forgery Prevention Cheat Sheet
 
 <div className="docHero">
-  <span className="docPill">Pilot bilingual view</span>
+  <span className="docPill">ASVS bilingual view</span>
   <p className="docSubtitle">CSRF防止チートシート</p>
   <div className="docMeta">
     <span className="docPill">Retrieved: 2026-05-20</span>
@@ -61,7 +61,7 @@ CSRF は、ユーザーの認証済み状態を悪用して意図しないリク
 </div>
 
 <div className="noticeBox">
-  Pilot 版では、対訳 UI と運用形を確認するため、導入、主要原則、トークンベース対策を先行して対訳化しています。全文展開時は同じカード形式で残りの原文段落を追加します。
+  初期版では、対訳 UI と運用形を確認するため、導入、主要原則、トークンベース対策を先行して対訳化しています。全文展開時は同じカード形式で残りの原文段落を追加します。
 </div>
 
 ### Introduction
