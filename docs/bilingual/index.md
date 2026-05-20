@@ -1,26 +1,25 @@
 # ASVS Index 対応 Cheat Sheet 英日対訳
 
-## 非公式性について
-
-このサイトは OWASP 公式翻訳ではありません。各ページの英語原文は OWASP Cheat Sheet Series の [Index ASVS](https://cheatsheetseries.owasp.org/IndexASVS.html) を起点に取得し、日本語訳は本リポジトリで追加した非公式翻訳です。判断、監査、実装基準への適用では、必ず公式原文を確認してください。
-
-## ASVS 対応ページ
-
-<div className="quickLinks">
-  <a href="/owasp-cheatsheet-ja-notes/cheatsheets/csrf-prevention">CSRF Prevention</a>
-  <a href="/owasp-cheatsheet-ja-notes/cheatsheets/bean-validation">Bean Validation</a>
-  <a href="/owasp-cheatsheet-ja-notes/cheatsheets/cryptographic-storage">Cryptographic Storage</a>
-</div>
+OWASP Cheat Sheet Series の ASVS Index 対応ページを、日本語訳、要点、チェックリスト、英日対比表示で確認するための Docusaurus 公開用ドキュメントです。
 
 ## 表示方針
 
 - `翻訳`、`要点`、`チェックリスト`、`対比表示` を同じ Cheat Sheet ページ内で確認できるようにする。
-- `対比表示` は英語原文と日本語訳をパラグラフ単位で上下に並べる。
-- 既存の `docs/translations/`、`docs/summaries/`、`docs/checklists/` は残し、対訳表示は `docs/bilingual/` に分離する。
-- まず ASVS Index 対応ページの代表的な本文ブロックで構造と UI を固め、全段落への拡張は `references/todo.md` の全文翻訳不足候補と合わせて進める。
+- `対比表示` は、公式原文と日本語訳を同じ順序のブロックとして上下に並べる。
+- このサイトは OWASP 公式翻訳ではありません。各ページ下部の Attribution を確認してください。
 
-## 運用リンク
+## 掲載ページ
 
-- Repository: https://github.com/t-shirayama/owasp-cheatsheet-ja-notes
-- Bilingual map: https://github.com/t-shirayama/owasp-cheatsheet-ja-notes/blob/main/references/bilingual-map.md
-- Source map: https://github.com/t-shirayama/owasp-cheatsheet-ja-notes/blob/main/references/source-map.md
+- [Bean Validation Cheat Sheet](bean-validation.md) - Encoding and Sanitization
+- [Cross-Site Request Forgery Prevention Cheat Sheet](csrf-prevention.md) - Encoding and Sanitization
+- [Cryptographic Storage Cheat Sheet](cryptographic-storage.md) - Cryptographic Storage
+- [Authentication Cheat Sheet](authentication.md) - Authentication
+- [Authorization Cheat Sheet](authorization.md) - Authorization
+- [Credential Stuffing Prevention Cheat Sheet](credential-stuffing-prevention.md) - Authentication
+- [Forgot Password Cheat Sheet](forgot-password.md) - Authentication
+- [Logging Cheat Sheet](logging.md) - Logging and Monitoring
+- [Multifactor Authentication Cheat Sheet](multifactor-authentication.md) - Authentication
+- [OAuth 2.0 Protocol Cheat Sheet](oauth2.md) - API and Web Service
+- [Password Storage Cheat Sheet](password-storage.md) - Cryptographic Storage
+- [REST Security Cheat Sheet](rest-security.md) - API and Web Service
+- [Session Management Cheat Sheet](session-management.md) - Session Management

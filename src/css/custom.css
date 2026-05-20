@@ -272,6 +272,34 @@ body:has(.docHero) .theme-doc-markdown > header:first-child,
     var(--doc-hero-image) right center / auto 100% no-repeat;
 }
 
+.docHero[data-category='secure-communication'],
+.docHero[data-category='api-and-web-service'] {
+  --doc-hero-image: url('../../static/img/hero-cryptographic-storage.svg');
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(239, 247, 255, 0.72)),
+    var(--doc-hero-image) right center / auto 100% no-repeat;
+}
+
+.docHero[data-category='web-frontend-security'],
+.docHero[data-category='validation-business-logic'],
+.docHero[data-category='authentication'],
+.docHero[data-category='authorization'],
+.docHero[data-category='session-management'] {
+  --doc-hero-image: url('../../static/img/hero-encoding-sanitization.svg');
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(246, 252, 246, 0.74)),
+    var(--doc-hero-image) right center / auto 100% no-repeat;
+}
+
+.docHero[data-category='configuration'],
+.docHero[data-category='data-protection'],
+.docHero[data-category='logging-monitoring'] {
+  --doc-hero-image: url('../../static/img/security-panel.svg');
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(247, 248, 252, 0.74)),
+    var(--doc-hero-image) right center / auto 100% no-repeat;
+}
+
 html[data-theme='dark'] .docHero {
   background:
     linear-gradient(90deg, rgba(19, 21, 24, 0.98), rgba(15, 16, 19, 0.92)),
@@ -287,6 +315,31 @@ html[data-theme='dark'] .docHero[data-category='encoding-and-sanitization'] {
 html[data-theme='dark'] .docHero[data-category='cryptographic-storage'] {
   background:
     linear-gradient(90deg, rgba(19, 21, 24, 0.98), rgba(17, 16, 28, 0.9)),
+    var(--doc-hero-image) right center / auto 100% no-repeat;
+}
+
+html[data-theme='dark'] .docHero[data-category='secure-communication'],
+html[data-theme='dark'] .docHero[data-category='api-and-web-service'] {
+  background:
+    linear-gradient(90deg, rgba(19, 21, 24, 0.98), rgba(12, 19, 28, 0.9)),
+    var(--doc-hero-image) right center / auto 100% no-repeat;
+}
+
+html[data-theme='dark'] .docHero[data-category='web-frontend-security'],
+html[data-theme='dark'] .docHero[data-category='validation-business-logic'],
+html[data-theme='dark'] .docHero[data-category='authentication'],
+html[data-theme='dark'] .docHero[data-category='authorization'],
+html[data-theme='dark'] .docHero[data-category='session-management'] {
+  background:
+    linear-gradient(90deg, rgba(19, 21, 24, 0.98), rgba(12, 24, 18, 0.9)),
+    var(--doc-hero-image) right center / auto 100% no-repeat;
+}
+
+html[data-theme='dark'] .docHero[data-category='configuration'],
+html[data-theme='dark'] .docHero[data-category='data-protection'],
+html[data-theme='dark'] .docHero[data-category='logging-monitoring'] {
+  background:
+    linear-gradient(90deg, rgba(19, 21, 24, 0.98), rgba(22, 22, 26, 0.9)),
     var(--doc-hero-image) right center / auto 100% no-repeat;
 }
 
