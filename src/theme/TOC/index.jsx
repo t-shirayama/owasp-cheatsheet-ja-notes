@@ -13,13 +13,14 @@ function getActivePanelHeadingIds() {
 
   const panel = document.getElementById(`${checkedInput.id}-panel`);
   if (!panel) {
-    return new Set();
+    return null;
   }
 
-  return new Set(
+  const headingIds = new Set(
     [...panel.querySelectorAll('h2[id], h3[id], h4[id], h5[id], h6[id]')]
       .map((heading) => heading.id),
   );
+  return headingIds.size > 0 ? headingIds : null;
 }
 
 function filterToc(toc, activeIds) {
@@ -47,11 +48,20 @@ export default function TOC({className, toc, ...props}) {
     };
 
     updateActiveIds();
+    const timer = window.setTimeout(updateActiveIds, 0);
     document.addEventListener('change', updateActiveIds);
-    return () => document.removeEventListener('change', updateActiveIds);
+    document.addEventListener('click', updateActiveIds);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener('change', updateActiveIds);
+      document.removeEventListener('click', updateActiveIds);
+    };
   }, [toc]);
 
-  const visibleToc = useMemo(() => filterToc(toc, activeIds), [toc, activeIds]);
+  const visibleToc = useMemo(() => {
+    const filteredToc = filterToc(toc, activeIds);
+    return filteredToc.length > 0 ? filteredToc : toc;
+  }, [toc, activeIds]);
 
   return (
     <div className={clsx('thin-scrollbar', className)}>
