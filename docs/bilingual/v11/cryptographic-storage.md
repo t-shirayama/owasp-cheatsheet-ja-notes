@@ -25,8 +25,6 @@
 
   <section className="tabPanel translationPanel contentPanel">
 
-## 翻訳
-
 ## Introduction
 
 この記事は、保存データを保護するソリューションを実装する際に従うための単純なモデルを提供します。
@@ -221,8 +219,6 @@ KEK も DEK と少なくとも同等の強度を持つべきです。Google の 
 
   <section className="tabPanel summaryPanel contentPanel">
 
-## 要点
-
 <ul>
   <li>何を誰から守るかを脅威モデルで定義してから、暗号化する層を決めます。</li>
   <li>保存しなくてよい機密情報は保存しないことが最も強い保護です。</li>
@@ -236,8 +232,6 @@ KEK も DEK と少なくとも同等の強度を持つべきです。Google の 
   </section>
 
   <section className="tabPanel checklistPanel contentPanel">
-
-## チェックリスト
 
 <ul className="checklistView">
   <li><input type="checkbox" disabled />保存データの脅威モデルを文書化する。</li>
@@ -255,8 +249,6 @@ KEK も DEK と少なくとも同等の強度を持つべきです。Google の 
   </section>
 
   <section className="tabPanel bilingualPanel">
-
-## 対比表示
 
 <div className="noticeBox">
   コード例や表は翻訳タブに完全な形で保持しています。対比表示では、公式ページの主要な説明ブロックを原文と翻訳で比較できるようにしています。

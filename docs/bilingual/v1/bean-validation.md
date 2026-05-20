@@ -25,8 +25,6 @@
 
   <section className="tabPanel translationPanel contentPanel">
 
-## 翻訳
-
 ## Introduction
 
 この記事は、アプリケーションで Java Bean Validation のセキュリティ機能を提供するための、明確で単純かつ実行可能なガイダンスを示します。
@@ -503,8 +501,6 @@ Spring MVC は、定義済みの `MessageSource` から ID `article.title.error`
 
   <section className="tabPanel summaryPanel contentPanel">
 
-## 要点
-
 <ul>
   <li>Bean Validation は、Java の入力検証をドメインモデルに近い場所で宣言的に定義するための仕組みです。</li>
   <li><code>@Valid</code> と各種制約アノテーションを組み合わせ、アプリケーション層をまたいで一貫した検証を行います。</li>
@@ -517,8 +513,6 @@ Spring MVC は、定義済みの `MessageSource` から ID `article.title.error`
   </section>
 
   <section className="tabPanel checklistPanel contentPanel">
-
-## チェックリスト
 
 <ul className="checklistView">
   <li><input type="checkbox" disabled />DTO、フォームモデル、ドメインモデルのどこで検証するかを明確にする。</li>
@@ -534,8 +528,6 @@ Spring MVC は、定義済みの `MessageSource` から ID `article.title.error`
   </section>
 
   <section className="tabPanel bilingualPanel">
-
-## 対比表示
 
 ## Introduction
 
