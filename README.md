@@ -48,6 +48,18 @@ OWASP Cheat Sheet Series は、サイト上で Creative Commons Attribution-Shar
 - 出典対応表は [references/source-map.md](references/source-map.md) で管理します。
 - 残作業候補は [references/todo.md](references/todo.md) で管理します。
 
+## 検証
+
+Markdown の基本形とリンクは、リポジトリ内の PowerShell スクリプトで確認できます。パッケージマネージャや外部依存は不要です。
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-MarkdownLint.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-LinkCheck.ps1
+```
+
+- `Invoke-MarkdownLint.ps1` は H1、見出し階層、表区切り、末尾改行、翻訳/要約/チェックリスト本文の Attribution 欄を確認します。
+- `Invoke-LinkCheck.ps1` は Markdown の内部リンク先の存在と外部 URL の形式を確認します。外部サイトへ通信しないため、ネットワークがない環境でも実行できます。
+
 ## 参考資料
 
 - [OWASP Cheat Sheet Series - Index ASVS](https://cheatsheetseries.owasp.org/IndexASVS.html)
