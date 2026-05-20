@@ -203,6 +203,18 @@ body {
   margin-top: 18px;
 }
 
+.tabbedContent {
+  position: relative;
+}
+
+.tabInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .contentTabs {
   display: grid;
   grid-template-columns: repeat(4, minmax(120px, 1fr));
@@ -212,7 +224,7 @@ body {
   overflow: hidden;
 }
 
-.contentTabs a {
+.contentTabs label {
   display: grid;
   place-items: center;
   min-height: 48px;
@@ -220,39 +232,68 @@ body {
   color: var(--page-ink);
   font-weight: 700;
   text-decoration: none;
+  cursor: pointer;
 }
 
-.contentTabs a:last-child {
+.contentTabs label:last-child {
   border-right: 0;
 }
 
-.contentTabs a:hover,
-.contentTabs a.activeTab {
+.contentTabs label:hover,
+[id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
+[id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
+[id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
+[id$="-bilingual"]:checked ~ .contentTabs label[for$="-bilingual"] {
   background: #eef5ff;
   color: var(--ifm-color-primary);
 }
 
-.modeToggle {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin: 12px 0 18px;
+.tabPanel {
+  display: none;
 }
 
-.modeToggle span {
+[id$="-translation"]:checked ~ .translationPanel,
+[id$="-summary"]:checked ~ .summaryPanel,
+[id$="-checklist"]:checked ~ .checklistPanel,
+[id$="-bilingual"]:checked ~ .bilingualPanel {
+  display: block;
+}
+
+.contentPanel {
   border: 1px solid var(--page-border);
   border-radius: 8px;
-  padding: 8px 12px;
   background: var(--ifm-background-surface-color);
-  color: var(--page-muted);
-  font-size: 0.9rem;
-  font-weight: 700;
+  padding: 18px 20px;
 }
 
-.modeToggle span.activeMode {
-  border-color: var(--ifm-color-primary);
-  background: var(--ifm-color-primary);
-  color: #fff;
+.contentPanel h2,
+.contentPanel h3 {
+  margin-top: 0;
+}
+
+.checklistView {
+  display: grid;
+  gap: 10px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.checklistView li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.checklistView input {
+  margin-top: 0.35rem;
+}
+
+.attributionFooter {
+  margin-top: 28px;
+  border-top: 1px solid var(--page-border);
+  padding-top: 18px;
+  color: var(--page-muted);
+  font-size: 0.92rem;
 }
 
 .bilingualPair {
@@ -332,12 +373,12 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .contentTabs a {
+  .contentTabs label {
     border-right: 0;
     border-bottom: 1px solid var(--page-border);
   }
 
-  .contentTabs a:last-child {
+  .contentTabs label:last-child {
     border-bottom: 0;
   }
 }

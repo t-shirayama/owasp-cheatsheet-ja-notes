@@ -11,61 +11,54 @@
   </div>
 </div>
 
-<div className="contentTabs">
-  <a href="#translation">翻訳</a>
-  <a href="#summary">要点</a>
-  <a href="#checklist">チェックリスト</a>
-  <a className="activeTab" href="#bilingual">対比表示</a>
-</div>
+<div className="tabbedContent">
+  <input className="tabInput" type="radio" name="cryptographic-storage-view" id="cryptographic-storage-translation" defaultChecked />
+  <input className="tabInput" type="radio" name="cryptographic-storage-view" id="cryptographic-storage-summary" />
+  <input className="tabInput" type="radio" name="cryptographic-storage-view" id="cryptographic-storage-checklist" />
+  <input className="tabInput" type="radio" name="cryptographic-storage-view" id="cryptographic-storage-bilingual" />
 
-## Attribution
+  <div className="contentTabs">
+    <label htmlFor="cryptographic-storage-translation">翻訳</label>
+    <label htmlFor="cryptographic-storage-summary">要点</label>
+    <label htmlFor="cryptographic-storage-checklist">チェックリスト</label>
+    <label htmlFor="cryptographic-storage-bilingual">対比表示</label>
+  </div>
 
-- Original: Cryptographic Storage Cheat Sheet
-- Source: https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html
-- Copyright: Cheat Sheets Series Team
-- License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
-- License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added.
-- Retrieved: 2026-05-20
+  <section className="tabPanel translationPanel contentPanel">
+    <h2>翻訳</h2>
+    <p>このチートシートは、保存データを保護するための暗号化ストレージ設計の基本モデルを示します。パスワードは可逆暗号で保存せず、Password Storage Cheat Sheet に従って安全なパスワードハッシュを使います。</p>
+  </section>
 
-## 関連ファイル
+  <section className="tabPanel summaryPanel contentPanel">
+    <h2>要点</h2>
+    <ul>
+      <li>パスワードは可逆暗号で保存せず、安全なパスワードハッシュを使う。</li>
+      <li>最初に脅威モデルを定義し、どの層で暗号化するか決める。</li>
+      <li>対称暗号は AES 128 bit 以上、理想的には 256 bit と安全なモードを使う。</li>
+      <li>独自暗号を作らない。GCM/CCM など認証付き暗号を優先する。</li>
+      <li>鍵、IV、セッション ID、CSRF トークン、パスワードリセットトークンには CSPRNG を使う。</li>
+    </ul>
+  </section>
 
-- 日本語訳: https://github.com/t-shirayama/owasp-cheatsheet-ja-notes/blob/main/docs/translations/v11/cryptographic-storage.md
-- 要約: https://github.com/t-shirayama/owasp-cheatsheet-ja-notes/blob/main/docs/summaries/v11/cryptographic-storage.md
-- 開発チェックリスト: https://github.com/t-shirayama/owasp-cheatsheet-ja-notes/blob/main/docs/checklists/v11/cryptographic-storage.md
+  <section className="tabPanel checklistPanel contentPanel">
+    <h2>チェックリスト</h2>
+    <ul className="checklistView">
+      <li><input type="checkbox" disabled />保護対象データ、保存場所、暗号化層、使用アルゴリズム、鍵 ID、鍵保管場所を一覧化する。</li>
+      <li><input type="checkbox" disabled />独自暗号、独自モード、独自パディングを禁止する。</li>
+      <li><input type="checkbox" disabled />利用可能な場合は GCM または CCM などの認証付き暗号を使う。</li>
+      <li><input type="checkbox" disabled />鍵、IV、トークンは CSPRNG で生成する。</li>
+      <li><input type="checkbox" disabled />鍵をソースコード、バージョン管理、環境変数へ置かない。</li>
+    </ul>
+  </section>
 
-## 翻訳
-
-このチートシートは、保存データを保護するための暗号化ストレージ設計の基本モデルを示します。パスワードは可逆暗号で保存せず、Password Storage Cheat Sheet に従って安全なパスワードハッシュを使います。
-
-## 要点
-
-- パスワードは可逆暗号で保存せず、安全なパスワードハッシュを使う。
-- 最初に脅威モデルを定義し、どの層で暗号化するか決める。
-- 対称暗号は AES 128 bit 以上、理想的には 256 bit と安全なモードを使う。
-- 独自暗号を作らない。GCM/CCM など認証付き暗号を優先する。
-- 鍵、IV、セッション ID、CSRF トークン、パスワードリセットトークンには CSPRNG を使う。
-
-## チェックリスト
-
-- [ ] 保護対象データ、保存場所、暗号化層、使用アルゴリズム、鍵 ID、鍵保管場所を一覧化する。
-- [ ] 独自暗号、独自モード、独自パディングを禁止する。
-- [ ] 利用可能な場合は GCM または CCM などの認証付き暗号を使う。
-- [ ] 鍵、IV、トークンは CSPRNG で生成する。
-- [ ] 鍵をソースコード、バージョン管理、環境変数へ置かない。
-
-## 対比表示
-
-<div className="modeToggle">
-  <span>日本語のみ</span>
-  <span className="activeMode">対比表示</span>
-</div>
+  <section className="tabPanel bilingualPanel">
+    <h2>対比表示</h2>
 
 <div className="noticeBox">
   初期版では、対訳 UI と運用形を確認するため、導入、設計、アルゴリズム、乱数、鍵管理の主要段落を先行して対訳化しています。全文展開時は同じカード形式で残りの原文段落を追加します。
 </div>
 
-### Introduction
+## Introduction
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
@@ -89,7 +82,7 @@
   </div>
 </div>
 
-### Architectural Design
+## Architectural Design
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
@@ -124,7 +117,7 @@
   </div>
 </div>
 
-### Algorithms
+## Algorithms
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
@@ -159,7 +152,7 @@
   </div>
 </div>
 
-### Secure Random Number Generation
+## Secure Random Number Generation
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
@@ -194,7 +187,7 @@
   </div>
 </div>
 
-### Key Management
+## Key Management
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
@@ -216,4 +209,21 @@
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
     <p>鍵は暗号学的に安全な関数を使ってランダムに生成する必要があります。一般的な単語やフレーズ、キーボードを適当に叩いて生成したランダム風の文字列に基づいてはいけません。</p>
   </div>
+</div>
+
+  </section>
+</div>
+
+## Attribution
+
+<div className="attributionFooter">
+
+- Original: Cryptographic Storage Cheat Sheet
+- Source: https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html
+- Copyright: Cheat Sheets Series Team
+- License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+- License URL: https://creativecommons.org/licenses/by-sa/4.0/
+- Changes: English original retained for comparison. Japanese translation added.
+- Retrieved: 2026-05-20
+
 </div>

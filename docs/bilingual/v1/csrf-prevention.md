@@ -11,60 +11,53 @@
   </div>
 </div>
 
-<div className="contentTabs">
-  <a href="#translation">翻訳</a>
-  <a href="#summary">要点</a>
-  <a href="#checklist">チェックリスト</a>
-  <a className="activeTab" href="#bilingual">対比表示</a>
-</div>
+<div className="tabbedContent">
+  <input className="tabInput" type="radio" name="csrf-prevention-view" id="csrf-prevention-translation" defaultChecked />
+  <input className="tabInput" type="radio" name="csrf-prevention-view" id="csrf-prevention-summary" />
+  <input className="tabInput" type="radio" name="csrf-prevention-view" id="csrf-prevention-checklist" />
+  <input className="tabInput" type="radio" name="csrf-prevention-view" id="csrf-prevention-bilingual" />
 
-## Attribution
+  <div className="contentTabs">
+    <label htmlFor="csrf-prevention-translation">翻訳</label>
+    <label htmlFor="csrf-prevention-summary">要点</label>
+    <label htmlFor="csrf-prevention-checklist">チェックリスト</label>
+    <label htmlFor="csrf-prevention-bilingual">対比表示</label>
+  </div>
 
-- Original: Cross-Site Request Forgery Prevention Cheat Sheet
-- Source: https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
-- Copyright: Cheat Sheets Series Team
-- License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
-- License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added.
-- Retrieved: 2026-05-20
+  <section className="tabPanel translationPanel contentPanel">
+    <h2>翻訳</h2>
+    <p>CSRF は、ユーザーの認証済み状態を悪用して意図しないリクエストを送らせる攻撃です。トークン、SameSite Cookie、Origin/Referer 検証、危険操作の再認証を組み合わせて防ぎます。</p>
+  </section>
 
-## 関連ファイル
+  <section className="tabPanel summaryPanel contentPanel">
+    <h2>要点</h2>
+    <ul>
+      <li>状態変更リクエストに CSRF トークンを要求する。</li>
+      <li>Cookie に SameSite 属性を設定する。</li>
+      <li>Origin または Referer を補助的に検証する。</li>
+      <li>XSS が CSRF 対策を迂回し得ることを前提に、XSS 対策も同時に行う。</li>
+    </ul>
+  </section>
 
-- 日本語訳: https://github.com/t-shirayama/owasp-cheatsheet-ja-notes/blob/main/docs/translations/v1/csrf-prevention.md
-- 要約: https://github.com/t-shirayama/owasp-cheatsheet-ja-notes/blob/main/docs/summaries/v1/csrf-prevention.md
-- 開発チェックリスト: https://github.com/t-shirayama/owasp-cheatsheet-ja-notes/blob/main/docs/checklists/v1/csrf-prevention.md
+  <section className="tabPanel checklistPanel contentPanel">
+    <h2>チェックリスト</h2>
+    <ul className="checklistView">
+      <li><input type="checkbox" disabled />POST/PUT/PATCH/DELETE に CSRF 対策を適用する。</li>
+      <li><input type="checkbox" disabled />トークンをセッションまたはリクエストに安全に紐付ける。</li>
+      <li><input type="checkbox" disabled />SameSite 属性を用途に応じて設定する。</li>
+      <li><input type="checkbox" disabled />重要操作では再認証や追加確認を行う。</li>
+      <li><input type="checkbox" disabled />CSRF 対策を自動テストする。</li>
+    </ul>
+  </section>
 
-## 翻訳
-
-CSRF は、ユーザーの認証済み状態を悪用して意図しないリクエストを送らせる攻撃です。トークン、SameSite Cookie、Origin/Referer 検証、危険操作の再認証を組み合わせて防ぎます。
-
-## 要点
-
-- 状態変更リクエストに CSRF トークンを要求する。
-- Cookie に SameSite 属性を設定する。
-- Origin または Referer を補助的に検証する。
-- XSS が CSRF 対策を迂回し得ることを前提に、XSS 対策も同時に行う。
-
-## チェックリスト
-
-- [ ] POST/PUT/PATCH/DELETE に CSRF 対策を適用する。
-- [ ] トークンをセッションまたはリクエストに安全に紐付ける。
-- [ ] SameSite 属性を用途に応じて設定する。
-- [ ] 重要操作では再認証や追加確認を行う。
-- [ ] CSRF 対策を自動テストする。
-
-## 対比表示
-
-<div className="modeToggle">
-  <span>日本語のみ</span>
-  <span className="activeMode">対比表示</span>
-</div>
+  <section className="tabPanel bilingualPanel">
+    <h2>対比表示</h2>
 
 <div className="noticeBox">
   初期版では、対訳 UI と運用形を確認するため、導入、主要原則、トークンベース対策を先行して対訳化しています。全文展開時は同じカード形式で残りの原文段落を追加します。
 </div>
 
-### Introduction
+## Introduction
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
@@ -110,7 +103,7 @@ CSRF は、ユーザーの認証済み状態を悪用して意図しないリク
   </div>
 </div>
 
-### Core Principles
+## Core Principles
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
@@ -145,7 +138,7 @@ CSRF は、ユーザーの認証済み状態を悪用して意図しないリク
   </div>
 </div>
 
-### Token-Based Mitigation
+## Token-Based Mitigation
 
 <div className="bilingualPair">
   <div className="bilingualBlock english">
@@ -189,4 +182,21 @@ CSRF は、ユーザーの認証済み状態を悪用して意図しないリク
     <span className="bilingualLabel japanese">日本語 (翻訳)</span>
     <p>CSRF トークンはユーザーセッションごとに一意で、秘密であり、安全な方法で生成された大きな乱数値として予測困難である必要があります。</p>
   </div>
+</div>
+
+  </section>
+</div>
+
+## Attribution
+
+<div className="attributionFooter">
+
+- Original: Cross-Site Request Forgery Prevention Cheat Sheet
+- Source: https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
+- Copyright: Cheat Sheets Series Team
+- License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+- License URL: https://creativecommons.org/licenses/by-sa/4.0/
+- Changes: English original retained for comparison. Japanese translation added.
+- Retrieved: 2026-05-20
+
 </div>
