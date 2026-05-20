@@ -11,12 +11,43 @@
   --page-border: #d8e1f2;
   --page-muted: #60708f;
   --page-ink: #081434;
+  --page-accent: #1565ff;
+  --page-accent-soft: #eef5ff;
+  --page-surface: var(--ifm-background-surface-color);
+  --page-surface-raised: #ffffff;
+  --page-warning-border: #ffd28a;
+  --page-warning-bg: #fff8ea;
+  --page-warning-text: #533b05;
 }
 
 html[data-theme='dark'] {
-  --page-border: #2d3850;
-  --page-muted: #9aa9c5;
-  --page-ink: #f4f7ff;
+  --ifm-background-color: #0f1013;
+  --ifm-background-surface-color: #131518;
+  --ifm-navbar-background-color: #101114;
+  --ifm-footer-background-color: #101114;
+  --ifm-color-primary: #4fe0ba;
+  --ifm-color-primary-dark: #32cfa6;
+  --ifm-color-primary-darker: #27bd98;
+  --ifm-color-primary-darkest: #1f9679;
+  --ifm-color-primary-light: #74e9cc;
+  --ifm-color-primary-lighter: #95efd9;
+  --ifm-color-primary-lightest: #c8f8eb;
+  --ifm-menu-color-active: #4fe0ba;
+  --ifm-menu-color-background-active: #10231f;
+  --ifm-toc-border-color: #23262b;
+  --ifm-heading-color: #eceff3;
+  --ifm-font-color-base: #d7d9dd;
+  --ifm-link-color: #4fe0ba;
+  --page-border: #25282e;
+  --page-muted: #8c929b;
+  --page-ink: #eceff3;
+  --page-accent: #4fe0ba;
+  --page-accent-soft: #10231f;
+  --page-surface: #131518;
+  --page-surface-raised: #17191d;
+  --page-warning-border: #6f5120;
+  --page-warning-bg: #1c1710;
+  --page-warning-text: #f0bd58;
 }
 
 body {
@@ -30,6 +61,35 @@ body {
 
 .navbar__title {
   font-weight: 750;
+}
+
+html[data-theme='dark'] .navbar {
+  background: var(--ifm-navbar-background-color);
+}
+
+html[data-theme='dark'] .navbar__link,
+html[data-theme='dark'] .navbar__title,
+html[data-theme='dark'] .menu__link,
+html[data-theme='dark'] .table-of-contents__link {
+  color: var(--page-muted);
+}
+
+html[data-theme='dark'] .navbar__link:hover,
+html[data-theme='dark'] .navbar__link--active,
+html[data-theme='dark'] .menu__link--active,
+html[data-theme='dark'] .table-of-contents__link--active {
+  color: var(--page-accent);
+}
+
+html[data-theme='dark'] .theme-doc-sidebar-container,
+html[data-theme='dark'] .table-of-contents {
+  border-color: var(--page-border);
+}
+
+html[data-theme='dark'] .navbar__search-input {
+  border: 1px solid var(--page-border);
+  background-color: #17191d;
+  color: var(--page-ink);
 }
 
 .siteHome {
@@ -75,6 +135,13 @@ body {
   color: #1354d5;
   font-size: 0.82rem;
   font-weight: 700;
+}
+
+html[data-theme='dark'] .versionPill,
+html[data-theme='dark'] .docPill {
+  border-color: #1e5d50;
+  background: #10231f;
+  color: var(--page-accent);
 }
 
 .heroActions {
@@ -151,7 +218,7 @@ body {
   border: 1px solid var(--page-border);
   border-radius: 8px;
   padding: 18px;
-  background: var(--ifm-background-surface-color);
+  background: var(--page-surface);
   color: inherit;
   text-decoration: none;
 }
@@ -181,6 +248,12 @@ body {
   padding: 24px;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(245, 249, 255, 0.74)),
+    url('../../static/img/security-panel.svg') right center / auto 100% no-repeat;
+}
+
+html[data-theme='dark'] .docHero {
+  background:
+    linear-gradient(90deg, rgba(19, 21, 24, 0.98), rgba(15, 16, 19, 0.92)),
     url('../../static/img/security-panel.svg') right center / auto 100% no-repeat;
 }
 
@@ -244,8 +317,8 @@ body {
 [id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
 [id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
 [id$="-bilingual"]:checked ~ .contentTabs label[for$="-bilingual"] {
-  background: #eef5ff;
-  color: var(--ifm-color-primary);
+  background: var(--page-accent-soft);
+  color: var(--page-accent);
 }
 
 .tabPanel {
@@ -262,7 +335,7 @@ body {
 .contentPanel {
   border: 1px solid var(--page-border);
   border-radius: 8px;
-  background: var(--ifm-background-surface-color);
+  background: var(--page-surface);
   padding: 18px 20px;
 }
 
@@ -300,7 +373,7 @@ body {
   margin: 14px 0;
   border: 1px solid var(--page-border);
   border-radius: 8px;
-  background: var(--ifm-background-surface-color);
+  background: var(--page-surface);
   overflow: hidden;
 }
 
@@ -320,15 +393,15 @@ body {
 }
 
 .bilingualLabel.english {
-  color: #155bea;
+  color: var(--page-accent);
 }
 
 .bilingualLabel.japanese {
-  color: #15a66a;
+  color: #20c982;
 }
 
 .bilingualBlock.english {
-  border-left: 4px solid #1565ff;
+  border-left: 4px solid var(--page-accent);
 }
 
 .bilingualBlock.japanese {
@@ -337,11 +410,11 @@ body {
 
 .noticeBox {
   margin: 16px 0;
-  border: 1px solid #ffd28a;
+  border: 1px solid var(--page-warning-border);
   border-radius: 8px;
   padding: 14px 16px;
-  background: #fff8ea;
-  color: #533b05;
+  background: var(--page-warning-bg);
+  color: var(--page-warning-text);
 }
 
 .quickLinks {
@@ -356,6 +429,49 @@ body {
   padding: 9px 12px;
   text-decoration: none;
   font-weight: 700;
+}
+
+html[data-theme='dark'] .siteHome {
+  background:
+    linear-gradient(180deg, rgba(15, 16, 19, 0.98), rgba(15, 16, 19, 1) 45%),
+    url('../../static/img/security-panel.svg') right top / min(54vw, 780px) auto no-repeat;
+}
+
+html[data-theme='dark'] .heroVisual,
+html[data-theme='dark'] .heroShield,
+html[data-theme='dark'] .heroLock {
+  border-color: var(--page-border);
+  background: rgba(19, 21, 24, 0.82);
+  color: var(--page-accent);
+}
+
+html[data-theme='dark'] .heroLock {
+  box-shadow: 0 28px 70px rgba(79, 224, 186, 0.08);
+}
+
+html[data-theme='dark'] .contentTabs,
+html[data-theme='dark'] .bilingualPair,
+html[data-theme='dark'] .contentPanel,
+html[data-theme='dark'] .pilotCard {
+  background: var(--page-surface);
+}
+
+html[data-theme='dark'] .contentTabs label:hover,
+html[data-theme='dark'] [id$="-translation"]:checked ~ .contentTabs label[for$="-translation"],
+html[data-theme='dark'] [id$="-summary"]:checked ~ .contentTabs label[for$="-summary"],
+html[data-theme='dark'] [id$="-checklist"]:checked ~ .contentTabs label[for$="-checklist"],
+html[data-theme='dark'] [id$="-bilingual"]:checked ~ .contentTabs label[for$="-bilingual"] {
+  box-shadow: inset 0 -2px 0 var(--page-accent);
+}
+
+html[data-theme='dark'] .bilingualBlock.japanese {
+  background: #151b1a;
+}
+
+html[data-theme='dark'] .footer--light {
+  border-top: 1px solid var(--page-border);
+  background: var(--ifm-footer-background-color);
+  color: var(--page-muted);
 }
 
 @media (max-width: 996px) {
