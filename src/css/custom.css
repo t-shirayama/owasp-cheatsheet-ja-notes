@@ -23,7 +23,8 @@
   --ifm-menu-color: #334155;
   --ifm-menu-color-active: #0f5be8;
   --ifm-menu-color-background-active: #edf5ff;
-  --doc-sidebar-width: 1220px;
+  --doc-sidebar-width-value: 500px;
+  --doc-sidebar-width: var(--doc-sidebar-width-value);
   --doc-sidebar-outer-margin: 24px;
   --page-border: #d8e1f2;
   --page-muted: #60708f;
@@ -35,6 +36,10 @@
   --page-warning-border: #ffd28a;
   --page-warning-bg: #fff8ea;
   --page-warning-text: #533b05;
+}
+
+html.docs-wrapper {
+  --doc-sidebar-width: var(--doc-sidebar-width-value);
 }
 
 html[data-theme="dark"] {
