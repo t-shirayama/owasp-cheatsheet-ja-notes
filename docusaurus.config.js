@@ -63,17 +63,6 @@ const config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'cheatsheetSidebar',
-          position: 'left',
-          label: 'ASVS Cheat Sheets',
-        },
-        {
-          to: '/cheatsheets/',
-          label: 'はじめに',
-          position: 'left',
-        },
-        {
           href: 'https://github.com/t-shirayama/owasp-cheatsheet-ja-notes',
           label: 'GitHub',
           position: 'right',
