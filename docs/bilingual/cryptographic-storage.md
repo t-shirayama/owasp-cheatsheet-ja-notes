@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="cryptographic-storage-view" id="cryptographic-storage-original" />
   <input className="tabInput" type="radio" name="cryptographic-storage-view" id="cryptographic-storage-translation" defaultChecked />

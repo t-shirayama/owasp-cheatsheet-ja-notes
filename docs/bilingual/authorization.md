@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="authorization-view" id="authorization-original" />
   <input className="tabInput" type="radio" name="authorization-view" id="authorization-translation" defaultChecked />

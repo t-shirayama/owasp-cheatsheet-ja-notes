@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="credential-stuffing-prevention-view" id="credential-stuffing-prevention-original" />
   <input className="tabInput" type="radio" name="credential-stuffing-prevention-view" id="credential-stuffing-prevention-translation" defaultChecked />

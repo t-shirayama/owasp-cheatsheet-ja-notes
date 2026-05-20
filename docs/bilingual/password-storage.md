@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="password-storage-view" id="password-storage-original" />
   <input className="tabInput" type="radio" name="password-storage-view" id="password-storage-translation" defaultChecked />

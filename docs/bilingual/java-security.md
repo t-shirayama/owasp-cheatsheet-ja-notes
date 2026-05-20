@@ -12,6 +12,8 @@ hide_title: true
   </div>
 </div>
 
+<p className="docLead">Java セキュリティチートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="java-security-view" id="java-security-original" />
   <input className="tabInput" type="radio" name="java-security-view" id="java-security-translation" defaultChecked />

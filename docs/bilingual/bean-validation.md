@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="bean-validation-view" id="bean-validation-original" />
   <input className="tabInput" type="radio" name="bean-validation-view" id="bean-validation-translation" defaultChecked />

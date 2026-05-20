@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="forgot-password-view" id="forgot-password-original" />
   <input className="tabInput" type="radio" name="forgot-password-view" id="forgot-password-translation" defaultChecked />

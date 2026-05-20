@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="rest-security-view" id="rest-security-original" />
   <input className="tabInput" type="radio" name="rest-security-view" id="rest-security-translation" defaultChecked />

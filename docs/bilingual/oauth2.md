@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="oauth2-view" id="oauth2-original" />
   <input className="tabInput" type="radio" name="oauth2-view" id="oauth2-translation" defaultChecked />

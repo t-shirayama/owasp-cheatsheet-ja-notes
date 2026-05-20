@@ -12,6 +12,8 @@ hide_title: true
   </div>
 </div>
 
+<p className="docLead">入力検証チートシートを、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-original" />
   <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-translation" defaultChecked />

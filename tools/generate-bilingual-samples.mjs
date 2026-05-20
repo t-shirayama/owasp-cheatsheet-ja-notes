@@ -1682,6 +1682,8 @@ hide_title: true
   </div>
 </div>
 
+<p className="docLead">${page.subtitle}を、原文・翻訳・要点・チェックリスト・対比表示で確認できます。ASVS Index 対応の文脈で、理解と実装確認を進めやすく整理しています。</p>
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-original" />
   <input className="tabInput" type="radio" name="${page.slug}-view" id="${page.slug}-translation" defaultChecked />

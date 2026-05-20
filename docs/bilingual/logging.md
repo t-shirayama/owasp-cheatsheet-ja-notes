@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="logging-view" id="logging-original" />
   <input className="tabInput" type="radio" name="logging-view" id="logging-translation" defaultChecked />

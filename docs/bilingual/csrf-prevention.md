@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="csrf-prevention-view" id="csrf-prevention-original" />
   <input className="tabInput" type="radio" name="csrf-prevention-view" id="csrf-prevention-translation" defaultChecked />

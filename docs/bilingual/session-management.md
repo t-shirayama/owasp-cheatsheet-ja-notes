@@ -12,6 +12,7 @@ hide_title: true
   </div>
 </div>
 
+
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="session-management-view" id="session-management-original" />
   <input className="tabInput" type="radio" name="session-management-view" id="session-management-translation" defaultChecked />
