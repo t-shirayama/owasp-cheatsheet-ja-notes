@@ -123,6 +123,23 @@ html[data-theme="dark"] .table-of-contents__link--active {
   color: var(--page-accent);
 }
 
+html[data-theme="dark"] .navbar button[class*="toggleButton"] {
+  border: 1px solid #273842;
+  background: #17191d;
+  color: #cfd6df;
+}
+
+html[data-theme="dark"] .navbar button[class*="toggleButton"]:hover {
+  border-color: #33544e;
+  background: #10231f;
+  color: var(--page-accent);
+}
+
+html[data-theme="dark"] .navbar button[class*="toggleButton"] svg {
+  color: currentColor;
+  fill: currentColor;
+}
+
 html[data-theme="dark"] .theme-doc-sidebar-container,
 html[data-theme="dark"] .table-of-contents {
   border-color: var(--page-border);
