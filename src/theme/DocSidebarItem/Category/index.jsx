@@ -20,6 +20,9 @@ import DocSidebarItems from '@theme/DocSidebarItems';
 import DocSidebarItemLink from '@theme/DocSidebarItem/Link';
 import {isScopedActiveSidebarItem} from '../activeSidebarItem';
 
+// This component intentionally mirrors Docusaurus' classic sidebar category.
+// The local change is the active-state check, which ignores duplicate doc links.
+
 function useAutoExpandActiveCategory({
   isActive,
   collapsed,
@@ -63,28 +66,32 @@ function useCategoryHrefWithSSRFallback(item) {
   }, [item, isBrowser]);
 }
 
+function getCategoryAriaLabel(collapsed, categoryLabel) {
+  if (collapsed) {
+    return translate(
+      {
+        id: 'theme.DocSidebarItem.expandCategoryAriaLabel',
+        message: "Expand sidebar category '{label}'",
+        description: 'The ARIA label to expand the sidebar category',
+      },
+      {label: categoryLabel},
+    );
+  }
+
+  return translate(
+    {
+      id: 'theme.DocSidebarItem.collapseCategoryAriaLabel',
+      message: "Collapse sidebar category '{label}'",
+      description: 'The ARIA label to collapse the sidebar category',
+    },
+    {label: categoryLabel},
+  );
+}
+
 function CollapseButton({collapsed, categoryLabel, onClick}) {
   return (
     <button
-      aria-label={
-        collapsed
-          ? translate(
-              {
-                id: 'theme.DocSidebarItem.expandCategoryAriaLabel',
-                message: "Expand sidebar category '{label}'",
-                description: 'The ARIA label to expand the sidebar category',
-              },
-              {label: categoryLabel},
-            )
-          : translate(
-              {
-                id: 'theme.DocSidebarItem.collapseCategoryAriaLabel',
-                message: "Collapse sidebar category '{label}'",
-                description: 'The ARIA label to collapse the sidebar category',
-              },
-              {label: categoryLabel},
-            )
-      }
+      aria-label={getCategoryAriaLabel(collapsed, categoryLabel)}
       aria-expanded={!collapsed}
       type="button"
       className="clean-btn menu__caret"

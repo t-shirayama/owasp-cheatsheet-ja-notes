@@ -6,6 +6,9 @@ import isInternalUrl from '@docusaurus/isInternalUrl';
 import IconExternalLink from '@theme/Icon/ExternalLink';
 import {isScopedActiveSidebarItem} from '../activeSidebarItem';
 
+// This component intentionally mirrors Docusaurus' classic sidebar link.
+// The local change is the active-state check, which ignores duplicate doc links.
+
 function LinkLabel({label}) {
   return <span title={label}>{label}</span>;
 }
