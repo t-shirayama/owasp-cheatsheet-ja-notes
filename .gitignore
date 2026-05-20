@@ -4,3 +4,4 @@ build/
 .cache/
 .npm-cache/
 npm-debug.log*
+.tmp-*

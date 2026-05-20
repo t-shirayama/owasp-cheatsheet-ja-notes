@@ -991,6 +991,9 @@ body {
 
 .menu__list-item {
   margin: 3px 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
 }
 
 .theme-doc-sidebar-container .menu > .menu__list > .menu__list-item {
@@ -1016,6 +1019,8 @@ body {
   margin: 7px 0 10px 14px;
   padding-left: 12px;
   border-left: 2px solid #d9e6f7;
+  width: auto !important;
+  max-width: none !important;
 }
 
 .menu__list .menu__list .menu__list {
@@ -1026,9 +1031,13 @@ body {
 .menu__link,
 .menu__caret {
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .menu__link {
+  display: flex;
+  width: 100%;
+  min-width: 0;
   color: #334155;
   font-weight: 700;
   line-height: 1.35;
@@ -1037,6 +1046,12 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.menu__list-item-collapsible {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
 }
 
 .menu__link:hover,
