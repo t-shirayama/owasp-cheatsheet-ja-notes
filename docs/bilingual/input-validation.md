@@ -3,23 +3,1242 @@ title: Input Validation Cheat Sheet
 hide_title: true
 ---
 
-<div className="docHero" data-category="asvs-v5">
+<div className="docHero" data-category="encoding-and-sanitization">
   <h1>入力検証チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
-    <span className="docPill">読了時間: 準備中</span>
+    <span className="docPill">読了時間: 約 15 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
 </div>
 
-<div className="contentPanel">
+<div className="tabbedContent">
+  <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-translation" defaultChecked />
+  <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-summary" />
+  <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-checklist" />
+  <input className="tabInput" type="radio" name="input-validation-view" id="input-validation-bilingual" />
 
-このページは、OWASP ASVS Index と同じサイドメニュー構成を先に完成させるための準備中ページです。
+  <div className="contentTabs">
+    <label htmlFor="input-validation-translation">翻訳</label>
+    <label htmlFor="input-validation-summary">要点</label>
+    <label htmlFor="input-validation-checklist">チェックリスト</label>
+    <label htmlFor="input-validation-bilingual">対比表示</label>
+  </div>
 
-- 公式ページ: [Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
-- ASVS 対応: V1.2, V1.3, V2.2, V5.1, V5.2, V5.3
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+<section id="input-validation-translation-panel" className="tabPanel translationPanel contentPanel">
 
+入力検証は、アプリケーションが受け入れるデータの型、形式、範囲、長さ、業務ルールを明確にし、不正または想定外のデータを拒否する防御です。
+
+## 主要な観点
+
+- 許可リスト方式で検証する。
+- クライアント側ではなくサーバー側で検証する。
+- 構文検証と業務ルール検証を分ける。
+
+</section>
+
+<section id="input-validation-summary-panel" className="tabPanel summaryPanel contentPanel">
+
+入力検証は、アプリケーションが受け入れるデータの型、形式、範囲、長さ、業務ルールを明確にし、不正または想定外のデータを拒否する防御です。
+
+## 要点
+
+- 許可リスト方式で検証する。
+- クライアント側ではなくサーバー側で検証する。
+- 構文検証と業務ルール検証を分ける。
+
+## 実装時の注意点
+
+- この要約はASVS Indexでの利用を前提にした実装者向け整理です。詳細確認時は原文を参照してください。
+- 関連する認証、認可、ログ、入力検証、暗号、通信保護の管理策と組み合わせて適用します。
+
+## ASVS との対応
+
+| ASVS 項目 | 関連内容 |
+| --- | --- |
+| V1, V2, V5 | 入力検証チートシート の主要な管理策 |
+
+</section>
+
+<section id="input-validation-checklist-panel" className="tabPanel checklistPanel contentPanel">
+
+- [ ] 全入力点を棚卸しする。
+- [ ] 型、長さ、範囲、形式を定義する。
+- [ ] 許可リストで検証する。
+- [ ] ファイルやJSONなど構造化入力も検証する。
+- [ ] 検証失敗を安全にログ記録する。
+
+</section>
+
+<section id="input-validation-bilingual-panel" className="tabPanel bilingualPanel">
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Introduction
+
+This article is focused on providing clear, simple, actionable guidance for providing Input Validation security functionality in your applications.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+入力検証は、アプリケーションが受け入れるデータの型、形式、範囲、長さ、業務ルールを明確にし、不正または想定外のデータを拒否する防御です。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Goals of Input Validation
+
+Input validation is performed to ensure only properly formed data is entering the workflow in an information system, preventing malformed data from persisting in the database and triggering malfunction of various downstream components. Input validation should happen as early as possible in the data flow, preferably as soon as the data is received from the external party.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 主要な観点
+
+- 許可リスト方式で検証する。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Data from all potentially untrusted sources should be subject to input validation, including not only Internet-facing web clients but also backend feeds over extranets, from [suppliers, partners, vendors or regulators](https://badcyber.com/several-polish-banks-hacked-information-stolen-by-unknown-attackers/), each of which may be compromised on their own and start sending malformed data.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- クライアント側ではなくサーバー側で検証する。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Input Validation should not be used as the *primary* method of preventing [XSS](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html), [SQL Injection](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) and other attacks which are covered in respective [cheat sheets](https://cheatsheetseries.owasp.org/) but can significantly contribute to reducing their impact if implemented properly.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- 構文検証と業務ルール検証を分ける。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Input Validation Strategies
+
+Input validation should be applied at both syntactic and semantic levels:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **Syntactic** validation should enforce correct syntax of structured fields (e.g. SSN, date, currency symbol).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **Semantic** validation should enforce correctness of their *values* in the specific business context (e.g. start date is before end date, price is within expected range).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+It is always recommended to prevent attacks as early as possible in the processing of the user's (attacker's) request. Input validation can be used to detect unauthorized input before it is processed by the application.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Implementing Input Validation
+
+Input validation can be implemented using any programming technique that allows effective enforcement of syntactic and semantic correctness, for example:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Data type validators available natively in web application frameworks (such as [Django Validators](https://docs.djangoproject.com/en/1.11/ref/validators/), [Apache Commons Validators](https://commons.apache.org/proper/commons-validator/apidocs/org/apache/commons/validator/package-summary.html#doc.Usage.validator) etc).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Validation against [JSON Schema](http://json-schema.org/) and [XML Schema (XSD)](https://www.w3schools.com/xml/schema_intro.asp) for input in these formats.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Type conversion (e.g. `Integer.parseInt()` in Java, `int()` in Python) with strict exception handling
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Minimum and maximum value range check for numerical parameters and dates, minimum and maximum length check for strings.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Array of allowed values for small sets of string parameters (e.g. days of week).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Regular expressions for any other structured data covering the whole input string `(^...$)` and **not** using "any character" wildcard (such as `.` or `\\S`)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Denylisting known dangerous patterns can be used as an additional layer of defense, but it should supplement - not replace - allowlisting, to help catch some commonly observed attacks or patterns without relying on it as the main validation method.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Allowlist vs Denylist
+
+It is a common mistake to use denylist validation in order to try to detect possibly dangerous characters and patterns like the apostrophe `'` character, the string `1=1`, or the `<script>` tag, but this is a massively flawed approach as it is trivial for an attacker to bypass such filters.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Plus, such filters frequently prevent authorized input, like `O'Brian`, where the `'` character is fully legitimate. For more information on XSS filter evasion please see [this wiki page](https://owasp.org/www-community/xss-filter-evasion-cheatsheet).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+While denylisting can be useful as an additional layer of defense to catch some common malicious patterns, it should not be relied upon as the primary method. Allowlisting remains the more robust and secure approach for preventing potentially harmful input.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Allowlist validation is appropriate for all input fields provided by the user. Allowlist validation involves defining exactly what IS authorized, and by definition, everything else is not authorized.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+If it's well structured data, like dates, social security numbers, zip codes, email addresses, etc. then the developer should be able to define a very strong validation pattern, usually based on regular expressions, for validating such input.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+If the input field comes from a fixed set of options, like a drop down list or radio buttons, then the input needs to match exactly one of the values offered to the user in the first place. Any failure to validate a value against this discrete list of options on the server side is a high security event and should be logged as a high severity event as it indicates that an attacker is tampering with the client-side code.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Validating Free-form Unicode Text
+
+Free-form text, especially with Unicode characters, is perceived as difficult to validate due to a relatively large space of characters that need to be allowed.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+It's also free-form text input that highlights the importance of proper context-aware output encoding and quite clearly demonstrates that input validation is **not** the primary safeguards against Cross-Site Scripting. If your users want to type apostrophe `'` or less-than sign `<` in their comment field, they might have perfectly legitimate reason for that and the application's job is to properly handle it throughout the whole life cycle of the data.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The primary means of input validation for free-form text input should be:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **Normalization:** Ensure canonical encoding is used across all the text and no invalid characters are present.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **Character category allowlisting:** Unicode allows listing categories such as "decimal digits" or "letters" which not only covers the Latin alphabet but also various other scripts used globally (e.g. Arabic, Cyrillic, CJK ideographs etc).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **Individual character allowlisting:** If you allow letters and ideographs in names and also want to allow apostrophe `'` for Irish names, but don't want to allow the whole punctuation category.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+References:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [Input validation of free-form Unicode text in Python](https://web.archive.org/web/20170717174432/https://ipsec.pl/python/2017/input-validation-free-form-unicode-text-python.html/)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [UAX 31: Unicode Identifier and Pattern Syntax](https://unicode.org/reports/tr31/)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [UAX 15: Unicode Normalization Forms](https://www.unicode.org/reports/tr15/)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [UAX 24: Unicode Script Property](https://unicode.org/reports/tr24/)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Regular Expressions (Regex)
+
+Developing regular expressions can be complicated, and is well beyond the scope of this cheat sheet.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+There are lots of resources on the internet about how to write regular expressions, including this [site](https://www.regular-expressions.info/) and the [OWASP Validation Regex Repository](https://owasp.org/www-community/OWASP_Validation_Regex_Repository).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+When designing regular expression, be aware of [RegEx Denial of Service (ReDoS) attacks](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS). These attacks cause a program using a poorly designed Regular Expression to operate very slowly and utilize CPU resources for a very long time.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+In summary, input validation should:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Be applied to all input data, at minimum.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Define the allowed set of characters to be accepted.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Define a minimum and maximum length for the data (e.g. `&#123;1,25&#125;`).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Allow List Regular Expression Examples
+
+Validating a U.S. Zip Code (5 digits plus optional -4)
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```text
+^\d{5}(-\d{4})?$
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Validating U.S. State Selection From a Drop-Down Menu
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```text
+^(AA|AE|AP|AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|
+HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|
+NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|
+TX|UT|VT|VI|VA|WA|WV|WI|WY)$
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Java Regex Usage Example:**
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Example validating the parameter "zip" using a regular expression.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```java
+private static final Pattern zipPattern = Pattern.compile("^\d{5}(-\d{4})?$");
+
+public void doPost( HttpServletRequest request, HttpServletResponse response) {
+  try {
+      String zipCode = request.getParameter( "zip" );
+      if ( !zipPattern.matcher( zipCode ).matches() ) {
+          throw new YourValidationException( "Improper zipcode format." );
+      }
+      // do what you want here, after its been validated ..
+  } catch(YourValidationException e ) {
+      response.sendError( response.SC_BAD_REQUEST, e.getMessage() );
+  }
+}
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Some Allowlist validators have also been predefined in various open source packages that you can leverage. For example:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [Apache Commons Validator](http://commons.apache.org/proper/commons-validator/)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Client-side vs Server-side Validation
+
+Input validation **must** be implemented on the server-side before any data is processed by an application’s functions, as any JavaScript-based input validation performed on the client-side can be circumvented by an attacker who disables JavaScript or uses a web proxy. Implementing both client-side JavaScript-based validation for UX and server-side validation for security is the recommended approach, leveraging each for their respective strengths.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Validating Rich User Content
+
+It is very difficult to validate rich content submitted by a user. For more information, please see the XSS cheat sheet on [Sanitizing HTML Markup with a Library Designed for the Job](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Preventing XSS and Content Security Policy
+
+All user data controlled must be encoded when returned in the HTML page to prevent the execution of malicious data (e.g. XSS). For example `<script>` would be returned as `&lt;script&gt;`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The type of encoding is specific to the context of the page where the user controlled data is inserted. For example, HTML entity encoding is appropriate for data placed into the HTML body. However, user data placed into a script would need JavaScript specific output encoding.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Detailed information on XSS prevention here: [OWASP XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## File Upload Validation
+
+Many websites allow users to upload files, such as a profile picture or more. This section helps provide that feature securely.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Check the [File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Upload Verification
+
+- Use input validation to ensure the uploaded filename uses an expected extension type.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Ensure the uploaded file is not larger than a defined maximum file size.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- If the website supports ZIP file upload, do a validation check before unzipping the file. The check includes the target path, level of compression, estimated unzip size.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Upload Storage
+
+- Use a new filename to store the file on the OS. Do not use any user controlled text for this filename or for the temporary filename.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- When the file is uploaded to web, it's suggested to rename the file on storage. For example, the uploaded filename is *test.JPG*, rename it to *JAI1287uaisdjhf.JPG* with a random filename. The purpose of doing it to prevent the risks of direct file access and ambiguous filename to evade the filter, such as `test.jpg;.asp or /../../../../../test.jpg`.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Uploaded files should be analyzed for malicious content (anti-malware, static analysis, etc).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- The client should not be able to specify the file path; it should be defined by the server.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Public Serving of Uploaded Content
+
+- Ensure uploaded images are served with the correct content-type (e.g. `image/jpeg`, `application/x-xpinstall`)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Beware of Specific File Types
+
+The upload feature should be using an allowlist approach to only allow specific file types and extensions. However, it is important to be aware of the following file types that, if allowed, could result in security vulnerabilities:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **crossdomain.xml** / **clientaccesspolicy.xml:** allows cross-domain data loading in Flash, Java and Silverlight. If permitted on sites with authentication this can permit cross-domain data theft and CSRF attacks. Note this can get pretty complicated depending on the specific plugin version in question, so its best to just prohibit files named "crossdomain.xml" or "clientaccesspolicy.xml".
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **.htaccess** and **.htpasswd:** Provides server configuration options on a per-directory basis, and should not be permitted. See [HTACCESS documentation](http://en.wikipedia.org/wiki/Htaccess).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Web executable script files are suggested not to be allowed such as `aspx, asp, css, swf, xhtml, rhtml, shtml, jsp, js, pl, php, cgi`.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Image Upload Verification
+
+- Use image rewriting libraries to verify the image is valid and to strip away extraneous content.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Set the extension of the stored image to be a valid image extension based on the detected content type of the image from image processing (e.g. do not just trust the header from the upload).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Ensure the detected content type of the image is within a list of defined image types (jpg, PNG, etc)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Email Address Validation
+
+### Syntactic Validation
+
+The format of email addresses is defined by [RFC 5321](https://tools.ietf.org/html/rfc5321#section-4.1.2), and is far more complicated than most people realise. As an example, the following are all considered to be valid email addresses:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `"><script>alert(1);</script>"@example.org`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `user+subaddress@example.org`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `user@[IPv6:2001:db8::1]`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `" "@example.org`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Properly parsing email addresses for validity with regular expressions is very complicated, although there are a number of [publicly available documents on regex](https://datatracker.ietf.org/doc/html/draft-seantek-mail-regexen-03#rfc.section.3).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The biggest caveat on this is that although the RFC defines a very flexible format for email addresses, most real world implementations (such as mail servers) use a far more restricted address format, meaning that they will reject addresses that are *technically* valid.  Although they may be technically correct, these addresses are of little use if your application will not be able to actually send emails to them.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+As such, the best way to validate email addresses is to perform some basic initial validation, and then pass the address to the mail server and catch the exception if it rejects it. This means that the application can be confident that its mail server can send emails to any addresses it accepts. The initial validation could be as simple as:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- The email address contains two parts, separated with an `@` symbol.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- The email address does not contain dangerous characters (such as backticks, single or double quotes, or null bytes).
+    - Exactly which characters are dangerous will depend on how the address is going to be used (echoed in page, inserted into database, etc).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- The domain part contains only letters, numbers, hyphens (`-`) and periods (`.`).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- The email address is a reasonable length:
+    - The local part (before the `@`) should be no more than 63 characters.
+    - The total length should be no more than 254 characters.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Semantic Validation
+
+Semantic validation is about determining whether the email address is correct and legitimate. The most common way to do this is to send an email to the user, and require that they click a link in the email, or enter a code that has been sent to them. This provides a basic level of assurance that:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- The email address is correct.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- The application can successfully send emails to it.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- The user has access to the mailbox.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The links that are sent to users to prove ownership should contain a token that is:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- At least 32 characters long.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Generated using a [secure source of randomness](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#secure-random-number-generation).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Single use.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Time limited (e.g, expiring after eight hours).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+After validating the ownership of the email address, the user should then be required to authenticate on the application through the usual mechanism.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Disposable Email Addresses
+
+In some cases, users may not want to give their real email address when registering on the application, and will instead provide a disposable email address. These are publicly available addresses that do not require the user to authenticate, and are typically used to reduce the amount of spam received by users' primary email addresses.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Blocking disposable email addresses is almost impossible, as there are a large number of websites offering these services, with new domains being created every day. There are a number of publicly available lists and commercial lists of known disposable domains, but these will always be incomplete.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+If these lists are used to block the use of disposable email addresses then the user should be presented with a message explaining why they are blocked (although they are likely to simply search for another disposable provider rather than giving their legitimate address).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+If it is essential that disposable email addresses are blocked, then registrations should only be allowed from specifically-allowed email providers. However, if this includes public providers such as Google or Yahoo, users can simply register their own disposable address with them.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Sub-Addressing
+
+Sub-addressing allows a user to specify a *tag* in the local part of the email address (before the `@` sign), which will be ignored by the mail server. For example, if that `example.org` domain supports sub-addressing, then the following email addresses are equivalent:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `user@example.org`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `user+site1@example.org`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- `user+site2@example.org`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Many mail providers (such as Microsoft Exchange) do not support sub-addressing. The most notable provider who does is Gmail, although there are many others that also do.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Some users will use a different *tag* for each website they register on, so that if they start receiving spam to one of the sub-addresses they can identify which website leaked or sold their email address.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Because it could allow users to register multiple accounts with a single email address, some sites may wish to block sub-addressing by stripping out everything between the `+` and `@` signs. This is not generally recommended, as it suggests that the website owner is either unaware of sub-addressing or wishes to prevent users from identifying them when they leak or sell email addresses. Additionally, it can be trivially bypassed by using [disposable email addresses](#disposable-email-addresses), or simply registering multiple email accounts with a trusted provider.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## References
+
+- [OWASP Top 10 Proactive Controls 2024: C3: Validate all Input & Handle Exceptions](https://top10proactive.owasp.org/the-top-10/c3-validate-input-and-handle-exceptions)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [CWE-20 Improper Input Validation](https://cwe.mitre.org/data/definitions/20.html)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [OWASP Top 10 2021: A03:2021-Injection](https://owasp.org/Top10/A03_2021-Injection/)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [Snyk: Improper Input Validation](https://learn.snyk.io/lesson/improper-input-validation/)
+
+</div>
+
+</div>
+
+</section>
 </div>
 
 ## Attribution
@@ -31,7 +1250,7 @@ hide_title: true
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: Placeholder navigation page added. No translated OWASP body content copied yet.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
 - Retrieved: 2026-05-20
 
 </div>

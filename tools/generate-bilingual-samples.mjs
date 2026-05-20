@@ -766,6 +766,32 @@ const asvsIndexSections = [
   { id: 'V17.3', slugs: [] },
 ];
 
+const v1FullSlugs = [
+  ...new Set(
+    asvsIndexSections
+      .filter((section) => section.id.startsWith('V1.'))
+      .flatMap((section) => section.slugs),
+  ),
+];
+
+for (const slug of v1FullSlugs) {
+  if (pages.some((page) => page.slug === slug)) {
+    continue;
+  }
+  const catalogPage = sheetCatalog[slug];
+  if (!catalogPage) {
+    throw new Error(`Missing sheet catalog entry for V1 full page ${slug}`);
+  }
+  pages.push({
+    slug,
+    ...catalogPage,
+    categoryKey: 'encoding-and-sanitization',
+    categoryLabel: 'Encoding and Sanitization',
+    readTime: '約 15 分',
+    jaMode: 'bilingualTranslationPanel',
+  });
+}
+
 const chapterJapaneseTitles = {
   1: '入力検証とサニタイズ',
   2: '検証とビジネスロジック',
@@ -1057,6 +1083,11 @@ function sanitizeMarkdown(text) {
         .replace(/\\/g, '\\\\')
         .replace(/\{/g, '&#123;')
         .replace(/\}/g, '&#125;')
+        .replace(/<=/g, '&lt;=')
+        .replace(/<details\b([^>]*)>/gi, '&lt;details$1&gt;')
+        .replace(/<\/details>/gi, '&lt;/details&gt;')
+        .replace(/<summary\b([^>]*)>/gi, '&lt;summary$1&gt;')
+        .replace(/<\/summary>/gi, '&lt;/summary&gt;')
         .replace(/<([A-Z][A-Za-z0-9]*)/g, '&lt;$1')
         .replace(/<\/([A-Z][A-Za-z0-9]*)>/g, '&lt;/$1&gt;');
     })

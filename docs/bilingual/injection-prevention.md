@@ -3,23 +3,1091 @@ title: Injection Prevention Cheat Sheet
 hide_title: true
 ---
 
-<div className="docHero" data-category="asvs-v1">
+<div className="docHero" data-category="encoding-and-sanitization">
   <h1>インジェクション防止チートシート</h1>
   <div className="docMeta">
     <span className="docPill">最終更新: 2026-05-20</span>
-    <span className="docPill">読了時間: 準備中</span>
+    <span className="docPill">読了時間: 約 15 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
 </div>
 
-<div className="contentPanel">
+<div className="tabbedContent">
+  <input className="tabInput" type="radio" name="injection-prevention-view" id="injection-prevention-translation" defaultChecked />
+  <input className="tabInput" type="radio" name="injection-prevention-view" id="injection-prevention-summary" />
+  <input className="tabInput" type="radio" name="injection-prevention-view" id="injection-prevention-checklist" />
+  <input className="tabInput" type="radio" name="injection-prevention-view" id="injection-prevention-bilingual" />
 
-このページは、OWASP ASVS Index と同じサイドメニュー構成を先に完成させるための準備中ページです。
+  <div className="contentTabs">
+    <label htmlFor="injection-prevention-translation">翻訳</label>
+    <label htmlFor="injection-prevention-summary">要点</label>
+    <label htmlFor="injection-prevention-checklist">チェックリスト</label>
+    <label htmlFor="injection-prevention-bilingual">対比表示</label>
+  </div>
 
-- 公式ページ: [Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html)
-- ASVS 対応: V1.2, V1.3
-- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+<section id="injection-prevention-translation-panel" className="tabPanel translationPanel contentPanel">
 
+インジェクションは、信頼できない入力が命令や構文として解釈されることで発生します。構造化API、パラメータ化、エンコード、入力検証を組み合わせます。
+
+## 主要な観点
+
+- 文字列連結で命令を組み立てない。
+- 構造化された安全なAPIを使う。
+- 入力検証と出力先別エンコードを分けて実施する。
+
+</section>
+
+<section id="injection-prevention-summary-panel" className="tabPanel summaryPanel contentPanel">
+
+インジェクションは、信頼できない入力が命令や構文として解釈されることで発生します。構造化API、パラメータ化、エンコード、入力検証を組み合わせます。
+
+## 要点
+
+- 文字列連結で命令を組み立てない。
+- 構造化された安全なAPIを使う。
+- 入力検証と出力先別エンコードを分けて実施する。
+
+## 実装時の注意点
+
+- この要約はASVS Indexでの利用を前提にした実装者向け整理です。詳細確認時は原文を参照してください。
+- 関連する認証、認可、ログ、入力検証、暗号、通信保護の管理策と組み合わせて適用します。
+
+## ASVS との対応
+
+| ASVS 項目 | 関連内容 |
+| --- | --- |
+| V1 | インジェクション防止チートシート の主要な管理策 |
+
+</section>
+
+<section id="injection-prevention-checklist-panel" className="tabPanel checklistPanel contentPanel">
+
+- [ ] SQLやコマンドを文字列連結で作らない。
+- [ ] パラメータ化クエリを使う。
+- [ ] 許可リストで入力を検証する。
+- [ ] 動的式評価を避ける。
+- [ ] インジェクションテストをCIに含める。
+
+</section>
+
+<section id="injection-prevention-bilingual-panel" className="tabPanel bilingualPanel">
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Introduction
+
+This article is focused on providing clear, simple, actionable guidance for preventing the entire category of Injection flaws in your applications. Injection attacks, especially [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection), are unfortunately very common.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+インジェクションは、信頼できない入力が命令や構文として解釈されることで発生します。構造化API、パラメータ化、エンコード、入力検証を組み合わせます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Application accessibility is a very important factor in protection and prevention of injection flaws. Only the minority of all applications within a company/enterprise are developed in house, where as most applications are from external sources. Open source applications give at least the opportunity to fix problems, but closed source applications need a different approach to injection flaws.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 主要な観点
+
+- 文字列連結で命令を組み立てない。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Injection flaws occur when an application sends untrusted data to an interpreter. Injection flaws are very prevalent, particularly in legacy code, often found in SQL queries, LDAP queries, XPath queries, OS commands, program arguments, etc. Injection flaws are easy to discover when examining code, but more difficult via testing. Scanners and fuzzers can help attackers find them.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- 構造化された安全なAPIを使う。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Depending on the accessibility different actions must be taken in order to fix them. It is always the best way to fix the problem in source code itself, or even redesign some parts of the applications. But if the source code is not available or it is simply uneconomical to fix legacy software only virtual patching makes sense.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- 入力検証と出力先別エンコードを分けて実施する。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Application Types
+
+Three classes of applications can usually be seen within a company. Those 3 types are needed to identify the actions which need to take place in order to prevent/fix injection flaws.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### A1: New Application
+
+A new web application in the design phase, or in early stage development.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### A2: Productive Open Source Application
+
+An already productive application, which can be easily adapted. A Model-View-Controller (MVC) type application is just one example of having a easily accessible application architecture.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### A3: Productive Closed Source Application
+
+A productive application which cannot or only with difficulty be modified.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Forms of Injection
+
+There are several forms of injection targeting different technologies including SQL queries, LDAP queries, XPath queries and OS commands.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Query languages
+
+The most famous form of injection is SQL Injection where an attacker can modify existing database queries. For more information see the [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+But also LDAP, SOAP, XPath and REST based queries can be susceptible to injection attacks allowing for data retrieval or control bypass.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### SQL Injection
+
+An SQL injection attack consists of insertion or "injection" of either a partial or complete SQL query via the data input or transmitted from the client (browser) to the web application.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+A successful SQL injection attack can read sensitive data from the database, modify database data (insert/update/delete), execute administration operations on the database (such as shutdown the DBMS), recover the content of a given file existing on the DBMS file system or write files into the file system, and, in some cases, issue commands to the operating system. SQL injection attacks are a type of injection attack, in which SQL commands are injected into data-plane input in order to affect the execution of predefined SQL commands.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+SQL Injection attacks can be divided into the following three classes:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **Inband:** data is extracted using the same channel that is used to inject the SQL code. This is the most straightforward kind of attack, in which the retrieved data is presented directly in the application web page.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **Out-of-band:** data is retrieved using a different channel (e.g., an email with the results of the query is generated and sent to the tester).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **Inferential or Blind:** there is no actual transfer of data, but the tester is able to reconstruct the information by sending particular requests and observing the resulting behavior of the DB Server.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+##### How to test for the issue
+
+###### During code review
+
+please check for any queries to the database are not done via prepared statements.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+If dynamic statements are being made please check if the data is sanitized before used as part of the statement.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Auditors should always look for uses of sp_execute, execute or exec within SQL Server stored procedures. Similar audit guidelines are necessary for similar functions for other vendors.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+###### Automated Exploitation
+
+Most of the situation and techniques below here can be performed in a automated way using some tools. In this article the tester can find information how to perform an automated auditing using [SQLMap](https://wiki.owasp.org/index.php/Automated_Audit_using_SQLMap)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Equally Static Code Analysis Data flow rules can detect of unsanitized user controlled input can change the SQL query.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+###### Stored Procedure Injection
+
+When using dynamic SQL within a stored procedure, the application must properly sanitize the user input to eliminate the risk of code injection. If not sanitized, the user could enter malicious SQL that will be executed within the stored procedure.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+###### Time delay Exploitation technique
+
+The time delay exploitation technique is very useful when the tester find a Blind SQL Injection situation, in which nothing is known on the outcome of an operation. This technique consists in sending an injected query and in case the conditional is true, the tester can monitor the time taken to for the server to respond. If there is a delay, the tester can assume the result of the conditional query is true. This exploitation technique can be different from DBMS to DBMS (check DBMS specific section).
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```text
+http://www.example.com/product.php?id=10 AND IF(version() like '5%', sleep(10), 'false'))--
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+In this example the tester is checking whether the MySql version is 5.x or not, making the server delay the answer by 10 seconds. The tester can increase the delay time and monitor the responses. The tester also doesn't need to wait for the response. Sometimes they can set a very high value (e.g. 100) and cancel the request after some seconds.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+###### Out of band Exploitation technique
+
+This technique is very useful when the tester find a Blind SQL Injection situation, in which nothing is known on the outcome of an operation. The technique consists of the use of DBMS functions to perform an out of band connection and deliver the results of the injected query as part of the request to the tester's server. Like the error based techniques, each DBMS has its own functions. Check for specific DBMS section.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+##### Remediation
+
+###### Defense Option 1: Prepared Statements (with Parameterized Queries)
+
+Prepared statements ensure that an attacker is not able to change the intent of a query, even if SQL commands are inserted by an attacker. In the safe example below, if an attacker were to enter the userID of `tom' or '1'='1`, the parameterized query would not be vulnerable and would instead look for a username which literally matched the entire string `tom' or '1'='1`.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+###### Defense Option 2: Stored Procedures
+
+The difference between prepared statements and stored procedures is that the SQL code for a stored procedure is defined and stored in the database itself, and then called from the application.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Both of these techniques have the same effectiveness in preventing SQL injection so your organization should choose which approach makes the most sense for you. Stored procedures are not always safe from SQL injection. However, certain standard stored procedure programming constructs have the same effect as the use of parameterized queries when implemented safely* which is the norm for most stored procedure languages.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+*Note:* 'Implemented safely' means the stored procedure does not include any unsafe dynamic SQL generation.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+###### Defense Option 3: Allow-List Input Validation
+
+Various parts of SQL queries aren't legal locations for the use of bind variables, such as the names of tables or columns, and the sort order indicator (ASC or DESC). In such situations, input validation or query redesign is the most appropriate defense. For the names of tables or columns, ideally those values come from the code, and not from user parameters.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+But if user parameter values are used to make different for table names and column names, then the parameter values should be mapped to the legal/expected table or column names to make sure unvalidated user input doesn't end up in the query. Please note, this is a symptom of poor design and a full rewrite should be considered if time allows.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+###### Defense Option 4: Escaping All User-Supplied Input
+
+This technique should only be used as a last resort, when none of the above are feasible. Input validation is probably a better choice as this methodology is frail compared to other defenses and we cannot guarantee it will prevent all SQL Injection in all situations.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+This technique is to escape user input before putting it in a query. It's usually only recommended to retrofit legacy code when implementing input validation isn't cost effective.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+##### Example code - Java
+
+###### Safe Java Prepared Statement Example
+
+The following code example uses a `PreparedStatement`, Java's implementation of a parameterized query, to execute the same database query.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```java
+// This should REALLY be validated too
+String custname = request.getParameter("customerName");
+// Perform input validation to detect attacks
+String query = "SELECT account_balance FROM user_data WHERE user_name = ?";
+PreparedStatement pstmt = connection.prepareStatement(query);
+pstmt.setString(1, custname);
+ResultSet results = pstmt.executeQuery();
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+We have shown examples in Java, but practically all other languages, including Cold Fusion, and Classic ASP, support parameterized query interfaces.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+###### Safe Java Stored Procedure Example
+
+The following code example uses a `CallableStatement`, Java's implementation of the stored procedure interface, to execute the same database query. The `sp_getAccountBalance` stored procedure would have to be predefined in the database and implement the same functionality as the query defined above.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```java
+// This should REALLY be validated
+String custname = request.getParameter("customerName");
+try {
+ CallableStatement cs = connection.prepareCall("{call sp_getAccountBalance(?)}");
+ cs.setString(1, custname);
+ ResultSet results = cs.executeQuery();
+ // Result set handling...
+} catch (SQLException se) {
+ // Logging and error handling...
+}
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### LDAP Injection
+
+LDAP Injection is an attack used to exploit web based applications that construct LDAP statements based on user input. When an application fails to properly sanitize user input, it's possible to modify LDAP statements through techniques similar to [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection). LDAP injection attacks could result in the granting of permissions to unauthorized queries, and content modification inside the LDAP tree. For more information on LDAP Injection attacks, visit [LDAP injection](https://owasp.org/www-community/attacks/LDAP_Injection).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+[LDAP injection](https://owasp.org/www-community/attacks/LDAP_Injection) attacks are common due to two factors:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+1. The lack of safer, parameterized LDAP query interfaces
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+2. The widespread use of LDAP to authenticate users to systems.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+##### How to test for the issue
+
+###### During code review
+
+Please check for any queries to the LDAP escape special characters, see [here](https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html#defense-option-1-escape-all-variables-using-the-right-ldap-encoding-function).
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+###### Automated Exploitation
+
+Scanner module of tool like OWASP [ZAP](https://www.zaproxy.org/) have module to detect LDAP injection issue.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+##### Remediation
+
+###### Escape all variables using the right LDAP encoding function
+
+The main way LDAP stores names is based on DN ([distinguished name](https://ldapwiki.com/wiki/Distinguished%20Names)). You can think of this like a unique identifier. These are sometimes used to access resources, like a username.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+A DN might look like this
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```text
+cn=Richard Feynman, ou=Physics Department, dc=Caltech, dc=edu
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+or
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```text
+uid=inewton, ou=Mathematics Department, dc=Cambridge, dc=com
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+There are certain characters that are considered special characters in a DN. The exhaustive list is the following: `\\ # + < > , ; " =` and leading or trailing spaces
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Each DN points to exactly 1 entry, which can be thought of sort of like a row in a RDBMS. For each entry, there will be 1 or more attributes which are analogous to RDBMS columns. If you are interested in searching through LDAP for users will certain attributes, you may do so with search filters. In a search filter, you can use standard boolean logic to get a list of users matching an arbitrary constraint. Search filters are written in Polish notation AKA prefix notation.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+#### Example
+
+
+```text
+(&(ou=Physics)(| (manager=cn=Freeman Dyson,ou=Physics,dc=Caltech,dc=edu)
+(manager=cn=Albert Einstein,ou=Physics,dc=Princeton,dc=edu) ))
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+When building LDAP queries in application code, you MUST escape any untrusted data that is added to any LDAP query. There are two forms of LDAP escaping. Encoding for LDAP Search and Encoding for LDAP DN (distinguished name). The proper escaping depends on whether you are sanitizing input for a search filter, or you are using a DN as a username-like credential for accessing some resource.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+##### Example code - Java
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+###### Safe Java for LDAP escaping Example
+
+
+```java
+public String escapeDN (String name) {
+ //From RFC 2253 and the / character for JNDI
+ final char[] META_CHARS = {'+', '"', '<', '>', ';', '/'};
+ String escapedStr = new String(name);
+ //Backslash is both a Java and an LDAP escape character,
+ //so escape it first
+ escapedStr = escapedStr.replaceAll("\\\\\\\\","\\\\\\\\");
+ //Positional characters - see RFC 2253
+ escapedStr = escapedStr.replaceAll("\^#","\\\\\\\\#");
+ escapedStr = escapedStr.replaceAll("\^ | $","\\\\\\\\ ");
+ for (int i=0 ; i < META_CHARS.length ; i++) {
+        escapedStr = escapedStr.replaceAll("\\\\" +
+                     META_CHARS[i],"\\\\\\\\" + META_CHARS[i]);
+ }
+ return escapedStr;
+}
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Note, that the backslash character is a Java String literal and a regular expression escape character.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```java
+public String escapeSearchFilter (String filter) {
+ //From RFC 2254
+ String escapedStr = new String(filter);
+ escapedStr = escapedStr.replaceAll("\\\\\\\\","\\\\\\\\5c");
+ escapedStr = escapedStr.replaceAll("\\\\\*","\\\\\\\\2a");
+ escapedStr = escapedStr.replaceAll("\\\\(","\\\\\\\\28");
+ escapedStr = escapedStr.replaceAll("\\\\)","\\\\\\\\29");
+ escapedStr = escapedStr.replaceAll("\\\\" +
+               Character.toString('\\u0000'), "\\\\\\\\00");
+ return escapedStr;
+}
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### XPath Injection
+
+TODO
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Scripting languages
+
+All scripting languages used in web applications have a form of an `eval` call which receives code at runtime and executes it. If code is crafted using unvalidated and unescaped user input code injection can occur which allows an attacker to subvert application logic and eventually to gain local access.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Every time a scripting language is used, the actual implementation of the 'higher' scripting language is done using a 'lower' language like C. If the scripting language has a flaw in the data handling code '[Null Byte Injection](http://projects.webappsec.org/w/page/13246949/Null%20Byte%20Injection)' attack vectors can be deployed to gain access to other areas in memory, which results in a successful attack.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Operating System Commands
+
+OS command injection is a technique used via a web interface in order to execute OS commands on a web server. The user supplies operating system commands through a web interface in order to execute OS commands.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Any web interface that is not properly sanitized is subject to this exploit. With the ability to execute OS commands, the user can upload malicious programs or even obtain passwords. OS command injection is preventable when security is emphasized during the design and development of applications.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### How to test for the issue
+
+##### During code review
+
+Check if any command execute methods are called and in unvalidated user input are taken as data for that command.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Out side of that, appending a semicolon to the end of a URL query parameter followed by an operating system command, will execute the command. `%3B` is URL encoded and decodes to semicolon. This is because the `;` is interpreted as a command separator.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Example: `http://sensitive/something.php?dir=%3Bcat%20/etc/passwd`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+If the application responds with the output of the `/etc/passwd` file then you know the attack has been successful. Many web application scanners can be used to test for this attack as they inject variations of command injections and test the response.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Equally Static Code Analysis tools check the data flow of untrusted user input into a web application and check if the data is then entered into a dangerous method which executes the user input as a command.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Remediation
+
+If it is considered unavoidable the call to a system command incorporated with user-supplied, the following two layers of defense should be used within software in order to prevent attacks
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+1. **Parameterization** - If available, use structured mechanisms that automatically enforce the separation between data and command. These mechanisms can help to provide the relevant quoting, encoding.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+2. **Input validation** - the values for commands and the relevant arguments should be both validated. There are different degrees of validation for the actual command and its arguments:
+    - When it comes to the **commands** used, these must be validated against a list of allowed commands.
+    - In regards to the **arguments** used for these commands, they should be validated using the following options:
+        - Positive or allowlist input validation - where are the arguments allowed explicitly defined
+        - Allow-list Regular Expression - where is explicitly defined a list of good characters allowed and the maximum length of the string. Ensure that metacharacters like `& | ; $ > < \\` \\ !` and whitespaces are not part of the Regular Expression. For example, the following regular expression only allows lowercase letters and numbers, and does not contain metacharacters. The length is also being limited to 3-10 characters:
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+`^[a-z0-9]&#123;3,10&#125;$`
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Example code - Java
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+##### Incorrect Usage
+
+
+```java
+ProcessBuilder b = new ProcessBuilder("C:\DoStuff.exe -arg1 -arg2");
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+In this example, the command together with the arguments are passed as a one string, making easy to manipulate that expression and inject malicious strings.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+##### Correct Usage
+
+Here is an example that starts a process with a modified working directory. The command and each of the arguments are passed separately. This make it easy to validated each term and reduces the risk to insert malicious strings.
+
+</div>
+
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+
+```java
+ProcessBuilder pb = new ProcessBuilder("TrustedCmd", "TrustedArg1", "TrustedArg2");
+Map<String, String> env = pb.environment();
+pb.directory(new File("TrustedDir"));
+Process p = pb.start();
+```
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Network Protocols
+
+Web applications often communicate with network daemons (like SMTP, IMAP, FTP) where user input becomes part of the communication stream. Here it is possible to inject command sequences to abuse an established session.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Injection Prevention Rules
+
+### Rule \\#1 (Perform proper input validation)
+
+Perform proper input validation. Positive or allowlist input validation with appropriate canonicalization is also recommended, but **is not a complete defense** as many applications require special characters in their input.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Rule \\#2 (Use a safe API)
+
+The preferred option is to use a safe API which avoids the use of the interpreter entirely or provides a parameterized interface. Be careful of APIs, such as stored procedures, that are parameterized, but can still introduce injection under the hood.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Rule \\#3 (Contextually escape user data)
+
+If a parameterized API is not available, you should carefully escape special characters using the specific escape syntax for that interpreter.
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Other Injection Cheatsheets
+
+[SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+[OS Command Injection Defense Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+[LDAP Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html)
+
+</div>
+
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+[Injection Prevention Cheat Sheet in Java](https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_in_Java_Cheat_Sheet.html)
+
+</div>
+
+</div>
+
+</section>
 </div>
 
 ## Attribution
@@ -31,7 +1099,7 @@ hide_title: true
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: Placeholder navigation page added. No translated OWASP body content copied yet.
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese notes.
 - Retrieved: 2026-05-20
 
 </div>
