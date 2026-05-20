@@ -859,7 +859,7 @@ body {
 }
 
 .theme-doc-sidebar-container .menu {
-  padding: 18px 18px 22px;
+  padding: 24px 24px 26px;
   color: #334155;
   font-size: 0.94rem;
 }
@@ -1016,7 +1016,7 @@ body {
 .contentPanel {
   border: 1px solid var(--doc-line);
   border-radius: 8px;
-  padding: 30px 36px;
+  padding: 28px 32px;
   background: var(--doc-card-bg);
   box-shadow: var(--doc-shadow);
   color: #172033;
@@ -1062,7 +1062,7 @@ body {
 
 .bilingualBlock,
 .bilingualCommon {
-  padding: 20px 26px;
+  padding: 18px 22px;
 }
 
 .bilingualBlock p,
@@ -1074,21 +1074,6 @@ body {
 
 .theme-doc-toc-desktop {
   padding-left: 22px;
-}
-
-@media (min-width: 997px) {
-  .theme-doc-markdown {
-    padding-inline: clamp(14px, 2vw, 34px);
-  }
-
-  .breadcrumbs,
-  .pagination-nav {
-    margin-inline: clamp(14px, 2vw, 34px);
-  }
-
-  .theme-doc-toc-desktop {
-    padding-left: 30px;
-  }
 }
 
 .table-of-contents {
