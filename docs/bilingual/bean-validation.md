@@ -891,26 +891,6 @@ public class Customer {
 }
 ```
 
-```java
-import org.hibernate.validator.constraints.Digits;
-
-public class Customer {
-  //Constraint: Age can only be 3 digits long or less
-  @Digits(integer = 3, fraction = 0)
-  private int age;
-
-  public String getAge()  {
-    return age;
-  }
-
-  public void setAge(String age)  {
-      this.age = age;
-    }
-
-    ...
-}
-```
-
 </div>
 
 <div className="bilingualCommon">
@@ -1022,27 +1002,6 @@ public class Message {
 }
 ```
 
-```java
-import org.hibernate.validator.constraints.Size;
-
-public class Message {
-
-   //Constraint: Message must be at least 10 characters long, but less than 500
-   @Size(min = 10, max = 500)
-   private String message;
-
-   public String getMessage() {
-      return message;
-   }
-
-   public void setMessage(String message) {
-      this.message = message;
-   }
-
-...
-}
-```
-
 </div>
 
 <div className="bilingualCommon">
@@ -1074,35 +1033,6 @@ HttpServletResponse response){
    }
    else{
       return "Validation Successful";
-   }
-}
-}
-```
-
-```java
-import javax.validation.Valid;
-import com.company.app.model.Message;
-
-@Controller
-public class MessageController {
-
-...
-
-@RequestMapping(value="/sendMessage", method=RequestMethod.POST)
-public @ResponseBody String sendMessage(@Valid Message message, BindingResult result,
-HttpServletResponse response){
-
-   if(result.hasErrors()){
-      String errorMessage = "";
-      response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-      List<ObjectError> errors = result.getAllErrors();
-      for( ObjectError e : errors){
-         errorMessage+= "ERROR: " + e.getDefaultMessage();
-      }
-      return errorMessage;
-   }
-   else{
-      return "Validation Successful";
    }
 }
 }
@@ -1196,40 +1126,6 @@ public class DoctorVisit {
 }
 ```
 
-```java
-import org.hibernate.validator.constraints.Past;
-import org.hibernate.validator.constraints.Future;
-
-public class DoctorVisit {
-
-   //Constraint: Birthdate must be in the past
-   @Past
-   private Date birthDate;
-
-   public Date getBirthDate() {
-      return birthDate;
-   }
-
-   public void setBirthDate(Date birthDate) {
-      this.birthDate = birthDate;
-   }
-
-   //Constraint: Schedule visit date must be in the future
-   @Future
-   private String scheduledVisitDate;
-
-   public String getScheduledVisitDate() {
-      return scheduledVisitDate;
-   }
-
-   public void setScheduledVisitDate(String scheduledVisitDate) {
-      this.scheduledVisitDate = scheduledVisitDate;
-   }
-
-...
-}
-```
-
 </div>
 
 <div className="bilingualCommon">
@@ -1261,35 +1157,6 @@ public class DoctorVisitController {
       }
       else{
          return "Validation Successful";
-      }
-   }
-}
-```
-
-```java
-import javax.validation.Valid;
-import com.company.app.model.DoctorVisit;
-
-@Controller
-public class DoctorVisitController {
-
-   ...
-
-   @RequestMapping(value="/scheduleVisit", method=RequestMethod.POST)
-   public @ResponseBody String scheduleVisit(@Valid DoctorVisit doctorvisit, BindingResult result,
-   HttpServletResponse response){
-
-      if(result.hasErrors()){
-         String errorMessage = "";
-         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-         List<ObjectError> errors = result.getAllErrors();
-         for( ObjectError e : errors){
-            errorMessage+= "ERROR: " + e.getDefaultMessage();
-         }
-         return errorMessage;
-      }
-      else{
-         return "Validation Successful";
       }
    }
 }
@@ -1375,28 +1242,6 @@ public class Review {
 }
 ```
 
-```java
-import org.hibernate.validator.constraints.Min;
-import org.hibernate.validator.constraints.Max;
-
-public class Review {
-
- //Constraint: Review rating must be between 1 and 5
- @Min(1)
- @Max(5)
- private int reviewRating;
-
- public int getReviewRating() {
-   return reviewRating;
- }
-
- public void setReviewRating(int reviewRating) {
-   this.reviewRating = reviewRating;
-}
- ...
-}
-```
-
 </div>
 
 <div className="bilingualCommon">
@@ -1428,35 +1273,6 @@ public class ReviewController {
       }
        else{
          return "Validation Successful";
-      }
-   }
-}
-```
-
-```java
-import javax.validation.Valid;
-import com.company.app.model.ReviewRating;
-
-@Controller
-public class ReviewController {
-
-   ...
-
-   @RequestMapping(value="/postReview", method=RequestMethod.POST)
-   public @ResponseBody String postReview(@Valid Review review, BindingResult result,
-   HttpServletResponse response){
-
-      if(result.hasErrors()){
-         String errorMessage = "";
-         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-         List<ObjectError> errors = result.getAllErrors();
-         for( ObjectError e : errors){
-            errorMessage+= "ERROR: " + e.getDefaultMessage();
-         }
-         return errorMessage;
-      }
-      else{
-         return "Validation Successful";
       }
    }
 }
@@ -1564,11 +1380,6 @@ It is possible to specify a message ID with the validation annotation, so that e
 ```java
 @Pattern(regexp = "[a-zA-Z0-9 ]", message="article.title.error")
 private String articleTitle;
-```
-
-```java
-@Pattern(regexp = "[a-zA-Z0-9 ]", message="article.title.error")
-private String articleTitle;
 ```
 
 </div>

@@ -1201,6 +1201,16 @@ function imageKey(line) {
   return `image:${line.trim()}`;
 }
 
+function codeKey(content) {
+  const normalized = normalizeNewlines(content)
+    .replace(/\u00a0/g, ' ')
+    .split('\n')
+    .map((line) => line.replace(/[ \t]+$/g, '').replace(/[ \t]+/g, ' ').trim())
+    .join('\n')
+    .trim();
+  return `code:${normalized}`;
+}
+
 function extractSharedBlocks(markdown) {
   const lines = normalizeNewlines(markdown).split('\n');
   const body = [];
@@ -1211,7 +1221,7 @@ function extractSharedBlocks(markdown) {
   const pushFence = () => {
     const content = fence.join('\n').trim();
     if (content) {
-      shared.push({ key: `code:${content}`, content });
+      shared.push({ key: codeKey(content), content });
     }
     fence = [];
   };
@@ -1267,7 +1277,7 @@ function splitSharedSegments(markdown) {
   const pushFence = () => {
     const content = fence.join('\n').trim();
     if (content) {
-      shared.push({ key: `code:${content}`, content });
+      shared.push({ key: codeKey(content), content });
       flush();
     }
     fence = [];
