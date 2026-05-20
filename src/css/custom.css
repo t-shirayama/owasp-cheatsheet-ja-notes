@@ -1196,7 +1196,7 @@ body {
 
 .contentPanel p,
 .contentPanel li {
-  line-height: 1.72;
+  line-height: 1.8;
 }
 
 .contentPanel hr {
@@ -1228,7 +1228,7 @@ body {
 .bilingualBlock li,
 .bilingualCommon p,
 .bilingualCommon li {
-  line-height: 1.68;
+  line-height: 1.76;
 }
 
 .translationPanel :is(ul, ol),
@@ -1240,9 +1240,9 @@ body {
 
 .translationPanel :is(ul, ol) > li,
 .bilingualBlock.japanese :is(ul, ol) > li {
-  margin-top: 0.14rem;
-  margin-bottom: 0.14rem;
-  line-height: 1.56;
+  margin-top: 0.18rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.68;
 }
 
 .translationPanel :is(ul, ol) > li > :is(ul, ol),
