@@ -1341,9 +1341,7 @@ function sharedHeadingTitle(englishHeading, japaneseHeading) {
   if (!englishHeading && !japaneseHeading) {
     return '';
   }
-  const englishTitle = englishHeading?.title ?? japaneseHeading.title;
-  const japaneseTitle = japaneseHeading?.title ?? englishTitle;
-  return `${englishTitle}（${japaneseTitle}）`;
+  return englishHeading?.title ?? japaneseHeading.title;
 }
 
 function bilingualPairs(english, japanese) {
