@@ -1,13 +1,12 @@
 # Bean Validation Cheat Sheet
 
 <div className="docHero">
-  <span className="docPill">ASVS bilingual view</span>
+  <h1>Bean Validation Cheat Sheet</h1>
   <p className="docSubtitle">Bean Validation チートシート</p>
   <div className="docMeta">
-    <span className="docPill">Retrieved: 2026-05-20</span>
-    <span className="docPill">Category: Encoding and Sanitization</span>
-    <span className="docPill">ASVS: V1.2</span>
-    <span className="docPill">Unofficial translation</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">読了時間: 約 12 分</span>
+    <span className="docPill">カテゴリ: Encoding and Sanitization</span>
   </div>
 </div>
 
