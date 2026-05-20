@@ -1490,10 +1490,20 @@ function splitTextCards(text) {
     .split(/\n{2,}/)
     .map((block) => block.trim())
     .filter((block) => block && !/^(?:-{3,}|\*{3,}|_{3,})$/.test(block));
+  const isListBlock = (block) => /^\s{0,3}(?:[-*+]|\d+[.)])\s+/.test(block);
+  const mergedBlocks = [];
+  for (const block of blocks) {
+    const previous = mergedBlocks.at(-1);
+    if (previous && isListBlock(previous) && isListBlock(block)) {
+      mergedBlocks[mergedBlocks.length - 1] = `${previous}\n\n${block}`;
+      continue;
+    }
+    mergedBlocks.push(block);
+  }
   const cards = [];
   let pendingHeading = '';
 
-  for (const block of blocks) {
+  for (const block of mergedBlocks) {
     const isHeadingOnly = /^#{2,6}\s+.+$/.test(block);
     if (isHeadingOnly) {
       pendingHeading = pendingHeading ? `${pendingHeading}\n\n${block}` : block;

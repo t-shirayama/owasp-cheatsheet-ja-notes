@@ -625,53 +625,13 @@ Be aware of the following Java API uses for potential serialization vulnerabilit
 
 1. `XMLdecoder` with external user defined parameters
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. `XStream` with `fromXML` method (xstream version &lt;= v1.4.6 is vulnerable to the serialization issue)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 3. `ObjectInputStream` with `readObject`
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 4. Uses of `readObject`, `readObjectNoData`, `readResolve` or `readExternal`
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 5. `ObjectInputStream.readUnshared`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 6. `Serializable`
 

@@ -1889,33 +1889,9 @@ TLS クライアント認証は、ブラウザとサーバーの双方が TLS �
 6. Create and store **two** time-limited nonces for (a) system administrators' notification, and (b) user confirmation.
 7. Send two email messages with links that include those nonces:
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - A **notification-only email message** to the current address, alerting the user to the impending change and providing a link to report unexpected activity.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - A **confirmation-required email message** to the proposed new address, instructing the user to confirm the change and providing a link for unexpected situations.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 8. Handle responses from the links accordingly.
 
@@ -1937,33 +1913,9 @@ TLS クライアント認証は、ブラウザとサーバーの双方が TLS �
 6. Create and store three time-limited nonces for system administrators' notification, user confirmation, and an additional step for password reliance.
 7. Send two email messages with links to those nonces:
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - A **confirmation-required email message** to the current address, instructing the user to confirm the change and providing a link for an unexpected situation.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - A **separate confirmation-required email message** to the proposed new address, instructing the user to confirm the change and providing a link for unexpected situations.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 8. Handle responses from the links accordingly.
 
@@ -1978,14 +1930,6 @@ TLS クライアント認証は、ブラウザとサーバーの双方が TLS �
 ### Notes on the Above Processes
 
 - It's worth noting that Google adopts a different approach with accounts secured only by a password -- [where the current email address receives a notification-only email](https://support.google.com/accounts/answer/55393?hl=en). This method carries risks and requires user vigilance.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 - Regular social engineering training is crucial. System administrators and help desk staff should be trained to follow the prescribed process and recognize and respond to social engineering attacks. Refer to [CISA's "Avoiding Social Engineering and Phishing Attacks"](https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks) for guidance.
 

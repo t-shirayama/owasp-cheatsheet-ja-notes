@@ -2684,14 +2684,6 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
     2.1. Fail-safe (recommended for sensitive endpoints): treat absence as unknown and block the request.
     2.2. Fail-open (compatibility-first): fallback to ([standard origin verification](#using-standard-headers-to-verify-origin), CSRF tokens, and/or require additional validation).
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 3. Additional options
 
 </div>

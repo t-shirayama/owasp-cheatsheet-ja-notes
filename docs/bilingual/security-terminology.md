@@ -341,43 +341,11 @@ This cheat sheet provides clear definitions and distinctions for security termin
 
 - [データ処理: エンコーディング、エスケープ、サニタイゼーション、シリアライゼーション](#data-handling-encoding-escaping-sanitization-and-serialization)
 
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - [暗号: 暗号化、ハッシュ、署名](#cryptography-encryption-hashing-and-signatures)
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - [アイデンティティ: 認証と認可](#identity-authentication-and-authorization)
 
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - [フェデレーションアイデンティティ用語](#federated-identity-terms)
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - [参考資料](#references)
 
@@ -437,54 +405,9 @@ These terms relate to how data is transformed for transport, storage, or display
 
 - **目的:** セキュリティのためではなく、データの利用性と互換性のためです。
 
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-### Escaping
-
-**Definition:** A sub-type of encoding where specific characters are prefixed with a "signal" character (like a backslash) to prevent them from being misinterpreted by a parser as control characters.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - **可逆性:** 常に元に戻せます。
 
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- **Purpose:** To ensure the interpreter treats the data as text rather than code/commands.
-- **Examples:** `\\'` in SQL, `\\n` in strings, `&lt;` in HTML.
-- **Security Context:** Essential for preventing Injection attacks (XSS, SQLi).
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - **例:** Base64、URL Encoding、HTML Entity Encoding。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-### Sanitization
-
-**Definition:** The process of cleaning or filtering input by removing, replacing, or modifying potentially dangerous characters or content.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - **セキュリティ上の文脈:** 誤ったエンコーディングを使うと脆弱性につながることがありますが、エンコーディング自体はセキュリティ管理策ではありません。
 
@@ -495,9 +418,9 @@ These terms relate to how data is transformed for transport, storage, or display
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- **Purpose:** To make "dirty" input "clean" according to a security policy.
-- **Examples:** Stripping `<script>` tags from HTML input, removing special characters from a filename.
-- **Security Context:** Use as a secondary defense; prefer parameterized queries or output escaping where possible.
+### Escaping
+
+**Definition:** A sub-type of encoding where specific characters are prefixed with a "signal" character (like a backslash) to prevent them from being misinterpreted by a parser as control characters.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -514,6 +437,67 @@ These terms relate to how data is transformed for transport, storage, or display
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
+- **Purpose:** To ensure the interpreter treats the data as text rather than code/commands.
+- **Examples:** `\\'` in SQL, `\\n` in strings, `&lt;` in HTML.
+- **Security Context:** Essential for preventing Injection attacks (XSS, SQLi).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- **目的:** インタプリタがデータをコードやコマンドではなくテキストとして扱うようにすることです。
+
+- **例:** SQL での `\\'`、文字列での `\\n`、HTML での `&lt;`。
+
+- **セキュリティ上の文脈:** XSS や SQL インジェクションなどのインジェクション攻撃を防ぐために不可欠です。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Sanitization
+
+**Definition:** The process of cleaning or filtering input by removing, replacing, or modifying potentially dangerous characters or content.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### Sanitization
+
+**定義:** 危険な可能性のある文字やコンテンツを削除、置換、変更して、入力をクリーニングまたはフィルタリングする処理です。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **Purpose:** To make "dirty" input "clean" according to a security policy.
+- **Examples:** Stripping `<script>` tags from HTML input, removing special characters from a filename.
+- **Security Context:** Use as a secondary defense; prefer parameterized queries or output escaping where possible.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- **目的:** セキュリティポリシーに従って、「汚れた」入力を「きれいな」入力にすることです。
+
+- **例:** HTML 入力から `<script>` タグを取り除く、ファイル名から特殊文字を削除する。
+
+- **セキュリティ上の文脈:** 二次的な防御として使用します。可能な場合は、パラメータ化クエリや出力エスケープを優先します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Serialization
 
 **Definition:** Converting an object or data structure into a format that can be stored or transmitted (e.g., a byte stream) and later reconstructed.
@@ -522,7 +506,9 @@ These terms relate to how data is transformed for transport, storage, or display
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- **目的:** インタプリタがデータをコードやコマンドではなくテキストとして扱うようにすることです。
+### Serialization
+
+**定義:** オブジェクトやデータ構造を、保存または送信でき、後で再構築できる形式、たとえばバイトストリームに変換することです。
 
 </div>
 </div>
@@ -538,89 +524,7 @@ These terms relate to how data is transformed for transport, storage, or display
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- **例:** SQL での `\\'`、文字列での `\\n`、HTML での `&lt;`。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- **セキュリティ上の文脈:** XSS や SQL インジェクションなどのインジェクション攻撃を防ぐために不可欠です。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### Sanitization
-
-**定義:** 危険な可能性のある文字やコンテンツを削除、置換、変更して、入力をクリーニングまたはフィルタリングする処理です。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- **目的:** セキュリティポリシーに従って、「汚れた」入力を「きれいな」入力にすることです。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- **例:** HTML 入力から `<script>` タグを取り除く、ファイル名から特殊文字を削除する。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- **セキュリティ上の文脈:** 二次的な防御として使用します。可能な場合は、パラメータ化クエリや出力エスケープを優先します。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### Serialization
-
-**定義:** オブジェクトやデータ構造を、保存または送信でき、後で再構築できる形式、たとえばバイトストリームに変換することです。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - **目的:** データの永続化と通信です。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - **セキュリティ上の文脈:** 信頼できないデータを使ってオブジェクトを再構築すると、**安全でないデシリアライゼーション**が発生し、リモートコード実行 (RCE) につながる可能性があります。
 
@@ -679,6 +583,10 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 
 - **目的:** **機密性**です。鍵を持つ認可された当事者だけがデータを読めます。
 
+- **可逆性:** 正しい鍵があれば復号により元に戻せます。
+
+- **種類:** 対称暗号、つまり同じ鍵を使う方式と、非対称暗号、つまり公開鍵と秘密鍵を使う方式があります。
+
 </div>
 </div>
 
@@ -694,7 +602,9 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- **可逆性:** 正しい鍵があれば復号により元に戻せます。
+### Hashing
+
+**定義:** 数学的な関数を使って、データを固定長の文字列、つまり「ハッシュ」または「ダイジェスト」に変換することです。
 
 </div>
 </div>
@@ -712,7 +622,13 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- **種類:** 対称暗号、つまり同じ鍵を使う方式と、非対称暗号、つまり公開鍵と秘密鍵を使う方式があります。
+- **目的:** **完全性**です。入力が少し変わるだけで、まったく異なるハッシュになります。
+
+- **可逆性:** 一方向であり、元に戻せません。
+
+- **セキュリティ上の文脈:** ソルトを併用したパスワード保存や、ファイルの完全性検証に使われます。
+
+- **例:** SHA-256、Argon2、bcrypt。
 
 </div>
 </div>
@@ -729,9 +645,9 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### Hashing
+### Signatures (Digital Signatures)
 
-**定義:** 数学的な関数を使って、データを固定長の文字列、つまり「ハッシュ」または「ダイジェスト」に変換することです。
+**定義:** 非対称暗号を使って、メッセージの送信元と完全性を証明することです。
 
 </div>
 </div>
@@ -748,77 +664,9 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- **目的:** **完全性**です。入力が少し変わるだけで、まったく異なるハッシュになります。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- **可逆性:** 一方向であり、元に戻せません。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- **セキュリティ上の文脈:** ソルトを併用したパスワード保存や、ファイルの完全性検証に使われます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- **例:** SHA-256、Argon2、bcrypt。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### Signatures (Digital Signatures)
-
-**定義:** 非対称暗号を使って、メッセージの送信元と完全性を証明することです。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - **目的:** **真正性**と**否認防止**です。誰がメッセージを送信したか、およびメッセージが改ざんされていないことを証明します。
 
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - **仕組み:** 送信者はメッセージのハッシュに自分の*秘密鍵*で署名し、受信者は送信者の*公開鍵*でそれを検証します。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - **例:** JWT 署名、GPG 署名。
 
@@ -861,6 +709,8 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 
 - **問い:** 「あなたは誰ですか?」
 
+- **要素:** 知っているもの、たとえばパスワード、持っているもの、たとえばトークン、本人自身であるもの、たとえば生体情報です。
+
 </div>
 </div>
 
@@ -876,7 +726,9 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- **要素:** 知っているもの、たとえばパスワード、持っているもの、たとえばトークン、本人自身であるもの、たとえば生体情報です。
+### Authorization (AuthZ)
+
+**定義:** 利用者に何を実行する権限があるかを検証する処理です。
 
 </div>
 </div>
@@ -893,37 +745,9 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### Authorization (AuthZ)
-
-**定義:** 利用者に何を実行する権限があるかを検証する処理です。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - **問い:** 「これを実行することは許可されていますか?」
 
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - **セキュリティ上の文脈:** 認証に成功した*後*に行われます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - **例:** ロールベースアクセス制御 (RBAC)、属性ベースアクセス制御 (ABAC)。
 
