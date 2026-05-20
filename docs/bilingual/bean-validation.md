@@ -597,8 +597,6 @@ The examples in this guide use Hibernate Validator.
 
 このガイドの例では Hibernate Validator を使用します。
 
-Hibernate Validator を **pom.xml** に追加します。
-
 </div>
 </div>
 
@@ -615,16 +613,6 @@ Hibernate Validator を **pom.xml** に追加します。
 </dependency>
 ```
 
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-Spring の **context.xml** で Bean Validation サポートを有効にします。
-
-</div>
 </div>
 
 <div className="bilingualCommon">

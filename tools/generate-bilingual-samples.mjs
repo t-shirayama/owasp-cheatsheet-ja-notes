@@ -1327,7 +1327,7 @@ function uniqueSharedBlocks(...groups) {
   return shared;
 }
 
-function takeTrailingHeading(text) {
+function takeTrailingHeading(text, options = {}) {
   const lines = normalizeNewlines(text).trimEnd().split('\n');
   while (lines.length > 0 && lines[lines.length - 1].trim() === '') {
     lines.pop();
@@ -1347,6 +1347,25 @@ function takeTrailingHeading(text) {
 
   const labelMatch = /^\*\*(.+?)\*\*:\s*$/.exec(lastLine) || /^(.+?):\s*$/.exec(lastLine);
   if (!labelMatch || labelMatch[1].length > 80) {
+    const plainLine = lastLine.trim();
+    const canTreatPlainLineAsHeading =
+      options.allowPlainLine &&
+      plainLine.length > 0 &&
+      plainLine.length <= 120 &&
+      !plainLine.startsWith('#') &&
+      !plainLine.startsWith('- ') &&
+      !plainLine.startsWith('|') &&
+      !plainLine.startsWith('```');
+    if (canTreatPlainLineAsHeading) {
+      lines.pop();
+      return {
+        text: lines.join('\n').replace(/\n{3,}/g, '\n\n').trim(),
+        heading: {
+          level: 4,
+          title: plainLine,
+        },
+      };
+    }
     return { text: text.trim(), heading: null };
   }
   lines.pop();
@@ -1391,7 +1410,9 @@ function bilingualPairs(english, japanese) {
       const jaParts = jaSegments[segmentIndex] ?? { text: '', shared: [] };
       const shared = uniqueSharedBlocks(enParts.shared, jaParts.shared).join('\n\n');
       const enText = shared ? takeTrailingHeading(enParts.text) : { text: enParts.text, heading: null };
-      const jaText = shared ? takeTrailingHeading(jaParts.text) : { text: jaParts.text, heading: null };
+      const jaText = shared
+        ? takeTrailingHeading(jaParts.text, { allowPlainLine: Boolean(enText.heading) })
+        : { text: jaParts.text, heading: null };
       const en = enText.text;
       const ja = jaText.text;
       const heading = sharedHeading(enText.heading, jaText.heading);
