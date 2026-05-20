@@ -12,7 +12,7 @@
   --ifm-font-family-base: "Inter Variable", "Noto Sans JP Variable", "Inter", "Noto Sans JP", "Yu Gothic UI", "Hiragino Sans", "Meiryo", sans-serif;
   --ifm-heading-font-family: var(--ifm-font-family-base);
   --ifm-font-size-base: 16px;
-  --ifm-line-height-base: 1.75;
+  --ifm-line-height-base: 1.65;
   --ifm-font-weight-base: 450;
   --ifm-font-weight-semibold: 650;
   --ifm-font-weight-bold: 760;
@@ -73,7 +73,7 @@ body {
   font-family: var(--ifm-font-family-base);
   font-size: 16px;
   font-weight: 450;
-  line-height: 1.75;
+  line-height: 1.65;
   letter-spacing: 0;
   text-rendering: optimizeLegibility;
 }
@@ -1039,7 +1039,7 @@ body {
 
 .contentPanel p,
 .contentPanel li {
-  line-height: 1.85;
+  line-height: 1.72;
 }
 
 .contentPanel hr {
@@ -1065,6 +1065,13 @@ body {
 .bilingualBlock,
 .bilingualCommon {
   padding: 18px 22px;
+}
+
+.bilingualBlock p,
+.bilingualBlock li,
+.bilingualCommon p,
+.bilingualCommon li {
+  line-height: 1.68;
 }
 
 .theme-doc-toc-desktop {
@@ -1250,7 +1257,7 @@ div[class^='codeBlockContainer_'] pre,
   border-radius: 0;
   background: var(--code-editor-bg) !important;
   font-size: 0.9rem;
-  line-height: 1.75;
+  line-height: 1.62;
   tab-size: 2;
 }
 
