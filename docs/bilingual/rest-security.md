@@ -1,8 +1,8 @@
 ---
+title: REST Security Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# REST Security Cheat Sheet
 
 <div className="docHero" data-category="api-and-web-service">
   <h1>REST Security Cheat Sheet</h1>

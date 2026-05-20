@@ -558,10 +558,10 @@ async function localChecklist(page) {
 function pageMarkdown(page, english, japanese, summary, checklist) {
   const sourceUrl = `https://cheatsheetseries.owasp.org/cheatsheets/${page.sourceName}.html`;
   return `---
+title: ${page.title}
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# ${page.title}
 
 <div className="docHero" data-category="${page.categoryKey}">
   <h1>${page.title}</h1>

@@ -1,8 +1,8 @@
 ---
+title: Credential Stuffing Prevention Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# Credential Stuffing Prevention Cheat Sheet
 
 <div className="docHero" data-category="authentication">
   <h1>Credential Stuffing Prevention Cheat Sheet</h1>

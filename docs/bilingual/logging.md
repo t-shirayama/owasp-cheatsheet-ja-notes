@@ -1,8 +1,8 @@
 ---
+title: Logging Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# Logging Cheat Sheet
 
 <div className="docHero" data-category="logging-monitoring">
   <h1>Logging Cheat Sheet</h1>

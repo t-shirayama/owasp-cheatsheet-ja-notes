@@ -1,8 +1,8 @@
 ---
+title: Password Storage Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# Password Storage Cheat Sheet
 
 <div className="docHero" data-category="cryptographic-storage">
   <h1>Password Storage Cheat Sheet</h1>

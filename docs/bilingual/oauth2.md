@@ -1,8 +1,8 @@
 ---
+title: OAuth 2.0 Protocol Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# OAuth 2.0 Protocol Cheat Sheet
 
 <div className="docHero" data-category="api-and-web-service">
   <h1>OAuth 2.0 Protocol Cheat Sheet</h1>

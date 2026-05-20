@@ -1,8 +1,8 @@
 ---
+title: Bean Validation Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# Bean Validation Cheat Sheet
 
 <div className="docHero" data-category="encoding-and-sanitization">
   <h1>Bean Validation Cheat Sheet</h1>

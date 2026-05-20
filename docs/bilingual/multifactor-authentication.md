@@ -1,8 +1,8 @@
 ---
+title: Multifactor Authentication Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# Multifactor Authentication Cheat Sheet
 
 <div className="docHero" data-category="authentication">
   <h1>Multifactor Authentication Cheat Sheet</h1>

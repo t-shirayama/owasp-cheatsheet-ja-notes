@@ -1,8 +1,8 @@
 ---
+title: Forgot Password Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# Forgot Password Cheat Sheet
 
 <div className="docHero" data-category="authentication">
   <h1>Forgot Password Cheat Sheet</h1>

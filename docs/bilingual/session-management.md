@@ -1,8 +1,8 @@
 ---
+title: Session Management Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# Session Management Cheat Sheet
 
 <div className="docHero" data-category="session-management">
   <h1>Session Management Cheat Sheet</h1>

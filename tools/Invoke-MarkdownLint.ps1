@@ -47,9 +47,13 @@ foreach ($file in $markdownFiles) {
     }
 
     $contentStartIndex = 0
+    $frontmatter = @()
     if ($logicalLines.Count -gt 0 -and $logicalLines[0] -eq "---") {
         for ($i = 1; $i -lt $logicalLines.Count; $i++) {
             if ($logicalLines[$i] -eq "---") {
+                if ($i -gt 1) {
+                    $frontmatter = $logicalLines[1..($i - 1)]
+                }
                 $contentStartIndex = $i + 1
                 break
             }
@@ -69,7 +73,9 @@ foreach ($file in $markdownFiles) {
         continue
     }
 
-    if (-not ($logicalLines[$firstNonEmptyIndex] -match "^# ")) {
+    $hideTitle = $frontmatter | Where-Object { $_ -match "^hide_title:\s*true\s*$" }
+    $startsWithHero = $logicalLines[$firstNonEmptyIndex] -match '^<div className="docHero"'
+    if (-not ($logicalLines[$firstNonEmptyIndex] -match "^# ") -and -not ($hideTitle -and $startsWithHero)) {
         Add-Issue $file.FullName ($firstNonEmptyIndex + 1) "first non-empty line should be an H1 heading"
     }
 

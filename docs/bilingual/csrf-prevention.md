@@ -1,8 +1,8 @@
 ---
+title: Cross-Site Request Forgery Prevention Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# Cross-Site Request Forgery Prevention Cheat Sheet
 
 <div className="docHero" data-category="encoding-and-sanitization">
   <h1>Cross-Site Request Forgery Prevention Cheat Sheet</h1>

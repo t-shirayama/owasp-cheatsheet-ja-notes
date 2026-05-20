@@ -1,8 +1,8 @@
 ---
+title: Authorization Cheat Sheet
+hide_title: true
 hide_table_of_contents: true
 ---
-
-# Authorization Cheat Sheet
 
 <div className="docHero" data-category="authorization">
   <h1>Authorization Cheat Sheet</h1>
