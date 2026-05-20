@@ -48,6 +48,7 @@ const config = {
         indexDocs: true,
         indexPages: true,
         indexBlog: false,
+        explicitSearchResultPath: true,
         highlightSearchTermsOnTargetPage: true,
       },
     ],
