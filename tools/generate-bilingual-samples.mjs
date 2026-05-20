@@ -325,8 +325,492 @@ const asvsChapters = [
   },
 ];
 
+const sheetCatalog = {
+  'abuse-case': {
+    title: 'Abuse Case Cheat Sheet',
+    subtitle: 'Abuse Case チートシート',
+    sourceName: 'Abuse_Case_Cheat_Sheet',
+  },
+  authentication: {
+    title: 'Authentication Cheat Sheet',
+    subtitle: '認証チートシート',
+    sourceName: 'Authentication_Cheat_Sheet',
+  },
+  authorization: {
+    title: 'Authorization Cheat Sheet',
+    subtitle: '認可チートシート',
+    sourceName: 'Authorization_Cheat_Sheet',
+  },
+  'authorization-testing-automation': {
+    title: 'Authorization Testing Automation Cheat Sheet',
+    subtitle: '認可テスト自動化チートシート',
+    sourceName: 'Authorization_Testing_Automation_Cheat_Sheet',
+  },
+  'attack-surface-analysis': {
+    title: 'Attack Surface Analysis Cheat Sheet',
+    subtitle: '攻撃対象領域分析チートシート',
+    sourceName: 'Attack_Surface_Analysis_Cheat_Sheet',
+  },
+  'bean-validation': {
+    title: 'Bean Validation Cheat Sheet',
+    subtitle: 'Bean Validation チートシート',
+    sourceName: 'Bean_Validation_Cheat_Sheet',
+  },
+  'browser-extension-vulnerabilities': {
+    title: 'Browser Extension Vulnerabilities Cheat Sheet',
+    subtitle: 'ブラウザ拡張機能脆弱性チートシート',
+    sourceName: 'Browser_Extension_Vulnerabilities_Cheat_Sheet',
+  },
+  'content-security-policy': {
+    title: 'Content Security Policy Cheat Sheet',
+    subtitle: 'Content Security Policy チートシート',
+    sourceName: 'Content_Security_Policy_Cheat_Sheet',
+  },
+  'credential-stuffing-prevention': {
+    title: 'Credential Stuffing Prevention Cheat Sheet',
+    subtitle: 'クレデンシャルスタッフィング防止チートシート',
+    sourceName: 'Credential_Stuffing_Prevention_Cheat_Sheet',
+  },
+  'cryptographic-storage': {
+    title: 'Cryptographic Storage Cheat Sheet',
+    subtitle: '暗号化ストレージチートシート',
+    sourceName: 'Cryptographic_Storage_Cheat_Sheet',
+  },
+  'csrf-prevention': {
+    title: 'Cross-Site Request Forgery Prevention Cheat Sheet',
+    subtitle: 'CSRF防止チートシート',
+    sourceName: 'Cross-Site_Request_Forgery_Prevention_Cheat_Sheet',
+  },
+  'denial-of-service': {
+    title: 'Denial of Service Cheat Sheet',
+    subtitle: 'Denial of Service チートシート',
+    sourceName: 'Denial_of_Service_Cheat_Sheet',
+  },
+  'dependency-graph-sbom': {
+    title: 'Dependency Graph and SBOM Cheat Sheet',
+    subtitle: 'Dependency Graph and SBOM チートシート',
+    sourceName: 'Dependency_Graph_SBOM_Cheat_Sheet',
+  },
+  deserialization: {
+    title: 'Deserialization Cheat Sheet',
+    subtitle: 'デシリアライゼーションチートシート',
+    sourceName: 'Deserialization_Cheat_Sheet',
+  },
+  'django-security': {
+    title: 'Django Security Cheat Sheet',
+    subtitle: 'Django セキュリティチートシート',
+    sourceName: 'Django_Security_Cheat_Sheet',
+  },
+  'docker-security': {
+    title: 'Docker Security Cheat Sheet',
+    subtitle: 'Docker セキュリティチートシート',
+    sourceName: 'Docker_Security_Cheat_Sheet',
+  },
+  'dom-based-xss-prevention': {
+    title: 'DOM based XSS Prevention Cheat Sheet',
+    subtitle: 'DOM based XSS 防止チートシート',
+    sourceName: 'DOM_based_XSS_Prevention_Cheat_Sheet',
+  },
+  'dom-clobbering-prevention': {
+    title: 'DOM Clobbering Prevention Cheat Sheet',
+    subtitle: 'DOM Clobbering 防止チートシート',
+    sourceName: 'DOM_Clobbering_Prevention_Cheat_Sheet',
+  },
+  'error-handling': {
+    title: 'Error Handling Cheat Sheet',
+    subtitle: 'エラーハンドリングチートシート',
+    sourceName: 'Error_Handling_Cheat_Sheet',
+  },
+  'file-upload': {
+    title: 'File Upload Cheat Sheet',
+    subtitle: 'ファイルアップロードチートシート',
+    sourceName: 'File_Upload_Cheat_Sheet',
+  },
+  'forgot-password': {
+    title: 'Forgot Password Cheat Sheet',
+    subtitle: 'パスワード忘れ対応チートシート',
+    sourceName: 'Forgot_Password_Cheat_Sheet',
+  },
+  graphql: {
+    title: 'GraphQL Cheat Sheet',
+    subtitle: 'GraphQL チートシート',
+    sourceName: 'GraphQL_Cheat_Sheet',
+  },
+  'html5-security': {
+    title: 'HTML5 Security Cheat Sheet',
+    subtitle: 'HTML5 セキュリティチートシート',
+    sourceName: 'HTML5_Security_Cheat_Sheet',
+  },
+  'http-strict-transport-security': {
+    title: 'HTTP Strict Transport Security Cheat Sheet',
+    subtitle: 'HTTP Strict Transport Security チートシート',
+    sourceName: 'HTTP_Strict_Transport_Security_Cheat_Sheet',
+  },
+  'idor-prevention': {
+    title: 'Insecure Direct Object Reference Prevention Cheat Sheet',
+    subtitle: 'IDOR 防止チートシート',
+    sourceName: 'Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet',
+  },
+  'injection-prevention': {
+    title: 'Injection Prevention Cheat Sheet',
+    subtitle: 'インジェクション防止チートシート',
+    sourceName: 'Injection_Prevention_Cheat_Sheet',
+  },
+  'injection-prevention-in-java': {
+    title: 'Injection Prevention Cheat Sheet in Java',
+    subtitle: 'Java におけるインジェクション防止チートシート',
+    sourceName: 'Injection_Prevention_in_Java_Cheat_Sheet',
+  },
+  'input-validation': {
+    title: 'Input Validation Cheat Sheet',
+    subtitle: '入力検証チートシート',
+    sourceName: 'Input_Validation_Cheat_Sheet',
+  },
+  'java-security': {
+    title: 'Java Security Cheat Sheet',
+    subtitle: 'Java セキュリティチートシート',
+    sourceName: 'Java_Security_Cheat_Sheet',
+  },
+  'json-web-token-for-java': {
+    title: 'JSON Web Token Cheat Sheet for Java',
+    subtitle: 'Java 向け JSON Web Token チートシート',
+    sourceName: 'JSON_Web_Token_for_Java_Cheat_Sheet',
+  },
+  'key-management': {
+    title: 'Key Management Cheat Sheet',
+    subtitle: '鍵管理チートシート',
+    sourceName: 'Key_Management_Cheat_Sheet',
+  },
+  'laravel-security': {
+    title: 'Laravel Cheat Sheet',
+    subtitle: 'Laravel チートシート',
+    sourceName: 'Laravel_Cheat_Sheet',
+  },
+  'ldap-injection-prevention': {
+    title: 'LDAP Injection Prevention Cheat Sheet',
+    subtitle: 'LDAP インジェクション防止チートシート',
+    sourceName: 'LDAP_Injection_Prevention_Cheat_Sheet',
+  },
+  logging: {
+    title: 'Logging Cheat Sheet',
+    subtitle: 'ロギングチートシート',
+    sourceName: 'Logging_Cheat_Sheet',
+  },
+  'logging-vocabulary': {
+    title: 'Logging Vocabulary Cheat Sheet',
+    subtitle: 'ロギング語彙チートシート',
+    sourceName: 'Logging_Vocabulary_Cheat_Sheet',
+  },
+  'mass-assignment': {
+    title: 'Mass Assignment Cheat Sheet',
+    subtitle: 'Mass Assignment チートシート',
+    sourceName: 'Mass_Assignment_Cheat_Sheet',
+  },
+  'microservices-security': {
+    title: 'Microservices Security Cheat Sheet',
+    subtitle: 'マイクロサービスセキュリティチートシート',
+    sourceName: 'Microservices_Security_Cheat_Sheet',
+  },
+  'multi-tenant-security': {
+    title: 'Multi-Tenant Application Security Cheat Sheet',
+    subtitle: 'マルチテナントアプリケーションセキュリティチートシート',
+    sourceName: 'Multi_Tenant_Security_Cheat_Sheet',
+  },
+  'multifactor-authentication': {
+    title: 'Multifactor Authentication Cheat Sheet',
+    subtitle: '多要素認証チートシート',
+    sourceName: 'Multifactor_Authentication_Cheat_Sheet',
+  },
+  'npm-security': {
+    title: 'NPM Security Cheat Sheet',
+    subtitle: 'NPM セキュリティチートシート',
+    sourceName: 'NPM_Security_Cheat_Sheet',
+  },
+  oauth2: {
+    title: 'OAuth 2.0 Protocol Cheat Sheet',
+    subtitle: 'OAuth 2.0 プロトコルチートシート',
+    sourceName: 'OAuth2_Cheat_Sheet',
+  },
+  'os-command-injection-defense': {
+    title: 'OS Command Injection Defense Cheat Sheet',
+    subtitle: 'OS コマンドインジェクション防御チートシート',
+    sourceName: 'OS_Command_Injection_Defense_Cheat_Sheet',
+  },
+  'password-storage': {
+    title: 'Password Storage Cheat Sheet',
+    subtitle: 'パスワード保存チートシート',
+    sourceName: 'Password_Storage_Cheat_Sheet',
+  },
+  'prototype-pollution-prevention': {
+    title: 'Prototype Pollution Prevention Cheat Sheet',
+    subtitle: 'Prototype Pollution 防止チートシート',
+    sourceName: 'Prototype_Pollution_Prevention_Cheat_Sheet',
+  },
+  'query-parameterization': {
+    title: 'Query Parameterization Cheat Sheet',
+    subtitle: 'クエリパラメータ化チートシート',
+    sourceName: 'Query_Parameterization_Cheat_Sheet',
+  },
+  'rest-assessment': {
+    title: 'REST Assessment Cheat Sheet',
+    subtitle: 'REST 評価チートシート',
+    sourceName: 'REST_Assessment_Cheat_Sheet',
+  },
+  'rest-security': {
+    title: 'REST Security Cheat Sheet',
+    subtitle: 'REST セキュリティチートシート',
+    sourceName: 'REST_Security_Cheat_Sheet',
+  },
+  'saml-security': {
+    title: 'SAML Security Cheat Sheet',
+    subtitle: 'SAML セキュリティチートシート',
+    sourceName: 'SAML_Security_Cheat_Sheet',
+  },
+  'security-questions': {
+    title: 'Choosing and Using Security Questions Cheat Sheet',
+    subtitle: '秘密の質問の選択と利用チートシート',
+    sourceName: 'Choosing_and_Using_Security_Questions_Cheat_Sheet',
+  },
+  'security-terminology': {
+    title: 'Security Terminology Cheat Sheet',
+    subtitle: 'セキュリティ用語チートシート',
+    sourceName: 'Security_Terminology_Cheat_Sheet',
+  },
+  'session-management': {
+    title: 'Session Management Cheat Sheet',
+    subtitle: 'セッション管理チートシート',
+    sourceName: 'Session_Management_Cheat_Sheet',
+  },
+  'secrets-management': {
+    title: 'Secrets Management Cheat Sheet',
+    subtitle: 'シークレット管理チートシート',
+    sourceName: 'Secrets_Management_Cheat_Sheet',
+  },
+  'secure-code-review': {
+    title: 'Secure Code Review Cheat Sheet',
+    subtitle: 'セキュアコードレビューチートシート',
+    sourceName: 'Secure_Code_Review_Cheat_Sheet',
+  },
+  'software-supply-chain-security': {
+    title: 'Software Supply Chain Security Cheat Sheet',
+    subtitle: 'ソフトウェアサプライチェーンセキュリティチートシート',
+    sourceName: 'Software_Supply_Chain_Security_Cheat_Sheet',
+  },
+  'sql-injection-prevention': {
+    title: 'SQL Injection Prevention Cheat Sheet',
+    subtitle: 'SQL インジェクション防止チートシート',
+    sourceName: 'SQL_Injection_Prevention_Cheat_Sheet',
+  },
+  'ssrf-prevention': {
+    title: 'Server Side Request Forgery Prevention Cheat Sheet',
+    subtitle: 'SSRF 防止チートシート',
+    sourceName: 'Server_Side_Request_Forgery_Prevention_Cheat_Sheet',
+  },
+  symfony: {
+    title: 'Symfony Cheat Sheet',
+    subtitle: 'Symfony チートシート',
+    sourceName: 'Symfony_Cheat_Sheet',
+  },
+  'third-party-javascript-management': {
+    title: 'Third Party Javascript Management Cheat Sheet',
+    subtitle: 'サードパーティ JavaScript 管理チートシート',
+    sourceName: 'Third_Party_Javascript_Management_Cheat_Sheet',
+  },
+  'threat-modeling': {
+    title: 'Threat Modeling Cheat Sheet',
+    subtitle: '脅威モデリングチートシート',
+    sourceName: 'Threat_Modeling_Cheat_Sheet',
+  },
+  'transaction-authorization': {
+    title: 'Transaction Authorization Cheat Sheet',
+    subtitle: 'トランザクション認可チートシート',
+    sourceName: 'Transaction_Authorization_Cheat_Sheet',
+  },
+  'transport-layer-security': {
+    title: 'Transport Layer Security Cheat Sheet',
+    subtitle: 'Transport Layer Security チートシート',
+    sourceName: 'Transport_Layer_Security_Cheat_Sheet',
+  },
+  'unvalidated-redirects-forwards': {
+    title: 'Unvalidated Redirects and Forwards Cheat Sheet',
+    subtitle: '未検証リダイレクトとフォワードチートシート',
+    sourceName: 'Unvalidated_Redirects_and_Forwards_Cheat_Sheet',
+  },
+  'user-privacy-protection': {
+    title: 'User Privacy Protection Cheat Sheet',
+    subtitle: 'ユーザープライバシー保護チートシート',
+    sourceName: 'User_Privacy_Protection_Cheat_Sheet',
+  },
+  'virtual-patching': {
+    title: 'Virtual Patching Cheat Sheet',
+    subtitle: '仮想パッチチートシート',
+    sourceName: 'Virtual_Patching_Cheat_Sheet',
+  },
+  'vulnerable-dependency-management': {
+    title: 'Vulnerable Dependency Management Cheat Sheet',
+    subtitle: '脆弱な依存関係管理チートシート',
+    sourceName: 'Vulnerable_Dependency_Management_Cheat_Sheet',
+  },
+  'web-service-security': {
+    title: 'Web Service Security Cheat Sheet',
+    subtitle: 'Web サービスセキュリティチートシート',
+    sourceName: 'Web_Service_Security_Cheat_Sheet',
+  },
+  'websocket-security': {
+    title: 'WebSocket Security Cheat Sheet',
+    subtitle: 'WebSocket セキュリティチートシート',
+    sourceName: 'WebSocket_Security_Cheat_Sheet',
+  },
+  'xml-security': {
+    title: 'XML Security Cheat Sheet',
+    subtitle: 'XML セキュリティチートシート',
+    sourceName: 'XML_Security_Cheat_Sheet',
+  },
+  'xss-filter-evasion': {
+    title: 'XSS Filter Evasion Cheat Sheet',
+    subtitle: 'XSS フィルター回避チートシート',
+    sourceName: 'XSS_Filter_Evasion_Cheat_Sheet',
+  },
+  'xss-prevention': {
+    title: 'Cross Site Scripting Prevention Cheat Sheet',
+    subtitle: 'XSS 防止チートシート',
+    sourceName: 'Cross_Site_Scripting_Prevention_Cheat_Sheet',
+  },
+  'xxe-prevention': {
+    title: 'XML External Entity Prevention Cheat Sheet',
+    subtitle: 'XXE 防止チートシート',
+    sourceName: 'XML_External_Entity_Prevention_Cheat_Sheet',
+  },
+};
+
+const asvsIndexSections = [
+  { id: 'V1.1', slugs: ['security-terminology', 'xss-prevention'] },
+  { id: 'V1.2', slugs: ['bean-validation', 'xss-prevention', 'dom-based-xss-prevention', 'file-upload', 'injection-prevention', 'input-validation', 'java-security', 'ldap-injection-prevention', 'os-command-injection-defense', 'query-parameterization', 'sql-injection-prevention', 'xml-security', 'xss-filter-evasion', 'xxe-prevention'] },
+  { id: 'V1.3', slugs: ['csrf-prevention', 'xss-prevention', 'dom-based-xss-prevention', 'injection-prevention', 'injection-prevention-in-java', 'input-validation', 'ldap-injection-prevention', 'ssrf-prevention', 'xxe-prevention'] },
+  { id: 'V1.4', slugs: [] },
+  { id: 'V1.5', slugs: ['deserialization', 'ssrf-prevention', 'xml-security', 'xxe-prevention'] },
+  { id: 'V2.1', slugs: ['abuse-case'] },
+  { id: 'V2.2', slugs: ['input-validation', 'microservices-security', 'web-service-security'] },
+  { id: 'V2.3', slugs: ['abuse-case'] },
+  { id: 'V2.4', slugs: ['denial-of-service'] },
+  { id: 'V3.1', slugs: ['content-security-policy', 'csrf-prevention', 'http-strict-transport-security'] },
+  { id: 'V3.2', slugs: ['csrf-prevention', 'dom-clobbering-prevention', 'html5-security', 'third-party-javascript-management'] },
+  { id: 'V3.3', slugs: ['csrf-prevention', 'session-management', 'transport-layer-security'] },
+  { id: 'V3.4', slugs: ['csrf-prevention', 'html5-security', 'http-strict-transport-security'] },
+  { id: 'V3.5', slugs: ['csrf-prevention', 'html5-security'] },
+  { id: 'V3.6', slugs: ['third-party-javascript-management'] },
+  { id: 'V3.7', slugs: ['csrf-prevention', 'http-strict-transport-security', 'third-party-javascript-management', 'unvalidated-redirects-forwards'] },
+  { id: 'V4.1', slugs: ['csrf-prevention', 'rest-assessment', 'rest-security', 'transport-layer-security', 'web-service-security'] },
+  { id: 'V4.2', slugs: ['rest-security', 'web-service-security'] },
+  { id: 'V4.3', slugs: ['graphql'] },
+  { id: 'V4.4', slugs: ['websocket-security', 'transport-layer-security'] },
+  { id: 'V5.1', slugs: ['input-validation', 'file-upload'] },
+  { id: 'V5.2', slugs: ['input-validation', 'file-upload'] },
+  { id: 'V5.3', slugs: ['input-validation', 'ssrf-prevention'] },
+  { id: 'V5.4', slugs: ['file-upload'] },
+  { id: 'V6.1', slugs: ['security-terminology', 'credential-stuffing-prevention'] },
+  { id: 'V6.2', slugs: ['authentication'] },
+  { id: 'V6.3', slugs: ['authentication', 'credential-stuffing-prevention', 'forgot-password'] },
+  { id: 'V6.4', slugs: ['security-questions', 'forgot-password', 'multifactor-authentication'] },
+  { id: 'V6.5', slugs: ['authentication', 'multifactor-authentication', 'password-storage', 'transaction-authorization'] },
+  { id: 'V6.6', slugs: ['forgot-password', 'multifactor-authentication'] },
+  { id: 'V6.7', slugs: ['authentication', 'multifactor-authentication'] },
+  { id: 'V6.8', slugs: ['authentication'] },
+  { id: 'V7.1', slugs: ['session-management'] },
+  { id: 'V7.2', slugs: ['session-management'] },
+  { id: 'V7.3', slugs: ['session-management'] },
+  { id: 'V7.4', slugs: ['session-management'] },
+  { id: 'V7.5', slugs: ['session-management'] },
+  { id: 'V7.6', slugs: ['session-management'] },
+  { id: 'V8.1', slugs: ['security-terminology', 'authorization', 'authorization-testing-automation'] },
+  { id: 'V8.2', slugs: ['authorization', 'idor-prevention', 'session-management'] },
+  { id: 'V8.3', slugs: ['transaction-authorization'] },
+  { id: 'V8.4', slugs: ['authorization', 'multi-tenant-security'] },
+  { id: 'V9.1', slugs: ['json-web-token-for-java', 'saml-security'] },
+  { id: 'V9.2', slugs: ['rest-security'] },
+  { id: 'V10.1', slugs: ['oauth2'] },
+  { id: 'V10.2', slugs: ['oauth2'] },
+  { id: 'V10.3', slugs: ['oauth2', 'transport-layer-security'] },
+  { id: 'V10.4', slugs: ['oauth2', 'transport-layer-security', 'unvalidated-redirects-forwards'] },
+  { id: 'V10.5', slugs: ['oauth2'] },
+  { id: 'V10.6', slugs: ['oauth2'] },
+  { id: 'V10.7', slugs: ['browser-extension-vulnerabilities', 'logging'] },
+  { id: 'V11.1', slugs: ['security-terminology', 'cryptographic-storage', 'key-management'] },
+  { id: 'V11.2', slugs: ['cryptographic-storage'] },
+  { id: 'V11.3', slugs: ['cryptographic-storage', 'key-management'] },
+  { id: 'V11.4', slugs: ['password-storage'] },
+  { id: 'V11.5', slugs: ['cryptographic-storage'] },
+  { id: 'V11.6', slugs: ['transport-layer-security'] },
+  { id: 'V11.7', slugs: ['key-management', 'microservices-security', 'secrets-management'] },
+  { id: 'V12.1', slugs: ['transport-layer-security'] },
+  { id: 'V12.2', slugs: ['transport-layer-security'] },
+  { id: 'V12.3', slugs: ['transport-layer-security'] },
+  { id: 'V13.1', slugs: ['ssrf-prevention'] },
+  { id: 'V13.2', slugs: ['docker-security', 'ssrf-prevention'] },
+  { id: 'V13.3', slugs: ['cryptographic-storage', 'key-management'] },
+  { id: 'V13.4', slugs: ['django-security', 'graphql', 'laravel-security', 'npm-security', 'symfony'] },
+  { id: 'V14.1', slugs: ['abuse-case', 'cryptographic-storage', 'user-privacy-protection'] },
+  { id: 'V14.2', slugs: ['html5-security', 'user-privacy-protection'] },
+  { id: 'V14.3', slugs: ['html5-security'] },
+  { id: 'V15.1', slugs: ['security-terminology', 'abuse-case', 'attack-surface-analysis', 'dependency-graph-sbom', 'software-supply-chain-security', 'third-party-javascript-management', 'threat-modeling'] },
+  { id: 'V15.2', slugs: ['software-supply-chain-security', 'third-party-javascript-management', 'virtual-patching', 'vulnerable-dependency-management'] },
+  { id: 'V15.3', slugs: ['mass-assignment', 'prototype-pollution-prevention', 'unvalidated-redirects-forwards'] },
+  { id: 'V15.4', slugs: ['secure-code-review', 'transaction-authorization'] },
+  { id: 'V16.1', slugs: ['logging', 'logging-vocabulary'] },
+  { id: 'V16.2', slugs: ['logging', 'session-management'] },
+  { id: 'V16.3', slugs: ['authorization', 'logging', 'logging-vocabulary'] },
+  { id: 'V16.4', slugs: ['logging'] },
+  { id: 'V16.5', slugs: ['error-handling'] },
+  { id: 'V17.1', slugs: [] },
+  { id: 'V17.2', slugs: ['transport-layer-security'] },
+  { id: 'V17.3', slugs: [] },
+];
+
 function mdPath(...parts) {
   return path.join(root, ...parts);
+}
+
+function chapterForSection(sectionId) {
+  const chapterId = Number.parseInt(sectionId.match(/^V(\d{1,2})\./)?.[1] ?? '0', 10);
+  return asvsChapters.find((chapter) => chapter.id === chapterId);
+}
+
+function buildPageIndex() {
+  const generated = new Map(pages.map((page) => [page.slug, { ...page, status: page.jaMode === 'bilingualTranslationPanel' ? 'Full' : 'Sample' }]));
+  const merged = new Map();
+
+  for (const section of asvsIndexSections) {
+    const chapter = chapterForSection(section.id);
+    for (const slug of section.slugs) {
+      const catalogPage = sheetCatalog[slug];
+      if (!catalogPage) {
+        throw new Error(`Missing sheet catalog entry for ${slug}`);
+      }
+      const current = merged.get(slug);
+      const asvs = current?.asvs ? `${current.asvs}, ${section.id}` : section.id;
+      const base = generated.get(slug) ?? {};
+      merged.set(slug, {
+        slug,
+        ...catalogPage,
+        categoryKey: base.categoryKey ?? `asvs-v${chapter?.id ?? 0}`,
+        categoryLabel: base.categoryLabel ?? chapter?.title ?? 'ASVS',
+        readTime: base.readTime ?? '準備中',
+        ...base,
+        asvs,
+        status: base.status ?? 'Shell',
+      });
+    }
+  }
+
+  return [...merged.values()].sort((left, right) => left.title.localeCompare(right.title, 'en'));
+}
+
+function pageBySlug(slug) {
+  const page = buildPageIndex().find((candidate) => candidate.slug === slug);
+  if (!page) {
+    throw new Error(`Missing page entry for ${slug}`);
+  }
+  return page;
 }
 
 function asvsChapterIds(asvs) {
@@ -357,15 +841,16 @@ function asvsSectionIds(asvs) {
 }
 
 function pagesForChapter(chapterId) {
-  return pages.filter((page) => asvsChapterIds(page.asvs).includes(chapterId));
+  return buildPageIndex().filter((page) => asvsChapterIds(page.asvs).includes(chapterId));
 }
 
 function pagesForSection(sectionId) {
-  return pages.filter((page) => asvsSectionIds(page.asvs).includes(sectionId));
+  const section = asvsIndexSections.find((candidate) => candidate.id === sectionId);
+  return section ? section.slugs.map(pageBySlug) : [];
 }
 
 function pagesForWholeChapter(chapterId) {
-  return pages.filter((page) => {
+  return buildPageIndex().filter((page) => {
     const chapters = asvsChapterIds(page.asvs);
     const sections = asvsSectionIds(page.asvs);
     return chapters.includes(chapterId) && !sections.some((sectionId) => sectionId.startsWith(`V${chapterId}.`));
@@ -824,29 +1309,65 @@ ${bilingualPairs(english, japanese)}
 `.replace(/[ \t]+$/gm, '');
 }
 
+function scaffoldMarkdown(page) {
+  const sourceUrl = `https://cheatsheetseries.owasp.org/cheatsheets/${page.sourceName}.html`;
+  return `---
+title: ${page.title}
+hide_title: true
+hide_table_of_contents: true
+---
+
+<div className="docHero" data-category="${page.categoryKey}">
+  <h1>${page.title}</h1>
+  <p className="docSubtitle">${page.subtitle}</p>
+  <div className="docMeta">
+    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">読了時間: 準備中</span>
+    <span className="docPill">カテゴリ: ${page.categoryLabel}</span>
+  </div>
+</div>
+
+<div className="contentPanel">
+
+このページは、OWASP ASVS Index と同じサイドメニュー構成を先に完成させるための準備中ページです。
+
+- 公式ページ: [${page.title}](${sourceUrl})
+- ASVS 対応: ${page.asvs}
+- 状態: 本文、要点、チェックリスト、対比表示は今後追加します。
+
+</div>
+
+## Attribution
+
+<div className="attributionFooter">
+
+- Original: ${page.title}
+- Source: ${sourceUrl}
+- Copyright: Cheat Sheets Series Team
+- License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+- License URL: https://creativecommons.org/licenses/by-sa/4.0/
+- Changes: Placeholder navigation page added. No translated OWASP body content copied yet.
+- Retrieved: 2026-05-20
+
+</div>
+`.replace(/[ \t]+$/gm, '');
+}
+
 async function writeSidebars() {
   const groups = asvsChapters
     .map((chapter) => {
-      const wholeChapterPages = pagesForWholeChapter(chapter.id);
-      const chapterWideItems = wholeChapterPages.length > 0
-        ? [`
-        {
-          type: 'category',
-          label: 'V${chapter.id} 全般',
-          collapsed: true,
-          items: [
-${wholeChapterPages.map((page) => `            '${page.slug}',`).join('\n')}
-          ],
-        },`]
-        : [];
       const sectionItems = chapter.sections.map((section) => {
         const sectionPages = pagesForSection(section.id);
         return `        {
           type: 'category',
           label: '${section.id}: ${section.title}',
           collapsed: true,
+          link: {
+            type: 'doc',
+            id: 'asvs/${section.id.toLowerCase().replace('.', '-')}',
+          },
           items: [
-${sectionPages.length > 0 ? sectionPages.map((page) => `            '${page.slug}',`).join('\n') : `            'asvs/${section.id.toLowerCase().replace('.', '-')}',`}
+${sectionPages.map((page) => `            '${page.slug}',`).join('\n')}
           ],
         },`;
       });
@@ -854,9 +1375,12 @@ ${sectionPages.length > 0 ? sectionPages.map((page) => `            '${page.slug
       type: 'category',
       label: 'V${chapter.id}: ${chapter.title}',
       collapsed: ${chapter.id === 1 ? 'false' : 'true'},
+      link: {
+        type: 'doc',
+        id: 'asvs/v${chapter.id}',
+      },
       items: [
-        'asvs/v${chapter.id}',
-${[...chapterWideItems, ...sectionItems].join('\n')}
+${sectionItems.join('\n')}
       ],
     }`;
     })
@@ -880,7 +1404,7 @@ async function writeAsvsChapterPages() {
   for (const chapter of asvsChapters) {
     const chapterPages = pagesForChapter(chapter.id);
     const pageLinks = chapterPages.length > 0
-      ? chapterPages.map((page) => `- [${page.title}](../${page.slug}.md)`).join('\n')
+      ? chapterPages.map((page) => `- [${page.title}](../${page.slug}.md) - ${page.status}`).join('\n')
       : '- 現在、この章に対応する公開済み対訳ページはありません。';
     const sectionLinks = chapter.sections
       .map((section) => {
@@ -903,15 +1427,15 @@ ${pageLinks}
 
 ## 補足
 
-未掲載の Cheat Sheet は、対訳ページの作成後にこの章へ追加します。
+Shell のページはサイドメニュー完成用の準備中ページです。本文、要点、チェックリスト、対比表示は順次追加します。
 `;
     await fs.writeFile(mdPath('docs', 'bilingual', 'asvs', `v${chapter.id}.md`), content, 'utf8');
 
     for (const section of chapter.sections) {
       const sectionPages = pagesForSection(section.id);
       const sectionPageLinks = sectionPages.length > 0
-        ? sectionPages.map((page) => `- [${page.title}](../${page.slug}.md)`).join('\n')
-        : '- 現在、この小項目に対応する公開済み対訳ページはありません。';
+        ? sectionPages.map((page) => `- [${page.title}](../${page.slug}.md) - ${page.status}`).join('\n')
+        : '- OWASP ASVS Index では、この小項目に対応する Cheat Sheet は None とされています。';
       const sectionContent = `# ${section.id}: ${section.title}
 
 OWASP ASVS Index の ${section.id} に対応する英日対訳ページの一覧です。
@@ -922,7 +1446,7 @@ ${sectionPageLinks}
 
 ## 補足
 
-未掲載の Cheat Sheet は、対訳ページの作成後にこの小項目へ追加します。
+Shell のページはサイドメニュー完成用の準備中ページです。本文、要点、チェックリスト、対比表示は順次追加します。
 `;
       await fs.writeFile(
         mdPath('docs', 'bilingual', 'asvs', `${section.id.toLowerCase().replace('.', '-')}.md`),
@@ -934,8 +1458,8 @@ ${sectionPageLinks}
 }
 
 async function writeBilingualIndex() {
-  const cards = pages
-    .map((page) => `- [${page.title}](${page.slug}.md) - ${page.categoryLabel}`)
+  const cards = buildPageIndex()
+    .map((page) => `- [${page.title}](${page.slug}.md) - ${page.categoryLabel} - ${page.status}`)
     .join('\n');
   const content = `# ASVS Index 対応 Cheat Sheet 英日対訳
 
@@ -954,14 +1478,26 @@ ${cards}
   await fs.writeFile(mdPath('docs', 'bilingual', 'index.md'), content, 'utf8');
 }
 
+async function existingRepoLink(label, repoPath) {
+  const absolute = mdPath(...repoPath.split('/'));
+  try {
+    await fs.access(absolute);
+    return `[${label}](../${repoPath})`;
+  } catch {
+    return '未作成';
+  }
+}
+
 async function writeBilingualMap() {
-  const rows = pages
-    .map((page) => {
+  const rows = await Promise.all(buildPageIndex()
+    .map(async (page) => {
       const sourceUrl = `https://cheatsheetseries.owasp.org/cheatsheets/${page.sourceName}.html`;
-      const status = page.jaMode === 'bilingualTranslationPanel' ? 'Full' : 'Sample';
-      return `| ${page.asvs} | ${page.title} | ${sourceUrl} | [docs/bilingual/${page.slug}.md](../docs/bilingual/${page.slug}.md) | [docs/translations/${page.slug}.md](../docs/translations/${page.slug}.md) | [docs/summaries/${page.slug}.md](../docs/summaries/${page.slug}.md) | [docs/checklists/${page.slug}.md](../docs/checklists/${page.slug}.md) | ${status} |`;
-    })
-    .join('\n');
+      const bilingual = await existingRepoLink(`docs/bilingual/${page.slug}.md`, `docs/bilingual/${page.slug}.md`);
+      const translation = await existingRepoLink(`docs/translations/${page.slug}.md`, `docs/translations/${page.slug}.md`);
+      const summary = await existingRepoLink(`docs/summaries/${page.slug}.md`, `docs/summaries/${page.slug}.md`);
+      const checklist = await existingRepoLink(`docs/checklists/${page.slug}.md`, `docs/checklists/${page.slug}.md`);
+      return `| ${page.asvs} | ${page.title} | ${sourceUrl} | ${bilingual} | ${translation} | ${summary} | ${checklist} | ${page.status} |`;
+    }));
   const content = `# Bilingual Map
 
 パラグラフ単位で英語原文と日本語訳を上下に並べる対訳ドキュメントの対応表です。
@@ -979,13 +1515,18 @@ async function writeBilingualMap() {
 
 | ASVS 項目 | 公式 Cheat Sheet | 公式 URL | 対訳 | 翻訳 | 要約 | チェックリスト | 状態 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-${rows}
+${rows.join('\n')}
 `;
   await fs.writeFile(mdPath('references', 'bilingual-map.md'), content, 'utf8');
 }
 
 async function main() {
-  for (const page of pages) {
+  const indexedPages = buildPageIndex();
+  const indexedBySlug = new Map(indexedPages.map((page) => [page.slug, page]));
+  const generatedSlugs = new Set(pages.map((page) => page.slug));
+
+  for (const configuredPage of pages) {
+    const page = indexedBySlug.get(configuredPage.slug) ?? configuredPage;
     const official = await fetchOfficialMarkdown(page);
     const english = normalizeOfficialMarkdown(official, page);
     const japanese = await localJapanese(page);
@@ -994,6 +1535,11 @@ async function main() {
     const content = pageMarkdown(page, english, japanese, summary, checklist);
     await fs.writeFile(mdPath('docs', 'bilingual', `${page.slug}.md`), content, 'utf8');
     console.log(`generated ${page.slug}`);
+  }
+
+  for (const page of indexedPages.filter((candidate) => !generatedSlugs.has(candidate.slug))) {
+    await fs.writeFile(mdPath('docs', 'bilingual', `${page.slug}.md`), scaffoldMarkdown(page), 'utf8');
+    console.log(`generated shell ${page.slug}`);
   }
 
   await writeSidebars();
