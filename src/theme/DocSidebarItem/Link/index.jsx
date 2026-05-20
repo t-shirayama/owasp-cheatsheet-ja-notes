@@ -4,10 +4,15 @@ import {ThemeClassNames} from '@docusaurus/theme-common';
 import Link from '@docusaurus/Link';
 import isInternalUrl from '@docusaurus/isInternalUrl';
 import IconExternalLink from '@theme/Icon/ExternalLink';
-import {isScopedActiveSidebarItem} from '../activeSidebarItem';
+import {
+  isScopedActiveSidebarItem,
+  rememberActiveSidebarItem,
+  useActiveSidebarSelection,
+} from '../activeSidebarItem';
 
 // This component intentionally mirrors Docusaurus' classic sidebar link.
-// The local change is the active-state check, which ignores duplicate doc links.
+// The local change is the active-state check, which scopes duplicate doc links
+// to the sidebar occurrence selected by the reader.
 
 function LinkLabel({label}) {
   return <span title={label}>{label}</span>;
@@ -21,8 +26,17 @@ export default function DocSidebarItemLink({
   ...props
 }) {
   const {href, label, className, autoAddBaseUrl} = item;
-  const isActive = isScopedActiveSidebarItem(item, activePath);
+  const activeSelection = useActiveSidebarSelection();
+  const isActive = isScopedActiveSidebarItem(
+    item,
+    activePath,
+    activeSelection,
+  );
   const isInternalLink = isInternalUrl(href);
+  const handleItemClick = () => {
+    rememberActiveSidebarItem(item);
+    onItemClick?.(item);
+  };
 
   return (
     <li
@@ -41,7 +55,7 @@ export default function DocSidebarItemLink({
         aria-current={isActive ? 'page' : undefined}
         to={href}
         {...(isInternalLink && {
-          onClick: onItemClick ? () => onItemClick(item) : undefined,
+          onClick: handleItemClick,
         })}
         {...props}>
         <LinkLabel label={label} />

@@ -18,10 +18,15 @@ import {translate} from '@docusaurus/Translate';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import DocSidebarItems from '@theme/DocSidebarItems';
 import DocSidebarItemLink from '@theme/DocSidebarItem/Link';
-import {isScopedActiveSidebarItem} from '../activeSidebarItem';
+import {
+  isScopedActiveSidebarItem,
+  rememberActiveSidebarItem,
+  useActiveSidebarSelection,
+} from '../activeSidebarItem';
 
 // This component intentionally mirrors Docusaurus' classic sidebar category.
-// The local change is the active-state check, which ignores duplicate doc links.
+// The local change is the active-state check, which scopes duplicate doc links
+// to the sidebar occurrence selected by the reader.
 
 function useAutoExpandActiveCategory({
   isActive,
@@ -158,7 +163,12 @@ function DocSidebarItemCategoryCollapsible({
   } = useThemeConfig();
   const hrefWithSSRFallback = useCategoryHrefWithSSRFallback(item);
 
-  const isActive = isScopedActiveSidebarItem(item, activePath);
+  const activeSelection = useActiveSidebarSelection();
+  const isActive = isScopedActiveSidebarItem(
+    item,
+    activePath,
+    activeSelection,
+  );
   const isCurrentPage = isSamePath(href, activePath);
 
   const {collapsed, setCollapsed} = useCollapsible({
@@ -195,6 +205,7 @@ function DocSidebarItemCategoryCollapsible({
   }, [collapsible, expandedItem, index, setCollapsed, autoCollapseCategories]);
 
   const handleItemClick = (e) => {
+    rememberActiveSidebarItem(item);
     onItemClick?.(item);
 
     if (collapsible) {

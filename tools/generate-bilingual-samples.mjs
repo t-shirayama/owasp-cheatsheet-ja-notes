@@ -1759,10 +1759,12 @@ hide_title: true
 
 async function writeSidebars() {
   const seenSidebarDocs = new Set();
-  const sidebarDocItem = (page) => {
+  const sidebarDocItem = (section, page) => {
     const duplicate = seenSidebarDocs.has(page.slug);
     seenSidebarDocs.add(page.slug);
-    const customProps = duplicate ? ", customProps: { sidebarDuplicate: true }" : "";
+    const customProps = duplicate
+      ? `, customProps: { sidebarOccurrence: '${section.id}:${page.slug}', sidebarDuplicate: true }`
+      : `, customProps: { sidebarOccurrence: '${section.id}:${page.slug}' }`;
     return `            { type: 'doc', id: '${page.slug}'${customProps} },`;
   };
   const groups = asvsChapters
@@ -1778,7 +1780,7 @@ async function writeSidebars() {
             id: 'asvs/${section.id.toLowerCase().replace('.', '-')}',
           },
           items: [
-${sectionPages.map(sidebarDocItem).join('\n')}
+${sectionPages.map((page) => sidebarDocItem(section, page)).join('\n')}
           ],
         },`;
       });
