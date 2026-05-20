@@ -64,6 +64,18 @@ Attribution には少なくとも次を含めます。
 
 生成系の変更後は、意図しない広範囲差分が出ていないか確認してください。
 
+公開ページのナビゲーションと対応表だけを更新する場合:
+
+```powershell
+node tools\generate-bilingual-samples.mjs --navigation-only
+```
+
+公式英語原文のローカル参照だけを更新する場合:
+
+```powershell
+node tools\generate-bilingual-samples.mjs --originals-only
+```
+
 ## 検証
 
 Markdown の基本形とリンク確認:

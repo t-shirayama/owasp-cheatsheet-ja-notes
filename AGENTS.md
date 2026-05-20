@@ -115,6 +115,8 @@ Do not update the bilingual display first and leave the source documents stale. 
 ## Generator Rules
 
 - When updating `tools/generate-bilingual-samples.mjs`, regenerate affected pages and inspect the diff.
+- Use `node tools\generate-bilingual-samples.mjs --navigation-only` when only ASVS navigation pages, sidebars, or bilingual/source maps need regeneration.
+- Use `node tools\generate-bilingual-samples.mjs --originals-only` when refreshing local English originals without rebuilding public bilingual pages.
 - If the generator updates unrelated pages, revert unrelated generated diffs unless the user asked for broad regeneration.
 - Do not add broad automation hooks that silently rewrite content, fetch network resources, or change generated files unless explicitly requested or clearly opt-in.
 
