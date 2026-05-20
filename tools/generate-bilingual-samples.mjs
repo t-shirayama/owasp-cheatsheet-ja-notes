@@ -1493,28 +1493,6 @@ function splitTextCards(text) {
   const cards = [];
   let pendingHeading = '';
 
-  const splitListBlock = (block) => {
-    const lines = block.split('\n');
-    if (!lines.some((line) => /^\s{0,3}(?:[-*+]|\d+[.)])\s+/.test(line))) {
-      return [block];
-    }
-
-    const items = [];
-    let current = [];
-    for (const line of lines) {
-      const startsTopLevelItem = /^\s{0,3}(?:[-*+]|\d+[.)])\s+/.test(line);
-      if (startsTopLevelItem && current.length > 0) {
-        items.push(current.join('\n').trim());
-        current = [];
-      }
-      current.push(line);
-    }
-    if (current.length > 0) {
-      items.push(current.join('\n').trim());
-    }
-    return items.length > 1 ? items : [block];
-  };
-
   for (const block of blocks) {
     const isHeadingOnly = /^#{2,6}\s+.+$/.test(block);
     if (isHeadingOnly) {
@@ -1522,9 +1500,7 @@ function splitTextCards(text) {
       continue;
     }
 
-    for (const [index, card] of splitListBlock(block).entries()) {
-      cards.push(index === 0 && pendingHeading ? `${pendingHeading}\n\n${card}` : card);
-    }
+    cards.push(pendingHeading ? `${pendingHeading}\n\n${block}` : block);
     pendingHeading = '';
   }
 

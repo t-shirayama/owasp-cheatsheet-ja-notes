@@ -260,6 +260,8 @@ LDAP Injection is an attack used to exploit web based applications that construc
 ## 主要な観点
 
 - LDAPフィルタ値を適切にエスケープする。
+- DNとして使う値も別途エスケープする。
+- LDAP接続アカウントを最小権限にする。
 
 </div>
 </div>
@@ -271,12 +273,7 @@ LDAP Injection is an attack used to exploit web based applications that construc
 This cheatsheet is focused on providing clear, simple, actionable guidance for preventing LDAP Injection flaws in your applications. [LDAP injection](https://owasp.org/www-community/attacks/LDAP_Injection) attacks are common due to two factors:
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- DNとして使う値も別途エスケープする。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -284,20 +281,6 @@ This cheatsheet is focused on providing clear, simple, actionable guidance for p
 <span className="bilingualLabel english">English (原文)</span>
 
 1. The lack of safer, parameterized LDAP query interfaces
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- LDAP接続アカウントを最小権限にする。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. The widespread use of LDAP to authenticate users to systems.
 
 </div>
@@ -329,15 +312,6 @@ Primary Defenses:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Escape all variables using the right LDAP encoding function
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Use a framework that escapes automatically.
 
 </div>
@@ -359,15 +333,6 @@ Additional Defenses:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Least Privilege
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Allow-List Input Validation
 
 </div>
@@ -710,15 +675,6 @@ Beyond adopting one of the two primary defenses, we also recommend adopting all 
 <span className="bilingualLabel english">English (原文)</span>
 
 - **Least Privilege**
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Allow-List Input Validation**
 
 </div>
@@ -770,15 +726,6 @@ Input validation can be used to detect unauthorized input before it is passed to
 ## Related Articles
 
 - OWASP article on [LDAP Injection](https://owasp.org/www-community/attacks/LDAP_Injection) Vulnerabilities.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/) article on how to [Test for LDAP Injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/06-Testing_for_LDAP_Injection.html) Vulnerabilities.
 
 </div>

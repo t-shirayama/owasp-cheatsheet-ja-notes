@@ -702,6 +702,11 @@ The biggest disadvantage of MFA is the increase in management complexity for bot
 <span className="bilingualLabel english">English (原文)</span>
 
 - Types of MFA that require users to have specific hardware can introduce significant costs and administrative overheads.
+- Users may become locked out of their accounts if they lose or are unable to use their other factors.
+- MFA introduces additional complexity into the application.
+- Many MFA solutions add external dependencies to systems, which can introduce security vulnerabilities or single points of failure.
+- Processes implemented to allow users to bypass or reset MFA may be exploitable by attackers.
+- Requiring MFA may prevent some users from accessing the application.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -716,7 +721,9 @@ SMS や電話によるコードは、SIM スワップ、番号移管、SS7 盗�
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Users may become locked out of their accounts if they lose or are unable to use their other factors.
+## Quick Recommendations
+
+Exactly when and how MFA is implemented in an application will vary on a number of different factors, including the threat model of the application, the technical level of the users, and the level of administrative control over the users. These need to be considered on a per-application basis.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -731,7 +738,7 @@ MFA 失敗は、利用者が要素を失った場合だけでなく、パスワ�
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- MFA introduces additional complexity into the application.
+However, the following recommendations are generally appropriate for most applications, and provide an initial starting point to consider.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -746,7 +753,11 @@ MFA 要素の変更は高リスク操作として扱う。既存の登録済み�
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Many MFA solutions add external dependencies to systems, which can introduce security vulnerabilities or single points of failure.
+- Require some form of MFA for all users.
+- Provide the option for users to enable MFA on their accounts using [TOTP](#software-otp-tokens).
+- Require MFA for administrative or other high privileged users.
+- Implement a secure procedure to allow users to reset their MFA.
+- Consider [MFA as a service](#consider-using-a-third-party-service).
 
 </div>
 <div className="bilingualBlock japanese">
@@ -755,98 +766,6 @@ MFA 要素の変更は高リスク操作として扱う。既存の登録済み�
 MFA as a Service を利用する場合は、導入の容易さだけで判断しない。外部サービスが侵害された場合に複数アプリケーションで MFA が迂回される可能性、可用性、監査ログ、インシデント通知、鍵やシークレットの管理責任を評価する。
 
 </div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Processes implemented to allow users to bypass or reset MFA may be exploitable by attackers.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Requiring MFA may prevent some users from accessing the application.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-## Quick Recommendations
-
-Exactly when and how MFA is implemented in an application will vary on a number of different factors, including the threat model of the application, the technical level of the users, and the level of administrative control over the users. These need to be considered on a per-application basis.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-However, the following recommendations are generally appropriate for most applications, and provide an initial starting point to consider.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Require some form of MFA for all users.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Provide the option for users to enable MFA on their accounts using [TOTP](#software-otp-tokens).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Require MFA for administrative or other high privileged users.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Implement a secure procedure to allow users to reset their MFA.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Consider [MFA as a service](#consider-using-a-third-party-service).
-
-</div>
-
 </div>
 
 <div className="bilingualPair">
@@ -890,35 +809,8 @@ The most important place to require MFA on an application is when the user logs 
 <span className="bilingualLabel english">English (原文)</span>
 
 - Changing passwords or security questions.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Changing the email address associated with the account.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Disabling MFA.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Elevating a user session to an administrative session.
 
 </div>
@@ -962,35 +854,8 @@ At a minimum, OTP implementations SHOULD:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Enforce a short time-to-live (TTL)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure OTPs are single use
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Apply strict attempt limits
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Invalidate the OTP on successful verification
 
 </div>
@@ -1012,15 +877,6 @@ OTP implementations SHOULD NOT:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Log OTP values
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Store OTPs in long-term plaintext form
 
 </div>
@@ -1042,25 +898,7 @@ To further reduce risk and limit exposure, it is RECOMMENDED to:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Generate OTPs using a cryptographically secure random number generator
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Consider 8-digit or longer codes where usability allows
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - On "resend", generate a new OTP and overwrite the old record
 
 </div>
@@ -1104,25 +942,7 @@ However, hashing remains useful to:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Prevent accidental disclosure via logs, metrics, or debugging tools
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Reduce blast radius if the database is briefly exposed during the OTP’s validity window
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Enforce good secret-handling discipline and avoid plaintext storage by default
 
 </div>
@@ -1158,25 +978,7 @@ Having to frequently login with MFA creates an additional burden for users, and 
 <span className="bilingualLabel english">English (原文)</span>
 
 - Requiring MFA when the user logs in from a new device or location.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Requiring MFA when the user logs in from a location that is considered to be high risk.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Allowing corporate IP ranges (or using [geolocation](#geolocation) as an additional factor).
 
 </div>
@@ -1212,15 +1014,6 @@ When a user enters their password, but fails to authenticate using a second fact
 <span className="bilingualLabel english">English (原文)</span>
 
 - The user has lost their second factor, or doesn't have it available (for example, they don't have their mobile phone, or have no signal).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The user's password has been compromised.
 
 </div>
@@ -1242,25 +1035,7 @@ There are a number of steps that should be taken when this occurs:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Prompt the user to try another form of MFA.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Allow the user to attempt to [reset their MFA](#resetting-mfa).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Notify the user of the failed login attempt, and encourage them to change their password if they don't recognize it.
     - The notification should include the time, browser and geographic location of the login attempt.
     - This should be displayed next time they login, and optionally emailed to them as well.
@@ -1286,25 +1061,7 @@ One of the biggest challenges with implementing MFA is handling users who forget
 <span className="bilingualLabel english">English (原文)</span>
 
 - Re-installing a workstation without backing up digital certificates.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Wiping or losing a phone without backing up OTP codes.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Changing mobile numbers.
 
 </div>
@@ -1346,45 +1103,9 @@ Some suggestions of possible methods include:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Providing the user with a number of single-use recovery codes when they first setup MFA.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Requiring the user to setup multiple types of MFA (such as a digital certificate, OTP core and phone number for SMS), so that they are unlikely to lose access to all of them at once.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Mailing a one-use recovery code (or new hardware token) to the user's registered address.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Requiring the user contact the support team and having a rigorous process in place to verify their identity.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Requiring another trusted user to vouch for them.
 
 </div>
@@ -1418,45 +1139,9 @@ Best practices include:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Require reauthentication with an existing enrolled factor before allowing changes.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Do not rely solely on the active session, as it may be hijacked.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Treat factor replacement as a high-risk action and apply risk-based checks (e.g., new device, unusual location).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Notify the user through out-of-band channels (such as email or push notification) whenever an MFA factor is changed.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Consider applying delays or step-up verification for high-value accounts.
 
 </div>
@@ -1516,25 +1201,7 @@ Passwords and PINs are the most common form of authentication due to the simplic
 #### Pros
 
 - Simple and well understood.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Native support in every authentication framework.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Easy to implement.
 
 </div>
@@ -1548,25 +1215,7 @@ Passwords and PINs are the most common form of authentication due to the simplic
 #### Cons
 
 - Users are prone to choosing weak passwords.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Passwords are commonly re-used between systems.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Susceptible to phishing.
 
 </div>
@@ -1604,45 +1253,9 @@ Passwords and PINs are the most common form of authentication due to the simplic
 #### Cons
 
 - No longer recognized as an acceptable authentication factor.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Questions often have easily guessable answers.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Answers to questions can often be obtained from social media or other sources.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Questions must be carefully chosen so that users will remember answers years later.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Susceptible to phishing.
 
 </div>
@@ -1692,15 +1305,6 @@ Hardware OTP Tokens generate a constantly changing numeric codes, which must be 
 ##### Pros
 
 - As the tokens are separate physical devices, they are almost impossible for an attacker to compromise remotely.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Tokens can be used without requiring the user to have a mobile phone or other device.
 
 </div>
@@ -1714,45 +1318,9 @@ Hardware OTP Tokens generate a constantly changing numeric codes, which must be 
 ##### Cons
 
 - Deploying physical tokens to users is expensive and complicated.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If a user loses their token it could take a significant amount of time to purchase and ship them a new one.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Some implementations require a backend server, which can introduce new vulnerabilities as well as a single point of failure.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Stolen tokens can be used without a PIN or device unlock code.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Susceptible to phishing (although short-lived).
 
 </div>
@@ -1788,35 +1356,8 @@ Most websites use standardized TOTP tokens, allowing the user to install any aut
 ##### Pros
 
 - The absence of physical tokens greatly reduces the cost and administrative overhead of implementing the system.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - When users lose access to their TOTP app, a new one can be configured without needing to ship a physical token to them.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - TOTP is widely used, and many users will already have at least one TOTP app installed.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - As long as the user has a screen lock on their phone, an attacker will be unable to use the code if they steal the phone.
 
 </div>
@@ -1830,55 +1371,10 @@ Most websites use standardized TOTP tokens, allowing the user to install any aut
 ##### Cons
 
 - TOTP apps are usually installed on mobile devices, which are vulnerable to compromise.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The TOTP app may be installed on the same mobile device (or workstation) that is used to authenticate.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Users may store the backup seeds insecurely.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Not all users have mobile devices to use with TOTP.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If the user's mobile device is lost, stolen or out of battery, they will be unable to authenticate.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Susceptible to phishing (although short-lived).
 
 </div>
@@ -1914,45 +1410,9 @@ Universal Second Factor (U2F) is a standard for USB/NFC hardware tokens that  im
 #### Pros
 
 - U2F tokens are resistant to phishing since the private key never leaves the token.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Users can simply press a button rather than typing in a code.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - As the tokens are separate physical devices, they are almost impossible for an attacker to compromise remotely.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - U2F is natively supported by a number of major web browsers.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - U2F tokens can be used without requiring the user to have a mobile phone or other device.
 
 </div>
@@ -1966,25 +1426,7 @@ Universal Second Factor (U2F) is a standard for USB/NFC hardware tokens that  im
 #### Cons
 
 - As with hardware OTP tokens, the use of physical tokens introduces significant costs and administrative overheads.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Stolen tokens can be used without a PIN or device unlock code.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - As the tokens are usually connected to the workstation via USB, users are more likely to forget them.
 
 </div>
@@ -2010,35 +1452,8 @@ Digital certificates are files that are stored on the user's device which are au
 #### Pros
 
 - There is no need to purchase and manage hardware tokens.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Once installed, certificates are very simple for users.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Certificates can be centrally managed and revoked.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Resistant to phishing.
 
 </div>
@@ -2052,35 +1467,8 @@ Digital certificates are files that are stored on the user's device which are au
 #### Cons
 
 - Using digital certificates requires a backend Private Key Infrastructure (PKI).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Installing certificates can be difficult for users, particularly in a highly restricted environment.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Enterprise proxy servers which perform SSL decryption will prevent the use of certificates.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The certificates are stored on the user's workstation, and as such can be stolen if their system is compromised.
 
 </div>
@@ -2106,25 +1494,7 @@ Smartcards are credit-card size cards with a chip containing a digital certifica
 #### Pros
 
 - Stolen smartcards cannot be used without the PIN.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Smartcards can be used across multiple applications and systems.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Resistant to phishing.
 
 </div>
@@ -2138,35 +1508,8 @@ Smartcards are credit-card size cards with a chip containing a digital certifica
 #### Cons
 
 - Managing and distributing smartcards has the same costs and overheads as hardware tokens.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Smartcards are not natively supported by modern browsers, so require third party software.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Although most business-class laptops have smartcard readers built-in, home systems often do not.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The use of smartcards requires backend PKIs.
 
 </div>
@@ -2203,15 +1546,6 @@ SMS messages or phone calls can be used to provide users with a single-use code 
 #### Pros
 
 - Relatively simple to implement.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Requires user to link their account to a mobile number.
 
 </div>
@@ -2225,75 +1559,12 @@ SMS messages or phone calls can be used to provide users with a single-use code 
 #### Cons
 
 - Requires the user to have a mobile device or landline.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Require user to have signal or internet access to receive the call or message.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Calls and SMS messages may cost money to send need to protect against attackers requesting a large number of messages to exhaust funds.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Susceptible to SIM swapping attacks.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - SMS messages may be received on the same device the user is authenticating from.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Susceptible to phishing.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - SMS may be previewed when the device is locked.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - SMS may be read by malicious or insecure applications.
 
 </div>
@@ -2319,15 +1590,6 @@ Email verification requires that the user enters a code or clicks a link sent to
 #### Pros
 
 - Very easy to implement.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - No requirements for separate hardware or a mobile device.
 
 </div>
@@ -2341,45 +1603,9 @@ Email verification requires that the user enters a code or clicks a link sent to
 #### Cons
 
 - Relies entirely on the security of the email account, which often lacks MFA.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Email passwords are commonly the same as application passwords.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Provides no protection if the user's email is compromised first.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Email may be received by the same device the user is authenticating from.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Susceptible to phishing.
 
 </div>
@@ -2415,35 +1641,8 @@ The are a number of common types of biometrics that are used, including:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Fingerprint scans
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Facial recognition
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Iris scans
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Voice recognition
 
 </div>
@@ -2457,15 +1656,6 @@ The are a number of common types of biometrics that are used, including:
 #### Pros
 
 - Well-implemented biometrics are hard to spoof, and require a targeted attack.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Fast and convenient for users.
 
 </div>
@@ -2479,45 +1669,9 @@ The are a number of common types of biometrics that are used, including:
 #### Cons
 
 - Manual enrollment is required for the user.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Custom (sometimes expensive) hardware is often required to read biometrics.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Privacy concerns: Sensitive physical information must be stored about users.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If compromised, biometric data can be difficult to change.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Hardware may be vulnerable to additional attack vectors.
 
 </div>
@@ -2555,15 +1709,6 @@ The source IP address the user is connecting from can be used as a factor, typic
 #### Pros
 
 - Very easy for users.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Requires minimal configuration and management from administrative staff.
 
 </div>
@@ -2577,25 +1722,7 @@ The source IP address the user is connecting from can be used as a factor, typic
 #### Cons
 
 - Doesn't provide any protection if the user's system is compromised.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Doesn't provide any protection against rogue insiders.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Trusted IP addresses must be carefully restricted (for example, if the open guest Wi-Fi uses the main corporate IP range).
 
 </div>
@@ -2633,35 +1760,8 @@ Rather than using the exact IP address of the user, the geographic location that
 #### Cons
 
 - Doesn't provide any protection if the user's system is compromised.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Doesn't provide any protection against rogue insiders.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Easy for an attacker to bypass by obtaining IP addresses in the trusted country or location.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Privacy features such as Apple's [iCloud Private Relay](https://support.apple.com/en-us/102602) and VPNs can make this less accurate.
 
 </div>
@@ -2687,15 +1787,6 @@ Geofencing is a more precise version of geolocation, which allows the user to de
 #### Pros
 
 - Very easy for users.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Provides a high level of protection against remote attackers.
 
 </div>
@@ -2709,25 +1800,7 @@ Geofencing is a more precise version of geolocation, which allows the user to de
 #### Cons
 
 - Doesn't provide any protection if the user's system is compromised.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Doesn't provide any protection against rogue insiders.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Doesn't provide any protection against attackers who are physically close to the trusted location.
 
 </div>
@@ -2765,25 +1838,7 @@ Behavioral profiling is based on the way the user interacts with the application
 #### Pros
 
 - Doesn't require user interaction.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Can be used to continuously authenticate the user.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Combines well with other factors to increase the level of assurance in the user's identity.
 
 </div>
@@ -2797,25 +1852,7 @@ Behavioral profiling is based on the way the user interacts with the application
 #### Cons
 
 - Early implementations of behavioral profiling were often inaccurate and caused a significant number of false positives.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Requires large amounts of data and processing power to analyze the user's behavior.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - May be difficult to implement in environments where the user's behavior is likely to change frequently.
 
 </div>
@@ -2841,55 +1878,10 @@ Keystroke and mouse dynamics are based on the way the user types and moves their
 #### Pros
 
 - Can be used without requiring any additional hardware.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Can be used without requiring any additional interaction from the user.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Can be used to continuously authenticate the user.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Can be used to detect when the user is not the one using the system.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Can be used to detect when the user is under duress.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Can be used to detect when the user is not in a fit state to use the system.
 
 </div>
@@ -2903,15 +1895,6 @@ Keystroke and mouse dynamics are based on the way the user types and moves their
 #### Cons
 
 - Unlikely to be accurate enough to be used as a standalone factor.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - May be spoofed by AI or other advanced attacks.
 
 </div>
@@ -2937,15 +1920,6 @@ Gait analysis is based on the way the user walks using cameras and sensors. They
 #### Pros
 
 - Very difficult to spoof.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - May be used without requiring any additional interaction from the user.
 
 </div>
@@ -2959,15 +1933,6 @@ Gait analysis is based on the way the user walks using cameras and sensors. They
 #### Cons
 
 - Requires specific hardware to implement.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Use outside of physical security systems is not widely tested.
 
 </div>
@@ -3001,45 +1966,9 @@ Common signals used to determine risk include:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Geolocation and IP reputation
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Device fingerprinting
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Time of access (e.g., 3 AM login)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Behavioral biometrics (e.g., typing speed or mouse movements)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Known compromised credentials
 
 </div>
@@ -3061,25 +1990,7 @@ If risk is detected, the system may:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Prompt for an additional factor (e.g., OTP)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Enforce re-authentication
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Deny access and trigger alerting or account protection flows
 
 </div>

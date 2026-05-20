@@ -458,6 +458,8 @@ This cheat sheet will focus on the defensive point of view and will not explain 
 ## 主要な観点
 
 - 外部URL入力を厳格に検証する。
+- 許可リストで送信先を制限する。
+- 内部ネットワークやメタデータサービスへの到達を遮断する。
 
 </div>
 </div>
@@ -471,12 +473,7 @@ This cheat sheet will focus on the defensive point of view and will not explain 
 SSRF is an attack vector that abuses an application to interact with the internal/external network or the machine itself. One of the enablers for this vector is the mishandling of URLs, as showcased in the following examples:
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 許可リストで送信先を制限する。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -484,30 +481,7 @@ SSRF is an attack vector that abuses an application to interact with the interna
 <span className="bilingualLabel english">English (原文)</span>
 
 - Image on an external server (*e.g.* user enters image URL of their avatar for the application to download and use).
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 内部ネットワークやメタデータサービスへの到達を遮断する。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Custom [WebHook](https://en.wikipedia.org/wiki/Webhook) (users have to specify Webhook handlers or Callback URLs).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Internal requests to interact with another service to serve a specific functionality. Most of the times, user data is sent along to be processed, and if poorly handled, can perform specific injection attacks.
 
 </div>
@@ -538,15 +512,6 @@ SSRF is an attack vector that abuses an application to interact with the interna
 <span className="bilingualLabel english">English (原文)</span>
 
 - SSRF is not limited to the HTTP protocol. Generally, the first request is HTTP, but in cases where the application itself performs the second request, it could use different protocols (*e.g.* FTP, SMB, SMTP, etc.) and schemes (*e.g.* `file://`, `phar://`, `gopher://`, `data://`, `dict://`, etc.).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If the application is vulnerable to [XML eXternal Entity (XXE) injection](https://portswigger.net/web-security/xxe) then it can be exploited to perform a [SSRF attack](https://portswigger.net/web-security/xxe#exploiting-xxe-to-perform-ssrf-attacks), take a look at the [XXE cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html) to learn how to prevent the exposure to XXE.
 
 </div>
@@ -570,15 +535,6 @@ Depending on the application's functionality and requirements, there are two bas
 <span className="bilingualLabel english">English (原文)</span>
 
 - Application can send request only to **identified and trusted applications**: Case when [allowlist](https://en.wikipedia.org/wiki/Whitelisting) approach is available.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Application can send requests to **ANY external IP address or domain name**: Case when [allowlist](https://en.wikipedia.org/wiki/Whitelisting) approach is unavailable.
 
 </div>
@@ -690,35 +646,8 @@ The request sent to the internal application will be based on the following info
 <span className="bilingualLabel english">English (原文)</span>
 
 - String containing business data.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - IP address (V4 or V6).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Domain name.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - URL.
 
 </div>
@@ -800,15 +729,6 @@ In the context of SSRF, there are 2 possible validations to perform:
 <span className="bilingualLabel english">English (原文)</span>
 
 1. Ensure that the data provided is a valid IP V4 or V6 address.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. Ensure that the IP address provided belongs to one of the IP addresses of the identified and trusted applications.
 
 </div>
@@ -841,38 +761,11 @@ The first layer of validation can be applied using libraries that ensure the sec
 
 - **JAVA:** Method [InetAddressValidator.isValid](http://commons.apache.org/proper/commons-validator/apidocs/org/apache/commons/validator/routines/InetAddressValidator.html#isValid%28java.lang.String)) from the [Apache Commons Validator](http://commons.apache.org/proper/commons-validator/) library.
     - **It is NOT exposed** to bypass using Hex, Octal, Dword, URL and Mixed encoding.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **.NET**: Method [IPAddress.TryParse](https://docs.microsoft.com/en-us/dotnet/api/system.net.ipaddress.tryparse?view=netframework-4.8) from the SDK.
     - **It is exposed** to bypass using Hex, Octal, Dword and Mixed encoding but **NOT** the URL encoding.
     - As allowlisting is used here, any bypass tentative will be blocked during the comparison against the allowed list of IP addresses.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **JavaScript**: Library [ip-address](https://www.npmjs.com/package/ip-address).
     - **It is NOT exposed** to bypass using Hex, Octal, Dword, URL and Mixed encoding.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Ruby**: Class [IPAddr](https://ruby-doc.org/stdlib-2.0.0/libdoc/ipaddr/rdoc/IPAddr.html) from the SDK.
     - **It is NOT exposed** to bypass using Hex, Octal, Dword, URL and Mixed encoding.
 
@@ -917,25 +810,7 @@ In the attempt of validate domain names, it is apparent to do a DNS resolution t
 <span className="bilingualLabel english">English (原文)</span>
 
 - It can disclose information to external DNS resolvers.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - It can be used by an attacker to bind a legit domain name to an internal IP address. See the section `Exploitation tricks > Bypassing restrictions > Input validation > DNS pinning` of this [document](https://cheatsheetseries.owasp.org/assets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet_SSRF_Bible.pdf).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - An attacker can use it to deliver a malicious payload to the internal DNS resolvers and the API (SDK or third-party) used by the application to handle the DNS communication and then, potentially, trigger a vulnerability in one of these components.
 
 </div>
@@ -957,15 +832,6 @@ In the context of SSRF, there are two validations to perform:
 <span className="bilingualLabel english">English (原文)</span>
 
 1. Ensure that the data provided is a valid domain name.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. Ensure that the domain name provided belongs to one of the domain names of the identified and trusted applications (the allowlisting comes to action here).
 
 </div>
@@ -997,45 +863,9 @@ Similar to the IP address validation, the first layer of validation can be appli
 <span className="bilingualLabel english">English (原文)</span>
 
 - **JAVA:** Method [DomainValidator.isValid](https://commons.apache.org/proper/commons-validator/apidocs/org/apache/commons/validator/routines/DomainValidator.html#isValid%28java.lang.String)) from the [Apache Commons Validator](http://commons.apache.org/proper/commons-validator/) library.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **.NET**: Method [Uri.CheckHostName](https://docs.microsoft.com/en-us/dotnet/api/system.uri.checkhostname?view=netframework-4.8) from the SDK.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **JavaScript**: Library [is-valid-domain](https://www.npmjs.com/package/is-valid-domain).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Python**: Module [validators.domain](https://validators.readthedocs.io/en/latest/#module-validators.domain).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Ruby**: No valid dedicated gem has been found.
     - [domainator](https://github.com/mhuggins/domainator), [public_suffix](https://github.com/weppos/publicsuffix-ruby) and [addressable](https://github.com/sporkmonger/addressable) has been tested but unfortunately they all consider `<script>alert(1)</script>.owasp.org` as a valid domain name.
     - This regex, taken from [here](https://stackoverflow.com/a/26987741), can be used: `^(((?!-))(xn--|_&#123;1,1&#125;)?[a-z0-9-]&#123;0,61&#125;[a-z0-9]&#123;1,1&#125;\\.)*(xn--)?([a-z0-9][a-z0-9\\-]&#123;0,60&#125;|[a-z0-9-]&#123;1,30&#125;\\.[a-z]&#123;2,&#125;)$`
@@ -1094,15 +924,6 @@ After ensuring the validity of the incoming domain name, the second layer of val
 <span className="bilingualLabel english">English (原文)</span>
 
 1. Build an allowlist with all the domain names of every identified and trusted applications.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. Verify that the domain name received is part of this allowlist (string strict comparison with case sensitive).
 
 </div>
@@ -1124,36 +945,9 @@ Unfortunately here, the application is still vulnerable to the `DNS pinning` byp
 <span className="bilingualLabel english">English (原文)</span>
 
 1. Ensure that the domains that are part of your organization are resolved by your internal DNS server first in the chains of DNS resolvers.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. Monitor the domains allowlist in order to detect when any of them resolves to a/an:
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Local IP address (V4 + V6).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Internal IP of your organization (expected to be in private IP ranges) for the domain that are not part of your organization.
+   - Local IP address (V4 + V6).
+   - Internal IP of your organization (expected to be in private IP ranges) for the domain that are not part of your organization.
 
 </div>
 
@@ -1351,15 +1145,6 @@ Thus, the call from the *Vulnerable Application*:
 <span className="bilingualLabel english">English (原文)</span>
 
 - **Is NOT** targeting one of the IP/domain *located inside* the company's global network.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Uses a convention defined between the *VulnerableApplication* and the expected IP/domain in order to *prove* that the call has been legitimately initiated.
 
 </div>
@@ -1393,15 +1178,6 @@ Here is why filtering URLs is hard at the Application layer:
 <span className="bilingualLabel english">English (原文)</span>
 
 - It implies that the application must be able to detect, at the code level, that the provided IP (V4 + V6) is not part of the official [private networks ranges](https://en.wikipedia.org/wiki/Private_network) including also *localhost* and *IPv4/v6 Link-Local* addresses. Not every SDK provides a built-in feature for this kind of verification, and leaves the handling up to the developer to understand all of its pitfalls and possible values, which makes it a demanding task.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Same remark for domain name: The company must maintain a list of all internal domain names and provide a centralized service to allow an application to verify if a provided domain name is an internal one. For this verification, an internal DNS resolver can be queried by the application but this internal DNS resolver must not resolve external domain names.
 
 </div>
@@ -1467,88 +1243,16 @@ The first validation on the input data presented in the case [n°1](https://chea
 <span className="bilingualLabel english">English (原文)</span>
 
 1. The application will receive the IP address or domain name of the *TargetedApplication* and it will apply the first validation on the input data using the libraries/regex mentioned in this [section](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html#application-layer).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. The second validation will be applied against the IP address or domain name of the *TargetedApplication* using the following block-list approach:
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- For IP address:
+   - For IP address:
      - The application will verify that it is a public one (see the hint provided in the next paragraph with the python code sample).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- For domain name:
+   - For domain name:
         1. The application will verify that it is a public one by trying to resolve the domain name against the DNS resolver that will only resolve internal domain name. Here, it must return a response indicating that it do not know the provided domain because the expected value received must be a public domain.
         2. To prevent the `DNS pinning` attack described in this [document](https://cheatsheetseries.owasp.org/assets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet_SSRF_Bible.pdf), the application will retrieve all the IP addresses behind the domain name provided (taking records *A* + *AAAA* for IPv4 + IPv6) and it will apply the same verification described in the previous point about IP addresses.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 3. The application will receive the protocol to use for the request via a dedicated input parameter for which it will verify the value against an allowed list of protocols (`HTTP` or `HTTPS`).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 4. The application will receive the parameter name for the token to pass to the *TargetedApplication* via a dedicated input parameter for which it will only allow the characters set `[a-z]&#123;1,10&#125;`.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 5. The application will receive the token itself via a dedicated input parameter for which it will only allow the characters set `[a-zA-Z0-9]&#123;20&#125;`.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 6. The application will receive and validate (from a security point of view) any business data needed to perform a valid call.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 7. The application will build the HTTP POST request **using only validated information** and will send it (*don't forget to disable the support for [redirection](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections) in the web client used*).
 
 </div>
@@ -1663,15 +1367,6 @@ To leverage this protection migrate to IMDSv2 and disable old IMDSv1. Check out 
 <span className="bilingualLabel english">English (原文)</span>
 
 - [IANA IPv4 Special Registry](https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [IANA IPv6 Special Registry](https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml)
 
 </div>
@@ -1698,15 +1393,6 @@ Explore the [Semgrep rules](https://semgrep.dev/r?q=ssrf) for SSRF to effectivel
 ## Tools and code used for schemas
 
 - [Mermaid Online Editor](https://mermaidjs.github.io/mermaid-live-editor) and [Mermaid documentation](https://mermaidjs.github.io/).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Draw.io Online Editor](https://www.draw.io/).
 
 </div>

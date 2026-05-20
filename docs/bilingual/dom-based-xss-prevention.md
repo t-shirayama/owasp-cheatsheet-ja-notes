@@ -680,6 +680,7 @@ DOM Based XSS は、攻撃入力がサーバ側処理ではなくブラウザ実
 <span className="bilingualLabel english">English (原文)</span>
 
 - [Reflected or Stored](https://owasp.org/www-community/attacks/xss/#stored-and-reflected-xss-attacks)
+- [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).
 
 </div>
 <div className="bilingualBlock japanese">
@@ -694,7 +695,7 @@ DOM XSS では、JavaScript 実行コンテキスト内に HTML、HTML 属性、
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).
+The [XSS Prevention Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) does an excellent job of addressing Reflected and Stored XSS. This cheatsheet addresses DOM (Document Object Model) based XSS and is an extension (and assumes comprehension) of the [XSS Prevention Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).
 
 </div>
 <div className="bilingualBlock japanese">
@@ -709,7 +710,7 @@ DOM XSS では、JavaScript 実行コンテキスト内に HTML、HTML 属性、
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-The [XSS Prevention Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) does an excellent job of addressing Reflected and Stored XSS. This cheatsheet addresses DOM (Document Object Model) based XSS and is an extension (and assumes comprehension) of the [XSS Prevention Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).
+In order to understand DOM based XSS, one needs to see the fundamental difference between Reflected and Stored XSS when compared to DOM based XSS. The primary difference is where the attack is injected into the application.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -718,16 +719,6 @@ The [XSS Prevention Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/C
 DOM XSS の修正では、ソースとシンクを棚卸しし、信頼できないデータがどのサブコンテキストに入るかを追跡する。オブジェクトプロパティアクセス、動的 URL、動的 CSS、DOM API の暗黙評価、ライブラリのエンコード差異をレビューする。検出では、同じシンクに到達する入力源を変えて試す variant analysis が有効である。
 
 </div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-In order to understand DOM based XSS, one needs to see the fundamental difference between Reflected and Stored XSS when compared to DOM based XSS. The primary difference is where the attack is injected into the application.
-
-</div>
-
 </div>
 
 <div className="bilingualPair">
@@ -775,15 +766,6 @@ When a browser is rendering HTML and any other associated content like CSS or Ja
 <span className="bilingualLabel english">English (原文)</span>
 
 - The HTML parser of the rendering context dictates how data is presented and laid out on the page and can be further broken down into the standard contexts of HTML, HTML attribute, URL, and CSS.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The JavaScript or VBScript parser of an execution context is associated with the parsing and execution of script code. Each parser has distinct and separate semantics in the way they can possibly execute script code which make creating consistent rules for mitigating vulnerabilities in various contexts difficult. The complication is compounded by the differing meanings and treatment of encoded values within each subcontext (HTML, HTML attribute, URL, and CSS) within the execution context.
 
 </div>
@@ -1567,35 +1549,8 @@ Avoid populating the following methods with untrusted data.
 <span className="bilingualLabel english">English (原文)</span>
 
 1. `element.innerHTML = "...";`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. `element.outerHTML = "...";`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 3. `document.write(...);`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 4. `document.writeln(...);`
 
 </div>
@@ -1629,25 +1584,7 @@ Make sure that any untrusted data passed to these methods is:
 <span className="bilingualLabel english">English (原文)</span>
 
 1. Delimited with string delimiters
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. Enclosed within a closure or JavaScript encoded to N-levels based on usage
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 3. Wrapped in a custom function.
 
 </div>
@@ -1992,45 +1929,9 @@ Examples of some JavaScript sandbox / sanitizers:
 <span className="bilingualLabel english">English (原文)</span>
 
 - [js-xss](https://github.com/leizongmin/js-xss)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [sanitize-html](https://github.com/apostrophecms/sanitize-html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [DOMPurify](https://github.com/cure53/DOMPurify)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [MDN - HTML Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [OWASP Summit 2011 - DOM Sandboxing](https://owasp.org/www-pdf-archive/OWASPSummit2011DOMSandboxingBrowserSecurityTrack.pdf)
 
 </div>
@@ -2156,45 +2057,9 @@ There are a number of open source encoding libraries out there:
 <span className="bilingualLabel english">English (原文)</span>
 
 1. OWASP [ESAPI](https://owasp.org/www-project-enterprise-security-api/)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. OWASP [Java Encoder](https://owasp.org/www-project-java-encoder/)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 3. Apache Commons Text [StringEscapeUtils](https://commons.apache.org/proper/commons-text/javadocs/api-release/org/apache/commons/text/StringEscapeUtils.html), replace one from [Apache Commons Lang3](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/StringEscapeUtils.html)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 4. [Jtidy](http://jtidy.sourceforge.net/)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 5. Your company's custom implementation.
 
 </div>

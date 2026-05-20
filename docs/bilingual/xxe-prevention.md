@@ -891,6 +891,9 @@ XXEは、XML外部エンティティによりローカルファイル読取、SS
 <span className="bilingualLabel english">English (原文)</span>
 
 - A denial of service attack on the system
+- A [Server Side Request Forgery](https://owasp.org/www-community/attacks/Server_Side_Request_Forgery) (SSRF) attack
+- The ability to scan ports from the machine where the parser is located
+- Other system impacts.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -899,48 +902,10 @@ XXEは、XML外部エンティティによりローカルファイル読取、SS
 ## 主要な観点
 
 - 外部エンティティを無効化する。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- A [Server Side Request Forgery](https://owasp.org/www-community/attacks/Server_Side_Request_Forgery) (SSRF) attack
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - DTD処理を無効化または制限する。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- The ability to scan ports from the machine where the parser is located
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - XML入力のサイズと取得先を制限する。
 
 </div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Other system impacts.
-
-</div>
-
 </div>
 
 <div className="bilingualPair">
@@ -1043,75 +1008,12 @@ Disabling [DTD](https://www.w3schools.com/xml/xml_dtd.asp)s also makes the parse
 ### Minimal XML Hardening Rules
 
 - Disable DOCTYPE
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Disable external entities
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Disable external DTD loading
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Enable secure processing mode
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Disable XInclude
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Limit entity expansion
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Do not use legacy XML parsers
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Never parse untrusted XML with default settings
 
 </div>
@@ -1147,15 +1049,6 @@ The Enum [xmlParserOption](http://xmlsoft.org/html/libxml-parser.html#xmlParserO
 <span className="bilingualLabel english">English (原文)</span>
 
 - `XML_PARSE_NOENT`: Expands entities and substitutes them with replacement text
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `XML_PARSE_DTDLOAD`: Load the external DTD
 
 </div>
@@ -1197,115 +1090,16 @@ Search whether the following APIs are being used and make sure there is no `XML_
 <span className="bilingualLabel english">English (原文)</span>
 
 - `xmlCtxtReadDoc`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlCtxtReadFd`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlCtxtReadFile`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlCtxtReadIO`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlCtxtReadMemory`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlCtxtUseOptions`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlParseInNodeContext`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlReadDoc`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlReadFd`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlReadFile`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlReadIO`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `xmlReadMemory`
 
 </div>
@@ -1698,25 +1492,7 @@ DocumentBuilder safebuilder = dbf.newDocumentBuilder();
 <span className="bilingualLabel english">English (原文)</span>
 
 - Do not include external entities by setting [this feature](https://xerces.apache.org/xerces-j/features.html#external-general-entities) to `false`.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Do not include parameter entities by setting [this feature](https://xerces.apache.org/xerces-j/features.html#external-parameter-entities) to `false`.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Do not include external DTDs by setting [this feature](https://xerces.apache.org/xerces-j/features.html#load-external-dtd) to `false`.
 
 </div>
@@ -1738,35 +1514,8 @@ DocumentBuilder safebuilder = dbf.newDocumentBuilder();
 <span className="bilingualLabel english">English (原文)</span>
 
 - Disallow an inline DTD by setting [this feature](https://xerces.apache.org/xerces2-j/features.html#disallow-doctype-decl) to `true`.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Do not include external entities by setting [this feature](https://xerces.apache.org/xerces2-j/features.html#external-general-entities) to `false`.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Do not include parameter entities by setting [this feature](https://xerces.apache.org/xerces2-j/features.html#external-parameter-entities) to `false`.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Do not include external DTDs by setting [this feature](https://xerces.apache.org/xerces-j/features.html#load-external-dtd) to `false`.
 
 </div>
@@ -1976,25 +1725,7 @@ sf.newXMLFilter(Source);
 <span className="bilingualLabel english">English (原文)</span>
 
 - `javax.xml.XMLConstants.ACCESS_EXTERNAL_DTD`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `javax.xml.XMLConstants.ACCESS_EXTERNAL_SCHEMA`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `javax.xml.XMLConstants.ACCESS_EXTERNAL_STYLESHEET`
 
 </div>
@@ -2295,25 +2026,7 @@ String result = new XPathExpression().evaluate( builder.parse(
 <span className="bilingualLabel english">English (原文)</span>
 
 - **3.0.0** to **3.2.3** (Spring OXM & Spring MVC)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **4.0.0.M1** (Spring OXM)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **4.0.0.M1-4.0.0.M2** (Spring MVC)
 
 </div>
@@ -2365,15 +2078,6 @@ Two situations developers must handle:
 <span className="bilingualLabel english">English (原文)</span>
 
 - For a `DOMSource`, the XML has already been parsed by user code and that code is responsible for protecting against XXE.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - For a `StAXSource`, the XMLStreamReader has already been created by user code and that code is responsible for protecting against XXE.
 
 </div>
@@ -2484,15 +2188,6 @@ Previously, this information was based on some older articles which may not be 1
 <span className="bilingualLabel english">English (原文)</span>
 
 - [James Jardine's excellent .NET XXE article](https://www.jardinesoftware.net/2016/05/26/xxe-and-net/).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Guidance from Microsoft on how to prevent XXE and XML Denial of Service in .NET](http://msdn.microsoft.com/en-us/magazine/ee335713.aspx).
 
 </div>
@@ -2992,15 +2687,6 @@ Per the 'NSXMLDocument External Entity Restriction API' section of this [page](h
 <span className="bilingualLabel english">English (原文)</span>
 
 - iOS4 and earlier: All external entities are loaded by default.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - iOS5 and later: Only entities that don't require network access are loaded. (which is safer)
 
 </div>

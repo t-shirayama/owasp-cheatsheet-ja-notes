@@ -450,6 +450,8 @@ This article is focused on providing clear, actionable guidance for safely deser
 ## 主要な観点
 
 - 信頼できない入力をデシリアライズしない。
+- 許可リストで型を制限する。
+- 署名や完全性検証で改ざんを検知する。
 
 </div>
 </div>
@@ -461,12 +463,7 @@ This article is focused on providing clear, actionable guidance for safely deser
 **Deserialization** is the reverse of that process, taking data structured in some format, and rebuilding it into an object. Today, the most popular data format for serializing data is JSON. Before that, it was XML.
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 許可リストで型を制限する。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -476,12 +473,7 @@ This article is focused on providing clear, actionable guidance for safely deser
 However, many programming languages have native ways to serialize objects. These native formats usually offer more features than JSON or XML, including customization of the serialization process.
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 署名や完全性検証で改ざんを検知する。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -609,15 +601,6 @@ Implementation advice:
 <span className="bilingualLabel english">English (原文)</span>
 
 - In your code, override the `ObjectInputStream#resolveClass()` method to prevent arbitrary classes from being deserialized. This safe behavior can be wrapped in a library like [SerialKiller](https://github.com/ikkisoft/SerialKiller).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Use a safe replacement for the generic `readObject()` method as seen here. Note that this addresses "[billion laughs](https://en.wikipedia.org/wiki/Billion_laughs_attack)" type attacks by checking input length and number of objects deserialized.
 
 </div>
@@ -713,25 +696,7 @@ If the captured traffic data includes the following patterns, it may suggest tha
 <span className="bilingualLabel english">English (原文)</span>
 
 - `AC ED 00 05` in Hex
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `rO0` in Base64
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `Content-type` header of an HTTP response set to `application/x-java-serialized-object`
 
 </div>
@@ -826,15 +791,6 @@ The `java.io.ObjectInputStream` class is used to deserialize objects. It's possi
 <span className="bilingualLabel english">English (原文)</span>
 
 - you can change the code that does the deserialization;
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - you know what classes you expect to deserialize.
 
 </div>
@@ -912,25 +868,7 @@ More complete implementations of this approach have been proposed by various com
 <span className="bilingualLabel english">English (原文)</span>
 
 - [NibbleSec](https://github.com/ikkisoft/SerialKiller) - a library that allows creating lists of classes that are allowed to be deserialized
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [IBM](https://www.ibm.com/developerworks/library/se-lookahead/) - the seminal protection, written years before the most devastating exploitation scenarios were envisioned.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Apache Commons IO classes](https://commons.apache.org/proper/commons-io/javadocs/api-2.5/org/apache/commons/io/serialization/ValidatingObjectInputStream.html)
 
 </div>
@@ -1051,51 +989,15 @@ The following libraries can be used safely with default configuration:
 
 - **[fastjson2](https://github.com/alibaba/fastjson2)** (JSON) - can be used safely as long as
 the [**autotype**](https://github.com/alibaba/fastjson2/wiki/fastjson2_autotype_cn) option is not turned on
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[jackson-databind](https://github.com/FasterXML/jackson-databind)** (JSON) - can be used safely as long
 as polymorphism is not used ([see blog post](https://cowtowncoder.medium.com/on-jackson-cves-dont-panic-here-is-what-you-need-to-know-54cd0d6e8062))
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[Kryo v5.0.0+](https://github.com/EsotericSoftware/kryo)** (custom format) - can be used safely
 as long as class registration is not turned **off** ([see documentation](https://github.com/EsotericSoftware/kryo#optional-registration)
 and [this issue](https://github.com/EsotericSoftware/kryo/issues/929))
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[YamlBeans v1.16+](https://github.com/EsotericSoftware/yamlbeans)** (YAML) - can be used safely
 as long as the **UnsafeYamlConfig** class isn't used (see [this commit](https://github.com/EsotericSoftware/yamlbeans/commit/b1122588e7610ae4e0d516c50d08c94ee87946e6))
     - *NOTE: because these versions are not available in Maven Central,
 [a fork exists](https://github.com/Contrast-Security-OSS/yamlbeans) that can be used instead.*
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[XStream v1.4.17+](https://x-stream.github.io/)** (JSON and XML) - can be used safely
 as long as the allowlist and other security controls are not relaxed ([see documentation](https://x-stream.github.io/security.html))
 
@@ -1131,42 +1033,15 @@ The following libraries require configuration options to be set before they can 
 the [**safemode**](https://github.com/alibaba/fastjson/wiki/fastjson_safemode_en) option is turned on, which disables
 deserialization of any class ([see documentation](https://github.com/alibaba/fastjson/wiki/enable_autotype)).
 Previous versions are not safe.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[json-io](https://github.com/jdereg/json-io)** (JSON) - cannot be used safely since the use of **@type** property in
 JSON allows deserialization of any class. Can only be used safely in following situations:
     - In [non-typed mode](https://github.com/jdereg/json-io/blob/master/user-guide.md#non-typed-usage) using the **JsonReader.USE_MAPS** setting which turns off generic object deserialization
     - [With a custom deserializer](https://github.com/jdereg/json-io/blob/master/user-guide.md#customization-technique-4-custom-serializer) controlling which classes get deserialized
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[Kryo < v5.0.0](https://github.com/EsotericSoftware/kryo)** (custom format) - cannot be used safely unless class registration is turned **on**,
 which disables deserialization of any class ([see documentation](https://github.com/EsotericSoftware/kryo#optional-registration)
 and [this issue](https://github.com/EsotericSoftware/kryo/issues/929))
     - *NOTE: other wrappers exist around Kryo such as [Chill](https://github.com/twitter/chill), which may also have class registration
 not required by default regardless of the underlying version of Kryo being used*
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[SnakeYAML](https://bitbucket.org/snakeyaml/snakeyaml/src)** (YAML) - cannot be used safely unless
 the **org.yaml.snakeyaml.constructor.SafeConstructor** class is used, which disables
 deserialization of any class ([see docs](https://bitbucket.org/snakeyaml/snakeyaml/wiki/CVE-2022-1471))
@@ -1200,47 +1075,11 @@ The following libraries are either no longer maintained or cannot be used safely
 <span className="bilingualLabel english">English (原文)</span>
 
 - **[Castor](https://github.com/castor-data-binding/castor)** (XML) - appears to be abandoned with no commits since 2016
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[fastjson < v1.2.68](https://github.com/alibaba/fastjson)** (JSON) - these versions allows deserialization of any class
 ([see documentation](https://github.com/alibaba/fastjson/wiki/enable_autotype))
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[XMLDecoder in the JDK](https://docs.oracle.com/javase/8/docs/api/java/beans/XMLDecoder.html)** (XML) - *"close to impossible to securely deserialize Java objects in this format from untrusted inputs"*
 ("Red Hat Defensive Coding Guide", [end of section 2.6.5](https://redhat-crypto.gitlab.io/defensive-coding-guide/#sect-Defensive_Coding-Tasks-Serialization-XML))
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[XStream < v1.4.17](https://x-stream.github.io/)** (JSON and XML) - these versions allows deserialization of any class (see [documentation](https://x-stream.github.io/security.html#explicit))
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **[YamlBeans < v1.16](https://github.com/EsotericSoftware/yamlbeans)** (YAML) - these versions allows deserialization of any class
 (see [this document](https://github.com/Contrast-Security-OSS/yamlbeans/blob/main/SECURITY.md))
 
@@ -1267,15 +1106,6 @@ Search the source code for the following terms:
 <span className="bilingualLabel english">English (原文)</span>
 
 1. `TypeNameHandling`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. `JavaScriptTypeResolver`
 
 </div>
@@ -1328,15 +1158,6 @@ Search for content with the following text:
 <span className="bilingualLabel english">English (原文)</span>
 
 1. `TypeObject`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. `$type:`
 
 </div>
@@ -1523,75 +1344,12 @@ Try to keep any code that might create potential gadgets separate from any code 
 #### Known .NET RCE Gadgets
 
 - `System.Configuration.Install.AssemblyInstaller`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `System.Activities.Presentation.WorkflowDesigner`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `System.Windows.ResourceDictionary`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `System.Windows.Data.ObjectDataProvider`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `System.Windows.Forms.BindingSource`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `Microsoft.Exchange.Management.SystemManager.WinForms.ExchangeSettingsProvider`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `System.Data.DataViewManager, System.Xml.XmlDocument/XmlDataDocument`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `System.Management.Automation.PSObject`
 
 </div>
@@ -1641,25 +1399,7 @@ If the application knows before deserialization which messages will need to be p
 ## Mitigation Tools/Libraries
 
 - [Java secure deserialization library](https://github.com/ikkisoft/SerialKiller)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [SWAT - tool for creating allowlists](https://github.com/cschneider4711/SWAT)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [NotSoSerial](https://github.com/kantega/notsoserial)
 
 </div>
@@ -1673,105 +1413,15 @@ If the application knows before deserialization which messages will need to be p
 ## Detection Tools
 
 - [Java deserialization cheat sheet aimed at pen testers](https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [A proof-of-concept tool for generating payloads that exploit unsafe Java object deserialization.](https://github.com/frohoff/ysoserial)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Java De-serialization toolkits](https://github.com/brianwrf/hackUtils)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Java de-serialization tool](https://github.com/frohoff/ysoserial)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [.Net payload generator](https://github.com/pwntester/ysoserial.net)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Burp Suite extension](https://github.com/federicodotta/Java-Deserialization-Scanner/releases)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Java secure deserialization library](https://github.com/ikkisoft/SerialKiller)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Serianalyzer is a static bytecode analyzer for deserialization](https://github.com/mbechler/serianalyzer)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Payload generator](https://github.com/mbechler/marshalsec)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Android Java Deserialization Vulnerability Tester](https://github.com/modzero/modjoda)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Burp Suite Extension
     - [JavaSerialKiller](https://github.com/NetSPI/JavaSerialKiller)
     - [Java Deserialization Scanner](https://github.com/federicodotta/Java-Deserialization-Scanner)

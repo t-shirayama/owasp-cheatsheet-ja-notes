@@ -725,55 +725,10 @@ Cookie でセッション ID を扱う場合は、属性を安全に設定しま
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - `Secure`: HTTPS 接続でのみ Cookie を送信します。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - `HttpOnly`: JavaScript から Cookie を読み取れないようにし、XSS による窃取リスクを下げます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - `SameSite`: クロスサイトリクエストで Cookie が送信される条件を制限し、CSRF リスクを下げます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - Cookie 名プレフィックス: `__Host-` や `__Secure-` を使うことで、ブラウザ側の追加制約を活用できます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - `Domain` と `Path`: Cookie の送信範囲を必要最小限にします。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - `Expires` と `Max-Age`: 永続 Cookie が必要かを検討し、不要な長期保存を避けます。
 
 </div>
@@ -1006,25 +961,7 @@ A strong [CSPRNG](https://en.wikipedia.org/wiki/Cryptographically_secure_pseudor
 <span className="bilingualLabel english">English (原文)</span>
 
 - The expected time for an attacker to brute-force a valid session ID depends on factors such as the number of bits of entropy, the number of active sessions, session expiration times, and the attacker's guessing rate.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If a web application generates session IDs with 64 bits of entropy, an attacker can expect to spend approximately 585 years to successfully guess a valid session ID, assuming the attacker can try 10,000 guesses per second with 100,000 valid simultaneous sessions available in the application.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Further analysis of the expected time for an attacker to brute-force session identifiers is available [here](https://owasp.org/www-community/vulnerabilities/Insufficient_Session-ID_Length#estimating-attack-time).
 
 </div>
@@ -1226,25 +1163,7 @@ A web application should make use of cookies for session ID exchange management.
 <span className="bilingualLabel english">English (原文)</span>
 
 - Even if a web application makes use of cookies as its default session ID exchange mechanism, it might accept other exchange mechanisms too.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - It is therefore required to confirm via thorough testing all the different mechanisms currently accepted by the web application when processing and managing session IDs, and limit the accepted session ID tracking mechanisms to just cookies.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - In the past, some web applications used URL parameters, or even switched from cookies to URL parameters (via automatic URL rewriting), if certain conditions are met (for example, the identification of web clients without support for cookies or not accepting cookies due to user privacy concerns).
 
 </div>
@@ -1289,35 +1208,8 @@ The following set of best practices are focused on protecting the session ID (sp
 
 - Do not switch a given session from HTTP to HTTPS, or vice-versa, as this will disclose the session ID in the clear through the network.
     - When redirecting to HTTPS, ensure that the cookie is set or regenerated **after** the redirect has occurred.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Do not mix encrypted and unencrypted contents (HTML pages, images, CSS, JavaScript files, etc) in the same page, or from the same domain.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Where possible, avoid offering public unencrypted contents and private encrypted contents from the same host. Where insecure content is required, consider hosting this on a separate insecure domain.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Implement [HTTP Strict Transport Security (HSTS)](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html) to enforce HTTPS connections.
 
 </div>
@@ -1459,15 +1351,6 @@ Use cookie name prefixes to bind cookies to security properties at the browser l
 <span className="bilingualLabel english">English (原文)</span>
 
 - `__Host-` — the cookie must be set with `Secure`, must not have a `Domain` attribute, and must use `Path=/`. Prevents subdomain forgery and HTTPS downgrade attacks. **Recommended for session IDs.**
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `__Secure-` — the cookie must be set with `Secure`. Use only when subdomain sharing is required.
 
 </div>
@@ -1574,55 +1457,10 @@ Typically, session management capabilities to track users after authentication m
 <span className="bilingualLabel english">English (原文)</span>
 
 - Ensure that sensitive information is not compromised by ensuring that it is not persistent, encrypting it, and storing it only for the duration of the need
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure that unauthorized activities cannot take place via cookie manipulation
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure secure flag is set to prevent accidental transmission over the wire in a non-secure manner
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Determine if all state transitions in the application code properly check for the cookies and enforce their use
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure entire cookie should be encrypted if sensitive data is persisted in the cookie
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Define all cookies being used by the application, their name and why they are needed
 
 </div>
@@ -1905,25 +1743,7 @@ Web applications should require reauthentication after high-risk events such as:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Changes to critical user information (e.g., password, email address)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Login attempts from new or suspicious IP addresses or devices
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Account recovery flows (e.g., password reset or compromised-account detection)
 
 </div>
@@ -2238,25 +2058,7 @@ To ensure session integrity and account protection, applications should require 
 <span className="bilingualLabel english">English (原文)</span>
 
 - Attempted or completed password changes
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Login from a new or suspicious IP address or device
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Completion of account recovery or challenge flows (e.g., hacked-lock scenarios)
 
 </div>
@@ -2288,15 +2090,6 @@ Requiring reauthentication helps mitigate session hijacking and unauthorized acc
 <span className="bilingualLabel english">English (原文)</span>
 
 - Prompt users for primary credentials (e.g., password) or enforce MFA
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Provide clear messaging explaining the need to reauthenticate
 
 </div>

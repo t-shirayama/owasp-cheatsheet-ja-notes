@@ -417,6 +417,8 @@ Application accessibility is a very important factor in protection and preventio
 ## 主要な観点
 
 - 文字列連結で命令を組み立てない。
+- 構造化された安全なAPIを使う。
+- 入力検証と出力先別エンコードを分けて実施する。
 
 </div>
 </div>
@@ -428,12 +430,7 @@ Application accessibility is a very important factor in protection and preventio
 Injection flaws occur when an application sends untrusted data to an interpreter. Injection flaws are very prevalent, particularly in legacy code, often found in SQL queries, LDAP queries, XPath queries, OS commands, program arguments, etc. Injection flaws are easy to discover when examining code, but more difficult via testing. Scanners and fuzzers can help attackers find them.
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 構造化された安全なAPIを使う。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -443,12 +440,7 @@ Injection flaws occur when an application sends untrusted data to an interpreter
 Depending on the accessibility different actions must be taken in order to fix them. It is always the best way to fix the problem in source code itself, or even redesign some parts of the applications. But if the source code is not available or it is simply uneconomical to fix legacy software only virtual patching makes sense.
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 入力検証と出力先別エンコードを分けて実施する。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -570,25 +562,7 @@ SQL Injection attacks can be divided into the following three classes:
 <span className="bilingualLabel english">English (原文)</span>
 
 - **Inband:** data is extracted using the same channel that is used to inject the SQL code. This is the most straightforward kind of attack, in which the retrieved data is presented directly in the application web page.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Out-of-band:** data is retrieved using a different channel (e.g., an email with the results of the query is generated and sent to the tester).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Inferential or Blind:** there is no actual transfer of data, but the tester is able to reconstruct the information by sending particular requests and observing the resulting behavior of the DB Server.
 
 </div>
@@ -895,15 +869,6 @@ LDAP Injection is an attack used to exploit web based applications that construc
 <span className="bilingualLabel english">English (原文)</span>
 
 1. The lack of safer, parameterized LDAP query interfaces
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. The widespread use of LDAP to authenticate users to systems.
 
 </div>
@@ -1225,15 +1190,6 @@ If it is considered unavoidable the call to a system command incorporated with u
 <span className="bilingualLabel english">English (原文)</span>
 
 1. **Parameterization** - If available, use structured mechanisms that automatically enforce the separation between data and command. These mechanisms can help to provide the relevant quoting, encoding.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. **Input validation** - the values for commands and the relevant arguments should be both validated. There are different degrees of validation for the actual command and its arguments:
     - When it comes to the **commands** used, these must be validated against a list of allowed commands.
     - In regards to the **arguments** used for these commands, they should be validated using the following options:

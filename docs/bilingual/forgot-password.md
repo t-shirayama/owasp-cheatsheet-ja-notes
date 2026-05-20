@@ -264,6 +264,15 @@ The following short guidelines can be used as a quick reference to protect the f
 <span className="bilingualLabel english">English (原文)</span>
 
 - **Return a consistent message for both existent and non-existent accounts.**
+- **Ensure that the time taken for the user response message is uniform.**
+- **Use a side-channel to communicate the method to reset their password.**
+- **Use [URL tokens](#url-tokens) for the simplest and fastest implementation.**
+- **Ensure that generated tokens or codes are:**
+    - **Randomly generated using a cryptographically safe algorithm.**
+    - **Sufficiently long to protect against brute-force attacks.**
+    - **Stored securely.**
+    - **Single use and expire after an appropriate period.**
+- **Do not make a change to the account until a valid token is presented, such as locking out the account.**
 
 </div>
 <div className="bilingualBlock japanese">
@@ -278,7 +287,7 @@ URL トークンを使う場合は、トークンをクエリ文字列に含め�
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- **Ensure that the time taken for the user response message is uniform.**
+This cheat sheet is focused on resetting users passwords. For guidance on resetting multifactor authentication (MFA), see the relevant section in the [Multifactor Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html#resetting-mfa).
 
 </div>
 <div className="bilingualBlock japanese">
@@ -293,7 +302,9 @@ PIN を使う場合は、6から12桁程度のコードを SMS などのサイ�
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- **Use a side-channel to communicate the method to reset their password.**
+## Forgot Password Service
+
+The password reset process can be broken into two main steps, detailed in the following sections.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -308,7 +319,9 @@ PIN を使う場合は、6から12桁程度のコードを SMS などのサイ�
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- **Use [URL tokens](#url-tokens) for the simplest and fastest implementation.**
+### Forgot Password Request
+
+When a user uses the forgot password service and inputs their username or email, the below should be followed to implement a secure process:
 
 </div>
 <div className="bilingualBlock japanese">
@@ -323,11 +336,10 @@ PIN を使う場合は、6から12桁程度のコードを SMS などのサイ�
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- **Ensure that generated tokens or codes are:**
-    - **Randomly generated using a cryptographically safe algorithm.**
-    - **Sufficiently long to protect against brute-force attacks.**
-    - **Stored securely.**
-    - **Single use and expire after an appropriate period.**
+- Return a consistent message for both existent and non-existent accounts.
+- Ensure that responses return in a consistent amount of time to prevent an attacker enumerating which accounts exist. This could be achieved by using asynchronous calls or by making sure that the same logic is followed, instead of using a quick exit method.
+- Implement protections against excessive automated submissions such as rate-limiting on a per-account basis, requiring a CAPTCHA, or other controls. Otherwise an attacker could make thousands of password reset requests per hour for a given account, flooding the user's intake system (e.g., email inbox or SMS) with useless requests.
+- Employ normal security measures, such as [SQL Injection Prevention methods](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) and [Input Validation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
 
 </div>
 <div className="bilingualBlock japanese">
@@ -336,90 +348,6 @@ PIN を使う場合は、6から12桁程度のコードを SMS などのサイ�
 パスワードリセット要求を理由にアカウントをロックしてはならない。攻撃者が既知の利用者名に対してリセット要求を繰り返し、正規利用者をサービス拒否状態にできるためである。MFA のリカバリはこのチートシートの対象外であり、MFA 固有の復旧手順として設計する必要がある。
 
 </div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- **Do not make a change to the account until a valid token is presented, such as locking out the account.**
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-This cheat sheet is focused on resetting users passwords. For guidance on resetting multifactor authentication (MFA), see the relevant section in the [Multifactor Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html#resetting-mfa).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-## Forgot Password Service
-
-The password reset process can be broken into two main steps, detailed in the following sections.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-### Forgot Password Request
-
-When a user uses the forgot password service and inputs their username or email, the below should be followed to implement a secure process:
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Return a consistent message for both existent and non-existent accounts.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Ensure that responses return in a consistent amount of time to prevent an attacker enumerating which accounts exist. This could be achieved by using asynchronous calls or by making sure that the same logic is followed, instead of using a quick exit method.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Implement protections against excessive automated submissions such as rate-limiting on a per-account basis, requiring a CAPTCHA, or other controls. Otherwise an attacker could make thousands of password reset requests per hour for a given account, flooding the user's intake system (e.g., email inbox or SMS) with useless requests.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Employ normal security measures, such as [SQL Injection Prevention methods](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) and [Input Validation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
-
-</div>
-
 </div>
 
 <div className="bilingualPair">
@@ -439,55 +367,10 @@ Once the user has proved their identity by providing the token (sent via an emai
 <span className="bilingualLabel english">English (原文)</span>
 
 - The user should confirm the password they set by writing it twice.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure that a secure password policy is in place, and is consistent with the rest of the application.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Update and store the password following [secure practices](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Send the user an email informing them that their password has been reset (do not send the password in the email!).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Once they have set their new password, the user should then login through the usual mechanism. Don't automatically log the user in, as this introduces additional complexity to the authentication and session handling code, and increases the likelihood of introducing vulnerabilities.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ask the user if they want to invalidate all of their existing sessions, or invalidate the sessions automatically.
 
 </div>
@@ -521,35 +404,8 @@ This can be done through any of the following methods:
 <span className="bilingualLabel english">English (原文)</span>
 
 - [URL tokens](#url-tokens).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [PINs](#pins)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Offline methods](#offline-methods)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [Security questions](#security-questions).
 
 </div>
@@ -584,45 +440,9 @@ It is essential to employ good security practices for the reset identifiers (tok
 
 - Generated using a [cryptographically secure random number generator](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#secure-random-number-generation).
     - It is also possible to use JSON Web Tokens (JWTs) in place of random tokens, although this can introduce additional vulnerability, such as those discussed in the [JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Long enough to protect against brute-force attacks.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Linked to an individual user in the database.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Invalidated after they have been used.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Stored in a secure manner, as discussed in the [Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html).
 
 </div>
@@ -646,85 +466,13 @@ URL tokens are passed in the query string of the URL, and are typically sent to 
 <span className="bilingualLabel english">English (原文)</span>
 
 1. Generate a token for the user and attach it in the URL query string.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. Send this token to the user via email.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Don't rely on the [Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host) header while creating the reset URLs to avoid [Host Header Injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/17-Testing_for_Host_Header_Injection) attacks. The URL should either be hard-coded, or validated against a list of trusted domains.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Ensure that the URL is using HTTPS.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
+   - Don't rely on the [Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host) header while creating the reset URLs to avoid [Host Header Injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/17-Testing_for_Host_Header_Injection) attacks. The URL should either be hard-coded, or validated against a list of trusted domains.
+   - Ensure that the URL is using HTTPS.
 3. The user receives the email, and browses to the URL with the attached token.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Ensure that the reset password page adds the [Referrer Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) tag with the `noreferrer` value in order to avoid [referrer leakage](https://portswigger.net/kb/issues/00500400_cross-domain-referer-leakage).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Implement appropriate protection to prevent users from brute-forcing tokens in the URL, such as rate limiting.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
+   - Ensure that the reset password page adds the [Referrer Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) tag with the `noreferrer` value in order to avoid [referrer leakage](https://portswigger.net/kb/issues/00500400_cross-domain-referer-leakage).
+   - Implement appropriate protection to prevent users from brute-forcing tokens in the URL, such as rate limiting.
 4. If required, perform any additional validation steps such as requiring the user to answer [security questions](#security-questions).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 5. Let the user create a new password and confirm it. Ensure that the same password policy used elsewhere in the application is applied.
 
 </div>
@@ -758,55 +506,10 @@ PINs are numbers (between 6 and 12 digits) that are sent to the user through a s
 <span className="bilingualLabel english">English (原文)</span>
 
 1. Generate a PIN.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. Send it to the user via SMS or another mechanism.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Breaking the PIN up with spaces makes it easier for the user to read and enter.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
+   - Breaking the PIN up with spaces makes it easier for the user to read and enter.
 3. The user then enters the PIN along with their username on the password reset page.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 4. Create a limited session from that PIN that only permits the user to reset their password.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 5. Let the user create a new password and confirm it. Ensure that the same password policy used elsewhere in the application is applied.
 
 </div>

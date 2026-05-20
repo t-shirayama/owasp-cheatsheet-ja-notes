@@ -1049,6 +1049,8 @@ Sample code used in tips is located [here](https://github.com/righettod/injectio
 ## 主要な観点
 
 - 危険なAPIと安全な代替APIを把握する。
+- XML、シリアライズ、リフレクションを慎重に扱う。
+- 依存関係とランタイム設定を管理する。
 
 </div>
 </div>
@@ -1062,12 +1064,7 @@ Sample code used in tips is located [here](https://github.com/righettod/injectio
 [Injection](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A1-Injection) in OWASP Top 10 is defined as following:
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- XML、シリアライズ、リフレクションを慎重に扱う。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -1077,12 +1074,7 @@ Sample code used in tips is located [here](https://github.com/righettod/injectio
 *Consider anyone who can send untrusted data to the system, including external users, internal users, and administrators.*
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 依存関係とランタイム設定を管理する。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -1102,15 +1094,6 @@ The following point can be applied, in a general way, to prevent *Injection* iss
 <span className="bilingualLabel english">English (原文)</span>
 
 1. Apply **Input Validation** (using allowlist approach) combined with **Output Sanitizing+Escaping** on user input/output.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. If you need to interact with system, try to use API features provided by your technology stack (Java / .Net / PHP...) instead of building command.
 
 </div>
@@ -1655,25 +1638,7 @@ To prevent an attacker from writing malicious content into the application log, 
 
 - Use structured log formats, such as JSON, instead of unstructured text formats.
   Unstructured formats are susceptible to **C**arriage **R**eturn (CR) and **L**ine **F**eed (LF) injection (see [CWE-93](https://cwe.mitre.org/data/definitions/93.html)).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Limit the size of the user input value used to create the log message.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Make sure [all XSS defenses](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) are applied when viewing log files in a web browser.
 
 </div>
@@ -1864,55 +1829,10 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ### General cryptography guidance
 
 - **Never, ever write your own cryptographic functions.**
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Wherever possible, try and avoid writing any cryptographic code at all. Instead try and either use pre-existing secret management solutions or the secret management solution provided by your cloud provider. For more information, see the [OWASP Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If you cannot use a pre-existing secret management solution, try and use a trusted and well known implementation library rather than using the libraries built into JCA/JCE as it is far too easy to make cryptographic errors with them.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Make sure your application or protocol can easily support a future change of cryptographic algorithms.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Use your package manager wherever possible to keep all of your packages up to date. Watch the updates on your development setup, and plan updates to your applications accordingly.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - We will show examples below based on Google Tink, which is a library created by cryptography experts for using cryptography safely (in the sense of minimizing common mistakes made when using standard cryptography libraries).
 
 </div>
@@ -2094,25 +2014,7 @@ A few constraints/pitfalls with this code:
 <span className="bilingualLabel english">English (原文)</span>
 
 - It does not take into account key rotation or management which is a whole topic in itself.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - It is important to use a different nonce for every encryption operation, especially if the same key is used. For more information, see [this answer on Cryptography Stack Exchange](https://crypto.stackexchange.com/a/66500).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The key will need to be stored securely.
 
 </div>
@@ -2455,45 +2357,9 @@ A few constraints/pitfalls with this code:
 <span className="bilingualLabel english">English (原文)</span>
 
 - It does not take into account key rotation or management which is a whole topic in itself.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The code deliberately enforces a new nonce for every encryption operation but this must be managed as a separate data item alongside the ciphertext.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The private keys will need to be stored securely.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The code does not consider the validation of public keys before use.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Overall, there is no verification of authenticity between the two sides.
 
 </div>

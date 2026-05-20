@@ -591,56 +591,17 @@ Encryption can be performed on a number of levels in the application stack, such
 <span className="bilingualLabel english">English (原文)</span>
 
 - At the application level.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- アプリケーションレベル
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - At the database level (e.g, [SQL Server TDE](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15))
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- データベースレベル（例: [SQL Server TDE](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15)）
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - At the filesystem level (e.g, BitLocker or LUKS)
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- ファイルシステムレベル（例: BitLocker または LUKS）
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - At the hardware level (e.g, encrypted RAID cards or SSDs)
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+- アプリケーションレベル
+- データベースレベル（例: [SQL Server TDE](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15)）
+- ファイルシステムレベル（例: BitLocker または LUKS）
 - ハードウェアレベル（例: 暗号化 RAID カードまたは SSD）
 
 </div>
@@ -734,101 +695,23 @@ Many other symmetric and asymmetric algorithms are available which have their ow
 <span className="bilingualLabel english">English (原文)</span>
 
 - Key size.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 鍵長
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Known attacks and weaknesses of the algorithm.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- アルゴリズムに対する既知の攻撃と弱点
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Maturity of the algorithm.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- アルゴリズムの成熟度
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Approval by third parties such as [NIST's algorithmic validation program](https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program).
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- [NIST のアルゴリズム検証プログラム](https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program) など第三者による承認
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Performance (both for encryption and decryption).
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 性能（暗号化と復号の両方）
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Quality of the libraries available.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 利用可能なライブラリの品質
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Portability of the algorithm (i.e, how widely supported is it).
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+- 鍵長
+- アルゴリズムに対する既知の攻撃と弱点
+- アルゴリズムの成熟度
+- [NIST のアルゴリズム検証プログラム](https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program) など第三者による承認
+- 性能（暗号化と復号の両方）
+- 利用可能なライブラリの品質
 - アルゴリズムの移植性、つまりどの程度広くサポートされているか
 
 </div>
@@ -1163,56 +1046,17 @@ Formal processes should be implemented (and tested) to cover all aspects of key 
 <span className="bilingualLabel english">English (原文)</span>
 
 - Generating and storing new keys.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 新しい鍵の生成と保存
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Distributing keys to the required parties.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 必要な相手への鍵の配布
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Deploying keys to application servers.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- アプリケーションサーバーへの鍵の展開
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Rotating and decommissioning old keys
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+- 新しい鍵の生成と保存
+- 必要な相手への鍵の配布
+- アプリケーションサーバーへの鍵の展開
 - 古い鍵のローテーションと廃止
 
 </div>
@@ -1277,59 +1121,23 @@ Encryption keys should be changed (or rotated) based on a number of different cr
 
 - If the previous key is known (or suspected) to have been compromised.
     - This could also be caused by a someone who had access to the key leaving the organisation.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 以前の鍵が侵害されたことが分かっている、または疑われる場合
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - After a specified period of time has elapsed (known as the cryptoperiod).
     - There are many factors that could affect what an appropriate cryptoperiod is, including the size of the key, the sensitivity of the data, and the threat model of the system. See section 5.3 of [NIST SP 800-57](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) for further guidance.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- これは鍵にアクセスできた人物が組織を離れた場合にも発生し得ます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - After the key has been used to encrypt a specific amount of data.
     - This would typically be `2^35` bytes (~34GB) for 64-bit keys and `2^68` bytes (~295 exabytes) for 128-bit block size.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 指定された期間、つまり暗号期間が経過した場合
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If there is a significant change to the security provided by the algorithm (such as a new attack being announced).
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 適切な暗号期間に影響する要素は、鍵のサイズ、データの機密性、システムの脅威モデルなど多数あります。詳細は [NIST SP 800-57](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) の 5.3 節を参照してください。
+- 以前の鍵が侵害されたことが分かっている、または疑われる場合
+  - これは鍵にアクセスできた人物が組織を離れた場合にも発生し得ます。
+- 指定された期間、つまり暗号期間が経過した場合
+  - 適切な暗号期間に影響する要素は、鍵のサイズ、データの機密性、システムの脅威モデルなど多数あります。詳細は [NIST SP 800-57](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) の 5.3 節を参照してください。
+- 鍵が特定量のデータを暗号化するために使用された場合
+  - これは通常、64 bit 鍵で `2^35` バイト（約 34GB）、128 bit ブロックサイズで `2^68` バイト（約 295 エクサバイト）です。
+- 新しい攻撃が発表されるなど、アルゴリズムが提供するセキュリティに重大な変化があった場合
 
 </div>
 </div>
@@ -1344,7 +1152,7 @@ Once one of these criteria have been met, a new key should be generated and used
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 鍵が特定量のデータを暗号化するために使用された場合
+これらの基準のいずれかに該当したら、新しい鍵を生成し、新しいデータの暗号化に使用すべきです。古い鍵で暗号化された既存データの扱いには、主に2つの方式があります。
 
 </div>
 </div>
@@ -1354,27 +1162,14 @@ Once one of these criteria have been met, a new key should be generated and used
 <span className="bilingualLabel english">English (原文)</span>
 
 1. Decrypting it and re-encrypting it with the new key.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- これは通常、64 bit 鍵で `2^35` バイト（約 34GB）、128 bit ブロックサイズで `2^68` バイト（約 295 エクサバイト）です。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 2. Marking each item with the ID of the key that was used to encrypt it, and storing multiple keys to allow the old data to be decrypted.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 新しい攻撃が発表されるなど、アルゴリズムが提供するセキュリティに重大な変化があった場合
+1. 復号して新しい鍵で再暗号化する。
+2. 各項目に暗号化に使われた鍵 ID を付与し、古いデータを復号できるように複数の鍵を保管する。
 
 </div>
 </div>
@@ -1389,7 +1184,7 @@ The first option should generally be preferred, as it greatly simplifies both th
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-これらの基準のいずれかに該当したら、新しい鍵を生成し、新しいデータの暗号化に使用すべきです。古い鍵で暗号化された既存データの扱いには、主に2つの方式があります。
+通常は1つ目の方式が望ましいです。アプリケーションコードと鍵管理プロセスの両方を大幅に単純化できるためです。ただし、常に実現可能とは限りません。古いバックアップやデータコピーを復号する必要がある場合に備えて、廃止された古い鍵を一定期間保存する必要があることにも注意してください。
 
 </div>
 </div>
@@ -1401,36 +1196,6 @@ The first option should generally be preferred, as it greatly simplifies both th
 It is important that the code and processes required to rotate a key are in place **before** they are required, so that keys can be quickly rotated in the event of a compromise. Additionally, processes should also be implemented to allow the encryption algorithm or library to be changed, in case a new vulnerability is found in the algorithm or implementation.
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-1. 復号して新しい鍵で再暗号化する。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-2. 各項目に暗号化に使われた鍵 ID を付与し、古いデータを復号できるように複数の鍵を保管する。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-通常は1つ目の方式が望ましいです。アプリケーションコードと鍵管理プロセスの両方を大幅に単純化できるためです。ただし、常に実現可能とは限りません。古いバックアップやデータコピーを復号する必要がある場合に備えて、廃止された古い鍵を一定期間保存する必要があることにも注意してください。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -1478,71 +1243,19 @@ Where available, the secure storage mechanisms provided by the operating system,
 <span className="bilingualLabel english">English (原文)</span>
 
 - A physical Hardware Security Module (HSM).
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 物理 Hardware Security Module（HSM）
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - A virtual HSM.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 仮想 HSM
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Key vaults such as [Amazon KMS](https://aws.amazon.com/kms/) or [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/).
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- [Amazon KMS](https://aws.amazon.com/kms/) や [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/) などの key vault
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - An external secrets management service such as [Conjur](https://github.com/cyberark/conjur) or [HashiCorp Vault](https://github.com/hashicorp/vault).
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- [Conjur](https://github.com/cyberark/conjur) や [HashiCorp Vault](https://github.com/hashicorp/vault) などの外部シークレット管理サービス
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Secure storage APIs provided by the [ProtectedData](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata?redirectedfrom=MSDN&view=netframework-4.8) class in the .NET framework.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+- 物理 Hardware Security Module（HSM）
+- 仮想 HSM
+- [Amazon KMS](https://aws.amazon.com/kms/) や [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/) などの key vault
+- [Conjur](https://github.com/cyberark/conjur) や [HashiCorp Vault](https://github.com/hashicorp/vault) などの外部シークレット管理サービス
 - .NET Framework の [ProtectedData](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata?redirectedfrom=MSDN&view=netframework-4.8) クラスが提供する安全な保存 API
 
 </div>
@@ -1568,71 +1281,19 @@ There are many advantages to using these types of secure storage over simply put
 <span className="bilingualLabel english">English (原文)</span>
 
 - Central management of keys, especially in containerised environments.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 特にコンテナ化環境での鍵の集中管理
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Easy key rotation and replacement.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 鍵の容易なローテーションと置換
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Secure key generation.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 安全な鍵生成
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Simplifying compliance with regulatory standards such as FIPS 140 or PCI DSS.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- FIPS 140 や PCI DSS などの規制標準への準拠の簡素化
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Making it harder for an attacker to export or steal keys.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+- 特にコンテナ化環境での鍵の集中管理
+- 鍵の容易なローテーションと置換
+- 安全な鍵生成
+- FIPS 140 や PCI DSS などの規制標準への準拠の簡素化
 - 攻撃者が鍵をエクスポートまたは窃取することの困難化
 
 </div>
@@ -1658,56 +1319,17 @@ In some cases none of these will be available, such as in a shared hosting envir
 <span className="bilingualLabel english">English (原文)</span>
 
 - Do not hard-code keys into the application source code.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 鍵をアプリケーションソースコードにハードコードしない。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Do not check keys into version control systems.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 鍵をバージョン管理システムにコミットしない。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Protect the configuration files containing the keys with restrictive permissions.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 鍵を含む設定ファイルを制限的な権限で保護する。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Avoid storing keys in environment variables, as these can be accidentally exposed through functions such as [phpinfo()](https://www.php.net/manual/en/function.phpinfo.php) or through the `/proc/self/environ` file.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+- 鍵をアプリケーションソースコードにハードコードしない。
+- 鍵をバージョン管理システムにコミットしない。
+- 鍵を含む設定ファイルを制限的な権限で保護する。
 - 鍵を環境変数に保存することを避ける。環境変数は [phpinfo()](https://www.php.net/manual/en/function.phpinfo.php) や `/proc/self/environ` ファイルを通じて偶発的に露出する可能性があります。
 
 </div>
@@ -1786,26 +1408,13 @@ Where possible, encryption keys should themselves be stored in an encrypted form
 <span className="bilingualLabel english">English (原文)</span>
 
 - The Data Encryption Key (DEK) is used to encrypt the data.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- Data Encryption Key（DEK）はデータの暗号化に使用します。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The Key Encryption Key (KEK) is used to encrypt the DEK.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+- Data Encryption Key（DEK）はデータの暗号化に使用します。
 - Key Encryption Key（KEK）は DEK の暗号化に使用します。
 
 </div>

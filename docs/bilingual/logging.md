@@ -676,6 +676,11 @@ Application logging should always be included for security events. Application l
 ### Operational use cases
 
 - General debugging
+- Establishing baselines
+- Business process monitoring e.g. sales process abandonment, transactions, connections
+- Providing information about problems and unusual conditions
+- Performance monitoring e.g. data load time, page timeouts
+- Other business-specific requirements
 
 </div>
 <div className="bilingualBlock japanese">
@@ -692,7 +697,9 @@ Application logging should always be included for security events. Application l
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Establishing baselines
+### Security use cases
+
+Application logging might also be used to record other types of events too such as:
 
 </div>
 <div className="bilingualBlock japanese">
@@ -707,7 +714,16 @@ Application logging should always be included for security events. Application l
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Business process monitoring e.g. sales process abandonment, transactions, connections
+- Anti-automation monitoring
+- Identifying security incidents
+- Monitoring policy violations
+- Assisting non-repudiation controls (note that the trait non-repudiation is hard to achieve for logs because their trustworthiness is often just based on the logging party being audited properly while mechanisms like digital signatures are hard to utilize here)
+- Audit trails e.g. data addition, modification and deletion, data exports
+- Compliance monitoring
+- Data for subsequent requests for information e.g. data subject access, freedom of information, litigation, police and other regulatory investigations
+- Legally sanctioned interception of data e.g. application-layer wire-tapping
+- Contributing additional application-specific data for incident investigation which is lacking in other log sources
+- Helping defend against vulnerability identification and exploitation through attack detection
 
 </div>
 <div className="bilingualBlock japanese">
@@ -724,7 +740,7 @@ Application logging should always be included for security events. Application l
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Providing information about problems and unusual conditions
+Process monitoring, audit, and transaction logs/trails etc. are usually collected for different purposes than security event logging, and this often means they should be kept separate.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -739,227 +755,22 @@ Application logging should always be included for security events. Application l
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Performance monitoring e.g. data load time, page timeouts
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 入力検証の失敗。プロトコル違反、許容されないエンコーディング、不正なパラメータ名や値を含みます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Other business-specific requirements
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 出力検証の失敗。想定外のレコード集合、不正なデータエンコーディングなどを含みます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-### Security use cases
-
-Application logging might also be used to record other types of events too such as:
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 認証の成功と失敗。ブルートフォース、クレデンシャルスタッフィング、パスワードスプレーなどの早期検知に使います。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Anti-automation monitoring
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 認可の失敗。アクセス制御の拒否、権限不足、対象オブジェクトへの不正アクセス試行を含みます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Identifying security incidents
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- セッション管理の失敗。セッション ID の改変、疑わしい JWT 検証失敗などを含みます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Monitoring policy violations
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- アプリケーションエラーとシステムイベント。実行時エラー、接続問題、性能問題、外部サービスエラー、ファイルシステムエラー、ウイルス検知、構成変更などを含みます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Assisting non-repudiation controls (note that the trait non-repudiation is hard to achieve for logs because their trustworthiness is often just based on the logging party being audited properly while mechanisms like digital signatures are hard to utilize here)
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- アプリケーションや関連システムの起動、停止、ログ機能の初期化、停止、一時停止を含みます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Audit trails e.g. data addition, modification and deletion, data exports
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 高リスク機能の利用。ユーザー管理、権限変更、管理者操作、共通アカウントや緊急用アカウントの利用、機密データアクセス、暗号鍵の利用やローテーション、データのインポートやエクスポート、ファイルアップロード、デシリアライゼーション失敗、バックエンド TLS 失敗などを含みます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Compliance monitoring
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 利用規約、個人データ利用、モバイル機能権限、マーケティング同意など、法的同意やオプトインの変更を含みます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Data for subsequent requests for information e.g. data subject access, freedom of information, litigation, police and other regulatory investigations
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 業務フローを外れた操作、順序を無視した操作、制限超過など、疑わしいビジネスロジック活動を含みます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Legally sanctioned interception of data e.g. application-layer wire-tapping
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-必要に応じて、シーケンス失敗、過剰利用、データ変更、不正行為、構成変更、アプリケーションコードやメモリの変更も記録対象として検討します。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Contributing additional application-specific data for incident investigation which is lacking in other log sources
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### イベント属性
-
-各ログエントリには、後続の監視と分析に十分な情報を含めます。基本は「いつ、どこで、誰が、何を」を記録することです。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Helping defend against vulnerability identification and exploitation through attack detection
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- いつ: ログ記録日時、イベント発生日時、ユーザー操作単位を追跡する相互作用 ID。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-Process monitoring, audit, and transaction logs/trails etc. are usually collected for different purposes than security event logging, and this often means they should be kept separate.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- どこで: アプリケーション名とバージョン、ホスト、IP アドレス、ポート、サービス名、URL、HTTP メソッド、コード位置。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 The types of events and details collected will tend to be different.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 誰が: 送信元アドレス、端末識別子、ユーザー ID、ユーザー名など。未認証でも識別可能な情報があれば記録します。
+- 入力検証の失敗。プロトコル違反、許容されないエンコーディング、不正なパラメータ名や値を含みます。
+- 出力検証の失敗。想定外のレコード集合、不正なデータエンコーディングなどを含みます。
+- 認証の成功と失敗。ブルートフォース、クレデンシャルスタッフィング、パスワードスプレーなどの早期検知に使います。
+- 認可の失敗。アクセス制御の拒否、権限不足、対象オブジェクトへの不正アクセス試行を含みます。
+- セッション管理の失敗。セッション ID の改変、疑わしい JWT 検証失敗などを含みます。
+- アプリケーションエラーとシステムイベント。実行時エラー、接続問題、性能問題、外部サービスエラー、ファイルシステムエラー、ウイルス検知、構成変更などを含みます。
+- アプリケーションや関連システムの起動、停止、ログ機能の初期化、停止、一時停止を含みます。
+- 高リスク機能の利用。ユーザー管理、権限変更、管理者操作、共通アカウントや緊急用アカウントの利用、機密データアクセス、暗号鍵の利用やローテーション、データのインポートやエクスポート、ファイルアップロード、デシリアライゼーション失敗、バックエンド TLS 失敗などを含みます。
+- 利用規約、個人データ利用、モバイル機能権限、マーケティング同意など、法的同意やオプトインの変更を含みます。
+- 業務フローを外れた操作、順序を無視した操作、制限超過など、疑わしいビジネスロジック活動を含みます。
 
 </div>
 </div>
@@ -974,7 +785,7 @@ For example a [PCIDSS](https://www.pcisecuritystandards.org/pci_security/) audit
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 何を: イベント種別、重大度、セキュリティ関連フラグ、説明、アクション、対象オブジェクト、成功・失敗・保留などの結果、理由、HTTP ステータス、分析信頼度、アプリケーションが取った応答。
+必要に応じて、シーケンス失敗、過剰利用、データ変更、不正行為、構成変更、アプリケーションコードやメモリの変更も記録対象として検討します。
 
 </div>
 </div>
@@ -989,7 +800,9 @@ Use knowledge of the intended purposes to guide what, when and how much. The rem
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-組織全体でイベント種別、重大度、信頼度、説明文の構文、フィールド名、型、長さ、日時形式を統一し、文書化します。
+### イベント属性
+
+各ログエントリには、後続の監視と分析に十分な情報を含めます。基本は「いつ、どこで、誰が、何を」を記録することです。
 
 </div>
 </div>
@@ -1008,9 +821,10 @@ The application itself has access to a wide range of information events that sho
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### 記録してはいけないデータ
-
-法的に許可されていないデータをログに記録してはいけません。従業員監視、通信傍受、同意のないデータ収集などは、管轄や状況によって違法になる可能性があります。
+- いつ: ログ記録日時、イベント発生日時、ユーザー操作単位を追跡する相互作用 ID。
+- どこで: アプリケーション名とバージョン、ホスト、IP アドレス、ポート、サービス名、URL、HTTP メソッド、コード位置。
+- 誰が: 送信元アドレス、端末識別子、ユーザー ID、ユーザー名など。未認証でも識別可能な情報があれば記録します。
+- 何を: イベント種別、重大度、セキュリティ関連フラグ、説明、アクション、対象オブジェクト、成功・失敗・保留などの結果、理由、HTTP ステータス、分析信頼度、アプリケーションが取った応答。
 
 </div>
 </div>
@@ -1025,7 +839,7 @@ The application has the most information about the user (e.g. identity, roles, p
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-次の情報は、通常ログへ直接記録せず、削除、マスク、サニタイズ、ハッシュ化、暗号化などを行います。
+組織全体でイベント種別、重大度、信頼度、説明文の構文、フィールド名、型、長さ、日時形式を統一し、文書化します。
 
 </div>
 </div>
@@ -1040,7 +854,9 @@ Other sources of information about application usage that could also be consider
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- アプリケーションソースコード
+### 記録してはいけないデータ
+
+法的に許可されていないデータをログに記録してはいけません。従業員監視、通信傍受、同意のないデータ収集などは、管轄や状況によって違法になる可能性があります。
 
 </div>
 </div>
@@ -1050,147 +866,21 @@ Other sources of information about application usage that could also be consider
 <span className="bilingualLabel english">English (原文)</span>
 
 - Client software e.g. actions on desktop software and mobile devices in local logs or using messaging technologies, JavaScript exception handler via AJAX, web browser such as using Content Security Policy (CSP) reporting mechanism
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- セッション識別子
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Embedded instrumentation code
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- アクセストークン
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Network firewalls
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 機微な個人データや一部の PII
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Network and host intrusion detection systems (NIDS and HIDS)
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 認証パスワード
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Closely-related applications e.g. filters built into web server software, web server URL redirects/rewrites to scripted custom error pages and handlers
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- データベース接続文字列
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Application firewalls e.g. filters, guards, XML gateways, database firewalls, web application firewalls (WAFs)
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 暗号鍵や主要なシークレット
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Database applications e.g. automatic audit trails, trigger-based actions
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 銀行口座や決済カード情報
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Reputation monitoring services e.g. uptime or malware monitoring
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- ログ基盤が保存を許可されていない高分類データ
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Other applications e.g. fraud monitoring, CRM
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-- 商業上の機密情報
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Operating system e.g. mobile platform
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 収集が違法な情報
+次の情報は、通常ログへ直接記録せず、削除、マスク、サニタイズ、ハッシュ化、暗号化などを行います。
 
 </div>
 </div>
@@ -1205,6 +895,17 @@ The degree of confidence in the event information has to be considered when incl
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+- アプリケーションソースコード
+- セッション識別子
+- アクセストークン
+- 機微な個人データや一部の PII
+- 認証パスワード
+- データベース接続文字列
+- 暗号鍵や主要なシークレット
+- 銀行口座や決済カード情報
+- ログ基盤が保存を許可されていない高分類データ
+- 商業上の機密情報
+- 収集が違法な情報
 - ユーザーが収集を拒否した情報、または同意期限が切れた情報
 
 </div>
@@ -1283,6 +984,8 @@ This could be a centralized log collection and management system (e.g. SIEM or S
 - When using the file system, it is preferable to use a separate partition than those used by the operating system, other application files and user generated content
     - For file-based logs, apply strict permissions concerning which users can access the directories, and the permissions of files within the directories
     - In web applications, the logs should not be exposed in web-accessible locations, and if done so, should have restricted access and be configured with a plain text MIME type (not HTML)
+- When using a database, it is preferable to utilize a separate database account that is only used for writing log data and which has very restrictive database, table, function and command permissions
+- Use standard formats over secure protocols to record and send event data, or log files, to other systems e.g. Common Log File System (CLFS) or Common Event Format (CEF) over syslog; standard formats facilitate integration with centralised logging services
 
 </div>
 <div className="bilingualBlock japanese">
@@ -1299,45 +1002,13 @@ This could be a centralized log collection and management system (e.g. SIEM or S
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- When using a database, it is preferable to utilize a separate database account that is only used for writing log data and which has very restrictive database, table, function and command permissions
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-ログデータへのアクセス制御も検証します。ログを使ってユーザーのアクセス制限やアカウントロックなどを行う場合は、その仕組みが別ユーザーへの DoS に悪用されないことも確認します。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Use standard formats over secure protocols to record and send event data, or log files, to other systems e.g. Common Log File System (CLFS) or Common Event Format (CEF) over syslog; standard formats facilitate integration with centralised logging services
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### デプロイと運用
-
-リリース時には、ログ機能の設定情報をリリース文書に含め、アプリケーションまたはプロセスオーナーへ説明します。ログ監視の出力はインシデント対応プロセスと連携させます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Consider separate files/tables for extended event information such as error stack traces or a record of HTTP request and response headers and bodies.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-運用では、ログ停止、改ざん、不正アクセス、不正削除を検知できるプロセスを用意します。ログは転送中、保存中、閲覧時、アーカイブやバックアップ内でも保護対象です。保存時は改ざん検知、読み取り専用媒体への早期コピー、アクセス記録、アクセス権の定期レビューを検討します。信頼できないネットワークで送信する場合は、安全な転送プロトコルを使い、必要に応じて発生元の検証も行います。
+ログデータへのアクセス制御も検証します。ログを使ってユーザーのアクセス制限やアカウントロックなどを行う場合は、その仕組みが別ユーザーへの DoS に悪用されないことも確認します。
 
 </div>
 </div>
@@ -1354,7 +1025,9 @@ The level and content of security monitoring, alerting, and reporting needs to b
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-ログの保持期間は、法令、規制、契約、業務要件に従います。必要な保持期間が終わる前に破棄してはいけませんが、保持期間を超えて不要に保存し続けてもいけません。
+### デプロイと運用
+
+リリース時には、ログ機能の設定情報をリリース文書に含め、アプリケーションまたはプロセスオーナーへ説明します。ログ監視の出力はインシデント対応プロセスと連携させます。
 
 </div>
 </div>
@@ -1364,6 +1037,60 @@ The level and content of security monitoring, alerting, and reporting needs to b
 <span className="bilingualLabel english">English (原文)</span>
 
 There is no one size fits all solution, and a blind checklist approach can lead to unnecessary "alarm fog" that means real problems go undetected.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+運用では、ログ停止、改ざん、不正アクセス、不正削除を検知できるプロセスを用意します。ログは転送中、保存中、閲覧時、アーカイブやバックアップ内でも保護対象です。保存時は改ざん検知、読み取り専用媒体への早期コピー、アクセス記録、アクセス権の定期レビューを検討します。信頼できないネットワークで送信する場合は、安全な転送プロトコルを使い、必要に応じて発生元の検証も行います。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Where possible, always log:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ログの保持期間は、法令、規制、契約、業務要件に従います。必要な保持期間が終わる前に破棄してはいけませんが、保持期間を超えて不要に保存し続けてもいけません。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Input validation failures e.g. protocol violations, unacceptable encodings, invalid parameter names and values
+    - A specific event for failures to validate a value against a discrete and finite list of valid values (e.g. a country from a dropdown). This is a high security event as it can only be attack activity. For example `input_validation_fail[:field,userid]`.
+- Output validation failures e.g. database record set mismatch, invalid data encoding
+- Authentication successes and failures
+   Failed authentication attempts provide critical early indicators of credential‑based attacks such as brute‑force, credential‑stuffing, and password‑spraying. Monitoring repeated failures for the same account, failures from multiple IP addresses, or rapid bursts of login attempts helps detect account takeover attempts before they succeed. This aligns with the cheat sheet’s guidance that “Authentication successes and failures” must always be logged, as these events are essential for identifying security incidents and supporting incident investigation. Refer to OWASP ASVS 7.1.1 for authentication failure logging requirements.
+- Authorization (access control) failures
+- Session management failures e.g. cookie session identification value modification or suspicious JWT validation failures
+- Application errors and system events e.g. syntax and runtime errors, connectivity problems, performance issues, third party service error messages, file system errors, file upload virus detection, configuration changes
+- Application and related systems start-ups and shut-downs, and logging initialization (starting, stopping or pausing)
+- Use of higher-risk functionality including:
+    - User administration actions such as addition or deletion of users, changes to privileges, assigning users to tokens, adding or deleting tokens
+    - Use of systems administrative privileges or access by application administrators including all actions by those users
+    - Use of default or shared accounts or a "break-glass" account.
+    - Access to sensitive data such as payment cardholder data,
+    - Encryption activities such as use or rotation of cryptographic keys
+    - Creation and deletion of system-level objects
+    - Data import and export including screen-based reports
+    - Submission and processing of user-generated content - especially file uploads
+    - Deserialization failures
+    - Network connections and associated failures such as backend TLS failures (including certificate validation failures), or requests with an unexpected HTTP verb
+- Legal and other opt-ins e.g. permissions for mobile phone capabilities, terms of use, terms & conditions, personal data usage consent, permission to receive marketing communications
+- Suspicious business logic activities such as:
+    - Attempts to perform a set actions out of order/bypass flow control
+    - Actions which don't make sense in the business context
+    - Attempts to exceed limitations for particular actions
 
 </div>
 <div className="bilingualBlock japanese">
@@ -1380,59 +1107,15 @@ There is no one size fits all solution, and a blind checklist approach can lead 
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-Where possible, always log:
+Optionally consider if the following events can be logged and whether it is desirable information:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - 機密性: 権限のない者がログ内の PII、技術的シークレット、業務情報を読める状態を防ぎます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Input validation failures e.g. protocol violations, unacceptable encodings, invalid parameter names and values
-    - A specific event for failures to validate a value against a discrete and finite list of valid values (e.g. a country from a dropdown). This is a high security event as it can only be attack activity. For example `input_validation_fail[:field,userid]`.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - 完全性: ログの改ざん、削除、偽造、ログ基盤への攻撃ペイロード混入を防ぎます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Output validation failures e.g. database record set mismatch, invalid data encoding
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - 可用性: ログ肥大化によるディスク枯渇、ログ処理の性能劣化、ログ記録不能を防ぎます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Authentication successes and failures
-   Failed authentication attempts provide critical early indicators of credential‑based attacks such as brute‑force, credential‑stuffing, and password‑spraying. Monitoring repeated failures for the same account, failures from multiple IP addresses, or rapid bursts of login attempts helps detect account takeover attempts before they succeed. This aligns with the cheat sheet’s guidance that “Authentication successes and failures” must always be logged, as these events are essential for identifying security incidents and supporting incident investigation. Refer to OWASP ASVS 7.1.1 for authentication failure logging requirements.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - 説明責任: 攻撃者が証跡を消す、壊す、別人の ID を記録させることで責任主体を隠すことを防ぎます。
 
 </div>
@@ -1442,159 +1125,12 @@ Where possible, always log:
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Authorization (access control) failures
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Session management failures e.g. cookie session identification value modification or suspicious JWT validation failures
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Application errors and system events e.g. syntax and runtime errors, connectivity problems, performance issues, third party service error messages, file system errors, file upload virus detection, configuration changes
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Application and related systems start-ups and shut-downs, and logging initialization (starting, stopping or pausing)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Use of higher-risk functionality including:
-    - User administration actions such as addition or deletion of users, changes to privileges, assigning users to tokens, adding or deleting tokens
-    - Use of systems administrative privileges or access by application administrators including all actions by those users
-    - Use of default or shared accounts or a "break-glass" account.
-    - Access to sensitive data such as payment cardholder data,
-    - Encryption activities such as use or rotation of cryptographic keys
-    - Creation and deletion of system-level objects
-    - Data import and export including screen-based reports
-    - Submission and processing of user-generated content - especially file uploads
-    - Deserialization failures
-    - Network connections and associated failures such as backend TLS failures (including certificate validation failures), or requests with an unexpected HTTP verb
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Legal and other opt-ins e.g. permissions for mobile phone capabilities, terms of use, terms & conditions, personal data usage consent, permission to receive marketing communications
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Suspicious business logic activities such as:
-    - Attempts to perform a set actions out of order/bypass flow control
-    - Actions which don't make sense in the business context
-    - Attempts to exceed limitations for particular actions
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-Optionally consider if the following events can be logged and whether it is desirable information:
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Sequencing failure
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Excessive use
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Data changes
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Fraud and other criminal activities
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Suspicious, unacceptable, or unexpected behavior
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Modifications to configuration
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Application code file and/or memory changes
 
 </div>
@@ -1641,15 +1177,6 @@ The properties for these will be different depending on the architecture, class 
     - Log date and time (international format)
     - Event date and time - the event timestamp may be different to the time of logging e.g. server logging where the client application is hosted on remote device that is only periodically or intermittently online
     - Interaction identifier `Note A`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Where
     - Application identifier e.g. name and version
     - Application address e.g. cluster/hostname or server IPv4 or IPv6 address and port number, workstation identity, local device identifier
@@ -1657,27 +1184,9 @@ The properties for these will be different depending on the architecture, class 
     - Geolocation
     - Window/form/page e.g. entry point URL and HTTP method for a web application, dialogue box name
     - Code location e.g. script name, module name
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Who (human or machine user)
     - Source address e.g. user's device/machine identifier, user's IP address, cell/RF tower ID, mobile telephone number
     - User identity (if authenticated or otherwise known) e.g. user database table primary key-value, username, license number
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - What
     - Type of event `Note B`
     - Severity of event `Note B` e.g. `&#123;0=emergency, 1=alert, ..., 7=debug&#125;, &#123;fatal, error, warning, info, debug, trace&#125;`
@@ -1703,125 +1212,17 @@ Additionally consider recording:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Secondary time source (e.g. GPS) event date and time
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Action - original intended purpose of the request e.g. Log in, Refresh session ID, Log out, Update profile
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Object e.g. the affected component or other object (user account, data resource, file) e.g. URL, Session ID, User account, File
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Result status - whether the ACTION aimed at the OBJECT was successful e.g. Success, Fail, Defer
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Reason - why the status above occurred e.g. User not authenticated in database check ..., Incorrect credentials
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - HTTP Status Code (web applications only) - the status code returned to the user (often 200 or 301)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Request HTTP headers or HTTP User Agent (web applications only)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - User type classification e.g. public, authenticated user, CMS user, search engine, authorized penetration tester, uptime monitor (see "Data to exclude" below)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Analytical confidence in the event detection `Note B` e.g. low, medium, high or a numeric value
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Responses seen by the user and/or taken by the application e.g. status code, custom text messages, session termination, administrator alerts
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Extended details e.g. stack trace, system error messages, debug information, HTTP request body, HTTP response headers and body
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Internal classifications e.g. responsibility, compliance references
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - External classifications e.g. NIST Security Content Automation Protocol (SCAP), Mitre Common Attack Pattern Enumeration and Classification (CAPEC)
 
 </div>
@@ -1895,115 +1296,16 @@ The following should usually not be recorded directly in the logs, but instead s
 <span className="bilingualLabel english">English (原文)</span>
 
 - Application source code
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Session identification values (consider replacing with a hashed value if needed to track session specific events)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Access tokens
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Sensitive personal data and some forms of personally identifiable information (PII) e.g. health, government identifiers, vulnerable people
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Authentication passwords
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Database connection strings
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Encryption keys and other primary secrets
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Bank account or payment card holder data
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Data of a higher security classification than the logging system is allowed to store
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Commercially-sensitive information
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Information it is illegal to collect in the relevant jurisdictions
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Information a user has opted out of collection, or not consented to e.g. use of do not track, or where consent to collect has expired
 
 </div>
@@ -2025,35 +1327,8 @@ Sometimes the following data can also exist, and whilst useful for subsequent in
 <span className="bilingualLabel english">English (原文)</span>
 
 - File paths
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Database connection strings
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Internal network names and addresses
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Non sensitive personal data (e.g. personal names, telephone numbers, email addresses)
 
 </div>
@@ -2097,35 +1372,8 @@ It may be desirable to be able to alter the level of logging (type of events bas
 <span className="bilingualLabel english">English (原文)</span>
 
 - The default level must provide sufficient detail for business needs
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - It should not be possible to completely deactivate application logging or logging of events that are necessary for compliance requirements
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Alterations to the level/extent of logging must be intrinsic to the application (e.g. undertaken automatically by the application based on an approved algorithm) or follow change management processes (e.g. changes to configuration data, modification of source code)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The logging level must be verified periodically
 
 </div>
@@ -2169,55 +1417,10 @@ If possible create this log handler as a standard module that can be thoroughly 
 <span className="bilingualLabel english">English (原文)</span>
 
 - Perform input validation on event data from other trust zones to ensure it is in the correct format (and consider alerting and not logging if there is an input validation failure)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Perform sanitization on all event data to prevent log injection attacks e.g. carriage return (CR), line feed (LF) and delimiter characters (and optionally to remove sensitive data)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Encode data correctly for the output (logged) format
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If writing to databases, read, understand, and apply the SQL injection cheat sheet
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure failures in the logging processes/systems do not prevent the application from otherwise running or allow information leakage
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Synchronize time across all servers and devices `Note C`
 
 </div>
@@ -2271,95 +1474,14 @@ Logging functionality and systems must be included in code review, application t
 <span className="bilingualLabel english">English (原文)</span>
 
 - Ensure the logging is working correctly and as specified
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Check that events are being classified consistently and the field names, types and lengths are correctly defined to an agreed standard
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure logging is implemented and enabled during application security, fuzz, penetration, and performance testing
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Test the mechanisms are not susceptible to injection attacks
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure there are no unwanted side-effects when logging occurs
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Check the effect on the logging mechanisms when external network connectivity is lost (if this is usually required)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure logging cannot be used to deplete system resources, for example by filling up disk space or exceeding database transaction log space, leading to denial of service
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Test the effect on the application of logging failures such as simulated database connectivity loss, lack of file system space, missing write permissions to the file system, and runtime errors in the logging module itself
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Verify access controls on the event log data
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If log data is utilized in any action against users (e.g. blocking access, account lock-out), ensure this cannot be used to cause denial of service (DoS) of other users
 
 </div>
@@ -2393,25 +1515,7 @@ Applications of this business service are located in network segments:
 <span className="bilingualLabel english">English (原文)</span>
 
 - FRONTEND 1 aka DMZ (UI)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - MIDDLEWARE 1 (business application - service core)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - BACKEND 1 (service database)
 
 </div>
@@ -2433,37 +1537,10 @@ The service responsible for collecting IT events, including security events, is 
 <span className="bilingualLabel english">English (原文)</span>
 
 - BACKEND 2 (log storage)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - MIDDLEWARE 3 - 2 applications:
     - log loader application that download log from storage, pre-processes, and transfer to UI
     - log collector that accepts logs from business applications, other infrastructure, cloud applications and saves in log storage
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - FRONTEND 2 (UI for viewing business service event logs)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - FRONTEND 3 (applications that receive logs from cloud applications and transfer logs to log collector)
     - It is allowed to combine the functionality of two applications in one
 
@@ -2518,25 +1595,7 @@ Full network segmentation cheat sheet by [sergiomarotco](https://github.com/serg
 ### Release
 
 - Provide security configuration information by adding details about the logging mechanisms to release documentation
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Brief the application/process owner about the application logging mechanisms
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure the outputs of the monitoring (see below) are integrated with incident response processes
 
 </div>
@@ -2612,35 +1671,8 @@ At rest:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Build in tamper detection so you know if a record has been modified or deleted
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Store or copy log data to read-only media as soon as possible
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - All access to the logs must be recorded and monitored (and may need prior approval)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The privileges to read log data should be restricted and reviewed periodically
 
 </div>
@@ -2662,25 +1694,7 @@ In transit:
 <span className="bilingualLabel english">English (原文)</span>
 
 - If log data is sent over untrusted networks (e.g. for collection, for dispatch elsewhere, for analysis, for reporting), use a secure transmission protocol
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Consider whether the origin of the event data needs to be verified
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Perform due diligence checks (regulatory and security) before sending event data to third parties
 
 </div>
@@ -2714,35 +1728,8 @@ The logged event data needs to be available to review and there are processes in
 <span className="bilingualLabel english">English (原文)</span>
 
 - Incorporate the application logging into any existing log management systems/infrastructure e.g. centralized logging and analysis systems
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure event information is available to appropriate teams
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Enable alerting and signal the responsible teams about more serious events immediately
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Share relevant event information with other detection systems, to related organizations and centralized intelligence gathering/sharing systems
 
 </div>
@@ -2800,15 +1787,6 @@ Who should be able to read what? A confidentiality attack enables an unauthorize
 <span className="bilingualLabel english">English (原文)</span>
 
 - Logs contain PII of users. Attackers gather PII, then either release it or use it as a stepping stone for further attacks on those users.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Logs contain technical secrets such as passwords. Attackers use it as a stepping stone for deeper attacks.
 
 </div>
@@ -2832,15 +1810,6 @@ Which information should be modifiable by whom?
 <span className="bilingualLabel english">English (原文)</span>
 
 - An attacker with read access to a log uses it to exfiltrate secrets.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - An attack leverages logs to connect with exploitable facets of logging platforms, such as sending in a payload over syslog in order to cause an out-of-bounds write.
 
 </div>
@@ -2864,35 +1833,8 @@ What downtime is acceptable?
 <span className="bilingualLabel english">English (原文)</span>
 
 - An attacker floods log files in order to exhaust disk space available for non-logging facets of system functioning. For example, the same disk used for log files might be used for SQL storage of application data.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - An attacker floods log files in order to exhaust disk space available for further logging.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - An attacker uses one log entry to destroy other log entries.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - An attacker leverages poor performance of logging code to reduce application performance
 
 </div>
@@ -2916,25 +1858,7 @@ Who is responsible for harm?
 <span className="bilingualLabel english">English (原文)</span>
 
 - An attacker prevent writes in order to cover their tracks.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - An attacker prevent damages the log in order to cover their tracks.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - An attacker causes the wrong identity to be logged in order to conceal the responsible party.
 
 </div>
@@ -2948,115 +1872,16 @@ Who is responsible for harm?
 ## Related articles
 
 - OWASP [ESAPI Documentation](https://owasp.org/www-project-enterprise-security-api/).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - OWASP [Logging Project](https://owasp.org/www-project-security-logging/).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - IETF [syslog protocol](https://tools.ietf.org/rfc/rfc5424.txt).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Mitre [Common Event Expression (CEE)](https://cee.mitre.org/) (as of 2014 no longer actively developed).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - NIST [SP 800-92 Guide to Computer Security Log Management](https://csrc.nist.gov/publications/nistpubs/800-92/SP800-92.pdf).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - PCISSC [PCI DSS v2.0 Requirement 10 and PA-DSS v2.0 Requirement 4](https://www.pcisecuritystandards.org/security_standards/documents.php).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - W3C [Extended Log File Format](https://www.w3.org/TR/WD-logfile.html).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Other [Build Visibility In, Richard Bejtlich, TaoSecurity blog](https://taosecurity.blogspot.co.uk/2009/08/build-visibility-in.html).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Other [Common Event Format (CEF), Arcsight](https://community.microfocus.com/t5/ArcSight-Connectors/ArcSight-Common-Event-Format-CEF-Implementation-Standard/ta-p/1645557).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Other [Log Event Extended Format (**LEEF**), IBM](https://www.ibm.com/developerworks/community/wikis/form/anonymous/api/wiki/9989d3d7-02c1-444e-92be-576b33d2f2be/page/3dc63f46-4a33-4e0b-98bf-4e55b74e556b/attachment/a19b9122-5940-4c89-ba3e-4b4fc25e2328/media/QRadar_LEEF_Format_Guide.pdf).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Other [Common Log File System (CLFS), Microsoft](https://msdn.microsoft.com/en-us/library/windows/desktop/bb986747%28v=vs.85).aspx).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Other [Building Secure Applications: Consistent Logging, Rohit Sethi & Nish Bhalla, Symantec Connect](https://www.symantec.com/connect/articles/building-secure-applications-consistent-logging).
 
 </div>

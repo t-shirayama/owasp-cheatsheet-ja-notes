@@ -351,72 +351,16 @@ To sum up our recommendations:
 <span className="bilingualLabel english">English (原文)</span>
 
 - **Use [Argon2id](#argon2id) with a minimum configuration of 19 MiB of memory, an iteration count of 2, and 1 degree of parallelism.**
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-ソルトは、各パスワードに追加される一意でランダムな値である。ソルトにより、攻撃者はすべてのハッシュに対して同じ事前計算テーブルを使えず、同じパスワードを使う利用者同士もハッシュ値から判別しにくくなる。Argon2id、bcrypt、PBKDF2 などの一般的なライブラリは、正しく使えばソルト生成と保存を内部で扱うことが多い。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **If [Argon2id](#argon2id) is not available, use [scrypt](#scrypt) with a minimum CPU/memory cost parameter of (2^17), a minimum block size of 8 (1024 bytes), and a parallelization parameter of 1.**
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-pepper は、ソルトに加えて使う共有秘密である。pepper は個別パスワードごとではなく保存パスワード群で共有され、パスワードデータベースとは別に、シークレット保管庫や HSM などで管理する。pepper が侵害された場合は変更が必要だが、利用者の平文パスワードなしでは再計算できないため、影響を受ける利用者にパスワードリセットを求める必要がある。pepper だけで安全になるわけではなく、防御の多層化として扱う。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **For legacy systems using [bcrypt](#bcrypt), use a work factor of 10 or more and with a password limit of 72 bytes.**
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-work factor は、ハッシュ計算をどれだけ高コストにするかを決める。高くすると攻撃者の推測コストは上がるが、正規ログインの検証も遅くなる。値が高すぎると、攻撃者が大量ログイン試行でサーバ CPU を枯渇させるサービス拒否につなげられる。運用環境で測定し、一般には1回のハッシュ計算が1秒未満に収まるよう調整する。ハードウェア性能の向上に合わせて work factor を上げられるよう、方式とパラメータを保存し、ログイン時の再ハッシュやパスワードリセットで移行できる設計にする。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **If FIPS-140 compliance is required, use [PBKDF2](#pbkdf2) with a work factor of 600,000 or more and set with an internal hash function of HMAC-SHA-256.**
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-bcrypt は、Argon2id や scrypt が使えないレガシー環境に限定して扱う。bcrypt の多くの実装には72バイトの入力制限があるため、長いパスワードが切り捨てられないように制限または安全な前処理を設計する。前処理として高速ハッシュを組み合わせる場合は、NULL バイト、base64 化、password shucking、pepper の扱いを理解しないまま実装してはならない。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Consider using a [pepper](#peppering) to provide additional defense in depth (though alone, it provides no additional secure characteristics).**
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-古い MD5 や SHA-1 ベースのハッシュは、利用者の次回ログイン時に新しいアルゴリズムで再ハッシュする。長期間ログインしない利用者の古いハッシュを保持し続けるリスクがあるため、一定期間非アクティブな利用者にはパスワードリセットを求めるか、暫定的に既存ハッシュを入力として強いアルゴリズムで包み、次回ログイン時に直接ハッシュへ置き換える。移行期間中は複数のハッシュ方式が混在するため、方式名、パラメータ、work factor を標準形式で保存する。
+ソルトは、各パスワードに追加される一意でランダムな値である。ソルトにより、攻撃者はすべてのハッシュに対して同じ事前計算テーブルを使えず、同じパスワードを使う利用者同士もハッシュ値から判別しにくくなる。Argon2id、bcrypt、PBKDF2 などの一般的なライブラリは、正しく使えばソルト生成と保存を内部で扱うことが多い。
 
 </div>
 </div>
@@ -435,7 +379,7 @@ Hashing and encryption can keep sensitive data safe, but in almost all circumsta
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-パスワードハッシュライブラリは、Unicode の広い文字範囲、絵文字、NULL バイトを含む入力を受け付けられる必要がある。ハッシュ前に利用者入力のエントロピーを不必要に削ってはならない。
+pepper は、ソルトに加えて使う共有秘密である。pepper は個別パスワードごとではなく保存パスワード群で共有され、パスワードデータベースとは別に、シークレット保管庫や HSM などで管理する。pepper が侵害された場合は変更が必要だが、利用者の平文パスワードなしでは再計算できないため、影響を受ける利用者にパスワードリセットを求める必要がある。pepper だけで安全になるわけではなく、防御の多層化として扱う。
 
 </div>
 </div>
@@ -447,7 +391,12 @@ Hashing and encryption can keep sensitive data safe, but in almost all circumsta
 Because **hashing is a one-way function** (i.e., it is impossible to "decrypt" a hash and obtain the original plaintext value), it is the most appropriate approach for password validation. Even if an attacker obtains the hashed password, they cannot use it to log in as the victim.
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+work factor は、ハッシュ計算をどれだけ高コストにするかを決める。高くすると攻撃者の推測コストは上がるが、正規ログインの検証も遅くなる。値が高すぎると、攻撃者が大量ログイン試行でサーバ CPU を枯渇させるサービス拒否につなげられる。運用環境で測定し、一般には1回のハッシュ計算が1秒未満に収まるよう調整する。ハードウェア性能の向上に合わせて work factor を上げられるよう、方式とパラメータを保存し、ログイン時の再ハッシュやパスワードリセットで移行できる設計にする。
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -457,7 +406,12 @@ Because **hashing is a one-way function** (i.e., it is impossible to "decrypt" a
 Since **encryption is a two-way function**, attackers can retrieve the original plaintext from the encrypted data. It can be used to store data such as a user's address since this data is displayed in plaintext on the user's profile. Hashing their address would result in a garbled mess.
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+bcrypt は、Argon2id や scrypt が使えないレガシー環境に限定して扱う。bcrypt の多くの実装には72バイトの入力制限があるため、長いパスワードが切り捨てられないように制限または安全な前処理を設計する。前処理として高速ハッシュを組み合わせる場合は、NULL バイト、base64 化、password shucking、pepper の扱いを理解しないまま実装してはならない。
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -467,7 +421,12 @@ Since **encryption is a two-way function**, attackers can retrieve the original 
 The only time encryption should be used in passwords is in edge cases where it is necessary to obtain the original plaintext password. This might be necessary if the application needs to use the password to authenticate with another system that does not support a modern way to programmatically grant access, such as OpenID Connect (OIDC). Wherever possible, an alternative architecture should be used to avoid the need to store passwords in an encrypted form.
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+古い MD5 や SHA-1 ベースのハッシュは、利用者の次回ログイン時に新しいアルゴリズムで再ハッシュする。長期間ログインしない利用者の古いハッシュを保持し続けるリスクがあるため、一定期間非アクティブな利用者にはパスワードリセットを求めるか、暫定的に既存ハッシュを入力として強いアルゴリズムで包み、次回ログイン時に直接ハッシュへ置き換える。移行期間中は複数のハッシュ方式が混在するため、方式名、パラメータ、work factor を標準形式で保存する。
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -477,7 +436,12 @@ The only time encryption should be used in passwords is in edge cases where it i
 For further guidance on encryption, see the [Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html).
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+パスワードハッシュライブラリは、Unicode の広い文字範囲、絵文字、NULL バイトを含む入力を受け付けられる必要がある。ハッシュ前に利用者入力のエントロピーを不必要に削ってはならない。
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -507,25 +471,7 @@ However, there are some situations where an attacker can "crack" the hashes in s
 <span className="bilingualLabel english">English (原文)</span>
 
 - Selecting a password you think the victim has chosen (e.g.`password1!`)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Calculating the hash
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Comparing the hash you calculated to the hash of the victim. If they match, you have correctly "cracked" the hash and now know the plaintext value of their password.
 
 </div>
@@ -547,25 +493,7 @@ Usually, the attacker will repeat this process with a list of large number of po
 <span className="bilingualLabel english">English (原文)</span>
 
 - Lists of passwords obtained from other compromised sites
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Brute force (trying every possible candidate)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Dictionaries or wordlists of common passwords
 
 </div>
@@ -636,35 +564,8 @@ However, most widely used implementations and libraries automatically generate a
 #### Common requirements for peppering strategies
 
 - A pepper is **shared between stored passwords**, rather than being *unique* to an individual password like a password salt.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Unlike a password salt, the pepper should not be public and **should not be stored along with the generated hash**. The pepper should be stored separately from the password database.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Peppers are secrets and should be stored in "secrets vaults" or HSMs (Hardware Security Modules). See the [Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) for more information on securely storing secrets.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - In the event of a pepper's compromise, the pepper will have to be changed. Peppers cannot be changed without knowledge of a user's password. Therefore changing a pepper will require forcing all users whose passwords were protected by the previous pepper to reset their passwords.
 
 </div>
@@ -830,45 +731,9 @@ Increasing memory usage, iteration count, or parallelism makes password cracking
 <span className="bilingualLabel english">English (原文)</span>
 
 - m=47104 (46 MiB), t=1, p=1 (Do not use with Argon2i)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - m=19456 (19 MiB), t=2, p=1 (Do not use with Argon2i)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - m=12288 (12 MiB), t=3, p=1
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - m=9216 (9 MiB), t=4, p=1
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - m=7168 (7 MiB), t=5, p=1
 
 </div>
@@ -912,45 +777,9 @@ Like [Argon2id](#argon2id), scrypt has three parameters that can be configured: 
 <span className="bilingualLabel english">English (原文)</span>
 
 - N=2^17 (128 MiB), r=8 (1024 bytes), p=1
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - N=2^16 (64 MiB), r=8 (1024 bytes), p=2
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - N=2^15 (32 MiB), r=8 (1024 bytes), p=3
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - N=2^14 (16 MiB), r=8 (1024 bytes), p=5
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - N=2^13 (8 MiB), r=8 (1024 bytes), p=10
 
 </div>
@@ -1087,25 +916,7 @@ The work factor for PBKDF2 is implemented through an iteration count, which shou
 <span className="bilingualLabel english">English (原文)</span>
 
 - PBKDF2-HMAC-SHA256: 600,000 iterations (recommended)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - PBKDF2-HMAC-SHA512: 220,000 iterations
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - PBKDF2-HMAC-SHA1: 1,400,000 iterations — **legacy only**, do not select for new systems. NIST SP 800-131A Rev. 2 disallows SHA-1 for new use after 2030.
 
 </div>
@@ -1119,25 +930,7 @@ The work factor for PBKDF2 is implemented through an iteration count, which shou
 ### Parallel PBKDF2
 
 - PPBKDF2-SHA512: cost 2
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - PPBKDF2-SHA256: cost 5
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - PPBKDF2-SHA1: cost 10
 
 </div>

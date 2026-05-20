@@ -933,6 +933,7 @@ XML処理では、外部エンティティ、DTD、巨大入力、XPath、署名
 <span className="bilingualLabel english">English (原文)</span>
 
 - **Malformed XML Documents**: Exploiting vulnerabilities that occur when applications encounter XML documents that are not well-formed.
+- **Invalid XML Documents**: Exploiting vulnerabilities that occur when documents that do not have the expected structure.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -941,21 +942,8 @@ XML処理では、外部エンティティ、DTD、巨大入力、XPath、署名
 ## 主要な観点
 
 - DTDと外部エンティティを無効化する。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- **Invalid XML Documents**: Exploiting vulnerabilities that occur when documents that do not have the expected structure.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - XMLサイズと展開量を制限する。
+- 署名やスキーマを正しく検証する。
 
 </div>
 </div>
@@ -971,12 +959,7 @@ XML処理では、外部エンティティ、DTD、巨大入力、XPath、署名
 If an XML document does not follow the W3C XML specification's definition of a well-formed document, it is considered "malformed." **If an XML document is malformed, the XML parser will detect a fatal error, it should stop execution, the document should not undergo any additional processing, and the application should display an error message.** A malformed document can include one or more of the following problems: a missing ending tag, the order of elements into a nonsensical structure, introducing forbidden characters, and so on.
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 署名やスキーマを正しく検証する。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -1384,35 +1367,8 @@ XML Schema numeric data types can include different ranges of numbers. They can 
 <span className="bilingualLabel english">English (原文)</span>
 
 - **negativeInteger**: Only negative numbers
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **nonNegativeInteger**: Positive numbers and the zero value
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **positiveInteger**: Only positive numbers
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **nonPositiveInteger**: Negative numbers and the zero value
 
 </div>

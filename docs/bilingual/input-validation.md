@@ -335,6 +335,8 @@ Input validation is performed to ensure only properly formed data is entering th
 ## 主要な観点
 
 - 許可リスト方式で検証する。
+- クライアント側ではなくサーバー側で検証する。
+- 構文検証と業務ルール検証を分ける。
 
 </div>
 </div>
@@ -346,12 +348,7 @@ Input validation is performed to ensure only properly formed data is entering th
 Data from all potentially untrusted sources should be subject to input validation, including not only Internet-facing web clients but also backend feeds over extranets, from [suppliers, partners, vendors or regulators](https://badcyber.com/several-polish-banks-hacked-information-stolen-by-unknown-attackers/), each of which may be compromised on their own and start sending malformed data.
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- クライアント側ではなくサーバー側で検証する。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -361,12 +358,7 @@ Data from all potentially untrusted sources should be subject to input validatio
 Input Validation should not be used as the *primary* method of preventing [XSS](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html), [SQL Injection](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) and other attacks which are covered in respective [cheat sheets](https://cheatsheetseries.owasp.org/) but can significantly contribute to reducing their impact if implemented properly.
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 構文検証と業務ルール検証を分ける。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -386,15 +378,6 @@ Input validation should be applied at both syntactic and semantic levels:
 <span className="bilingualLabel english">English (原文)</span>
 
 - **Syntactic** validation should enforce correct syntax of structured fields (e.g. SSN, date, currency symbol).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Semantic** validation should enforce correctness of their *values* in the specific business context (e.g. start date is before end date, price is within expected range).
 
 </div>
@@ -428,65 +411,11 @@ Input validation can be implemented using any programming technique that allows 
 <span className="bilingualLabel english">English (原文)</span>
 
 - Data type validators available natively in web application frameworks (such as [Django Validators](https://docs.djangoproject.com/en/1.11/ref/validators/), [Apache Commons Validators](https://commons.apache.org/proper/commons-validator/apidocs/org/apache/commons/validator/package-summary.html#doc.Usage.validator) etc).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Validation against [JSON Schema](http://json-schema.org/) and [XML Schema (XSD)](https://www.w3schools.com/xml/schema_intro.asp) for input in these formats.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Type conversion (e.g. `Integer.parseInt()` in Java, `int()` in Python) with strict exception handling
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Minimum and maximum value range check for numerical parameters and dates, minimum and maximum length check for strings.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Array of allowed values for small sets of string parameters (e.g. days of week).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Regular expressions for any other structured data covering the whole input string `(^...$)` and **not** using "any character" wildcard (such as `.` or `\\S`)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Denylisting known dangerous patterns can be used as an additional layer of defense, but it should supplement - not replace - allowlisting, to help catch some commonly observed attacks or patterns without relying on it as the main validation method.
 
 </div>
@@ -592,25 +521,7 @@ The primary means of input validation for free-form text input should be:
 <span className="bilingualLabel english">English (原文)</span>
 
 - **Normalization:** Ensure canonical encoding is used across all the text and no invalid characters are present.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Character category allowlisting:** Unicode allows listing categories such as "decimal digits" or "letters" which not only covers the Latin alphabet but also various other scripts used globally (e.g. Arabic, Cyrillic, CJK ideographs etc).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Individual character allowlisting:** If you allow letters and ideographs in names and also want to allow apostrophe `'` for Irish names, but don't want to allow the whole punctuation category.
 
 </div>
@@ -632,35 +543,8 @@ References:
 <span className="bilingualLabel english">English (原文)</span>
 
 - [Input validation of free-form Unicode text in Python](https://web.archive.org/web/20170717174432/https://ipsec.pl/python/2017/input-validation-free-form-unicode-text-python.html/)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [UAX 31: Unicode Identifier and Pattern Syntax](https://unicode.org/reports/tr31/)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [UAX 15: Unicode Normalization Forms](https://www.unicode.org/reports/tr15/)
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [UAX 24: Unicode Script Property](https://unicode.org/reports/tr24/)
 
 </div>
@@ -714,25 +598,7 @@ In summary, input validation should:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Be applied to all input data, at minimum.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Define the allowed set of characters to be accepted.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Define a minimum and maximum length for the data (e.g. `&#123;1,25&#125;`).
 
 </div>
@@ -931,25 +797,7 @@ Check the [File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatshee
 ### Upload Verification
 
 - Use input validation to ensure the uploaded filename uses an expected extension type.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure the uploaded file is not larger than a defined maximum file size.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If the website supports ZIP file upload, do a validation check before unzipping the file. The check includes the target path, level of compression, estimated unzip size.
 
 </div>
@@ -963,35 +811,8 @@ Check the [File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatshee
 ### Upload Storage
 
 - Use a new filename to store the file on the OS. Do not use any user controlled text for this filename or for the temporary filename.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - When the file is uploaded to web, it's suggested to rename the file on storage. For example, the uploaded filename is *test.JPG*, rename it to *JAI1287uaisdjhf.JPG* with a random filename. The purpose of doing it to prevent the risks of direct file access and ambiguous filename to evade the filter, such as `test.jpg;.asp or /../../../../../test.jpg`.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Uploaded files should be analyzed for malicious content (anti-malware, static analysis, etc).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The client should not be able to specify the file path; it should be defined by the server.
 
 </div>
@@ -1027,25 +848,7 @@ The upload feature should be using an allowlist approach to only allow specific 
 <span className="bilingualLabel english">English (原文)</span>
 
 - **crossdomain.xml** / **clientaccesspolicy.xml:** allows cross-domain data loading in Flash, Java and Silverlight. If permitted on sites with authentication this can permit cross-domain data theft and CSRF attacks. Note this can get pretty complicated depending on the specific plugin version in question, so its best to just prohibit files named "crossdomain.xml" or "clientaccesspolicy.xml".
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **.htaccess** and **.htpasswd:** Provides server configuration options on a per-directory basis, and should not be permitted. See [HTACCESS documentation](http://en.wikipedia.org/wiki/Htaccess).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Web executable script files are suggested not to be allowed such as `aspx, asp, css, swf, xhtml, rhtml, shtml, jsp, js, pl, php, cgi`.
 
 </div>
@@ -1059,25 +862,7 @@ The upload feature should be using an allowlist approach to only allow specific 
 ### Image Upload Verification
 
 - Use image rewriting libraries to verify the image is valid and to strip away extraneous content.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Set the extension of the stored image to be a valid image extension based on the detected content type of the image from image processing (e.g. do not just trust the header from the upload).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure the detected content type of the image is within a list of defined image types (jpg, PNG, etc)
 
 </div>
@@ -1103,35 +888,8 @@ The format of email addresses is defined by [RFC 5321](https://tools.ietf.org/ht
 <span className="bilingualLabel english">English (原文)</span>
 
 - `"><script>alert(1);</script>"@example.org`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `user+subaddress@example.org`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `user@[IPv6:2001:db8::1]`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `" "@example.org`
 
 </div>
@@ -1173,36 +931,9 @@ As such, the best way to validate email addresses is to perform some basic initi
 <span className="bilingualLabel english">English (原文)</span>
 
 - The email address contains two parts, separated with an `@` symbol.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The email address does not contain dangerous characters (such as backticks, single or double quotes, or null bytes).
     - Exactly which characters are dangerous will depend on how the address is going to be used (echoed in page, inserted into database, etc).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The domain part contains only letters, numbers, hyphens (`-`) and periods (`.`).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The email address is a reasonable length:
     - The local part (before the `@`) should be no more than 63 characters.
     - The total length should be no more than 254 characters.
@@ -1228,25 +959,7 @@ Semantic validation is about determining whether the email address is correct an
 <span className="bilingualLabel english">English (原文)</span>
 
 - The email address is correct.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The application can successfully send emails to it.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - The user has access to the mailbox.
 
 </div>
@@ -1268,35 +981,8 @@ The links that are sent to users to prove ownership should contain a token that 
 <span className="bilingualLabel english">English (原文)</span>
 
 - At least 32 characters long.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Generated using a [secure source of randomness](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#secure-random-number-generation).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Single use.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Time limited (e.g, expiring after eight hours).
 
 </div>
@@ -1372,25 +1058,7 @@ Sub-addressing allows a user to specify a *tag* in the local part of the email a
 <span className="bilingualLabel english">English (原文)</span>
 
 - `user@example.org`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `user+site1@example.org`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `user+site2@example.org`
 
 </div>

@@ -309,6 +309,8 @@ It represents a serious threat because SQL Injection allows evil attacker code t
 ## 主要な観点
 
 - プレースホルダとバインド変数を使う。
+- 識別子やORDER BYなどパラメータ化できない箇所は許可リスト化する。
+- ORM利用時も動的クエリ生成をレビューする。
 
 </div>
 </div>
@@ -320,12 +322,7 @@ It represents a serious threat because SQL Injection allows evil attacker code t
 This cheat sheet is a derivative work of the [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html).
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 識別子やORDER BYなどパラメータ化できない箇所は許可リスト化する。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -337,12 +334,7 @@ This cheat sheet is a derivative work of the [SQL Injection Prevention Cheat She
 SQL Injection is best prevented through the use of [*parameterized queries*](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html). The following chart demonstrates, with real-world code samples, how to build parameterized queries in most of the common web languages. The purpose of these code samples is to demonstrate to the web developer how to avoid SQL Injection when building database queries within a web application.
 
 </div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- ORM利用時も動的クエリ生成をレビューする。
-
-</div>
 </div>
 
 <div className="bilingualPair">

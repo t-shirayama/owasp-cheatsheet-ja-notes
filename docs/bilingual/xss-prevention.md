@@ -556,6 +556,14 @@ Fortunately, applications built with modern web frameworks have fewer XSS bugs, 
 <span className="bilingualLabel english">English (原文)</span>
 
 - _escape hatches_ that frameworks use to directly manipulate the DOM
+- React’s `dangerouslySetInnerHTML` without sanitising the HTML
+- React cannot handle `javascript:` or `data:` URLs without specialized validation
+- Angular’s `bypassSecurityTrustAs*` functions
+- Lit's `unsafeHTML` function
+- Polymer's `inner-h-t-m-l` attribute and `htmlLiteral` function
+- Template injection
+- Out of date framework plugins or components
+- and more
 
 </div>
 <div className="bilingualBlock japanese">
@@ -572,7 +580,7 @@ Fortunately, applications built with modern web frameworks have fewer XSS bugs, 
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- React’s `dangerouslySetInnerHTML` without sanitising the HTML
+When you use a modern web framework, you need to know how your framework prevents XSS and where it has gaps. There will be times where you need to do something outside the protection provided by your framework, which means that Output Encoding and HTML Sanitization can be critical. OWASP will be producing framework specific cheatsheets for React, Vue, and Angular.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -589,7 +597,9 @@ Fortunately, applications built with modern web frameworks have fewer XSS bugs, 
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- React cannot handle `javascript:` or `data:` URLs without specialized validation
+## XSS Defense Philosophy
+
+In order for an XSS attack to be successful, an attacker must be able to insert and execute malicious content in a webpage. Thus, all variables in a web application needs to be protected. Ensuring that **all variables** go through validation and are then escaped or sanitized is known as **perfect injection resistance**. Any variable that does not go through this process is a potential weakness. Frameworks make it easy to ensure variables are correctly validated and escaped or sanitised.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -604,7 +614,7 @@ HTML コンテキストでは、`<div>$var</div>` のようにタグの間へ値
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Angular’s `bypassSecurityTrustAs*` functions
+However, no framework is perfect and security gaps still exist in popular frameworks like React and Angular. Output encoding and HTML sanitization help address those gaps.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -619,7 +629,9 @@ HTML 属性コンテキストでは、属性値へ入れる変数に HTML 属性
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Lit's `unsafeHTML` function
+## Output Encoding
+
+When you need to safely display data exactly as a user types it in, output encoding is recommended. Variables should not be interpreted as code instead of text. This section covers each form of output encoding, where to use it, and when you should not use dynamic variables at all.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -634,7 +646,7 @@ JavaScript コンテキストでは、変数を置ける安全な場所は引用
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Polymer's `inner-h-t-m-l` attribute and `htmlLiteral` function
+First, when you wish to display data as the user typed it in, start with your framework’s default output encoding protection. Automatic encoding and escaping functions are built into most frameworks.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -649,7 +661,7 @@ CSS コンテキストでは、変数を CSS プロパティ値に限定しま�
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Template injection
+If you’re not using a framework or need to cover gaps in the framework then you should use an output encoding library. Each variable used in the user interface should be passed through an output encoding function. A list of output encoding libraries is included in the appendix.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -664,7 +676,7 @@ URL コンテキストでは、URL パラメータやフラグメントに入る
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- Out of date framework plugins or components
+There are many different output encoding methods because browsers parse HTML, JS, URLs, and CSS differently. Using the wrong encoding method may introduce weaknesses or harm the functionality of your application.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -681,7 +693,9 @@ URL コンテキストでは、URL パラメータやフラグメントに入る
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-- and more
+### Output Encoding for “HTML Contexts”
+
+“HTML Context” refers to inserting a variable between two basic HTML tags like a `<div>` or `<b>`. For example:
 
 </div>
 <div className="bilingualBlock japanese">
@@ -695,12 +709,7 @@ WYSIWYG エディタなど、ユーザーが HTML を作成する必要がある
 </div>
 
 <div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
-When you use a modern web framework, you need to know how your framework prevents XSS and where it has gaps. There will be times where you need to do something outside the protection provided by your framework, which means that Output Encoding and HTML Sanitization can be critical. OWASP will be producing framework specific cheatsheets for React, Vue, and Angular.
-
-</div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -712,14 +721,7 @@ sink は変数がページへ挿入される場所です。多くの安全な si
 </div>
 
 <div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
-## XSS Defense Philosophy
-
-In order for an XSS attack to be successful, an attacker must be able to insert and execute malicious content in a webpage. Thus, all variables in a web application needs to be protected. Ensuring that **all variables** go through validation and are then escaped or sanitized is known as **perfect injection resistance**. Any variable that does not go through this process is a potential weakness. Frameworks make it easy to ensure variables are correctly validated and escaped or sanitised.
-
-</div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -728,70 +730,6 @@ In order for an XSS attack to be successful, an attacker must be able to insert 
 CSP は有効な防御層ですが、ブラウザ対応差、レガシーアプリケーション、設定ミスがあるため CSP だけに依存してはいけません。HTTP インターセプタで一律エンコードする方式も、コンテキストに合わないエンコード、二重エンコード、DOM based XSS への無力さ、アプリケーション外由来データへの不十分な対応により失敗しやすいです。XSS 防御は、データが使われる場所ごとに行います。
 
 </div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-However, no framework is perfect and security gaps still exist in popular frameworks like React and Angular. Output encoding and HTML sanitization help address those gaps.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-## Output Encoding
-
-When you need to safely display data exactly as a user types it in, output encoding is recommended. Variables should not be interpreted as code instead of text. This section covers each form of output encoding, where to use it, and when you should not use dynamic variables at all.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-First, when you wish to display data as the user typed it in, start with your framework’s default output encoding protection. Automatic encoding and escaping functions are built into most frameworks.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-If you’re not using a framework or need to cover gaps in the framework then you should use an output encoding library. Each variable used in the user interface should be passed through an output encoding function. A list of output encoding libraries is included in the appendix.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-There are many different output encoding methods because browsers parse HTML, JS, URLs, and CSS differently. Using the wrong encoding method may introduce weaknesses or harm the functionality of your application.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-### Output Encoding for “HTML Contexts”
-
-“HTML Context” refers to inserting a variable between two basic HTML tags like a `<div>` or `<b>`. For example:
-
-</div>
-
 </div>
 
 <div className="bilingualCommon">
@@ -1137,35 +1075,8 @@ Other areas to be careful with include:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Callback functions
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Where URLs are handled in code such as this CSS &#123; background-url : “javascript:alert(xss)”; &#125;
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - All JavaScript event handlers (`onclick()`, `onerror()`, `onmouseover()`).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Unsafe JS functions like `eval()`, `setInterval()`, `setTimeout()`
 
 </div>
@@ -1229,25 +1140,7 @@ There are some further things to consider:
 <span className="bilingualLabel english">English (原文)</span>
 
 - If you sanitize content and then modify it afterwards, you can easily void your security efforts.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If you sanitize content and then send it to a library for use, check that it doesn’t mutate that string somehow. Otherwise, again, your security efforts are void.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - You must regularly patch DOMPurify or other HTML Sanitization libraries that you use. Browsers change functionality and bypasses are being discovered regularly.
 
 </div>
@@ -1340,35 +1233,8 @@ Consider adopting the following controls in addition to the above.
 <span className="bilingualLabel english">English (原文)</span>
 
 - Cookie Attributes - These change how JavaScript and browsers can interact with cookies. Cookie attributes try to limit the impact of an XSS attack but don’t prevent the execution of malicious content or address the root cause of the vulnerability.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Content Security Policy - An allowlist that prevents content being loaded. It’s easy to make mistakes with the implementation so it should not be your primary defense mechanism. Use a CSP as an additional layer of defense and have a look at the [cheatsheet here](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html).
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Trusted Types - On Chromium-based browsers, enable [Trusted Types](https://web.dev/articles/trusted-types) by adding `Content-Security-Policy: require-trusted-types-for 'script'`. This causes DOM XSS sinks (`innerHTML`, `outerHTML`, `document.write`, `script.src`, etc.) to reject plain strings, forcing all assignments to go through a vetted policy. It is one of the few controls that eliminates entire classes of DOM XSS rather than mitigating them. Combine with a default policy that delegates to a sanitizer (e.g. DOMPurify) for legacy code paths.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Web Application Firewalls - These look for known attack strings and block them. WAF’s are unreliable and new bypass techniques are being discovered regularly. WAFs also don’t address the root cause of an XSS vulnerability. In addition, WAFs also miss a class of XSS vulnerabilities that operate exclusively client-side. WAFs are not recommended for preventing XSS, especially DOM-Based XSS.
 
 </div>
@@ -1597,15 +1463,6 @@ First, let us be clear, we are a strong proponent of CSP when it is used properl
 <span className="bilingualLabel english">English (原文)</span>
 
 - Used as a defense-in-depth technique.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Customized for each individual application rather than being deployed as a one-size-fits-all enterprise solution.
 
 </div>
@@ -1865,15 +1722,6 @@ The following article describes how attackers can exploit different kinds of XSS
 <span className="bilingualLabel english">English (原文)</span>
 
 - [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/) article on testing for Cross-Site Scripting vulnerabilities.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - [XSS Experimental Minimal Encoding Rules](https://wiki.owasp.org/index.php/XSS_Experimental_Minimal_Encoding_Rules) Provides examples and guidelines for experimental minimal encoding strategies to prevent Cross-Site Scripting (XSS) attacks.
 
 </div>

@@ -368,25 +368,7 @@ OSコマンドインジェクションは、ユーザー入力がシェルやOS�
 ## 主要な観点
 
 - シェル呼び出しを避ける。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - 引数を配列として渡し、シェル展開を使わない。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 - 許可リストでコマンドと引数を制限する。
 
 </div>
@@ -654,27 +636,9 @@ If calling a system command that incorporates user-supplied cannot be avoided, t
 <span className="bilingualLabel english">English (原文)</span>
 
 - When it comes to the **commands** used, these must be validated against a list of allowed commands.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - In regards to the **arguments** used for these commands, they should be validated using the following options:
     - **Positive or allowlist input validation**: Where are the arguments allowed explicitly defined.
     - **Allowlist Regular Expression**: Where a list of good, allowed characters and the maximum length of the string are defined. Ensure that metacharacters like ones specified in `Note A` and whitespaces are not part of the Regular Expression. For example, the following regular expression only allows lowercase letters and numbers and does not contain metacharacters. The length is also being limited to 3-10 characters: `^[a-z0-9]&#123;3,10&#125;$`
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - According to **Guideline 10** of this [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html), *The first -- argument that is not an option-argument should be accepted as a delimiter indicating the end of options. Any following arguments should be treated as operands, even if they begin with the '-' character.* For example, `curl -- $url` will prevent an argument injection even if the `$url` is malformed and contains an additional argument.
 
 </div>
@@ -728,15 +692,6 @@ These additional defenses are:
 <span className="bilingualLabel english">English (原文)</span>
 
 - Applications should run using the lowest privileges that are required to accomplish the necessary tasks.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - If possible, create isolated accounts with limited privileges that are only used for a single task.
 
 </div>
@@ -1116,25 +1071,7 @@ In addition, it is good security practice to follow these recommendations:
 <span className="bilingualLabel english">English (原文)</span>
 
 - **Hardcode the command**: never allow the user to choose which executable to run.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Hardcode options**: required flags (e.g., `--directory-prefix`) should be in the code, not in user input.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - **Validate and restrict input as much as possible**: apply strict validation rules, whitelists, and format checks to minimize the attack surface.
 
 </div>
