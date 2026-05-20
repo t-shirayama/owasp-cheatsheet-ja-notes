@@ -1111,3 +1111,135 @@ html[data-theme='dark'] [id$="-bilingual"]:checked ~ .contentTabs label[for$="-b
     padding: 22px 18px;
   }
 }
+
+/* VS Code inspired code blocks */
+:root {
+  --code-editor-bg: #f6f8fa;
+  --code-editor-border: #d7dee8;
+  --code-editor-gutter: #6e7781;
+  --code-editor-shadow: 0 18px 44px rgba(31, 72, 124, 0.08);
+}
+
+html[data-theme='dark'] {
+  --code-editor-bg: #1e1e1e;
+  --code-editor-border: #343a46;
+  --code-editor-gutter: #858585;
+  --code-editor-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+}
+
+.theme-code-block,
+div[class^='codeBlockContainer_'] {
+  border: 1px solid var(--code-editor-border);
+  border-radius: 8px;
+  background: var(--code-editor-bg);
+  box-shadow: var(--code-editor-shadow);
+  overflow: hidden;
+}
+
+.theme-code-block::before,
+div[class^='codeBlockContainer_']::before {
+  content: "";
+  display: block;
+  height: 30px;
+  border-bottom: 1px solid var(--code-editor-border);
+  background:
+    radial-gradient(circle at 16px 15px, #ff5f57 0 5px, transparent 5.5px),
+    radial-gradient(circle at 34px 15px, #ffbd2e 0 5px, transparent 5.5px),
+    radial-gradient(circle at 52px 15px, #28c840 0 5px, transparent 5.5px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(239, 243, 248, 0.72));
+}
+
+html[data-theme='dark'] .theme-code-block::before,
+html[data-theme='dark'] div[class^='codeBlockContainer_']::before {
+  background:
+    radial-gradient(circle at 16px 15px, #ff5f57 0 5px, transparent 5.5px),
+    radial-gradient(circle at 34px 15px, #ffbd2e 0 5px, transparent 5.5px),
+    radial-gradient(circle at 52px 15px, #28c840 0 5px, transparent 5.5px),
+    linear-gradient(180deg, #252526, #202124);
+}
+
+.theme-code-block pre,
+div[class^='codeBlockContainer_'] pre,
+.bilingualCommon pre,
+.contentPanel pre {
+  margin: 0;
+  border-radius: 0;
+  background: var(--code-editor-bg) !important;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  tab-size: 2;
+}
+
+.theme-code-block code,
+div[class^='codeBlockContainer_'] code,
+.bilingualCommon pre code,
+.contentPanel pre code {
+  font-family: "Cascadia Code", "Cascadia Mono", Consolas, "SFMono-Regular", Menlo, Monaco, monospace;
+}
+
+.bilingualCommon div[class^='codeBlockContainer_'],
+.contentPanel div[class^='codeBlockContainer_'] {
+  margin: 14px 0;
+}
+
+.bilingualCommon div[class^='codeBlockContainer_']:last-child,
+.contentPanel div[class^='codeBlockContainer_']:last-child {
+  margin-bottom: 0;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #008000;
+  font-style: italic;
+}
+
+.token.keyword,
+.token.atrule {
+  color: #0000ff;
+}
+
+.token.string,
+.token.attr-value {
+  color: #a31515;
+}
+
+.token.function,
+.token.class-name {
+  color: #795e26;
+}
+
+.token.number,
+.token.boolean,
+.token.constant {
+  color: #098658;
+}
+
+html[data-theme='dark'] .token.comment,
+html[data-theme='dark'] .token.prolog,
+html[data-theme='dark'] .token.doctype,
+html[data-theme='dark'] .token.cdata {
+  color: #6a9955;
+}
+
+html[data-theme='dark'] .token.keyword,
+html[data-theme='dark'] .token.atrule {
+  color: #569cd6;
+}
+
+html[data-theme='dark'] .token.string,
+html[data-theme='dark'] .token.attr-value {
+  color: #ce9178;
+}
+
+html[data-theme='dark'] .token.function,
+html[data-theme='dark'] .token.class-name {
+  color: #dcdcaa;
+}
+
+html[data-theme='dark'] .token.number,
+html[data-theme='dark'] .token.boolean,
+html[data-theme='dark'] .token.constant {
+  color: #b5cea8;
+}
