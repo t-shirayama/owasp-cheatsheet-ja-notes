@@ -1574,11 +1574,144 @@ html[data-theme="dark"] .bilingualLabel.common {
   }
 
   .docHero h1 {
-    font-size: 2.2rem;
+    font-size: clamp(2rem, 9vw, 2.55rem);
+    line-height: 1.13;
+  }
+
+  .docLead {
+    margin-bottom: 18px;
+    font-size: 0.98rem;
+    line-height: 1.62;
+  }
+
+  .docMeta {
+    gap: 6px;
+  }
+
+  .docPill {
+    min-height: 26px;
+    padding: 2px 8px;
+    font-size: 0.74rem;
+  }
+
+  .tabbedContent {
+    margin-top: 18px;
+  }
+
+  .contentTabs {
+    display: flex;
+    grid-template-columns: none;
+    gap: 0;
+    margin: 16px 0;
+    overflow-x: auto;
+    overflow-y: visible;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .contentTabs label {
+    flex: 0 0 auto;
+    min-width: max-content;
+    min-height: 44px;
+    border-right: 1px solid var(--doc-line);
+    border-bottom: 0;
+    padding: 0 18px;
+    scroll-snap-align: start;
+    white-space: nowrap;
+  }
+
+  .contentTabs label:last-child {
+    border-right: 0;
+  }
+
+  .contentTabs label[title]:hover::after,
+  .contentTabs label[title]:focus-visible::after {
+    display: none;
   }
 
   .contentPanel {
     padding: 22px 18px;
+  }
+
+  .bilingualBlock,
+  .bilingualCommon {
+    padding: 18px 16px;
+  }
+
+  .breadcrumbs {
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .breadcrumbs__item {
+    min-width: 0;
+  }
+
+  .breadcrumbs__link {
+    max-width: min(36vw, 14rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .breadcrumbs__item:not(:first-child):not(:last-child) .breadcrumbs__link {
+    max-width: min(24vw, 9rem);
+  }
+
+  .navbar__search-input {
+    width: clamp(168px, 42vw, 240px) !important;
+  }
+
+  .navbar__search-input:focus {
+    width: clamp(210px, 58vw, 300px) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  [class*="docMainContainer"] .container {
+    max-width: calc(100% - 28px);
+  }
+
+  .theme-doc-markdown,
+  .pagination-nav {
+    max-width: 100%;
+  }
+
+  .docHero {
+    margin-bottom: 18px !important;
+  }
+
+  .docHero h1 {
+    margin-bottom: 12px;
+    font-size: clamp(1.8rem, 10vw, 2.2rem);
+  }
+
+  .docLead {
+    font-size: 0.95rem;
+  }
+
+  .contentPanel {
+    padding: 20px 14px;
+  }
+
+  .bilingualPair {
+    margin: 12px 0;
+  }
+
+  .bilingualBlock,
+  .bilingualCommon {
+    padding: 16px 13px;
+  }
+
+  .navbar__search-input {
+    width: clamp(130px, 34vw, 190px) !important;
+  }
+
+  .navbar__search-input:focus {
+    width: clamp(180px, 62vw, 260px) !important;
   }
 }
 
