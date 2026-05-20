@@ -1220,6 +1220,26 @@ body {
   line-height: 1.56;
 }
 
+.translationPanel :is(ul, ol),
+.bilingualBlock.japanese :is(ul, ol) {
+  margin-top: 0.42rem;
+  margin-bottom: 0.62rem;
+  padding-left: 1.45rem;
+}
+
+.translationPanel :is(ul, ol) > li,
+.bilingualBlock.japanese :is(ul, ol) > li {
+  margin-top: 0.14rem;
+  margin-bottom: 0.14rem;
+  line-height: 1.42;
+}
+
+.translationPanel :is(ul, ol) > li > :is(ul, ol),
+.bilingualBlock.japanese :is(ul, ol) > li > :is(ul, ol) {
+  margin-top: 0.24rem;
+  margin-bottom: 0.34rem;
+}
+
 .theme-doc-toc-desktop {
   display: none !important;
 }
