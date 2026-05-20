@@ -310,6 +310,10 @@ html[data-theme='dark'] .docHero--crypto {
 
 .tabbedContent {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+  gap: 0 24px;
+  align-items: start;
 }
 
 .tabInput {
@@ -321,6 +325,7 @@ html[data-theme='dark'] .docHero--crypto {
 }
 
 .contentTabs {
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(4, minmax(120px, 1fr));
   margin: 20px 0;
@@ -354,7 +359,10 @@ html[data-theme='dark'] .docHero--crypto {
 }
 
 .tabPanel {
+  grid-column: 1;
+  min-width: 0;
   display: none;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 18px);
 }
 
 [id$="-translation"]:checked ~ .translationPanel,
@@ -374,6 +382,53 @@ html[data-theme='dark'] .docHero--crypto {
 .contentPanel h2,
 .contentPanel h3 {
   margin-top: 0;
+}
+
+.viewToc {
+  grid-column: 2;
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 18px);
+  border-left: 1px solid var(--page-border);
+  padding: 4px 0 4px 16px;
+  color: var(--page-muted);
+}
+
+.viewToc strong {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--page-ink);
+  font-size: 0.88rem;
+}
+
+.viewTocPanel {
+  display: none;
+}
+
+.viewTocPanel a {
+  display: block;
+  border-radius: 6px;
+  padding: 7px 8px;
+  color: var(--page-muted);
+  font-size: 0.84rem;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.viewTocPanel a:hover {
+  background: var(--page-accent-soft);
+  color: var(--page-accent);
+}
+
+body:has(.viewToc) .theme-doc-toc-desktop,
+body:has(.viewToc) .theme-doc-toc-mobile {
+  display: none;
+}
+
+[id$="-translation"]:checked ~ .viewToc .translationToc,
+[id$="-summary"]:checked ~ .viewToc .summaryToc,
+[id$="-checklist"]:checked ~ .viewToc .checklistToc,
+[id$="-bilingual"]:checked ~ .viewToc .bilingualToc {
+  display: block;
 }
 
 .checklistView {
@@ -496,6 +551,10 @@ html[data-theme='dark'] [id$="-bilingual"]:checked ~ .contentTabs label[for$="-b
   box-shadow: inset 0 -2px 0 var(--page-accent);
 }
 
+html[data-theme='dark'] .viewTocPanel a:hover {
+  background: rgba(79, 224, 186, 0.1);
+}
+
 html[data-theme='dark'] .bilingualBlock.japanese {
   background: #151b1a;
 }
@@ -519,6 +578,28 @@ html[data-theme='dark'] .footer--light {
   .pilotGrid,
   .contentTabs {
     grid-template-columns: 1fr;
+  }
+
+  .tabbedContent {
+    grid-template-columns: 1fr;
+  }
+
+  .viewToc,
+  .tabPanel {
+    grid-column: 1;
+  }
+
+  .viewToc {
+    position: static;
+    margin: 0 0 16px;
+    border-left: 0;
+    border-top: 1px solid var(--page-border);
+    border-bottom: 1px solid var(--page-border);
+    padding: 12px 0;
+  }
+
+  .viewTocPanel a {
+    padding-left: 0;
   }
 
   .contentTabs label {

@@ -23,7 +23,32 @@
     <label htmlFor="cryptographic-storage-bilingual">対比表示</label>
   </div>
 
-  <section className="tabPanel translationPanel contentPanel">
+  <aside className="viewToc" aria-label="表示中の目次">
+    <strong>目次</strong>
+    <nav className="viewTocPanel translationToc">
+      <a href="#introduction">Introduction</a>
+      <a href="#architectural-design">Architectural Design</a>
+      <a href="#algorithms">Algorithms</a>
+      <a href="#key-management">Key Management</a>
+      <a href="#key-storage">Key Storage</a>
+    </nav>
+    <nav className="viewTocPanel summaryToc">
+      <a href="#cryptographic-storage-summary-panel">要点</a>
+    </nav>
+    <nav className="viewTocPanel checklistToc">
+      <a href="#cryptographic-storage-checklist-panel">チェックリスト</a>
+    </nav>
+    <nav className="viewTocPanel bilingualToc">
+      <a href="#cryptographic-storage-bilingual-panel">対比表示</a>
+      <a href="#introduction-1">Introduction</a>
+      <a href="#architectural-design-1">Architectural Design</a>
+      <a href="#algorithms-1">Algorithms</a>
+      <a href="#secure-random-number-generation-1">Secure Random Number Generation</a>
+      <a href="#key-management-and-storage">Key Management and Storage</a>
+    </nav>
+  </aside>
+
+  <section id="cryptographic-storage-translation-panel" className="tabPanel translationPanel contentPanel">
 
 ## Introduction
 
@@ -217,7 +242,7 @@ KEK も DEK と少なくとも同等の強度を持つべきです。Google の 
 
   </section>
 
-  <section className="tabPanel summaryPanel contentPanel">
+  <section id="cryptographic-storage-summary-panel" className="tabPanel summaryPanel contentPanel">
 
 <ul>
   <li>何を誰から守るかを脅威モデルで定義してから、暗号化する層を決めます。</li>
@@ -231,7 +256,7 @@ KEK も DEK と少なくとも同等の強度を持つべきです。Google の 
 
   </section>
 
-  <section className="tabPanel checklistPanel contentPanel">
+  <section id="cryptographic-storage-checklist-panel" className="tabPanel checklistPanel contentPanel">
 
 <ul className="checklistView">
   <li><input type="checkbox" disabled />保存データの脅威モデルを文書化する。</li>
@@ -248,7 +273,7 @@ KEK も DEK と少なくとも同等の強度を持つべきです。Google の 
 
   </section>
 
-  <section className="tabPanel bilingualPanel">
+  <section id="cryptographic-storage-bilingual-panel" className="tabPanel bilingualPanel">
 
 <div className="noticeBox">
   コード例や表は翻訳タブに完全な形で保持しています。対比表示では、公式ページの主要な説明ブロックを原文と翻訳で比較できるようにしています。
