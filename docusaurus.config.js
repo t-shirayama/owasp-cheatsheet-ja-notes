@@ -56,6 +56,11 @@ const config = {
 
   themeConfig: {
     image: 'img/site-card.png',
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
+    },
     navbar: {
       title: 'OWASP ASVS Cheat Sheet 日本語訳',
       logo: {

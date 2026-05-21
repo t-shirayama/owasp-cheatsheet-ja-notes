@@ -134,6 +134,39 @@ export const HOME_CHEAT_SHEETS = [
   },
 ];
 
+export const HOME_ASVS_CATEGORIES = [
+  {
+    title: 'V1: アーキテクチャ、設計、脅威モデリング',
+    body: '設計段階で参照したい Cheat Sheet を表示',
+    href: '/cheatsheets/asvs/v1',
+  },
+  {
+    title: 'V2: 認証',
+    body: '認証、復旧、レート制限に関連する資料を表示',
+    href: '/cheatsheets/asvs/v2',
+  },
+  {
+    title: 'V3: セッション管理',
+    body: 'セッション ID とライフサイクルの資料を表示',
+    href: '/cheatsheets/asvs/v3',
+  },
+  {
+    title: 'V4: アクセス制御',
+    body: '認可とアクセス制御の資料を表示',
+    href: '/cheatsheets/asvs/v4',
+  },
+  {
+    title: 'V5: 入力検証',
+    body: '入力検証、ファイル、SSRF などの資料を表示',
+    href: '/cheatsheets/asvs/v5',
+  },
+  {
+    title: 'V11: 暗号',
+    body: '暗号化、鍵管理、保存に関する資料を表示',
+    href: '/cheatsheets/asvs/v11',
+  },
+];
+
 export const HOME_FEATURES = [
   {
     title: '原文と翻訳を比較',
