@@ -79,7 +79,7 @@ ASVS 項目、公式 Cheat Sheet、ローカルの翻訳ファイルの対応表
 | V1, V9 | XML Security Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/XML_Security_Cheat_Sheet.html | [docs/translations/xml-security.md](../docs/translations/xml-security.md) | 作成済み | ASVS Index coverage |
 | V1.2, V3.2 | XSS Filter Evasion Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html | [docs/translations/xss-filter-evasion.md](../docs/translations/xss-filter-evasion.md) | 詳細化済み | XSS priority review V2 |
 | V1.2, V1.3, V3.2, V3.4 | Cross Site Scripting Prevention Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html | [docs/translations/xss-prevention.md](../docs/translations/xss-prevention.md) | 詳細化済み | XSS priority review V1 |
-| V1 | XML External Entity Prevention Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html | [docs/translations/xxe-prevention.md](../docs/translations/xxe-prevention.md) | 作成済み | ASVS Index coverage |
+| V1 | XML External Entity Prevention Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html | [docs/translations/xxe-prevention.md](../docs/translations/xxe-prevention.md) | 詳細化済み | ASVS Index coverage |
 
 ## 参考資料
 
