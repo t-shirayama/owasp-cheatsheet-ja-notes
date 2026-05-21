@@ -56,7 +56,7 @@
 - [ ] [docs/translations/abuse-case.md](../docs/translations/abuse-case.md): Abuse Case Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/26。
 - [ ] [docs/translations/denial-of-service.md](../docs/translations/denial-of-service.md): Denial of Service Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/15。
 - [ ] [docs/translations/microservices-security.md](../docs/translations/microservices-security.md): Microservices Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/19。
-- [ ] [docs/translations/web-service-security.md](../docs/translations/web-service-security.md): Web Service Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/18。
+- [x] [docs/translations/web-service-security.md](../docs/translations/web-service-security.md): Web Service Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/content-security-policy.md](../docs/translations/content-security-policy.md): Content Security Policy Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.08, 見出し 0/37。
 - [ ] [docs/translations/dom-clobbering-prevention.md](../docs/translations/dom-clobbering-prevention.md): DOM Clobbering Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.07, 見出し 0/23。
 - [ ] [docs/translations/html5-security.md](../docs/translations/html5-security.md): HTML5 Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/17。
