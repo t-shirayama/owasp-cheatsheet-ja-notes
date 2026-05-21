@@ -1106,7 +1106,7 @@ ${sectionLinks}
 ${pageLinks}
 ${chapterNote}
 `;
-    await fs.writeFile(mdPath('docs', 'bilingual', 'asvs', `v${chapter.id}.md`), content, 'utf8');
+    await fs.writeFile(mdPath('docs', 'bilingual', 'asvs', `v${chapter.id}.md`), `${content.trimEnd()}\n`, 'utf8');
 
     for (const section of chapter.sections) {
       const sectionPages = pagesForSection(section.id);
@@ -1127,7 +1127,7 @@ ${sectionNote}
 `;
       await fs.writeFile(
         mdPath('docs', 'bilingual', 'asvs', `${section.id.toLowerCase().replace('.', '-')}.md`),
-        sectionContent,
+        `${sectionContent.trimEnd()}\n`,
         'utf8',
       );
     }
