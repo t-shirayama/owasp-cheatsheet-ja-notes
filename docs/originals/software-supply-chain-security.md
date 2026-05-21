@@ -8,7 +8,7 @@
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original source Markdown stored locally for reference.
-- Retrieved: 2026-05-20
+- Retrieved: 2026-05-21
 
 ## English Original
 
@@ -16,7 +16,7 @@
 
 ## Introduction
 
-No piece of software is developed in a vacuum; regardless of the technologies used to develop it, software is embedded in a Software Supply Chain (SSC). According to [NIST](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204D.pdf), an entity's SSC can be defined as "a collection of steps that create, transform, and assess the quality and  policy conformance of software artifacts". From a developer's perspective, these steps span the entire SDLC and are accomplished using a wide range of components and tools. Common examples (by no means exhaustive) of components that are especially relevant from a developer's perspective include:
+No piece of software is developed in a vacuum; regardless of the technologies used to develop it, software is embedded in a Software Supply Chain (SSC). According to [NIST](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204D.pdf), an entity's SSC can be defined as "a collection of steps that create, transform, and assess the quality and policy conformance of software artifacts". From a developer's perspective, these steps span the entire SDLC and are accomplished using a wide range of components and tools. Common examples (by no means exhaustive) of components that are especially relevant from a developer's perspective include:
 
 - IDEs and code editors
 - Internally developed source code
