@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository contains unofficial Japanese translations, local English originals, and web-facing bilingual pages derived from OWASP Cheat Sheet Series pages mapped through the ASVS index.
+This repository contains the unofficial Japanese edition of an OWASP ASVS-focused Cheat Sheet index. It maintains local English originals, Japanese translations, and web-facing bilingual pages derived from OWASP Cheat Sheet Series pages mapped through the ASVS index.
 
 Primary source:
 
@@ -69,15 +69,18 @@ Bilingual pages live directly under `docs/bilingual/` and are the public reading
 - Use `docs/templates/` for reusable document templates.
 - Use `references/source-map.md` for ASVS-to-source-to-local-file mapping.
 - Use `references/bilingual-map.md` for public bilingual page coverage and status.
+- Treat `references/catalog.json` as the machine-readable state source for generated maps and public listing status.
 - Use `references/license-notes.md` for license and attribution operating notes.
+- Use `references/todo.md` only for unfinished work. Remove completed tasks instead of leaving `[x]` entries behind.
 - Use relative links for internal repository references.
 - Before editing, check the working tree with `git status --short`.
 - Use `rg` or `rg --files` for searching when available.
 
 ## Docusaurus Site Rules
 
-- The public site is an unofficial ASVS-focused bilingual site. The web-facing content source is `docs/bilingual/`.
+- The public site is an unofficial ASVS-focused bilingual site titled `OWASP ASVS チートシート索引 日本語版`. The web-facing content source is `docs/bilingual/`.
 - Keep the public site clearly unofficial. Site title, footer, and Attribution must not imply an official OWASP translation.
+- The public listing at `docs/bilingual/index.md` must reflect current status from `references/catalog.json` / `references/bilingual-map.md`, not stale `Sample` / `Shell` assumptions in old generator metadata.
 - The left sidebar is ASVS-first. Keep V1 through V17 visible in ASVS order, with Vx.y child sections below each chapter.
 - Do not add top-level navigation links such as `ASVS Cheat Sheets` or `はじめに` back into the header unless explicitly requested.
 - The right-side page TOC is intentionally disabled. Do not reintroduce a right sidebar or right-side table of contents.
@@ -100,6 +103,7 @@ Bilingual pages live directly under `docs/bilingual/` and are the public reading
 - Shared code blocks and images must not be duplicated in both English and Japanese blocks. Put shared artifacts after the Japanese translation in a `コード・画像 (共通)` card.
 - Source reference/link sections such as `References` should not be translated. Render them near the bottom as English reference metadata, similar to Attribution.
 - Place public-page Attribution near the bottom of the page after the main reading experience.
+- If a Full page still uses large English-only and Japanese-only blocks in `対比表示`, list it in `references/todo.md` until it is converted to paragraph-level `bilingualPair` coverage.
 
 ## Maintenance Order
 
@@ -117,6 +121,7 @@ Do not update the bilingual display first and leave the source documents stale. 
 - When updating `tools/generate-bilingual-samples.mjs`, regenerate affected pages and inspect the diff.
 - Use `node tools\generate-bilingual-samples.mjs --navigation-only` when only ASVS navigation pages, sidebars, or bilingual/source maps need regeneration.
 - Use `node tools\generate-bilingual-samples.mjs --originals-only` when refreshing local English originals without rebuilding public bilingual pages.
+- The navigation generator should read current public status from `references/catalog.json` where available.
 - If the generator updates unrelated pages, revert unrelated generated diffs unless the user asked for broad regeneration.
 - Do not add broad automation hooks that silently rewrite content, fetch network resources, or change generated files unless explicitly requested or clearly opt-in.
 
@@ -124,8 +129,8 @@ Do not update the bilingual display first and leave the source documents stale. 
 
 - For Markdown-only changes, review headings, links, and attribution fields manually.
 - Always run `git diff --check` before finalizing code, CSS, or generated-file changes.
-- Run `powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-MarkdownLint.ps1` for broad Markdown/documentation changes.
-- Run `powershell -NoProfile -ExecutionPolicy Bypass -File tools/Invoke-LinkCheck.ps1` when links or file locations change.
+- Run `npm run lint:md` for broad Markdown/documentation changes.
+- Run `npm run check:links` when links or file locations change.
 - Run `npm run build` for final production verification, deployment-related changes, Docusaurus config changes, generator changes that affect public pages, or when the user explicitly asks for a build check.
 - For layout or visual changes, prefer a local browser check when tooling is available. If browser automation is unavailable, state that limitation and still run build/static checks.
 
