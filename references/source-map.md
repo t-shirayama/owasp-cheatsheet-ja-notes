@@ -2,12 +2,14 @@
 
 ASVS 項目、公式 Cheat Sheet、ローカルの翻訳ファイルの対応表です。
 
+このファイルは [catalog.json](catalog.json) から生成しています。対応情報を更新する場合は catalog を更新し、`node tools/generate-catalog.mjs` を実行してください。
+
 ## 方針
 
 - docs/asvs/ の章ページは、この対応表をもとに更新します。
 - 同じ原文につき、翻訳ファイルを1つ作成し、公開用の英日対訳ページから参照します。
-- 公式ページの URL、ローカルファイル、作成状況をここで追跡します。
-- 英日対訳表示の Pilot 対応は [bilingual-map.md](bilingual-map.md) で追跡します。
+- 公式ページの URL、ローカルファイル、作成状況を catalog で追跡します。
+- 英日対訳表示の公開ページは [bilingual-map.md](bilingual-map.md) に生成します。
 
 ## 対応表
 
@@ -39,17 +41,17 @@ ASVS 項目、公式 Cheat Sheet、ローカルの翻訳ファイルの対応表
 | V3.4, V12.1 | HTTP Strict Transport Security Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html | [docs/translations/http-strict-transport-security.md](../docs/translations/http-strict-transport-security.md) | 詳細化済み | Cryptography priority review V2 |
 | V8.1, V8.2 | Insecure Direct Object Reference Prevention Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html | [docs/translations/idor-prevention.md](../docs/translations/idor-prevention.md) | 詳細化済み | Authorization priority review V2 |
 | V1 | Injection Prevention Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html | [docs/translations/injection-prevention.md](../docs/translations/injection-prevention.md) | 詳細化済み | ASVS Index coverage |
-| V1.3 | Injection Prevention in Java Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_in_Java_Cheat_Sheet.html | [docs/translations/injection-prevention-in-java.md](../docs/translations/injection-prevention-in-java.md) | 作成済み | ASVS Index coverage |
+| V1.3 | Injection Prevention Cheat Sheet in Java | https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_in_Java_Cheat_Sheet.html | [docs/translations/injection-prevention-in-java.md](../docs/translations/injection-prevention-in-java.md) | 作成済み | ASVS Index coverage |
 | V1, V2, V5 | Input Validation Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html | [docs/translations/input-validation.md](../docs/translations/input-validation.md) | 詳細化済み | ASVS Index coverage |
 | V1.2 | Java Security Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html | [docs/translations/java-security.md](../docs/translations/java-security.md) | 詳細化済み | ASVS Index coverage |
-| V9.1 | JSON Web Token for Java Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html | [docs/translations/json-web-token-for-java.md](../docs/translations/json-web-token-for-java.md) | 詳細化済み | ASVS Index coverage |
+| V9.1 | JSON Web Token Cheat Sheet for Java | https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html | [docs/translations/json-web-token-for-java.md](../docs/translations/json-web-token-for-java.md) | 詳細化済み | ASVS Index coverage |
 | V11.1, V11.2, V11.3, V11.5, V13.3 | Key Management Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Key_Management_Cheat_Sheet.html | [docs/translations/key-management.md](../docs/translations/key-management.md) | 詳細化済み | Cryptography priority review V2 |
 | V1 | LDAP Injection Prevention Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html | [docs/translations/ldap-injection-prevention.md](../docs/translations/ldap-injection-prevention.md) | 詳細化済み | ASVS Index coverage |
 | V10.7 Consent Management; V16.1 Security Logging Documentation; V16.2 General Logging; V16.3 Security Events; V16.4 Log Protection | Logging Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html | [docs/translations/logging.md](../docs/translations/logging.md) | 詳細化済み | Logging priority review V1 |
 | V16.1 Security Logging Documentation; V16.3 Security Events | Logging Vocabulary Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html | [docs/translations/logging-vocabulary.md](../docs/translations/logging-vocabulary.md) | 詳細化済み | Logging priority review V2 |
 | V15.3 | Mass Assignment Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html | [docs/translations/mass-assignment.md](../docs/translations/mass-assignment.md) | 詳細化済み | ASVS Index coverage |
 | V2.2, V11.7 | Microservices Security Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Microservices_Security_Cheat_Sheet.html | [docs/translations/microservices-security.md](../docs/translations/microservices-security.md) | 詳細化済み | ASVS Index coverage |
-| V8.1, V8.2, V8.4, V16.3 | Multi Tenant Security Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Multi_Tenant_Security_Cheat_Sheet.html | [docs/translations/multi-tenant-security.md](../docs/translations/multi-tenant-security.md) | 詳細化済み | Authorization priority review V2 |
+| V8.1, V8.2, V8.4, V16.3 | Multi-Tenant Application Security Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Multi_Tenant_Security_Cheat_Sheet.html | [docs/translations/multi-tenant-security.md](../docs/translations/multi-tenant-security.md) | 詳細化済み | Authorization priority review V2 |
 | V6.2, V6.3, V6.4, V6.5, V6.8 | Multifactor Authentication Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html | [docs/translations/multifactor-authentication.md](../docs/translations/multifactor-authentication.md) | 詳細化済み | Authentication priority review V2 |
 | V15.1, V15.2 | NPM Security Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html | [docs/translations/npm-security.md](../docs/translations/npm-security.md) | 詳細化済み | Supply chain priority review V2 |
 | V10.1, V10.2, V10.3, V10.4, V10.5, V10.6 | OAuth 2.0 Protocol Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html | [docs/translations/oauth2.md](../docs/translations/oauth2.md) | 詳細化済み | OAuth/OIDC priority review V1 |

@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "docusaurus start --host 0.0.0.0",
     "build": "docusaurus build",
+    "catalog": "node tools/generate-catalog.mjs",
+    "catalog:check": "node tools/generate-catalog.mjs --check",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear"
   },
