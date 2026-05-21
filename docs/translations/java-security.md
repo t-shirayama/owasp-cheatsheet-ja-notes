@@ -100,7 +100,7 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
     }
 
 }
-```text
+```
 
 #### References
 
@@ -136,7 +136,7 @@ try {
         entityManager.close();
     }
 }
-```text
+```
 
 #### References
 
@@ -160,7 +160,7 @@ try {
 * a system command as String and execute it */
 InetAddress host = InetAddress.getByName("localhost");
 var reachable = host.isReachable(5000);
-```text
+```
 
 #### References
 
@@ -208,7 +208,7 @@ public class SimpleVariableResolver implements XPathVariableResolver {
         return vars.get(variableName);
     }
 }
-```text
+```
 
 これを使用して XPath クエリを実行するコードです。
 
@@ -239,7 +239,7 @@ Object nodes = xPathExpression.evaluate(doc, XPathConstants.NODESET);
 NodeList nodesList = (NodeList) nodes;
 Element book = (Element)nodesList.item(0);
 var containsRalls = book.getTextContent().contains("Ralls, Kim");
-```text
+```
 
 #### References
 
@@ -307,7 +307,7 @@ if (!finalSafeOutputExpected.equals(safeOutput))
 {
     return false;
 }
-```text
+```
 
 #### References
 
@@ -387,7 +387,7 @@ try(MongoClient mongoClient = new MongoClient()){
         }
     });
 }
-```text
+```
 
 #### References
 
@@ -441,7 +441,7 @@ try(MongoClient mongoClient = new MongoClient()){
     </Root>
   </Loggers>
 </Configuration>
-```text
+```
 
 詳細なヒントについては、
 [Integration with service-oriented architectures](https://logging.apache.org/log4j/2.x/soa.html)
@@ -468,7 +468,7 @@ logger.warn("Login failed for user {}.", username);
 // If `username` contains `{}`, the exception will leak into the message
 logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
-```text
+```
 
 詳細なヒントについては、
 [Log4j API Best Practices](https://logging.apache.org/log4j/2.x/manual/api.html#best-practice)
@@ -508,7 +508,7 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
     <appender-ref ref="SOCKET"/>
   </root>
 </configuration>
-```text
+```
 
 コードレベルでのロガーの使用方法です。
 
@@ -529,7 +529,7 @@ logger.warn("Login failed for user {}.", username);
 // If `username` contains `{}`, the exception will leak into the message
 logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
-```text
+```
 
 #### References
 
@@ -633,7 +633,7 @@ class AesGcmSimple {
 
 }
 
-```xml
+```
 
 </details>
 
@@ -712,7 +712,7 @@ class AesGcmSimple {
     }
 
 }
-```xml
+```
 
 </details>
 
@@ -862,7 +862,7 @@ class HybridSimple {
 
 
 }
-```xml
+```
 
 </details>
 

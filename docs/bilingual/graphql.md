@@ -123,7 +123,7 @@ query evil {            # Depth: 0
     }
   }
 }
-```text
+```
 
 Here is an example of a GraphQL query requesting 99999999 of an object:
 
@@ -135,7 +135,7 @@ query {
     }
   }
 }
-```text
+```
 
 #### Timeouts
 
@@ -159,7 +159,7 @@ request.incrementResolverCount =  function () {
     }
     this.resolverCount++;
   };
-```text
+```
 
 _**Java Timeout Example using [Instrumentation](https://www.graphql-java.com/documentation/instrumentation)**_
 
@@ -176,7 +176,7 @@ public class TimeoutInstrumentation extends SimpleInstrumentation {
                 .blockingFirst();
     }
 }
-```bash
+```
 
 _**Infrastructure Timeout**_
 
@@ -255,7 +255,7 @@ GraphQL supports batching requests, also known as [query batching](https://www.a
     variables: < variables for query n >,
   }
 ]
-```text
+```
 
 And here is an example query of a single batched GraphQL call requesting multiple different instances of the `droid` object:
 
@@ -271,7 +271,7 @@ query {
     name
   }
 }
-```text
+```
 
 In this case it could be used to enumerate every possible `droid` object that is stored on the server in very few network requests as opposed to a standard REST API where the requester would need to submit a different network request for every different `droid` ID they want to request. This type of attack can lead to the following issues:
 
@@ -321,7 +321,7 @@ GraphQLSchema schema = GraphQLSchema.newSchema()
     .query(StarWarsSchema.queryType)
     .fieldVisibility( NoIntrospectionGraphqlFieldVisibility.NO_INTROSPECTION_FIELD_VISIBILITY )
     .build();
-```text
+```
 
 _**Disable Introspection & GraphiQL - JavaScript**_
 
@@ -331,7 +331,7 @@ app.use('/graphql', graphqlHTTP({
 + validationRules: [NoIntrospection]
   graphiql: process.env.NODE_ENV === 'development',
 }));
-```text
+```
 
 #### Don't Return Excessive Errors
 
@@ -464,7 +464,7 @@ query evil {            # Depth: 0
     }
   }
 }
-```text
+```
 
 オブジェクトを 99999999 件要求する GraphQL クエリの例を次に示します。
 
@@ -476,7 +476,7 @@ query {
     }
   }
 }
-```text
+```
 
 #### タイムアウト
 
@@ -500,7 +500,7 @@ request.incrementResolverCount =  function () {
     }
     this.resolverCount++;
   };
-```text
+```
 
 [Instrumentation](https://www.graphql-java.com/documentation/instrumentation/) を使用した Java タイムアウト例
 
@@ -517,7 +517,7 @@ public class TimeoutInstrumentation extends SimpleInstrumentation {
                 .blockingFirst();
     }
 }
-```bash
+```
 
 インフラストラクチャタイムアウト
 
@@ -600,7 +600,7 @@ GraphQL は、[クエリバッチング](https://www.apollographql.com/blog/batc
     variables: < variables for query n >,
   }
 ]
-```text
+```
 
 単一のバッチ化された GraphQL 呼び出しで、`droid` オブジェクトの複数の異なるインスタンスを要求するクエリ例を次に示します。
 
@@ -616,7 +616,7 @@ query {
     name
   }
 }
-```text
+```
 
 この場合、サーバーに保存されている可能性のあるすべての `droid` オブジェクトを、ごく少数のネットワークリクエストで列挙するために使用できます。標準的な REST API では、リクエスト元は要求したい異なる `droid` ID ごとに別々のネットワークリクエストを送信する必要があります。この種類の攻撃は、次の問題につながる可能性があります。
 
@@ -666,7 +666,7 @@ GraphQLSchema schema = GraphQLSchema.newSchema()
     .query(StarWarsSchema.queryType)
     .fieldVisibility( NoIntrospectionGraphqlFieldVisibility.NO_INTROSPECTION_FIELD_VISIBILITY )
     .build();
-```text
+```
 
 _**イントロスペクションと GraphiQL の無効化 - JavaScript**_
 
@@ -676,7 +676,7 @@ app.use('/graphql', graphqlHTTP({
 + validationRules: [NoIntrospection]
   graphiql: process.env.NODE_ENV === 'development',
 }));
-```text
+```
 
 #### 過剰なエラーを返さない
 
@@ -1117,7 +1117,7 @@ query evil {            # Depth: 0
     }
   }
 }
-```text
+```
 
 ```graphql
 query evil {            # Depth: 0
@@ -1130,7 +1130,7 @@ query evil {            # Depth: 0
     }
   }
 }
-```html
+```
 
 </div>
 
@@ -1160,7 +1160,7 @@ query {
     }
   }
 }
-```text
+```
 
 ```graphql
 query {
@@ -1170,7 +1170,7 @@ query {
     }
   }
 }
-```html
+```
 
 </div>
 
@@ -1253,7 +1253,7 @@ request.incrementResolverCount =  function () {
     }
     this.resolverCount++;
   };
-```html
+```
 
 </div>
 
@@ -1288,7 +1288,7 @@ public class TimeoutInstrumentation extends SimpleInstrumentation {
                 .blockingFirst();
     }
 }
-```text
+```
 
 ```java
 public class TimeoutInstrumentation extends SimpleInstrumentation {
@@ -1303,7 +1303,7 @@ public class TimeoutInstrumentation extends SimpleInstrumentation {
                 .blockingFirst();
     }
 }
-```bash
+```
 
 </div>
 
@@ -1662,7 +1662,7 @@ GraphQL は、[クエリバッチング](https://www.apollographql.com/blog/batc
     variables: < variables for query n >,
   }
 ]
-```html
+```
 
 </div>
 
@@ -1696,7 +1696,7 @@ query {
     name
   }
 }
-```html
+```
 
 </div>
 
@@ -1948,7 +1948,7 @@ GraphQLSchema schema = GraphQLSchema.newSchema()
     .query(StarWarsSchema.queryType)
     .fieldVisibility( NoIntrospectionGraphqlFieldVisibility.NO_INTROSPECTION_FIELD_VISIBILITY )
     .build();
-```html
+```
 
 </div>
 

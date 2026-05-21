@@ -88,7 +88,7 @@ The time delay exploitation technique is very useful when the tester find a Blin
 
 ```text
 http://www.example.com/product.php?id=10 AND IF(version() like '5%', sleep(10), 'false'))--
-```text
+```
 
 In this example the tester is checking whether the MySql version is 5.x or not, making the server delay the answer by 10 seconds. The tester can increase the delay time and monitor the responses. The tester also doesn't need to wait for the response. Sometimes they can set a very high value (e.g. 100) and cancel the request after some seconds.
 
@@ -136,7 +136,7 @@ String query = "SELECT account_balance FROM user_data WHERE user_name = ?";
 PreparedStatement pstmt = connection.prepareStatement(query);
 pstmt.setString(1, custname);
 ResultSet results = pstmt.executeQuery();
-```text
+```
 
 We have shown examples in Java, but practically all other languages, including Cold Fusion, and Classic ASP, support parameterized query interfaces.
 
@@ -155,7 +155,7 @@ try {
 } catch (SQLException se) {
  // Logging and error handling...
 }
-```text
+```
 
 #### LDAP Injection
 
@@ -186,13 +186,13 @@ A DN might look like this
 
 ```text
 cn=Richard Feynman, ou=Physics Department, dc=Caltech, dc=edu
-```text
+```
 
 or
 
 ```text
 uid=inewton, ou=Mathematics Department, dc=Cambridge, dc=com
-```text
+```
 
 There are certain characters that are considered special characters in a DN. The exhaustive list is the following: `\ # + < > , ; " =` and leading or trailing spaces
 
@@ -203,7 +203,7 @@ Example:
 ```text
 (&(ou=Physics)(| (manager=cn=Freeman Dyson,ou=Physics,dc=Caltech,dc=edu)
 (manager=cn=Albert Einstein,ou=Physics,dc=Princeton,dc=edu) ))
-```text
+```
 
 When building LDAP queries in application code, you MUST escape any untrusted data that is added to any LDAP query. There are two forms of LDAP escaping. Encoding for LDAP Search and Encoding for LDAP DN (distinguished name). The proper escaping depends on whether you are sanitizing input for a search filter, or you are using a DN as a username-like credential for accessing some resource.
 
@@ -228,7 +228,7 @@ public String escapeDN (String name) {
  }
  return escapedStr;
 }
-```text
+```
 
 Note, that the backslash character is a Java String literal and a regular expression escape character.
 
@@ -244,7 +244,7 @@ public String escapeSearchFilter (String filter) {
                Character.toString('\\u0000'), "\\\\\\\\00");
  return escapedStr;
 }
-```text
+```
 
 #### XPath Injection
 
@@ -295,7 +295,7 @@ If it is considered unavoidable the call to a system command incorporated with u
 
 ```java
 ProcessBuilder b = new ProcessBuilder("C:\DoStuff.exe -arg1 -arg2");
-```text
+```
 
 In this example, the command together with the arguments are passed as a one string, making easy to manipulate that expression and inject malicious strings.
 

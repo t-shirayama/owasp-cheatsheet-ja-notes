@@ -91,7 +91,7 @@ For example:
 <input type="hidden" name="CSRFToken" value="OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA==">
 [...]
 </form>
-```text
+```
 
 Since requests with custom headers are automatically subject to the same-origin policy, it is more secure to insert the CSRF token in a custom HTTP request header via JavaScript than adding a CSRF token in the hidden field form parameter.
 
@@ -139,7 +139,7 @@ csrfToken = hmac.toHex() + "." + randomValue.toHex()
 
 // Store the CSRF Token in a cookie
 response.setCookie("csrf_token=" + csrfToken + "; Secure") // Set Cookie without HttpOnly flag
-```text
+```
 
 Below is an example in pseudo-code that demonstrates validation of the CSRF token once it is sent back from the client:
 
@@ -170,7 +170,7 @@ if (!constantTimeEquals(hmacFromRequest, expectedHmac)) {
 
 // CSRF validation passed, continue processing the request
 // ...
-```bash
+```
 
 Note: The `constantTimeEquals` function should be used to compare the HMACs to prevent timing attacks. This function compares two strings in constant time, regardless of how many characters match.
 
@@ -223,7 +223,7 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
 
    1.1. Treat cross-site as untrusted for state-changing actions. By default, reject non-safe methods (POST / PUT / PATCH / DELETE) when `Sec-Fetch-Site: cross-site`.
 
-   ```JavaScript
+   ```javascript
    const SAFE_METHODS = new Set(['GET','HEAD','OPTIONS']);
    const site = req.get('Sec-Fetch-Site'); // e.g. 'cross-site','same-site','same-origin','none'
 
@@ -234,7 +234,7 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
 
    1.2 If your application relies on [safe HTTP methods](https://developer.mozilla.org/en-US/docs/Glossary/Safe/HTTP) (GET, HEAD, or OPTIONS) for state‑changing actions, you should explicitly reflect that in your policy – e.g., by requiring a Fetch‑Metadata header review for requests to those endpoints. This can be enforced with a policy rule like:
 
-   ```JavaScript
+   ```javascript
    const SAFE_METHODS = new Set(['GET','HEAD','OPTIONS']);
    const SENSITIVE_ENDPOINTS = new Set([
      '/user/profile',
@@ -252,7 +252,7 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
 
    1.3. Allow `same-origin`. Treat `same-site` as allowed only if your threat model trusts sibling subdomains; otherwise handle `same-site` conservatively (for example, require additional validation).
 
-   ```JavaScript
+   ```javascript
    const trustSameSite = false; // set true only if you trust sibling subdomains
 
    if (site === 'same-origin') {
@@ -276,7 +276,7 @@ For the rare cases of outdated or embedded browsers that lack `Sec-Fetch-*` supp
 
    3.1 To ensure that your site can still be linked from other sites, you have to allow simple (HTTP GET) top-level navigation.
 
-   ```JavaScript
+   ```javascript
    if (req.get('Sec-Fetch-Mode') === 'navigate' &&
        req.method === 'GET' &&
        req.get('Sec-Fetch-Dest') !== 'object' &&
@@ -326,7 +326,7 @@ In this pattern, the client appends a custom header to requests that require CSR
 
 ```text
 X-CSRF-Token: RANDOM-TOKEN-VALUE
-```text
+```
 
 Many popular frameworks use standardized header names for CSRF protection:
 
@@ -353,14 +353,14 @@ As an example, you might configure your backend to allow CORS with cookies from 
 ```text
 Access-Control-Allow-Origin=http://mobile.yoursite.com
 Access-Control-Allow-Credentials=true
-```text
+```
 
 or
 
 ```text
 Access-Control-Allow-Origin=http://www.yoursite.com
 Access-Control-Allow-Credentials=true
-```text
+```
 
 A less secure configuration would be to configure your backend server to allow CORS from all subdomains of your site using a regular expression. If an attacker is able to [take over a subdomain](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/10-Test_for_Subdomain_Takeover) (not uncommon with cloud services) your CORS configuration would allow them to bypass the same origin policy and forge a request with your custom header.
 
@@ -412,7 +412,7 @@ The following code snippet demonstrates a simple example of a client-side CSRF v
     // trigger the async request on page load - better practice is to use event listeners
     window.addEventListener('DOMContentLoaded', ajaxLoad);
 </script>
-```text
+```
 
 **Vulnerability:** In this snippet, the program invokes a function `ajaxLoad()` upon the page load, which is responsible for loading various webpage elements. The function reads the value of the [URL hash fragment](https://developer.mozilla.org/en-US/docs/Web/API/Location/hash) (line 4), and extracts two pieces of information from it (i.e., request method and endpoint) to generate an asynchronous HTTP request (lines 11-13). The vulnerability occurs in lines 15-22, when the JavaScript program uses URL fragments to obtain the server-side endpoint for the asynchronous HTTP request (line 15) and the request method. However, both inputs can be controlled by web attackers, who can pick the value of their choosing, and craft a malicious URL containing the attack payload.
 
@@ -445,7 +445,7 @@ Example of cookies using this attribute:
 ```text
 Set-Cookie: JSESSIONID=xxxxx; SameSite=Strict
 Set-Cookie: JSESSIONID=xxxxx; SameSite=Lax
-```text
+```
 
 All modern desktop and mobile browsers support the `SameSite` attribute. The main exceptions are legacy browsers including Opera Mini (all versions), UC Browser for Android, and older mobile browsers (iOS Safari < 13.2, Android Browser < 97). To track the browsers implementing it and know how the attribute is used, refer to the following [service](https://caniuse.com/#feat=same-site-cookie-attribute). Chrome implemented `SameSite=Lax` as the default behavior in 2020, and Firefox and Edge have followed suit. Additionally, the `Secure` flag is required for cookies that are marked as `SameSite=None`.
 
@@ -577,7 +577,7 @@ The following code snippet can be used to include a CSRF token as a `<meta>` tag
 
 ```html
 <meta name="csrf-token" content="{{ csrf_token() }}">
-```text
+```
 
 The exact syntax of populating the content attribute would depend on your web application's backend programming language.
 
@@ -611,7 +611,7 @@ This can be done as demonstrated in the following code snippet:
         return result;
     };
 </script>
-```text
+```
 
 #### CSRF Prevention in modern Frameworks
 
@@ -637,7 +637,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
   ],
 };
-```text
+```
 
 This code snippet has been tested with Angular version 19.2.11.
 
@@ -671,7 +671,7 @@ api.interceptors.request.use(config => {
 });
 
 export default api;
-```text
+```
 
 #### Axios
 
@@ -701,7 +701,7 @@ export default api;
         return config;
     });
 </script>
-```text
+```
 
 This code snippet has been tested with Axios version 1.9.0.
 
@@ -728,7 +728,7 @@ You can configure jQuery to automatically add the token to all request headers b
         }
     });
 </script>
-```text
+```
 
 This code snippet has been tested with jQuery version 3.7.1.
 
@@ -806,7 +806,7 @@ export class CSRFProtection {
 // Usage example:
 // const csrfProtection = new CSRFProtection();
 // const headers = csrfProtection.addTokenToHeaders('POST', {});
-```text
+```
 
 #### Angular with TypeScript
 
@@ -832,7 +832,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes)
   ]
 };
-```text
+```
 
 For a custom HTTP interceptor that handles CSRF tokens:
 
@@ -882,7 +882,7 @@ export class CsrfInterceptor implements HttpInterceptor {
     return tokenCookie ? tokenCookie.split('=')[1] : '';
   }
 }
-```text
+```
 
 #### React with TypeScript
 
@@ -963,7 +963,7 @@ function getCsrfToken(cookieName: string): string {
 //
 //   // Rest of component...
 // }
-```text
+```
 
 For React applications using fetch API with TypeScript:
 
@@ -1071,7 +1071,7 @@ export class CSRFProtectedFetch {
 //     console.error('Failed to update profile', error);
 //   }
 // };
-```html
+```
 
 </section>
 
@@ -1138,7 +1138,7 @@ CSRF トークンは、HTML または JSON レスポンスなどのレスポン�
 <input type="hidden" name="CSRFToken" value="OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA==">
 [...]
 </form>
-```bash
+```
 
 カスタムヘッダー付きリクエストは自動的に同一オリジンポリシーの対象になるため、hidden フォームパラメータに CSRF トークンを追加するより、JavaScript でカスタム HTTP リクエストヘッダーに挿入する方が安全です。
 
@@ -1289,7 +1289,7 @@ CSRF トークンは次のように `<meta>` タグへ含めることができ�
 
 ```html
 <meta name="csrf-token" content="{{ csrf_token() }}">
-```text
+```
 
 ### Overriding Defaults to Set Custom Header
 
@@ -1634,7 +1634,7 @@ CSRF トークンは、HTML または JSON レスポンスなどのレスポン�
 <input type="hidden" name="CSRFToken" value="OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA==">
 [...]
 </form>
-```html
+```
 
 </div>
 
@@ -1803,7 +1803,7 @@ csrfToken = hmac.toHex() + "." + randomValue.toHex()
 
 // Store the CSRF Token in a cookie
 response.setCookie("csrf_token=" + csrfToken + "; Secure") // Set Cookie without HttpOnly flag
-```bash
+```
 
 </div>
 
@@ -1859,7 +1859,7 @@ if (!constantTimeEquals(hmacFromRequest, expectedHmac)) {
 
 // CSRF validation passed, continue processing the request
 // ...
-```bash
+```
 
 </div>
 
@@ -2286,7 +2286,7 @@ SameSite Cookie 属性は、クロスサイトリクエストで Cookie を送�
 
 ```text
 X-CSRF-Token: RANDOM-TOKEN-VALUE
-```html
+```
 
 </div>
 
@@ -2348,7 +2348,7 @@ As an example, you might configure your backend to allow CORS with cookies from 
 ```text
 Access-Control-Allow-Origin=http://mobile.yoursite.com
 Access-Control-Allow-Credentials=true
-```html
+```
 
 </div>
 
@@ -2375,7 +2375,7 @@ or
 ```text
 Access-Control-Allow-Origin=http://www.yoursite.com
 Access-Control-Allow-Credentials=true
-```html
+```
 
 </div>
 
@@ -2477,7 +2477,7 @@ The following code snippet demonstrates a simple example of a client-side CSRF v
     // trigger the async request on page load - better practice is to use event listeners
     window.addEventListener('DOMContentLoaded', ajaxLoad);
 </script>
-```html
+```
 
 </div>
 
@@ -2573,7 +2573,7 @@ CSRF トークンは次のように `<meta>` タグへ含めることができ�
 
 ```html
 <meta name="csrf-token" content="{{ csrf_token() }}">
-```html
+```
 
 </div>
 
@@ -2610,7 +2610,7 @@ Example of cookies using this attribute:
 ```text
 Set-Cookie: JSESSIONID=xxxxx; SameSite=Strict
 Set-Cookie: JSESSIONID=xxxxx; SameSite=Lax
-```html
+```
 
 </div>
 
@@ -2970,7 +2970,7 @@ The following code snippet can be used to include a CSRF token as a `<meta>` tag
 
 ```html
 <meta name="csrf-token" content="{{ csrf_token() }}">
-```html
+```
 
 </div>
 
@@ -3041,7 +3041,7 @@ This can be done as demonstrated in the following code snippet:
         return result;
     };
 </script>
-```html
+```
 
 </div>
 
@@ -3104,7 +3104,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
   ],
 };
-```html
+```
 
 </div>
 
@@ -3159,7 +3159,7 @@ api.interceptors.request.use(config => {
 });
 
 export default api;
-```html
+```
 
 </div>
 
@@ -3202,7 +3202,7 @@ export default api;
         return config;
     });
 </script>
-```html
+```
 
 </div>
 
@@ -3258,7 +3258,7 @@ You can configure jQuery to automatically add the token to all request headers b
         }
     });
 </script>
-```html
+```
 
 </div>
 
@@ -3357,7 +3357,7 @@ export class CSRFProtection {
 // Usage example:
 // const csrfProtection = new CSRFProtection();
 // const headers = csrfProtection.addTokenToHeaders('POST', {});
-```html
+```
 
 </div>
 
@@ -3396,7 +3396,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes)
   ]
 };
-```html
+```
 
 </div>
 
@@ -3459,7 +3459,7 @@ export class CsrfInterceptor implements HttpInterceptor {
     return tokenCookie ? tokenCookie.split('=')[1] : '';
   }
 }
-```html
+```
 
 </div>
 
@@ -3553,7 +3553,7 @@ function getCsrfToken(cookieName: string): string {
 //
 //   // Rest of component...
 // }
-```html
+```
 
 </div>
 

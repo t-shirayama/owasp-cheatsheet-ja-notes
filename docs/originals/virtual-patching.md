@@ -70,7 +70,7 @@ Let's take the following [SQL Injection vulnerability](https://packetstormsecuri
 WordPress Shopping Cart Plugin for WordPress
 /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php
 reqID Parameter prone to SQL Injection.
-```text
+```
 
 **Description**:
 
@@ -162,7 +162,7 @@ SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/a
 ##
 SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php" "chain,id:2,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'"
   SecRule ARGS:/reqID/ "!@rx ^[0-9]+$"
-```text
+```
 
 This virtual patch will inspect the `reqID` parameter value on the specified page and prevent any characters other than integers as input.
 
@@ -179,14 +179,14 @@ Here is the example [PoC code](https://packetstormsecurity.com/files/119217/Word
 
 ```text
 http://localhost/wordpress/wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php?reqID=1' or 1='1
-```text
+```
 
 Looking at the payload, we can see that the attacker is inserting a single quote character and then adding additional SQL query logic to the end. Based on this data, we could disallow the single quote character like this:
 
 ```text
 SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php" "chain,id:1,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'"
   SecRule ARGS:/reqID/ "@pm '"
-```text
+```
 
 #### Which Method is Better for Virtual Patching – Positive or Negative Security
 

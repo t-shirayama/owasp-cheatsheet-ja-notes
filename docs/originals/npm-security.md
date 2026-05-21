@@ -74,7 +74,7 @@ Here's how the allowlist would look like in the `package.json` file on a project
     }
   }
 }
-```bash
+```
 
 ## 4) Assess npm project health
 
@@ -194,7 +194,7 @@ Equip yourself with an authentication application, such as Google Authenticator,
 
 ```bash
 npm profile enable-2fa auth-and-writes
-```bash
+```
 
 Follow the command-line instructions to enable 2FA, and to save emergency authentication codes. If you wish to enable 2FA mode for login and profile changes only, you may replace the `auth-and-writes` with `auth-only` in the code as it appears above.
 

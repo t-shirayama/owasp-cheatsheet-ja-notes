@@ -132,7 +132,7 @@
       </services-testing>
 
   </authorization-matrix>
-```text
+```
 
 ### 統合テストを実装する
 
@@ -381,7 +381,7 @@
           return buffer.toString();
       }
   }
-```text
+```
 
 認可の問題が検出された場合、または複数の問題が検出された場合、出力は以下のようになります。
 
@@ -402,7 +402,7 @@ java.lang.AssertionError:
 Access issues detected using the BASIC USER point of view:
     The service 'DeleteMessage' when called with POV 'BASIC' return
     a response code 200 that is not the expected one (403 expected).
-```text
+```
 
 ## 監査 / レビューのために認可マトリクスをレンダリングする
 

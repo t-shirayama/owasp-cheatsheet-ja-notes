@@ -24,7 +24,7 @@ For instance, when a user accesses their profile, the application might generate
 
 ```text
 https://example.org/users/123
-```text
+```
 
 The 123 in the URL is a direct reference to the user's record in the database, often represented by the primary key. If an attacker changes this number to 124 and gains access to another user's information, the application is vulnerable to Insecure Direct Object Reference. This happens because the app didn't properly check if the user had permission to view data for user 124 before displaying it.
 
@@ -36,7 +36,7 @@ In some cases, the identifier may not be in the URL, but rather in the POST body
   <input type="hidden" name="user_id" value="12345">
   <button type="submit">Update Profile</button>
 </form>
-```text
+```
 
 In this example, the application allows users to update their profiles by submitting a form with the user ID in a hidden field. If the app doesn't perform proper access control on the server-side, attackers can manipulate the "user_id" field to modify profiles of other users without authorization.
 

@@ -94,7 +94,7 @@ if(Pattern.matches("[a-zA-Z0-9\\s\\-]{1,50}", userInput)){
 }else{
     //Stop the processing and reject the request
 }
-```bash
+```
 
 ###### IP アドレス
 
@@ -158,7 +158,7 @@ domain_names.each { |domain_name|
         puts "[!] #{domain_name} is INVALID"
     end
 }
-```bash
+```
 
 ```bash
 $ ruby test.rb
@@ -168,7 +168,7 @@ $ ruby test.rb
 [i] doc.owasp.org is VALID
 [!] <script>alert(1)</script> is INVALID
 [!] <script>alert(1)</script>.owasp.org is INVALID
-```text
+```
 
 受信ドメイン名の有効性を確認した後、二つ目の検証層を適用します。
 
@@ -249,7 +249,7 @@ if __name__== "__main__":
         exit(1)
     else:
         exit(0)
-```bash
+```
 
 ###### URL
 

@@ -43,7 +43,7 @@ try {
 }
 
 ...
-```text
+```
 
 ## Primary Defenses
 
@@ -72,7 +72,7 @@ String query = "SELECT account_balance FROM user_data WHERE user_name =
 PreparedStatement pstmt = connection.prepareStatement( query );
 pstmt.setString( 1, custname);
 ResultSet results = pstmt.executeQuery( );
-```text
+```
 
 #### Safe C\# .NET Prepared Statement Example
 
@@ -88,7 +88,7 @@ try {
 } catch (OleDbException se) {
   // error handling
 }
-```text
+```
 
 While we have shown examples in Java and .NET, practically all other languages (including Cold Fusion and Classic ASP) support parameterized query interfaces. Even SQL abstraction layers, like the [Hibernate Query Language](http://hibernate.org/) (HQL) with the same type of injection problems (called [HQL Injection](http://cwe.mitre.org/data/definitions/564.html))  support parameterized queries as well:
 
@@ -100,7 +100,7 @@ Query unsafeHQLQuery = session.createQuery("from Inventory where productID
 // Here is a safe version of the same query using named parameters
 Query safeHQLQuery = session.createQuery("from Inventory where productID=:productid");
 safeHQLQuery.setParameter("productid", userSuppliedParameter);
-```text
+```
 
 #### Other Examples of Safe Prepared Statements
 
@@ -137,7 +137,7 @@ try {
 } catch (SQLException se) {
   // … logging and error handling
 }
-```text
+```
 
 #### Safe VB .NET Stored Procedure Example
 
@@ -153,7 +153,7 @@ The following code example uses a `SqlCommand`, .NET's implementation of the sto
  Catch se As SqlException
    'error handling
  End Try
-```text
+```
 
 ### Defense Option 3: Allow-list Input Validation
 
@@ -175,7 +175,7 @@ switch(PARAM):
   ...
   default      : throw new InputValidationException("unexpected value provided"
                                                   + " for table name");
-```text
+```
 
 #### Safest Use Of Dynamic SQL Generation (DISCOURAGED)
 

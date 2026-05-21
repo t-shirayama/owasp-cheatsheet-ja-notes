@@ -60,13 +60,13 @@ There are many different output encoding methods because browsers parse HTML, JS
 
 ```html
 <div> $varUnsafe </div>
-```text
+```
 
 An attacker could modify data that is rendered as `$varUnsafe`. This could lead to an attack being added to a webpage. For example:
 
 ```html
 <div> <script>alert`1`</script> </div> // Example Attack
-```bash
+```
 
 In order to add a variable to a HTML context safely to a web template, use HTML entity encoding for that variable.
 
@@ -80,7 +80,7 @@ If you're using JavaScript for writing to HTML, look at the `.textContent` attri
 >    &gt;
 "    &quot;
 '    &#x27;
-```text
+```
 
 ### Output Encoding for “HTML Attribute Contexts”
 
@@ -89,7 +89,7 @@ If you're using JavaScript for writing to HTML, look at the `.textContent` attri
 ```html
 <div attr="$varUnsafe">
 <div attr=”*x” onblur=”alert(1)*”> // Example Attack
-```text
+```
 
 **It’s critical to use quotation marks like `"` or `'` to surround your variables.** Quoting makes it difficult to change the context a variable operates in, which helps prevent XSS. Quoting also significantly reduces the characterset that you need to encode, making your application more reliable and the encoding easier to implement.
 
@@ -107,7 +107,7 @@ Examples of “Quoted Data Values”
 <script>alert('$varUnsafe’)</script>
 <script>x=’$varUnsafe’</script>
 <div onmouseover="'$varUnsafe'"</div>
-```text
+```
 
 Encode all characters using the `\xHH` format. Encoding libraries often have a `EncodeForJavaScript` or similar to support this function.
 
@@ -123,7 +123,7 @@ For JSON, verify that the `Content-Type` header is `application/json` and not `t
 <style> selector { property : $varUnsafe; } </style>
 <style> selector { property : "$varUnsafe"; } </style>
 <span style="property : $varUnsafe">Oh no</span>
-```text
+```
 
 If you're using JavaScript to change a CSS property, look into using
 `style.property = x`.
@@ -137,7 +137,7 @@ When inserting variables into CSS properties, ensure the data is properly encode
 
 ```html
 <a href="http://www.owasp.org?test=$varUnsafe">link</a >
-```text
+```
 
 Encode all characters with the `%HH` encoding format. Make sure any attributes are fully quoted, same as JS and CSS.
 
@@ -148,7 +148,7 @@ There will be situations where you use a URL in different contexts. The most com
 ```html
 url = "https://site.com?data=" + urlencode(parameter)
 <a href='attributeEncode(url)'>link</a>
-```text
+```
 
 If you're using JavaScript to construct a URL Query Value, look into using `window.encodeURIComponent(x)`. This is a **Safe Sink** and will automatically URL encode data in it.
 
@@ -162,7 +162,7 @@ Output encoding is not perfect. It will not always prevent XSS. These locations 
 <style>Directly in CSS</style>
 <div ToDefineAnAttribute=test />
 <ToDefineATag href="/test" />
-```text
+```
 
 Other areas to be careful with include:
 
@@ -181,7 +181,7 @@ HTML Sanitization will strip dangerous HTML from a variable and return a safe st
 
 ```javascript
 let clean = DOMPurify.sanitize(dirty);
-```text
+```
 
 There are some further things to consider:
 

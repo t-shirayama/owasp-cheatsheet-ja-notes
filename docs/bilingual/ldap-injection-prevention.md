@@ -77,7 +77,7 @@ Some "special" characters that are allowed in Distinguished Names and do not nee
 
 ```text
 * ( ) . & - _ [ ] ` ~ | @ $ % ^ ? : { } ! '
-```text
+```
 
 #### Search Filter Escaping
 
@@ -92,7 +92,7 @@ Example:
 (manager=cn=Freeman Dyson,ou=Physics,dc=Caltech,dc=edu)
 (manager=cn=Albert Einstein,ou=Physics,dc=Princeton,dc=edu)
 ))
-```text
+```
 
 When building LDAP queries in application code, you MUST escape any untrusted data that is added to any LDAP query. There are two forms of LDAP escaping. Encoding for LDAP Search and Encoding for LDAP DN (distinguished name). The proper escaping depends on whether you are sanitizing input for a search filter, or you are using a DN as a username-like credential for accessing some resource.
 
@@ -100,7 +100,7 @@ Some "special" characters that are allowed in search filters and must be escaped
 
 ```text
 * ( ) \ NUL
-```text
+```
 
 For more information on search filter escaping visit [RFC4515](https://datatracker.ietf.org/doc/html/rfc4515#section-3).
 
@@ -121,7 +121,7 @@ if (!userSN.matches("[\\w\\s]*")) {
 
 String filter = "(sn = " + userSN + ")";
 // ... remainder of LDAPInjection.searchRecord()...
-```text
+```
 
 When a database field must include special characters, it is critical to ensure that the authentic data is stored in sanitized form in the
 database and also that any user input is normalized before the validation or comparison takes place. Using characters that have special meanings in JNDI
@@ -147,7 +147,7 @@ NamingEnumeration<SearchResult> results =
 String filter = "(&(uid={0})(objectClass=person))";
 NamingEnumeration<SearchResult> results =
     ctx.search("ou=users,dc=example,dc=com", filter, new Object[]{ userInput }, controls);
-```text
+```
 
 #### Safe C Sharp .NET TBA Example
 
@@ -243,7 +243,7 @@ DNは次のような形式になります。
 
 ```text
 * ( ) . & - _ [ ] ` ~ | @ $ % ^ ? : { } ! '
-```text
+```
 
 #### 検索フィルタのエスケープ
 
@@ -258,7 +258,7 @@ DNは次のような形式になります。
 (manager=cn=Freeman Dyson,ou=Physics,dc=Caltech,dc=edu)
 (manager=cn=Albert Einstein,ou=Physics,dc=Princeton,dc=edu)
 ))
-```text
+```
 
 アプリケーションコードでLDAPクエリを構築する場合、LDAPクエリに追加される信頼できないデータは必ずエスケープする必要があります。LDAPエスケープには二つの形式があります。LDAP検索用のエンコーディングと、LDAP DN (distinguished name、識別名) 用のエンコーディングです。適切なエスケープ方法は、検索フィルタ向けに入力をサニタイズしているのか、あるいはリソースへアクセスするためのユーザー名のような資格情報としてDNを使用しているのかによって異なります。
 
@@ -266,7 +266,7 @@ DNは次のような形式になります。
 
 ```text
 * ( ) \ NUL
-```text
+```
 
 検索フィルタのエスケープに関する詳細は、[RFC4515](https://datatracker.ietf.org/doc/html/rfc4515#section-3) を参照してください。
 
@@ -286,7 +286,7 @@ if (!userSN.matches("[\\w\\s]*")) {
 
 String filter = "(sn = " + userSN + ")";
 // ... remainder of LDAPInjection.searchRecord()...
-```text
+```
 
 データベースフィールドに特殊文字を含める必要がある場合、本物のデータがサニタイズ済みの形式でデータベースに保存されていること、さらに検証や比較を行う前にユーザー入力が正規化されることを確実にすることが重要です。包括的な正規化と許可リストベースのルーチンがない状態で、JNDIおよびLDAPで特別な意味を持つ文字を使用することは推奨されません。特殊文字は、入力を検証する許可リスト式に追加される前に、サニタイズ済みで安全な値へ変換する必要があります。同様に、ユーザー入力の正規化は検証ステップの前に行うべきです (source: [Prevent LDAP injection](https://wiki.sei.cmu.edu/confluence/spaces/flyingpdf/pdfpageexport.action?pageId=88487534))。
 
@@ -308,7 +308,7 @@ NamingEnumeration<SearchResult> results =
 String filter = "(&(uid={0})(objectClass=person))";
 NamingEnumeration<SearchResult> results =
     ctx.search("ou=users,dc=example,dc=com", filter, new Object[]{ userInput }, controls);
-```text
+```
 
 #### 安全なC Sharp .NET TBAの例
 
@@ -661,7 +661,7 @@ Some "special" characters that are allowed in Distinguished Names and do not nee
 
 ```text
 * ( ) . & - _ [ ] ` ~ | @ $ % ^ ? : { } ! '
-```html
+```
 
 </div>
 
@@ -722,7 +722,7 @@ Example:
 (manager=cn=Freeman Dyson,ou=Physics,dc=Caltech,dc=edu)
 (manager=cn=Albert Einstein,ou=Physics,dc=Princeton,dc=edu)
 ))
-```html
+```
 
 </div>
 
@@ -761,7 +761,7 @@ Some "special" characters that are allowed in search filters and must be escaped
 
 ```text
 * ( ) \ NUL
-```html
+```
 
 </div>
 
@@ -815,7 +815,7 @@ if (!userSN.matches("[\\w\\s]*")) {
 
 String filter = "(sn = " + userSN + ")";
 // ... remainder of LDAPInjection.searchRecord()...
-```html
+```
 
 </div>
 

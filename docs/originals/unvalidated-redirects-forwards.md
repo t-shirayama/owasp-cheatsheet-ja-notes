@@ -28,7 +28,7 @@ Java
 
 ```java
 response.sendRedirect("http://www.mysite.com");
-```text
+```
 
 PHP
 
@@ -39,19 +39,19 @@ header("Location: http://www.mysite.com");
 /* Exit to prevent the rest of the code from executing */
 exit;
 ?>
-```text
+```
 
 ASP .NET
 
 ```csharp
 Response.Redirect("~/folder/Login.aspx")
-```text
+```
 
 Rails
 
 ```ruby
 redirect_to login_path
-```text
+```
 
 Rust actix web
 
@@ -59,7 +59,7 @@ Rust actix web
   Ok(HttpResponse::Found()
         .insert_header((header::LOCATION, "https://mysite.com/"))
         .finish())
-```text
+```
 
 In the examples above, the URL is being explicitly declared in the code and cannot be manipulated by an attacker.
 
@@ -73,27 +73,27 @@ The following Java code receives the URL from the parameter named `url` ([GET or
 
 ```java
 response.sendRedirect(request.getParameter("url"));
-```text
+```
 
 The following PHP code obtains a URL from the query string (via the parameter named `url`) and then redirects the user to that URL. Additionally, the PHP code after this `header()` function will continue to execute, so if the user configures their browser to ignore the redirect, they may be able to access the rest of the page.
 
 ```php
 $redirect_url = $_GET['url'];
 header("Location: " . $redirect_url);
-```text
+```
 
 A similar example of C\# .NET Vulnerable Code:
 
 ```csharp
 string url = request.QueryString["url"];
 Response.Redirect(url);
-```text
+```
 
 And in Rails:
 
 ```ruby
 redirect_to params[:url]
-```text
+```
 
 Rust actix web
 
@@ -101,7 +101,7 @@ Rust actix web
   Ok(HttpResponse::Found()
         .insert_header((header::LOCATION, query_string.path.as_str()))
         .finish())
-```text
+```
 
 The above code is vulnerable to an attack if no validation or extra method controls are applied to verify the certainty of the URL. This vulnerability could be used as part of a phishing scam by redirecting users to a malicious site.
 
@@ -109,7 +109,7 @@ If no validation is applied, a malicious user could create a hyperlink to redire
 
 ```text
  http://example.com/example.php?url=http://malicious.example.com
-```text
+```
 
 The user sees the link directing to the original trusted site (`example.com`) and does not realize the redirection that could take place
 
@@ -148,7 +148,7 @@ ASP.NET MVC 2 LogOn action in `AccountController.cs` (see Microsoft Docs link pr
    // If we got this far, something failed, redisplay form
    return View(model);
  }
-```text
+```
 
 ### Dangerous Forward Example
 
@@ -160,7 +160,7 @@ Example:
 
 ```text
 http://www.example.com/function.jsp?fwd=admin.jsp
-```text
+```
 
 The following code is a Java servlet that will receive a `GET` request with a URL parameter named `fwd` in the request to forward to the address specified in the URL parameter. The servlet will retrieve the URL parameter value [from the request](https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequest.html#getParameter-java.lang.String-) and complete the server-side forward processing before responding to the browser.
 

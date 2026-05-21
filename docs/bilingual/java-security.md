@@ -113,7 +113,7 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
     }
 
 }
-```text
+```
 
 ### JPA
 
@@ -145,7 +145,7 @@ try {
         entityManager.close();
     }
 }
-```text
+```
 
 ### Operating System
 
@@ -165,7 +165,7 @@ Use technology stack **API** in order to prevent injection.
 * a system command as String and execute it */
 InetAddress host = InetAddress.getByName("localhost");
 var reachable = host.isReachable(5000);
-```text
+```
 
 ### XML: XPath Injection
 
@@ -209,7 +209,7 @@ public class SimpleVariableResolver implements XPathVariableResolver {
         return vars.get(variableName);
     }
 }
-```text
+```
 
 Code using it to perform XPath query.
 
@@ -240,7 +240,7 @@ Object nodes = xPathExpression.evaluate(doc, XPathConstants.NODESET);
 NodeList nodesList = (NodeList) nodes;
 Element book = (Element)nodesList.item(0);
 var containsRalls = book.getTextContent().contains("Ralls, Kim");
-```text
+```
 
 ### HTML/JavaScript/CSS
 
@@ -304,7 +304,7 @@ if (!finalSafeOutputExpected.equals(safeOutput))
 {
     return false;
 }
-```text
+```
 
 ### LDAP
 
@@ -377,7 +377,7 @@ try(MongoClient mongoClient = new MongoClient()){
         }
     });
 }
-```text
+```
 
 ### Log Injection
 
@@ -425,7 +425,7 @@ and limit the size of strings to 500 bytes using the
     </Root>
   </Loggers>
 </Configuration>
-```text
+```
 
 See
 [Integration with service-oriented architectures](https://logging.apache.org/log4j/2.x/soa.html)
@@ -452,7 +452,7 @@ logger.warn("Login failed for user {}.", username);
 // If `username` contains `{}`, the exception will leak into the message
 logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
-```text
+```
 
 See
 [Log4j API Best Practices](https://logging.apache.org/log4j/2.x/manual/api.html#best-practice)
@@ -492,7 +492,7 @@ In the example below, Logback is configured to roll on 10 log files of 5 MiB eac
     <appender-ref ref="SOCKET"/>
   </root>
 </configuration>
-```text
+```
 
 Usage of the logger at code level:
 
@@ -513,7 +513,7 @@ logger.warn("Login failed for user {}.", username);
 // If `username` contains `{}`, the exception will leak into the message
 logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
-```text
+```
 
 ## Cryptography
 
@@ -606,7 +606,7 @@ class AesGcmSimple {
 
 }
 
-```text
+```
 
 &lt;/details&gt;
 
@@ -684,7 +684,7 @@ class AesGcmSimple {
     }
 
 }
-```text
+```
 
 &lt;/details&gt;
 
@@ -831,7 +831,7 @@ class HybridSimple {
     }
 
 }
-```text
+```
 
 &lt;/details&gt;
 
@@ -979,7 +979,7 @@ class ECDHSimple {
 
     }
 }
-```text
+```
 
 &lt;/details&gt;
 
@@ -1073,7 +1073,7 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
     }
 
 }
-```text
+```
 
 ### JPA
 
@@ -1105,7 +1105,7 @@ try {
         entityManager.close();
     }
 }
-```text
+```
 
 ### オペレーティングシステム
 
@@ -1125,7 +1125,7 @@ try {
 * a system command as String and execute it */
 InetAddress host = InetAddress.getByName("localhost");
 var reachable = host.isReachable(5000);
-```text
+```
 
 ### XML: XPath インジェクション
 
@@ -1169,7 +1169,7 @@ public class SimpleVariableResolver implements XPathVariableResolver {
         return vars.get(variableName);
     }
 }
-```text
+```
 
 これを使用して XPath クエリを実行するコードです。
 
@@ -1200,7 +1200,7 @@ Object nodes = xPathExpression.evaluate(doc, XPathConstants.NODESET);
 NodeList nodesList = (NodeList) nodes;
 Element book = (Element)nodesList.item(0);
 var containsRalls = book.getTextContent().contains("Ralls, Kim");
-```text
+```
 
 ### HTML/JavaScript/CSS
 
@@ -1264,7 +1264,7 @@ if (!finalSafeOutputExpected.equals(safeOutput))
 {
     return false;
 }
-```text
+```
 
 ### LDAP
 
@@ -1337,7 +1337,7 @@ try(MongoClient mongoClient = new MongoClient()){
         }
     });
 }
-```text
+```
 
 ### ログインジェクション
 
@@ -1385,7 +1385,7 @@ try(MongoClient mongoClient = new MongoClient()){
     </Root>
   </Loggers>
 </Configuration>
-```text
+```
 
 詳細なヒントについては、
 [Integration with service-oriented architectures](https://logging.apache.org/log4j/2.x/soa.html)
@@ -1412,7 +1412,7 @@ logger.warn("Login failed for user {}.", username);
 // If `username` contains `{}`, the exception will leak into the message
 logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
-```text
+```
 
 詳細なヒントについては、
 [Log4j API Best Practices](https://logging.apache.org/log4j/2.x/manual/api.html#best-practice)
@@ -1452,7 +1452,7 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
     <appender-ref ref="SOCKET"/>
   </root>
 </configuration>
-```text
+```
 
 コードレベルでのロガーの使用方法です。
 
@@ -1473,7 +1473,7 @@ logger.warn("Login failed for user {}.", username);
 // If `username` contains `{}`, the exception will leak into the message
 logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
-```text
+```
 
 ## 暗号
 
@@ -1566,7 +1566,7 @@ class AesGcmSimple {
 
 }
 
-```text
+```
 
 &lt;/details&gt;
 
@@ -1644,7 +1644,7 @@ class AesGcmSimple {
     }
 
 }
-```text
+```
 
 &lt;/details&gt;
 
@@ -1791,7 +1791,7 @@ class HybridSimple {
     }
 
 }
-```text
+```
 
 &lt;/details&gt;
 
@@ -1939,7 +1939,7 @@ class ECDHSimple {
 
     }
 }
-```text
+```
 
 &lt;/details&gt;
 
@@ -2205,7 +2205,7 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
     }
 
 }
-```html
+```
 
 </div>
 
@@ -2298,7 +2298,7 @@ try {
         entityManager.close();
     }
 }
-```html
+```
 
 </div>
 
@@ -2379,7 +2379,7 @@ Use technology stack **API** in order to prevent injection.
 * a system command as String and execute it */
 InetAddress host = InetAddress.getByName("localhost");
 var reachable = host.isReachable(5000);
-```html
+```
 
 </div>
 
@@ -2486,7 +2486,7 @@ public class SimpleVariableResolver implements XPathVariableResolver {
         return vars.get(variableName);
     }
 }
-```html
+```
 
 </div>
 
@@ -2535,7 +2535,7 @@ Object nodes = xPathExpression.evaluate(doc, XPathConstants.NODESET);
 NodeList nodesList = (NodeList) nodes;
 Element book = (Element)nodesList.item(0);
 var containsRalls = book.getTextContent().contains("Ralls, Kim");
-```html
+```
 
 </div>
 
@@ -2660,7 +2660,7 @@ if (!finalSafeOutputExpected.equals(safeOutput))
 {
     return false;
 }
-```html
+```
 
 </div>
 
@@ -2809,7 +2809,7 @@ try(MongoClient mongoClient = new MongoClient()){
         }
     });
 }
-```html
+```
 
 </div>
 
@@ -2941,7 +2941,7 @@ and limit the size of strings to 500 bytes using the
     </Root>
   </Loggers>
 </Configuration>
-```html
+```
 
 </div>
 
@@ -3003,7 +3003,7 @@ logger.warn("Login failed for user {}.", username);
 // If `username` contains `{}`, the exception will leak into the message
 logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
-```html
+```
 
 </div>
 
@@ -3082,7 +3082,7 @@ In the example below, Logback is configured to roll on 10 log files of 5 MiB eac
     <appender-ref ref="SOCKET"/>
   </root>
 </configuration>
-```html
+```
 
 </div>
 
@@ -3121,7 +3121,7 @@ logger.warn("Login failed for user {}.", username);
 // If `username` contains `{}`, the exception will leak into the message
 logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
-```html
+```
 
 </div>
 
@@ -3322,7 +3322,7 @@ class AesGcmSimple {
 
 }
 
-```html
+```
 
 </div>
 
@@ -3488,7 +3488,7 @@ class AesGcmSimple {
     }
 
 }
-```html
+```
 
 </div>
 
@@ -3723,7 +3723,7 @@ class HybridSimple {
     }
 
 }
-```html
+```
 
 </div>
 

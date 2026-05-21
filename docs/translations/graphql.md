@@ -112,7 +112,7 @@ query evil {            # Depth: 0
     }
   }
 }
-```text
+```
 
 オブジェクトを 99999999 件要求する GraphQL クエリの例を次に示します。
 
@@ -124,7 +124,7 @@ query {
     }
   }
 }
-```text
+```
 
 #### タイムアウト
 
@@ -148,7 +148,7 @@ request.incrementResolverCount =  function () {
     }
     this.resolverCount++;
   };
-```text
+```
 
 [Instrumentation](https://www.graphql-java.com/documentation/instrumentation/) を使用した Java タイムアウト例
 
@@ -165,7 +165,7 @@ public class TimeoutInstrumentation extends SimpleInstrumentation {
                 .blockingFirst();
     }
 }
-```bash
+```
 
 インフラストラクチャタイムアウト
 
@@ -248,7 +248,7 @@ GraphQL は、[クエリバッチング](https://www.apollographql.com/blog/batc
     variables: < variables for query n >,
   }
 ]
-```text
+```
 
 単一のバッチ化された GraphQL 呼び出しで、`droid` オブジェクトの複数の異なるインスタンスを要求するクエリ例を次に示します。
 
@@ -264,7 +264,7 @@ query {
     name
   }
 }
-```text
+```
 
 この場合、サーバーに保存されている可能性のあるすべての `droid` オブジェクトを、ごく少数のネットワークリクエストで列挙するために使用できます。標準的な REST API では、リクエスト元は要求したい異なる `droid` ID ごとに別々のネットワークリクエストを送信する必要があります。この種類の攻撃は、次の問題につながる可能性があります。
 
@@ -314,7 +314,7 @@ GraphQLSchema schema = GraphQLSchema.newSchema()
     .query(StarWarsSchema.queryType)
     .fieldVisibility( NoIntrospectionGraphqlFieldVisibility.NO_INTROSPECTION_FIELD_VISIBILITY )
     .build();
-```text
+```
 
 _**イントロスペクションと GraphiQL の無効化 - JavaScript**_
 

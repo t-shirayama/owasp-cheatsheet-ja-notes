@@ -36,7 +36,7 @@ Token structure example taken from [JWT.IO](https://jwt.io/#debugger):
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
 TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
-```text
+```
 
 Chunk 1: **Header**
 
@@ -45,7 +45,7 @@ Chunk 1: **Header**
   "alg": "HS256",
   "typ": "JWT"
 }
-```text
+```
 
 Chunk 2: **Payload**
 
@@ -55,13 +55,13 @@ Chunk 2: **Payload**
   "name": "John Doe",
   "admin": true
 }
-```text
+```
 
 Chunk 3: **Signature**
 
 ```javascript
 HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), KEY )
-```text
+```
 
 ## Objective
 
@@ -107,7 +107,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC)).build();
 
 //Verify the token, if the verification fail then a exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```text
+```
 
 ### Token Sidejacking
 
@@ -172,7 +172,7 @@ String token = JWT.create().withSubject(login)
    .withClaim("userFingerprint", userFingerprintHash)
    .withHeader(headerClaims)
    .sign(Algorithm.HMAC256(this.keyHMAC));
-```text
+```
 
 Code to validate the token.
 
@@ -207,7 +207,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC))
 
 //Verify the token, if the verification fail then an exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```text
+```
 
 ### No Built-In Token Revocation by the User
 
@@ -234,7 +234,7 @@ A database table with the following structure will be used as the central denyli
 ```sql
 create table if not exists revoked_token(jwt_token_digest varchar(255) primary key,
 revocation_date timestamp default now());
-```text
+```
 
 ##### Token Revocation Management
 
@@ -321,7 +321,7 @@ public class TokenRevoker {
 
      }
  }
-```text
+```
 
 ### Token Information Disclosure
 
@@ -352,7 +352,7 @@ That is, the encryption with associated data ensures authenticity (ie. who the s
 integrity (ie. data has not been tampered with) of that data, but not its secrecy.
 
 See RFC5116: https://tools.ietf.org/html/rfc5116
-```text
+```
 
 **Note:**
 
@@ -430,7 +430,7 @@ public class TokenCipher {
         return new String(decipheredToken);
     }
 }
-```text
+```
 
 ##### Creation / Validation of the Token
 
@@ -448,7 +448,7 @@ Paths.get("src", "main", "conf", "key-ciphering.json").toFile()));
 
 //Init token ciphering handler
 TokenCipher tokenCipher = new TokenCipher();
-```text
+```
 
 Token creation.
 
@@ -457,7 +457,7 @@ Token creation.
 //Cipher the token (String JSON representation)
 String cipheredToken = tokenCipher.cipherToken(token, this.keyCiphering);
 //Send the ciphered token encoded in HEX to the client in HTTP response...
-```text
+```
 
 Token validation.
 
@@ -467,7 +467,7 @@ Token validation.
 String token = tokenCipher.decipherToken(cipheredToken, this.keyCiphering);
 //Verify the token using the JWT API...
 //Verify access...
-```text
+```
 
 ### Token Storage on Client Side
 
@@ -528,7 +528,7 @@ function authenticate() {
         sessionStorage.removeItem("token");
     });
 }
-```text
+```
 
 JavaScript code to add the token as a *Bearer* HTTP Authentication header when calling a service, for example a service to validate token here.
 
@@ -558,7 +558,7 @@ function validateToken() {
         },
     });
 }
-```text
+```
 
 JavaScript code to implement closures with private variables:
 

@@ -145,7 +145,7 @@ public void callFunctionWithRCEIssue(String externalInput){
         //Raise an exception leading to a generic error send to the client...
     }
 }
-```text
+```
 
 If the provider has provided nothing about the vulnerability, [Case 3](#case-3) can be applied skipping the _step 2_ of this case. We assume here that, at least, the [CVE](https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures) has been provided.
 

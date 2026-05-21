@@ -55,14 +55,14 @@ java.lang.NumberFormatException: For input string: "null"
     ...
 
 note: The full stack trace of the root cause is available in the Apache Tomcat/7.0.56 logs.
-```text
+```
 
 Below is an example of disclosure of a SQL query error, along with the site installation path, that can be used to identify an injection point:
 
 ```text
 Warning: odbc_fetch_array() expects parameter /1 to be resource, boolean given
 in D:\app\index_new.php on line 188
-```text
+```
 
 The [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/01-Information_Gathering/) provides different techniques to obtain technical information from an application.
 
@@ -103,7 +103,7 @@ version="3.0">
     </error-page>
 ...
 </web-app>
-```text
+```
 
 Content of the **error.jsp** file:
 
@@ -122,7 +122,7 @@ response.setHeader("X-ERROR", "true");
 response.setStatus(500);
 %>
 {"message":"An error occur, please retry"}
-```text
+```
 
 ### Java SpringMVC/SpringBoot web application
 
@@ -154,7 +154,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "An error occur, please retry");
     }
 }
-```text
+```
 
 References:
 
@@ -218,7 +218,7 @@ namespace MyProject.Controllers
         }
     }
 }
-```text
+```
 
 Definition in the application **Startup.cs** file of the mapping of the exception handler to the dedicated error handling API controller:
 
@@ -261,7 +261,7 @@ namespace MyProject
         }
     }
 }
-```text
+```
 
 References:
 
@@ -297,7 +297,7 @@ namespace MyProject.Security
         }
     }
 }
-```text
+```
 
 Definition of the handler for the management of the error in order to return a generic response:
 
@@ -358,7 +358,7 @@ namespace MyProject.Security
         }
     }
 }
-```text
+```
 
 Registration of the both handlers in the application **WebApiConfig.cs** file:
 
@@ -381,7 +381,7 @@ namespace MyProject
         }
     }
 }
-```text
+```
 
 Setting customErrors section to the **Web.config** file within the ```csharp <system.web>``` node as follows.
 

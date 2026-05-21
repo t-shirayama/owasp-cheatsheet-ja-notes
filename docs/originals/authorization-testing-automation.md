@@ -132,7 +132,7 @@ This XML structure has three main sections (or nodes):
       </services-testing>
 
   </authorization-matrix>
-```text
+```
 
 ### Implementing an integration test
 
@@ -381,7 +381,7 @@ In this integration test, we have implemented parsing, object mapping and access
           return buffer.toString();
       }
   }
-```text
+```
 
 If an authorization issue is detected (or issues are detected), the output is the following:
 
@@ -402,7 +402,7 @@ java.lang.AssertionError:
 Access issues detected using the BASIC USER point of view:
     The service 'DeleteMessage' when called with POV 'BASIC' return
     a response code 200 that is not the expected one (403 expected).
-```text
+```
 
 ## Rendering the authorization matrix for an audit / review
 

@@ -113,7 +113,7 @@ function openPopup(url, name, windowFeatures){
   //Reset the opener link
   newWindow.opener = null;
 }
-```bash
+```
 
 - Add the HTTP response header `Referrer-Policy: no-referrer` to every HTTP response sent by the application ([Header Referrer-Policy information](https://owasp.org/www-project-secure-headers/). This configuration will ensure that no referrer information is sent along with requests from the page.
 

@@ -24,7 +24,7 @@
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: Japanese translation added.
 - Retrieved: YYYY-MM-DD
-```text
+```
 
 対訳ページで英語原文、翻訳、ローカル保存画像を含める場合は `Changes` を次のようにします。
 

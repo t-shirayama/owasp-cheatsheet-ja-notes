@@ -38,7 +38,7 @@ String query = "SELECT account_balance FROM user_data WHERE user_name = ? ";
 PreparedStatement pstmt = connection.prepareStatement( query );
 pstmt.setString( 1, custname);
 ResultSet results = pstmt.executeQuery( );
-```text
+```
 
 #### Using Java with Hibernate
 
@@ -69,7 +69,7 @@ String userSuppliedParameter = request.getParameter("Product-Description");
 // Perform input validation to detect attacks
 Inventory inv = (Inventory) session.createCriteria(Inventory.class).add
 (Restrictions.eq("productDescription", userSuppliedParameter)).uniqueResult();
-```text
+```
 
 #### Using .NET built-in feature
 
@@ -83,7 +83,7 @@ try {
 } catch (OleDbException se) {
    // error handling
 }
-```text
+```
 
 #### Using ASP .NET built-in feature
 
@@ -92,7 +92,7 @@ string sql = "SELECT * FROM Customers WHERE CustomerId = @CustomerId";
 SqlCommand command = new SqlCommand(sql);
 command.Parameters.Add(new SqlParameter("@CustomerId", System.Data.SqlDbType.Int));
 command.Parameters["@CustomerId"].Value = 1;
-```text
+```
 
 #### Using Ruby with ActiveRecord
 
@@ -107,14 +107,14 @@ Project.where("name = :name", :name => name)
 project.update_attributes(:name => 'owasp')
 ## Delete
 Project.delete(:name => 'name')
-```text
+```
 
 #### Using Ruby built-in feature
 
 ```ruby
 insert_new_user = db.prepare "INSERT INTO users (name, age, gender) VALUES (?, ? ,?)"
 insert_new_user.execute 'aizatto', '20', 'male'
-```text
+```
 
 #### Using PHP with PHP Data Objects
 
@@ -122,7 +122,7 @@ insert_new_user.execute 'aizatto', '20', 'male'
 $stmt = $dbh->prepare("INSERT INTO REGISTRY (name, value) VALUES (:name, :value)");
 $stmt->bindParam(':name', $name);
 $stmt->bindParam(':value', $value);
-```text
+```
 
 #### Using Cold Fusion built-in feature
 
@@ -131,7 +131,7 @@ $stmt->bindParam(':value', $value);
     SELECT * FROM #strDatabasePrefix#_courses WHERE intCourseID =
     <cfqueryparam value = #intCourseID# CFSQLType = "CF_SQL_INTEGER">
 </cfquery>
-```text
+```
 
 #### Using PERL with Database Independent Interface
 
@@ -139,7 +139,7 @@ $stmt->bindParam(':value', $value);
 my $sql = "INSERT INTO foo (bar, baz) VALUES ( ?, ? )";
 my $sth = $dbh->prepare( $sql );
 $sth->execute( $bar, $baz );
-```text
+```
 
 #### Using Rust with SQLx
 <!-- contributed by GeekMasher -->
@@ -166,7 +166,7 @@ let users: Vec<User> = sqlx::query_as::<_, User>(
     .fetch_all(&pool)
     .await
     .unwrap();
-```text
+```
 
 ### Stored Procedure Examples
 
@@ -186,7 +186,7 @@ No dynamic SQL being created. Parameters passed in to stored procedures are natu
 PROCEDURE SafeGetBalanceQuery(UserID varchar, Dept varchar) AS BEGIN
    SELECT balance FROM accounts_table WHERE user_ID = UserID AND department = Dept;
 END;
-```text
+```
 
 ##### Stored Procedure Using Bind Variables in SQL Run with EXECUTE
 
@@ -201,7 +201,7 @@ BEGIN
    EXECUTE IMMEDIATE stmt INTO result USING UserID, Dept;
    RETURN result;
 END;
-```text
+```
 
 #### SQL Server using Transact-SQL
 
@@ -213,7 +213,7 @@ No dynamic SQL being created. Parameters passed in to stored procedures are natu
 PROCEDURE SafeGetBalanceQuery(@UserID varchar(20), @Dept varchar(10)) AS BEGIN
    SELECT balance FROM accounts_table WHERE user_ID = @UserID AND department = @Dept
 END
-```text
+```
 
 ##### Stored Procedure Using Bind Variables in SQL Run with EXEC
 

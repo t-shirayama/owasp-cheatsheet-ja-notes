@@ -49,7 +49,7 @@ Token structure example taken from [JWT.IO](https://jwt.io/#debugger):
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
 TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
-```text
+```
 
 Chunk 1: **Header**
 
@@ -58,7 +58,7 @@ Chunk 1: **Header**
   "alg": "HS256",
   "typ": "JWT"
 }
-```text
+```
 
 Chunk 2: **Payload**
 
@@ -68,13 +68,13 @@ Chunk 2: **Payload**
   "name": "John Doe",
   "admin": true
 }
-```text
+```
 
 Chunk 3: **Signature**
 
 ```javascript
 HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), KEY )
-```text
+```
 
 ## Objective
 
@@ -120,7 +120,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC)).build();
 
 //Verify the token, if the verification fail then a exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```text
+```
 
 ### Token Sidejacking
 
@@ -185,7 +185,7 @@ String token = JWT.create().withSubject(login)
    .withClaim("userFingerprint", userFingerprintHash)
    .withHeader(headerClaims)
    .sign(Algorithm.HMAC256(this.keyHMAC));
-```text
+```
 
 Code to validate the token.
 
@@ -220,7 +220,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC))
 
 //Verify the token, if the verification fail then an exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```text
+```
 
 ### No Built-In Token Revocation by the User
 
@@ -247,7 +247,7 @@ A database table with the following structure will be used as the central denyli
 ```sql
 create table if not exists revoked_token(jwt_token_digest varchar(255) primary key,
 revocation_date timestamp default now());
-```text
+```
 
 ##### Token Revocation Management
 
@@ -333,7 +333,7 @@ public class TokenRevoker {
 
      }
  }
-```text
+```
 
 ### Token Information Disclosure
 
@@ -364,7 +364,7 @@ That is, the encryption with associated data ensures authenticity (ie. who the s
 integrity (ie. data has not been tampered with) of that data, but not its secrecy.
 
 See RFC5116: https://tools.ietf.org/html/rfc5116
-```text
+```
 
 **Note:**
 
@@ -442,7 +442,7 @@ public class TokenCipher {
         return new String(decipheredToken);
     }
 }
-```text
+```
 
 ##### Creation / Validation of the Token
 
@@ -460,7 +460,7 @@ Paths.get("src", "main", "conf", "key-ciphering.json").toFile()));
 
 //Init token ciphering handler
 TokenCipher tokenCipher = new TokenCipher();
-```text
+```
 
 Token creation.
 
@@ -469,7 +469,7 @@ Token creation.
 //Cipher the token (String JSON representation)
 String cipheredToken = tokenCipher.cipherToken(token, this.keyCiphering);
 //Send the ciphered token encoded in HEX to the client in HTTP response...
-```text
+```
 
 Token validation.
 
@@ -479,7 +479,7 @@ Token validation.
 String token = tokenCipher.decipherToken(cipheredToken, this.keyCiphering);
 //Verify the token using the JWT API...
 //Verify access...
-```text
+```
 
 ### Token Storage on Client Side
 
@@ -540,7 +540,7 @@ function authenticate() {
         sessionStorage.removeItem("token");
     });
 }
-```text
+```
 
 JavaScript code to add the token as a *Bearer* HTTP Authentication header when calling a service, for example a service to validate token here.
 
@@ -570,7 +570,7 @@ function validateToken() {
         },
     });
 }
-```text
+```
 
 JavaScript code to implement closures with private variables:
 
@@ -631,7 +631,7 @@ function makeRequest() {
         }).then(responseText => console.log("helloResponse", responseText))
         .catch(console.error)
 }
-```bash
+```
 
 ### Weak Token Secret
 
@@ -680,7 +680,7 @@ JWT は、クライアントのアイデンティティや特性 (クレーム) 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
 TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
-```text
+```
 
 チャンク 1: **ヘッダー**
 
@@ -689,7 +689,7 @@ TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
   "alg": "HS256",
   "typ": "JWT"
 }
-```text
+```
 
 チャンク 2: **ペイロード**
 
@@ -699,13 +699,13 @@ TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
   "name": "John Doe",
   "admin": true
 }
-```text
+```
 
 チャンク 3: **署名**
 
 ```javascript
 HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), KEY )
-```text
+```
 
 ## 目的
 
@@ -751,7 +751,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC)).build();
 
 //Verify the token, if the verification fail then a exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```text
+```
 
 ### トークンのサイドジャッキング
 
@@ -816,7 +816,7 @@ String token = JWT.create().withSubject(login)
    .withClaim("userFingerprint", userFingerprintHash)
    .withHeader(headerClaims)
    .sign(Algorithm.HMAC256(this.keyHMAC));
-```text
+```
 
 トークンを検証するコードです。
 
@@ -851,7 +851,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC))
 
 //Verify the token, if the verification fail then an exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```text
+```
 
 ### ユーザーによるトークン失効機能が組み込まれていない
 
@@ -878,7 +878,7 @@ denylist は、トークンのダイジェスト (SHA-256 を HEX でエンコ�
 ```sql
 create table if not exists revoked_token(jwt_token_digest varchar(255) primary key,
 revocation_date timestamp default now());
-```text
+```
 
 ##### トークン失効管理
 
@@ -964,7 +964,7 @@ public class TokenRevoker {
 
      }
  }
-```text
+```
 
 ### トークン情報の漏えい
 
@@ -995,7 +995,7 @@ That is, the encryption with associated data ensures authenticity (ie. who the s
 integrity (ie. data has not been tampered with) of that data, but not its secrecy.
 
 See RFC5116: https://tools.ietf.org/html/rfc5116
-```text
+```
 
 **注記:**
 
@@ -1073,7 +1073,7 @@ public class TokenCipher {
         return new String(decipheredToken);
     }
 }
-```text
+```
 
 ##### トークンの作成 / 検証
 
@@ -1091,7 +1091,7 @@ Paths.get("src", "main", "conf", "key-ciphering.json").toFile()));
 
 //Init token ciphering handler
 TokenCipher tokenCipher = new TokenCipher();
-```text
+```
 
 トークン作成。
 
@@ -1100,7 +1100,7 @@ TokenCipher tokenCipher = new TokenCipher();
 //Cipher the token (String JSON representation)
 String cipheredToken = tokenCipher.cipherToken(token, this.keyCiphering);
 //Send the ciphered token encoded in HEX to the client in HTTP response...
-```text
+```
 
 トークン検証。
 
@@ -1110,7 +1110,7 @@ String cipheredToken = tokenCipher.cipherToken(token, this.keyCiphering);
 String token = tokenCipher.decipherToken(cipheredToken, this.keyCiphering);
 //Verify the token using the JWT API...
 //Verify access...
-```text
+```
 
 ### クライアント側でのトークン保存
 
@@ -1171,7 +1171,7 @@ function authenticate() {
         sessionStorage.removeItem("token");
     });
 }
-```text
+```
 
 サービス呼び出し時に、トークンを *Bearer* HTTP Authentication ヘッダーとして追加する JavaScript コードです。ここでは例として、トークンを検証するサービスを呼び出します。
 
@@ -1201,7 +1201,7 @@ function validateToken() {
         },
     });
 }
-```text
+```
 
 private 変数を持つ closure を実装する JavaScript コードです。
 
@@ -1262,7 +1262,7 @@ function makeRequest() {
         }).then(responseText => console.log("helloResponse", responseText))
         .catch(console.error)
 }
-```bash
+```
 
 ### 弱いトークンシークレット
 
@@ -1404,7 +1404,7 @@ Token structure example taken from [JWT.IO](https://jwt.io/#debugger):
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
 TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
-```html
+```
 
 </div>
 
@@ -1431,7 +1431,7 @@ Chunk 1: **Header**
   "alg": "HS256",
   "typ": "JWT"
 }
-```html
+```
 
 </div>
 
@@ -1459,7 +1459,7 @@ Chunk 2: **Payload**
   "name": "John Doe",
   "admin": true
 }
-```html
+```
 
 </div>
 
@@ -1483,7 +1483,7 @@ Chunk 3: **Signature**
 
 ```javascript
 HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), KEY )
-```html
+```
 
 </div>
 
@@ -1698,7 +1698,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC)).build();
 
 //Verify the token, if the verification fail then a exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```html
+```
 
 </div>
 
@@ -1866,7 +1866,7 @@ String token = JWT.create().withSubject(login)
    .withClaim("userFingerprint", userFingerprintHash)
    .withHeader(headerClaims)
    .sign(Algorithm.HMAC256(this.keyHMAC));
-```html
+```
 
 </div>
 
@@ -1919,7 +1919,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC))
 
 //Verify the token, if the verification fail then an exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```html
+```
 
 </div>
 
@@ -2061,7 +2061,7 @@ A database table with the following structure will be used as the central denyli
 ```sql
 create table if not exists revoked_token(jwt_token_digest varchar(255) primary key,
 revocation_date timestamp default now());
-```html
+```
 
 </div>
 
@@ -2167,7 +2167,7 @@ public class TokenRevoker {
 
      }
  }
-```html
+```
 
 </div>
 
@@ -2285,7 +2285,7 @@ That is, the encryption with associated data ensures authenticity (ie. who the s
 integrity (ie. data has not been tampered with) of that data, but not its secrecy.
 
 See RFC5116: https://tools.ietf.org/html/rfc5116
-```html
+```
 
 </div>
 
@@ -2422,7 +2422,7 @@ public class TokenCipher {
         return new String(decipheredToken);
     }
 }
-```html
+```
 
 </div>
 
@@ -2473,7 +2473,7 @@ Paths.get("src", "main", "conf", "key-ciphering.json").toFile()));
 
 //Init token ciphering handler
 TokenCipher tokenCipher = new TokenCipher();
-```html
+```
 
 </div>
 
@@ -2500,7 +2500,7 @@ Token creation.
 //Cipher the token (String JSON representation)
 String cipheredToken = tokenCipher.cipherToken(token, this.keyCiphering);
 //Send the ciphered token encoded in HEX to the client in HTTP response...
-```html
+```
 
 </div>
 
@@ -2528,7 +2528,7 @@ Token validation.
 String token = tokenCipher.decipherToken(cipheredToken, this.keyCiphering);
 //Verify the token using the JWT API...
 //Verify access...
-```html
+```
 
 </div>
 
@@ -2775,7 +2775,7 @@ function authenticate() {
         sessionStorage.removeItem("token");
     });
 }
-```html
+```
 
 </div>
 
@@ -2823,7 +2823,7 @@ function validateToken() {
         },
     });
 }
-```html
+```
 
 </div>
 

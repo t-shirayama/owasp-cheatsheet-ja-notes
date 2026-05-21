@@ -42,7 +42,7 @@ Add Hibernate Validator to your **pom.xml**:
    <artifactId>hibernate-validator</artifactId>
    <version>USE_LATEST_VERSION</version>
 </dependency>
-```text
+```
 
 Enable bean validation support in Spring's **context.xml**:
 
@@ -52,7 +52,7 @@ Enable bean validation support in Spring's **context.xml**:
    <mvc:annotation-driven />
    ...
 </beans:beans>
-```text
+```
 
 For more info, please see the [setup guide](https://hibernate.org/validator/documentation/getting-started/)
 
@@ -115,7 +115,7 @@ public class Article  {
   ...
 
 }
-```text
+```
 
 **Controller**:
 
@@ -144,7 +144,7 @@ public class ArticleController  {
   }
  }
 }
-```text
+```
 
 ### @Digits
 
@@ -184,7 +184,7 @@ public class Customer {
 
     ...
 }
-```text
+```
 
 **Controller**:
 
@@ -215,7 +215,7 @@ public class CustomerController  {
   }
  }
 }
-```text
+```
 
 ### @Size
 
@@ -256,7 +256,7 @@ public class Message {
 
 ...
 }
-```text
+```
 
 **Controller**:
 
@@ -287,7 +287,7 @@ HttpServletResponse response){
    }
 }
 }
-```text
+```
 
 ### @Past / @Future
 
@@ -341,7 +341,7 @@ public class DoctorVisit {
 
 ...
 }
-```text
+```
 
 **Controller**:
 
@@ -372,7 +372,7 @@ public class DoctorVisitController {
       }
    }
 }
-```text
+```
 
 ### Combining Constraints
 
@@ -416,7 +416,7 @@ public class Review {
 }
  ...
 }
-```text
+```
 
 **Controller**:
 
@@ -447,7 +447,7 @@ public class ReviewController {
       }
    }
 }
-```text
+```
 
 ### Cascading Constraints
 

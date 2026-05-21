@@ -145,7 +145,7 @@ This XML structure has three main sections (or nodes):
       </services-testing>
 
   </authorization-matrix>
-```text
+```
 
 ### Implementing an integration test
 
@@ -390,7 +390,7 @@ In this integration test, we have implemented parsing, object mapping and access
           return buffer.toString();
       }
   }
-```text
+```
 
 If an authorization issue is detected (or issues are detected), the output is the following:
 
@@ -411,7 +411,7 @@ java.lang.AssertionError:
 Access issues detected using the BASIC USER point of view:
     The service 'DeleteMessage' when called with POV 'BASIC' return
     a response code 200 that is not the expected one (403 expected).
-```text
+```
 
 ## Rendering the authorization matrix for an audit / review
 
@@ -523,7 +523,7 @@ To achieve this task, you could use the following XSL stylesheet:
     </html>
   </xsl:template>
 </xsl:stylesheet>
-```bash
+```
 
 Example of the rendering:
 
@@ -655,7 +655,7 @@ Example of the rendering:
       </services-testing>
 
   </authorization-matrix>
-```text
+```
 
 ### 統合テストを実装する
 
@@ -900,7 +900,7 @@ Example of the rendering:
           return buffer.toString();
       }
   }
-```text
+```
 
 認可の問題が検出された場合、または複数の問題が検出された場合、出力は以下のようになります。
 
@@ -921,7 +921,7 @@ java.lang.AssertionError:
 Access issues detected using the BASIC USER point of view:
     The service 'DeleteMessage' when called with POV 'BASIC' return
     a response code 200 that is not the expected one (403 expected).
-```text
+```
 
 ## 監査 / レビューのために認可マトリクスをレンダリングする
 
@@ -1031,7 +1031,7 @@ Access issues detected using the BASIC USER point of view:
     </html>
   </xsl:template>
 </xsl:stylesheet>
-```bash
+```
 
 レンダリング例:
 
@@ -1355,7 +1355,7 @@ This XML structure has three main sections (or nodes):
       </services-testing>
 
   </authorization-matrix>
-```text
+```
 
 ```xml
   <?xml version="1.0" encoding="UTF-8"?>
@@ -1429,7 +1429,7 @@ This XML structure has three main sections (or nodes):
       </services-testing>
 
   </authorization-matrix>
-```html
+```
 
 </div>
 
@@ -1720,7 +1720,7 @@ In this integration test, we have implemented parsing, object mapping and access
           return buffer.toString();
       }
   }
-```text
+```
 
 ```java
   import org.owasp.pocauthztesting.enumeration.SecurityRole;
@@ -1957,7 +1957,7 @@ In this integration test, we have implemented parsing, object mapping and access
           return buffer.toString();
       }
   }
-```html
+```
 
 </div>
 
@@ -1996,7 +1996,7 @@ java.lang.AssertionError:
 Access issues detected using the BASIC USER point of view:
     The service 'DeleteMessage' when called with POV 'BASIC' return
     a response code 200 that is not the expected one (403 expected).
-```html
+```
 
 </div>
 
@@ -2141,7 +2141,7 @@ To achieve this task, you could use the following XSL stylesheet:
     </html>
   </xsl:template>
 </xsl:stylesheet>
-```text
+```
 
 ```xslt
 <?xml version="1.0" encoding="UTF-8"?>

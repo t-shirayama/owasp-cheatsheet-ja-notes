@@ -40,7 +40,7 @@ Hibernate Validator を **pom.xml** に追加します。
    <artifactId>hibernate-validator</artifactId>
    <version>USE_LATEST_VERSION</version>
 </dependency>
-```text
+```
 
 Spring の **context.xml** で Bean Validation サポートを有効にします。
 
@@ -50,7 +50,7 @@ Spring の **context.xml** で Bean Validation サポートを有効にします
    <mvc:annotation-driven />
    ...
 </beans:beans>
-```text
+```
 
 詳細は [セットアップガイド](https://hibernate.org/validator/documentation/getting-started/) を参照してください。
 
@@ -113,7 +113,7 @@ public class Article  {
   ...
 
 }
-```text
+```
 
 **Controller**:
 
@@ -142,7 +142,7 @@ public class ArticleController  {
   }
  }
 }
-```text
+```
 
 ### @Digits
 
@@ -182,7 +182,7 @@ public class Customer {
 
     ...
 }
-```text
+```
 
 **Controller**:
 
@@ -213,7 +213,7 @@ public class CustomerController  {
   }
  }
 }
-```text
+```
 
 ### @Size
 
@@ -254,7 +254,7 @@ public class Message {
 
 ...
 }
-```text
+```
 
 **Controller**:
 
@@ -285,7 +285,7 @@ HttpServletResponse response){
    }
 }
 }
-```text
+```
 
 ### @Past / @Future
 
@@ -339,7 +339,7 @@ public class DoctorVisit {
 
 ...
 }
-```text
+```
 
 **Controller**:
 
@@ -370,7 +370,7 @@ public class DoctorVisitController {
       }
    }
 }
-```text
+```
 
 ### Combining Constraints
 
@@ -414,7 +414,7 @@ public class Review {
 }
  ...
 }
-```text
+```
 
 **Controller**:
 
@@ -445,7 +445,7 @@ public class ReviewController {
       }
    }
 }
-```text
+```
 
 ### Cascading Constraints
 

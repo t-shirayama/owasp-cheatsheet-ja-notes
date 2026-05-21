@@ -103,7 +103,7 @@ _NOTE: All dates should be logged in [ISO 8601](https://en.wikipedia.org/wiki/IS
     "region": "AWS-US-WEST-2",
     "geo": "USA"
 }
-```text
+```
 
 ## The Vocabulary
 
@@ -138,7 +138,7 @@ INFO
     "description": "User joebob1 login successfully",
     ...
 }
-```text
+```
 
 ---
 
@@ -161,7 +161,7 @@ INFO
     "description": "User joebob1 login successfully",
     ...
 }
-```text
+```
 
 ---
 
@@ -184,7 +184,7 @@ WARN
     "description": "User joebob1 login failed",
     ...
 }
-```text
+```
 
 ---
 
@@ -207,7 +207,7 @@ WARN
     "description": "User joebob1 reached the login fail limit of 3",
     ...
 }
-```text
+```
 
 ---
 
@@ -237,7 +237,7 @@ WARN
     "description": "User joebob1 login locked because maxretries exceeded",
     ...
 }
-```text
+```
 
 ---
 
@@ -260,7 +260,7 @@ INFO
     "description": "User joebob1 has successfully changed their password",
     ...
 }
-```text
+```
 
 ---
 
@@ -283,7 +283,7 @@ CRITICAL
     "description": "User joebob1 failed to change their password",
     ...
 }
-```text
+```
 
 ---
 
@@ -305,7 +305,7 @@ When a user is logged in from one city and suddenly appears in another, too far 
     "description": "User joebob1 has accessed the application in two distant cities at the same time",
     ...
 }
-```text
+```
 
 ---
 
@@ -327,7 +327,7 @@ When a token is created for service access it should be recorded
     "description": "A token has been created for app.foobarapi.prod with create,read,update",
     ...
 }
-```text
+```
 
 ---
 
@@ -349,7 +349,7 @@ A token has been revoked for the given account.
     "description": "Token ID: xyz-abc-123-gfk was revoked for user app.foobarapi.prod",
     ...
 }
-```text
+```
 
 ---
 
@@ -371,7 +371,7 @@ A previously revoked token was attempted to be reused.
     "description": "User app.foobarapi.prod attempted to use token ID: xyz-abc-123-gfk which was previously revoked",
     ...
 }
-```text
+```
 
 ---
 
@@ -393,7 +393,7 @@ When a token is deleted it should be recorded
     "description": "The token for foobarapi has been deleted",
     ...
 }
-```text
+```
 
 ---
 
@@ -419,7 +419,7 @@ An attempt was made to access a resource which was unauthorized
     "description": "User joebob1 attempted to access a resource without entitlement",
     ...
 }
-```text
+```
 
 ---
 
@@ -441,7 +441,7 @@ The user or entity entitlements was changed
     "description": "User joebob1 access was changed from user to admin",
     ...
 }
-```text
+```
 
 ---
 
@@ -463,7 +463,7 @@ All activity by privileged users such as admin should be recorded.
     "description": "Administrator joebob1 has updated privileges of user foobarapi from user to admin",
     ...
 }
-```text
+```
 
 ---
 
@@ -487,7 +487,7 @@ Failure to perform encryption and decryption could be simply due to a system err
     "description": "User joebob1 was unable to perform decryption" + err,
     ...
 }
-```text
+```
 
 ---
 
@@ -509,7 +509,7 @@ Failure to perform encryption and decryption could be simply due to a system err
     "description": "User joebob1 was unable to perform encryption" + err,
     ...
 }
-```text
+```
 
 ---
 
@@ -533,7 +533,7 @@ Expected service limit ceilings should be established and alerted when exceeded,
     "description": "User app.foobarapi.prod has exceeded max:100000 requests",
     ...
 }
-```text
+```
 
 ---
 
@@ -557,7 +557,7 @@ On successful file upload the first step in the validation process is that the u
     "description": "User joebob1 has uploaded user_generated_content.png",
     ...
 }
-```text
+```
 
 ---
 
@@ -579,7 +579,7 @@ One step in good file upload validation is to move/rename the file and when prov
     "description": "File user_generated_content.png was stored in the database with key abcdefghijk101010101",
     ...
 }
-```text
+```
 
 ---
 
@@ -601,7 +601,7 @@ All file uploads should have some validation performed, both for correctness (is
     "description": "File user_generated_content.png FAILED virus scan and was purged",
     ...
 }
-```text
+```
 
 ---
 
@@ -623,7 +623,7 @@ When a file is deleted for normal reasons it should be recorded.
     "description": "User joebob1 has marked file abcdefghijk101010101 for deletion.",
     ...
 }
-```text
+```
 
 ---
 
@@ -648,7 +648,7 @@ WARN
     "description": "User joebob1 submitted data that failed validation.",
     ...
 }
-```text
+```
 
 ---
 
@@ -671,7 +671,7 @@ WARN
     "description": "User joebob1 submitted an invalid value for the 'country' field.",
     ...
 }
-```text
+```
 
 ---
 
@@ -696,7 +696,7 @@ WARN
     "description": "A user at 123.456.789.101 has generated a large number of 404 requests.",
     ...
 }
-```text
+```
 
 ---
 
@@ -719,7 +719,7 @@ CRITICAL
     "description": "User dr@evil.com included field creditcardnum in the request which is not handled by this service.",
     ...
 }
-```text
+```
 
 ---
 
@@ -744,7 +744,7 @@ CRITICAL
     "description": "Attack traffic indicating use of Nikto coming from 127.0.0.1",
     ...
 }
-```text
+```
 
 ---
 
@@ -769,7 +769,7 @@ CRITICAL
     "description": "Request from 127.0.0.1 contained a SQL injection pattern (rule SQLI-UNION) in parameter 'search'.",
     ...
 }
-```text
+```
 
 ---
 
@@ -794,7 +794,7 @@ CRITICAL
     "description": "An illegal cross-origin request from 127.0.0.1 was referred from attack.evil.com"
     ...
 }
-```text
+```
 
 ---
 
@@ -817,7 +817,7 @@ CRITICAL
     "description": "User joebob1 attempted to access an object to which they are not authorized",
     ...
 }
-```text
+```
 
 ---
 
@@ -848,7 +848,7 @@ WARN
     "description": "A possible prompt injection has occurred",
     ...
 }
-```text
+```
 
 ---
 
@@ -873,7 +873,7 @@ WARN
     "description": "Request blocked due to token budget overrun (tokens_in=18240, tokens_out=0, budget=8000)",
     ...
 }
-```text
+```
 
 ---
 
@@ -898,7 +898,7 @@ WARN
     "description": "Tool execution blocked (tool=\"calendar_sync\", source=\"https://marketplace.example/tools/calendar_sync\", version=\"2.4.1\", signature=\"missing\", policy=\"allowlist_required\")",
     ...
 }
-```text
+```
 
 ---
 
@@ -929,7 +929,7 @@ WARN
     "description": "User joebob1 changed permissions on /users/admin/some/important/path",
     ...
 }
-```text
+```
 
 ---
 
@@ -958,7 +958,7 @@ WARN
     "description": "User joebob1 created a new file in /users/admin/some/important/path",
     ...
 }
-```text
+```
 
 ---
 
@@ -981,7 +981,7 @@ WARN
     "description": "User joebob1 read file /users/admin/some/important/path",
     ...
 }
-```text
+```
 
 ---
 
@@ -1004,7 +1004,7 @@ WARN
     "description": "User joebob1 modified file /users/admin/some/important/path",
     ...
 }
-```text
+```
 
 ---
 
@@ -1027,7 +1027,7 @@ WARN
     "description": "User joebob1 marked file /users/admin/some/important/path for deletion",
     ...
 }
-```text
+```
 
 ---
 
@@ -1056,7 +1056,7 @@ CRITICAL
     "description": "User joebob1 has reached a part of the application out of the normal application flow.",
     ...
 }
-```text
+```
 
 ---
 
@@ -1081,7 +1081,7 @@ INFO
     "description": "User joebob1 has started a new session",
     ...
 }
-```text
+```
 
 ---
 
@@ -1104,7 +1104,7 @@ INFO
     "description": "User joebob1 was warned of expiring session and extended.",
     ...
 }
-```text
+```
 
 ---
 
@@ -1127,7 +1127,7 @@ INFO
     "description": "User joebob1 session expired due to administrator revocation.",
     ...
 }
-```text
+```
 
 ---
 
@@ -1150,7 +1150,7 @@ CRITICAL
     "description": "User joebob1 attempted access after session expired.",
     ...
 }
-```text
+```
 
 ---
 
@@ -1175,7 +1175,7 @@ WARN
     "description": "User joebob1 spawned a new instance",
     ...
 }
-```text
+```
 
 ---
 
@@ -1198,7 +1198,7 @@ WARN
     "description": "User joebob1 stopped this instance",
     ...
 }
-```text
+```
 
 ---
 
@@ -1221,7 +1221,7 @@ WARN
     "description": "User joebob1 initiated a restart",
     ...
 }
-```text
+```
 
 ---
 
@@ -1244,7 +1244,7 @@ WARN
     "description": "The system crashed due to Out of Memory error.",
     ...
 }
-```text
+```
 
 ---
 
@@ -1267,7 +1267,7 @@ WARN
     "description": "User joebob1 has disabled CrowdStrike",
     ...
 }
-```text
+```
 
 ---
 
@@ -1290,7 +1290,7 @@ WARN
     "description": "User joebob1 has enabled CrowdStrike",
     ...
 }
-```text
+```
 
 ---
 
@@ -1315,7 +1315,7 @@ WARN
     "description": "User joebob1 created user1 with admin:create,update,delete privilege attributes",
     ...
 }
-```text
+```
 
 ---
 
@@ -1338,7 +1338,7 @@ WARN
     "description": "User joebob1 updated user1 with attributes admin:create,update,delete privilege attributes",
     ...
 }
-```text
+```
 
 ---
 
@@ -1361,7 +1361,7 @@ WARN
     "description": "User joebob1 archived user1",
     ...
 }
-```text
+```
 
 ---
 
@@ -1384,7 +1384,7 @@ WARN
     "description": "User joebob1 has deleted user1",
     ...
 }
-```bash
+```
 
 ---
 
@@ -1474,7 +1474,7 @@ _注: 最大限の移植性を確保するため、すべての日付は UTC オ
     "region": "AWS-US-WEST-2",
     "geo": "USA"
 }
-```text
+```
 
 ## 語彙
 
@@ -1509,7 +1509,7 @@ INFO
     "description": "User joebob1 login successfully",
     ...
 }
-```text
+```
 
 ---
 
@@ -1532,7 +1532,7 @@ INFO
     "description": "User joebob1 login successfully",
     ...
 }
-```text
+```
 
 ---
 
@@ -1555,7 +1555,7 @@ WARN
     "description": "User joebob1 login failed",
     ...
 }
-```text
+```
 
 ---
 
@@ -1578,7 +1578,7 @@ WARN
     "description": "User joebob1 reached the login fail limit of 3",
     ...
 }
-```text
+```
 
 ---
 
@@ -1608,7 +1608,7 @@ WARN
     "description": "User joebob1 login locked because maxretries exceeded",
     ...
 }
-```text
+```
 
 ---
 
@@ -1631,7 +1631,7 @@ INFO
     "description": "User joebob1 has successfully changed their password",
     ...
 }
-```text
+```
 
 ---
 
@@ -1654,7 +1654,7 @@ CRITICAL
     "description": "User joebob1 failed to change their password",
     ...
 }
-```text
+```
 
 ---
 
@@ -1676,7 +1676,7 @@ CRITICAL
     "description": "User joebob1 has accessed the application in two distant cities at the same time",
     ...
 }
-```text
+```
 
 ---
 
@@ -1698,7 +1698,7 @@ CRITICAL
     "description": "A token has been created for app.foobarapi.prod with create,read,update",
     ...
 }
-```text
+```
 
 ---
 
@@ -1720,7 +1720,7 @@ CRITICAL
     "description": "Token ID: xyz-abc-123-gfk was revoked for user app.foobarapi.prod",
     ...
 }
-```text
+```
 
 ---
 
@@ -1742,7 +1742,7 @@ CRITICAL
     "description": "User app.foobarapi.prod attempted to use token ID: xyz-abc-123-gfk which was previously revoked",
     ...
 }
-```text
+```
 
 ---
 
@@ -1764,7 +1764,7 @@ CRITICAL
     "description": "The token for foobarapi has been deleted",
     ...
 }
-```text
+```
 
 ---
 
@@ -1790,7 +1790,7 @@ CRITICAL
     "description": "User joebob1 attempted to access a resource without entitlement",
     ...
 }
-```text
+```
 
 ---
 
@@ -1812,7 +1812,7 @@ CRITICAL
     "description": "User joebob1 access was changed from user to admin",
     ...
 }
-```text
+```
 
 ---
 
@@ -1834,7 +1834,7 @@ CRITICAL
     "description": "Administrator joebob1 has updated privileges of user foobarapi from user to admin",
     ...
 }
-```text
+```
 
 ---
 
@@ -1858,7 +1858,7 @@ CRITICAL
     "description": "User joebob1 was unable to perform decryption" + err,
     ...
 }
-```text
+```
 
 ---
 
@@ -1880,7 +1880,7 @@ CRITICAL
     "description": "User joebob1 was unable to perform encryption" + err,
     ...
 }
-```text
+```
 
 ---
 
@@ -1904,7 +1904,7 @@ CRITICAL
     "description": "User app.foobarapi.prod has exceeded max:100000 requests",
     ...
 }
-```text
+```
 
 ---
 
@@ -1928,7 +1928,7 @@ CRITICAL
     "description": "User joebob1 has uploaded user_generated_content.png",
     ...
 }
-```text
+```
 
 ---
 
@@ -1950,7 +1950,7 @@ CRITICAL
     "description": "File user_generated_content.png was stored in the database with key abcdefghijk101010101",
     ...
 }
-```text
+```
 
 ---
 
@@ -1972,7 +1972,7 @@ CRITICAL
     "description": "File user_generated_content.png FAILED virus scan and was purged",
     ...
 }
-```text
+```
 
 ---
 
@@ -1994,7 +1994,7 @@ CRITICAL
     "description": "User joebob1 has marked file abcdefghijk101010101 for deletion.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2019,7 +2019,7 @@ WARN
     "description": "User joebob1 submitted data that failed validation.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2042,7 +2042,7 @@ WARN
     "description": "User joebob1 submitted an invalid value for the 'country' field.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2067,7 +2067,7 @@ WARN
     "description": "A user at 123.456.789.101 has generated a large number of 404 requests.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2090,7 +2090,7 @@ CRITICAL
     "description": "User dr@evil.com included field creditcardnum in the request which is not handled by this service.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2115,7 +2115,7 @@ CRITICAL
     "description": "Attack traffic indicating use of Nikto coming from 127.0.0.1",
     ...
 }
-```text
+```
 
 ---
 
@@ -2140,7 +2140,7 @@ CRITICAL
     "description": "Request from 127.0.0.1 contained a SQL injection pattern (rule SQLI-UNION) in parameter 'search'.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2165,7 +2165,7 @@ CRITICAL
     "description": "An illegal cross-origin request from 127.0.0.1 was referred from attack.evil.com"
     ...
 }
-```text
+```
 
 ---
 
@@ -2188,7 +2188,7 @@ CRITICAL
     "description": "User joebob1 attempted to access an object to which they are not authorized",
     ...
 }
-```text
+```
 
 ---
 
@@ -2219,7 +2219,7 @@ WARN
     "description": "A possible prompt injection has occurred",
     ...
 }
-```text
+```
 
 ---
 
@@ -2244,7 +2244,7 @@ WARN
     "description": "Request blocked due to token budget overrun (tokens_in=18240, tokens_out=0, budget=8000)",
     ...
 }
-```text
+```
 
 ---
 
@@ -2269,7 +2269,7 @@ WARN
     "description": "Tool execution blocked (tool=\"calendar_sync\", source=\"https://marketplace.example/tools/calendar_sync\", version=\"2.4.1\", signature=\"missing\", policy=\"allowlist_required\")",
     ...
 }
-```text
+```
 
 ---
 
@@ -2300,7 +2300,7 @@ WARN
     "description": "User joebob1 changed permissions on /users/admin/some/important/path",
     ...
 }
-```text
+```
 
 ---
 
@@ -2329,7 +2329,7 @@ WARN
     "description": "User joebob1 created a new file in /users/admin/some/important/path",
     ...
 }
-```text
+```
 
 ---
 
@@ -2352,7 +2352,7 @@ WARN
     "description": "User joebob1 read file /users/admin/some/important/path",
     ...
 }
-```text
+```
 
 ---
 
@@ -2375,7 +2375,7 @@ WARN
     "description": "User joebob1 modified file /users/admin/some/important/path",
     ...
 }
-```text
+```
 
 ---
 
@@ -2398,7 +2398,7 @@ WARN
     "description": "User joebob1 marked file /users/admin/some/important/path for deletion",
     ...
 }
-```text
+```
 
 ---
 
@@ -2427,7 +2427,7 @@ CRITICAL
     "description": "User joebob1 has reached a part of the application out of the normal application flow.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2452,7 +2452,7 @@ INFO
     "description": "User joebob1 has started a new session",
     ...
 }
-```text
+```
 
 ---
 
@@ -2475,7 +2475,7 @@ INFO
     "description": "User joebob1 was warned of expiring session and extended.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2498,7 +2498,7 @@ INFO
     "description": "User joebob1 session expired due to administrator revocation.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2521,7 +2521,7 @@ CRITICAL
     "description": "User joebob1 attempted access after session expired.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2546,7 +2546,7 @@ WARN
     "description": "User joebob1 spawned a new instance",
     ...
 }
-```text
+```
 
 ---
 
@@ -2569,7 +2569,7 @@ WARN
     "description": "User joebob1 stopped this instance",
     ...
 }
-```text
+```
 
 ---
 
@@ -2592,7 +2592,7 @@ WARN
     "description": "User joebob1 initiated a restart",
     ...
 }
-```text
+```
 
 ---
 
@@ -2615,7 +2615,7 @@ WARN
     "description": "The system crashed due to Out of Memory error.",
     ...
 }
-```text
+```
 
 ---
 
@@ -2638,7 +2638,7 @@ WARN
     "description": "User joebob1 has disabled CrowdStrike",
     ...
 }
-```text
+```
 
 ---
 
@@ -2661,7 +2661,7 @@ WARN
     "description": "User joebob1 has enabled CrowdStrike",
     ...
 }
-```text
+```
 
 ---
 
@@ -2686,7 +2686,7 @@ WARN
     "description": "User joebob1 created user1 with admin:create,update,delete privilege attributes",
     ...
 }
-```text
+```
 
 ---
 
@@ -2709,7 +2709,7 @@ WARN
     "description": "User joebob1 updated user1 with attributes admin:create,update,delete privilege attributes",
     ...
 }
-```text
+```
 
 ---
 
@@ -2732,7 +2732,7 @@ WARN
     "description": "User joebob1 archived user1",
     ...
 }
-```text
+```
 
 ---
 
@@ -2755,7 +2755,7 @@ WARN
     "description": "User joebob1 has deleted user1",
     ...
 }
-```bash
+```
 
 ---
 
@@ -3041,7 +3041,7 @@ _注: 最大限の移植性を確保するため、すべての日付は UTC オ
     "region": "AWS-US-WEST-2",
     "geo": "USA"
 }
-```html
+```
 
 </div>
 
@@ -3189,7 +3189,7 @@ INFO
     "description": "User joebob1 login successfully",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3258,7 +3258,7 @@ INFO
     "description": "User joebob1 login successfully",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3327,7 +3327,7 @@ WARN
     "description": "User joebob1 login failed",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3396,7 +3396,7 @@ WARN
     "description": "User joebob1 reached the login fail limit of 3",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3501,7 +3501,7 @@ WARN
     "description": "User joebob1 login locked because maxretries exceeded",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3570,7 +3570,7 @@ INFO
     "description": "User joebob1 has successfully changed their password",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3639,7 +3639,7 @@ CRITICAL
     "description": "User joebob1 failed to change their password",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3706,7 +3706,7 @@ When a user is logged in from one city and suddenly appears in another, too far 
     "description": "User joebob1 has accessed the application in two distant cities at the same time",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3773,7 +3773,7 @@ When a token is created for service access it should be recorded
     "description": "A token has been created for app.foobarapi.prod with create,read,update",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3840,7 +3840,7 @@ A token has been revoked for the given account.
     "description": "Token ID: xyz-abc-123-gfk was revoked for user app.foobarapi.prod",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3907,7 +3907,7 @@ A previously revoked token was attempted to be reused.
     "description": "User app.foobarapi.prod attempted to use token ID: xyz-abc-123-gfk which was previously revoked",
     ...
 }
-```html
+```
 
 </div>
 
@@ -3974,7 +3974,7 @@ When a token is deleted it should be recorded
     "description": "The token for foobarapi has been deleted",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4056,7 +4056,7 @@ An attempt was made to access a resource which was unauthorized
     "description": "User joebob1 attempted to access a resource without entitlement",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4123,7 +4123,7 @@ The user or entity entitlements was changed
     "description": "User joebob1 access was changed from user to admin",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4190,7 +4190,7 @@ All activity by privileged users such as admin should be recorded.
     "description": "Administrator joebob1 has updated privileges of user foobarapi from user to admin",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4272,7 +4272,7 @@ Failure to perform encryption and decryption could be simply due to a system err
     "description": "User joebob1 was unable to perform decryption" + err,
     ...
 }
-```html
+```
 
 </div>
 
@@ -4339,7 +4339,7 @@ Failure to perform encryption and decryption could be simply due to a system err
     "description": "User joebob1 was unable to perform encryption" + err,
     ...
 }
-```html
+```
 
 </div>
 
@@ -4421,7 +4421,7 @@ Expected service limit ceilings should be established and alerted when exceeded,
     "description": "User app.foobarapi.prod has exceeded max:100000 requests",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4503,7 +4503,7 @@ On successful file upload the first step in the validation process is that the u
     "description": "User joebob1 has uploaded user_generated_content.png",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4570,7 +4570,7 @@ One step in good file upload validation is to move/rename the file and when prov
     "description": "File user_generated_content.png was stored in the database with key abcdefghijk101010101",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4637,7 +4637,7 @@ All file uploads should have some validation performed, both for correctness (is
     "description": "File user_generated_content.png FAILED virus scan and was purged",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4704,7 +4704,7 @@ When a file is deleted for normal reasons it should be recorded.
     "description": "User joebob1 has marked file abcdefghijk101010101 for deletion.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4788,7 +4788,7 @@ WARN
     "description": "User joebob1 submitted data that failed validation.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4857,7 +4857,7 @@ WARN
     "description": "User joebob1 submitted an invalid value for the 'country' field.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -4941,7 +4941,7 @@ WARN
     "description": "A user at 123.456.789.101 has generated a large number of 404 requests.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5010,7 +5010,7 @@ CRITICAL
     "description": "User dr@evil.com included field creditcardnum in the request which is not handled by this service.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5094,7 +5094,7 @@ CRITICAL
     "description": "Attack traffic indicating use of Nikto coming from 127.0.0.1",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5178,7 +5178,7 @@ CRITICAL
     "description": "Request from 127.0.0.1 contained a SQL injection pattern (rule SQLI-UNION) in parameter 'search'.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5262,7 +5262,7 @@ CRITICAL
     "description": "An illegal cross-origin request from 127.0.0.1 was referred from attack.evil.com"
     ...
 }
-```html
+```
 
 </div>
 
@@ -5331,7 +5331,7 @@ CRITICAL
     "description": "User joebob1 attempted to access an object to which they are not authorized",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5434,7 +5434,7 @@ WARN
     "description": "A possible prompt injection has occurred",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5518,7 +5518,7 @@ WARN
     "description": "Request blocked due to token budget overrun (tokens_in=18240, tokens_out=0, budget=8000)",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5602,7 +5602,7 @@ WARN
     "description": "Tool execution blocked (tool=\"calendar_sync\", source=\"https://marketplace.example/tools/calendar_sync\", version=\"2.4.1\", signature=\"missing\", policy=\"allowlist_required\")",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5705,7 +5705,7 @@ WARN
     "description": "User joebob1 changed permissions on /users/admin/some/important/path",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5793,7 +5793,7 @@ WARN
     "description": "User joebob1 created a new file in /users/admin/some/important/path",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5862,7 +5862,7 @@ WARN
     "description": "User joebob1 read file /users/admin/some/important/path",
     ...
 }
-```html
+```
 
 </div>
 
@@ -5931,7 +5931,7 @@ WARN
     "description": "User joebob1 modified file /users/admin/some/important/path",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6000,7 +6000,7 @@ WARN
     "description": "User joebob1 marked file /users/admin/some/important/path for deletion",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6088,7 +6088,7 @@ CRITICAL
     "description": "User joebob1 has reached a part of the application out of the normal application flow.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6172,7 +6172,7 @@ INFO
     "description": "User joebob1 has started a new session",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6241,7 +6241,7 @@ INFO
     "description": "User joebob1 was warned of expiring session and extended.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6310,7 +6310,7 @@ INFO
     "description": "User joebob1 session expired due to administrator revocation.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6379,7 +6379,7 @@ CRITICAL
     "description": "User joebob1 attempted access after session expired.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6463,7 +6463,7 @@ WARN
     "description": "User joebob1 spawned a new instance",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6532,7 +6532,7 @@ WARN
     "description": "User joebob1 stopped this instance",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6601,7 +6601,7 @@ WARN
     "description": "User joebob1 initiated a restart",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6670,7 +6670,7 @@ WARN
     "description": "The system crashed due to Out of Memory error.",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6739,7 +6739,7 @@ WARN
     "description": "User joebob1 has disabled CrowdStrike",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6808,7 +6808,7 @@ WARN
     "description": "User joebob1 has enabled CrowdStrike",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6892,7 +6892,7 @@ WARN
     "description": "User joebob1 created user1 with admin:create,update,delete privilege attributes",
     ...
 }
-```html
+```
 
 </div>
 
@@ -6961,7 +6961,7 @@ WARN
     "description": "User joebob1 updated user1 with attributes admin:create,update,delete privilege attributes",
     ...
 }
-```html
+```
 
 </div>
 
@@ -7030,7 +7030,7 @@ WARN
     "description": "User joebob1 archived user1",
     ...
 }
-```html
+```
 
 </div>
 

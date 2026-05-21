@@ -46,7 +46,7 @@ For more information on XXE, please visit [XML External Entity (XXE)](https://en
 
 ```java
 factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-```text
+```
 
 Disabling [DTD](https://www.w3schools.com/xml/xml_dtd.asp)s also makes the parser secure against denial of services (DOS) attacks such as [Billion Laughs](https://en.wikipedia.org/wiki/Billion_laughs_attack). **If it is not possible to disable DTDs completely, then external entities and external document type declarations must be disabled in the way that's specific to each parser.**
 
@@ -124,21 +124,21 @@ Use of `XercesDOMParser` do this to prevent XXE:
 XercesDOMParser *parser = new XercesDOMParser;
 parser->setCreateEntityReferenceNodes(true);
 parser->setDisableDefaultEntityResolution(true);
-```text
+```
 
 Use of SAXParser, do this to prevent XXE:
 
 ```cpp
 SAXParser* parser = new SAXParser;
 parser->setDisableDefaultEntityResolution(true);
-```text
+```
 
 Use of SAX2XMLReader, do this to prevent XXE:
 
 ```cpp
 SAX2XMLReader* reader = XMLReaderFactory::createXMLReader();
 parser->setFeature(XMLUni::fgXercesDisableDefaultEntityResolution, true);
-```cfscript
+```
 
 ## ColdFusion
 
@@ -157,7 +157,7 @@ From the [documentation for the XmlParse() function](https://helpx.adobe.com/col
 a = XmlParse("xml.xml", false, parseroptions);
 writeDump(a);
 </cfscript>
-```text
+```
 
 You can use the "parseroptions" structure shown above as an argument to secure other functions that process XML as well, such as:
 
@@ -167,7 +167,7 @@ XxmlSearch(xmldoc, xpath,parseroptions);
 XmlTransform(xmldoc,xslt,parseroptions);
 
 isXML(xmldoc,parseroptions);
-```text
+```
 
 ### Lucee
 
@@ -179,7 +179,7 @@ this.xmlFeatures = {
      secure: true,
      disallowDoctypeDecl: true
 };
-```text
+```
 
 Support for external XML entities is disabled by default as of Lucee 5.4.2.10 and Lucee 6.0.0.514.
 
@@ -244,7 +244,7 @@ try {
 
 // Load XML file or stream using a XXE agnostic configured parser...
 DocumentBuilder safebuilder = dbf.newDocumentBuilder();
-```text
+```
 
 If you can't completely disable DTDs:
 
@@ -321,7 +321,7 @@ try {
 
 // Load XML file or stream using a XXE agnostic configured parser...
 DocumentBuilder safebuilder = dbf.newDocumentBuilder();
-```text
+```
 
 [Xerces 1](https://xerces.apache.org/xerces-j/) [Features](https://xerces.apache.org/xerces-j/features.html):
 
@@ -347,7 +347,7 @@ To protect a Java `XMLInputFactory` from XXE, disable DTDs (doctypes) altogether
 ```java
 // This disables DTDs entirely for that factory
 xmlInputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
-```text
+```
 
 or if you can't completely disable DTDs:
 
@@ -356,7 +356,7 @@ or if you can't completely disable DTDs:
 xmlInputFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 // disable external entities
 xmlInputFactory.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
-```text
+```
 
 The setting `xmlInputFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");` is not required, as XMLInputFactory is dependent on Validator to perform XML validation against Schemas. Check the [Validator](#validator) section for the specific configuration.
 
@@ -376,7 +376,7 @@ Follow [Oracle recommendation](https://docs.oracle.com/en/database/oracle/oracle
 
     // Do not allow more than 11 levels of entity expansion
     domParser.setAttribute(DOMParser.ENTITY_EXPANSION_DEPTH, 12);
-```text
+```
 
 ### TransformerFactory
 
@@ -386,7 +386,7 @@ To protect a `javax.xml.transform.TransformerFactory` from XXE, do this:
 TransformerFactory tf = TransformerFactory.newInstance();
 tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
-```text
+```
 
 ### Validator
 
@@ -400,7 +400,7 @@ Schema schema = factory.newSchema();
 Validator validator = schema.newValidator();
 validator.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 validator.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-```text
+```
 
 ### SchemaFactory
 
@@ -411,7 +411,7 @@ SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSch
 factory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 factory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 Schema schema = factory.newSchema(Source);
-```text
+```
 
 ### SAXTransformerFactory
 
@@ -422,7 +422,7 @@ SAXTransformerFactory sf = SAXTransformerFactory.newInstance();
 sf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 sf.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
 sf.newXMLFilter(Source);
-```text
+```
 
 **Note: Use of the following `XMLConstants` requires JAXP 1.5, which was added to Java in 7u40 and Java 8:**
 
@@ -441,7 +441,7 @@ reader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 reader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 reader.setFeature("http://xml.org/sax/features/external-general-entities", false);
 reader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-```text
+```
 
 ### SAXReader
 
@@ -451,7 +451,7 @@ To protect a Java `org.dom4j.io.SAXReader` from an XXE attack, do this:
 saxReader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 saxReader.setFeature("http://xml.org/sax/features/external-general-entities", false);
 saxReader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-```text
+```
 
 If your code does not have all of these lines, you could be vulnerable to an XXE attack.
 
@@ -463,7 +463,7 @@ To protect a Java `org.jdom2.input.SAXBuilder` from an XXE attack, disallow DTDs
 SAXBuilder builder = new SAXBuilder();
 builder.setFeature("http://apache.org/xml/features/disallow-doctype-decl",true);
 Document doc = builder.build(new File(fileName));
-```text
+```
 
 Alternatively, if DTDs can't be completely disabled, disable external entities and entity expansion:
 
@@ -474,7 +474,7 @@ builder.setFeature("http://xml.org/sax/features/external-parameter-entities", fa
 builder.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 builder.setExpandEntities(false);
 Document doc = builder.build(new File(fileName));
-```text
+```
 
 ### No-op EntityResolver
 
@@ -491,7 +491,7 @@ public final class NoOpEntityResolver implements EntityResolver {
 
 xmlReader.setEntityResolver(new NoOpEntityResolver());
 documentBuilder.setEntityResolver(new NoOpEntityResolver());
-```text
+```
 
 or more simply:
 
@@ -499,7 +499,7 @@ or more simply:
 EntityResolver noop = (publicId, systemId) -> new InputSource(new StringReader(""));
 xmlReader.setEntityResolver(noop);
 documentBuilder.setEntityResolver(noop);
-```text
+```
 
 ### JAXB Unmarshaller
 
@@ -518,7 +518,7 @@ try {
 }
 Unmarshaller um = jc.createUnmarshaller();
 um.unmarshal(xsr);
-```text
+```
 
 Note that both the `createXMLStreamReader` and `unmarshal` methods have several overloads with various source types, so you need to pick the right one and do a possible conversion.
 
@@ -535,7 +535,7 @@ df.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 DocumentBuilder builder = df.newDocumentBuilder();
 String result = new XPathExpression().evaluate( builder.parse(
                             new ByteArrayInputStream(xml.getBytes())) );
-```text
+```
 
 ### java.beans.XMLDecoder
 
@@ -583,7 +583,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 // Must cast return Object to whatever type you are unmarshalling
 marshaller.unmarshal(new StreamSource(new StringReader(some_string_containing_XML));
-```text
+```
 
 So, per the [Spring OXM CVE writeup](https://pivotal.io/security/cve-2013-4152), the above is now safe. But if you were to use a DOMSource or StAXSource instead, it would be up to you to configure those sources to be safe from XXE.
 
@@ -654,7 +654,7 @@ The following example shows how it is made safe:
    Console.WriteLine(xmlDoc.InnerText);
    Console.ReadLine();
  }
-```text
+```
 
 **For .NET Framework version ≥4.5.2, this is safe by default**.
 
@@ -688,7 +688,7 @@ Set these values to true to disable inline DTDs completely.
 XmlTextReader reader = new XmlTextReader(stream);
 // NEEDED because the default is FALSE!!
 reader.ProhibitDtd = true;
-```text
+```
 
 #### .NET 4.0 - .NET 4.5.2
 
@@ -704,7 +704,7 @@ To set this value yourself, it looks like this:
 XmlTextReader reader = new XmlTextReader(stream);
 // NEEDED because the default is Parse!!
 reader.DtdProcessing = DtdProcessing.Prohibit;
-```text
+```
 
 Alternatively, you can set the `DtdProcessing` property to `Ignore`, which will not throw an exception on encountering a `<!DOCTYPE>` element but will simply skip over it and not process it. Finally, you can set `DtdProcessing` to `Parse` if you do want to allow and process inline DTDs.
 
@@ -727,7 +727,7 @@ XmlReader reader = XmlReader.Create("example.xml");
 XPathDocument doc = new XPathDocument(reader);
 XPathNavigator nav = doc.CreateNavigator();
 string xml = nav.InnerXml.ToString();
-```text
+```
 
 For .NET Framework version ≥4.5.2, XPathNavigator is **safe by default**.
 
@@ -770,7 +770,7 @@ Per the 'NSXMLDocument External Entity Restriction API' section of this [page](h
 
 ```php
 libxml_set_external_entity_loader(null);
-```text
+```
 
 A description of how to abuse this in PHP is presented in a good [SensePost article](https://www.sensepost.com/blog/2014/revisting-xxe-and-abusing-protocols/) describing a cool PHP based XXE vulnerability that was fixed in Facebook.
 
@@ -856,7 +856,7 @@ XXE の詳細については、[XML External Entity (XXE)](https://en.wikipedia.
 
 ```java
 factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-```text
+```
 
 [DTD](https://www.w3schools.com/xml/xml_dtd.asp) を無効化すると、[Billion Laughs](https://en.wikipedia.org/wiki/Billion_laughs_attack) のようなサービス拒否 (DOS) 攻撃に対してもパーサを安全にできます。**DTD を完全に無効化できない場合は、各パーサ固有の方法で外部エンティティと外部文書型宣言を無効化しなければなりません。**
 
@@ -934,21 +934,21 @@ factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)
 XercesDOMParser *parser = new XercesDOMParser;
 parser->setCreateEntityReferenceNodes(true);
 parser->setDisableDefaultEntityResolution(true);
-```text
+```
 
 SAXParser を使用する場合、XXE を防止するには次のようにします。
 
 ```cpp
 SAXParser* parser = new SAXParser;
 parser->setDisableDefaultEntityResolution(true);
-```text
+```
 
 SAX2XMLReader を使用する場合、XXE を防止するには次のようにします。
 
 ```cpp
 SAX2XMLReader* reader = XMLReaderFactory::createXMLReader();
 parser->setFeature(XMLUni::fgXercesDisableDefaultEntityResolution, true);
-```cfscript
+```
 
 ## ColdFusion
 
@@ -967,7 +967,7 @@ ColdFusion 2018 Update 14 および ColdFusion 2021 Update 4 以降、XML を処
 a = XmlParse("xml.xml", false, parseroptions);
 writeDump(a);
 </cfscript>
-```text
+```
 
 上記の `"parseroptions"` 構造体は、XML を処理する他の関数を保護する引数としても使用できます。例:
 
@@ -977,7 +977,7 @@ XxmlSearch(xmldoc, xpath,parseroptions);
 XmlTransform(xmldoc,xslt,parseroptions);
 
 isXML(xmldoc,parseroptions);
-```text
+```
 
 ### Lucee
 
@@ -989,7 +989,7 @@ this.xmlFeatures = {
      secure: true,
      disallowDoctypeDecl: true
 };
-```text
+```
 
 Lucee 5.4.2.10 および Lucee 6.0.0.514 以降では、外部 XML エンティティのサポートはデフォルトで無効化されています。
 
@@ -1053,7 +1053,7 @@ try {
 
 // Load XML file or stream using a XXE agnostic configured parser...
 DocumentBuilder safebuilder = dbf.newDocumentBuilder();
-```text
+```
 
 DTD を完全に無効化できない場合:
 
@@ -1130,7 +1130,7 @@ try {
 
 // Load XML file or stream using a XXE agnostic configured parser...
 DocumentBuilder safebuilder = dbf.newDocumentBuilder();
-```text
+```
 
 [Xerces 1](https://xerces.apache.org/xerces-j/) の [Features](https://xerces.apache.org/xerces-j/features.html):
 
@@ -1156,7 +1156,7 @@ Java `XMLInputFactory` を XXE から保護するには、DTD (doctype) を完�
 ```java
 // This disables DTDs entirely for that factory
 xmlInputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
-```text
+```
 
 または、DTD を完全に無効化できない場合:
 
@@ -1165,7 +1165,7 @@ xmlInputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
 xmlInputFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 // disable external entities
 xmlInputFactory.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
-```text
+```
 
 `XMLInputFactory` はスキーマに対する XML 検証を実行するために Validator に依存しているため、`xmlInputFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");` の設定は不要です。具体的な設定については [Validator](#validator) セクションを確認してください。
 
@@ -1185,7 +1185,7 @@ xmlInputFactory.setProperty("javax.xml.stream.isSupportingExternalEntities", fal
 
     // Do not allow more than 11 levels of entity expansion
     domParser.setAttribute(DOMParser.ENTITY_EXPANSION_DEPTH, 12);
-```text
+```
 
 ### TransformerFactory
 
@@ -1195,7 +1195,7 @@ xmlInputFactory.setProperty("javax.xml.stream.isSupportingExternalEntities", fal
 TransformerFactory tf = TransformerFactory.newInstance();
 tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
-```text
+```
 
 ### Validator
 
@@ -1209,7 +1209,7 @@ Schema schema = factory.newSchema();
 Validator validator = schema.newValidator();
 validator.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 validator.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-```text
+```
 
 ### SchemaFactory
 
@@ -1220,7 +1220,7 @@ SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSch
 factory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 factory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 Schema schema = factory.newSchema(Source);
-```text
+```
 
 ### SAXTransformerFactory
 
@@ -1231,7 +1231,7 @@ SAXTransformerFactory sf = SAXTransformerFactory.newInstance();
 sf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 sf.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
 sf.newXMLFilter(Source);
-```text
+```
 
 **注: 次の `XMLConstants` の使用には JAXP 1.5 が必要です。これは Java 7u40 および Java 8 で追加されました。**
 
@@ -1250,7 +1250,7 @@ reader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 reader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 reader.setFeature("http://xml.org/sax/features/external-general-entities", false);
 reader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-```text
+```
 
 ### SAXReader
 
@@ -1260,7 +1260,7 @@ Java `org.dom4j.io.SAXReader` を XXE 攻撃から保護するには、次のよ
 saxReader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 saxReader.setFeature("http://xml.org/sax/features/external-general-entities", false);
 saxReader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-```text
+```
 
 コードにこれらすべての行がない場合、XXE 攻撃に対して脆弱である可能性があります。
 
@@ -1272,7 +1272,7 @@ Java `org.jdom2.input.SAXBuilder` を XXE 攻撃から保護するには、DTD (
 SAXBuilder builder = new SAXBuilder();
 builder.setFeature("http://apache.org/xml/features/disallow-doctype-decl",true);
 Document doc = builder.build(new File(fileName));
-```text
+```
 
 または、DTD を完全に無効化できない場合は、外部エンティティとエンティティ展開を無効化します。
 
@@ -1283,7 +1283,7 @@ builder.setFeature("http://xml.org/sax/features/external-parameter-entities", fa
 builder.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 builder.setExpandEntities(false);
 Document doc = builder.build(new File(fileName));
-```text
+```
 
 ### No-op EntityResolver
 
@@ -1300,7 +1300,7 @@ public final class NoOpEntityResolver implements EntityResolver {
 
 xmlReader.setEntityResolver(new NoOpEntityResolver());
 documentBuilder.setEntityResolver(new NoOpEntityResolver());
-```text
+```
 
 または、より簡単には次のようにします。
 
@@ -1308,7 +1308,7 @@ documentBuilder.setEntityResolver(new NoOpEntityResolver());
 EntityResolver noop = (publicId, systemId) -> new InputSource(new StringReader(""));
 xmlReader.setEntityResolver(noop);
 documentBuilder.setEntityResolver(noop);
-```text
+```
 
 ### JAXB Unmarshaller
 
@@ -1327,7 +1327,7 @@ try {
 }
 Unmarshaller um = jc.createUnmarshaller();
 um.unmarshal(xsr);
-```text
+```
 
 `createXMLStreamReader` と `unmarshal` の両メソッドには、さまざまなソース型を取る複数のオーバーロードがあるため、適切なものを選び、必要に応じて変換する必要があります。
 
@@ -1344,7 +1344,7 @@ df.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 DocumentBuilder builder = df.newDocumentBuilder();
 String result = new XPathExpression().evaluate( builder.parse(
                             new ByteArrayInputStream(xml.getBytes())) );
-```text
+```
 
 ### java.beans.XMLDecoder
 
@@ -1392,7 +1392,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 // Must cast return Object to whatever type you are unmarshalling
 marshaller.unmarshal(new StreamSource(new StringReader(some_string_containing_XML));
-```text
+```
 
 したがって、[Spring OXM CVE の説明](https://pivotal.io/security/cve-2013-4152)によれば、上記は現在安全です。ただし、代わりに DOMSource または StAXSource を使用する場合は、それらのソースを XXE から安全になるよう自分で設定する必要があります。
 
@@ -1463,7 +1463,7 @@ ASP.NET アプリケーション ≥ .NET 4.5.2 では、実際の .NET バー�
    Console.WriteLine(xmlDoc.InnerText);
    Console.ReadLine();
  }
-```text
+```
 
 **.NET Framework バージョン ≥4.5.2 では、これはデフォルトで安全です。**
 
@@ -1497,7 +1497,7 @@ ASP.NET アプリケーション ≥ .NET 4.5.2 では、実際の .NET バー�
 XmlTextReader reader = new XmlTextReader(stream);
 // NEEDED because the default is FALSE!!
 reader.ProhibitDtd = true;
-```text
+```
 
 #### .NET 4.0 - .NET 4.5.2
 
@@ -1513,7 +1513,7 @@ reader.ProhibitDtd = true;
 XmlTextReader reader = new XmlTextReader(stream);
 // NEEDED because the default is Parse!!
 reader.DtdProcessing = DtdProcessing.Prohibit;
-```text
+```
 
 または、`DtdProcessing` プロパティを `Ignore` に設定できます。これは `<!DOCTYPE>` 要素に遭遇しても例外をスローせず、単にスキップして処理しません。最後に、インライン DTD を許可して処理したい場合は、`DtdProcessing` を `Parse` に設定できます。
 
@@ -1536,7 +1536,7 @@ XmlReader reader = XmlReader.Create("example.xml");
 XPathDocument doc = new XPathDocument(reader);
 XPathNavigator nav = doc.CreateNavigator();
 string xml = nav.InnerXml.ToString();
-```text
+```
 
 .NET Framework バージョン ≥4.5.2 では、XPathNavigator は**デフォルトで安全**です。
 
@@ -1579,7 +1579,7 @@ string xml = nav.InnerXml.ToString();
 
 ```php
 libxml_set_external_entity_loader(null);
-```text
+```
 
 PHP でこれを悪用する方法の説明は、Facebook で修正された興味深い PHP ベースの XXE 脆弱性を説明する優れた [SensePost article](https://www.sensepost.com/blog/2014/revisting-xxe-and-abusing-protocols/) に示されています。
 
@@ -1740,7 +1740,7 @@ XXE の詳細については、[XML External Entity (XXE)](https://en.wikipedia.
 
 ```java
 factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-```html
+```
 
 </div>
 
@@ -2038,7 +2038,7 @@ Use of `XercesDOMParser` do this to prevent XXE:
 XercesDOMParser *parser = new XercesDOMParser;
 parser->setCreateEntityReferenceNodes(true);
 parser->setDisableDefaultEntityResolution(true);
-```html
+```
 
 </div>
 
@@ -2063,7 +2063,7 @@ SAXParser を使用する場合、XXE を防止するには次のようにしま
 ```cpp
 SAXParser* parser = new SAXParser;
 parser->setDisableDefaultEntityResolution(true);
-```html
+```
 
 </div>
 
@@ -2088,7 +2088,7 @@ SAX2XMLReader を使用する場合、XXE を防止するには次のように�
 ```cpp
 SAX2XMLReader* reader = XMLReaderFactory::createXMLReader();
 parser->setFeature(XMLUni::fgXercesDisableDefaultEntityResolution, true);
-```cfscript
+```
 
 </div>
 
@@ -2155,7 +2155,7 @@ From the [documentation for the XmlParse() function](https://helpx.adobe.com/col
 a = XmlParse("xml.xml", false, parseroptions);
 writeDump(a);
 </cfscript>
-```html
+```
 
 </div>
 
@@ -2183,7 +2183,7 @@ XxmlSearch(xmldoc, xpath,parseroptions);
 XmlTransform(xmldoc,xslt,parseroptions);
 
 isXML(xmldoc,parseroptions);
-```html
+```
 
 </div>
 
@@ -2215,7 +2215,7 @@ this.xmlFeatures = {
      secure: true,
      disallowDoctypeDecl: true
 };
-```html
+```
 
 </div>
 
@@ -2406,7 +2406,7 @@ try {
 
 // Load XML file or stream using a XXE agnostic configured parser...
 DocumentBuilder safebuilder = dbf.newDocumentBuilder();
-```html
+```
 
 </div>
 
@@ -2501,7 +2501,7 @@ try {
 
 // Load XML file or stream using a XXE agnostic configured parser...
 DocumentBuilder safebuilder = dbf.newDocumentBuilder();
-```html
+```
 
 </div>
 
@@ -2630,7 +2630,7 @@ Java `XMLInputFactory` を XXE から保護するには、DTD (doctype) を完�
 ```java
 // This disables DTDs entirely for that factory
 xmlInputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
-```html
+```
 
 </div>
 
@@ -2657,7 +2657,7 @@ or if you can't completely disable DTDs:
 xmlInputFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 // disable external entities
 xmlInputFactory.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
-```html
+```
 
 </div>
 
@@ -2710,7 +2710,7 @@ Follow [Oracle recommendation](https://docs.oracle.com/en/database/oracle/oracle
 
     // Do not allow more than 11 levels of entity expansion
     domParser.setAttribute(DOMParser.ENTITY_EXPANSION_DEPTH, 12);
-```html
+```
 
 </div>
 
@@ -2740,7 +2740,7 @@ To protect a `javax.xml.transform.TransformerFactory` from XXE, do this:
 TransformerFactory tf = TransformerFactory.newInstance();
 tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
-```html
+```
 
 </div>
 
@@ -2774,7 +2774,7 @@ Schema schema = factory.newSchema();
 Validator validator = schema.newValidator();
 validator.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 validator.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-```html
+```
 
 </div>
 
@@ -2805,7 +2805,7 @@ SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSch
 factory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 factory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 Schema schema = factory.newSchema(Source);
-```html
+```
 
 </div>
 
@@ -2836,7 +2836,7 @@ SAXTransformerFactory sf = SAXTransformerFactory.newInstance();
 sf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 sf.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
 sf.newXMLFilter(Source);
-```html
+```
 
 </div>
 
@@ -2903,7 +2903,7 @@ reader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 reader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 reader.setFeature("http://xml.org/sax/features/external-general-entities", false);
 reader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-```html
+```
 
 </div>
 
@@ -2933,7 +2933,7 @@ Java `org.dom4j.io.SAXReader` を XXE 攻撃から保護するには、次のよ
 saxReader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 saxReader.setFeature("http://xml.org/sax/features/external-general-entities", false);
 saxReader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-```html
+```
 
 </div>
 
@@ -2978,7 +2978,7 @@ Java `org.jdom2.input.SAXBuilder` を XXE 攻撃から保護するには、DTD (
 SAXBuilder builder = new SAXBuilder();
 builder.setFeature("http://apache.org/xml/features/disallow-doctype-decl",true);
 Document doc = builder.build(new File(fileName));
-```html
+```
 
 </div>
 
@@ -3007,7 +3007,7 @@ builder.setFeature("http://xml.org/sax/features/external-parameter-entities", fa
 builder.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 builder.setExpandEntities(false);
 Document doc = builder.build(new File(fileName));
-```html
+```
 
 </div>
 
@@ -3044,7 +3044,7 @@ public final class NoOpEntityResolver implements EntityResolver {
 
 xmlReader.setEntityResolver(new NoOpEntityResolver());
 documentBuilder.setEntityResolver(new NoOpEntityResolver());
-```html
+```
 
 </div>
 
@@ -3070,7 +3070,7 @@ or more simply:
 EntityResolver noop = (publicId, systemId) -> new InputSource(new StringReader(""));
 xmlReader.setEntityResolver(noop);
 documentBuilder.setEntityResolver(noop);
-```html
+```
 
 </div>
 
@@ -3109,7 +3109,7 @@ try {
 }
 Unmarshaller um = jc.createUnmarshaller();
 um.unmarshal(xsr);
-```html
+```
 
 </div>
 
@@ -3172,7 +3172,7 @@ df.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 DocumentBuilder builder = df.newDocumentBuilder();
 String result = new XPathExpression().evaluate( builder.parse(
                             new ByteArrayInputStream(xml.getBytes())) );
-```html
+```
 
 </div>
 
@@ -3429,7 +3429,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 // Must cast return Object to whatever type you are unmarshalling
 marshaller.unmarshal(new StreamSource(new StringReader(some_string_containing_XML));
-```html
+```
 
 </div>
 
@@ -3758,7 +3758,7 @@ The following example shows how it is made safe:
    Console.WriteLine(xmlDoc.InnerText);
    Console.ReadLine();
  }
-```html
+```
 
 </div>
 
@@ -3935,7 +3935,7 @@ Set these values to true to disable inline DTDs completely.
 XmlTextReader reader = new XmlTextReader(stream);
 // NEEDED because the default is FALSE!!
 reader.ProhibitDtd = true;
-```html
+```
 
 </div>
 
@@ -4010,7 +4010,7 @@ To set this value yourself, it looks like this:
 XmlTextReader reader = new XmlTextReader(stream);
 // NEEDED because the default is Parse!!
 reader.DtdProcessing = DtdProcessing.Prohibit;
-```html
+```
 
 </div>
 
@@ -4120,7 +4120,7 @@ XmlReader reader = XmlReader.Create("example.xml");
 XPathDocument doc = new XPathDocument(reader);
 XPathNavigator nav = doc.CreateNavigator();
 string xml = nav.InnerXml.ToString();
-```html
+```
 
 </div>
 
