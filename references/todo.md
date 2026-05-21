@@ -75,7 +75,7 @@
 - [ ] [docs/translations/transaction-authorization.md](../docs/translations/transaction-authorization.md): Transaction Authorization Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.09, 見出し 0/21。
 - [ ] [docs/translations/session-management.md](../docs/translations/session-management.md): Session Management Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.06, 見出し 8/59。
 - [ ] [docs/translations/authorization-testing-automation.md](../docs/translations/authorization-testing-automation.md): Authorization Testing Automation Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.14, 見出し 0/9。
-- [ ] [docs/translations/authorization.md](../docs/translations/authorization.md): Authorization Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.1, 見出し 11/19。
+- [x] [docs/translations/authorization.md](../docs/translations/authorization.md): Authorization Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/idor-prevention.md](../docs/translations/idor-prevention.md): Insecure Direct Object Reference Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/multi-tenant-security.md](../docs/translations/multi-tenant-security.md): Multi Tenant Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.2, 見出し 0/13。
 - [ ] [docs/translations/json-web-token-for-java.md](../docs/translations/json-web-token-for-java.md): JSON Web Token for Java Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/29。
