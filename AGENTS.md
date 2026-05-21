@@ -68,8 +68,8 @@ Bilingual pages live directly under `docs/bilingual/` and are the public reading
 - Do not duplicate a source Cheat Sheet across multiple ASVS chapter files. Link to the single slug-named original, translation, or bilingual page instead.
 - Use `docs/templates/` for reusable document templates.
 - Use `references/source-map.md` for ASVS-to-source-to-local-file mapping.
-- Use `references/bilingual-map.md` for public bilingual page coverage and status.
-- Treat `references/catalog.json` as the machine-readable state source for generated maps and public listing status.
+- Use `references/bilingual-map.md` for public bilingual page coverage and local file mappings.
+- Treat `references/catalog.json` as the machine-readable source for generated maps and public listings.
 - Use `references/license-notes.md` for license and attribution operating notes.
 - Use `references/todo.md` only for unfinished work. Remove completed tasks instead of leaving `[x]` entries behind.
 - Use relative links for internal repository references.
@@ -80,7 +80,7 @@ Bilingual pages live directly under `docs/bilingual/` and are the public reading
 
 - The public site is an unofficial ASVS-focused bilingual site titled `OWASP ASVS チートシート索引 日本語版`. The web-facing content source is `docs/bilingual/`.
 - Keep the public site clearly unofficial. Site title, footer, and Attribution must not imply an official OWASP translation.
-- The public listing at `docs/bilingual/index.md` must reflect current status from `references/catalog.json` / `references/bilingual-map.md`, not stale `Sample` / `Shell` assumptions in old generator metadata.
+- The public listing at `docs/bilingual/index.md` must reflect current mappings from `references/catalog.json` / `references/bilingual-map.md`.
 - The left sidebar is ASVS-first. Keep V1 through V17 visible in ASVS order, with Vx.y child sections below each chapter.
 - Do not add top-level navigation links such as `ASVS Cheat Sheets` or `はじめに` back into the header unless explicitly requested.
 - The right-side page TOC is intentionally disabled. Do not reintroduce a right sidebar or right-side table of contents.
@@ -97,13 +97,13 @@ Bilingual pages live directly under `docs/bilingual/` and are the public reading
 - Only the selected mode should be visible.
 - `原文` shows the English original before translation so readers can inspect the source text without comparison cards.
 - `翻訳` shows the Japanese translation and should not include repository maintenance sections such as `関連ファイル`.
-- `対比表示` must preserve the official source order and should be full-page coverage for Full pages.
-- For Full bilingual pages, every meaningful English heading, paragraph, list item, and table row should have a corresponding Japanese translation.
+- `対比表示` must preserve the official source order and should cover the full public page.
+- Every meaningful English heading, paragraph, list item, and table row in a public bilingual page should have a corresponding Japanese translation.
 - Avoid English-only pair cards unless the segment is a shared code block, image, separator, or intentionally untranslated technical artifact.
 - Shared code blocks and images must not be duplicated in both English and Japanese blocks. Put shared artifacts after the Japanese translation in a `コード・画像 (共通)` card.
 - Source reference/link sections such as `References` should not be translated. Render them near the bottom as English reference metadata, similar to Attribution.
 - Place public-page Attribution near the bottom of the page after the main reading experience.
-- If a Full page still uses large English-only and Japanese-only blocks in `対比表示`, list it in `references/todo.md` until it is converted to paragraph-level `bilingualPair` coverage.
+- If a public bilingual page still uses large English-only and Japanese-only blocks in `対比表示`, list it in `references/todo.md` until it is converted to paragraph-level `bilingualPair` coverage.
 
 ## Maintenance Order
 
@@ -112,7 +112,7 @@ For each Cheat Sheet maintenance or expansion task, proceed in this order unless
 1. Update the English original under `docs/originals/<slug>.md` from the current official OWASP source.
 2. Update the Japanese translation under `docs/translations/<slug>.md`.
 3. Regenerate or update the public bilingual page under `docs/bilingual/<slug>.md`.
-4. Update `references/source-map.md` and `references/bilingual-map.md` if status, source URL, or coverage changed.
+4. Update `references/source-map.md` and `references/bilingual-map.md` if source URL, coverage, or local paths changed.
 
 Do not update the bilingual display first and leave the source documents stale. The bilingual page is a generated/public reading layer; `docs/originals/` and `docs/translations/` are the maintainable source layers.
 
@@ -121,7 +121,6 @@ Do not update the bilingual display first and leave the source documents stale. 
 - When updating `tools/generate-bilingual-samples.mjs`, regenerate affected pages and inspect the diff.
 - Use `node tools\generate-bilingual-samples.mjs --navigation-only` when only ASVS navigation pages, sidebars, or bilingual/source maps need regeneration.
 - Use `node tools\generate-bilingual-samples.mjs --originals-only` when refreshing local English originals without rebuilding public bilingual pages.
-- The navigation generator should read current public status from `references/catalog.json` where available.
 - If the generator updates unrelated pages, revert unrelated generated diffs unless the user asked for broad regeneration.
 - Do not add broad automation hooks that silently rewrite content, fetch network resources, or change generated files unless explicitly requested or clearly opt-in.
 

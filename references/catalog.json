@@ -17,14 +17,12 @@
       "translationPath": "docs/translations/abuse-case.md",
       "source": {
         "asvs": "V2.1, V2.3, V14.1, V15.1",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/abuse-case.md",
       "originalPath": "docs/originals/abuse-case.md",
       "bilingual": {
-        "asvs": "V2.1, V2.3, V14.1, V15.1",
-        "status": "Full"
+        "asvs": "V2.1, V2.3, V14.1, V15.1"
       }
     },
     {
@@ -34,14 +32,12 @@
       "translationPath": "docs/translations/attack-surface-analysis.md",
       "source": {
         "asvs": "V15.1, V2.1",
-        "status": "詳細化済み",
         "notes": "Supply chain priority review V2"
       },
       "bilingualPath": "docs/bilingual/attack-surface-analysis.md",
       "originalPath": "docs/originals/attack-surface-analysis.md",
       "bilingual": {
-        "asvs": "V15.1",
-        "status": "Full"
+        "asvs": "V15.1"
       }
     },
     {
@@ -51,14 +47,12 @@
       "translationPath": "docs/translations/authentication.md",
       "source": {
         "asvs": "V6.2, V6.3, V6.5, V6.7, V6.8",
-        "status": "詳細化済み",
         "notes": "Authentication priority review V1"
       },
       "bilingualPath": "docs/bilingual/authentication.md",
       "originalPath": "docs/originals/authentication.md",
       "bilingual": {
-        "asvs": "V6.2, V6.3, V6.5, V6.7, V6.8",
-        "status": "Full"
+        "asvs": "V6.2, V6.3, V6.5, V6.7, V6.8"
       }
     },
     {
@@ -68,14 +62,12 @@
       "translationPath": "docs/translations/authorization.md",
       "source": {
         "asvs": "V8.1, V8.2, V8.4, V16.3",
-        "status": "詳細化済み",
         "notes": "Authorization priority review V1"
       },
       "bilingualPath": "docs/bilingual/authorization.md",
       "originalPath": "docs/originals/authorization.md",
       "bilingual": {
-        "asvs": "V8.1, V8.2, V8.4, V16.3",
-        "status": "Full"
+        "asvs": "V8.1, V8.2, V8.4, V16.3"
       }
     },
     {
@@ -85,14 +77,12 @@
       "translationPath": "docs/translations/authorization-testing-automation.md",
       "source": {
         "asvs": "V8.1, V8.2, V16.3",
-        "status": "詳細化済み",
         "notes": "Authorization priority review V2"
       },
       "bilingualPath": "docs/bilingual/authorization-testing-automation.md",
       "originalPath": "docs/originals/authorization-testing-automation.md",
       "bilingual": {
-        "asvs": "V8.1",
-        "status": "Full"
+        "asvs": "V8.1"
       }
     },
     {
@@ -102,14 +92,12 @@
       "translationPath": "docs/translations/bean-validation.md",
       "source": {
         "asvs": "V1.2",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/bean-validation.md",
       "originalPath": "docs/originals/bean-validation.md",
       "bilingual": {
-        "asvs": "V1.2",
-        "status": "Full"
+        "asvs": "V1.2"
       }
     },
     {
@@ -119,14 +107,12 @@
       "translationPath": "docs/translations/browser-extension-vulnerabilities.md",
       "source": {
         "asvs": "V10.7",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/browser-extension-vulnerabilities.md",
       "originalPath": "docs/originals/browser-extension-vulnerabilities.md",
       "bilingual": {
-        "asvs": "V10.7",
-        "status": "Full"
+        "asvs": "V10.7"
       }
     },
     {
@@ -136,14 +122,12 @@
       "translationPath": "docs/translations/content-security-policy.md",
       "source": {
         "asvs": "V3.1, V3.2",
-        "status": "詳細化済み",
         "notes": "XSS priority review V2"
       },
       "bilingualPath": "docs/bilingual/content-security-policy.md",
       "originalPath": "docs/originals/content-security-policy.md",
       "bilingual": {
-        "asvs": "V3.1",
-        "status": "Full"
+        "asvs": "V3.1"
       }
     },
     {
@@ -153,14 +137,12 @@
       "translationPath": "docs/translations/credential-stuffing-prevention.md",
       "source": {
         "asvs": "V6.1, V6.2, V6.3, V6.6",
-        "status": "詳細化済み",
         "notes": "Authentication priority review V2"
       },
       "bilingualPath": "docs/bilingual/credential-stuffing-prevention.md",
       "originalPath": "docs/originals/credential-stuffing-prevention.md",
       "bilingual": {
-        "asvs": "V6.1, V6.3",
-        "status": "Full"
+        "asvs": "V6.1, V6.3"
       }
     },
     {
@@ -170,14 +152,12 @@
       "translationPath": "docs/translations/cryptographic-storage.md",
       "source": {
         "asvs": "V11.1, V11.2, V11.3, V11.5, V13.3, V14.1",
-        "status": "詳細化済み",
         "notes": "Cryptography priority review V1"
       },
       "bilingualPath": "docs/bilingual/cryptographic-storage.md",
       "originalPath": "docs/originals/cryptographic-storage.md",
       "bilingual": {
-        "asvs": "V11.1, V11.2, V11.3, V11.5, V13.3, V14.1",
-        "status": "Full"
+        "asvs": "V11.1, V11.2, V11.3, V11.5, V13.3, V14.1"
       }
     },
     {
@@ -187,14 +167,12 @@
       "translationPath": "docs/translations/csrf-prevention.md",
       "source": {
         "asvs": "V1.3, V3, V4",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/csrf-prevention.md",
       "originalPath": "docs/originals/csrf-prevention.md",
       "bilingual": {
-        "asvs": "V1.3, V3.1, V3.2, V3.3, V3.4, V3.5, V3.7, V4.1",
-        "status": "Full"
+        "asvs": "V1.3, V3.1, V3.2, V3.3, V3.4, V3.5, V3.7, V4.1"
       }
     },
     {
@@ -204,14 +182,12 @@
       "translationPath": "docs/translations/denial-of-service.md",
       "source": {
         "asvs": "V2.4",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/denial-of-service.md",
       "originalPath": "docs/originals/denial-of-service.md",
       "bilingual": {
-        "asvs": "V2.4",
-        "status": "Full"
+        "asvs": "V2.4"
       }
     },
     {
@@ -221,14 +197,12 @@
       "translationPath": "docs/translations/dependency-graph-sbom.md",
       "source": {
         "asvs": "V15.1, V15.2",
-        "status": "詳細化済み",
         "notes": "Supply chain priority review V2"
       },
       "bilingualPath": "docs/bilingual/dependency-graph-sbom.md",
       "originalPath": "docs/originals/dependency-graph-sbom.md",
       "bilingual": {
-        "asvs": "V15.1",
-        "status": "Full"
+        "asvs": "V15.1"
       }
     },
     {
@@ -238,14 +212,12 @@
       "translationPath": "docs/translations/deserialization.md",
       "source": {
         "asvs": "V1.5",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/deserialization.md",
       "originalPath": "docs/originals/deserialization.md",
       "bilingual": {
-        "asvs": "V1.5",
-        "status": "Full"
+        "asvs": "V1.5"
       }
     },
     {
@@ -255,14 +227,12 @@
       "translationPath": "docs/translations/django-security.md",
       "source": {
         "asvs": "V13.4",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/django-security.md",
       "originalPath": "docs/originals/django-security.md",
       "bilingual": {
-        "asvs": "V13.4",
-        "status": "Full"
+        "asvs": "V13.4"
       }
     },
     {
@@ -272,14 +242,12 @@
       "translationPath": "docs/translations/docker-security.md",
       "source": {
         "asvs": "V13.2",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/docker-security.md",
       "originalPath": "docs/originals/docker-security.md",
       "bilingual": {
-        "asvs": "V13.2",
-        "status": "Full"
+        "asvs": "V13.2"
       }
     },
     {
@@ -289,14 +257,12 @@
       "translationPath": "docs/translations/dom-based-xss-prevention.md",
       "source": {
         "asvs": "V1.2, V3.2",
-        "status": "詳細化済み",
         "notes": "XSS priority review V2"
       },
       "bilingualPath": "docs/bilingual/dom-based-xss-prevention.md",
       "originalPath": "docs/originals/dom-based-xss-prevention.md",
       "bilingual": {
-        "asvs": "V1.2, V1.3",
-        "status": "Full"
+        "asvs": "V1.2, V1.3"
       }
     },
     {
@@ -306,14 +272,12 @@
       "translationPath": "docs/translations/dom-clobbering-prevention.md",
       "source": {
         "asvs": "V3.2",
-        "status": "詳細化済み",
         "notes": "XSS priority review V2"
       },
       "bilingualPath": "docs/bilingual/dom-clobbering-prevention.md",
       "originalPath": "docs/originals/dom-clobbering-prevention.md",
       "bilingual": {
-        "asvs": "V3.2",
-        "status": "Full"
+        "asvs": "V3.2"
       }
     },
     {
@@ -323,14 +287,12 @@
       "translationPath": "docs/translations/error-handling.md",
       "source": {
         "asvs": "V16.5 Error Handling; V16.2 General Logging",
-        "status": "詳細化済み",
         "notes": "Logging priority review V2"
       },
       "bilingualPath": "docs/bilingual/error-handling.md",
       "originalPath": "docs/originals/error-handling.md",
       "bilingual": {
-        "asvs": "V16.5",
-        "status": "Full"
+        "asvs": "V16.5"
       }
     },
     {
@@ -340,14 +302,12 @@
       "translationPath": "docs/translations/file-upload.md",
       "source": {
         "asvs": "V1.2, V5",
-        "status": "作成済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/file-upload.md",
       "originalPath": "docs/originals/file-upload.md",
       "bilingual": {
-        "asvs": "V1.2, V5.1, V5.2, V5.4",
-        "status": "Full"
+        "asvs": "V1.2, V5.1, V5.2, V5.4"
       }
     },
     {
@@ -357,14 +317,12 @@
       "translationPath": "docs/translations/forgot-password.md",
       "source": {
         "asvs": "V6.3, V6.4, V6.6",
-        "status": "詳細化済み",
         "notes": "Authentication priority review V2"
       },
       "bilingualPath": "docs/bilingual/forgot-password.md",
       "originalPath": "docs/originals/forgot-password.md",
       "bilingual": {
-        "asvs": "V6.3, V6.4, V6.6",
-        "status": "Full"
+        "asvs": "V6.3, V6.4, V6.6"
       }
     },
     {
@@ -374,14 +332,12 @@
       "translationPath": "docs/translations/graphql.md",
       "source": {
         "asvs": "V4.3, V13.4",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/graphql.md",
       "originalPath": "docs/originals/graphql.md",
       "bilingual": {
-        "asvs": "V4.3, V13.4",
-        "status": "Full"
+        "asvs": "V4.3, V13.4"
       }
     },
     {
@@ -391,14 +347,12 @@
       "translationPath": "docs/translations/html5-security.md",
       "source": {
         "asvs": "V3, V14",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/html5-security.md",
       "originalPath": "docs/originals/html5-security.md",
       "bilingual": {
-        "asvs": "V3.2, V3.4, V3.5, V14.2, V14.3",
-        "status": "Full"
+        "asvs": "V3.2, V3.4, V3.5, V14.2, V14.3"
       }
     },
     {
@@ -408,14 +362,12 @@
       "translationPath": "docs/translations/http-strict-transport-security.md",
       "source": {
         "asvs": "V3.4, V12.1",
-        "status": "詳細化済み",
         "notes": "Cryptography priority review V2"
       },
       "bilingualPath": "docs/bilingual/http-strict-transport-security.md",
       "originalPath": "docs/originals/http-strict-transport-security.md",
       "bilingual": {
-        "asvs": "V3.1, V3.4, V3.7",
-        "status": "Full"
+        "asvs": "V3.1, V3.4, V3.7"
       }
     },
     {
@@ -425,14 +377,12 @@
       "translationPath": "docs/translations/idor-prevention.md",
       "source": {
         "asvs": "V8.1, V8.2",
-        "status": "詳細化済み",
         "notes": "Authorization priority review V2"
       },
       "bilingualPath": "docs/bilingual/idor-prevention.md",
       "originalPath": "docs/originals/idor-prevention.md",
       "bilingual": {
-        "asvs": "V8.2",
-        "status": "Full"
+        "asvs": "V8.2"
       }
     },
     {
@@ -442,14 +392,12 @@
       "translationPath": "docs/translations/injection-prevention.md",
       "source": {
         "asvs": "V1",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/injection-prevention.md",
       "originalPath": "docs/originals/injection-prevention.md",
       "bilingual": {
-        "asvs": "V1.2, V1.3",
-        "status": "Full"
+        "asvs": "V1.2, V1.3"
       }
     },
     {
@@ -459,14 +407,12 @@
       "translationPath": "docs/translations/injection-prevention-in-java.md",
       "source": {
         "asvs": "V1.3",
-        "status": "作成済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/injection-prevention-in-java.md",
       "originalPath": "docs/originals/injection-prevention-in-java.md",
       "bilingual": {
-        "asvs": "V1.3",
-        "status": "Full"
+        "asvs": "V1.3"
       }
     },
     {
@@ -476,14 +422,12 @@
       "translationPath": "docs/translations/input-validation.md",
       "source": {
         "asvs": "V1, V2, V5",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/input-validation.md",
       "originalPath": "docs/originals/input-validation.md",
       "bilingual": {
-        "asvs": "V1.2, V1.3, V2.2, V5.1, V5.2, V5.3",
-        "status": "Full"
+        "asvs": "V1.2, V1.3, V2.2, V5.1, V5.2, V5.3"
       }
     },
     {
@@ -493,14 +437,12 @@
       "translationPath": "docs/translations/java-security.md",
       "source": {
         "asvs": "V1.2",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/java-security.md",
       "originalPath": "docs/originals/java-security.md",
       "bilingual": {
-        "asvs": "V1.2",
-        "status": "Full"
+        "asvs": "V1.2"
       }
     },
     {
@@ -510,14 +452,12 @@
       "translationPath": "docs/translations/json-web-token-for-java.md",
       "source": {
         "asvs": "V9.1",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/json-web-token-for-java.md",
       "originalPath": "docs/originals/json-web-token-for-java.md",
       "bilingual": {
-        "asvs": "V9.1",
-        "status": "Full"
+        "asvs": "V9.1"
       }
     },
     {
@@ -527,14 +467,12 @@
       "translationPath": "docs/translations/key-management.md",
       "source": {
         "asvs": "V11.1, V11.2, V11.3, V11.5, V13.3",
-        "status": "詳細化済み",
         "notes": "Cryptography priority review V2"
       },
       "bilingualPath": "docs/bilingual/key-management.md",
       "originalPath": "docs/originals/key-management.md",
       "bilingual": {
-        "asvs": "V11.1, V11.3, V11.7, V13.3",
-        "status": "Full"
+        "asvs": "V11.1, V11.3, V11.7, V13.3"
       }
     },
     {
@@ -544,14 +482,12 @@
       "translationPath": "docs/translations/ldap-injection-prevention.md",
       "source": {
         "asvs": "V1",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/ldap-injection-prevention.md",
       "originalPath": "docs/originals/ldap-injection-prevention.md",
       "bilingual": {
-        "asvs": "V1.2, V1.3",
-        "status": "Full"
+        "asvs": "V1.2, V1.3"
       }
     },
     {
@@ -561,14 +497,12 @@
       "translationPath": "docs/translations/logging.md",
       "source": {
         "asvs": "V10.7 Consent Management; V16.1 Security Logging Documentation; V16.2 General Logging; V16.3 Security Events; V16.4 Log Protection",
-        "status": "詳細化済み",
         "notes": "Logging priority review V1"
       },
       "bilingualPath": "docs/bilingual/logging.md",
       "originalPath": "docs/originals/logging.md",
       "bilingual": {
-        "asvs": "V10.7, V16.1, V16.2, V16.3, V16.4",
-        "status": "Full"
+        "asvs": "V10.7, V16.1, V16.2, V16.3, V16.4"
       }
     },
     {
@@ -578,14 +512,12 @@
       "translationPath": "docs/translations/logging-vocabulary.md",
       "source": {
         "asvs": "V16.1 Security Logging Documentation; V16.3 Security Events",
-        "status": "詳細化済み",
         "notes": "Logging priority review V2"
       },
       "bilingualPath": "docs/bilingual/logging-vocabulary.md",
       "originalPath": "docs/originals/logging-vocabulary.md",
       "bilingual": {
-        "asvs": "V16.1, V16.3",
-        "status": "Full"
+        "asvs": "V16.1, V16.3"
       }
     },
     {
@@ -595,14 +527,12 @@
       "translationPath": "docs/translations/mass-assignment.md",
       "source": {
         "asvs": "V15.3",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/mass-assignment.md",
       "originalPath": "docs/originals/mass-assignment.md",
       "bilingual": {
-        "asvs": "V15.3",
-        "status": "Full"
+        "asvs": "V15.3"
       }
     },
     {
@@ -612,14 +542,12 @@
       "translationPath": "docs/translations/microservices-security.md",
       "source": {
         "asvs": "V2.2, V11.7",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/microservices-security.md",
       "originalPath": "docs/originals/microservices-security.md",
       "bilingual": {
-        "asvs": "V2.2, V11.7",
-        "status": "Full"
+        "asvs": "V2.2, V11.7"
       }
     },
     {
@@ -629,14 +557,12 @@
       "translationPath": "docs/translations/multi-tenant-security.md",
       "source": {
         "asvs": "V8.1, V8.2, V8.4, V16.3",
-        "status": "詳細化済み",
         "notes": "Authorization priority review V2"
       },
       "bilingualPath": "docs/bilingual/multi-tenant-security.md",
       "originalPath": "docs/originals/multi-tenant-security.md",
       "bilingual": {
-        "asvs": "V8.4",
-        "status": "Full"
+        "asvs": "V8.4"
       }
     },
     {
@@ -646,14 +572,12 @@
       "translationPath": "docs/translations/multifactor-authentication.md",
       "source": {
         "asvs": "V6.2, V6.3, V6.4, V6.5, V6.8",
-        "status": "詳細化済み",
         "notes": "Authentication priority review V2"
       },
       "bilingualPath": "docs/bilingual/multifactor-authentication.md",
       "originalPath": "docs/originals/multifactor-authentication.md",
       "bilingual": {
-        "asvs": "V6.4, V6.5, V6.6, V6.7",
-        "status": "Full"
+        "asvs": "V6.4, V6.5, V6.6, V6.7"
       }
     },
     {
@@ -663,14 +587,12 @@
       "translationPath": "docs/translations/npm-security.md",
       "source": {
         "asvs": "V15.1, V15.2",
-        "status": "詳細化済み",
         "notes": "Supply chain priority review V2"
       },
       "bilingualPath": "docs/bilingual/npm-security.md",
       "originalPath": "docs/originals/npm-security.md",
       "bilingual": {
-        "asvs": "V13.4",
-        "status": "Full"
+        "asvs": "V13.4"
       }
     },
     {
@@ -680,14 +602,12 @@
       "translationPath": "docs/translations/oauth2.md",
       "source": {
         "asvs": "V10.1, V10.2, V10.3, V10.4, V10.5, V10.6",
-        "status": "詳細化済み",
         "notes": "OAuth/OIDC priority review V1"
       },
       "bilingualPath": "docs/bilingual/oauth2.md",
       "originalPath": "docs/originals/oauth2.md",
       "bilingual": {
-        "asvs": "V10.1, V10.2, V10.3, V10.4, V10.5, V10.6",
-        "status": "Full"
+        "asvs": "V10.1, V10.2, V10.3, V10.4, V10.5, V10.6"
       }
     },
     {
@@ -697,14 +617,12 @@
       "translationPath": "docs/translations/os-command-injection-defense.md",
       "source": {
         "asvs": "V1.2",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/os-command-injection-defense.md",
       "originalPath": "docs/originals/os-command-injection-defense.md",
       "bilingual": {
-        "asvs": "V1.2",
-        "status": "Full"
+        "asvs": "V1.2"
       }
     },
     {
@@ -714,14 +632,12 @@
       "translationPath": "docs/translations/password-storage.md",
       "source": {
         "asvs": "V6.5, V11.4",
-        "status": "詳細化済み",
         "notes": "Authentication/Cryptography priority review V2"
       },
       "bilingualPath": "docs/bilingual/password-storage.md",
       "originalPath": "docs/originals/password-storage.md",
       "bilingual": {
-        "asvs": "V6.5, V11.4",
-        "status": "Full"
+        "asvs": "V6.5, V11.4"
       }
     },
     {
@@ -731,14 +647,12 @@
       "translationPath": "docs/translations/prototype-pollution-prevention.md",
       "source": {
         "asvs": "V15.3",
-        "status": "作成済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/prototype-pollution-prevention.md",
       "originalPath": "docs/originals/prototype-pollution-prevention.md",
       "bilingual": {
-        "asvs": "V15.3",
-        "status": "Full"
+        "asvs": "V15.3"
       }
     },
     {
@@ -748,14 +662,12 @@
       "translationPath": "docs/translations/query-parameterization.md",
       "source": {
         "asvs": "V1.2",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/query-parameterization.md",
       "originalPath": "docs/originals/query-parameterization.md",
       "bilingual": {
-        "asvs": "V1.2",
-        "status": "Full"
+        "asvs": "V1.2"
       }
     },
     {
@@ -765,14 +677,12 @@
       "translationPath": "docs/translations/rest-assessment.md",
       "source": {
         "asvs": "V4.1",
-        "status": "作成済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/rest-assessment.md",
       "originalPath": "docs/originals/rest-assessment.md",
       "bilingual": {
-        "asvs": "V4.1",
-        "status": "Full"
+        "asvs": "V4.1"
       }
     },
     {
@@ -782,14 +692,12 @@
       "translationPath": "docs/translations/rest-security.md",
       "source": {
         "asvs": "V4.1, V4.2, V4.3, V4.4, V9.2",
-        "status": "詳細化済み",
         "notes": "API priority review V1"
       },
       "bilingualPath": "docs/bilingual/rest-security.md",
       "originalPath": "docs/originals/rest-security.md",
       "bilingual": {
-        "asvs": "V4.1, V4.2, V9.2",
-        "status": "Full"
+        "asvs": "V4.1, V4.2, V9.2"
       }
     },
     {
@@ -799,14 +707,12 @@
       "translationPath": "docs/translations/saml-security.md",
       "source": {
         "asvs": "V9.1",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/saml-security.md",
       "originalPath": "docs/originals/saml-security.md",
       "bilingual": {
-        "asvs": "V9.1",
-        "status": "Full"
+        "asvs": "V9.1"
       }
     },
     {
@@ -816,14 +722,12 @@
       "translationPath": "docs/translations/secrets-management.md",
       "source": {
         "asvs": "V11.7, V13.3",
-        "status": "詳細化済み",
         "notes": "Cryptography priority review V2"
       },
       "bilingualPath": "docs/bilingual/secrets-management.md",
       "originalPath": "docs/originals/secrets-management.md",
       "bilingual": {
-        "asvs": "V11.7",
-        "status": "Full"
+        "asvs": "V11.7"
       }
     },
     {
@@ -833,14 +737,12 @@
       "translationPath": "docs/translations/secure-code-review.md",
       "source": {
         "asvs": "V15.4",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/secure-code-review.md",
       "originalPath": "docs/originals/secure-code-review.md",
       "bilingual": {
-        "asvs": "V15.4",
-        "status": "Full"
+        "asvs": "V15.4"
       }
     },
     {
@@ -850,14 +752,12 @@
       "translationPath": "docs/translations/security-questions.md",
       "source": {
         "asvs": "V6.4",
-        "status": "詳細化済み",
         "notes": "Authentication priority review V2"
       },
       "bilingualPath": "docs/bilingual/security-questions.md",
       "originalPath": "docs/originals/security-questions.md",
       "bilingual": {
-        "asvs": "V6.4",
-        "status": "Full"
+        "asvs": "V6.4"
       }
     },
     {
@@ -867,14 +767,12 @@
       "translationPath": "docs/translations/security-terminology.md",
       "source": {
         "asvs": "V1.1; V6.1; V8.1; V11.1; V15.1",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/security-terminology.md",
       "originalPath": "docs/originals/security-terminology.md",
       "bilingual": {
-        "asvs": "V1.1, V6.1, V8.1, V11.1, V15.1",
-        "status": "Full"
+        "asvs": "V1.1, V6.1, V8.1, V11.1, V15.1"
       }
     },
     {
@@ -884,14 +782,12 @@
       "translationPath": "docs/translations/session-management.md",
       "source": {
         "asvs": "V7 Session Management; V16.2 General Logging",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/session-management.md",
       "originalPath": "docs/originals/session-management.md",
       "bilingual": {
-        "asvs": "V3.3, V7.1, V7.2, V7.3, V7.4, V7.5, V7.6, V8.2, V16.2",
-        "status": "Full"
+        "asvs": "V3.3, V7.1, V7.2, V7.3, V7.4, V7.5, V7.6, V8.2, V16.2"
       }
     },
     {
@@ -901,14 +797,12 @@
       "translationPath": "docs/translations/software-supply-chain-security.md",
       "source": {
         "asvs": "V15.1, V15.2",
-        "status": "詳細化済み",
         "notes": "Supply chain priority review V1"
       },
       "bilingualPath": "docs/bilingual/software-supply-chain-security.md",
       "originalPath": "docs/originals/software-supply-chain-security.md",
       "bilingual": {
-        "asvs": "V15.1, V15.2",
-        "status": "Full"
+        "asvs": "V15.1, V15.2"
       }
     },
     {
@@ -918,14 +812,12 @@
       "translationPath": "docs/translations/sql-injection-prevention.md",
       "source": {
         "asvs": "V1.2",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/sql-injection-prevention.md",
       "originalPath": "docs/originals/sql-injection-prevention.md",
       "bilingual": {
-        "asvs": "V1.2",
-        "status": "Full"
+        "asvs": "V1.2"
       }
     },
     {
@@ -935,14 +827,12 @@
       "translationPath": "docs/translations/ssrf-prevention.md",
       "source": {
         "asvs": "V1.3, V5.3, V13",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/ssrf-prevention.md",
       "originalPath": "docs/originals/ssrf-prevention.md",
       "bilingual": {
-        "asvs": "V1.3, V1.5, V5.3, V13.1, V13.2",
-        "status": "Full"
+        "asvs": "V1.3, V1.5, V5.3, V13.1, V13.2"
       }
     },
     {
@@ -952,14 +842,12 @@
       "translationPath": "docs/translations/third-party-javascript-management.md",
       "source": {
         "asvs": "V3, V15",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/third-party-javascript-management.md",
       "originalPath": "docs/originals/third-party-javascript-management.md",
       "bilingual": {
-        "asvs": "V3.2, V3.6, V3.7, V15.1, V15.2",
-        "status": "Full"
+        "asvs": "V3.2, V3.6, V3.7, V15.1, V15.2"
       }
     },
     {
@@ -969,14 +857,12 @@
       "translationPath": "docs/translations/threat-modeling.md",
       "source": {
         "asvs": "V15.1, V2.1",
-        "status": "詳細化済み",
         "notes": "Supply chain priority review V2"
       },
       "bilingualPath": "docs/bilingual/threat-modeling.md",
       "originalPath": "docs/originals/threat-modeling.md",
       "bilingual": {
-        "asvs": "V15.1",
-        "status": "Full"
+        "asvs": "V15.1"
       }
     },
     {
@@ -986,14 +872,12 @@
       "translationPath": "docs/translations/transaction-authorization.md",
       "source": {
         "asvs": "V6.5, V8.3, V15.1, V15.4",
-        "status": "詳細化済み",
         "notes": "Authentication/Authorization priority review V2"
       },
       "bilingualPath": "docs/bilingual/transaction-authorization.md",
       "originalPath": "docs/originals/transaction-authorization.md",
       "bilingual": {
-        "asvs": "V6.5, V8.3, V15.4",
-        "status": "Full"
+        "asvs": "V6.5, V8.3, V15.4"
       }
     },
     {
@@ -1003,14 +887,12 @@
       "translationPath": "docs/translations/transport-layer-security.md",
       "source": {
         "asvs": "V3.4, V4.1, V10.1, V11.3, V12.1, V17.1",
-        "status": "詳細化済み",
         "notes": "Cryptography priority review V2"
       },
       "bilingualPath": "docs/bilingual/transport-layer-security.md",
       "originalPath": "docs/originals/transport-layer-security.md",
       "bilingual": {
-        "asvs": "V3.3, V4.1, V4.4, V10.3, V10.4, V11.6, V12.1, V12.2, V12.3, V17.2",
-        "status": "Full"
+        "asvs": "V3.3, V4.1, V4.4, V10.3, V10.4, V11.6, V12.1, V12.2, V12.3, V17.2"
       }
     },
     {
@@ -1020,14 +902,12 @@
       "translationPath": "docs/translations/user-privacy-protection.md",
       "source": {
         "asvs": "V14",
-        "status": "作成済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/user-privacy-protection.md",
       "originalPath": "docs/originals/user-privacy-protection.md",
       "bilingual": {
-        "asvs": "V14.1, V14.2",
-        "status": "Full"
+        "asvs": "V14.1, V14.2"
       }
     },
     {
@@ -1037,14 +917,12 @@
       "translationPath": "docs/translations/virtual-patching.md",
       "source": {
         "asvs": "V15.2",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/virtual-patching.md",
       "originalPath": "docs/originals/virtual-patching.md",
       "bilingual": {
-        "asvs": "V15.2",
-        "status": "Full"
+        "asvs": "V15.2"
       }
     },
     {
@@ -1054,14 +932,12 @@
       "translationPath": "docs/translations/vulnerable-dependency-management.md",
       "source": {
         "asvs": "V15.2",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/vulnerable-dependency-management.md",
       "originalPath": "docs/originals/vulnerable-dependency-management.md",
       "bilingual": {
-        "asvs": "V15.2",
-        "status": "Full"
+        "asvs": "V15.2"
       }
     },
     {
@@ -1071,14 +947,12 @@
       "translationPath": "docs/translations/web-service-security.md",
       "source": {
         "asvs": "V2.2, V4",
-        "status": "作成済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/web-service-security.md",
       "originalPath": "docs/originals/web-service-security.md",
       "bilingual": {
-        "asvs": "V2.2, V4.1, V4.2",
-        "status": "Full"
+        "asvs": "V2.2, V4.1, V4.2"
       }
     },
     {
@@ -1088,14 +962,12 @@
       "translationPath": "docs/translations/xml-security.md",
       "source": {
         "asvs": "V1, V9",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/xml-security.md",
       "originalPath": "docs/originals/xml-security.md",
       "bilingual": {
-        "asvs": "V1.2, V1.5",
-        "status": "Full"
+        "asvs": "V1.2, V1.5"
       }
     },
     {
@@ -1105,14 +977,12 @@
       "translationPath": "docs/translations/xss-filter-evasion.md",
       "source": {
         "asvs": "V1.2, V3.2",
-        "status": "詳細化済み",
         "notes": "XSS priority review V2"
       },
       "bilingualPath": "docs/bilingual/xss-filter-evasion.md",
       "originalPath": "docs/originals/xss-filter-evasion.md",
       "bilingual": {
-        "asvs": "V1.2",
-        "status": "Full"
+        "asvs": "V1.2"
       }
     },
     {
@@ -1122,14 +992,12 @@
       "translationPath": "docs/translations/xss-prevention.md",
       "source": {
         "asvs": "V1.2, V1.3, V3.2, V3.4",
-        "status": "詳細化済み",
         "notes": "XSS priority review V1"
       },
       "bilingualPath": "docs/bilingual/xss-prevention.md",
       "originalPath": "docs/originals/xss-prevention.md",
       "bilingual": {
-        "asvs": "V1.1, V1.2, V1.3",
-        "status": "Full"
+        "asvs": "V1.1, V1.2, V1.3"
       }
     },
     {
@@ -1139,82 +1007,72 @@
       "translationPath": "docs/translations/xxe-prevention.md",
       "source": {
         "asvs": "V1",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
       },
       "bilingualPath": "docs/bilingual/xxe-prevention.md",
       "originalPath": "docs/originals/xxe-prevention.md",
       "bilingual": {
-        "asvs": "V1.2, V1.3, V1.5",
-        "status": "Full"
+        "asvs": "V1.2, V1.3, V1.5"
       }
     },
     {
       "slug": "laravel-security",
       "title": "Laravel Cheat Sheet",
       "sourceUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Laravel_Cheat_Sheet.html",
-      "bilingualPath": "docs/bilingual/laravel-security.md",
-      "originalPath": "docs/originals/laravel-security.md",
       "translationPath": "docs/translations/laravel-security.md",
-      "bilingual": {
-        "asvs": "V13.4",
-        "status": "Full"
-      },
       "source": {
         "asvs": "V13.4",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
+      },
+      "bilingualPath": "docs/bilingual/laravel-security.md",
+      "originalPath": "docs/originals/laravel-security.md",
+      "bilingual": {
+        "asvs": "V13.4"
       }
     },
     {
       "slug": "symfony",
       "title": "Symfony Cheat Sheet",
       "sourceUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Symfony_Cheat_Sheet.html",
-      "bilingualPath": "docs/bilingual/symfony.md",
-      "originalPath": "docs/originals/symfony.md",
       "translationPath": "docs/translations/symfony.md",
-      "bilingual": {
-        "asvs": "V13.4",
-        "status": "Full"
-      },
       "source": {
         "asvs": "V13.4",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
+      },
+      "bilingualPath": "docs/bilingual/symfony.md",
+      "originalPath": "docs/originals/symfony.md",
+      "bilingual": {
+        "asvs": "V13.4"
       }
     },
     {
       "slug": "unvalidated-redirects-forwards",
       "title": "Unvalidated Redirects and Forwards Cheat Sheet",
       "sourceUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html",
-      "bilingualPath": "docs/bilingual/unvalidated-redirects-forwards.md",
-      "originalPath": "docs/originals/unvalidated-redirects-forwards.md",
       "translationPath": "docs/translations/unvalidated-redirects-forwards.md",
-      "bilingual": {
-        "asvs": "V3.7, V10.4, V15.3",
-        "status": "Full"
-      },
       "source": {
         "asvs": "V3.7, V10.4, V15.3",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
+      },
+      "bilingualPath": "docs/bilingual/unvalidated-redirects-forwards.md",
+      "originalPath": "docs/originals/unvalidated-redirects-forwards.md",
+      "bilingual": {
+        "asvs": "V3.7, V10.4, V15.3"
       }
     },
     {
       "slug": "websocket-security",
       "title": "WebSocket Security Cheat Sheet",
       "sourceUrl": "https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html",
-      "bilingualPath": "docs/bilingual/websocket-security.md",
-      "originalPath": "docs/originals/websocket-security.md",
       "translationPath": "docs/translations/websocket-security.md",
-      "bilingual": {
-        "asvs": "V4.4",
-        "status": "Full"
-      },
       "source": {
         "asvs": "V4.4",
-        "status": "詳細化済み",
         "notes": "ASVS Index coverage"
+      },
+      "bilingualPath": "docs/bilingual/websocket-security.md",
+      "originalPath": "docs/originals/websocket-security.md",
+      "bilingual": {
+        "asvs": "V4.4"
       }
     }
   ]

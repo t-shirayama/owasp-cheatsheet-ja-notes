@@ -78,8 +78,17 @@ async function importExistingMaps() {
   const entries = new Map();
   const order = [];
 
-  const sourceRows = await parseMap(sourceMapPath, 6);
-  for (const [asvs, title, sourceUrl, translationCell, status, notes] of sourceRows) {
+  let sourceRows = await parseMap(sourceMapPath, 5);
+  if (sourceRows.length === 0) {
+    sourceRows = (await parseMap(sourceMapPath, 6)).map(([asvs, title, sourceUrl, translationCell, , notes]) => [
+      asvs,
+      title,
+      sourceUrl,
+      translationCell,
+      notes,
+    ]);
+  }
+  for (const [asvs, title, sourceUrl, translationCell, notes] of sourceRows) {
     const translationPath = extractLinkTarget(translationCell);
     const slug = slugFromPath(translationPath);
     if (!slug) {
@@ -95,13 +104,15 @@ async function importExistingMaps() {
     entry.translationPath = repoLink(translationPath);
     entry.source = {
       asvs,
-      status,
       notes,
     };
   }
 
-  const bilingualRows = await parseMap(bilingualMapPath, 7);
-  for (const [asvs, title, sourceUrl, bilingualCell, originalCell, translationCell, status] of bilingualRows) {
+  let bilingualRows = await parseMap(bilingualMapPath, 6);
+  if (bilingualRows.length === 0) {
+    bilingualRows = (await parseMap(bilingualMapPath, 7)).map((row) => row.slice(0, 6));
+  }
+  for (const [asvs, title, sourceUrl, bilingualCell, originalCell, translationCell] of bilingualRows) {
     const bilingualPath = extractLinkTarget(bilingualCell);
     const slug = slugFromPath(bilingualPath);
     if (!slug) {
@@ -121,11 +132,9 @@ async function importExistingMaps() {
       : repoLink(extractLinkTarget(translationCell));
     entry.bilingual = {
       asvs,
-      status,
     };
     entry.source ??= {
       asvs,
-      status: entry.translationPath ? '作成済み' : '未作成',
       notes: 'bilingual catalog entry',
     };
   }
@@ -150,12 +159,10 @@ async function importExistingMaps() {
       }
       entry.source ??= {
         asvs: entry.bilingual?.asvs ?? '',
-        status: entry.translationPath ? '作成済み' : '未作成',
         notes: 'catalog entry',
       };
       entry.bilingual ??= {
         asvs: entry.source.asvs,
-        status: '未作成',
       };
       return entry;
     }),
@@ -173,7 +180,7 @@ function sourceMapContent(catalog) {
     .filter((entry) => entry.translationPath)
     .map((entry) => {
       const translation = markdownLink(entry.translationPath, `../${entry.translationPath}`);
-      return `| ${entry.source.asvs} | ${entry.title} | ${entry.sourceUrl} | ${translation} | ${entry.source.status} | ${entry.source.notes} |`;
+      return `| ${entry.source.asvs} | ${entry.title} | ${entry.sourceUrl} | ${translation} | ${entry.source.notes} |`;
     })
     .join('\n');
 
@@ -187,13 +194,13 @@ ASVS 項目、公式 Cheat Sheet、ローカルの翻訳ファイルの対応表
 
 - docs/asvs/ の章ページは、この対応表をもとに更新します。
 - 同じ原文につき、翻訳ファイルを1つ作成し、公開用の英日対訳ページから参照します。
-- 公式ページの URL、ローカルファイル、作成状況を catalog で追跡します。
+- 公式ページの URL、ローカルファイル、補足情報を catalog で追跡します。
 - 英日対訳表示の公開ページは [bilingual-map.md](bilingual-map.md) に生成します。
 
 ## 対応表
 
-| ASVS 項目 | 公式 Cheat Sheet | 公式 URL | 翻訳 | 状態 | 備考 |
-| --- | --- | --- | --- | --- | --- |
+| ASVS 項目 | 公式 Cheat Sheet | 公式 URL | 翻訳 | 備考 |
+| --- | --- | --- | --- | --- |
 ${rows}
 
 ## 参考資料
@@ -212,7 +219,7 @@ function bilingualMapContent(catalog) {
       const translation = entry.translationPath
         ? markdownLink(entry.translationPath, `../${entry.translationPath}`)
         : '未作成';
-      return `| ${entry.bilingual.asvs} | ${entry.title} | ${entry.sourceUrl} | ${bilingual} | ${original} | ${translation} | ${entry.bilingual.status} |`;
+      return `| ${entry.bilingual.asvs} | ${entry.title} | ${entry.sourceUrl} | ${bilingual} | ${original} | ${translation} |`;
     })
     .join('\n');
 
@@ -227,15 +234,15 @@ function bilingualMapContent(catalog) {
 - 対訳ファイルは \`docs/bilingual/<slug>.md\` に置く。
 - 英語原文のローカル参照ファイルは \`docs/originals/<slug>.md\` に置く。
 - 既存の \`docs/translations/\` は翻訳の維持管理元として残し、対訳表示は \`docs/bilingual/\` で管理する。
-- Full/Sample に進めるページでは、公式ページの見出し、段落、箇条書き、表、コードブロック、画像を可能な限り同じ順序で再現する。
+- 公開対訳ページでは、公式ページの見出し、段落、箇条書き、表、コードブロック、画像を可能な限り同じ順序で再現する。
 - 公式ページ内の画像は、必要に応じてローカル保存し、対訳ページから \`static/img/owasp-cheatsheets/<slug>/\` 配下のファイルを参照する。
 - 各対訳ファイルには Attribution を置き、英語原文を比較用に保持していることを \`Changes\` に明記する。
 - Docusaurus のサイドバーは OWASP ASVS Index と同じ V1〜V17 章ベースで構成し、複数章対応ページは該当するすべての章に掲載する。
 
 ## 対応表
 
-| ASVS 項目 | 公式 Cheat Sheet | 公式 URL | 対訳 | 英語原文 | 翻訳 | 状態 |
-| --- | --- | --- | --- | --- | --- | --- |
+| ASVS 項目 | 公式 Cheat Sheet | 公式 URL | 対訳 | 英語原文 | 翻訳 |
+| --- | --- | --- | --- | --- | --- |
 ${rows}
 `;
 }
