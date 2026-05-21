@@ -77,7 +77,7 @@ Some applications allow a user to chose how their transactions will be authorize
 
 Since developers need to prevent users from authorizing fraudulent operations, their applications should not require a user to perform the same actions for authentication and transaction authorization. Consider the following example:
 
-1. An application is using the same method for user authentication and for transaction authorization {i.e. with an OTP token).
+1. An application is using the same method for user authentication and for transaction authorization (i.e. with an OTP token).
 2. Malware could use a man-in-the-middle attack to present a user with a false error message when they submit credentials to the application, which could trick the user into repeating the authentication procedure. The first credential will be used by the malware for authentication and the second credential would be used to authorize a fraudulent transaction. Even challenge-response schemes could be abused using this scenario, since malware can present a challenge taken from a fraudulent transaction and trick the user to provide a response. Such an attack scenario is used widely in [malware attacks against electronic banking](http://securityintelligence.com/back-basics-malware-authors-downgrade-tactics-stay-radar/#.VX_qI_krLDc).
 
 To stop such attacks, developers can make sure that authentication actions are different than transaction authorizations by:
@@ -514,7 +514,7 @@ Some applications allow a user to chose how their transactions will be authorize
 
 Since developers need to prevent users from authorizing fraudulent operations, their applications should not require a user to perform the same actions for authentication and transaction authorization. Consider the following example:
 
-1. An application is using the same method for user authentication and for transaction authorization {i.e. with an OTP token).
+1. An application is using the same method for user authentication and for transaction authorization (i.e. with an OTP token).
 2. Malware could use a man-in-the-middle attack to present a user with a false error message when they submit credentials to the application, which could trick the user into repeating the authentication procedure. The first credential will be used by the malware for authentication and the second credential would be used to authorize a fraudulent transaction. Even challenge-response schemes could be abused using this scenario, since malware can present a challenge taken from a fraudulent transaction and trick the user to provide a response. Such an attack scenario is used widely in [malware attacks against electronic banking](http://securityintelligence.com/back-basics-malware-authors-downgrade-tactics-stay-radar/#.VX_qI_krLDc).
 
 To stop such attacks, developers can make sure that authentication actions are different than transaction authorizations by:
