@@ -1,39 +1,1000 @@
-# マルチテナントセキュリティチートシート 日本語訳
+# マルチテナントアプリケーションセキュリティチートシート 日本語訳
 
 ## Attribution
 
-- Original: Multi Tenant Security Cheat Sheet
+- Original: Multi-Tenant Application Security Cheat Sheet
 - Source: https://cheatsheetseries.owasp.org/cheatsheets/Multi_Tenant_Security_Cheat_Sheet.html
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: Japanese translation added.
-- Retrieved: 2026-05-20
+- Retrieved: 2026-05-21
 
 ## 日本語訳
 
-マルチテナントアプリケーションは、複数の顧客または組織を、共有インフラ、共有コードベース、ときには共有データベース上で提供する。この構成では、単一の脆弱性や設定ミスが複数テナントのデータ漏えいにつながり、あるテナントのリソース消費が別テナントの可用性へ影響する。テナント境界は主要なセキュリティ境界として扱う。
+# マルチテナントアプリケーションセキュリティチートシート
 
-主なリスクには、クロステナントデータ漏えい、テナントなりすまし、データベース、キャッシュ、ストレージ、計算資源での分離不備、IDOR、ノイジーネイバーによるサービス拒否、テナント横断の権限昇格、リクエスト、トークン、ヘッダー内のテナントコンテキスト注入、共有リソース汚染、オンボーディングとオフボーディングの不備、監査ログ不足がある。
+## はじめに
 
-テナントコンテキストはリクエストライフサイクルの早い段階で確立し、認証済みセッションや検証済みトークンから導出する。クライアントが送るテナント ID ヘッダーやクエリパラメータを検証なしに信頼してはならない。テナント ID は推測困難な値にし、アプリケーション層、データアクセス層、監査ログ、バックグラウンドジョブへ安全に伝播させる。
+マルチテナントアプリケーションは、共有インフラストラクチャ、コードベース、多くの場合は共有データベースから、複数の顧客 (テナント) にサービスを提供します。このアーキテクチャは現代的な SaaS プラットフォームの基盤であり、コスト効率と運用の簡素化をもたらします。
 
-データベース分離は、専用データベース、専用スキーマ、共有テーブルと `tenant_id`、行レベルセキュリティなど、リスクと運用に合わせて選ぶ。どの方式でも、すべての検索、更新、削除、挿入でテナント条件を強制する。テナント境界を API 層だけに置かず、リポジトリ層、ORM フック、RLS などデータアクセス層でも適用する。
+しかし、マルチテナンシーは重大なセキュリティ課題をもたらします。単一の脆弱性によって全テナントのデータが露出する可能性があり、設定ミスによってテナント境界を越えたデータ漏えいが発生し、リソース競合によって可用性に影響が及ぶ可能性があります。
 
-クロステナント IDOR を防ぐため、リソース取得では `tenant_id + resource_id` の複合キーまたは同等の条件を使う。リソース ID だけで検索してから返す実装は避ける。テナントに属さないリソースは、存在しないものとして扱う応答を検討し、他テナントの存在を漏らさない。
+このチートシートでは、マルチテナントアプリケーションを保護し、テナント分離を確保し、クロステナント攻撃を防止するためのベストプラクティスを示します。
 
-キャッシュ、セッション、ファイル、Blob、キュー、検索インデックスもテナント境界の対象である。キャッシュキーにはテナント識別子を含め、機微なテナントは別名前空間や別インスタンスに分離する。ファイル保存ではテナント別パス、バケット、ACL、メタデータ検証を使い、他テナントのオブジェクトキーを推測・上書きできないようにする。
+## 主なリスク
 
-API では、テナント単位と利用者単位のレート制限を組み合わせ、ノイジーネイバーや大量アクセスを抑える。オンボーディングでは既定設定、権限、鍵、ストレージ、ログ設定を安全に初期化し、オフボーディングではアクセス失効、データ削除または保持、バックアップ、監査要件を明確にする。
+- **クロステナントデータ漏えい**: バグや設定ミスによって、あるテナントのデータが別のテナントに露出すること。
+- **テナントなりすまし**: 攻撃者が別テナントのコンテキストやリソースにアクセスすること。
+- **テナント分離の破綻**: データベース、キャッシュ、ストレージ、またはコンピュート層での分離が不十分であること。
+- **安全でない直接オブジェクト参照 (IDOR)**: テナント ID やリソース ID を操作してリソースにアクセスすること。
+- **ノイジーネイバー攻撃**: あるテナントが共有リソースを使い尽くし、他のテナントに影響を与えること (DoS)。
+- **テナント横断の権限昇格**: 管理機能を悪用して他のテナントにアクセスすること。
+- **テナントコンテキスト注入**: リクエスト、トークン、ヘッダー内のテナント識別子を操作すること。
+- **共有リソース汚染**: キャッシュポイズニング、キュー注入、ストレージ汚染によって他のテナントに影響を与えること。
+- **安全でないテナントオンボーディング/オフボーディング**: プロビジョニングの不備や、削除後のデータ保持が残ること。
+- **監査とコンプライアンスのギャップ**: 規制要件に対するテナント固有のログ記録が不十分であること。
 
-ログ、監視、監査では、テナント ID、利用者、操作、対象リソース、認可失敗、境界違反を記録する。ただし、テナント ID 自体がログ注入や情報漏えいの原因にならないよう、値の検証と出力制御を行う。
+## ベストプラクティス
 
-## ASVS との対応
+### 1. テナント識別とコンテキスト管理
 
-| ASVS 項目 | 関連内容 |
-| --- | --- |
-| V8.1 | テナントコンテキストを認証済みセッションから導出し、サーバ側で認可を強制する設計 |
-| V8.2 | クロステナント IDOR、複合キー、データアクセス層でのテナントスコープ |
-| V8.4 | テナント分離、共有リソース分離、管理者権限のテナント範囲制御 |
-| V16.3 | テナント別の監査ログ、認可失敗、境界違反の検知 |
+- リクエストライフサイクルの早い段階 (ミドルウェア/インターセプター) でテナントコンテキストを確立します。
+- 暗号学的に安全で推測困難なテナント識別子を使用します。
+- クライアントから提供されたテナント ID を検証なしに信頼してはなりません。
+- テナントコンテキストを認証済みユーザーセッションに紐付けます。
+- すべてのアプリケーション層にテナントコンテキストを安全に伝播します。
+
+<details>
+<summary>悪い例: クライアント提供のテナント ID を信頼する</summary>
+
+```python
+# Dangerous: Tenant ID from request header without validation/query parameterization
+def get_tenant_data(request):
+    tenant_id = request.headers.get("X-Tenant-ID")  # Attacker can modify!
+    return db.execute("SELECT * FROM data WHERE tenant_id = :tid", {"tid": tenant_id})
+```
+
+</details>
+
+<details>
+<summary>良い例: 認証済みセッションからテナントを導出する</summary>
+
+```python
+from functools import wraps
+from contextvars import ContextVar
+from typing import Optional
+
+# Thread-safe tenant context
+current_tenant: ContextVar[Optional[str]] = ContextVar('current_tenant', default=None)
+
+class TenantContext:
+    def __init__(self, tenant_id: str, user_id: str, roles: list):
+        self.tenant_id = tenant_id
+        self.user_id = user_id
+        self.roles = roles
+        self.is_validated = True
+
+class TenantMiddleware:
+    """Extract and validate tenant context from authenticated session."""
+
+    async def __call__(self, request, call_next):
+        # Get tenant from verified JWT claims - NOT from headers
+        token_claims = request.state.verified_claims  # Set by auth middleware
+
+        if not token_claims or "tenant_id" not in token_claims:
+            return JSONResponse(status_code=401, content={"error": "Missing tenant context"})
+
+        tenant_id = token_claims["tenant_id"]
+
+        # Validate tenant exists and is active
+        tenant = await self.tenant_service.get_active_tenant(tenant_id)
+        if not tenant:
+            return JSONResponse(status_code=403, content={"error": "Invalid tenant"})
+
+        # Set tenant context for this request
+        ctx = TenantContext(
+            tenant_id=tenant_id,
+            user_id=token_claims["sub"],
+            roles=token_claims.get("roles", [])
+        )
+        token = current_tenant.set(ctx)
+
+        try:
+            response = await call_next(request)
+            return response
+        finally:
+            current_tenant.reset(token)
+
+def require_tenant(func):
+    """Decorator ensuring tenant context is present."""
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        ctx = current_tenant.get()
+        if not ctx or not ctx.is_validated:
+            raise SecurityException("Tenant context required")
+        return await func(*args, **kwargs)
+    return wrapper
+```
+
+</details>
+
+### 2. データベース分離戦略
+
+セキュリティ要件、コンプライアンス上の必要性、運用の複雑さに基づいて分離戦略を選択します。
+
+| 戦略 | 分離レベル | ユースケース |
+|----------|----------------|----------|
+| 個別データベース | 最高 | 規制対象業界、エンタープライズ顧客 |
+| 個別スキーマ | 高 | 分離と管理容易性のバランス |
+| 共有テーブル (行レベル) | 中 | コスト重視、多数のテナント |
+| ハイブリッド | 可変 | 顧客ごとに異なるティア |
+
+<details>
+<summary>行レベルセキュリティの実装 (PostgreSQL)</summary>
+
+```sql
+-- Enable RLS on tenant tables
+ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+ALTER TABLE customers ENABLE ROW LEVEL SECURITY;
+
+-- Create policy that restricts access to current tenant
+CREATE POLICY tenant_isolation_policy ON orders
+    FOR ALL
+    USING (tenant_id = current_setting('app.current_tenant')::uuid);
+
+CREATE POLICY tenant_isolation_policy ON customers
+    FOR ALL
+    USING (tenant_id = current_setting('app.current_tenant')::uuid);
+
+-- Force RLS for table owners too (important!)
+ALTER TABLE orders FORCE ROW LEVEL SECURITY;
+ALTER TABLE customers FORCE ROW LEVEL SECURITY;
+```
+
+</details>
+
+<details>
+<summary>アプリケーションレベルの強制 (Python/SQLAlchemy)</summary>
+
+```python
+from sqlalchemy import event, Column, String
+from sqlalchemy.orm import Session, Query
+from sqlalchemy.ext.declarative import declared_attr
+from contextlib import contextmanager
+
+class TenantMixin:
+    """Mixin that adds tenant_id to all models."""
+
+    @declared_attr
+    def tenant_id(cls):
+        return Column(String(36), nullable=False, index=True)
+
+class TenantAwareSession(Session):
+    """Session that automatically filters by tenant."""
+
+    def __init__(self, *args, tenant_id: str = None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._tenant_id = tenant_id
+
+    @property
+    def tenant_id(self):
+        if not self._tenant_id:
+            raise SecurityException("Tenant ID not set on session")
+        return self._tenant_id
+
+# Automatically add tenant filter to all queries
+@event.listens_for(Query, "before_compile", retval=True)
+def add_tenant_filter(query):
+    tenant_id = current_tenant.get()
+    if not tenant_id:
+        raise SecurityException("No tenant context for query")
+
+    for desc in query.column_descriptions:
+        entity = desc.get('entity')
+        if entity and hasattr(entity, 'tenant_id'):
+            query = query.filter(entity.tenant_id == tenant_id.tenant_id)
+
+    return query
+
+# Automatically set tenant_id on insert
+@event.listens_for(TenantMixin, "before_insert", propagate=True)
+def set_tenant_on_insert(mapper, connection, target):
+    ctx = current_tenant.get()
+    if not ctx:
+        raise SecurityException("Cannot insert without tenant context")
+    target.tenant_id = ctx.tenant_id
+
+# Secure session factory
+@contextmanager
+def tenant_session(tenant_id: str):
+    """Create a tenant-scoped database session."""
+    session = TenantAwareSession(bind=engine, tenant_id=tenant_id)
+
+    # Set PostgreSQL RLS context
+    session.execute(f"SELECT set_config('app.current_tenant', :tenant_id, true);")
+
+    try:
+        yield session
+        session.commit()
+    except Exception:
+        session.rollback()
+        raise
+    finally:
+        session.close()
+```
+
+</details>
+
+### 3. クロステナントデータアクセスの防止 (IDOR 防止)
+
+- 要求されたリソースが現在のテナントに属していることを常に検証します。
+- すべての検索で複合キー (`tenant_id + resource_id`) を使用します。
+- API 層だけでなく、データアクセス層で認可チェックを実装します。
+- 連番または推測可能な ID の露出を避けます。
+
+<details>
+<summary>悪い例: テナント検証のない直接オブジェクト参照</summary>
+
+```python
+# Dangerous: Only checks resource_id, not tenant ownership
+@app.get("/api/documents/{document_id}")
+async def get_document(document_id: str):
+    doc = db.query(Document).filter(Document.id == document_id).first()
+    if not doc:
+        raise HTTPException(404)
+    return doc  # Could return another tenant's document!
+```
+
+</details>
+
+<details>
+<summary>良い例: テナントスコープのリソースアクセス</summary>
+
+```python
+from uuid import UUID
+from typing import TypeVar, Generic, Type
+
+T = TypeVar('T')
+
+class TenantScopedRepository(Generic[T]):
+    """Repository that enforces tenant isolation on all operations."""
+
+    def __init__(self, model: Type[T], session: Session):
+        self.model = model
+        self.session = session
+
+    @property
+    def tenant_id(self) -> str:
+        ctx = current_tenant.get()
+        if not ctx:
+            raise SecurityException("Tenant context required")
+        return ctx.tenant_id
+
+    def get_by_id(self, resource_id: UUID) -> Optional[T]:
+        """Get resource only if it belongs to current tenant."""
+        return self.session.query(self.model).filter(
+            self.model.id == resource_id,
+            self.model.tenant_id == self.tenant_id  # Always include tenant check
+        ).first()
+
+    def list_all(self, limit: int = 100, offset: int = 0) -> list[T]:
+        """List resources for current tenant only."""
+        return self.session.query(self.model).filter(
+            self.model.tenant_id == self.tenant_id
+        ).limit(limit).offset(offset).all()
+
+    def create(self, **kwargs) -> T:
+        """Create resource with tenant_id automatically set."""
+        if 'tenant_id' in kwargs and kwargs['tenant_id'] != self.tenant_id:
+            raise SecurityException("Cannot create resource for different tenant")
+
+        kwargs['tenant_id'] = self.tenant_id
+        instance = self.model(**kwargs)
+        self.session.add(instance)
+        return instance
+
+    def delete(self, resource_id: UUID) -> bool:
+        """Delete resource only if it belongs to current tenant."""
+        result = self.session.query(self.model).filter(
+            self.model.id == resource_id,
+            self.model.tenant_id == self.tenant_id
+        ).delete()
+        return result > 0
+
+# Usage
+@app.get("/api/documents/{document_id}")
+@require_tenant
+async def get_document(document_id: UUID, db: Session = Depends(get_db)):
+    repo = TenantScopedRepository(Document, db)
+    doc = repo.get_by_id(document_id)
+    if not doc:
+        raise HTTPException(404, "Document not found")  # Don't reveal if it exists for other tenant
+    return doc
+```
+
+</details>
+
+### 4. キャッシュとセッションの分離
+
+- すべてのキャッシュキーにテナント識別子をプレフィックスとして付けます。
+- 機微なテナントには、個別のキャッシュ名前空間またはインスタンスを使用します。
+- インジェクションを防ぐため、キャッシュキー検証を実装します。
+- 適切な TTL を設定し、キャッシュ取得時にテナントを検証します。
+
+<details>
+<summary>悪い例: テナント分離のない共有キャッシュ</summary>
+
+```python
+# Dangerous: Cache key collision between tenants
+def get_user_preferences(user_id: str):
+    cache_key = f"preferences:{user_id}"  # Same key for different tenants!
+    cached = redis.get(cache_key)
+    if cached:
+        return json.loads(cached)
+    # ...
+```
+
+</details>
+
+<details>
+<summary>良い例: テナント分離されたキャッシュ</summary>
+
+```python
+import hashlib
+import json
+from typing import Optional, Any
+from functools import wraps
+
+class TenantAwareCache:
+    """Cache implementation with tenant isolation."""
+
+    def __init__(self, redis_client):
+        self.redis = redis_client
+        self.default_ttl = 3600
+
+    def _build_key(self, tenant_id: str, key: str) -> str:
+        """Build tenant-scoped cache key."""
+        # Validate key format to prevent injection
+        if not key or any(c in key for c in ['{', '}', '\n', '\r']):
+            raise ValueError("Invalid cache key format")
+
+        # Use hash of tenant_id to prevent key enumeration
+        tenant_hash = hashlib.sha256(tenant_id.encode()).hexdigest()[:16]
+        return f"t:{tenant_hash}:{key}"
+
+    def get(self, key: str, tenant_id: str = None) -> Optional[Any]:
+        """Get cached value for current tenant."""
+        tenant_id = tenant_id or current_tenant.get().tenant_id
+        full_key = self._build_key(tenant_id, key)
+
+        cached = self.redis.get(full_key)
+        if cached:
+            data = json.loads(cached)
+            # Verify tenant_id in cached data matches (defense in depth)
+            if data.get("_tenant_id") != tenant_id:
+                self.redis.delete(full_key)  # Purge potentially poisoned entry
+                return None
+            return data.get("value")
+        return None
+
+    def set(self, key: str, value: Any, ttl: int = None, tenant_id: str = None):
+        """Set cached value for current tenant."""
+        tenant_id = tenant_id or current_tenant.get().tenant_id
+        full_key = self._build_key(tenant_id, key)
+
+        # Include tenant_id in cached data for verification
+        data = {
+            "_tenant_id": tenant_id,
+            "value": value
+        }
+
+        self.redis.setex(full_key, ttl or self.default_ttl, json.dumps(data))
+
+    def invalidate_tenant(self, tenant_id: str):
+        """Invalidate all cache entries for a tenant."""
+        tenant_hash = hashlib.sha256(tenant_id.encode()).hexdigest()[:16]
+        pattern = f"t:{tenant_hash}:*"
+
+        cursor = 0
+        while True:
+            cursor, keys = self.redis.scan(cursor, match=pattern, count=1000)
+            if keys:
+                self.redis.delete(*keys)
+            if cursor == 0:
+                break
+
+def tenant_cached(key_template: str, ttl: int = 3600):
+    """Decorator for tenant-aware caching."""
+    def decorator(func):
+        @wraps(func)
+        async def wrapper(*args, **kwargs):
+            cache = get_tenant_cache()
+            cache_key = key_template.format(**kwargs)
+
+            cached = cache.get(cache_key)
+            if cached is not None:
+                return cached
+
+            result = await func(*args, **kwargs)
+            cache.set(cache_key, result, ttl=ttl)
+            return result
+        return wrapper
+    return decorator
+
+# Usage
+@tenant_cached("user_prefs:{user_id}", ttl=1800)
+async def get_user_preferences(user_id: str):
+    # This is automatically cached per-tenant
+    return await db.fetch_preferences(user_id)
+```
+
+</details>
+
+### 5. API セキュリティとレート制限
+
+- テナント単位のレート制限とクォータを実装します。
+- テナント固有の API スロットリングを適用します。
+- すべての API リクエストでテナントコンテキストを検証します。
+- テナントごとに個別の API キーを使用します。
+- B2B API ではテナントを考慮したリクエスト署名を実装します。
+
+<details>
+<summary>テナント対応レート制限</summary>
+
+```python
+import time
+from dataclasses import dataclass
+from enum import Enum
+
+class TenantTier(Enum):
+    FREE = "free"
+    STARTER = "starter"
+    BUSINESS = "business"
+    ENTERPRISE = "enterprise"
+
+@dataclass
+class RateLimitConfig:
+    requests_per_minute: int
+    requests_per_day: int
+    burst_size: int
+
+TIER_LIMITS = {
+    TenantTier.FREE: RateLimitConfig(60, 1000, 10),
+    TenantTier.STARTER: RateLimitConfig(300, 10000, 50),
+    TenantTier.BUSINESS: RateLimitConfig(1000, 100000, 100),
+    TenantTier.ENTERPRISE: RateLimitConfig(5000, 1000000, 500),
+}
+
+class TenantRateLimiter:
+    """Per-tenant rate limiting with tier support."""
+
+    def __init__(self, redis_client):
+        self.redis = redis_client
+
+    async def check_rate_limit(self, tenant_id: str, tenant_tier: TenantTier) -> dict:
+        """Check and update rate limit for tenant."""
+        config = TIER_LIMITS[tenant_tier]
+        now = time.time()
+        minute_key = f"rl:{tenant_id}:min:{int(now // 60)}"
+        day_key = f"rl:{tenant_id}:day:{int(now // 86400)}"
+
+        pipe = self.redis.pipeline()
+
+        # Increment counters
+        pipe.incr(minute_key)
+        pipe.expire(minute_key, 60)
+        pipe.incr(day_key)
+        pipe.expire(day_key, 86400)
+
+        results = pipe.execute()
+        minute_count = results[0]
+        day_count = results[2]
+
+        # Check limits
+        if minute_count > config.requests_per_minute:
+            return {
+                "allowed": False,
+                "reason": "minute_limit_exceeded",
+                "retry_after": 60 - (now % 60),
+                "limit": config.requests_per_minute
+            }
+
+        if day_count > config.requests_per_day:
+            return {
+                "allowed": False,
+                "reason": "daily_limit_exceeded",
+                "retry_after": 86400 - (now % 86400),
+                "limit": config.requests_per_day
+            }
+
+        return {
+            "allowed": True,
+            "remaining_minute": config.requests_per_minute - minute_count,
+            "remaining_day": config.requests_per_day - day_count
+        }
+
+class RateLimitMiddleware:
+    """Middleware that enforces tenant rate limits."""
+
+    async def __call__(self, request, call_next):
+        ctx = current_tenant.get()
+        if not ctx:
+            return await call_next(request)
+
+        tenant = await self.tenant_service.get_tenant(ctx.tenant_id)
+        result = await self.rate_limiter.check_rate_limit(
+            ctx.tenant_id,
+            tenant.tier
+        )
+
+        if not result["allowed"]:
+            return JSONResponse(
+                status_code=429,
+                content={"error": "Rate limit exceeded", "details": result},
+                headers={
+                    "Retry-After": str(int(result["retry_after"])),
+                    "X-RateLimit-Limit": str(result["limit"]),
+                    "X-RateLimit-Remaining": "0"
+                }
+            )
+
+        response = await call_next(request)
+
+        # Add rate limit headers
+        response.headers["X-RateLimit-Remaining-Minute"] = str(result["remaining_minute"])
+        response.headers["X-RateLimit-Remaining-Day"] = str(result["remaining_day"])
+
+        return response
+```
+
+</details>
+
+### 6. ファイルストレージと Blob の分離
+
+- すべてのファイルストレージにテナントプレフィックス付きパスを使用します。
+- テナントごとにストレージアクセスポリシーを実装します。
+- ファイルを提供する前にテナントの所有権を検証します。
+- テナントコンテキストを埋め込んだ署名付き URL を使用します。
+- 高セキュリティ要件では、テナント固有の鍵で保存時のファイルを暗号化します。
+
+<details>
+<summary>安全なマルチテナントファイルストレージ</summary>
+
+```python
+import boto3
+from botocore.config import Config
+from datetime import datetime, timedelta
+import hashlib
+import hmac
+
+class TenantFileStorage:
+    """S3-based file storage with tenant isolation."""
+
+    def __init__(self, bucket_name: str, kms_key_id: str = None):
+        self.bucket = bucket_name
+        self.s3 = boto3.client('s3', config=Config(signature_version='s3v4'))
+        self.kms_key_id = kms_key_id
+
+    def _get_tenant_prefix(self, tenant_id: str) -> str:
+        """Generate tenant-specific path prefix."""
+        # Use hashed prefix to prevent enumeration
+        tenant_hash = hashlib.sha256(tenant_id.encode()).hexdigest()[:12]
+        return f"tenants/{tenant_hash}"
+
+    def _build_key(self, tenant_id: str, file_path: str) -> str:
+        """Build full S3 key with tenant isolation."""
+        # Sanitize file path to prevent traversal
+        safe_path = file_path.lstrip('/').replace('..', '')
+        return f"{self._get_tenant_prefix(tenant_id)}/{safe_path}"
+
+    async def upload_file(self, tenant_id: str, file_path: str,
+                         content: bytes, content_type: str) -> dict:
+        """Upload file for tenant."""
+        key = self._build_key(tenant_id, file_path)
+
+        extra_args = {
+            'ContentType': content_type,
+            'Metadata': {
+                'tenant-id': tenant_id,
+                'uploaded-at': datetime.utcnow().isoformat()
+            }
+        }
+
+        # Use tenant-specific KMS key if available
+        if self.kms_key_id:
+            extra_args['ServerSideEncryption'] = 'aws:kms'
+            extra_args['SSEKMSKeyId'] = self.kms_key_id
+
+        self.s3.put_object(
+            Bucket=self.bucket,
+            Key=key,
+            Body=content,
+            **extra_args
+        )
+
+        return {"key": key, "size": len(content)}
+
+    async def get_file(self, tenant_id: str, file_path: str) -> Optional[bytes]:
+        """Get file only if it belongs to tenant."""
+        key = self._build_key(tenant_id, file_path)
+
+        try:
+            response = self.s3.get_object(Bucket=self.bucket, Key=key)
+
+            # Verify tenant ownership from metadata
+            metadata_tenant = response.get('Metadata', {}).get('tenant-id')
+            if metadata_tenant != tenant_id:
+                raise SecurityException("Tenant mismatch in file metadata")
+
+            return response['Body'].read()
+        except self.s3.exceptions.NoSuchKey:
+            return None
+
+    def generate_presigned_url(self, tenant_id: str, file_path: str,
+                               expiration: int = 3600,
+                               operation: str = 'get_object') -> str:
+        """Generate presigned URL with tenant validation."""
+        key = self._build_key(tenant_id, file_path)
+
+        # Include tenant_id in the signed URL for validation
+        url = self.s3.generate_presigned_url(
+            ClientMethod=operation,
+            Params={
+                'Bucket': self.bucket,
+                'Key': key,
+            },
+            ExpiresIn=expiration
+        )
+
+        return url
+
+    async def delete_tenant_data(self, tenant_id: str):
+        """Delete all files for a tenant (for offboarding)."""
+        prefix = self._get_tenant_prefix(tenant_id)
+
+        paginator = self.s3.get_paginator('list_objects_v2')
+        for page in paginator.paginate(Bucket=self.bucket, Prefix=prefix):
+            objects = page.get('Contents', [])
+            if objects:
+                self.s3.delete_objects(
+                    Bucket=self.bucket,
+                    Delete={'Objects': [{'Key': obj['Key']} for obj in objects]}
+                )
+```
+
+</details>
+
+### 7. テナントオンボーディングとオフボーディングのセキュリティ
+
+- 分離されたリソースによる安全なテナントプロビジョニングを実装します。
+- 必要に応じてテナントごとに一意の暗号鍵を生成します。
+- テナントのオフボーディング時に完全なデータ削除を確実に行います。
+- プロビジョニングとデプロビジョニングの監査証跡を維持します。
+- テナントのポータビリティのためにデータエクスポートを実装します。
+
+<details>
+<summary>安全なテナントライフサイクル管理</summary>
+
+```python
+from dataclasses import dataclass
+from datetime import datetime
+from enum import Enum
+import secrets
+
+class TenantStatus(Enum):
+    PROVISIONING = "provisioning"
+    ACTIVE = "active"
+    SUSPENDED = "suspended"
+    OFFBOARDING = "offboarding"
+    DELETED = "deleted"
+
+@dataclass
+class TenantProvisioningResult:
+    tenant_id: str
+    status: TenantStatus
+    api_key: str
+    database_schema: str
+    storage_prefix: str
+
+class TenantLifecycleManager:
+    """Manages secure tenant onboarding and offboarding."""
+
+    def __init__(self, db, cache, storage, audit_log):
+        self.db = db
+        self.cache = cache
+        self.storage = storage
+        self.audit = audit_log
+
+    async def provision_tenant(self, tenant_name: str, admin_email: str,
+                               tier: TenantTier) -> TenantProvisioningResult:
+        """Securely provision a new tenant."""
+        tenant_id = secrets.token_urlsafe(16)
+
+        await self.audit.log("tenant_provisioning_started", {
+            "tenant_id": tenant_id,
+            "tenant_name": tenant_name,
+            "tier": tier.value
+        })
+
+        try:
+            # 1. Create tenant record
+            tenant = await self.db.create_tenant(
+                id=tenant_id,
+                name=tenant_name,
+                status=TenantStatus.PROVISIONING,
+                tier=tier
+            )
+
+            # 2. Create isolated database schema (if using schema isolation)
+            schema_name = f"tenant_{tenant_id.replace('-', '_')}"
+            await self.db.execute(f"CREATE SCHEMA {schema_name}")
+            await self._apply_schema_migrations(schema_name)
+
+            # 3. Generate API credentials
+            api_key = secrets.token_urlsafe(32)
+            api_key_hash = hashlib.sha256(api_key.encode()).hexdigest()
+            await self.db.store_api_key(tenant_id, api_key_hash)
+
+            # 4. Create storage prefix
+            storage_prefix = self.storage._get_tenant_prefix(tenant_id)
+
+            # 5. Initialize tenant-specific encryption key (if required)
+            if tier in [TenantTier.BUSINESS, TenantTier.ENTERPRISE]:
+                await self._provision_tenant_kms_key(tenant_id)
+
+            # 6. Activate tenant
+            await self.db.update_tenant_status(tenant_id, TenantStatus.ACTIVE)
+
+            await self.audit.log("tenant_provisioning_completed", {
+                "tenant_id": tenant_id,
+                "schema": schema_name
+            })
+
+            return TenantProvisioningResult(
+                tenant_id=tenant_id,
+                status=TenantStatus.ACTIVE,
+                api_key=api_key,  # Return only once, never stored in plain text
+                database_schema=schema_name,
+                storage_prefix=storage_prefix
+            )
+
+        except Exception as e:
+            await self.audit.log("tenant_provisioning_failed", {
+                "tenant_id": tenant_id,
+                "error": str(e)
+            })
+            await self._cleanup_failed_provisioning(tenant_id)
+            raise
+
+    async def offboard_tenant(self, tenant_id: str,
+                             retain_days: int = 30) -> dict:
+        """Securely offboard a tenant with data retention."""
+        await self.audit.log("tenant_offboarding_started", {"tenant_id": tenant_id})
+
+        # 1. Mark tenant as offboarding (prevents new operations)
+        await self.db.update_tenant_status(tenant_id, TenantStatus.OFFBOARDING)
+
+        # 2. Revoke all active sessions and API keys
+        await self._revoke_all_access(tenant_id)
+
+        # 3. Export data for compliance/portability
+        export_location = await self._export_tenant_data(tenant_id)
+
+        # 4. Schedule data deletion after retention period
+        deletion_date = datetime.utcnow() + timedelta(days=retain_days)
+        await self.db.schedule_tenant_deletion(tenant_id, deletion_date)
+
+        await self.audit.log("tenant_offboarding_completed", {
+            "tenant_id": tenant_id,
+            "export_location": export_location,
+            "scheduled_deletion": deletion_date.isoformat()
+        })
+
+        return {
+            "status": "offboarding_complete",
+            "data_export": export_location,
+            "final_deletion": deletion_date.isoformat()
+        }
+
+    async def execute_tenant_deletion(self, tenant_id: str):
+        """Permanently delete all tenant data."""
+        await self.audit.log("tenant_deletion_started", {"tenant_id": tenant_id})
+
+        # 1. Delete database schema/data
+        schema_name = f"tenant_{tenant_id.replace('-', '_')}"
+        await self.db.execute(f"DROP SCHEMA IF EXISTS {schema_name} CASCADE")
+
+        # For shared table model, delete rows
+        await self.db.execute(
+            "DELETE FROM shared_table WHERE tenant_id = :tid",
+            {"tid": tenant_id}
+        )
+
+        # 2. Delete cached data
+        await self.cache.invalidate_tenant(tenant_id)
+
+        # 3. Delete stored files
+        await self.storage.delete_tenant_data(tenant_id)
+
+        # 4. Delete encryption keys
+        await self._delete_tenant_kms_key(tenant_id)
+
+        # 5. Mark as deleted (keep minimal audit record)
+        await self.db.update_tenant_status(tenant_id, TenantStatus.DELETED)
+
+        await self.audit.log("tenant_deletion_completed", {"tenant_id": tenant_id})
+```
+
+</details>
+
+### 8. ログ記録、監視、監査
+
+- すべてのログエントリにテナントコンテキストを含めます。
+- テナント分離された監査証跡を実装します。
+- クロステナントアクセス試行を監視します。
+- テナント分離違反に対するアラートを設定します。
+- テナント固有の保持ポリシーへの準拠を確保します。
+
+<details>
+<summary>テナント対応のログ記録と監視</summary>
+
+```python
+import structlog
+from typing import Any, Dict
+from datetime import datetime
+
+class TenantAwareLogger:
+    """Logger that automatically includes tenant context."""
+
+    def __init__(self):
+        self.logger = structlog.get_logger()
+
+    def _enrich_with_tenant(self, event_data: dict) -> dict:
+        """Add tenant context to log entry."""
+        ctx = current_tenant.get()
+        if ctx:
+            event_data["tenant_id"] = ctx.tenant_id
+            event_data["user_id"] = ctx.user_id
+        return event_data
+
+    def info(self, message: str, **kwargs):
+        self.logger.info(message, **self._enrich_with_tenant(kwargs))
+
+    def warning(self, message: str, **kwargs):
+        self.logger.warning(message, **self._enrich_with_tenant(kwargs))
+
+    def error(self, message: str, **kwargs):
+        self.logger.error(message, **self._enrich_with_tenant(kwargs))
+
+    def security_event(self, event_type: str, severity: str, **kwargs):
+        """Log security-relevant events."""
+        self.logger.warning(
+            "security_event",
+            event_type=event_type,
+            severity=severity,
+            **self._enrich_with_tenant(kwargs)
+        )
+
+class TenantAuditLog:
+    """Immutable audit log with tenant isolation."""
+
+    def __init__(self, db):
+        self.db = db
+
+    async def log(self, action: str, details: Dict[str, Any],
+                  tenant_id: str = None):
+        """Record audit entry."""
+        ctx = current_tenant.get()
+        tenant_id = tenant_id or (ctx.tenant_id if ctx else "system")
+
+        entry = {
+            "id": secrets.token_urlsafe(16),
+            "tenant_id": tenant_id,
+            "user_id": ctx.user_id if ctx else None,
+            "action": action,
+            "details": details,
+            "timestamp": datetime.utcnow(),
+            "ip_address": get_client_ip(),
+            "user_agent": get_user_agent()
+        }
+
+        # Insert into append-only audit table
+        await self.db.execute("""
+            INSERT INTO audit_log
+            (id, tenant_id, user_id, action, details, timestamp, ip_address, user_agent)
+            VALUES (:id, :tenant_id, :user_id, :action, :details, :timestamp, :ip_address, :user_agent)
+        """, entry)
+
+    async def get_tenant_audit_trail(self, tenant_id: str,
+                                     start_date: datetime,
+                                     end_date: datetime) -> list:
+        """Retrieve audit trail for a specific tenant."""
+        ctx = current_tenant.get()
+
+        # Ensure requester can only access their own audit logs
+        if ctx.tenant_id != tenant_id and "admin" not in ctx.roles:
+            raise SecurityException("Cannot access other tenant's audit logs")
+
+        return await self.db.fetch_all("""
+            SELECT * FROM audit_log
+            WHERE tenant_id = :tenant_id
+            AND timestamp BETWEEN :start AND :end
+            ORDER BY timestamp DESC
+        """, {"tenant_id": tenant_id, "start": start_date, "end": end_date})
+
+class CrossTenantAccessMonitor:
+    """Monitor and alert on potential cross-tenant access attempts."""
+
+    def __init__(self, alert_service):
+        self.alerts = alert_service
+        self.violation_counts = {}
+
+    async def check_access(self, requested_tenant: str,
+                          resource_type: str, resource_id: str):
+        """Check for cross-tenant access attempts."""
+        ctx = current_tenant.get()
+
+        if ctx.tenant_id != requested_tenant:
+            # Log violation
+            logger.security_event(
+                "cross_tenant_access_attempt",
+                severity="HIGH",
+                requested_tenant=requested_tenant,
+                resource_type=resource_type,
+                resource_id=resource_id
+            )
+
+            # Track violations per user
+            key = f"{ctx.user_id}:{ctx.tenant_id}"
+            self.violation_counts[key] = self.violation_counts.get(key, 0) + 1
+
+            # Alert on repeated attempts
+            if self.violation_counts[key] >= 3:
+                await self.alerts.send(
+                    severity="CRITICAL",
+                    message=f"Repeated cross-tenant access attempts detected",
+                    details={
+                        "user_id": ctx.user_id,
+                        "tenant_id": ctx.tenant_id,
+                        "attempts": self.violation_counts[key]
+                    }
+                )
+
+            raise SecurityException("Access denied: resource belongs to different tenant")
+```
+
+</details>
+
+## すべきこと・してはならないこと
+
+**すべきこと:**
+
+- 認証済みで検証済みのトークンからテナントコンテキストを導出します。
+- 多層防御として、データベースレベルの分離 (RLS、スキーマ) を使用します。
+- すべてのリソースクエリ、キャッシュキー、ストレージパスに `tenant_id` を含めます。
+- テナント単位のレート制限とクォータを実装します。
+- すべての操作でテナントコンテキストをログに記録します。
+- データアクセス層でテナントの所有権を検証します。
+- 高セキュリティテナントには個別の暗号鍵を使用します。
+- オフボーディングのために完全なデータ削除を実装します。
+- クロステナントアクセス試行を監視し、アラートを発します。
+
+**してはならないこと:**
+
+- クライアントヘッダーやリクエストパラメータのテナント ID を信頼すること。
+- テナントプレフィックスのない共有キャッシュキーを使用すること。
+- 連番または推測可能なテナント ID やリソース ID を露出すること。
+- テナントフィルターのないクエリを許可すること (明示的なオーバーライドのない管理者に対しても同様)。
+- `tenant_id` カラムなしでテナントデータを保存すること。
+- API キーや認証情報をテナント間で共有すること。
+- 「内部」サービスでテナント検証を省略すること。
+- オフボーディング後もテナントデータを無期限に保持すること。
+- 機微なテナントデータを平文でログに記録すること。
+
+## References
+
+- [OWASP Cloud Tenant Isolation](https://owasp.org/www-project-cloud-tenant-isolation/)
+- [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
+- [AWS SaaS Tenant Isolation Strategies](https://docs.aws.amazon.com/wellarchitected/latest/saas-lens/tenant-isolation.html)
 
