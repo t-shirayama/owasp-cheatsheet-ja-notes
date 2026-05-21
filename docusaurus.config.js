@@ -95,6 +95,7 @@ const config = {
       additionalLanguages: [
         'apacheconf',
         'bash',
+        'basic',
         'cpp',
         'csharp',
         'docker',
