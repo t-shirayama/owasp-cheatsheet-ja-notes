@@ -31,6 +31,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Markdown lint
+        shell: pwsh
+        run: ./tools/Invoke-MarkdownLint.ps1
+
+      - name: Link check
+        shell: pwsh
+        run: ./tools/Invoke-LinkCheck.ps1
+
       - name: Build site
         run: npm run build
 
