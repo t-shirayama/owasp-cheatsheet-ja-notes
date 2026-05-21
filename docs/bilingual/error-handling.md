@@ -68,14 +68,14 @@ java.lang.NumberFormatException: For input string: "null"
     ...
 
 note: The full stack trace of the root cause is available in the Apache Tomcat/7.0.56 logs.
-```
+```text
 
 Below is an example of disclosure of a SQL query error, along with the site installation path, that can be used to identify an injection point:
 
 ```text
 Warning: odbc_fetch_array() expects parameter /1 to be resource, boolean given
 in D:\app\index_new.php on line 188
-```
+```text
 
 The [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/01-Information_Gathering/) provides different techniques to obtain technical information from an application.
 
@@ -104,7 +104,7 @@ With this configuration, any unexpected error will cause a redirection to the pa
 
 Configuration of the redirection into the **web.xml** file:
 
-``` xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns="http://java.sun.com/xml/ns/javaee"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
@@ -116,11 +116,11 @@ version="3.0">
     </error-page>
 ...
 </web-app>
-```
+```text
 
 Content of the **error.jsp** file:
 
-``` java
+```java
 <%@ page language="java" isErrorPage="true" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -135,7 +135,7 @@ response.setHeader("X-ERROR", "true");
 response.setStatus(500);
 %>
 {"message":"An error occur, please retry"}
-```
+```text
 
 ### Java SpringMVC/SpringBoot web application
 
@@ -143,7 +143,7 @@ With [SpringMVC](https://docs.spring.io/spring/docs/current/spring-framework-ref
 
 We indicate to the handler, via the annotation [@ExceptionHandler](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ExceptionHandler.html), to act when any exception extending the class *java.lang.Exception* is thrown by the application. We also use the [ProblemDetail class](https://docs.spring.io/spring-framework/docs/6.0.0/javadoc-api/org/springframework/http/ProblemDetail.html) to create the response object.
 
-``` java
+```java
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -167,7 +167,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "An error occur, please retry");
     }
 }
-```
+```text
 
 References:
 
@@ -180,7 +180,7 @@ With [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcor
 
 Content of the API Controller dedicated to the error handling:
 
-``` csharp
+```csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
@@ -231,11 +231,11 @@ namespace MyProject.Controllers
         }
     }
 }
-```
+```text
 
 Definition in the application **Startup.cs** file of the mapping of the exception handler to the dedicated error handling API controller:
 
-``` csharp
+```csharp
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -274,7 +274,7 @@ namespace MyProject
         }
     }
 }
-```
+```text
 
 References:
 
@@ -286,7 +286,7 @@ With [ASP.NET Web API](https://www.asp.net/web-api) (from the standard .NET fram
 
 Definition of the handler for the tracing of the error details:
 
-``` csharp
+```csharp
 using System;
 using System.Web.Http.ExceptionHandling;
 
@@ -310,11 +310,11 @@ namespace MyProject.Security
         }
     }
 }
-```
+```text
 
 Definition of the handler for the management of the error in order to return a generic response:
 
-``` csharp
+```csharp
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -371,11 +371,11 @@ namespace MyProject.Security
         }
     }
 }
-```
+```text
 
 Registration of the both handlers in the application **WebApiConfig.cs** file:
 
-``` csharp
+```csharp
 using MyProject.Security;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
@@ -394,7 +394,7 @@ namespace MyProject
         }
     }
 }
-```
+```text
 
 Setting customErrors section to the **Web.config** file within the ```csharp <system.web>``` node as follows.
 
@@ -407,7 +407,7 @@ Setting customErrors section to the **Web.config** file within the ```csharp <sy
         ...
     </system.web>
 </configuration>
-```
+```text
 
 References:
 
@@ -468,14 +468,14 @@ java.lang.NumberFormatException: For input string: "null"
     ...
 
 note: The full stack trace of the root cause is available in the Apache Tomcat/7.0.56 logs.
-```
+```text
 
 以下は、サイトのインストールパスとともに SQL クエリエラーが開示される例です。これはインジェクションポイントの特定に使われる可能性があります。
 
 ```text
 Warning: odbc_fetch_array() expects parameter /1 to be resource, boolean given
 in D:\app\index_new.php on line 188
-```
+```text
 
 [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/01-Information_Gathering/) では、アプリケーションから技術情報を取得するためのさまざまな手法を説明しています。
 
@@ -517,7 +517,7 @@ version="3.0">
     </error-page>
 ...
 </web-app>
-```
+```text
 
 **error.jsp** ファイルの内容:
 
@@ -536,7 +536,7 @@ response.setHeader("X-ERROR", "true");
 response.setStatus(500);
 %>
 {"message":"An error occur, please retry"}
-```
+```text
 
 ### Java SpringMVC/SpringBoot Web アプリケーション
 
@@ -568,7 +568,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "An error occur, please retry");
     }
 }
-```
+```text
 
 References:
 
@@ -632,7 +632,7 @@ namespace MyProject.Controllers
         }
     }
 }
-```
+```text
 
 専用エラーハンドリング API Controller へ例外ハンドラをマッピングする、アプリケーションの **Startup.cs** ファイル内の定義:
 
@@ -675,7 +675,7 @@ namespace MyProject
         }
     }
 }
-```
+```text
 
 References:
 
@@ -711,7 +711,7 @@ namespace MyProject.Security
         }
     }
 }
-```
+```text
 
 汎用レスポンスを返すためにエラーを管理するハンドラ定義:
 
@@ -772,7 +772,7 @@ namespace MyProject.Security
         }
     }
 }
-```
+```text
 
 アプリケーションの **WebApiConfig.cs** ファイル内での両方のハンドラ登録:
 
@@ -795,7 +795,7 @@ namespace MyProject
         }
     }
 }
-```
+```text
 
 **Web.config** ファイルの ```csharp <system.web>``` ノード内に、次のように customErrors セクションを設定します。
 
@@ -808,7 +808,7 @@ namespace MyProject
         ...
     </system.web>
 </configuration>
-```
+```text
 
 References:
 
@@ -941,7 +941,7 @@ java.lang.NumberFormatException: For input string: "null"
     ...
 
 note: The full stack trace of the root cause is available in the Apache Tomcat/7.0.56 logs.
-```
+```html
 
 </div>
 
@@ -966,7 +966,7 @@ Below is an example of disclosure of a SQL query error, along with the site inst
 ```text
 Warning: odbc_fetch_array() expects parameter /1 to be resource, boolean given
 in D:\app\index_new.php on line 188
-```
+```html
 
 </div>
 
@@ -1130,7 +1130,7 @@ Configuration of the redirection into the **web.xml** file:
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns="http://java.sun.com/xml/ns/javaee"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
@@ -1142,7 +1142,7 @@ version="3.0">
     </error-page>
 ...
 </web-app>
-```
+```text
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1156,7 +1156,7 @@ version="3.0">
     </error-page>
 ...
 </web-app>
-```
+```html
 
 </div>
 
@@ -1178,7 +1178,7 @@ Content of the **error.jsp** file:
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` java
+```java
 <%@ page language="java" isErrorPage="true" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -1193,7 +1193,7 @@ response.setHeader("X-ERROR", "true");
 response.setStatus(500);
 %>
 {"message":"An error occur, please retry"}
-```
+```text
 
 ```java
 <%@ page language="java" isErrorPage="true" contentType="application/json; charset=UTF-8"
@@ -1210,7 +1210,7 @@ response.setHeader("X-ERROR", "true");
 response.setStatus(500);
 %>
 {"message":"An error occur, please retry"}
-```
+```html
 
 </div>
 
@@ -1251,7 +1251,7 @@ We indicate to the handler, via the annotation [@ExceptionHandler](https://docs.
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` java
+```java
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -1275,7 +1275,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "An error occur, please retry");
     }
 }
-```
+```text
 
 ```java
 import org.springframework.http.HttpStatus;
@@ -1301,7 +1301,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "An error occur, please retry");
     }
 }
-```
+```html
 
 </div>
 
@@ -1374,7 +1374,7 @@ Content of the API Controller dedicated to the error handling:
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` csharp
+```csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
@@ -1425,7 +1425,7 @@ namespace MyProject.Controllers
         }
     }
 }
-```
+```text
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -1478,7 +1478,7 @@ namespace MyProject.Controllers
         }
     }
 }
-```
+```html
 
 </div>
 
@@ -1500,7 +1500,7 @@ Definition in the application **Startup.cs** file of the mapping of the exceptio
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` csharp
+```csharp
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -1539,7 +1539,7 @@ namespace MyProject
         }
     }
 }
-```
+```text
 
 ```csharp
 using Microsoft.AspNetCore.Builder;
@@ -1580,7 +1580,7 @@ namespace MyProject
         }
     }
 }
-```
+```html
 
 </div>
 
@@ -1651,7 +1651,7 @@ Definition of the handler for the tracing of the error details:
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` csharp
+```csharp
 using System;
 using System.Web.Http.ExceptionHandling;
 
@@ -1675,7 +1675,7 @@ namespace MyProject.Security
         }
     }
 }
-```
+```text
 
 ```csharp
 using System;
@@ -1701,7 +1701,7 @@ namespace MyProject.Security
         }
     }
 }
-```
+```html
 
 </div>
 
@@ -1723,7 +1723,7 @@ Definition of the handler for the management of the error in order to return a g
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` csharp
+```csharp
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -1780,7 +1780,7 @@ namespace MyProject.Security
         }
     }
 }
-```
+```text
 
 ```csharp
 using Newtonsoft.Json;
@@ -1839,7 +1839,7 @@ namespace MyProject.Security
         }
     }
 }
-```
+```html
 
 </div>
 
@@ -1861,7 +1861,7 @@ Registration of the both handlers in the application **WebApiConfig.cs** file:
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` csharp
+```csharp
 using MyProject.Security;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
@@ -1880,7 +1880,7 @@ namespace MyProject
         }
     }
 }
-```
+```text
 
 ```csharp
 using MyProject.Security;
@@ -1901,7 +1901,7 @@ namespace MyProject
         }
     }
 }
-```
+```html
 
 </div>
 

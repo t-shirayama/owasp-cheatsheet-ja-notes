@@ -76,19 +76,19 @@
 
 ```bash
 syft packages dir:. -o cyclonedx-json > sbom-cyclonedx.json
-```
+```text
 
 - Syft で SPDX JSON を生成:
 
 ```bash
 syft packages dir:. -o spdx-json > sbom-spdx.json
-```
+```text
 
 - CycloneDX CLI (ビルド済みアーティファクトから):
 
 ```bash
 cyclonedx-bom -o bom.xml --input-pkg target/my-app.jar
-```
+```text
 
 生成コマンドはビルドスクリプトまたは CI ジョブに配置し、SBOM 生成に失敗した場合はビルドを失敗させる。
 

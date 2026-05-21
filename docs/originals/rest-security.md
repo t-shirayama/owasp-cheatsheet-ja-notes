@@ -113,7 +113,7 @@ A checkout workflow expects the following sequence:
 POST /checkout/create
 POST /checkout/pay
 POST /checkout/confirm
-```
+```text
 
 If the backend does not validate workflow state transitions, an attacker could directly invoke:
 

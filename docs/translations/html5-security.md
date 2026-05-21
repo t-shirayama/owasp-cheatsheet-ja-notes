@@ -113,7 +113,7 @@ function openPopup(url, name, windowFeatures){
   //Reset the opener link
   newWindow.opener = null;
 }
-```
+```bash
 
 - アプリケーションが送信するすべての HTTP レスポンスに、HTTP レスポンスヘッダー `Referrer-Policy: no-referrer` を追加します ([Header Referrer-Policy information](https://owasp.org/www-project-secure-headers/)。この設定により、ページからのリクエストでリファラー情報が送信されないことが保証されます。
 

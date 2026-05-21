@@ -76,19 +76,19 @@ At a minimum capture:
 
 ```bash
 syft packages dir:. -o cyclonedx-json > sbom-cyclonedx.json
-```
+```text
 
 - Syft to SPDX JSON:
 
 ```bash
 syft packages dir:. -o spdx-json > sbom-spdx.json
-```
+```text
 
 - CycloneDX CLI (from a built artifact):
 
 ```bash
 cyclonedx-bom -o bom.xml --input-pkg target/my-app.jar
-```
+```text
 
 (Place generator commands in your build scripts or CI job and fail the build if SBOM generation fails.)
 

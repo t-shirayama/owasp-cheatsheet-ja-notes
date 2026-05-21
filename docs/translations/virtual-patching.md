@@ -70,7 +70,7 @@
 WordPress Shopping Cart Plugin for WordPress
 /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php
 reqID Parameter prone to SQL Injection.
-```
+```text
 
 **説明**:
 
@@ -160,7 +160,7 @@ SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/a
 ##
 SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php" "chain,id:2,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'"
   SecRule ARGS:/reqID/ "!@rx ^[0-9]+$"
-```
+```text
 
 この仮想パッチは、指定されたページの `reqID` パラメータ値を検査し、整数以外の文字が入力されることを防ぎます。
 
@@ -177,14 +177,14 @@ SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/a
 
 ```text
 http://localhost/wordpress/wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php?reqID=1' or 1='1
-```
+```text
 
 ペイロードを見ると、攻撃者が単一引用符文字を挿入し、その末尾に追加の SQL クエリロジックを加えていることが分かります。このデータに基づき、次のように単一引用符文字を許可しないようにできます。
 
 ```text
 SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php" "chain,id:1,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'"
   SecRule ARGS:/reqID/ "@pm '"
-```
+```text
 
 #### 仮想パッチにはどちらの方法がよいか - 正のセキュリティか負のセキュリティか
 

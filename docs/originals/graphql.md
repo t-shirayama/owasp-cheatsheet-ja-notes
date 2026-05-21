@@ -110,7 +110,7 @@ query evil {            # Depth: 0
     }
   }
 }
-```
+```text
 
 Here is an example of a GraphQL query requesting 99999999 of an object:
 
@@ -122,7 +122,7 @@ query {
     }
   }
 }
-```
+```text
 
 #### Timeouts
 
@@ -146,7 +146,7 @@ request.incrementResolverCount =  function () {
     }
     this.resolverCount++;
   };
-```
+```text
 
 _**Java Timeout Example using [Instrumentation](https://www.graphql-java.com/documentation/instrumentation)**_
 
@@ -163,7 +163,7 @@ public class TimeoutInstrumentation extends SimpleInstrumentation {
                 .blockingFirst();
     }
 }
-```
+```bash
 
 _**Infrastructure Timeout**_
 
@@ -242,7 +242,7 @@ GraphQL supports batching requests, also known as [query batching](https://www.a
     variables: < variables for query n >,
   }
 ]
-```
+```text
 
 And here is an example query of a single batched GraphQL call requesting multiple different instances of the `droid` object:
 
@@ -258,7 +258,7 @@ query {
     name
   }
 }
-```
+```text
 
 In this case it could be used to enumerate every possible `droid` object that is stored on the server in very few network requests as opposed to a standard REST API where the requester would need to submit a different network request for every different `droid` ID they want to request. This type of attack can lead to the following issues:
 
@@ -303,12 +303,12 @@ Keep in mind that even if introspection is disabled, attackers can still guess f
 
 _**Disable Introspection - Java**_
 
-```Java
+```java
 GraphQLSchema schema = GraphQLSchema.newSchema()
     .query(StarWarsSchema.queryType)
     .fieldVisibility( NoIntrospectionGraphqlFieldVisibility.NO_INTROSPECTION_FIELD_VISIBILITY )
     .build();
-```
+```text
 
 _**Disable Introspection & GraphiQL - JavaScript**_
 

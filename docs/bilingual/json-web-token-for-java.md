@@ -49,7 +49,7 @@ Token structure example taken from [JWT.IO](https://jwt.io/#debugger):
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
 TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
-```
+```text
 
 Chunk 1: **Header**
 
@@ -58,7 +58,7 @@ Chunk 1: **Header**
   "alg": "HS256",
   "typ": "JWT"
 }
-```
+```text
 
 Chunk 2: **Payload**
 
@@ -68,13 +68,13 @@ Chunk 2: **Payload**
   "name": "John Doe",
   "admin": true
 }
-```
+```text
 
 Chunk 3: **Signature**
 
 ```javascript
 HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), KEY )
-```
+```text
 
 ## Objective
 
@@ -108,7 +108,7 @@ Last, during token validation, explicitly request that the expected algorithm wa
 
 #### Implementation Example
 
-``` java
+```java
 // HMAC key - Block serialization and storage as String in JVM memory
 private transient byte[] keyHMAC = ...;
 
@@ -120,7 +120,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC)).build();
 
 //Verify the token, if the verification fail then a exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```
+```text
 
 ### Token Sidejacking
 
@@ -143,7 +143,7 @@ During token validation, if the received token does not contain the correct cont
 
 Code to create the token after successful authentication.
 
-``` java
+```java
 // HMAC key - Block serialization and storage as String in JVM memory
 private transient byte[] keyHMAC = ...;
 // Random data generator
@@ -185,11 +185,11 @@ String token = JWT.create().withSubject(login)
    .withClaim("userFingerprint", userFingerprintHash)
    .withHeader(headerClaims)
    .sign(Algorithm.HMAC256(this.keyHMAC));
-```
+```text
 
 Code to validate the token.
 
-``` java
+```java
 // HMAC key - Block serialization and storage as String in JVM memory
 private transient byte[] keyHMAC = ...;
 
@@ -220,7 +220,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC))
 
 //Verify the token, if the verification fail then an exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```
+```text
 
 ### No Built-In Token Revocation by the User
 
@@ -244,16 +244,16 @@ When the user wants to "logout" then it call a dedicated service that will add t
 
 A database table with the following structure will be used as the central denylist storage.
 
-``` sql
+```sql
 create table if not exists revoked_token(jwt_token_digest varchar(255) primary key,
 revocation_date timestamp default now());
-```
+```text
 
 ##### Token Revocation Management
 
 Code in charge of adding a token to the denylist and checking if a token is revoked.
 
-``` java
+```java
 /**
 * Handle the revocation of the token (logout).
 * Use a DB in order to allow multiple instances to check for revoked token
@@ -333,7 +333,7 @@ public class TokenRevoker {
 
      }
  }
-```
+```text
 
 ### Token Information Disclosure
 
@@ -364,7 +364,7 @@ That is, the encryption with associated data ensures authenticity (ie. who the s
 integrity (ie. data has not been tampered with) of that data, but not its secrecy.
 
 See RFC5116: https://tools.ietf.org/html/rfc5116
-```
+```text
 
 **Note:**
 
@@ -376,7 +376,7 @@ Here ciphering is added mainly to hide internal information but it's very import
 
 Code in charge of managing the ciphering. [Google Tink](https://github.com/google/tink) dedicated crypto library is used to handle ciphering operations in order to use built-in best practices provided by this library.
 
-``` java
+```java
 /**
  * Handle ciphering and deciphering of the token using AES-GCM.
  *
@@ -442,7 +442,7 @@ public class TokenCipher {
         return new String(decipheredToken);
     }
 }
-```
+```text
 
 ##### Creation / Validation of the Token
 
@@ -450,7 +450,7 @@ Use the token ciphering handler during the creation and the validation of the to
 
 Load keys (ciphering key was generated and stored using [Google Tink](https://github.com/google/tink/blob/master/docs/JAVA-HOWTO.md#generating-new-keysets)) and setup cipher.
 
-``` java
+```java
 //Load keys from configuration text/json files in order to avoid to storing keys as a String in JVM memory
 private transient byte[] keyHMAC = Files.readAllBytes(Paths.get("src", "main", "conf", "key-hmac.txt"));
 private transient KeysetHandle keyCiphering = CleartextKeysetHandle.read(JsonKeysetReader.withFile(
@@ -460,26 +460,26 @@ Paths.get("src", "main", "conf", "key-ciphering.json").toFile()));
 
 //Init token ciphering handler
 TokenCipher tokenCipher = new TokenCipher();
-```
+```text
 
 Token creation.
 
-``` java
+```java
 //Generate the JWT token using the JWT API...
 //Cipher the token (String JSON representation)
 String cipheredToken = tokenCipher.cipherToken(token, this.keyCiphering);
 //Send the ciphered token encoded in HEX to the client in HTTP response...
-```
+```text
 
 Token validation.
 
-``` java
+```java
 //Retrieve the ciphered token encoded in HEX from the HTTP request...
 //Decipher the token
 String token = tokenCipher.decipherToken(cipheredToken, this.keyCiphering);
 //Verify the token using the JWT API...
 //Verify access...
-```
+```text
 
 ### Token Storage on Client Side
 
@@ -519,7 +519,7 @@ An alternative to storing token in browser *sessionStorage* or in *localStorage*
 
 JavaScript code to store the token after authentication.
 
-``` javascript
+```javascript
 /* Handle request for JWT token and local storage*/
 function authenticate() {
     const login = $("#login").val();
@@ -540,11 +540,11 @@ function authenticate() {
         sessionStorage.removeItem("token");
     });
 }
-```
+```text
 
 JavaScript code to add the token as a *Bearer* HTTP Authentication header when calling a service, for example a service to validate token here.
 
-``` javascript
+```javascript
 /* Handle request for JWT token validation */
 function validateToken() {
     var token = sessionStorage.getItem("token");
@@ -570,11 +570,11 @@ function validateToken() {
         },
     });
 }
-```
+```text
 
 JavaScript code to implement closures with private variables:
 
-``` javascript
+```javascript
 function myFetchModule() {
     // Protect the original 'fetch' from getting overwritten via XSS
     const fetch = window.fetch;
@@ -631,7 +631,7 @@ function makeRequest() {
         }).then(responseText => console.log("helloResponse", responseText))
         .catch(console.error)
 }
-```
+```bash
 
 ### Weak Token Secret
 
@@ -680,7 +680,7 @@ JWT は、クライアントのアイデンティティや特性 (クレーム) 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
 TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
-```
+```text
 
 チャンク 1: **ヘッダー**
 
@@ -689,7 +689,7 @@ TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
   "alg": "HS256",
   "typ": "JWT"
 }
-```
+```text
 
 チャンク 2: **ペイロード**
 
@@ -699,13 +699,13 @@ TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
   "name": "John Doe",
   "admin": true
 }
-```
+```text
 
 チャンク 3: **署名**
 
 ```javascript
 HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), KEY )
-```
+```text
 
 ## 目的
 
@@ -739,7 +739,7 @@ JWT は「簡単」に使用でき、サービス (主に REST スタイル) を
 
 #### 実装例
 
-``` java
+```java
 // HMAC key - Block serialization and storage as String in JVM memory
 private transient byte[] keyHMAC = ...;
 
@@ -751,7 +751,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC)).build();
 
 //Verify the token, if the verification fail then a exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```
+```text
 
 ### トークンのサイドジャッキング
 
@@ -774,7 +774,7 @@ DecodedJWT decodedToken = verifier.verify(token);
 
 認証成功後にトークンを作成するコードです。
 
-``` java
+```java
 // HMAC key - Block serialization and storage as String in JVM memory
 private transient byte[] keyHMAC = ...;
 // Random data generator
@@ -816,11 +816,11 @@ String token = JWT.create().withSubject(login)
    .withClaim("userFingerprint", userFingerprintHash)
    .withHeader(headerClaims)
    .sign(Algorithm.HMAC256(this.keyHMAC));
-```
+```text
 
 トークンを検証するコードです。
 
-``` java
+```java
 // HMAC key - Block serialization and storage as String in JVM memory
 private transient byte[] keyHMAC = ...;
 
@@ -851,7 +851,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC))
 
 //Verify the token, if the verification fail then an exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```
+```text
 
 ### ユーザーによるトークン失効機能が組み込まれていない
 
@@ -875,16 +875,16 @@ denylist は、トークンのダイジェスト (SHA-256 を HEX でエンコ�
 
 中央の denylist ストレージとして、次の構造を持つデータベーステーブルを使用します。
 
-``` sql
+```sql
 create table if not exists revoked_token(jwt_token_digest varchar(255) primary key,
 revocation_date timestamp default now());
-```
+```text
 
 ##### トークン失効管理
 
 トークンを denylist に追加し、トークンが失効済みかどうかを確認するコードです。
 
-``` java
+```java
 /**
 * Handle the revocation of the token (logout).
 * Use a DB in order to allow multiple instances to check for revoked token
@@ -964,7 +964,7 @@ public class TokenRevoker {
 
      }
  }
-```
+```text
 
 ### トークン情報の漏えい
 
@@ -995,7 +995,7 @@ That is, the encryption with associated data ensures authenticity (ie. who the s
 integrity (ie. data has not been tampered with) of that data, but not its secrecy.
 
 See RFC5116: https://tools.ietf.org/html/rfc5116
-```
+```text
 
 **注記:**
 
@@ -1007,7 +1007,7 @@ See RFC5116: https://tools.ietf.org/html/rfc5116
 
 暗号化を管理するコードです。暗号化処理では、[Google Tink](https://github.com/google/tink) 専用暗号ライブラリを使用し、このライブラリが提供する組み込みのベストプラクティスを利用します。
 
-``` java
+```java
 /**
  * Handle ciphering and deciphering of the token using AES-GCM.
  *
@@ -1073,7 +1073,7 @@ public class TokenCipher {
         return new String(decipheredToken);
     }
 }
-```
+```text
 
 ##### トークンの作成 / 検証
 
@@ -1081,7 +1081,7 @@ public class TokenCipher {
 
 鍵を読み込み (暗号化鍵は [Google Tink](https://github.com/google/tink/blob/master/docs/JAVA-HOWTO.md#generating-new-keysets) を使用して生成および保存)、暗号化をセットアップします。
 
-``` java
+```java
 //Load keys from configuration text/json files in order to avoid to storing keys as a String in JVM memory
 private transient byte[] keyHMAC = Files.readAllBytes(Paths.get("src", "main", "conf", "key-hmac.txt"));
 private transient KeysetHandle keyCiphering = CleartextKeysetHandle.read(JsonKeysetReader.withFile(
@@ -1091,26 +1091,26 @@ Paths.get("src", "main", "conf", "key-ciphering.json").toFile()));
 
 //Init token ciphering handler
 TokenCipher tokenCipher = new TokenCipher();
-```
+```text
 
 トークン作成。
 
-``` java
+```java
 //Generate the JWT token using the JWT API...
 //Cipher the token (String JSON representation)
 String cipheredToken = tokenCipher.cipherToken(token, this.keyCiphering);
 //Send the ciphered token encoded in HEX to the client in HTTP response...
-```
+```text
 
 トークン検証。
 
-``` java
+```java
 //Retrieve the ciphered token encoded in HEX from the HTTP request...
 //Decipher the token
 String token = tokenCipher.decipherToken(cipheredToken, this.keyCiphering);
 //Verify the token using the JWT API...
 //Verify access...
-```
+```text
 
 ### クライアント側でのトークン保存
 
@@ -1150,7 +1150,7 @@ String token = tokenCipher.decipherToken(cipheredToken, this.keyCiphering);
 
 認証後にトークンを保存する JavaScript コードです。
 
-``` javascript
+```javascript
 /* Handle request for JWT token and local storage*/
 function authenticate() {
     const login = $("#login").val();
@@ -1171,11 +1171,11 @@ function authenticate() {
         sessionStorage.removeItem("token");
     });
 }
-```
+```text
 
 サービス呼び出し時に、トークンを *Bearer* HTTP Authentication ヘッダーとして追加する JavaScript コードです。ここでは例として、トークンを検証するサービスを呼び出します。
 
-``` javascript
+```javascript
 /* Handle request for JWT token validation */
 function validateToken() {
     var token = sessionStorage.getItem("token");
@@ -1201,11 +1201,11 @@ function validateToken() {
         },
     });
 }
-```
+```text
 
 private 変数を持つ closure を実装する JavaScript コードです。
 
-``` javascript
+```javascript
 function myFetchModule() {
     // Protect the original 'fetch' from getting overwritten via XSS
     const fetch = window.fetch;
@@ -1262,7 +1262,7 @@ function makeRequest() {
         }).then(responseText => console.log("helloResponse", responseText))
         .catch(console.error)
 }
-```
+```bash
 
 ### 弱いトークンシークレット
 
@@ -1404,7 +1404,7 @@ Token structure example taken from [JWT.IO](https://jwt.io/#debugger):
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
 TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
-```
+```html
 
 </div>
 
@@ -1431,7 +1431,7 @@ Chunk 1: **Header**
   "alg": "HS256",
   "typ": "JWT"
 }
-```
+```html
 
 </div>
 
@@ -1459,7 +1459,7 @@ Chunk 2: **Payload**
   "name": "John Doe",
   "admin": true
 }
-```
+```html
 
 </div>
 
@@ -1483,7 +1483,7 @@ Chunk 3: **Signature**
 
 ```javascript
 HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), KEY )
-```
+```html
 
 </div>
 
@@ -1686,7 +1686,7 @@ Last, during token validation, explicitly request that the expected algorithm wa
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` java
+```java
 // HMAC key - Block serialization and storage as String in JVM memory
 private transient byte[] keyHMAC = ...;
 
@@ -1698,7 +1698,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC)).build();
 
 //Verify the token, if the verification fail then a exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```
+```html
 
 </div>
 
@@ -1824,7 +1824,7 @@ Code to create the token after successful authentication.
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` java
+```java
 // HMAC key - Block serialization and storage as String in JVM memory
 private transient byte[] keyHMAC = ...;
 // Random data generator
@@ -1866,7 +1866,7 @@ String token = JWT.create().withSubject(login)
    .withClaim("userFingerprint", userFingerprintHash)
    .withHeader(headerClaims)
    .sign(Algorithm.HMAC256(this.keyHMAC));
-```
+```html
 
 </div>
 
@@ -1888,7 +1888,7 @@ Code to validate the token.
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` java
+```java
 // HMAC key - Block serialization and storage as String in JVM memory
 private transient byte[] keyHMAC = ...;
 
@@ -1919,7 +1919,7 @@ JWTVerifier verifier = JWT.require(Algorithm.HMAC256(keyHMAC))
 
 //Verify the token, if the verification fail then an exception is thrown
 DecodedJWT decodedToken = verifier.verify(token);
-```
+```html
 
 </div>
 
@@ -2058,10 +2058,10 @@ A database table with the following structure will be used as the central denyli
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` sql
+```sql
 create table if not exists revoked_token(jwt_token_digest varchar(255) primary key,
 revocation_date timestamp default now());
-```
+```html
 
 </div>
 
@@ -2087,7 +2087,7 @@ Code in charge of adding a token to the denylist and checking if a token is revo
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` java
+```java
 /**
 * Handle the revocation of the token (logout).
 * Use a DB in order to allow multiple instances to check for revoked token
@@ -2167,7 +2167,7 @@ public class TokenRevoker {
 
      }
  }
-```
+```html
 
 </div>
 
@@ -2285,7 +2285,7 @@ That is, the encryption with associated data ensures authenticity (ie. who the s
 integrity (ie. data has not been tampered with) of that data, but not its secrecy.
 
 See RFC5116: https://tools.ietf.org/html/rfc5116
-```
+```html
 
 </div>
 
@@ -2356,7 +2356,7 @@ Code in charge of managing the ciphering. [Google Tink](https://github.com/googl
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` java
+```java
 /**
  * Handle ciphering and deciphering of the token using AES-GCM.
  *
@@ -2422,7 +2422,7 @@ public class TokenCipher {
         return new String(decipheredToken);
     }
 }
-```
+```html
 
 </div>
 
@@ -2463,7 +2463,7 @@ Load keys (ciphering key was generated and stored using [Google Tink](https://gi
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` java
+```java
 //Load keys from configuration text/json files in order to avoid to storing keys as a String in JVM memory
 private transient byte[] keyHMAC = Files.readAllBytes(Paths.get("src", "main", "conf", "key-hmac.txt"));
 private transient KeysetHandle keyCiphering = CleartextKeysetHandle.read(JsonKeysetReader.withFile(
@@ -2473,7 +2473,7 @@ Paths.get("src", "main", "conf", "key-ciphering.json").toFile()));
 
 //Init token ciphering handler
 TokenCipher tokenCipher = new TokenCipher();
-```
+```html
 
 </div>
 
@@ -2495,12 +2495,12 @@ Token creation.
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` java
+```java
 //Generate the JWT token using the JWT API...
 //Cipher the token (String JSON representation)
 String cipheredToken = tokenCipher.cipherToken(token, this.keyCiphering);
 //Send the ciphered token encoded in HEX to the client in HTTP response...
-```
+```html
 
 </div>
 
@@ -2522,13 +2522,13 @@ Token validation.
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` java
+```java
 //Retrieve the ciphered token encoded in HEX from the HTTP request...
 //Decipher the token
 String token = tokenCipher.decipherToken(cipheredToken, this.keyCiphering);
 //Verify the token using the JWT API...
 //Verify access...
-```
+```html
 
 </div>
 
@@ -2754,7 +2754,7 @@ JavaScript code to store the token after authentication.
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` javascript
+```javascript
 /* Handle request for JWT token and local storage*/
 function authenticate() {
     const login = $("#login").val();
@@ -2775,7 +2775,7 @@ function authenticate() {
         sessionStorage.removeItem("token");
     });
 }
-```
+```html
 
 </div>
 
@@ -2797,7 +2797,7 @@ JavaScript code to add the token as a *Bearer* HTTP Authentication header when c
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` javascript
+```javascript
 /* Handle request for JWT token validation */
 function validateToken() {
     var token = sessionStorage.getItem("token");
@@ -2823,7 +2823,7 @@ function validateToken() {
         },
     });
 }
-```
+```html
 
 </div>
 
@@ -2845,7 +2845,7 @@ private 変数を持つ closure を実装する JavaScript コードです。
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` javascript
+```javascript
 function myFetchModule() {
     // Protect the original 'fetch' from getting overwritten via XSS
     const fetch = window.fetch;

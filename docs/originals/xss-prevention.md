@@ -58,15 +58,15 @@ There are many different output encoding methods because browsers parse HTML, JS
 
 “HTML Context” refers to inserting a variable between two basic HTML tags like a `<div>` or `<b>`. For example:
 
-```HTML
+```html
 <div> $varUnsafe </div>
-```
+```text
 
 An attacker could modify data that is rendered as `$varUnsafe`. This could lead to an attack being added to a webpage. For example:
 
-```HTML
+```html
 <div> <script>alert`1`</script> </div> // Example Attack
-```
+```bash
 
 In order to add a variable to a HTML context safely to a web template, use HTML entity encoding for that variable.
 
@@ -74,22 +74,22 @@ Here are some examples of encoded values for specific characters:
 
 If you're using JavaScript for writing to HTML, look at the `.textContent` attribute. It is a **Safe Sink** and will automatically HTML Entity Encode.
 
-```HTML
+```html
 &    &amp;
 <    &lt;
 >    &gt;
 "    &quot;
 '    &#x27;
-```
+```text
 
 ### Output Encoding for “HTML Attribute Contexts”
 
 “HTML Attribute Contexts” occur when a variable is placed in an HTML attribute value. You may want to do this to change a hyperlink, hide an element, add alt-text for an image, or change inline CSS styles. You should apply HTML attribute encoding to variables being placed in most HTML attributes. A list of safe HTML attributes is provided in the **Safe Sinks** section.
 
-```HTML
+```html
 <div attr="$varUnsafe">
 <div attr=”*x” onblur=”alert(1)*”> // Example Attack
-```
+```text
 
 **It’s critical to use quotation marks like `"` or `'` to surround your variables.** Quoting makes it difficult to change the context a variable operates in, which helps prevent XSS. Quoting also significantly reduces the characterset that you need to encode, making your application more reliable and the encoding easier to implement.
 
@@ -103,11 +103,11 @@ However, the only ‘safe’ location for placing variables in JavaScript is ins
 
 Examples of “Quoted Data Values”
 
-```HTML
+```html
 <script>alert('$varUnsafe’)</script>
 <script>x=’$varUnsafe’</script>
 <div onmouseover="'$varUnsafe'"</div>
-```
+```text
 
 Encode all characters using the `\xHH` format. Encoding libraries often have a `EncodeForJavaScript` or similar to support this function.
 
@@ -119,11 +119,11 @@ For JSON, verify that the `Content-Type` header is `application/json` and not `t
 
 “CSS Contexts” refer to variables placed into inline CSS, which is common when developers want their users to customize the look and feel of their webpages. Since CSS is surprisingly powerful, it has been used for many types of attacks. **Variables should only be placed in a CSS property value. Other “CSS Contexts” are unsafe and you should not place variable data in them.**
 
-```HTML
+```html
 <style> selector { property : $varUnsafe; } </style>
 <style> selector { property : "$varUnsafe"; } </style>
 <span style="property : $varUnsafe">Oh no</span>
-```
+```text
 
 If you're using JavaScript to change a CSS property, look into using
 `style.property = x`.
@@ -135,9 +135,9 @@ When inserting variables into CSS properties, ensure the data is properly encode
 
 “URL Contexts” refer to variables placed into a URL. Most commonly, a developer will add a parameter or URL fragment to a URL base that is then displayed or used in some operation. Use URL Encoding for these scenarios.
 
-```HTML
+```html
 <a href="http://www.owasp.org?test=$varUnsafe">link</a >
-```
+```text
 
 Encode all characters with the `%HH` encoding format. Make sure any attributes are fully quoted, same as JS and CSS.
 
@@ -145,10 +145,10 @@ Encode all characters with the `%HH` encoding format. Make sure any attributes a
 
 There will be situations where you use a URL in different contexts. The most common one would be adding it to an `href` or `src` attribute of an `<a>` tag. In these scenarios, you should do URL encoding, followed by HTML attribute encoding.
 
-```HTML
+```html
 url = "https://site.com?data=" + urlencode(parameter)
 <a href='attributeEncode(url)'>link</a>
-```
+```text
 
 If you're using JavaScript to construct a URL Query Value, look into using `window.encodeURIComponent(x)`. This is a **Safe Sink** and will automatically URL encode data in it.
 
@@ -156,13 +156,13 @@ If you're using JavaScript to construct a URL Query Value, look into using `wind
 
 Output encoding is not perfect. It will not always prevent XSS. These locations are known as **dangerous contexts**. Dangerous contexts include:
 
-```HTML
+```html
 <script>Directly in a script</script>
 <!-- Inside an HTML comment -->
 <style>Directly in CSS</style>
 <div ToDefineAnAttribute=test />
 <ToDefineATag href="/test" />
-```
+```text
 
 Other areas to be careful with include:
 
@@ -179,9 +179,9 @@ When users need to author HTML, developers may let users change the styling or s
 
 HTML Sanitization will strip dangerous HTML from a variable and return a safe string of HTML. OWASP recommends [DOMPurify](https://github.com/cure53/DOMPurify) for HTML Sanitization.
 
-```js
+```javascript
 let clean = DOMPurify.sanitize(dirty);
-```
+```text
 
 There are some further things to consider:
 
@@ -195,7 +195,7 @@ Security professionals often talk in terms of sources and sinks. If you pollute 
 
 Thankfully, many sinks where variables can be placed are safe. This is because these sinks treat the variable as text and will never execute it. Try to refactor your code to remove references to unsafe sinks like innerHTML, and instead use textContent or value.
 
-```js
+```javascript
 elem.textContent = dangerVariable;
 elem.insertAdjacentText(dangerVariable);
 elem.className = dangerVariable;

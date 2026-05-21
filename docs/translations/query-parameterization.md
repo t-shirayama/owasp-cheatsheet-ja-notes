@@ -38,7 +38,7 @@ String query = "SELECT account_balance FROM user_data WHERE user_name = ? ";
 PreparedStatement pstmt = connection.prepareStatement( query );
 pstmt.setString( 1, custname);
 ResultSet results = pstmt.executeQuery( );
-```
+```text
 
 #### Hibernate を使用する Java
 
@@ -69,7 +69,7 @@ String userSuppliedParameter = request.getParameter("Product-Description");
 // Perform input validation to detect attacks
 Inventory inv = (Inventory) session.createCriteria(Inventory.class).add
 (Restrictions.eq("productDescription", userSuppliedParameter)).uniqueResult();
-```
+```text
 
 #### .NET 組み込み機能の使用
 
@@ -83,7 +83,7 @@ try {
 } catch (OleDbException se) {
    // error handling
 }
-```
+```text
 
 #### ASP .NET 組み込み機能の使用
 
@@ -92,7 +92,7 @@ string sql = "SELECT * FROM Customers WHERE CustomerId = @CustomerId";
 SqlCommand command = new SqlCommand(sql);
 command.Parameters.Add(new SqlParameter("@CustomerId", System.Data.SqlDbType.Int));
 command.Parameters["@CustomerId"].Value = 1;
-```
+```text
 
 #### ActiveRecord を使用する Ruby
 
@@ -107,14 +107,14 @@ Project.where("name = :name", :name => name)
 project.update_attributes(:name => 'owasp')
 ## Delete
 Project.delete(:name => 'name')
-```
+```text
 
 #### Ruby 組み込み機能の使用
 
 ```ruby
 insert_new_user = db.prepare "INSERT INTO users (name, age, gender) VALUES (?, ? ,?)"
 insert_new_user.execute 'aizatto', '20', 'male'
-```
+```text
 
 #### PHP Data Objects を使用する PHP
 
@@ -122,16 +122,16 @@ insert_new_user.execute 'aizatto', '20', 'male'
 $stmt = $dbh->prepare("INSERT INTO REGISTRY (name, value) VALUES (:name, :value)");
 $stmt->bindParam(':name', $name);
 $stmt->bindParam(':value', $value);
-```
+```text
 
 #### Cold Fusion 組み込み機能の使用
 
-```coldfusion
+```cfscript
 <cfquery name = "getFirst" dataSource = "cfsnippets">
     SELECT * FROM #strDatabasePrefix#_courses WHERE intCourseID =
     <cfqueryparam value = #intCourseID# CFSQLType = "CF_SQL_INTEGER">
 </cfquery>
-```
+```text
 
 #### Database Independent Interface を使用する PERL
 
@@ -139,7 +139,7 @@ $stmt->bindParam(':value', $value);
 my $sql = "INSERT INTO foo (bar, baz) VALUES ( ?, ? )";
 my $sth = $dbh->prepare( $sql );
 $sth->execute( $bar, $baz );
-```
+```text
 
 #### SQLx を使用する Rust
 
@@ -165,7 +165,7 @@ let users: Vec<User> = sqlx::query_as::<_, User>(
     .fetch_all(&pool)
     .await
     .unwrap();
-```
+```text
 
 ### ストアドプロシージャの例
 
@@ -185,7 +185,7 @@ SQL インジェクション脆弱性が混入する場所は、Web アプリケ
 PROCEDURE SafeGetBalanceQuery(UserID varchar, Dept varchar) AS BEGIN
    SELECT balance FROM accounts_table WHERE user_ID = UserID AND department = Dept;
 END;
-```
+```text
 
 ##### EXECUTE で実行される SQL にバインド変数を使用するストアドプロシージャ
 
@@ -200,7 +200,7 @@ BEGIN
    EXECUTE IMMEDIATE stmt INTO result USING UserID, Dept;
    RETURN result;
 END;
-```
+```text
 
 #### Transact-SQL を使用する SQL Server
 
@@ -212,7 +212,7 @@ END;
 PROCEDURE SafeGetBalanceQuery(@UserID varchar(20), @Dept varchar(10)) AS BEGIN
    SELECT balance FROM accounts_table WHERE user_ID = @UserID AND department = @Dept
 END
-```
+```text
 
 ##### EXEC で実行される SQL にバインド変数を使用するストアドプロシージャ
 

@@ -113,7 +113,7 @@ Validating a U.S. Zip Code (5 digits plus optional -4)
 
 ```text
 ^\d{5}(-\d{4})?$
-```
+```text
 
 Validating U.S. State Selection From a Drop-Down Menu
 
@@ -122,7 +122,7 @@ Validating U.S. State Selection From a Drop-Down Menu
 HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|
 NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|
 TX|UT|VT|VI|VA|WA|WV|WI|WY)$
-```
+```text
 
 **Java Regex Usage Example:**
 
@@ -142,7 +142,7 @@ public void doPost( HttpServletRequest request, HttpServletResponse respon
       response.sendError( response.SC_BAD_REQUEST, e.getMessage() );
   }
 }
-```
+```text
 
 Some Allowlist validators have also been predefined in various open source packages that you can leverage. For example:
 
@@ -357,7 +357,7 @@ Because it could allow users to register multiple accounts with a single email a
 
 ```text
 ^\d{5}(-\d{4})?$
-```
+```text
 
 ドロップダウンメニューからの米国州選択の検証
 
@@ -366,7 +366,7 @@ Because it could allow users to register multiple accounts with a single email a
 HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|
 NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|
 TX|UT|VT|VI|VA|WA|WV|WI|WY)$
-```
+```text
 
 **Java 正規表現の使用例:**
 
@@ -386,7 +386,7 @@ public void doPost( HttpServletRequest request, HttpServletResponse respon
       response.sendError( response.SC_BAD_REQUEST, e.getMessage() );
   }
 }
-```
+```text
 
 利用できるように、さまざまなオープンソースパッケージでは、いくつかの許可リストバリデータもあらかじめ定義されています。例:
 
@@ -985,7 +985,7 @@ Validating a U.S. Zip Code (5 digits plus optional -4)
 
 ```text
 ^\d{5}(-\d{4})?$
-```
+```html
 
 </div>
 
@@ -1012,7 +1012,7 @@ Validating U.S. State Selection From a Drop-Down Menu
 HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|
 NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|
 TX|UT|VT|VI|VA|WA|WV|WI|WY)$
-```
+```html
 
 </div>
 

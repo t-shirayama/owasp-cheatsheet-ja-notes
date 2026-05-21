@@ -176,7 +176,7 @@ Example:
 
 ```http
 Set-Cookie: __Host-SessionID=<value>; Secure; HttpOnly; SameSite=Strict; Path=/
-```
+```bash
 
 ### Domain and Path Attributes
 
@@ -613,7 +613,7 @@ Cookie 名プレフィックスを使用して、ブラウザレベルで Cookie
 
 ```http
 Set-Cookie: __Host-SessionID=<value>; Secure; HttpOnly; SameSite=Strict; Path=/
-```
+```bash
 
 ### Domain 属性と Path 属性
 

@@ -49,7 +49,7 @@ The following is an example vulnerability which occurs in the JavaScript context
  d.innerHTML = x;
  document.body.appendChild(d);
  </script>
-```
+```text
 
 Let's look at the individual subcontexts of the execution context in turn.
 
@@ -64,14 +64,14 @@ There are several methods and attributes which can be used to directly render HT
 ```javascript
  element.innerHTML = "<HTML> Tags and markup";
  element.outerHTML = "<HTML> Tags and markup";
-```
+```text
 
 #### Methods
 
 ```javascript
  document.write("<HTML> Tags and markup");
  document.writeln("<HTML> Tags and markup");
-```
+```text
 
 ### Guideline
 
@@ -84,13 +84,13 @@ To make dynamic updates to HTML in the DOM safe, we recommend:
  var ESAPI = require('node-esapi');
  element.innerHTML = "<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTML(untrustedData))%>";
  element.outerHTML = "<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTML(untrustedData))%>";
-```
+```text
 
 ```javascript
  var ESAPI = require('node-esapi');
  document.write("<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTML(untrustedData))%>");
  document.writeln("<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTML(untrustedData))%>");
-```
+```text
 
 ## RULE \#2 - JavaScript Escape Before Inserting Untrusted Data into HTML Attribute Subcontext within the Execution Context
 
@@ -111,7 +111,7 @@ For example, the general rule is to HTML Attribute encode untrusted data (data f
  x.setAttribute("value", '<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(companyName))%>');
  var form1 = document.forms[0];
  form1.appendChild(x);
-```
+```text
 
 The problem is that if companyName had the value "Johnson & Johnson". What would be displayed in the input text field would be "Johnson &#x26;amp; Johnson". The appropriate encoding to use in the above case would be only JavaScript encoding to disallow an attacker from closing out the single quotes and in-lining code, or escaping to HTML and opening a new script tag.
 
@@ -124,7 +124,7 @@ The problem is that if companyName had the value "Johnson & Johnson". What would
  x.setAttribute("value", '<%=ESAPI.encoder().encodeForJavascript(companyName)%>');
  var form1 = document.forms[0];
  form1.appendChild(x);
-```
+```text
 
 It is important to note that when setting an HTML attribute which does not execute code, the value is set directly within the object attribute of the HTML element so there is no concerns with injecting up.
 
@@ -143,7 +143,7 @@ x.setAttribute("onclick", "\u0061\u006c\u0065\u0072\u0074\u0028\u0032\u0032\u002
 var y = document.createTextNode("Click To Test");
 x.appendChild(y);
 document.body.appendChild(x);
-```
+```text
 
 The `setAttribute(name_string,value_string)` method is dangerous because it implicitly coerces the *value_string* into the DOM attribute datatype of *name_string*.
 
@@ -154,15 +154,15 @@ Other JavaScript methods which take code as a string types will have a similar p
 ```html
 <!-- Does NOT work  -->
 <a id="bb" href="#" onclick="\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0029"> Test Me</a>
-```
+```text
 
 An alternative to using `Element.setAttribute(...)` to set DOM attributes is to set the attribute directly. Directly setting event handler attributes will allow JavaScript encoding to mitigate against DOM based XSS. Please note, it is always dangerous design to put untrusted data directly into a command execution context.
 
-``` html
+```html
 <a id="bb" href="#"> Test Me</a>
-```
+```text
 
-``` javascript
+```javascript
 //The following does NOT work because the event handler is being set to a string.
 //"alert(7)" is JavaScript encoded.
 document.getElementById("bb").onclick = "\u0061\u006c\u0065\u0072\u0074\u0028\u0037\u0029";
@@ -189,7 +189,7 @@ document.getElementById("bb").onmouseover = \u0074\u0065\u0073\u0074\u0049\u0074
 function testIt() {
    alert("I was called.");
 }
-```
+```text
 
 There are other places in JavaScript where JavaScript encoding is accepted as valid executable code.
 
@@ -203,7 +203,7 @@ There are other places in JavaScript where JavaScript encoding is accepted as va
  .\u0065\u0076\u0061\u006c
  \u0064\u006f\u0063\u0075\u006d\u0065\u006e\u0074
  .\u0077\u0072\u0069\u0074\u0065(111111111);
-```
+```text
 
 or
 
@@ -211,7 +211,7 @@ or
  var s = "\u0065\u0076\u0061\u006c";
  var t = "\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0031\u0029";
  window[s](t);
-```
+```text
 
 Because JavaScript is based on an international standard (ECMAScript), JavaScript encoding enables the support of international characters in programming constructs and variables in addition to alternate string representations (string escapes).
 
@@ -223,19 +223,19 @@ In general, HTML encoding serves to castrate HTML tags which are placed in HTML 
 
 ```html
 <a href="..." >
-```
+```text
 
 Normally encoded example (Does Not Work – DNW):
 
 ```html
 &#x3c;a href=... &#x3e;
-```
+```text
 
 HTML encoded example to highlight a fundamental difference with JavaScript encoded values (DNW):
 
 ```html
 <&#x61; href=...>
-```
+```text
 
 If HTML encoding followed the same semantics as JavaScript encoding, the line above could have possibly worked to render a link. This difference makes JavaScript encoding a less viable weapon in our fight against XSS.
 
@@ -248,7 +248,7 @@ From my experience, calling the `expression()` function from an execution contex
 ```javascript
 var ESAPI = require('node-esapi');
 document.body.style.backgroundImage = "url(<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForURL(companyName))%>)";
-```
+```text
 
 ## RULE \#5 - URL Escape then JavaScript Escape Before Inserting Untrusted Data into URL Attribute Subcontext within the Execution Context
 
@@ -261,7 +261,7 @@ x.setAttribute("href", '<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().e
 var y = document.createTextElement("Click Me To Test");
 x.appendChild(y);
 document.body.appendChild(x);
-```
+```text
 
 If you utilize fully qualified URLs then this will break the links as the colon in the protocol identifier (`http:` or `javascript:`) will be URL encoded preventing the `http` and `javascript` protocols from being invoked.
 
@@ -275,7 +275,7 @@ Here is an example of safe usage.
 <script>
 element.textContent = untrustedData;  //does not execute code
 </script>
-```
+```text
 
 ## RULE \#7 - Fixing DOM Cross-site Scripting Vulnerabilities
 
@@ -291,7 +291,7 @@ Finally, to fix the problem in our initial code, instead of trying to encode the
 <script>
 document.getElementById("contentholder").textContent = document.baseURI;
 </script>
-```
+```text
 
 It does the same thing but this time it is not vulnerable to DOM based cross-site scripting vulnerabilities.
 
@@ -311,7 +311,7 @@ Always JavaScript encode and delimit untrusted data as quoted strings when enter
 
 ```javascript
 var x = "<%= Encode.forJavaScript(untrustedData) %>";
-```
+```text
 
 ### GUIDELINE \#3 - Use document.createElement("..."), element.setAttribute("...","value"), element.appendChild(...) and similar to build dynamic interfaces
 
@@ -354,7 +354,7 @@ The example that follows illustrates using closures to avoid double JavaScript e
           customFunction(param);
         }
  })("<%=ESAPI.encoder().encodeForJavascript(untrustedData)%>"), y);
-```
+```text
 
 The other alternative is using N-levels of encoding.
 
@@ -367,7 +367,7 @@ setTimeout("customFunction('<%=doubleJavaScriptEncodedData%>', y)");
 function customFunction (firstName, lastName)
      alert("Hello" + firstName + " " + lastNam);
 }
-```
+```text
 
 The `doubleJavaScriptEncodedData` has its first layer of JavaScript encoding reversed (upon execution) in the single quotes.
 
@@ -379,14 +379,14 @@ An important implementation note is that if the JavaScript code tries to utilize
 
 If **A** is double JavaScript encoded then the following **if** check will return false.
 
-``` javascript
+```javascript
  var x = "doubleJavaScriptEncodedA";  //\u005c\u0075\u0030\u0030\u0034\u0031
  if (x == "A") {
     alert("x is A");
  } else if (x == "\u0041") {
     alert("This is what pops");
  }
-```
+```text
 
 This brings up an interesting design point. Ideally, the correct way to apply encoding and avoid the problem stated above is to server-side encode for the output context where data is introduced into the application.
 
@@ -398,13 +398,13 @@ Here are some examples of how they are used:
 //server-side encoding
 var ESAPI = require('node-esapi');
 var input = "<%=ESAPI.encoder().encodeForJavascript(untrustedData)%>";
-```
+```text
 
 ```javascript
 //HTML encoding is happening in JavaScript
 var ESAPI = require('node-esapi');
 document.writeln(ESAPI.encoder().encodeForHTML(input));
-```
+```text
 
 One option is utilize ECMAScript 5 immutable properties in the JavaScript library.
 Another option provided by Gaz (Gareth) was to use a specific code construct to limit mutability with anonymous closures.
@@ -430,7 +430,7 @@ function escapeHTML(str) {
      }
      return out;
 }
-```
+```text
 
 ### GUIDELINE \#6 - Use untrusted data on only the right side of an expression
 
@@ -438,7 +438,7 @@ Use untrusted data on only the right side of an expression, especially data that
 
 ```javascript
 window[userDataOnLeftSide] = "userDataOnRightSide";
-```
+```text
 
 Using untrusted user data on the left side of the expression allows an attacker to subvert internal and external attributes of the window object, whereas using user input on the right side of the expression doesn't allow direct manipulation.
 
@@ -455,7 +455,7 @@ Here is an example of the problem using map types:
 ```javascript
 var myMapType = {};
 myMapType[<%=untrustedData%>] = "moreUntrustedData";
-```
+```text
 
 The developer writing the code above was trying to add additional keyed elements to the `myMapType` object. However, this could be used by an attacker to subvert internal and external attributes of the `myMapType` object.
 
@@ -465,7 +465,7 @@ A better approach would be to use the following:
 if (untrustedData === 'location') {
   myMapType.location = "moreUntrustedData";
 }
-```
+```text
 
 ### GUIDELINE \#9 - Run your JavaScript in a ECMAScript 5 canopy or sandbox
 
@@ -497,7 +497,7 @@ Function myFunction (url,name) {
     window.location = url;
 }
 </script>
-```
+```text
 
 In the above example, untrusted data started in the rendering URL context (`href` attribute of an `a` tag) then changed to a JavaScript execution context (`javascript:` protocol handler) which passed the untrusted data to an execution URL subcontext (`window.location` of `myFunction`).
 
@@ -507,7 +507,7 @@ Because the data was introduced in JavaScript code and passed to a URL subcontex
 <a href="javascript:myFunction('<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForURL(untrustedData)) %>', 'test');">
 Click Me</a>
  ...
-```
+```text
 
 Or if you were using ECMAScript 5 with an immutable JavaScript client-side encoding libraries you could do the following:
 
@@ -521,7 +521,7 @@ Function myFunction (url,name) {
     window.location = encodedURL;
 }
 </script>
-```
+```text
 
 ### Inconsistencies of Encoding Libraries
 
@@ -553,7 +553,7 @@ For example:
 <script>
 &#x61;lert(1);
 </script>
-```
+```text
 
 The HTML encoded value above is still executable. If that isn't enough to keep in mind, you have to remember that encodings are lost when you retrieve them using the value attribute of a DOM element.
 
@@ -568,7 +568,7 @@ Let's look at the sample page and script:
   var x = document.myForm.lName.value;  //when the value is retrieved the encoding is reversed
   document.writeln(x);  //any code passed into lName is now executable.
 </script>
-```
+```text
 
 Finally there is the problem that certain methods in JavaScript which are usually safe can be unsafe in certain contexts.
 
@@ -583,7 +583,7 @@ Some papers or guides advocate its use as an alternative to `innerHTML` to mitig
  var tag = document.createElement("script");
  tag.innerText = "<%=untrustedData%>";  //executes code
 </script>
-```
+```text
 
 The `innerText` feature was originally introduced by Internet Explorer, and was formally specified in the HTML standard in 2016 after being adopted by all major browser vendors.
 
@@ -591,7 +591,7 @@ The `innerText` feature was originally introduced by Internet Explorer, and was 
 
 **Vulnerable code:**
 
-```
+```html
 <script>
 var x = location.hash.split("#")[1];
 document.write(x);

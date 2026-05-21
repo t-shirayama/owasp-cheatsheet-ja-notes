@@ -281,7 +281,7 @@ grep -r "eval(\|exec(\|innerHTML\|document\.write" source/
 
 # Find potential injections
 grep -r "SELECT.*+\|executeQuery.*+" source/
-```
+```text
 
 ### 手動レビューの重点領域
 
@@ -342,7 +342,7 @@ References: [CWE links, OWASP references, vendor documentation]
 Status: [Open/In Progress/Fixed/Accepted Risk]
 Assignee: [Developer responsible for fix]
 Due Date: [Target fix date]
-```
+```text
 
 **レビューサマリーテンプレート:**
 

@@ -56,7 +56,7 @@ try {
 }
 
 ...
-```
+```text
 
 ## Primary Defenses
 
@@ -85,7 +85,7 @@ String query = "SELECT account_balance FROM user_data WHERE user_name =
 PreparedStatement pstmt = connection.prepareStatement( query );
 pstmt.setString( 1, custname);
 ResultSet results = pstmt.executeQuery( );
-```
+```text
 
 #### Safe C\\# .NET Prepared Statement Example
 
@@ -101,7 +101,7 @@ try {
 } catch (OleDbException se) {
   // error handling
 }
-```
+```text
 
 While we have shown examples in Java and .NET, practically all other languages (including Cold Fusion and Classic ASP) support parameterized query interfaces. Even SQL abstraction layers, like the [Hibernate Query Language](http://hibernate.org/) (HQL) with the same type of injection problems (called [HQL Injection](http://cwe.mitre.org/data/definitions/564.html))  support parameterized queries as well:
 
@@ -113,7 +113,7 @@ Query unsafeHQLQuery = session.createQuery("from Inventory where productID
 // Here is a safe version of the same query using named parameters
 Query safeHQLQuery = session.createQuery("from Inventory where productID=:productid");
 safeHQLQuery.setParameter("productid", userSuppliedParameter);
-```
+```text
 
 #### Other Examples of Safe Prepared Statements
 
@@ -150,7 +150,7 @@ try {
 } catch (SQLException se) {
   // … logging and error handling
 }
-```
+```text
 
 #### Safe VB .NET Stored Procedure Example
 
@@ -166,7 +166,7 @@ The following code example uses a `SqlCommand`, .NET's implementation of the sto
  Catch se As SqlException
    'error handling
  End Try
-```
+```text
 
 ### Defense Option 3: Allow-list Input Validation
 
@@ -188,7 +188,7 @@ switch(PARAM):
   ...
   default      : throw new InputValidationException("unexpected value provided"
                                                   + " for table name");
-```
+```text
 
 #### Safest Use Of Dynamic SQL Generation (DISCOURAGED)
 
@@ -206,7 +206,7 @@ For example:
 public String someMethod(boolean sortOrder) {
  String SQLquery = "some SQL ... order by Salary " + (sortOrder ? "ASC" : "DESC");
  ...
-```
+```text
 
 Any time user input can be converted to a non-String, like a date, numeric, boolean, enumerated type, etc. before it is appended to a query, or used to select a value to append to the query, this ensures it is safe to do so.
 
@@ -324,7 +324,7 @@ try {
 }
 
 ...
-```
+```text
 
 ## 主な防御策
 
@@ -353,7 +353,7 @@ String query = "SELECT account_balance FROM user_data WHERE user_name =
 PreparedStatement pstmt = connection.prepareStatement( query );
 pstmt.setString( 1, custname);
 ResultSet results = pstmt.executeQuery( );
-```
+```text
 
 #### 安全なC\\# .NETプリペアドステートメントの例
 
@@ -369,7 +369,7 @@ try {
 } catch (OleDbException se) {
   // error handling
 }
-```
+```text
 
 ここではJavaと.NETの例を示しましたが、Cold FusionやClassic ASPを含むほぼすべての他の言語も、パラメータ化クエリのインターフェースをサポートしています。[Hibernate Query Language](http://hibernate.org/) (HQL) のようなSQL抽象化レイヤーにも同種のインジェクション問題、すなわち[HQL Injection](http://cwe.mitre.org/data/definitions/564.html)がありますが、同様にパラメータ化クエリをサポートしています。
 
@@ -381,7 +381,7 @@ Query unsafeHQLQuery = session.createQuery("from Inventory where productID
 // Here is a safe version of the same query using named parameters
 Query safeHQLQuery = session.createQuery("from Inventory where productID=:productid");
 safeHQLQuery.setParameter("productid", userSuppliedParameter);
-```
+```text
 
 #### 安全なプリペアドステートメントのその他の例
 
@@ -418,7 +418,7 @@ try {
 } catch (SQLException se) {
   // … logging and error handling
 }
-```
+```text
 
 #### 安全なVB .NETストアドプロシージャの例
 
@@ -434,7 +434,7 @@ try {
  Catch se As SqlException
    'error handling
  End Try
-```
+```text
 
 ### 防御策の選択肢3: 許可リストによる入力検証
 
@@ -456,7 +456,7 @@ switch(PARAM):
   ...
   default      : throw new InputValidationException("unexpected value provided"
                                                   + " for table name");
-```
+```text
 
 #### 動的SQL生成の最も安全な使用 (非推奨)
 
@@ -474,7 +474,7 @@ switch(PARAM):
 public String someMethod(boolean sortOrder) {
  String SQLquery = "some SQL ... order by Salary " + (sortOrder ? "ASC" : "DESC");
  ...
-```
+```text
 
 ユーザー入力を、クエリに追加する前、またはクエリに追加する値を選択するために使用する前に、日付、数値、boolean、列挙型などのString以外に変換できる場合は、それが安全に行えることを保証します。
 
@@ -681,7 +681,7 @@ try {
 }
 
 ...
-```
+```html
 
 </div>
 
@@ -789,7 +789,7 @@ String query = "SELECT account_balance FROM user_data WHERE user_name =
 PreparedStatement pstmt = connection.prepareStatement( query );
 pstmt.setString( 1, custname);
 ResultSet results = pstmt.executeQuery( );
-```
+```html
 
 </div>
 
@@ -825,7 +825,7 @@ try {
 } catch (OleDbException se) {
   // error handling
 }
-```
+```html
 
 </div>
 
@@ -868,7 +868,7 @@ Query unsafeHQLQuery = session.createQuery("from Inventory where productID
 // Here is a safe version of the same query using named parameters
 Query safeHQLQuery = session.createQuery("from Inventory where productID=:productid");
 safeHQLQuery.setParameter("productid", userSuppliedParameter);
-```
+```html
 
 </div>
 
@@ -1011,7 +1011,7 @@ try {
 } catch (SQLException se) {
   // … logging and error handling
 }
-```
+```html
 
 </div>
 
@@ -1047,7 +1047,7 @@ The following code example uses a `SqlCommand`, .NET's implementation of the sto
  Catch se As SqlException
    'error handling
  End Try
-```
+```html
 
 </div>
 
@@ -1117,7 +1117,7 @@ switch(PARAM):
   ...
   default      : throw new InputValidationException("unexpected value provided"
                                                   + " for table name");
-```
+```html
 
 </div>
 

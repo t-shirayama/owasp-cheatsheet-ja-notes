@@ -51,7 +51,7 @@ Use *Query Parameterization* in order to prevent injection.
 
 #### Example
 
-``` java
+```java
 /*No DB framework used here in order to show the real use of
   Prepared Statement from Java API*/
 /*Open connection with H2 database and use it*/
@@ -100,7 +100,7 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
     }
 
 }
-```
+```text
 
 #### References
 
@@ -118,7 +118,7 @@ Use Java Persistence Query Language **Query Parameterization** in order to preve
 
 #### Example
 
-``` java
+```java
 EntityManager entityManager = null;
 try {
     /* Get a ref on EntityManager to access DB */
@@ -136,7 +136,7 @@ try {
         entityManager.close();
     }
 }
-```
+```text
 
 #### References
 
@@ -154,13 +154,13 @@ Use technology stack **API** in order to prevent injection.
 
 #### Example
 
-``` java
+```java
 /* The context taken is, for example, to perform a PING against a computer.
 * The prevention is to use the feature provided by the Java API instead of building
 * a system command as String and execute it */
 InetAddress host = InetAddress.getByName("localhost");
 var reachable = host.isReachable(5000);
-```
+```text
 
 #### References
 
@@ -180,7 +180,7 @@ Use **XPath Variable Resolver** in order to prevent injection.
 
 **Variable Resolver** implementation.
 
-``` java
+```java
 /**
  * Resolver in order to define parameter for XPATH expression.
  *
@@ -208,11 +208,11 @@ public class SimpleVariableResolver implements XPathVariableResolver {
         return vars.get(variableName);
     }
 }
-```
+```text
 
 Code using it to perform XPath query.
 
-``` java
+```java
 /*Create a XML document builder factory*/
 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
@@ -239,7 +239,7 @@ Object nodes = xPathExpression.evaluate(doc, XPathConstants.NODESET);
 NodeList nodesList = (NodeList) nodes;
 Element book = (Element)nodesList.item(0);
 var containsRalls = book.getTextContent().contains("Ralls, Kim");
-```
+```text
 
 #### References
 
@@ -257,7 +257,7 @@ Either apply strict input validation (allowlist approach) or use output sanitizi
 
 #### Example
 
-``` java
+```java
 /*
 INPUT WAY: Receive data from user
 Here it's recommended to use strict input validation using allowlist approach.
@@ -307,7 +307,7 @@ if (!finalSafeOutputExpected.equals(safeOutput))
 {
     return false;
 }
-```
+```text
 
 #### References
 
@@ -332,7 +332,7 @@ As there many NoSQL database system and each one use an API for call, it's impor
 
 #### Example - MongoDB
 
-``` java
+```java
  /* Here use MongoDB as target NoSQL DB */
 String userInput = "Brooklyn";
 
@@ -387,7 +387,7 @@ try(MongoClient mongoClient = new MongoClient()){
         }
     });
 }
-```
+```text
 
 #### References
 
@@ -441,7 +441,7 @@ and limit the size of strings to 500 bytes using the
     </Root>
   </Loggers>
 </Configuration>
-```
+```text
 
 See
 [Integration with service-oriented architectures](https://logging.apache.org/log4j/2.x/soa.html)
@@ -451,7 +451,7 @@ for more tips.
 
 Usage of the logger at code level:
 
-``` java
+```java
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 ...
@@ -468,7 +468,7 @@ logger.warn("Login failed for user {}.", username);
 // If `username` contains `{}`, the exception will leak into the message
 logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
-```
+```text
 
 See
 [Log4j API Best Practices](https://logging.apache.org/log4j/2.x/manual/api.html#best-practice)
@@ -482,7 +482,7 @@ introduced in
 [Logback 1.3.8](https://logback.qos.ch/news.html#1.3.8).
 In the example below, Logback is configured to roll on 10 log files of 5 MiB each:
 
-``` xml
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration>
 <configuration>
@@ -508,11 +508,11 @@ In the example below, Logback is configured to roll on 10 log files of 5 MiB eac
     <appender-ref ref="SOCKET"/>
   </root>
 </configuration>
-```
+```text
 
 Usage of the logger at code level:
 
-``` java
+```java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 ...
@@ -529,7 +529,7 @@ logger.warn("Login failed for user {}.", username);
 // If `username` contains `{}`, the exception will leak into the message
 logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
-```
+```text
 
 #### References
 
@@ -566,7 +566,7 @@ The following code snippet shows an encapsulated use of this functionality:
 <details>
   <summary>Click here to view the "Tink symmetric encryption" code snippet.</summary>
 
-``` java
+```java
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.google.crypto.tink.Aead;
@@ -633,7 +633,7 @@ class AesGcmSimple {
 
 }
 
-```
+```xml
 
 </details>
 
@@ -712,7 +712,7 @@ class AesGcmSimple {
     }
 
 }
-```
+```xml
 
 </details>
 
@@ -731,7 +731,7 @@ The following code snippet shows how this functionality can be used to share sec
 <details>
   <summary>Click here to view the "Tink hybrid encryption" code snippet.</summary>
 
-``` java
+```java
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.google.crypto.tink.HybridDecrypt;
@@ -862,7 +862,7 @@ class HybridSimple {
 
 
 }
-```
+```xml
 
 </details>
 

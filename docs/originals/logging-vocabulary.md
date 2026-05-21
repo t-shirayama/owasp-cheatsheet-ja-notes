@@ -72,7 +72,7 @@ Some languages have libraries which ease the job of adopting this logging vocabu
 
 _NOTE: All dates should be logged in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format **WITH** UTC offset to ensure maximum portability_
 
-```
+```json
 {
     "datetime": "2021-01-01T01:01:01-0700",
     "appid": "foobar.netportal_auth",
@@ -90,7 +90,7 @@ _NOTE: All dates should be logged in [ISO 8601](https://en.wikipedia.org/wiki/IS
     "region": "AWS-US-WEST-2",
     "geo": "USA"
 }
-```
+```text
 
 ## The Vocabulary
 
@@ -116,7 +116,7 @@ INFO
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -125,7 +125,7 @@ INFO
     "description": "User joebob1 login successfully",
     ...
 }
-```
+```text
 
 ---
 
@@ -139,7 +139,7 @@ INFO
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -148,7 +148,7 @@ INFO
     "description": "User joebob1 login successfully",
     ...
 }
-```
+```text
 
 ---
 
@@ -162,7 +162,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -171,7 +171,7 @@ WARN
     "description": "User joebob1 login failed",
     ...
 }
-```
+```text
 
 ---
 
@@ -185,7 +185,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -194,7 +194,7 @@ WARN
     "description": "User joebob1 reached the login fail limit of 3",
     ...
 }
-```
+```text
 
 ---
 
@@ -215,7 +215,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -224,7 +224,7 @@ WARN
     "description": "User joebob1 login locked because maxretries exceeded",
     ...
 }
-```
+```text
 
 ---
 
@@ -238,7 +238,7 @@ INFO
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -247,7 +247,7 @@ INFO
     "description": "User joebob1 has successfully changed their password",
     ...
 }
-```
+```text
 
 ---
 
@@ -261,7 +261,7 @@ CRITICAL
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -270,7 +270,7 @@ CRITICAL
     "description": "User joebob1 failed to change their password",
     ...
 }
-```
+```text
 
 ---
 
@@ -283,7 +283,7 @@ When a user is logged in from one city and suddenly appears in another, too far 
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -292,7 +292,7 @@ When a user is logged in from one city and suddenly appears in another, too far 
     "description": "User joebob1 has accessed the application in two distant cities at the same time",
     ...
 }
-```
+```text
 
 ---
 
@@ -305,7 +305,7 @@ When a token is created for service access it should be recorded
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "aws.foobar.com",
@@ -314,7 +314,7 @@ When a token is created for service access it should be recorded
     "description": "A token has been created for app.foobarapi.prod with create,read,update",
     ...
 }
-```
+```text
 
 ---
 
@@ -327,7 +327,7 @@ A token has been revoked for the given account.
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "aws.foobar.com",
@@ -336,7 +336,7 @@ A token has been revoked for the given account.
     "description": "Token ID: xyz-abc-123-gfk was revoked for user app.foobarapi.prod",
     ...
 }
-```
+```text
 
 ---
 
@@ -349,7 +349,7 @@ A previously revoked token was attempted to be reused.
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "aws.foobar.com",
@@ -358,7 +358,7 @@ A previously revoked token was attempted to be reused.
     "description": "User app.foobarapi.prod attempted to use token ID: xyz-abc-123-gfk which was previously revoked",
     ...
 }
-```
+```text
 
 ---
 
@@ -371,7 +371,7 @@ When a token is deleted it should be recorded
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -380,7 +380,7 @@ When a token is deleted it should be recorded
     "description": "The token for foobarapi has been deleted",
     ...
 }
-```
+```text
 
 ---
 
@@ -397,7 +397,7 @@ An attempt was made to access a resource which was unauthorized
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -406,7 +406,7 @@ An attempt was made to access a resource which was unauthorized
     "description": "User joebob1 attempted to access a resource without entitlement",
     ...
 }
-```
+```text
 
 ---
 
@@ -419,7 +419,7 @@ The user or entity entitlements was changed
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -428,7 +428,7 @@ The user or entity entitlements was changed
     "description": "User joebob1 access was changed from user to admin",
     ...
 }
-```
+```text
 
 ---
 
@@ -441,7 +441,7 @@ All activity by privileged users such as admin should be recorded.
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -450,7 +450,7 @@ All activity by privileged users such as admin should be recorded.
     "description": "Administrator joebob1 has updated privileges of user foobarapi from user to admin",
     ...
 }
-```
+```text
 
 ---
 
@@ -465,7 +465,7 @@ Failure to perform encryption and decryption could be simply due to a system err
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -474,7 +474,7 @@ Failure to perform encryption and decryption could be simply due to a system err
     "description": "User joebob1 was unable to perform decryption" + err,
     ...
 }
-```
+```text
 
 ---
 
@@ -487,7 +487,7 @@ Failure to perform encryption and decryption could be simply due to a system err
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -496,7 +496,7 @@ Failure to perform encryption and decryption could be simply due to a system err
     "description": "User joebob1 was unable to perform encryption" + err,
     ...
 }
-```
+```text
 
 ---
 
@@ -511,7 +511,7 @@ Expected service limit ceilings should be established and alerted when exceeded,
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -520,7 +520,7 @@ Expected service limit ceilings should be established and alerted when exceeded,
     "description": "User app.foobarapi.prod has exceeded max:100000 requests",
     ...
 }
-```
+```text
 
 ---
 
@@ -535,7 +535,7 @@ On successful file upload the first step in the validation process is that the u
 
 **Example:**
 
-```
+```text
     {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -544,7 +544,7 @@ On successful file upload the first step in the validation process is that the u
     "description": "User joebob1 has uploaded user_generated_content.png",
     ...
 }
-```
+```text
 
 ---
 
@@ -557,7 +557,7 @@ One step in good file upload validation is to move/rename the file and when prov
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -566,7 +566,7 @@ One step in good file upload validation is to move/rename the file and when prov
     "description": "File user_generated_content.png was stored in the database with key abcdefghijk101010101",
     ...
 }
-```
+```text
 
 ---
 
@@ -579,7 +579,7 @@ All file uploads should have some validation performed, both for correctness (is
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -588,7 +588,7 @@ All file uploads should have some validation performed, both for correctness (is
     "description": "File user_generated_content.png FAILED virus scan and was purged",
     ...
 }
-```
+```text
 
 ---
 
@@ -601,7 +601,7 @@ When a file is deleted for normal reasons it should be recorded.
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -610,7 +610,7 @@ When a file is deleted for normal reasons it should be recorded.
     "description": "User joebob1 has marked file abcdefghijk101010101 for deletion.",
     ...
 }
-```
+```text
 
 ---
 
@@ -626,7 +626,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -635,7 +635,7 @@ WARN
     "description": "User joebob1 submitted data that failed validation.",
     ...
 }
-```
+```text
 
 ---
 
@@ -658,7 +658,7 @@ WARN
     "description": "User joebob1 submitted an invalid value for the 'country' field.",
     ...
 }
-```
+```text
 
 ---
 
@@ -674,7 +674,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -683,7 +683,7 @@ WARN
     "description": "A user at 123.456.789.101 has generated a large number of 404 requests.",
     ...
 }
-```
+```text
 
 ---
 
@@ -697,7 +697,7 @@ CRITICAL
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -706,7 +706,7 @@ CRITICAL
     "description": "User dr@evil.com included field creditcardnum in the request which is not handled by this service.",
     ...
 }
-```
+```text
 
 ---
 
@@ -722,7 +722,7 @@ CRITICAL
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -731,7 +731,7 @@ CRITICAL
     "description": "Attack traffic indicating use of Nikto coming from 127.0.0.1",
     ...
 }
-```
+```text
 
 ---
 
@@ -747,7 +747,7 @@ CRITICAL
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -756,7 +756,7 @@ CRITICAL
     "description": "Request from 127.0.0.1 contained a SQL injection pattern (rule SQLI-UNION) in parameter 'search'.",
     ...
 }
-```
+```text
 
 ---
 
@@ -772,7 +772,7 @@ CRITICAL
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -781,7 +781,7 @@ CRITICAL
     "description": "An illegal cross-origin request from 127.0.0.1 was referred from attack.evil.com"
     ...
 }
-```
+```text
 
 ---
 
@@ -795,7 +795,7 @@ CRITICAL
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -804,7 +804,7 @@ CRITICAL
     "description": "User joebob1 attempted to access an object to which they are not authorized",
     ...
 }
-```
+```text
 
 ---
 
@@ -826,7 +826,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.cooldevapp_mcp_toolname",
@@ -835,7 +835,7 @@ WARN
     "description": "A possible prompt injection has occurred",
     ...
 }
-```
+```text
 
 ---
 
@@ -851,7 +851,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.cooldevapp_mcp_toolname",
@@ -860,7 +860,7 @@ WARN
     "description": "Request blocked due to token budget overrun (tokens_in=18240, tokens_out=0, budget=8000)",
     ...
 }
-```
+```text
 
 ---
 
@@ -876,7 +876,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.cooldevapp_mcp_toolname",
@@ -885,7 +885,7 @@ WARN
     "description": "Tool execution blocked (tool=\"calendar_sync\", source=\"https://marketplace.example/tools/calendar_sync\", version=\"2.4.1\", signature=\"missing\", policy=\"allowlist_required\")",
     ...
 }
-```
+```text
 
 ---
 
@@ -907,7 +907,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -916,7 +916,7 @@ WARN
     "description": "User joebob1 changed permissions on /users/admin/some/important/path",
     ...
 }
-```
+```text
 
 ---
 
@@ -936,7 +936,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -945,7 +945,7 @@ WARN
     "description": "User joebob1 created a new file in /users/admin/some/important/path",
     ...
 }
-```
+```text
 
 ---
 
@@ -959,7 +959,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -968,7 +968,7 @@ WARN
     "description": "User joebob1 read file /users/admin/some/important/path",
     ...
 }
-```
+```text
 
 ---
 
@@ -982,7 +982,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -991,7 +991,7 @@ WARN
     "description": "User joebob1 modified file /users/admin/some/important/path",
     ...
 }
-```
+```text
 
 ---
 
@@ -1005,7 +1005,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1014,7 +1014,7 @@ WARN
     "description": "User joebob1 marked file /users/admin/some/important/path for deletion",
     ...
 }
-```
+```text
 
 ---
 
@@ -1034,7 +1034,7 @@ CRITICAL
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1043,7 +1043,7 @@ CRITICAL
     "description": "User joebob1 has reached a part of the application out of the normal application flow.",
     ...
 }
-```
+```text
 
 ---
 
@@ -1059,7 +1059,7 @@ INFO
 
 **Example:**
 
-```
+```text
     {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1068,7 +1068,7 @@ INFO
     "description": "User joebob1 has started a new session",
     ...
 }
-```
+```text
 
 ---
 
@@ -1082,7 +1082,7 @@ INFO
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1091,7 +1091,7 @@ INFO
     "description": "User joebob1 was warned of expiring session and extended.",
     ...
 }
-```
+```text
 
 ---
 
@@ -1105,7 +1105,7 @@ INFO
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1114,7 +1114,7 @@ INFO
     "description": "User joebob1 session expired due to administrator revocation.",
     ...
 }
-```
+```text
 
 ---
 
@@ -1128,7 +1128,7 @@ CRITICAL
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1137,7 +1137,7 @@ CRITICAL
     "description": "User joebob1 attempted access after session expired.",
     ...
 }
-```
+```text
 
 ---
 
@@ -1153,7 +1153,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1162,7 +1162,7 @@ WARN
     "description": "User joebob1 spawned a new instance",
     ...
 }
-```
+```text
 
 ---
 
@@ -1176,7 +1176,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1185,7 +1185,7 @@ WARN
     "description": "User joebob1 stopped this instance",
     ...
 }
-```
+```text
 
 ---
 
@@ -1199,7 +1199,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1208,7 +1208,7 @@ WARN
     "description": "User joebob1 initiated a restart",
     ...
 }
-```
+```text
 
 ---
 
@@ -1222,7 +1222,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1231,7 +1231,7 @@ WARN
     "description": "The system crashed due to Out of Memory error.",
     ...
 }
-```
+```text
 
 ---
 
@@ -1245,7 +1245,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1254,7 +1254,7 @@ WARN
     "description": "User joebob1 has disabled CrowdStrike",
     ...
 }
-```
+```text
 
 ---
 
@@ -1268,7 +1268,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1277,7 +1277,7 @@ WARN
     "description": "User joebob1 has enabled CrowdStrike",
     ...
 }
-```
+```text
 
 ---
 
@@ -1293,7 +1293,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1302,7 +1302,7 @@ WARN
     "description": "User joebob1 created user1 with admin:create,update,delete privilege attributes",
     ...
 }
-```
+```text
 
 ---
 
@@ -1316,7 +1316,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1325,7 +1325,7 @@ WARN
     "description": "User joebob1 updated user1 with attributes admin:create,update,delete privilege attributes",
     ...
 }
-```
+```text
 
 ---
 
@@ -1339,7 +1339,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",
@@ -1348,7 +1348,7 @@ WARN
     "description": "User joebob1 archived user1",
     ...
 }
-```
+```text
 
 ---
 
@@ -1362,7 +1362,7 @@ WARN
 
 **Example:**
 
-```
+```text
 {
     "datetime": "2019-01-01 00:00:00,000",
     "appid": "foobar.netportal_auth",

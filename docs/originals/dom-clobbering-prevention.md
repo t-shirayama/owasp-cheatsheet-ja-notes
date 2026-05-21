@@ -32,11 +32,11 @@ When creating the DOM tree, browsers also create an attribute for (some) named H
 
 ```html
 <form id=x></a>
-```
+```text
 
 will lead to browsers creating references to that form element with the attribute `x` of `window` and `document`:
 
-```js
+```javascript
 var obj1 = document.getElementById('x');
 var obj2 = document.x;
 var obj3 = document.x;
@@ -46,7 +46,7 @@ console.log(
  obj1 === obj2 && obj2 === obj3 &&
  obj3 === obj4 && obj4 === obj5
 ); // true
-```
+```text
 
 When accessing an attribute of `window` and `document` objects, named HTML element references come before lookups of built-in APIs and other attributes on `window` and `document` that developers have defined, also known as [named property accesses](https://html.spec.whatwg.org/multipage/nav-history-apis.html#named-access-on-the-window-object). Developers unaware of such behavior may use the content of window/document attributes for sensitive operations, such as URLs for fetching remote content, and attackers can exploit it by injecting markups with colliding names. Similarly to custom attributes/variables, built-in browser APIs may be overshadowed by DOM Clobbering.
 
@@ -58,7 +58,7 @@ it can change the value of a variable that the web application relies on due to 
 ```javascript
 let redirectTo = window.redirectTo || '/profile/';
 location.assign(redirectTo);
-```
+```text
 
 The attacker can:
 
@@ -72,7 +72,7 @@ var script = document.createElement('script');
 let src = window.config.url || 'script.js';
 s.src = src;
 document.body.appendChild(s);
-```
+```text
 
 The attacker can inject the markup `<a id=config><a id=config name=url href='malicious.js'>` to load additional JavaScript code, and obtain arbitrary client-side code execution.
 
@@ -114,9 +114,9 @@ By default, DOMPurify removes all clobbering collisions with **built-in** APIs a
 
 To be protected against clobbering of custom variables and properties as well, you need to enable the `SANITIZE_NAMED_PROPS` config:
 
-```js
+```javascript
 var clean = DOMPurify.sanitize(dirty, {SANITIZE_NAMED_PROPS: true});
-```
+```text
 
 This would isolate the namespace of named properties and JavaScript variables by prefixing them with `user-content-` string.
 
@@ -124,7 +124,7 @@ This would isolate the namespace of named properties and JavaScript variables by
 
 The new browser-built-in [Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API) does not prevent DOM Clobbering it its [default setting](https://wicg.github.io/sanitizer-api/#dom-clobbering), but can be configured to remove named properties:
 
-```js
+```javascript
 const sanitizerInstance = new Sanitizer({
   blockAttributes: [
     {'name': 'id', elements: '*'},

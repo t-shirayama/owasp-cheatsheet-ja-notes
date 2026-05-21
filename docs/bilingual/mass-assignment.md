@@ -56,7 +56,7 @@ Suppose there is a form for editing a user's account information:
      <input name="email" text="text">
      <input type="submit">
 </form>  
-```
+```text
 
 Here is the object that the form is binding to:
 
@@ -69,7 +69,7 @@ public class User {
 
    //Getters & Setters
 }
-```
+```text
 
 Here is the controller handling the request:
 
@@ -79,7 +79,7 @@ public String submit(User user) {
    userService.add(user);
    return "successPage";
 }
-```
+```text
 
 Here is the typical request:
 
@@ -87,7 +87,7 @@ Here is the typical request:
 POST /addUser
 ...
 userid=bobbytables&password=hashedpass&email=bobby@tables.com
-```
+```text
 
 And here is the exploit in which we set the value of the attribute `isAdmin` of the instance of the class `User`:
 
@@ -95,7 +95,7 @@ And here is the exploit in which we set the value of the attribute `isAdmin` of 
 POST /addUser
 ...
 userid=bobbytables&password=hashedpass&email=bobby@tables.com&isAdmin=true
-```
+```text
 
 ### Exploitability
 
@@ -129,7 +129,7 @@ public class UserRegistrationFormDTO {
 
  //Getters & Setters
 }
-```
+```text
 
 ## Language & Framework specific solutions
 
@@ -148,7 +148,7 @@ public class UserController
     }
 ...
 }
-```
+```text
 
 Take a look [here](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/DataBinder.html#setAllowedFields-java.lang.String...-) for the documentation.
 
@@ -165,7 +165,7 @@ public class UserController
    }
 ...
 }
-```
+```text
 
 Take a look [here](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/DataBinder.html#setDisallowedFields-java.lang.String...-) for the documentation.
 
@@ -189,7 +189,7 @@ var User = mongoose.model('User', UserSchema);
 
 _ = require('underscore');
 var user = new User(_.pick(req.body, User.userCreateSafeFields));
-```
+```text
 
 Take a look [here](http://underscorejs.org/#pick) for the documentation.
 
@@ -219,7 +219,7 @@ user.massAssign(req.body);
 /** Static massUpdate method **/
 var input = { userid: 'bhelx', isAdmin: 'true' };
 User.update({ '_id': someId }, { $set: User.massUpdate(input) }, console.log);
-```
+```text
 
 Take a look [here](https://www.npmjs.com/package/mongoose-mass-assign) for the documentation.
 
@@ -255,7 +255,7 @@ class User extends Model
 
     protected $fillable = array('userid','password','email');
 }
-```
+```text
 
 Take a look [here](https://laravel.com/docs/5.2/eloquent#mass-assignment) for the documentation.
 
@@ -277,7 +277,7 @@ class User extends Model
 
     protected $guarded = array('isAdmin');
 }
-```
+```text
 
 Take a look [here](https://laravel.com/docs/5.2/eloquent#mass-assignment) for the documentation.
 
@@ -338,7 +338,7 @@ Take a look [here](http://flexjson.sourceforge.net/#Serialization) for the docum
      <input name="email" text="text">
      <input type="submit">
 </form>  
-```
+```text
 
 このフォームがバインドされるオブジェクトは次のとおりです。
 
@@ -351,7 +351,7 @@ public class User {
 
    //Getters & Setters
 }
-```
+```text
 
 リクエストを処理するコントローラーは次のとおりです。
 
@@ -361,7 +361,7 @@ public String submit(User user) {
    userService.add(user);
    return "successPage";
 }
-```
+```text
 
 通常のリクエストは次のとおりです。
 
@@ -369,7 +369,7 @@ public String submit(User user) {
 POST /addUser
 ...
 userid=bobbytables&password=hashedpass&email=bobby@tables.com
-```
+```text
 
 そして、クラス `User` のインスタンスの属性 `isAdmin` の値を設定する悪用例は次のとおりです。
 
@@ -377,7 +377,7 @@ userid=bobbytables&password=hashedpass&email=bobby@tables.com
 POST /addUser
 ...
 userid=bobbytables&password=hashedpass&email=bobby@tables.com&isAdmin=true
-```
+```text
 
 ### 悪用可能性
 
@@ -411,7 +411,7 @@ public class UserRegistrationFormDTO {
 
  //Getters & Setters
 }
-```
+```text
 
 ## 言語およびフレームワーク固有の解決策
 
@@ -430,7 +430,7 @@ public class UserController
     }
 ...
 }
-```
+```text
 
 ドキュメントは[こちら](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/DataBinder.html#setAllowedFields-java.lang.String...-)を参照してください。
 
@@ -447,7 +447,7 @@ public class UserController
    }
 ...
 }
-```
+```text
 
 ドキュメントは[こちら](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/DataBinder.html#setDisallowedFields-java.lang.String...-)を参照してください。
 
@@ -471,7 +471,7 @@ var User = mongoose.model('User', UserSchema);
 
 _ = require('underscore');
 var user = new User(_.pick(req.body, User.userCreateSafeFields));
-```
+```text
 
 ドキュメントは[こちら](http://underscorejs.org/#pick)を参照してください。
 
@@ -501,7 +501,7 @@ user.massAssign(req.body);
 /** Static massUpdate method **/
 var input = { userid: 'bhelx', isAdmin: 'true' };
 User.update({ '_id': someId }, { $set: User.massUpdate(input) }, console.log);
-```
+```text
 
 ドキュメントは[こちら](https://www.npmjs.com/package/mongoose-mass-assign)を参照してください。
 
@@ -537,7 +537,7 @@ class User extends Model
 
     protected $fillable = array('userid','password','email');
 }
-```
+```text
 
 ドキュメントは[こちら](https://laravel.com/docs/5.2/eloquent#mass-assignment)を参照してください。
 
@@ -559,7 +559,7 @@ class User extends Model
 
     protected $guarded = array('isAdmin');
 }
-```
+```text
 
 ドキュメントは[こちら](https://laravel.com/docs/5.2/eloquent#mass-assignment)を参照してください。
 
@@ -726,7 +726,7 @@ Suppose there is a form for editing a user's account information:
      <input name="email" text="text">
      <input type="submit">
 </form>  
-```
+```html
 
 </div>
 
@@ -757,7 +757,7 @@ public class User {
 
    //Getters & Setters
 }
-```
+```html
 
 </div>
 
@@ -785,7 +785,7 @@ public String submit(User user) {
    userService.add(user);
    return "successPage";
 }
-```
+```html
 
 </div>
 
@@ -811,7 +811,7 @@ Here is the typical request:
 POST /addUser
 ...
 userid=bobbytables&password=hashedpass&email=bobby@tables.com
-```
+```html
 
 </div>
 
@@ -837,7 +837,7 @@ And here is the exploit in which we set the value of the attribute `isAdmin` of 
 POST /addUser
 ...
 userid=bobbytables&password=hashedpass&email=bobby@tables.com&isAdmin=true
-```
+```html
 
 </div>
 
@@ -953,7 +953,7 @@ public class UserRegistrationFormDTO {
 
  //Getters & Setters
 }
-```
+```html
 
 </div>
 
@@ -1016,7 +1016,7 @@ public class UserController
     }
 ...
 }
-```
+```html
 
 </div>
 
@@ -1064,7 +1064,7 @@ public class UserController
    }
 ...
 }
-```
+```html
 
 </div>
 
@@ -1132,7 +1132,7 @@ var User = mongoose.model('User', UserSchema);
 
 _ = require('underscore');
 var user = new User(_.pick(req.body, User.userCreateSafeFields));
-```
+```html
 
 </div>
 
@@ -1193,7 +1193,7 @@ user.massAssign(req.body);
 /** Static massUpdate method **/
 var input = { userid: 'bhelx', isAdmin: 'true' };
 User.update({ '_id': someId }, { $set: User.massUpdate(input) }, console.log);
-```
+```html
 
 </div>
 
@@ -1318,7 +1318,7 @@ class User extends Model
 
     protected $fillable = array('userid','password','email');
 }
-```
+```html
 
 </div>
 

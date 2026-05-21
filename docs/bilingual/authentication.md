@@ -199,7 +199,7 @@ IF USER_EXISTS(username) THEN
 ELSE
    RETURN Error("Invalid Username or Password!")
 ENDIF
-```
+```text
 
 It can be clearly seen that if the user doesn't exist, the application will directly throw an error. Otherwise, when the user exists and the password doesn't, it is apparent that there will be more processing before the application errors out. In return, the response time will be different for the same error, allowing the attacker to differentiate between a wrong username and a wrong password.
 
@@ -211,7 +211,7 @@ IS_VALID=LOOKUP_CREDENTIALS_IN_STORE(username, password_hash)
 IF NOT IS_VALID THEN
    RETURN Error("Invalid Username or Password!")
 ENDIF
-```
+```bash
 
 This code will go through the same process no matter what the user or the password is, allowing the application to return in approximately the same response time.
 
@@ -624,7 +624,7 @@ IF USER_EXISTS(username) THEN
 ELSE
    RETURN Error("Invalid Username or Password!")
 ENDIF
-```
+```text
 
 ユーザーが存在しない場合、アプリケーションが直接エラーを返すことが明確に分かります。一方、ユーザーは存在するがパスワードが一致しない場合、アプリケーションがエラーを返すまでにより多くの処理が行われることは明らかです。その結果、同じエラーであっても応答時間が異なり、攻撃者が誤ったユーザー名と誤ったパスワードを区別できるようになります。
 
@@ -636,7 +636,7 @@ IS_VALID=LOOKUP_CREDENTIALS_IN_STORE(username, password_hash)
 IF NOT IS_VALID THEN
    RETURN Error("Invalid Username or Password!")
 ENDIF
-```
+```bash
 
 このコードは、ユーザーやパスワードが何であっても同じプロセスを通るため、アプリケーションはほぼ同じ応答時間で返せます。
 
@@ -1654,7 +1654,7 @@ IF USER_EXISTS(username) THEN
 ELSE
    RETURN Error("Invalid Username or Password!")
 ENDIF
-```
+```html
 
 </div>
 

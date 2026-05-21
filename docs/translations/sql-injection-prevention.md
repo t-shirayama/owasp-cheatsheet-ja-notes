@@ -43,7 +43,7 @@ try {
 }
 
 ...
-```
+```text
 
 ## 主な防御策
 
@@ -72,7 +72,7 @@ String query = "SELECT account_balance FROM user_data WHERE user_name =
 PreparedStatement pstmt = connection.prepareStatement( query );
 pstmt.setString( 1, custname);
 ResultSet results = pstmt.executeQuery( );
-```
+```text
 
 #### 安全なC\# .NETプリペアドステートメントの例
 
@@ -88,7 +88,7 @@ try {
 } catch (OleDbException se) {
   // error handling
 }
-```
+```text
 
 ここではJavaと.NETの例を示しましたが、Cold FusionやClassic ASPを含むほぼすべての他の言語も、パラメータ化クエリのインターフェースをサポートしています。[Hibernate Query Language](http://hibernate.org/) (HQL) のようなSQL抽象化レイヤーにも同種のインジェクション問題、すなわち[HQL Injection](http://cwe.mitre.org/data/definitions/564.html)がありますが、同様にパラメータ化クエリをサポートしています。
 
@@ -100,7 +100,7 @@ Query unsafeHQLQuery = session.createQuery("from Inventory where productID
 // Here is a safe version of the same query using named parameters
 Query safeHQLQuery = session.createQuery("from Inventory where productID=:productid");
 safeHQLQuery.setParameter("productid", userSuppliedParameter);
-```
+```text
 
 #### 安全なプリペアドステートメントのその他の例
 
@@ -137,7 +137,7 @@ try {
 } catch (SQLException se) {
   // … logging and error handling
 }
-```
+```text
 
 #### 安全なVB .NETストアドプロシージャの例
 
@@ -153,7 +153,7 @@ try {
  Catch se As SqlException
    'error handling
  End Try
-```
+```text
 
 ### 防御策の選択肢3: 許可リストによる入力検証
 
@@ -175,7 +175,7 @@ switch(PARAM):
   ...
   default      : throw new InputValidationException("unexpected value provided"
                                                   + " for table name");
-```
+```text
 
 #### 動的SQL生成の最も安全な使用 (非推奨)
 

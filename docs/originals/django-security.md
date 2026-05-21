@@ -194,7 +194,7 @@ In the default app folder within your project, locate the `urls.py` file managin
 
 Django has built-in command [`check --deploy`](https://docs.djangoproject.com/en/stable/ref/django-admin/#cmdoption-check-deploy) for security checks. Example:
 
-```
+```bash
 $ ./manage.py check --deploy
 System check identified some issues:
 

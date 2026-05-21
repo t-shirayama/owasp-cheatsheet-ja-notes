@@ -45,7 +45,7 @@ const socket = new WebSocket('wss://app.example.com/socket');
 
 // Insecure - never use in production
 // const socket = new WebSocket('ws://app.example.com/socket');
-```
+```text
 
 See the [Transport Layer Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html) for more details.
 
@@ -64,7 +64,7 @@ Disable `permessage-deflate` compression unless specifically needed. Compression
 const wss = new WebSocket.Server({
   perMessageDeflate: false
 });
-```
+```text
 
 #### Infrastructure Configuration
 
@@ -107,7 +107,7 @@ const wss = new WebSocket.Server({
     return true;
   }
 });
-```
+```text
 
 **Important:** Use an allowlist, not a denylist. Avoid wildcards or substring matching which are error-prone.
 
@@ -132,7 +132,7 @@ function validateSession(ws, sessionId) {
   }
   return true;
 }
-```
+```text
 
 **When users log out**, close all their WebSocket connections immediately. Maintain a mapping of sessions to active connections so you can invalidate WebSocket access the moment logout occurs.
 
@@ -160,7 +160,7 @@ ws.on('message', (data) => {
 
   handleAuthorizedMessage(ws, user, message);
 });
-```
+```text
 
 ### Input Validation
 
@@ -188,7 +188,7 @@ ws.on('message', (data, isBinary) => {
 
   processBinaryData(data);
 });
-```
+```text
 
 **To prevent message replay attacks** include timestamps or nonces in messages and reject duplicates to ensure old messages cannot be maliciously resent.
 
@@ -204,7 +204,7 @@ ws.on('message', (data) => {
 
   processMessage(message);
 });
-```
+```text
 
 **Always use `JSON.parse()` instead of `eval()`** for JSON processing - `eval()` enables code execution from untrusted input.
 
@@ -214,7 +214,7 @@ const message = JSON.parse(data);
 
 // Dangerous - enables code execution
 // const message = eval('(' + data + ')');
-```
+```text
 
 See the [Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html) for more details.
 

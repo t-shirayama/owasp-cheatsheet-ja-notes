@@ -45,7 +45,7 @@ const socket = new WebSocket('wss://app.example.com/socket');
 
 // Insecure - never use in production
 // const socket = new WebSocket('ws://app.example.com/socket');
-```
+```text
 
 詳細は [Transport Layer Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html) を参照してください。
 
@@ -64,7 +64,7 @@ const socket = new WebSocket('wss://app.example.com/socket');
 const wss = new WebSocket.Server({
   perMessageDeflate: false
 });
-```
+```text
 
 #### インフラストラクチャ設定
 
@@ -107,7 +107,7 @@ const wss = new WebSocket.Server({
     return true;
   }
 });
-```
+```text
 
 **重要:** 拒否リストではなく許可リストを使用してください。ワイルドカードや部分文字列一致は誤りやすいため避けてください。
 
@@ -132,7 +132,7 @@ function validateSession(ws, sessionId) {
   }
   return true;
 }
-```
+```text
 
 **ユーザーがログアウトしたとき**は、そのユーザーのすべての WebSocket 接続をただちに閉じてください。ログアウトが発生した瞬間に WebSocket アクセスを無効化できるよう、セッションとアクティブな接続の対応関係を維持してください。
 
@@ -160,7 +160,7 @@ ws.on('message', (data) => {
 
   handleAuthorizedMessage(ws, user, message);
 });
-```
+```text
 
 ### 入力検証
 
@@ -188,7 +188,7 @@ ws.on('message', (data, isBinary) => {
 
   processBinaryData(data);
 });
-```
+```text
 
 **メッセージリプレイ攻撃を防ぐため**、メッセージにタイムスタンプまたは nonce を含め、重複を拒否して、古いメッセージが悪意を持って再送されないようにしてください。
 
@@ -204,7 +204,7 @@ ws.on('message', (data) => {
 
   processMessage(message);
 });
-```
+```text
 
 JSON 処理では、**常に `eval()` ではなく `JSON.parse()` を使用**してください。`eval()` は信頼できない入力からのコード実行を可能にします。
 
@@ -214,7 +214,7 @@ const message = JSON.parse(data);
 
 // Dangerous - enables code execution
 // const message = eval('(' + data + ')');
-```
+```text
 
 詳細は [Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html) を参照してください。
 

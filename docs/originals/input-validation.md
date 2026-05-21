@@ -100,7 +100,7 @@ Validating a U.S. Zip Code (5 digits plus optional -4)
 
 ```text
 ^\d{5}(-\d{4})?$
-```
+```text
 
 Validating U.S. State Selection From a Drop-Down Menu
 
@@ -109,7 +109,7 @@ Validating U.S. State Selection From a Drop-Down Menu
 HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|
 NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|
 TX|UT|VT|VI|VA|WA|WV|WI|WY)$
-```
+```text
 
 **Java Regex Usage Example:**
 

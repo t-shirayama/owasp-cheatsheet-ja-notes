@@ -32,11 +32,11 @@ DOM ツリーを作成するとき、ブラウザは `window` オブジェクト
 
 ```html
 <form id=x></a>
-```
+```text
 
 この場合、ブラウザはその form 要素への参照を `window` と `document` の属性 `x` として作成します。
 
-```js
+```javascript
 var obj1 = document.getElementById('x');
 var obj2 = document.x;
 var obj3 = document.x;
@@ -46,7 +46,7 @@ console.log(
  obj1 === obj2 && obj2 === obj3 &&
  obj3 === obj4 && obj4 === obj5
 ); // true
-```
+```text
 
 `window` オブジェクトや `document` オブジェクトの属性にアクセスするとき、名前付き HTML 要素への参照は、組み込み API や開発者が `window` と `document` に定義したその他の属性の検索よりも先に扱われます。これは[名前付きプロパティアクセス](https://html.spec.whatwg.org/multipage/nav-history-apis.html#named-access-on-the-window-object)としても知られています。この挙動を知らない開発者は、リモートコンテンツを取得する URL など、機微な操作に window/document 属性の内容を使用することがあり、攻撃者は名前が衝突するマークアップを注入してこれを悪用できます。カスタム属性や変数と同様に、組み込みブラウザ API も DOM Clobbering によって覆い隠されることがあります。
 
@@ -57,7 +57,7 @@ console.log(
 ```javascript
 let redirectTo = window.redirectTo || '/profile/';
 location.assign(redirectTo);
-```
+```text
 
 攻撃者は次のことができます。
 
@@ -71,7 +71,7 @@ var script = document.createElement('script');
 let src = window.config.url || 'script.js';
 s.src = src;
 document.body.appendChild(s);
-```
+```text
 
 攻撃者はマークアップ `<a id=config><a id=config name=url href='malicious.js'>` を注入して追加の JavaScript コードを読み込ませ、任意のクライアントサイドコード実行を成立させることができます。
 
@@ -113,9 +113,9 @@ OWASP は、HTML サニタイズに [DOMPurify](https://github.com/cure53/DOMPur
 
 カスタム変数やカスタムプロパティの clobbering にも対応するには、`SANITIZE_NAMED_PROPS` 設定を有効にする必要があります。
 
-```js
+```javascript
 var clean = DOMPurify.sanitize(dirty, {SANITIZE_NAMED_PROPS: true});
-```
+```text
 
 これにより、名前付きプロパティと JavaScript 変数の名前空間が、`user-content-` 文字列をプレフィックスとして付与することで分離されます。
 
@@ -123,7 +123,7 @@ var clean = DOMPurify.sanitize(dirty, {SANITIZE_NAMED_PROPS: true});
 
 新しいブラウザ組み込みの [Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API) は、[デフォルト設定](https://wicg.github.io/sanitizer-api/#dom-clobbering)では DOM Clobbering を防止しませんが、名前付きプロパティを削除するように設定できます。
 
-```js
+```javascript
 const sanitizerInstance = new Sanitizer({
   blockAttributes: [
     {'name': 'id', elements: '*'},

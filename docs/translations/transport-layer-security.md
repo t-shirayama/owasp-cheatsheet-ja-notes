@@ -64,19 +64,19 @@ ssl_conf = ssl_module
 system_default = tls_system_default
 [tls_system_default]
 Groups = x25519:prime256v1:x448:ffdhe2048:ffdhe3072
-```
+```text
 
 apache 設定は次のようになります。
 
 ```text
 SSLOpenSSLConfCmd Groups x25519:secp256r1:ffdhe3072
-```
+```text
 
 NGINX で同じグループを設定すると、次のようになります。
 
 ```text
 ssl_ecdh_curve x25519:secp256r1:ffdhe3072;
-```
+```text
 
 TLS 1.2 以前のバージョンでは、Diffie-Hellman パラメータを設定しないことが推奨されます。
 

@@ -26,13 +26,13 @@ The Laravel Framework provides in-built security features and is meant to be sec
 
 ```ini
 APP_DEBUG=false
-```
+```bash
 
 - Make sure your application key has been generated. Laravel applications use the app key for symmetric encryption and SHA256 hashes such as cookie encryption, signed URLs, password reset tokens and session data encryption. To generate the app key, you may run the `key:generate` Artisan command:
 
 ```bash
 php artisan key:generate
-```
+```text
 
 - Make sure your PHP configuration is secure. You may refer the [PHP Configuration Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/PHP_Configuration_Cheat_Sheet.html) for more information on secure PHP configuration settings.
 
@@ -59,37 +59,37 @@ protected $middlewareGroups = [
     ],
     ...
 ];
-```
+```text
 
 - Enable the `HttpOnly` attribute on your session cookies via your `config/session.php` file, so that your session cookies are inaccessible from JavaScript:
 
 ```php
 'http_only' => true,
-```
+```text
 
 - Unless you are using sub-domain route registrations in your Laravel application, it is recommended to set the cookie `domain` attribute to null so that only the same origin (excluding subdomains) can set the cookie. This can be configured in your `config/session.php` file:
 
 ```php
 'domain' => null,
-```
+```text
 
 - Set your `SameSite` cookie attribute to `lax` or `strict` in your `config/session.php` file to restrict your cookies to a first-party or same-site context:
 
 ```php
 'same_site' => 'lax',
-```
+```text
 
 - If your application is HTTPS only, it is recommended to set the `secure` configuration option in your `config/session.php` file to `true` to protect against man-in-the-middle attacks. If your application has a combination of HTTP and HTTPS, then it is recommended to set this value to `null` so that the secure attribute is set automatically when serving HTTPS requests:
 
 ```php
 'secure' => null,
-```
+```text
 
 - Ensure that you have a low session idle timeout value. [OWASP recommends](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html) a 2-5 minutes idle timeout for high value applications and 15-30 minutes for low risk applications. This can be configured in your `config/session.php` file:
 
 ```php
 'lifetime' => 15,
-```
+```text
 
 You may also refer the [Cookie Security Guide](https://owasp.org/www-chapter-london/assets/slides/OWASPLondon20171130_Cookie_Security_Myths_Misconceptions_David_Johansson.pdf) to learn more about cookie security and the cookie attributes mentioned above.
 
@@ -140,7 +140,7 @@ Route::any('/profile', function (Request $request) {
 
     return response()->json(compact('user'));
 })->middleware('auth');
-```
+```text
 
 The above profile route allows the logged in user to change their profile information.
 
@@ -164,13 +164,13 @@ By default, Laravel's Eloquent ORM protects against SQL injection by parameteriz
 use App\Models\User;
 
 User::where('email', $email)->get();
-```
+```text
 
 The code above fires the query below:
 
 ```sql
 select * from `users` where `email` = ?
-```
+```text
 
 So, even if `$email` is untrusted user input data, you are protected from SQL injection attacks.
 
@@ -186,7 +186,7 @@ use App\Models\User;
 
 User::whereRaw('email = "'.$request->input('email').'"')->get();
 DB::table('users')->whereRaw('email = "'.$request->input('email').'"')->get();
-```
+```text
 
 Both lines of code actually execute the same query, which is vulnerable to SQL injection as the query does not use SQL bindings for untrusted user input data.
 
@@ -194,7 +194,7 @@ The code above fires the following query:
 
 ```sql
 select * from `users` where `email` = "value of email query parameter"
-```
+```text
 
 Always remember to use SQL bindings for request data. We can fix the above code by making the following modification:
 
@@ -202,7 +202,7 @@ Always remember to use SQL bindings for request data. We can fix the above code 
 use App\Models\User;
 
 User::whereRaw('email = ?', [$request->input('email')])->get();
-```
+```text
 
 We can even use named SQL bindings like so:
 
@@ -210,7 +210,7 @@ We can even use named SQL bindings like so:
 use App\Models\User;
 
 User::whereRaw('email = :email', ['email' => $request->input('email')])->get();
-```
+```text
 
 ### Column Name SQL Injection
 
@@ -223,7 +223,7 @@ use App\Models\User;
 
 User::where($request->input('colname'), 'somedata')->get();
 User::query()->orderBy($request->input('sortBy'))->get();
-```
+```text
 
 It is important to note that even though Laravel has some in-built features such as wrapping column names to protect against the above SQL injection vulnerabilities, some database engines (depending on versions and configurations) may still be vulnerable because binding column names is not supported by databases.
 
@@ -236,7 +236,7 @@ use App\Models\User;
 
 $request->validate(['sortBy' => 'in:price,updated_at']);
 User::query()->orderBy($request->validated()['sortBy'])->get();
-```
+```text
 
 ### Validation Rule SQL Injection
 
@@ -250,7 +250,7 @@ use Illuminate\Validation\Rule;
 $request->validate([
     'id' => Rule::unique('users')->ignore($id, $request->input('colname'))
 ]);
-```
+```text
 
 Behind the scenes, the above code triggers the following query:
 
@@ -259,7 +259,7 @@ use App\Models\User;
 
 $colname = $request->input('colname');
 User::where($colname, $request->input('id'))->where($colname, '<>', $id)->count();
-```
+```text
 
 Since the column name is dictated by user input, it is similar to column name SQL injection.
 
@@ -273,15 +273,15 @@ Laravel also offers displaying unescaped data using the unescaped syntax `{!! !!
 
 For instance, if you have something like this in any of your Blade templates, it would result in a vulnerability:
 
-```blade
+```php
 {!! request()->input('somedata') !!}
-```
+```text
 
 This, however, is safe to do:
 
-```blade
+```php
 {{ request()->input('somedata') }}
-```
+```text
 
 For other information on XSS prevention that is not specific to Laravel, you may refer the [Cross Site Scripting Prevention Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).
 
@@ -297,7 +297,7 @@ Always validate the file type (extension or MIME type) and file size to avoid st
 $request->validate([
     'photo' => 'file|size:100|mimes:jpg,bmp,png'
 ]);
-```
+```text
 
 Storage DOS attacks exploit missing file size validations and upload massive files to cause a denial of service (DOS) by exhausting the disk space.
 
@@ -317,7 +317,7 @@ Route::post('/upload', function (Request $request) {
 
     return back();
 });
-```
+```text
 
 This route saves a file to a directory specific to a user ID. Here, we rely on the `filename` user input data and this may result in a vulnerability as the filename could be something like `../2/filename.pdf`. This will upload the file in user ID 2's directory instead of the directory pertaining to the current logged in user.
 
@@ -329,7 +329,7 @@ Route::post('/upload', function (Request $request) {
 
     return back();
 });
-```
+```text
 
 ### Avoid Processing ZIP or XML Files If Possible
 
@@ -349,7 +349,7 @@ Consider the following code:
 Route::get('/download', function(Request $request) {
     return response()->download(storage_path('content/').$request->input('filename'));
 });
-```
+```text
 
 Here, the filename is not stripped of directory information, so a malformed filename such as `../../.env` could expose your application credentials to potential attackers.
 
@@ -359,7 +359,7 @@ Similar to unrestricted file uploads, you should use the `basename` PHP function
 Route::get('/download', function(Request $request) {
     return response()->download(storage_path('content/').basename($request->input('filename')));
 });
-```
+```text
 
 ## Open Redirection
 
@@ -371,7 +371,7 @@ Consider the following code:
 Route::get('/redirect', function (Request $request) {
    return redirect($request->input('url'));
 });
-```
+```text
 
 This code redirects the user to any external URL provided by user input. This could enable attackers to create seemingly safe URLs like `https://example.com/redirect?url=http://evil.com`. For instance, attackers may use a URL of this type to spoof password reset emails and lead victims to expose their credentials on the attacker's website.
 
@@ -394,7 +394,7 @@ protected $middlewareGroups = [
          ...
     ],
 ];
-```
+```text
 
 Next, for all your `POST` request forms, you may use the `@csrf` blade directive to generate the hidden CSRF input token fields:
 
@@ -405,7 +405,7 @@ Next, for all your `POST` request forms, you may use the `@csrf` blade directive
     <!-- Equivalent to... -->
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 </form>
-```
+```text
 
 For AJAX requests, you can setup the [X-CSRF-Token header](https://laravel.com/docs/csrf#csrf-x-csrf-token).
 
@@ -422,7 +422,7 @@ public function verifyDomain(Request $request)
 {
     exec('whois '.$request->input('domain'));
 }
-```
+```text
 
 The above code is vulnerable as the user data is not escaped properly. To do so, you may use the `escapeshellcmd` and/or `escapeshellarg` PHP functions.
 
@@ -436,7 +436,7 @@ Some examples are:
 unserialize($request->input('data'));
 eval($request->input('data'));
 extract($request->all());
-```
+```text
 
 In general, avoid passing any untrusted input data to these dangerous functions.
 
@@ -459,7 +459,7 @@ Apply a limit directly to a single route using the `throttle` middleware:
 Route::get('/profile', function () {
     return 'User profile';
 })->middleware('throttle:10,1'); // 10 requests per minute
-```
+```text
 
 ### 2. Per Route Group
 
@@ -470,7 +470,7 @@ Route::middleware('throttle:20,1')->group(function () {
     Route::get('/posts', fn () => 'Posts');
     Route::get('/comments', fn () => 'Comments');
 });
-```
+```text
 
 ### 3. Custom Rate Limiter
 
@@ -483,13 +483,13 @@ use Illuminate\Support\Facades\RateLimiter;
 RateLimiter::for('custom-limit', function ($request) {
     return Limit::perMinute(5)->by($request->user()?->id ?: $request->ip());
 });
-```
+```text
 
 Apply the custom limiter to your routes:
 
 ```php
 Route::middleware('throttle:custom-limit')->get('/dashboard', fn () => 'Dashboard');
-```
+```text
 
 ### 4. Global API / Web Rate Limiting
 

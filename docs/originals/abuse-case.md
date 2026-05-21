@@ -43,7 +43,7 @@ to start building and handling the list of abuse cases and then customize the el
 proposed to its context/culture in order to, finally, build its own method.
 
 This cheat sheet can be seen as a getting-started tutorial.
-```
+```text
 
 ### Context & approach
 
@@ -66,7 +66,7 @@ An **Abuse Case** can be defined as:
 A way to use a feature that was not expected by the implementer,
 allowing an attacker to influence the feature or outcome of use of
 the feature based on the attacker action (or input).
-```
+```text
 
 Synopsis defines an **Abuse Case** like this:
 
@@ -80,7 +80,7 @@ positive user experience, are attacked.
 
 Abuse cases can also be an effective way to drive security requirements
 that lead to proper protection of these critical business use cases.
-```
+```text
 
 [Synopsis source](https://www.synopsys.com/blogs/software-security/abuse-cases-can-drive-security-requirements.html)
 
@@ -96,7 +96,7 @@ The project [OWASP Open SAMM](https://owasp.org/www-project-samm/) proposes the 
 Misuse and abuse cases describe unintended and malicious use scenarios of the application, describing how an attacker could do this. Create misuse and abuse cases to misuse or exploit the weaknesses of controls in software features to attack an application. Use abuse-case models for an application to serve as fuel for identification of concrete security tests that directly or indirectly exploit the abuse scenarios.
 
 Abuse of functionality, sometimes referred to as a “business logic attack”, depends on the design and implementation of application functions and features. An example is using a password reset flow to enumerate accounts. As part of business logic testing, identify the business rules that are important for the application and turn them into experiments to verify whether the application properly enforces the business rule. For example, on a stock trading application, is the attacker allowed to start a trade at the beginning of the day and lock in a price, hold the transaction open until the end of the day, then complete the sale if the stock price has risen or cancel if the price dropped?
-```
+```text
 
 Open SAMM source: [Verification Requirement Driven Testing Stream B](https://owaspsamm.org/model/verification/requirements-driven-testing/stream-b/)
 

@@ -40,7 +40,7 @@ If you really, **really** have to do this, you should secure it. Check how to do
 ```yaml
 volumes:
   - "/var/run/docker.sock:/var/run/docker.sock"
-```
+```bash
 
 ### RULE \#2 - Set a user
 
@@ -50,16 +50,16 @@ Configuring the container to use an unprivileged user is the best way to prevent
 
 ```bash
 docker run -u 4000 alpine
-```
+```text
 
 2. During build time. Simply add user in Dockerfile and use it. For example:
 
-```dockerfile
+```docker
 FROM alpine
 RUN groupadd -r myuser && useradd -r -g myuser myuser
 #    <HERE DO WHAT YOU HAVE TO DO AS A ROOT USER LIKE INSTALLING PACKAGES ETC.>
 USER myuser
-```
+```text
 
 3. Enable user namespace support (`--userns-remap=default`) in [Docker daemon](https://docs.docker.com/engine/security/userns-remap/#enable-userns-remap-on-the-daemon)
 
@@ -78,7 +78,7 @@ spec:
       image: gcr.io/google-samples/node-hello:1.0
       securityContext:
         runAsUser: 4000 # <-- This is the pod user ID
-```
+```bash
 
 As a Kubernetes cluster administrator, you can configure a hardened default using the [`Restricted` level](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted) with built-in [Pod Security admission controller](https://kubernetes.io/docs/concepts/security/pod-security-admission/), if greater customization is desired consider using [Admission Webhooks](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks) or a [third party alternative](https://kubernetes.io/docs/concepts/security/pod-security-standards/#alternatives).
 
@@ -92,7 +92,7 @@ The most secure setup is to drop all capabilities `--cap-drop all` and then add 
 
 ```bash
 docker run --cap-drop all --cap-add CHOWN alpine
-```
+```text
 
 **And remember: Do not run containers with the _--privileged_ flag!!!**
 
@@ -112,7 +112,7 @@ spec:
           drop:
             - ALL
           add: ["CHOWN"]
-```
+```text
 
 As a Kubernetes cluster administrator, you can configure a hardened default using the [`Restricted` level](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted) with built-in [Pod Security admission controller](https://kubernetes.io/docs/concepts/security/pod-security-admission/), if greater customization is desired consider using [Admission Webhooks](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks) or a [third party alternative](https://kubernetes.io/docs/concepts/security/pod-security-standards/#alternatives).
 
@@ -133,7 +133,7 @@ spec:
       image: gcr.io/google-samples/node-hello:1.0
       securityContext:
         allowPrivilegeEscalation: false
-```
+```bash
 
 As a Kubernetes cluster administrator, you can configure a hardened default using the [`Restricted` level](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted) with built-in [Pod Security admission controller](https://kubernetes.io/docs/concepts/security/pod-security-admission/), if greater customization is desired consider using [Admission Webhooks](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks) or a [third party alternative](https://kubernetes.io/docs/concepts/security/pod-security-standards/#alternatives).
 
@@ -163,7 +163,7 @@ docker run -p 8000:8000 myimage
 
 # Safe: binds only to localhost
 docker run -p 127.0.0.1:8000:8000 myimage
-```
+```text
 
 In a Docker Compose file:
 
@@ -173,7 +173,7 @@ services:
     image: myimage
     ports:
       - "127.0.0.1:8000:8000"  # safe — localhost only
-```
+```text
 
 **Option 2 — Use `ufw-docker` (or equivalent) to enforce firewall rules over Docker networks:**
 
@@ -185,7 +185,7 @@ sudo ufw-docker install
 
 # Allow external access to a specific container port
 sudo ufw-docker allow mycontainer 8000/tcp
-```
+```bash
 
 Refer to the [Docker and iptables documentation](https://docs.docker.com/engine/network/packet-filtering-firewalls/) for a deeper explanation of how Docker interacts with the host firewall.
 
@@ -223,13 +223,13 @@ You can also do this for Kubernetes: [Assign Memory Resources to Containers and 
 
 ```bash
 docker run --read-only alpine sh -c 'echo "whatever" > /tmp'
-```
+```bash
 
 If an application inside a container has to save something temporarily, combine `--read-only` flag with `--tmpfs` like this:
 
 ```bash
 docker run --read-only --tmpfs /tmp alpine sh -c 'echo "whatever" > /tmp/file'
-```
+```text
 
 The Docker Compose `compose.yml` equivalent would be:
 
@@ -239,7 +239,7 @@ services:
   alpine:
     image: alpine
     read_only: true
-```
+```text
 
 Equivalent in Kubernetes in [Security Context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/):
 
@@ -254,20 +254,20 @@ spec:
       image: gcr.io/google-samples/node-hello:1.0
       securityContext:
         readOnlyRootFilesystem: true
-```
+```bash
 
 In addition, if the volume is mounted only for reading **mount them as a read-only**
 It can be done by appending `:ro` to the `-v` like this:
 
 ```bash
 docker run -v volume-name:/path/in/container:ro alpine
-```
+```bash
 
 Or by using `--mount` option:
 
 ```bash
 docker run --mount source=volume-name,destination=/path/in/container,readonly alpine
-```
+```text
 
 ### RULE \#9 - Integrate container scanning tools into your CI/CD pipeline
 
@@ -327,7 +327,7 @@ By default, the Docker daemon is configured to have a base logging level of `inf
 
 ```bash
 ps aux | grep '[d]ockerd.*--log-level' | awk '{for(i=1;i<=NF;i++) if ($i ~ /--log-level/) print $i}'
-```
+```bash
 
 Setting an appropriate log level, configures the Docker daemon to log events that you would want to review later. A base log level of 'info' and above would capture all logs except the debug logs. Until and unless required, you should not run docker daemon at the 'debug' log level.
 
@@ -349,7 +349,7 @@ Docker Secrets provide a secure way to store and manage sensitive data such as p
 ```bash
 docker secret create my_secret /path/to/super-secret-data.txt
 docker service create --name web --secret my_secret nginx:latest
-```
+```text
 
 Or for Docker Compose:
 

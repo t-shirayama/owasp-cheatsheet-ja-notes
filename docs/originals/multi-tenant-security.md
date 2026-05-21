@@ -53,7 +53,7 @@ This cheat sheet provides best practices to secure multi-tenant applications, en
 def get_tenant_data(request):
     tenant_id = request.headers.get("X-Tenant-ID")  # Attacker can modify!
     return db.execute("SELECT * FROM data WHERE tenant_id = :tid", {"tid": tenant_id})
-```
+```xml
 
 </details>
 
@@ -115,7 +115,7 @@ def require_tenant(func):
             raise SecurityException("Tenant context required")
         return await func(*args, **kwargs)
     return wrapper
-```
+```xml
 
 </details>
 
@@ -150,7 +150,7 @@ CREATE POLICY tenant_isolation_policy ON customers
 -- Force RLS for table owners too (important!)
 ALTER TABLE orders FORCE ROW LEVEL SECURITY;
 ALTER TABLE customers FORCE ROW LEVEL SECURITY;
-```
+```xml
 
 </details>
 
@@ -222,7 +222,7 @@ def tenant_session(tenant_id: str):
         raise
     finally:
         session.close()
-```
+```xml
 
 </details>
 
@@ -244,7 +244,7 @@ async def get_document(document_id: str):
     if not doc:
         raise HTTPException(404)
     return doc  # Could return another tenant's document!
-```
+```xml
 
 </details>
 
@@ -311,7 +311,7 @@ async def get_document(document_id: UUID, db: Session = Depends(get_db)):
     if not doc:
         raise HTTPException(404, "Document not found")  # Don't reveal if it exists for other tenant
     return doc
-```
+```xml
 
 </details>
 
@@ -333,7 +333,7 @@ def get_user_preferences(user_id: str):
     if cached:
         return json.loads(cached)
     # ...
-```
+```xml
 
 </details>
 
@@ -427,7 +427,7 @@ def tenant_cached(key_template: str, ttl: int = 3600):
 async def get_user_preferences(user_id: str):
     # This is automatically cached per-tenant
     return await db.fetch_preferences(user_id)
-```
+```xml
 
 </details>
 
@@ -546,7 +546,7 @@ class RateLimitMiddleware:
         response.headers["X-RateLimit-Remaining-Day"] = str(result["remaining_day"])
 
         return response
-```
+```xml
 
 </details>
 
@@ -661,7 +661,7 @@ class TenantFileStorage:
                     Bucket=self.bucket,
                     Delete={'Objects': [{'Key': obj['Key']} for obj in objects]}
                 )
-```
+```xml
 
 </details>
 
@@ -824,7 +824,7 @@ class TenantLifecycleManager:
         await self.db.update_tenant_status(tenant_id, TenantStatus.DELETED)
 
         await self.audit.log("tenant_deletion_completed", {"tenant_id": tenant_id})
-```
+```xml
 
 </details>
 

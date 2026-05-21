@@ -64,7 +64,7 @@ Some "special" characters that are allowed in Distinguished Names and do not nee
 
 ```text
 * ( ) . & - _ [ ] ` ~ | @ $ % ^ ? : { } ! '
-```
+```text
 
 #### Search Filter Escaping
 
@@ -79,7 +79,7 @@ Example:
 (manager=cn=Freeman Dyson,ou=Physics,dc=Caltech,dc=edu)
 (manager=cn=Albert Einstein,ou=Physics,dc=Princeton,dc=edu)
 ))
-```
+```text
 
 When building LDAP queries in application code, you MUST escape any untrusted data that is added to any LDAP query. There are two forms of LDAP escaping. Encoding for LDAP Search and Encoding for LDAP DN (distinguished name). The proper escaping depends on whether you are sanitizing input for a search filter, or you are using a DN as a username-like credential for accessing some resource.
 
@@ -87,7 +87,7 @@ Some "special" characters that are allowed in search filters and must be escaped
 
 ```text
 * ( ) \ NUL
-```
+```text
 
 For more information on search filter escaping visit [RFC4515](https://datatracker.ietf.org/doc/html/rfc4515#section-3).
 
@@ -108,7 +108,7 @@ if (!userSN.matches("[\\w\\s]*")) {
 
 String filter = "(sn = " + userSN + ")";
 // ... remainder of LDAPInjection.searchRecord()...
-```
+```text
 
 When a database field must include special characters, it is critical to ensure that the authentic data is stored in sanitized form in the
 database and also that any user input is normalized before the validation or comparison takes place. Using characters that have special meanings in JNDI

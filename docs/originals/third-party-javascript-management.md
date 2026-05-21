@@ -89,7 +89,7 @@ This is where the vendor provides the host with the JavaScript and the host puts
         <script type="text/javascript">/* 3rd party vendor javascript here */</script>
     </body>
 </html>
-```
+```text
 
 ### JavaScript Request to Vendor
 
@@ -106,7 +106,7 @@ This is where one or a few lines of code on the host page each request a JavaScr
         <!-- /3rd party vendor javascript -->
     </body>
 </html>
-```
+```text
 
 ### Indirect request to Vendor through Tag Manager
 
@@ -143,7 +143,7 @@ Similar to java frameworks that provide functions and global data to the develop
        <!-- /Tag Manager -->
    </body>
 </html>`
-```
+```text
 
 #### Security Problems with requesting Tags
 
@@ -221,7 +221,7 @@ Both of these tools be used by sites to sandbox/clean DOM data.
    integrity="sha384-MBO5IDfYaE6c6Aao94oZrIOiC7CGiSNE64QUbHNPhzk8Xhm0djE6QqTpL0HzTUxk"
    crossorigin="anonymous">
 </script>
-```
+```text
 
 It is important to know that in order for SRI to work, the vendor host needs [CORS](https://www.w3.org/TR/cors/) enabled. Also it is good idea to monitor vendor JavaScript for changes in regular way. Because sometimes you can get **secure** but **not working** third-party code when the vendor decides to update it.
 

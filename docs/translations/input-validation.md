@@ -100,7 +100,7 @@
 
 ```text
 ^\d{5}(-\d{4})?$
-```
+```text
 
 ドロップダウンメニューからの米国州選択の検証
 
@@ -109,7 +109,7 @@
 HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|
 NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|
 TX|UT|VT|VI|VA|WA|WV|WI|WY)$
-```
+```text
 
 **Java 正規表現の使用例:**
 

@@ -35,21 +35,21 @@ Insecure Direct Object Reference (IDOR) is a vulnerability that arises when atta
 
 For instance, when a user accesses their profile, the application might generate a URL like this:
 
-```
+```text
 https://example.org/users/123
-```
+```text
 
 The 123 in the URL is a direct reference to the user's record in the database, often represented by the primary key. If an attacker changes this number to 124 and gains access to another user's information, the application is vulnerable to Insecure Direct Object Reference. This happens because the app didn't properly check if the user had permission to view data for user 124 before displaying it.
 
 In some cases, the identifier may not be in the URL, but rather in the POST body, as shown in the following example:
 
-```
+```html
 <form action="/update_profile" method="post">
   <!-- Other fields for updating name, email, etc. -->
   <input type="hidden" name="user_id" value="12345">
   <button type="submit">Update Profile</button>
 </form>
-```
+```text
 
 In this example, the application allows users to update their profiles by submitting a form with the user ID in a hidden field. If the app doesn't perform proper access control on the server-side, attackers can manipulate the "user_id" field to modify profiles of other users without authorization.
 
@@ -65,12 +65,12 @@ Avoid exposing identifiers in URLs and POST bodies if possible. Instead, determi
 
 When looking up objects based on primary keys, use datasets that users have access to. For example, in Ruby on Rails:
 
-```
+```text
 // vulnerable, searches all projects
 @project = Project.find(params[:id])
 // secure, searches projects related to the current user
 @project = @current_user.projects.find(params[:id])
-```
+```text
 
 Verify the user's permission every time an access attempt is made. Implement this structurally using the recommended approach for your web framework.
 
@@ -90,7 +90,7 @@ Insecure Direct Object Reference (IDOR) は、Web アプリケーションの UR
 
 ```text
 https://example.org/users/123
-```
+```text
 
 URL 内の `123` は、データベース内のユーザーレコードへの直接参照であり、多くの場合は主キーで表されます。攻撃者がこの番号を `124` に変更し、別ユーザーの情報へアクセスできる場合、そのアプリケーションは Insecure Direct Object Reference に対して脆弱です。これは、アプリケーションがユーザー `124` のデータを表示する前に、そのユーザーへ閲覧権限があるかを適切に確認していないために起こります。
 
@@ -102,7 +102,7 @@ URL 内の `123` は、データベース内のユーザーレコードへの直
   <input type="hidden" name="user_id" value="12345">
   <button type="submit">Update Profile</button>
 </form>
-```
+```text
 
 この例では、アプリケーションは hidden フィールド内のユーザー ID を含むフォームを送信することで、ユーザーが自分のプロフィールを更新できるようにしています。アプリケーションがサーバー側で適切なアクセス制御を実施していない場合、攻撃者は `user_id` フィールドを操作し、認可なしに他のユーザーのプロフィールを変更できます。
 
@@ -123,7 +123,7 @@ IDOR を緩和するには、ユーザーがアクセスしようとする各オ
 @project = Project.find(params[:id])
 // secure, searches projects related to the current user
 @project = @current_user.projects.find(params[:id])
-```
+```text
 
 アクセス試行が行われるたびに、ユーザーの権限を検証します。使用している Web フレームワークの推奨アプローチを使い、これを構造的に実装します。
 
@@ -174,13 +174,13 @@ For instance, when a user accesses their profile, the application might generate
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-```
+```text
 https://example.org/users/123
-```
+```text
 
 ```text
 https://example.org/users/123
-```
+```html
 
 </div>
 
@@ -217,13 +217,13 @@ In some cases, the identifier may not be in the URL, but rather in the POST body
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-```
+```html
 <form action="/update_profile" method="post">
   <!-- Other fields for updating name, email, etc. -->
   <input type="hidden" name="user_id" value="12345">
   <button type="submit">Update Profile</button>
 </form>
-```
+```text
 
 ```html
 <form action="/update_profile" method="post">
@@ -231,7 +231,7 @@ In some cases, the identifier may not be in the URL, but rather in the POST body
   <input type="hidden" name="user_id" value="12345">
   <button type="submit">Update Profile</button>
 </form>
-```
+```html
 
 </div>
 
@@ -321,12 +321,12 @@ When looking up objects based on primary keys, use datasets that users have acce
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-```
+```text
 // vulnerable, searches all projects
 @project = Project.find(params[:id])
 // secure, searches projects related to the current user
 @project = @current_user.projects.find(params[:id])
-```
+```text
 
 ```ruby
 // vulnerable, searches all projects

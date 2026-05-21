@@ -115,7 +115,9 @@ Although RBAC has a long history and remains popular among software developers t
 
 Applications often expose the internal object identifiers (such as an account number or Primary Key in a database) that are used to locate and reference an object. This ID may be exposed as a query parameter, path variable, "hidden" form field or elsewhere. For example:
 
-```https://mybank.com/accountTransactions?acct_id=901```
+```text
+https://mybank.com/accountTransactions?acct_id=901
+```
 
 Based on this URL, one could reasonably assume that the application will return a listing of transactions and that the transactions returned will be restricted to a particular account - the account indicated in the `acct_id` param. But what would happen if the user changed the value of the `acct_id` param to another value such as `523`. Will the user be able to view transactions associated with another account even if it does not belong to him? If not, will the failure simply be the result of the account "523" not existing/not being found or will it be due to a failed access control check? Although this example may be an oversimplification, it illustrates a very common security flaw in application development - [CWE 639: Authorization Bypass Through User-Controlled Key](https://cwe.mitre.org/data/definitions/639.html).  When exploited, this weakness can result in authorization bypasses, horizontal privilege escalation and, less commonly, vertical privilege escalation (see [CWE-639](https://cwe.mitre.org/data/definitions/639.html)). This type of vulnerability also represents a form of Insecure Direct Object Reference (IDOR). The following paragraphs will describe the weakness and possible mitigations.
 
@@ -251,7 +253,7 @@ RBAC は長い歴史を持ち、現在でもソフトウェア開発者の間で
 
 ```text
 https://mybank.com/accountTransactions?acct_id=901
-```
+```text
 
 この URL に基づくと、アプリケーションが取引一覧を返し、返される取引が特定の口座、つまり `acct_id` パラメータで示された口座に限定されると合理的に想定できます。しかし、ユーザーが `acct_id` パラメータの値を `523` のような別の値に変更した場合はどうなるでしょうか。その口座が自分のものでなくても、ユーザーは別口座に関連する取引を表示できるでしょうか。表示できない場合、その失敗は単に口座 `523` が存在しない、または見つからない結果でしょうか。それともアクセス制御チェックの失敗によるものでしょうか。この例は単純化しすぎているかもしれませんが、アプリケーション開発で非常に一般的なセキュリティ欠陥である [CWE 639: Authorization Bypass Through User-Controlled Key](https://cwe.mitre.org/data/definitions/639.html) を示しています。この弱点が悪用されると、認可バイパス、水平権限昇格、よりまれには垂直権限昇格が生じる可能性があります ([CWE-639](https://cwe.mitre.org/data/definitions/639.html) を参照)。この種の脆弱性は、Insecure Direct Object Reference (IDOR) の一形態でもあります。以下の段落では、この弱点と可能な緩和策を説明します。
 

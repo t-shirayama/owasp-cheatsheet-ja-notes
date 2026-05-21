@@ -119,14 +119,14 @@ As the behavior using the elements above is different between the browsers, eith
 - For [HTML links](https://www.scaler.com/topics/html/html-links/), add the attribute `rel="noopener noreferrer"` to every link.
 - For JavaScript, use this function to open a window (or tab):
 
-``` javascript
+```javascript
 function openPopup(url, name, windowFeatures){
   //Open the popup and set the opener and referrer policy instruction
   var newWindow = window.open(url, name, 'noopener,noreferrer,' + windowFeatures);
   //Reset the opener link
   newWindow.opener = null;
 }
-```
+```bash
 
 - Add the HTTP response header `Referrer-Policy: no-referrer` to every HTTP response sent by the application ([Header Referrer-Policy information](https://owasp.org/www-project-secure-headers/). This configuration will ensure that no referrer information is sent along with requests from the page.
 
@@ -159,7 +159,7 @@ It is possible to have a [fine-grained control](https://html.spec.whatwg.org/mul
 
 ```html
 <input type="text" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></input>
-```
+```text
 
 Text areas and input fields for PII (name, email, address, phone number) and login credentials (username, password) should be prevented from being stored in the browser. Use these HTML5 attributes to prevent the browser from storing PII from your form:
 
@@ -284,7 +284,7 @@ function openPopup(url, name, windowFeatures){
   //Reset the opener link
   newWindow.opener = null;
 }
-```
+```bash
 
 - アプリケーションが送信するすべての HTTP レスポンスに、HTTP レスポンスヘッダー `Referrer-Policy: no-referrer` を追加します ([Header Referrer-Policy information](https://owasp.org/www-project-secure-headers/)。この設定により、ページからのリクエストでリファラー情報が送信されないことが保証されます。
 
@@ -317,7 +317,7 @@ function openPopup(url, name, windowFeatures){
 
 ```html
 <input type="text" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></input>
-```
+```text
 
 PII (名前、メール、住所、電話番号) とログイン認証情報 (ユーザー名、パスワード) のテキストエリアおよび入力フィールドは、ブラウザに保存されないようにするべきです。フォームから PII をブラウザに保存させないため、次の HTML5 属性を使用してください。
 
@@ -750,14 +750,14 @@ As the behavior using the elements above is different between the browsers, eith
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-``` javascript
+```javascript
 function openPopup(url, name, windowFeatures){
   //Open the popup and set the opener and referrer policy instruction
   var newWindow = window.open(url, name, 'noopener,noreferrer,' + windowFeatures);
   //Reset the opener link
   newWindow.opener = null;
 }
-```
+```text
 
 ```javascript
 function openPopup(url, name, windowFeatures){
@@ -766,7 +766,7 @@ function openPopup(url, name, windowFeatures){
   //Reset the opener link
   newWindow.opener = null;
 }
-```
+```bash
 
 </div>
 

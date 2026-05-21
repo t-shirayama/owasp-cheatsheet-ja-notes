@@ -89,19 +89,19 @@ At a minimum capture:
 
 ```bash
 syft packages dir:. -o cyclonedx-json > sbom-cyclonedx.json
-```
+```text
 
 - Syft to SPDX JSON:
 
 ```bash
 syft packages dir:. -o spdx-json > sbom-spdx.json
-```
+```text
 
 - CycloneDX CLI (from a built artifact):
 
 ```bash
 cyclonedx-bom -o bom.xml --input-pkg target/my-app.jar
-```
+```text
 
 (Place generator commands in your build scripts or CI job and fail the build if SBOM generation fails.)
 
@@ -197,7 +197,7 @@ jobs:
           cosign sign-blob --key ${{ secrets.COSIGN_KEY }} --output-signature sbom.json.sig sbom.json
       - name: Push image
         run: ./push-image.sh
-```
+```text
 
 **Fail-fast vs Warn**: In CI, fail the pipeline if SBOM generation fails, but avoid failing builds on non-actionable low-severity findings — instead surface results to triage dashboards.
 
@@ -273,19 +273,19 @@ jobs:
 
 ```bash
 syft packages dir:. -o cyclonedx-json > sbom-cyclonedx.json
-```
+```text
 
 - Syft で SPDX JSON を生成:
 
 ```bash
 syft packages dir:. -o spdx-json > sbom-spdx.json
-```
+```text
 
 - CycloneDX CLI (ビルド済みアーティファクトから):
 
 ```bash
 cyclonedx-bom -o bom.xml --input-pkg target/my-app.jar
-```
+```text
 
 生成コマンドはビルドスクリプトまたは CI ジョブに配置し、SBOM 生成に失敗した場合はビルドを失敗させる。
 
@@ -381,7 +381,7 @@ jobs:
           cosign sign-blob --key ${{ secrets.COSIGN_KEY }} --output-signature sbom.json.sig sbom.json
       - name: Push image
         run: ./push-image.sh
-```
+```text
 
 **Fail-fast vs Warn**: CI では、SBOM 生成に失敗した場合はパイプラインを失敗させる。一方、対応不能な低深刻度の検出結果でビルドを失敗させることは避け、代わりにトリアージダッシュボードへ結果を表示する。
 
@@ -652,7 +652,7 @@ At a minimum capture:
 
 ```bash
 syft packages dir:. -o cyclonedx-json > sbom-cyclonedx.json
-```
+```html
 
 </div>
 
@@ -676,7 +676,7 @@ syft packages dir:. -o cyclonedx-json > sbom-cyclonedx.json
 
 ```bash
 syft packages dir:. -o spdx-json > sbom-spdx.json
-```
+```html
 
 </div>
 
@@ -700,7 +700,7 @@ syft packages dir:. -o spdx-json > sbom-spdx.json
 
 ```bash
 cyclonedx-bom -o bom.xml --input-pkg target/my-app.jar
-```
+```html
 
 </div>
 

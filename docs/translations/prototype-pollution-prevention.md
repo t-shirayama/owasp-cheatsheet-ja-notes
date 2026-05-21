@@ -34,7 +34,7 @@ if(allowedTags.has('b')){
 let options = new Map();
 options.set('spaces', 1);
 let spaces = options.get('spaces')
-```
+```text
 
 ### If objects or object literals are required
 
@@ -42,7 +42,7 @@ let spaces = options.get('spaces')
 
 ```javascript
 let obj = Object.create(null);
-```
+```text
 
 オブジェクトリテラルが必要な場合、最後の手段として `__proto__` プロパティを使用できます。
 

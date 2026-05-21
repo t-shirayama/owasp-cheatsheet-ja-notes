@@ -36,7 +36,7 @@ if(allowedTags.has('b')){
 let options = new Map();
 options.set('spaces', 1);
 let spaces = options.get('spaces')
-```
+```text
 
 ### If objects or object literals are required
 
@@ -44,7 +44,7 @@ If objects have to be used then they should be created using the `Object.create(
 
 ```javascript
 let obj = Object.create(null);
-```
+```text
 
 If object literals are required then as a last resort you could use the `__proto__` property:
 

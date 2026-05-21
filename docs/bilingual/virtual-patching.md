@@ -83,7 +83,7 @@ Let's take the following [SQL Injection vulnerability](https://packetstormsecuri
 WordPress Shopping Cart Plugin for WordPress
 /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php
 reqID Parameter prone to SQL Injection.
-```
+```text
 
 **Description**:
 
@@ -175,7 +175,7 @@ SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/a
 ##
 SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php" "chain,id:2,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'"
   SecRule ARGS:/reqID/ "!@rx ^[0-9]+$"
-```
+```text
 
 This virtual patch will inspect the `reqID` parameter value on the specified page and prevent any characters other than integers as input.
 
@@ -192,14 +192,14 @@ Here is the example [PoC code](https://packetstormsecurity.com/files/119217/Word
 
 ```text
 http://localhost/wordpress/wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php?reqID=1' or 1='1
-```
+```text
 
 Looking at the payload, we can see that the attacker is inserting a single quote character and then adding additional SQL query logic to the end. Based on this data, we could disallow the single quote character like this:
 
 ```text
 SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php" "chain,id:1,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'"
   SecRule ARGS:/reqID/ "@pm '"
-```
+```text
 
 #### Which Method is Better for Virtual Patching – Positive or Negative Security
 
@@ -217,7 +217,7 @@ For instance, if an authorized penetration test identified an XSS vulnerability 
 <script>
   alert('XSS Test')
 </script>
-```
+```text
 
 It would not be wise to implement a virtual patch that simply blocks that exact payload. While it may provide some immediate protection, its long term value is significantly decreased.
 
@@ -312,7 +312,7 @@ In order to accurately test out the newly created virtual patches, it may be nec
 WordPress Shopping Cart Plugin for WordPress
 /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php
 reqID Parameter prone to SQL Injection.
-```
+```text
 
 **説明**:
 
@@ -402,7 +402,7 @@ SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/a
 ##
 SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php" "chain,id:2,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'"
   SecRule ARGS:/reqID/ "!@rx ^[0-9]+$"
-```
+```text
 
 この仮想パッチは、指定されたページの `reqID` パラメータ値を検査し、整数以外の文字が入力されることを防ぎます。
 
@@ -419,14 +419,14 @@ SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/a
 
 ```text
 http://localhost/wordpress/wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php?reqID=1' or 1='1
-```
+```text
 
 ペイロードを見ると、攻撃者が単一引用符文字を挿入し、その末尾に追加の SQL クエリロジックを加えていることが分かります。このデータに基づき、次のように単一引用符文字を許可しないようにできます。
 
 ```text
 SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php" "chain,id:1,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'"
   SecRule ARGS:/reqID/ "@pm '"
-```
+```text
 
 #### 仮想パッチにはどちらの方法がよいか - 正のセキュリティか負のセキュリティか
 
@@ -444,7 +444,7 @@ SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/a
 <script>
   alert('XSS Test')
 </script>
-```
+```text
 
 その正確なペイロードだけをブロックする仮想パッチを実装することは賢明ではありません。即時の保護をある程度提供する可能性はありますが、長期的な価値は大きく低下します。
 
@@ -748,7 +748,7 @@ Let's take the following [SQL Injection vulnerability](https://packetstormsecuri
 WordPress Shopping Cart Plugin for WordPress
 /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php
 reqID Parameter prone to SQL Injection.
-```
+```html
 
 </div>
 
@@ -1152,7 +1152,7 @@ SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/a
 ##
 SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php" "chain,id:2,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'"
   SecRule ARGS:/reqID/ "!@rx ^[0-9]+$"
-```
+```html
 
 </div>
 
@@ -1231,7 +1231,7 @@ Here is the example [PoC code](https://packetstormsecurity.com/files/119217/Word
 
 ```text
 http://localhost/wordpress/wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php?reqID=1' or 1='1
-```
+```html
 
 </div>
 
@@ -1256,7 +1256,7 @@ Looking at the payload, we can see that the attacker is inserting a single quote
 ```text
 SecRule REQUEST_URI "@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php" "chain,id:1,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'"
   SecRule ARGS:/reqID/ "@pm '"
-```
+```html
 
 </div>
 

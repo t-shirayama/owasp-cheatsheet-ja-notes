@@ -109,7 +109,7 @@ if(Pattern.matches("[a-zA-Z0-9\\s\\-]{1,50}", userInput)){
 }else{
     //Stop the processing and reject the request
 }
-```
+```bash
 
 ###### IP address
 
@@ -173,7 +173,7 @@ domain_names.each { |domain_name|
         puts "[!] #{domain_name} is INVALID"
     end
 }
-```
+```bash
 
 ```bash
 $ ruby test.rb
@@ -183,7 +183,7 @@ $ ruby test.rb
 [i] doc.owasp.org is VALID
 [!] <script>alert(1)</script> is INVALID
 [!] <script>alert(1)</script>.owasp.org is INVALID
-```
+```text
 
 After ensuring the validity of the incoming domain name, the second layer of validation is applied:
 
@@ -264,7 +264,7 @@ if __name__== "__main__":
         exit(1)
     else:
         exit(0)
-```
+```bash
 
 ###### URL
 
@@ -388,7 +388,7 @@ sequenceDiagram
     TargetedApplication->>VulnerableApplication: Response
     VulnerableApplication->>Attacker: Response
     Note left of VulnerableApplication: Include response<br>from the<br>TargetedApplication
-```
+```bash
 
 Draw.io schema XML code for the "[case 1 for network layer protection about flows that we want to prevent](https://cheatsheetseries.owasp.org/assets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet_Case1_NetworkLayer_PreventFlow.xml)" schema (printscreen are used to capture PNG image inserted into this cheat sheet).
 
@@ -478,7 +478,7 @@ if(Pattern.matches("[a-zA-Z0-9\\s\\-]{1,50}", userInput)){
 }else{
     //Stop the processing and reject the request
 }
-```
+```bash
 
 ###### IP アドレス
 
@@ -542,7 +542,7 @@ domain_names.each { |domain_name|
         puts "[!] #{domain_name} is INVALID"
     end
 }
-```
+```bash
 
 ```bash
 $ ruby test.rb
@@ -552,7 +552,7 @@ $ ruby test.rb
 [i] doc.owasp.org is VALID
 [!] <script>alert(1)</script> is INVALID
 [!] <script>alert(1)</script>.owasp.org is INVALID
-```
+```text
 
 受信ドメイン名の有効性を確認した後、二つ目の検証層を適用します。
 
@@ -633,7 +633,7 @@ if __name__== "__main__":
         exit(1)
     else:
         exit(0)
-```
+```bash
 
 ###### URL
 
@@ -757,7 +757,7 @@ sequenceDiagram
     TargetedApplication->>VulnerableApplication: Response
     VulnerableApplication->>Attacker: Response
     Note left of VulnerableApplication: Include response<br>from the<br>TargetedApplication
-```
+```bash
 
 "[防止したいフローに関するネットワーク層保護のケース 1](https://cheatsheetseries.owasp.org/assets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet_Case1_NetworkLayer_PreventFlow.xml)" スキーマの Draw.io XML コード (このチートシートに挿入された PNG 画像をキャプチャするために printscreen が使用されています)。
 
@@ -1181,7 +1181,7 @@ if(Pattern.matches("[a-zA-Z0-9\\s\\-]{1,50}", userInput)){
 }else{
     //Stop the processing and reject the request
 }
-```
+```bash
 
 </div>
 
@@ -1467,7 +1467,7 @@ domain_names.each { |domain_name|
         puts "[!] #{domain_name} is INVALID"
     end
 }
-```
+```bash
 
 </div>
 
@@ -1482,7 +1482,7 @@ $ ruby test.rb
 [i] doc.owasp.org is VALID
 [!] <script>alert(1)</script> is INVALID
 [!] <script>alert(1)</script>.owasp.org is INVALID
-```
+```html
 
 </div>
 
@@ -1637,7 +1637,7 @@ if __name__== "__main__":
         exit(1)
     else:
         exit(0)
-```
+```bash
 
 </div>
 

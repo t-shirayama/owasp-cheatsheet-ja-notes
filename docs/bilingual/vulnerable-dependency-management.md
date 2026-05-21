@@ -158,7 +158,7 @@ public void callFunctionWithRCEIssue(String externalInput){
         //Raise an exception leading to a generic error send to the client...
     }
 }
-```
+```text
 
 If the provider has provided nothing about the vulnerability, [Case 3](#case-3) can be applied skipping the _step 2_ of this case. We assume here that, at least, the [CVE](https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures) has been provided.
 
@@ -219,7 +219,7 @@ The description of the CVE is as follows:
 ```text
 XML external entity (XXE) vulnerability in XmlMapper in the Data format extension for Jackson
 (aka jackson-dataformat-xml) allows attackers to have unspecified impact via unknown vectors.
-```
+```text
 
 Based on these information, the team determines that the necessary patching will be to add a [pre-validation of any XML data](https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html) passed to the Jakson API to prevent [XML external entity (XXE)](https://www.acunetix.com/blog/articles/xml-external-entity-xxe-vulnerabilities/) vulnerability.
 
@@ -420,7 +420,7 @@ public void callFunctionWithRCEIssue(String externalInput){
         //Raise an exception leading to a generic error send to the client...
     }
 }
-```
+```text
 
 提供者が脆弱性について何も提供していない場合、このケースの _ステップ 2_ をスキップして[ケース 3](#ケース-3)を適用できます。ここでは、少なくとも [CVE](https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures) は提供されているものとします。
 
@@ -481,7 +481,7 @@ CVE の説明は以下のとおりです。
 ```text
 XML external entity (XXE) vulnerability in XmlMapper in the Data format extension for Jackson
 (aka jackson-dataformat-xml) allows attackers to have unspecified impact via unknown vectors.
-```
+```text
 
 この情報に基づき、チームは必要なパッチが、Jackson API に渡されるあらゆる XML データに対して[事前検証](https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html)を追加し、[XML external entity (XXE)](https://www.acunetix.com/blog/articles/xml-external-entity-xxe-vulnerabilities/) 脆弱性を防ぐことであると判断します。
 
@@ -1266,7 +1266,7 @@ public void callFunctionWithRCEIssue(String externalInput){
         //Raise an exception leading to a generic error send to the client...
     }
 }
-```
+```html
 
 </div>
 

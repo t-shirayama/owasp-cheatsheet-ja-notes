@@ -55,14 +55,14 @@ java.lang.NumberFormatException: For input string: "null"
     ...
 
 note: The full stack trace of the root cause is available in the Apache Tomcat/7.0.56 logs.
-```
+```text
 
 以下は、サイトのインストールパスとともに SQL クエリエラーが開示される例です。これはインジェクションポイントの特定に使われる可能性があります。
 
 ```text
 Warning: odbc_fetch_array() expects parameter /1 to be resource, boolean given
 in D:\app\index_new.php on line 188
-```
+```text
 
 [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/01-Information_Gathering/) では、アプリケーションから技術情報を取得するためのさまざまな手法を説明しています。
 
@@ -104,7 +104,7 @@ version="3.0">
     </error-page>
 ...
 </web-app>
-```
+```text
 
 **error.jsp** ファイルの内容:
 
@@ -123,7 +123,7 @@ response.setHeader("X-ERROR", "true");
 response.setStatus(500);
 %>
 {"message":"An error occur, please retry"}
-```
+```text
 
 ### Java SpringMVC/SpringBoot Web アプリケーション
 
@@ -155,7 +155,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "An error occur, please retry");
     }
 }
-```
+```text
 
 References:
 
@@ -219,7 +219,7 @@ namespace MyProject.Controllers
         }
     }
 }
-```
+```text
 
 専用エラーハンドリング API Controller へ例外ハンドラをマッピングする、アプリケーションの **Startup.cs** ファイル内の定義:
 
@@ -262,7 +262,7 @@ namespace MyProject
         }
     }
 }
-```
+```text
 
 References:
 
@@ -298,7 +298,7 @@ namespace MyProject.Security
         }
     }
 }
-```
+```text
 
 汎用レスポンスを返すためにエラーを管理するハンドラ定義:
 
@@ -359,7 +359,7 @@ namespace MyProject.Security
         }
     }
 }
-```
+```text
 
 アプリケーションの **WebApiConfig.cs** ファイル内での両方のハンドラ登録:
 
@@ -382,7 +382,7 @@ namespace MyProject
         }
     }
 }
-```
+```text
 
 **Web.config** ファイルの ```csharp <system.web>``` ノード内に、次のように customErrors セクションを設定します。
 

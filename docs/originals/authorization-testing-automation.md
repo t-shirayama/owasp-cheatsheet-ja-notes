@@ -60,7 +60,7 @@ This XML structure has three main sections (or nodes):
 
 > Placeholders (values between {}) are used to mark location where test value must be placed by the integration tests if needed
 
-``` xml
+```xml
   <?xml version="1.0" encoding="UTF-8"?>
   <!--
       This file materializes the authorization matrix for the different
@@ -132,7 +132,7 @@ This XML structure has three main sections (or nodes):
       </services-testing>
 
   </authorization-matrix>
-```
+```text
 
 ### Implementing an integration test
 
@@ -142,7 +142,7 @@ In this integration test, we have implemented parsing, object mapping and access
 
 **Here is a sample implementation of an integration test case class:**
 
-``` java
+```java
   import org.owasp.pocauthztesting.enumeration.SecurityRole;
   import org.owasp.pocauthztesting.service.AuthService;
   import org.owasp.pocauthztesting.vo.AuthorizationMatrix;
@@ -381,7 +381,7 @@ In this integration test, we have implemented parsing, object mapping and access
           return buffer.toString();
       }
   }
-```
+```text
 
 If an authorization issue is detected (or issues are detected), the output is the following:
 
@@ -402,7 +402,7 @@ java.lang.AssertionError:
 Access issues detected using the BASIC USER point of view:
     The service 'DeleteMessage' when called with POV 'BASIC' return
     a response code 200 that is not the expected one (403 expected).
-```
+```text
 
 ## Rendering the authorization matrix for an audit / review
 
@@ -412,7 +412,7 @@ Even if the authorization matrix is stored in a human-readable format (XML), you
 To achieve this task, you could use the following XSL stylesheet:
 <!-- textlint-enable -->
 
-``` xslt
+```xslt
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:template match="/">

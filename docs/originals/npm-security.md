@@ -74,7 +74,7 @@ Here's how the allowlist would look like in the `package.json` file on a project
     }
   }
 }
-```
+```bash
 
 ## 4) Assess npm project health
 
@@ -192,9 +192,9 @@ To get started, see the official documentation: [Requiring 2FA](https://docs.npm
 
 Equip yourself with an authentication application, such as Google Authenticator, which you can install on a mobile device, and you’re ready to get started. One easy way to get started with the 2FA extended protection for your account is through npm’s user interface, which allows enabling it very easily. If you’re a command-line person, it’s also easy to enable 2FA when using a supported npm client version (>=5.5.1):
 
-```sh
+```bash
 npm profile enable-2fa auth-and-writes
-```
+```bash
 
 Follow the command-line instructions to enable 2FA, and to save emergency authentication codes. If you wish to enable 2FA mode for login and profile changes only, you may replace the `auth-and-writes` with `auth-only` in the code as it appears above.
 
@@ -209,7 +209,7 @@ Every time you log in with the npm CLI, a token is generated for your user and a
 
 Tokens can be managed through the npm registry website, as well as using the npm command-line client. An example of using the CLI to create a read-only token that is restricted to a specific IPv4 address range is as follows:
 
-```sh
+```bash
 npm token create --read-only --cidr=192.0.2.0/24
 ```
 

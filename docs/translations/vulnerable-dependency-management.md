@@ -145,7 +145,7 @@ public void callFunctionWithRCEIssue(String externalInput){
         //Raise an exception leading to a generic error send to the client...
     }
 }
-```
+```text
 
 提供者が脆弱性について何も提供していない場合、このケースの _ステップ 2_ をスキップして[ケース 3](#ケース-3)を適用できます。ここでは、少なくとも [CVE](https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures) は提供されているものとします。
 
