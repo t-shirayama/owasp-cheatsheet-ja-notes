@@ -4,6 +4,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
+const localSources = process.argv.includes('--local-sources');
 
 const { pages, sheetCatalog } = await readDataFile('cheatsheet-catalog.yml');
 const { asvsChapters, asvsIndexSections } = await readDataFile('asvs-chapters.yml');
@@ -323,6 +324,10 @@ function normalizeNewlines(text) {
   return text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 }
 
+function normalizeInlineFences(text) {
+  return normalizeNewlines(text).replace(/^```([^`\n]+)```$/gm, '```text\n$1\n```');
+}
+
 function stripAttributionSections(text) {
   let value = normalizeNewlines(text);
   value = value.replace(/^---\n[\s\S]*?\n---\n+/, '');
@@ -330,6 +335,10 @@ function stripAttributionSections(text) {
   value = value.replace(/## Attribution[\s\S]*?(?=\n## |\n$)/, '');
   value = value.replace(/## 関連ファイル[\s\S]*?(?=\n## |\n$)/, '');
   return value.trim();
+}
+
+function stripLeadingTitle(text) {
+  return normalizeNewlines(text).replace(/^# .+?\n+/, '').trim();
 }
 
 function extractSection(text, heading, stopHeadings = []) {
@@ -520,7 +529,7 @@ function normalizeOfficialMarkdown(text, page) {
 }
 
 function splitSections(text) {
-  const lines = normalizeNewlines(text).trim().split('\n');
+  const lines = normalizeInlineFences(text).trim().split('\n');
   const sections = [];
   let current = [];
   let inFence = false;
@@ -546,7 +555,7 @@ function splitSections(text) {
       current.push(line);
       continue;
     }
-    if (line.match(/^##\s+/)) {
+    if (line.match(/^#{2,6}\s+/)) {
       flush();
       current.push(line);
       continue;
@@ -580,7 +589,7 @@ function codeKey(content) {
 }
 
 function extractSharedBlocks(markdown) {
-  const lines = normalizeNewlines(markdown).split('\n');
+  const lines = normalizeInlineFences(markdown).split('\n');
   const body = [];
   const shared = [];
   let inFence = false;
@@ -626,58 +635,8 @@ function extractSharedBlocks(markdown) {
 }
 
 function splitSharedSegments(markdown) {
-  const lines = normalizeNewlines(markdown).split('\n');
-  const segments = [];
-  let text = [];
-  let shared = [];
-  let inFence = false;
-  let fence = [];
-
-  const flush = () => {
-    const body = text.join('\n').replace(/\n{3,}/g, '\n\n').trim();
-    if (body || shared.length > 0) {
-      segments.push({ text: body, shared });
-    }
-    text = [];
-    shared = [];
-  };
-
-  const pushFence = () => {
-    const content = fence.join('\n').trim();
-    if (content) {
-      shared.push({ key: codeKey(content), content });
-      flush();
-    }
-    fence = [];
-  };
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (trimmed.startsWith('```')) {
-      fence.push(line);
-      inFence = !inFence;
-      if (!inFence) {
-        pushFence();
-      }
-      continue;
-    }
-    if (inFence) {
-      fence.push(line);
-      continue;
-    }
-    if (/^!\[[^\]]*]\([^)]+\)\s*$/.test(trimmed) || /^<img\b/i.test(trimmed)) {
-      shared.push({ key: imageKey(trimmed), content: trimmed });
-      flush();
-      continue;
-    }
-    text.push(line);
-  }
-
-  if (fence.length > 0) {
-    text.push(...fence);
-  }
-  flush();
-  return segments;
+  const segment = extractSharedBlocks(markdown);
+  return segment.text || segment.shared.length > 0 ? [segment] : [];
 }
 
 function uniqueSharedBlocks(...groups) {
@@ -793,6 +752,19 @@ function splitTextCards(text) {
   return cards;
 }
 
+function groupCards(cards, targetCount) {
+  if (targetCount <= 0 || cards.length <= targetCount) {
+    return cards;
+  }
+  const groups = [];
+  for (let index = 0; index < targetCount; index++) {
+    const start = Math.floor((index * cards.length) / targetCount);
+    const end = Math.floor(((index + 1) * cards.length) / targetCount);
+    groups.push(cards.slice(start, end).join('\n\n'));
+  }
+  return groups;
+}
+
 function bilingualPairs(english, japanese) {
   const englishSections = splitSections(english);
   const japaneseSections = splitSections(japanese);
@@ -814,15 +786,17 @@ function bilingualPairs(english, japanese) {
       const enParts = enSegments[segmentIndex] ?? { text: '', shared: [] };
       const jaParts = jaSegments[segmentIndex] ?? { text: '', shared: [] };
       const shared = uniqueSharedBlocks(enParts.shared, jaParts.shared).join('\n\n');
-      const enText = shared ? takeTrailingHeading(enParts.text) : { text: enParts.text, heading: null };
-      const jaText = shared
-        ? takeTrailingHeading(jaParts.text, { allowPlainLine: Boolean(enText.heading) })
-        : { text: jaParts.text, heading: null };
-      const en = enText.text;
-      const ja = jaText.text;
-      const heading = sharedHeading(enText.heading, jaText.heading);
-      const enCards = splitTextCards(en);
-      const jaCards = splitTextCards(ja);
+      const en = enParts.text;
+      const ja = jaParts.text;
+      let enCards = splitTextCards(en);
+      let jaCards = splitTextCards(ja);
+      if (enCards.length > 0 && jaCards.length > 0 && enCards.length !== jaCards.length) {
+        if (enCards.length > jaCards.length) {
+          enCards = groupCards(enCards, jaCards.length);
+        } else {
+          jaCards = groupCards(jaCards, enCards.length);
+        }
+      }
       const cardCount = Math.max(enCards.length, jaCards.length);
 
       for (let cardIndex = 0; cardIndex < cardCount; cardIndex++) {
@@ -853,7 +827,6 @@ ${japaneseBlock}
       const sharedBlock = shared
         ? `<div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-${heading ? `${'#'.repeat(heading.level)} ${heading.title}\n` : ''}
 
 ${shared}
 
@@ -877,9 +850,22 @@ async function fetchOfficialMarkdown(page) {
   return response.text();
 }
 
+async function localOfficialMarkdown(page) {
+  const local = await readIfExists(mdPath('docs', 'originals', `${page.slug}.md`));
+  const body = extractSection(local, 'English Original') || stripAttributionSections(local);
+  if (!body) {
+    throw new Error(`Missing local original for ${page.slug}`);
+  }
+  return body;
+}
+
 async function localJapanese(page) {
   const translation = await readIfExists(mdPath('docs', 'translations', `${page.slug}.md`));
-  const translationBody = smoothHeadings(extractSection(translation, '日本語訳', ['ASVS との対応']) || stripAttributionSections(translation));
+  const translationBody = smoothHeadings(stripLeadingTitle(extractSection(translation, '日本語訳', ['ASVS との対応']) || stripAttributionSections(translation)));
+
+  if (localSources) {
+    return translationBody;
+  }
 
   if (page.jaMode === 'bilingualTranslationPanel') {
     const current = await readIfExists(mdPath('docs', 'bilingual', `${page.slug}.md`));
@@ -1176,7 +1162,6 @@ async function writeOriginalSource(page, official) {
 async function main() {
   const indexedPages = buildPageIndex();
   const indexedBySlug = new Map(indexedPages.map((page) => [page.slug, page]));
-  const generatedSlugs = new Set(pages.map((page) => page.slug));
   const originalsOnly = process.argv.includes('--originals-only');
   const navigationOnly = process.argv.includes('--navigation-only');
 
@@ -1188,12 +1173,19 @@ async function main() {
     return;
   }
 
-  const originalTargetPages = originalsOnly ? indexedPages : pages;
+  const originalTargetPages = originalsOnly
+    ? indexedPages
+    : localSources
+      ? indexedPages.filter((page) => (catalogStatusBySlug.get(page.slug) ?? page.status) !== 'Shell')
+      : pages;
+  const generatedSlugs = new Set(originalTargetPages.map((page) => page.slug));
 
   for (const configuredPage of originalTargetPages) {
     const page = indexedBySlug.get(configuredPage.slug) ?? configuredPage;
-    const official = await fetchOfficialMarkdown(page);
-    await writeOriginalSource(page, official);
+    const official = localSources ? await localOfficialMarkdown(page) : await fetchOfficialMarkdown(page);
+    if (!localSources) {
+      await writeOriginalSource(page, official);
+    }
     if (originalsOnly) {
       console.log(`generated original ${page.slug}`);
       continue;

@@ -6,11 +6,13 @@ hide_title: true
 <div className="docHero" data-category="asvs-v16">
   <h1>エラーハンドリングチートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
-    <span className="docPill">読了時間: 約 9 分</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">読了時間: 準備中</span>
     <span className="docPill">カテゴリ: セキュリティログとエラーハンドリング</span>
   </div>
 </div>
+
+<p className="docLead">エラーハンドリングチートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="error-handling-view" id="error-handling-original" />
@@ -102,7 +104,7 @@ With this configuration, any unexpected error will cause a redirection to the pa
 
 Configuration of the redirection into the **web.xml** file:
 
-```xml
+``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns="http://java.sun.com/xml/ns/javaee"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
@@ -118,7 +120,7 @@ version="3.0">
 
 Content of the **error.jsp** file:
 
-```java
+``` java
 <%@ page language="java" isErrorPage="true" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -141,7 +143,7 @@ With [SpringMVC](https://docs.spring.io/spring/docs/current/spring-framework-ref
 
 We indicate to the handler, via the annotation [@ExceptionHandler](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ExceptionHandler.html), to act when any exception extending the class *java.lang.Exception* is thrown by the application. We also use the [ProblemDetail class](https://docs.spring.io/spring-framework/docs/6.0.0/javadoc-api/org/springframework/http/ProblemDetail.html) to create the response object.
 
-```java
+``` java
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -178,7 +180,7 @@ With [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcor
 
 Content of the API Controller dedicated to the error handling:
 
-```csharp
+``` csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
@@ -233,7 +235,7 @@ namespace MyProject.Controllers
 
 Definition in the application **Startup.cs** file of the mapping of the exception handler to the dedicated error handling API controller:
 
-```csharp
+``` csharp
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -284,7 +286,7 @@ With [ASP.NET Web API](https://www.asp.net/web-api) (from the standard .NET fram
 
 Definition of the handler for the tracing of the error details:
 
-```csharp
+``` csharp
 using System;
 using System.Web.Http.ExceptionHandling;
 
@@ -312,7 +314,7 @@ namespace MyProject.Security
 
 Definition of the handler for the management of the error in order to return a generic response:
 
-```csharp
+``` csharp
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -373,7 +375,7 @@ namespace MyProject.Security
 
 Registration of the both handlers in the application **WebApiConfig.cs** file:
 
-```csharp
+``` csharp
 using MyProject.Security;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
@@ -834,19 +836,41 @@ HTTP エラーのリファレンスは、こちら [RFC 2616](https://www.ietf.o
 
 Error handling is a part of the overall security of an application. Except in movies, an attack always begins with a **Reconnaissance** phase in which the attacker will try to gather as much technical information (often *name* and *version* properties) as possible about the target, such as the application server, frameworks, libraries, etc.
 
-Unhandled errors can assist an attacker in this initial phase, which is very important for the rest of the attack.
-
-The following [link](https://web.archive.org/web/20230929111320/https://cipher.com/blog/a-complete-guide-to-the-phases-of-penetration-testing/) provides a description of the different phases of an attack.
-
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ## はじめに
 
 エラーハンドリングは、アプリケーション全体のセキュリティの一部です。映画の中は別として、攻撃は常に**偵察 (Reconnaissance)** フェーズから始まります。このフェーズで攻撃者は、アプリケーションサーバー、フレームワーク、ライブラリなど、ターゲットに関する技術情報、しばしば*名前*や*バージョン*のプロパティを、できるだけ多く収集しようとします。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Unhandled errors can assist an attacker in this initial phase, which is very important for the rest of the attack.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 未処理エラーは、この初期フェーズで攻撃者を助ける可能性があります。このフェーズは、その後の攻撃全体にとって非常に重要です。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The following [link](https://web.archive.org/web/20230929111320/https://cipher.com/blog/a-complete-guide-to-the-phases-of-penetration-testing/) provides a description of the different phases of an attack.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 次の[リンク](https://web.archive.org/web/20230929111320/https://cipher.com/blog/a-complete-guide-to-the-phases-of-penetration-testing/)では、攻撃の各フェーズについて説明しています。
 
@@ -861,15 +885,26 @@ The following [link](https://web.archive.org/web/20230929111320/https://cipher.c
 
 Issues at the error handling level can reveal a lot of information about the target and can also be used to identify injection points in the target's features.
 
-Below is an example of the disclosure of a technology stack, here the Struts2 and Tomcat versions, via an exception rendered to the user:
-
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ## コンテキスト
 
 エラーハンドリングレベルの問題は、ターゲットについて多くの情報を明らかにする可能性があり、ターゲット機能内のインジェクションポイントを特定するためにも使われる可能性があります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Below is an example of the disclosure of a technology stack, here the Struts2 and Tomcat versions, via an exception rendered to the user:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 以下は、ユーザーに表示された例外を通じて、ここでは Struts2 と Tomcat のバージョンという技術スタックが開示される例です。
 
@@ -918,7 +953,7 @@ Below is an example of disclosure of a SQL query error, along with the site inst
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 以下は、サイトのインストールパスとともに SQL クエリエラーが開示される例です。これはインジェクションポイントの特定に使われる可能性があります。
 
@@ -943,7 +978,7 @@ The [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-gui
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/01-Information_Gathering/) では、アプリケーションから技術情報を取得するためのさまざまな手法を説明しています。
 
@@ -958,17 +993,46 @@ The [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-gui
 
 The article shows how to configure a global error handler as part of your application's runtime configuration. In some cases, it may be more efficient to define this error handler as part of your code. The outcome being that when an unexpected error occurs then a generic response is returned by the application but the error details are logged server side for investigation, and not returned to the user.
 
-The following schema shows the target approach:
-
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ## 目的
 
 この記事では、アプリケーションのランタイム設定の一部としてグローバルエラーハンドラを構成する方法を示します。場合によっては、このエラーハンドラをコードの一部として定義する方が効率的なこともあります。目指す結果は、予期しないエラーが発生したときに、アプリケーションが汎用的なレスポンスを返し、調査のためのエラー詳細はサーバー側にログ記録し、ユーザーには返さないようにすることです。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The following schema shows the target approach:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 次の図は、目標とするアプローチを示しています。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+As most recent application topologies are *API based*, we assume in this article that the backend exposes only a REST API and does not contain any user interface content. The application should try and exhaustively cover all possible failure modes and use 5xx errors only to indicate responses to requests that it cannot fulfill, but not provide any content as part of the response that would reveal implementation details. For that, [RFC 7807 - Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807) defines a document format.
+For the error logging operation itself, the [logging cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html) should be used. This article focuses on the error handling part.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+最近のアプリケーショントポロジーの多くは*API ベース*であるため、この記事では、バックエンドは REST API のみを公開し、ユーザーインターフェイスコンテンツを含まないものと仮定します。アプリケーションは、考えられるすべての失敗モードをできる限り網羅しようとするべきです。また 5xx エラーは、処理できないリクエストへのレスポンスを示す場合にのみ使用し、実装詳細を明らかにする内容をレスポンスに含めないようにするべきです。そのために、[RFC 7807 - Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807) はドキュメント形式を定義しています。
+
+エラーログ記録処理そのものについては、[ロギングチートシート](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html) を使用するべきです。この記事では、エラーハンドリング部分に焦点を当てます。
 
 </div>
 </div>
@@ -984,16 +1048,17 @@ The following schema shows the target approach:
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-As most recent application topologies are *API based*, we assume in this article that the backend exposes only a REST API and does not contain any user interface content. The application should try and exhaustively cover all possible failure modes and use 5xx errors only to indicate responses to requests that it cannot fulfill, but not provide any content as part of the response that would reveal implementation details. For that, [RFC 7807 - Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807) defines a document format.
-For the error logging operation itself, the [logging cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html) should be used. This article focuses on the error handling part.
+## Proposition
+
+For each technology stack, the following configuration options are proposed:
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-最近のアプリケーショントポロジーの多くは*API ベース*であるため、この記事では、バックエンドは REST API のみを公開し、ユーザーインターフェイスコンテンツを含まないものと仮定します。アプリケーションは、考えられるすべての失敗モードをできる限り網羅しようとするべきです。また 5xx エラーは、処理できないリクエストへのレスポンスを示す場合にのみ使用し、実装詳細を明らかにする内容をレスポンスに含めないようにするべきです。そのために、[RFC 7807 - Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807) はドキュメント形式を定義しています。
+## 提案
 
-エラーログ記録処理そのものについては、[ロギングチートシート](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html) を使用するべきです。この記事では、エラーハンドリング部分に焦点を当てます。
+各技術スタックについて、次の構成オプションを提案します。
 
 </div>
 </div>
@@ -1002,35 +1067,60 @@ For the error logging operation itself, the [logging cheat sheet](https://cheats
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-## Proposition
-
-For each technology stack, the following configuration options are proposed:
-
 ### Standard Java Web Application
 
 For this kind of application, a global error handler can be configured at the **web.xml** deployment descriptor level.
 
-We propose here a configuration that can be used from Servlet specification *version 2.5* and above.
-
-With this configuration, any unexpected error will cause a redirection to the page **error.jsp** in which the error will be traced and a generic response will be returned.
-
-Configuration of the redirection into the **web.xml** file:
-
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
-
-## 提案
-
-各技術スタックについて、次の構成オプションを提案します。
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### 標準 Java Web アプリケーション
 
 この種のアプリケーションでは、**web.xml** デプロイメント記述子レベルでグローバルエラーハンドラを構成できます。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+We propose here a configuration that can be used from Servlet specification *version 2.5* and above.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 ここでは、Servlet 仕様の*バージョン 2.5* 以降で使用できる構成を提案します。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+With this configuration, any unexpected error will cause a redirection to the page **error.jsp** in which the error will be traced and a generic response will be returned.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 この構成では、予期しないエラーが発生すると **error.jsp** ページへリダイレクトされます。このページでエラーがトレースされ、汎用的なレスポンスが返されます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Configuration of the redirection into the **web.xml** file:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 **web.xml** ファイル内でのリダイレクト構成:
 
@@ -1039,6 +1129,20 @@ Configuration of the redirection into the **web.xml** file:
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns="http://java.sun.com/xml/ns/javaee"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+version="3.0">
+...
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/error.jsp</location>
+    </error-page>
+...
+</web-app>
+```
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1064,7 +1168,7 @@ Content of the **error.jsp** file:
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 **error.jsp** ファイルの内容:
 
@@ -1073,6 +1177,23 @@ Content of the **error.jsp** file:
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
+``` java
+<%@ page language="java" isErrorPage="true" contentType="application/json; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+String errorMessage = exception.getMessage();
+//Log the exception via the content of the implicit variable named "exception"
+//...
+//We build a generic response with a JSON format because we are in a REST API app context
+//We also add an HTTP response header to indicate to the client app that the response is an error
+response.setHeader("X-ERROR", "true");
+//Note that we're using an internal server error response
+//In some cases it may be prudent to return 4xx error codes, when we have misbehaving clients
+response.setStatus(500);
+%>
+{"message":"An error occur, please retry"}
+```
 
 ```java
 <%@ page language="java" isErrorPage="true" contentType="application/json; charset=UTF-8"
@@ -1101,15 +1222,26 @@ response.setStatus(500);
 
 With [SpringMVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html) or [SpringBoot](https://spring.io/projects/spring-boot), you can define a global error handler by implementing the following class in your project. Spring Framework 6 introduced [the problem details based on RFC 7807](https://github.com/spring-projects/spring-framework/issues/27052).
 
-We indicate to the handler, via the annotation [@ExceptionHandler](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ExceptionHandler.html), to act when any exception extending the class *java.lang.Exception* is thrown by the application. We also use the [ProblemDetail class](https://docs.spring.io/spring-framework/docs/6.0.0/javadoc-api/org/springframework/http/ProblemDetail.html) to create the response object.
-
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### Java SpringMVC/SpringBoot Web アプリケーション
 
 [SpringMVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html) または [SpringBoot](https://spring.io/projects/spring-boot) では、プロジェクト内に次のクラスを実装することで、グローバルエラーハンドラを定義できます。Spring Framework 6 では、[RFC 7807 に基づく problem details](https://github.com/spring-projects/spring-framework/issues/27052) が導入されました。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+We indicate to the handler, via the annotation [@ExceptionHandler](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ExceptionHandler.html), to act when any exception extending the class *java.lang.Exception* is thrown by the application. We also use the [ProblemDetail class](https://docs.spring.io/spring-framework/docs/6.0.0/javadoc-api/org/springframework/http/ProblemDetail.html) to create the response object.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 アプリケーションによって *java.lang.Exception* クラスを継承する任意の例外がスローされたときに動作するよう、[@ExceptionHandler](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ExceptionHandler.html) アノテーションを通じてハンドラに指示します。また、レスポンスオブジェクトを作成するために [ProblemDetail クラス](https://docs.spring.io/spring-framework/docs/6.0.0/javadoc-api/org/springframework/http/ProblemDetail.html) も使用します。
 
@@ -1118,6 +1250,32 @@ We indicate to the handler, via the annotation [@ExceptionHandler](https://docs.
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
+``` java
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+/**
+ * Global error handler in charge of returning a generic response in case of unexpected error situation.
+ */
+@RestControllerAdvice
+public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(value = {Exception.class})
+    public ProblemDetail handleGlobalError(RuntimeException exception, WebRequest request) {
+        //Log the exception via the content of the parameter named "exception"
+        //...
+        //Note that we're using an internal server error response
+        //In some cases it may be prudent to return 4xx error codes, if we have misbehaving clients
+        //By specification, the content-type can be "application/problem+json" or "application/problem+xml"
+        return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "An error occur, please retry");
+    }
+}
+```
 
 ```java
 import org.springframework.http.HttpStatus;
@@ -1151,19 +1309,62 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
+References:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+References:
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [Exception handling with Spring](https://www.baeldung.com/exception-handling-for-rest-with-spring)
+- [Exception handling with SpringBoot](https://www.toptal.com/java/spring-boot-rest-api-error-handling)
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- [Exception handling with Spring](https://www.baeldung.com/exception-handling-for-rest-with-spring)
+- [Exception handling with SpringBoot](https://www.toptal.com/java/spring-boot-rest-api-error-handling)
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### ASP NET Core web application
 
 With [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.2), you can define a global error handler by indicating that the exception handler is a dedicated API Controller.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### ASP NET Core Web アプリケーション
+
+[ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.2) では、例外ハンドラが専用 API Controller であることを示すことで、グローバルエラーハンドラを定義できます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 Content of the API Controller dedicated to the error handling:
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
-
-### ASP NET Core Web アプリケーション
-
-[ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.2) では、例外ハンドラが専用 API Controller であることを示すことで、グローバルエラーハンドラを定義できます。
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 エラーハンドリング専用 API Controller の内容:
 
@@ -1172,6 +1373,59 @@ Content of the API Controller dedicated to the error handling:
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
+``` csharp
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Net;
+
+namespace MyProject.Controllers
+{
+    /// <summary>
+    /// API Controller used to intercept and handle all unexpected exception
+    /// </summary>
+    [Route("api/[controller]")]
+    [ApiController]
+    [AllowAnonymous]
+    public class ErrorController : ControllerBase
+    {
+        /// <summary>
+        /// Action that will be invoked for any call to this Controller in order to handle the current error
+        /// </summary>
+        /// <returns>A generic error formatted as JSON because we are in a REST API app context</returns>
+        [HttpGet]
+        [HttpPost]
+        [HttpHead]
+        [HttpDelete]
+        [HttpPut]
+        [HttpOptions]
+        [HttpPatch]
+        public JsonResult Handle()
+        {
+            //Get the exception that has implied the call to this controller
+            Exception exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
+            //Log the exception via the content of the variable named "exception" if it is not NULL
+            //...
+            //We build a generic response with a JSON format because we are in a REST API app context
+            //We also add an HTTP response header to indicate to the client app that the response
+            //is an error
+            var responseBody = new Dictionary<String, String>{ {
+                "message", "An error occur, please retry"
+            } };
+            JsonResult response = new JsonResult(responseBody);
+            //Note that we're using an internal server error response
+            //In some cases it may be prudent to return 4xx error codes, if we have misbehaving clients
+            response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            Request.HttpContext.Response.Headers.Remove("X-ERROR");
+            Request.HttpContext.Response.Headers.Add("X-ERROR", "true");
+            return response;
+        }
+    }
+}
+```
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -1236,7 +1490,7 @@ Definition in the application **Startup.cs** file of the mapping of the exceptio
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 専用エラーハンドリング API Controller へ例外ハンドラをマッピングする、アプリケーションの **Startup.cs** ファイル内の定義:
 
@@ -1245,6 +1499,47 @@ Definition in the application **Startup.cs** file of the mapping of the exceptio
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
+``` csharp
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace MyProject
+{
+    public class Startup
+    {
+...
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            //First we configure the error handler middleware!
+            //We enable the global error handler in others environments than DEV
+            //because debug page are useful during implementation
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                //Our global handler is defined on "/api/error" URL so we indicate to the
+                //exception handler to call this API controller
+                //on any unexpected exception raised by the application
+                app.UseExceptionHandler("/api/error");
+
+                //To customize the response content type and text, use the overload of
+                //UseStatusCodePages that takes a content type and format string.
+                app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
+            }
+
+            //We configure others middlewares, remember that the declaration order is important...
+            app.UseMvc();
+            //...
+        }
+    }
+}
+```
 
 ```csharp
 using Microsoft.AspNetCore.Builder;
@@ -1293,19 +1588,60 @@ namespace MyProject
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
+References:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+References:
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [Exception handling with ASP.Net Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-2.1)
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- [Exception handling with ASP.Net Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-2.1)
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### ASP NET Web API web application
 
 With [ASP.NET Web API](https://www.asp.net/web-api) (from the standard .NET framework and not from the .NET Core framework), you can define and register handlers in order to trace and handle any error that occurs in the application.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### ASP NET Web API Web アプリケーション
+
+[ASP.NET Web API](https://www.asp.net/web-api) では、標準 .NET Framework 由来であり .NET Core Framework 由来ではないものとして、アプリケーションで発生するあらゆるエラーをトレースし処理するために、ハンドラを定義して登録できます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 Definition of the handler for the tracing of the error details:
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
-
-### ASP NET Web API Web アプリケーション
-
-[ASP.NET Web API](https://www.asp.net/web-api) では、標準 .NET Framework 由来であり .NET Core Framework 由来ではないものとして、アプリケーションで発生するあらゆるエラーをトレースし処理するために、ハンドラを定義して登録できます。
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 エラー詳細をトレースするためのハンドラ定義:
 
@@ -1314,6 +1650,32 @@ Definition of the handler for the tracing of the error details:
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
+``` csharp
+using System;
+using System.Web.Http.ExceptionHandling;
+
+namespace MyProject.Security
+{
+    /// <summary>
+    /// Global logger used to trace any error that occurs at application wide level
+    /// </summary>
+    public class GlobalErrorLogger : ExceptionLogger
+    {
+        /// <summary>
+        /// Method in charge of the management of the error from a tracing point of view
+        /// </summary>
+        /// <param name="context">Context containing the error details</param>
+        public override void Log(ExceptionLoggerContext context)
+        {
+            //Get the exception
+            Exception exception = context.Exception;
+            //Log the exception via the content of the variable named "exception" if it is not NULL
+            //...
+        }
+    }
+}
+```
 
 ```csharp
 using System;
@@ -1351,7 +1713,7 @@ Definition of the handler for the management of the error in order to return a g
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 汎用レスポンスを返すためにエラーを管理するハンドラ定義:
 
@@ -1360,6 +1722,65 @@ Definition of the handler for the management of the error in order to return a g
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
+``` csharp
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+
+namespace MyProject.Security
+{
+    /// <summary>
+    /// Global handler used to handle any error that occurs at application wide level
+    /// </summary>
+    public class GlobalErrorHandler : ExceptionHandler
+    {
+        /// <summary>
+        /// Method in charge of handle the generic response send in case of error
+        /// </summary>
+        /// <param name="context">Error context</param>
+        public override void Handle(ExceptionHandlerContext context)
+        {
+            context.Result = new GenericResult();
+        }
+
+        /// <summary>
+        /// Class used to represent the generic response send
+        /// </summary>
+        private class GenericResult : IHttpActionResult
+        {
+            /// <summary>
+            /// Method in charge of creating the generic response
+            /// </summary>
+            /// <param name="cancellationToken">Object to cancel the task</param>
+            /// <returns>A task in charge of sending the generic response</returns>
+            public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
+            {
+                //We build a generic response with a JSON format because we are in a REST API app context
+                //We also add an HTTP response header to indicate to the client app that the response
+                //is an error
+                var responseBody = new Dictionary<String, String>{ {
+                    "message", "An error occur, please retry"
+                } };
+                // Note that we're using an internal server error response
+                // In some cases it may be prudent to return 4xx error codes, if we have misbehaving clients
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                response.Headers.Add("X-ERROR", "true");
+                response.Content = new StringContent(JsonConvert.SerializeObject(responseBody),
+                                                     Encoding.UTF8, "application/json");
+                return Task.FromResult(response);
+            }
+        }
+    }
+}
+```
 
 ```csharp
 using Newtonsoft.Json;
@@ -1430,7 +1851,7 @@ Registration of the both handlers in the application **WebApiConfig.cs** file:
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 アプリケーションの **WebApiConfig.cs** ファイル内での両方のハンドラ登録:
 
@@ -1439,6 +1860,27 @@ Registration of the both handlers in the application **WebApiConfig.cs** file:
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
+``` csharp
+using MyProject.Security;
+using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+
+namespace MyProject
+{
+    public static class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            //Register global error logging and handling handlers in first
+            config.Services.Replace(typeof(IExceptionLogger), new GlobalErrorLogger());
+            config.Services.Replace(typeof(IExceptionHandler), new GlobalErrorHandler());
+            //Rest of the configuration
+            //...
+        }
+    }
+}
+```
 
 ```csharp
 using MyProject.Security;
@@ -1471,7 +1913,7 @@ Setting customErrors section to the **Web.config** file within the ```csharp <sy
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 **Web.config** ファイルの ```csharp <system.web>``` ノード内に、次のように customErrors セクションを設定します。
 
@@ -1498,9 +1940,58 @@ Setting customErrors section to the **Web.config** file within the ```csharp <sy
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
+References:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+References:
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- [Exception handling with ASP.Net Web API](https://exceptionnotfound.net/the-asp-net-web-api-exception-handling-pipeline-a-guided-tour/)
+
+- [ASP.NET Error Handling](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/aspnet-error-handling)
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- [Exception handling with ASP.Net Web API](https://exceptionnotfound.net/the-asp-net-web-api-exception-handling-pipeline-a-guided-tour/)
+
+- [ASP.NET Error Handling](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/aspnet-error-handling)
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ## Sources of the prototype
 
 The source code of all the sandbox projects created to find the right setup to use is stored in this [GitHub repository](https://github.com/righettod/poc-error-handling).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## プロトタイプのソース
+
+使用する適切な設定を見つけるために作成されたすべてのサンドボックスプロジェクトのソースコードは、この [GitHub リポジトリ](https://github.com/righettod/poc-error-handling) に保存されています。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ## Appendix HTTP Errors
 
@@ -1508,11 +1999,7 @@ A reference for HTTP errors can be found here [RFC 2616](https://www.ietf.org/rf
 
 </div>
 <div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語訳</span>
-
-## プロトタイプのソース
-
-使用する適切な設定を見つけるために作成されたすべてのサンドボックスプロジェクトのソースコードは、この [GitHub リポジトリ](https://github.com/righettod/poc-error-handling) に保存されています。
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ## 付録 HTTP エラー
 
@@ -1521,19 +2008,10 @@ HTTP エラーのリファレンスは、こちら [RFC 2616](https://www.ietf.o
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">References (原文メタデータ)</span>
-
-- [Exception handling with Spring](https://www.baeldung.com/exception-handling-for-rest-with-spring)
-- [Exception handling with SpringBoot](https://www.toptal.com/java/spring-boot-rest-api-error-handling)
-- [Exception handling with ASP.Net Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-2.1)
-- [Exception handling with ASP.Net Web API](https://exceptionnotfound.net/the-asp-net-web-api-exception-handling-pipeline-a-guided-tour/)
-- [ASP.NET Error Handling](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/aspnet-error-handling)
-
-</div>
-
 </section>
 </div>
+
+
 
 ## Attribution
 
@@ -1545,6 +2023,6 @@ HTTP エラーのリファレンスは、こちら [RFC 2616](https://www.ietf.o
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

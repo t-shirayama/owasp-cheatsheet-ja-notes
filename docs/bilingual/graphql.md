@@ -3,14 +3,16 @@ title: GraphQL Cheat Sheet
 hide_title: true
 ---
 
-<div className="docHero" data-category="api-and-web-service">
+<div className="docHero" data-category="asvs-v13">
   <h1>GraphQL チートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
-    <span className="docPill">読了時間: 約 14 分</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">読了時間: 準備中</span>
     <span className="docPill">カテゴリ: API と Web サービス</span>
   </div>
 </div>
+
+<p className="docLead">GraphQL チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="graphql-view" id="graphql-original" />
@@ -24,8 +26,6 @@ hide_title: true
   </div>
 
 <section id="graphql-original-panel" className="tabPanel originalPanel contentPanel">
-
-# GraphQL Cheat Sheet
 
 ## Introduction
 
@@ -226,7 +226,7 @@ To ensure that a GraphQL API has proper access control, do the following:
 
 It's commonplace for GraphQL requests to include one or more direct IDs of objects in order to fetch or modify them. For example, a request for a certain picture may include the ID that is actually the primary key in the database for that picture. As with any request, the server must verify that the caller has access to the object they are requesting. But sometimes developers make the mistake of assuming that possession of the object's ID means the caller should have access. Failure to verify the requester's access in this case is called [Broken Object Level Authentication](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md), also known as [IDOR](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html).
 
-It's possible for a GraphQL API to support access to objects using their ID even if that is not intended. Sometimes there are `node` or `nodes` or both fields in a query object, and these can be used to access objects directly by `ID`. You can check whether your schema has these fields by running this on the command-line (assuming that `schema.json` contains your GraphQL schema): `cat schema.json | jq ".data.__schema.types[] | select(.name==\"Query\") | .fields[] | .name" | grep node`. Removing these fields from the schema should disable the functionality, but you should always apply proper authorization checks to verify the caller has access to the object they are requesting.
+It's possible for a GraphQL API to support access to objects using their ID even if that is not intended. Sometimes there are `node` or `nodes` or both fields in a query object, and these can be used to access objects directly by `ID`. You can check whether your schema has these fields by running this on the command-line (assuming that `schema.json` contains your GraphQL schema): `cat schema.json | jq ".data.__schema.types[] | select(.name==\\"Query\\") | .fields[] | .name" | grep node`. Removing these fields from the schema should disable the functionality, but you should always apply proper authorization checks to verify the caller has access to the object they are requesting.
 
 #### Query Access (Data Fetching)
 
@@ -348,7 +348,7 @@ GraphQL APIs in production shouldn't return stack traces or be in debug mode. Do
 ### GraphQL Security Best Practices + Documentation
 
 - [Protecting GraphQL APIs from security threats - blog post](https://medium.com/swlh/protecting-your-graphql-api-from-security-vulnerabilities-e8afdfa6fbe4)
-- [https://nordicapis.com/security-points-to-consider-before-implementing-graphql/](https://nordicapis.com/security-points-to-consider-before-implementing-graphql/)
+- [https://nordicapis.com/security-points-to-consider-before-implementing-graphql/]%28https://nordicapis.com/security-points-to-consider-before-implementing-graphql/)
 - [Limiting resource usage to prevent DoS (timeouts, throttling, complexity management, depth limiting, etc.)](https://developer.github.com/v4/guides/resource-limitations/)
 - [GraphQL Security Perspectives](https://www.abhaybhargav.com/from-the-trenches-diy-security-perspectives-of-graphql/)
 - [A developer's security perspective of GraphQL](https://planes.studio/blog/how-to-survive-a-penetration-test-as-a-graph-ql-developer)
@@ -365,8 +365,6 @@ GraphQL APIs in production shouldn't return stack traces or be in debug mode. Do
 </section>
 
 <section id="graphql-translation-panel" className="tabPanel translationPanel contentPanel">
-
-# GraphQL チートシート
 
 ## はじめに
 
@@ -717,21 +715,6 @@ app.use('/graphql', graphqlHTTP({
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-# GraphQL Cheat Sheet
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-# GraphQL チートシート
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ## Introduction
 
 [GraphQL](https://graphql.org) is an open source query language originally developed by Facebook that can be used to build APIs as an alternative to REST and SOAP. It has gained popularity since its inception in 2012 because of the native flexibility it offers to those building and calling the API. There are GraphQL servers and clients implemented in various languages. [Many companies](https://foundation.graphql.org/) use GraphQL including GitHub, Credit Karma, Intuit, and PayPal.
@@ -822,6 +805,19 @@ This Cheat Sheet provides guidance on the various areas that need to be consider
 
 ## Best Practices and Recommendations
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## ベストプラクティスと推奨事項
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Input Validation
 
 Adding strict input validation can help prevent against injection and DoS. The main design for GraphQL is that the user supplies one or more identifiers and the backend has a number of data fetchers making HTTP, DB, or other calls using the given identifiers. This means that user input will be included in HTTP requests, DB queries, or other requests/calls which provides opportunity for injection that could lead to various injection attacks or DoS.
@@ -829,8 +825,6 @@ Adding strict input validation can help prevent against injection and DoS. The m
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## ベストプラクティスと推奨事項
 
 ### 入力検証
 
@@ -1093,19 +1087,24 @@ APIs using graphql-java can utilize the built-in [MaxQueryDepthInstrumentation](
 </div>
 
 <div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
+Here is an example of a GraphQL query with depth N:
+
+</div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 graphql-java を使用する API は、組み込みの [MaxQueryDepthInstrumentation](https://github.com/graphql-java/graphql-java/blob/master/src/main/java/graphql/analysis/MaxQueryDepthInstrumentation.java) を深さ制限に利用できます。JavaScript を使用する API は、深さ制限の実装に [graphql-depth-limit](https://www.npmjs.com/package/graphql-depth-limit)、件数制限の実装に [graphql-input-number](https://github.com/4Catalyzer/graphql-input-number) を使用できます。
+
+深さ N の GraphQL クエリの例を次に示します。
 
 </div>
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Here is an example of a GraphQL query with depth N
-
 
 ```javascript
 query evil {            # Depth: 0
@@ -1135,10 +1134,23 @@ query evil {            # Depth: 0
 
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Here is an example of a GraphQL query requesting 99999999 of an object:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+オブジェクトを 99999999 件要求する GraphQL クエリの例を次に示します。
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Here is an example of a GraphQL query requesting 99999999 of an object
-
 
 ```javascript
 query {
@@ -1212,7 +1224,12 @@ JavaScript タイムアウト例
 </div>
 
 <div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
+Code snippet from [this SO answer](https://stackoverflow.com/a/53277955/1200388):
+
+</div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
@@ -1223,8 +1240,6 @@ JavaScript タイムアウト例
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Code snippet from [this SO answer](https://stackoverflow.com/a/53277955/1200388)
-
 
 ```javascript
 request.incrementResolverCount =  function () {
@@ -1259,7 +1274,6 @@ _**Java Timeout Example using [Instrumentation](https://www.graphql-java.com/doc
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
 
 ```java
 public class TimeoutInstrumentation extends SimpleInstrumentation {
@@ -1551,6 +1565,8 @@ It's commonplace for GraphQL requests to include one or more direct IDs of objec
 
 GraphQL リクエストでは、オブジェクトを取得または変更するために、オブジェクトの直接 ID が一つ以上含まれることが一般的です。たとえば、特定の写真に対するリクエストには、その写真のデータベース上の主キーである ID が含まれる場合があります。他のリクエストと同様に、サーバーは呼び出し元が要求しているオブジェクトにアクセスできることを検証しなければなりません。しかし、開発者がオブジェクトの ID を持っていることは呼び出し元にアクセス権があることを意味すると誤って仮定する場合があります。
 
+この場合にリクエスト元のアクセス権を検証しないことは、[Broken Object Level Authorization](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md)、別名 [IDOR](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) と呼ばれます。
+
 </div>
 </div>
 
@@ -1558,13 +1574,15 @@ GraphQL リクエストでは、オブジェクトを取得または変更する
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-It's possible for a GraphQL API to support access to objects using their ID even if that is not intended. Sometimes there are `node` or `nodes` or both fields in a query object, and these can be used to access objects directly by `ID`. You can check whether your schema has these fields by running this on the command-line (assuming that `schema.json` contains your GraphQL schema): `cat schema.json | jq ".data.__schema.types[] | select(.name==\"Query\") | .fields[] | .name" | grep node`. Removing these fields from the schema should disable the functionality, but you should always apply proper authorization checks to verify the caller has access to the object they are requesting.
+It's possible for a GraphQL API to support access to objects using their ID even if that is not intended. Sometimes there are `node` or `nodes` or both fields in a query object, and these can be used to access objects directly by `ID`. You can check whether your schema has these fields by running this on the command-line (assuming that `schema.json` contains your GraphQL schema): `cat schema.json | jq ".data.__schema.types[] | select(.name==\\"Query\\") | .fields[] | .name" | grep node`. Removing these fields from the schema should disable the functionality, but you should always apply proper authorization checks to verify the caller has access to the object they are requesting.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-この場合にリクエスト元のアクセス権を検証しないことは、[Broken Object Level Authorization](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md)、別名 [IDOR](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) と呼ばれます。
+GraphQL API が、意図していなくても ID を使ったオブジェクトへのアクセスをサポートしている可能性があります。Query オブジェクトに `node` または `nodes`、あるいはその両方のフィールドが存在することがあり、これらを使って `ID` によりオブジェクトへ直接アクセスできます。スキーマにこれらのフィールドがあるかどうかは、コマンドラインで次を実行して確認できます (`schema.json` に GraphQL スキーマが含まれていると仮定します): `cat schema.json | jq ".data.__schema.types[] | select(.name==\"Query\") | .fields[] | .name" | grep node`。
+
+これらのフィールドをスキーマから削除すると機能は無効化されるはずですが、呼び出し元が要求しているオブジェクトにアクセスできることを検証するため、常に適切な認可チェックを適用すべきです。
 
 </div>
 </div>
@@ -1581,7 +1599,9 @@ As part of a GraphQL API there will be various data fields that can be returned.
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-GraphQL API が、意図していなくても ID を使ったオブジェクトへのアクセスをサポートしている可能性があります。Query オブジェクトに `node` または `nodes`、あるいはその両方のフィールドが存在することがあり、これらを使って `ID` によりオブジェクトへ直接アクセスできます。スキーマにこれらのフィールドがあるかどうかは、コマンドラインで次を実行して確認できます (`schema.json` に GraphQL スキーマが含まれていると仮定します): `cat schema.json | jq ".data.__schema.types[] | select(.name==\"Query\") | .fields[] | .name" | grep node`。
+#### クエリアクセス (データ取得)
+
+GraphQL API の一部として、返却可能なさまざまなデータフィールドがあります。考慮すべきことの一つは、これらのフィールドに異なるアクセスレベルを設けるかどうかです。たとえば、すべての利用者がすべての利用可能フィールドを取得できるようにするのではなく、特定の利用者だけが特定のデータフィールドを取得できるようにしたい場合があります。これは、リクエスト元が取得しようとしているフィールドを読み取れるべきかどうかを確認するチェックをコードに追加することで実現できます。
 
 </div>
 </div>
@@ -1598,7 +1618,9 @@ GraphQL supports mutation, or manipulation of data, in addition to its most comm
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-これらのフィールドをスキーマから削除すると機能は無効化されるはずですが、呼び出し元が要求しているオブジェクトにアクセスできることを検証するため、常に適切な認可チェックを適用すべきです。
+#### ミューテーションアクセス (データ操作)
+
+GraphQL は、最も一般的なユースケースであるデータ取得に加え、ミューテーション、つまりデータ操作をサポートしています。API がミューテーションを実装または許可する場合、どの利用者が API を通じてデータを変更できるかを制限するアクセス制御が必要になる場合があります。ミューテーションアクセス制御が必要な構成には、リクエスト元に読み取りアクセスのみを意図している API や、特定の当事者だけが特定フィールドを変更できるべき API が含まれます。
 
 </div>
 </div>
@@ -1615,30 +1637,6 @@ GraphQL supports batching requests, also known as [query batching](https://www.a
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-#### クエリアクセス (データ取得)
-
-GraphQL API の一部として、返却可能なさまざまなデータフィールドがあります。考慮すべきことの一つは、これらのフィールドに異なるアクセスレベルを設けるかどうかです。たとえば、すべての利用者がすべての利用可能フィールドを取得できるようにするのではなく、特定の利用者だけが特定のデータフィールドを取得できるようにしたい場合があります。これは、リクエスト元が取得しようとしているフィールドを読み取れるべきかどうかを確認するチェックをコードに追加することで実現できます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### ミューテーションアクセス (データ操作)
-
-GraphQL は、最も一般的なユースケースであるデータ取得に加え、ミューテーション、つまりデータ操作をサポートしています。API がミューテーションを実装または許可する場合、どの利用者が API を通じてデータを変更できるかを制限するアクセス制御が必要になる場合があります。ミューテーションアクセス制御が必要な構成には、リクエスト元に読み取りアクセスのみを意図している API や、特定の当事者だけが特定フィールドを変更できるべき API が含まれます。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
 ### バッチング攻撃
 
 GraphQL は、[クエリバッチング](https://www.apollographql.com/blog/batching-client-graphql-queries-a685f5bcd41b/)とも呼ばれるリクエストのバッチ処理をサポートしています。これにより、呼び出し元は単一のネットワーク呼び出しで複数のクエリまたは複数のオブジェクトインスタンスに対するリクエストをバッチ処理できます。この仕組みは、[バッチング攻撃](https://lab.wallarm.com/graphql-batching-attack/)と呼ばれる攻撃を可能にします。これは GraphQL 固有のブルートフォース攻撃の一形態であり、通常、より高速で検知されにくい悪用を可能にします。クエリバッチングの最も一般的な方法は次のとおりです。
@@ -1648,7 +1646,6 @@ GraphQL は、[クエリバッチング](https://www.apollographql.com/blog/batc
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
 
 ```javascript
 [
@@ -1686,7 +1683,6 @@ And here is an example query of a single batched GraphQL call requesting multipl
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
 
 ```javascript
 query {
@@ -1947,7 +1943,6 @@ _**イントロスペクションの無効化 - Java**_
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-
 ```Java
 GraphQLSchema schema = GraphQLSchema.newSchema()
     .query(StarWarsSchema.queryType)
@@ -1974,7 +1969,6 @@ _**イントロスペクションと GraphiQL の無効化 - JavaScript**_
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
 
 ```javascript
 app.use('/graphql', graphqlHTTP({
@@ -2011,6 +2005,19 @@ GraphQL APIs in production shouldn't return stack traces or be in debug mode. Do
 
 ## Other Resources
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## その他のリソース
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Tools
 
 - [InQL Scanner](https://github.com/doyensec/inql) - Security scanner for GraphQL. Particularly useful for generating queries and mutations automatically from given schema and then feeding them to scanner.
@@ -2020,8 +2027,6 @@ GraphQL APIs in production shouldn't return stack traces or be in debug mode. Do
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## その他のリソース
 
 ### ツール
 
@@ -2039,7 +2044,7 @@ GraphQL APIs in production shouldn't return stack traces or be in debug mode. Do
 ### GraphQL Security Best Practices + Documentation
 
 - [Protecting GraphQL APIs from security threats - blog post](https://medium.com/swlh/protecting-your-graphql-api-from-security-vulnerabilities-e8afdfa6fbe4)
-- [https://nordicapis.com/security-points-to-consider-before-implementing-graphql/](https://nordicapis.com/security-points-to-consider-before-implementing-graphql/)
+- [https://nordicapis.com/security-points-to-consider-before-implementing-graphql/]%28https://nordicapis.com/security-points-to-consider-before-implementing-graphql/)
 - [Limiting resource usage to prevent DoS (timeouts, throttling, complexity management, depth limiting, etc.)](https://developer.github.com/v4/guides/resource-limitations/)
 - [GraphQL Security Perspectives](https://www.abhaybhargav.com/from-the-trenches-diy-security-perspectives-of-graphql/)
 - [A developer's security perspective of GraphQL](https://planes.studio/blog/how-to-survive-a-penetration-test-as-a-graph-ql-developer)
@@ -2089,8 +2094,9 @@ GraphQL APIs in production shouldn't return stack traces or be in debug mode. Do
 </div>
 
 </section>
-
 </div>
+
+
 
 ## Attribution
 
@@ -2101,7 +2107,7 @@ GraphQL APIs in production shouldn't return stack traces or be in debug mode. Do
 - Copyright: Cheat Sheets Series Team
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
-- Changes: English original retained for comparison. Japanese translation added.
-- Retrieved: 2026-05-21
+- Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
+- Retrieved: 2026-05-20
 
 </div>

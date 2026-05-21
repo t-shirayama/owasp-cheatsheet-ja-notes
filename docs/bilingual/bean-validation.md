@@ -6,12 +6,13 @@ hide_title: true
 <div className="docHero" data-category="encoding-and-sanitization">
   <h1>Bean Validation チートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 12 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
 </div>
 
+<p className="docLead">Bean Validation チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="bean-validation-view" id="bean-validation-original" />
@@ -976,8 +977,6 @@ Spring MVC は、定義済みの `MessageSource` から ID `article.title.error`
 
 </section>
 
-
-
 <section id="bean-validation-bilingual-panel" className="tabPanel bilingualPanel">
 
 <div className="bilingualPair">
@@ -1029,19 +1028,45 @@ One advantage of this approach is that the validation constraints and the corres
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Typical Validation
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### Typical Validation
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ![Typical](/img/owasp-cheatsheets/bean-validation/typical.png)
 
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Bean Validation
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### Bean Validation
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ![JSR](/img/owasp-cheatsheets/bean-validation/jsr.png)
 
@@ -1066,10 +1091,23 @@ The examples in this guide use Hibernate Validator.
 </div>
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Add Hibernate Validator to your **pom.xml**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+Hibernate Validator を **pom.xml** に追加します。
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-### Add Hibernate Validator to your **pom.xml**
-
 
 ```xml
 <dependency>
@@ -1081,10 +1119,23 @@ The examples in this guide use Hibernate Validator.
 
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Enable bean validation support in Spring's **context.xml**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+Spring の **context.xml** で Bean Validation サポートを有効にします。
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Enable bean validation support in Spring's **context.xml**
-
 
 ```xml
 <beans:beans ...
@@ -1234,6 +1285,19 @@ When it comes to error handling, the Hibernate Validator returns a `BindingResul
 
 ## Predefined Constraints
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## Predefined Constraints
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### @Pattern
 
 **Annotation**:
@@ -1241,8 +1305,6 @@ When it comes to error handling, the Hibernate Validator returns a `BindingResul
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## Predefined Constraints
 
 ### @Pattern
 
@@ -1356,10 +1418,23 @@ Checks if the annotated string matches the regular expression regex considering 
 </div>
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Model**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Model**:
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Model
-
 
 ```java
 import org.hibernate.validator.constraints.Pattern;
@@ -1382,10 +1457,23 @@ public class Article  {
 
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Controller**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Controller**:
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Controller
-
 
 ```java
 import javax.validation.Valid;
@@ -1540,10 +1628,23 @@ Checks whether the annotated value is a number having up to integer digits and f
 </div>
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Model**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Model**:
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Model
-
 
 ```java
 import org.hibernate.validator.constraints.Digits;
@@ -1567,10 +1668,23 @@ public class Customer {
 
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Controller**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Controller**:
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Controller
-
 
 ```java
 import javax.validation.Valid;
@@ -1727,10 +1841,23 @@ Checks if the annotated element's size is between min and max (inclusive)
 </div>
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Model**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Model**:
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Model
-
 
 ```java
 import org.hibernate.validator.constraints.Size;
@@ -1755,10 +1882,23 @@ public class Message {
 
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Controller**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Controller**:
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Controller
-
 
 ```java
 import javax.validation.Valid;
@@ -1915,10 +2055,23 @@ Checks whether the annotated date is in the past / future
 </div>
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Model**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Model**:
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Model
-
 
 ```java
 import org.hibernate.validator.constraints.Past;
@@ -1956,10 +2109,23 @@ public class DoctorVisit {
 
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Controller**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Controller**:
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Controller
-
 
 ```java
 import javax.validation.Valid;
@@ -2131,10 +2297,23 @@ Checks whether the annotated value is higher/lower than or equal to the specifie
 </div>
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Model**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Model**:
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Model
-
 
 ```java
 import org.hibernate.validator.constraints.Min;
@@ -2160,10 +2339,23 @@ public class Review {
 
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Controller**:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**Controller**:
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-#### Controller
-
 
 ```java
 import javax.validation.Valid;
@@ -2347,7 +2539,6 @@ It is possible to specify a message ID with the validation annotation, so that e
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-
 ```java
 @Pattern(regexp = "[a-zA-Z0-9 ]", message="article.title.error")
 private String articleTitle;
@@ -2385,6 +2576,6 @@ Spring MVC は、定義済みの `MessageSource` から ID `article.title.error`
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

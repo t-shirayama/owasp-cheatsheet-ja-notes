@@ -6,7 +6,7 @@ hide_title: true
 <div className="docHero" data-category="encoding-and-sanitization">
   <h1>クエリパラメータ化チートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 15 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
@@ -555,13 +555,24 @@ Please note, many client side frameworks and libraries offer client side query p
 
 ### Prepared Statement Examples
 
-#### Using Java built-in feature
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### プリペアドステートメントの例
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Using Java built-in feature
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 #### Java 組み込み機能の使用
 
@@ -926,6 +937,19 @@ Here are some examples of using bind variables in stored procedures in different
 
 #### Oracle using PL/SQL
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### PL/SQL を使用する Oracle
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ##### Normal Stored Procedure
 
 No dynamic SQL being created. Parameters passed in to stored procedures are naturally bound to their location within the query without anything special being required:
@@ -933,8 +957,6 @@ No dynamic SQL being created. Parameters passed in to stored procedures are natu
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### PL/SQL を使用する Oracle
 
 ##### 通常のストアドプロシージャ
 
@@ -995,6 +1017,19 @@ END;
 
 #### SQL Server using Transact-SQL
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### Transact-SQL を使用する SQL Server
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ##### Normal Stored Procedure
 
 No dynamic SQL being created. Parameters passed in to stored procedures are naturally bound to their location within the query without anything special being required:
@@ -1002,8 +1037,6 @@ No dynamic SQL being created. Parameters passed in to stored procedures are natu
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### Transact-SQL を使用する SQL Server
 
 ##### 通常のストアドプロシージャ
 
@@ -1070,6 +1103,7 @@ END
 
 </div>
 
+
 ## Attribution
 
 <div className="attributionFooter">
@@ -1080,6 +1114,6 @@ END
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

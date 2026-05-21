@@ -6,7 +6,7 @@ hide_title: true
 <div className="docHero" data-category="encoding-and-sanitization">
   <h1>入力検証チートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 15 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
@@ -57,7 +57,7 @@ Input validation can be implemented using any programming technique that allows 
 - Type conversion (e.g. `Integer.parseInt()` in Java, `int()` in Python) with strict exception handling
 - Minimum and maximum value range check for numerical parameters and dates, minimum and maximum length check for strings.
 - Array of allowed values for small sets of string parameters (e.g. days of week).
-- Regular expressions for any other structured data covering the whole input string `(^...$)` and **not** using "any character" wildcard (such as `.` or `\S`)
+- Regular expressions for any other structured data covering the whole input string `(^...$)` and **not** using "any character" wildcard (such as `.` or `\\S`)
 - Denylisting known dangerous patterns can be used as an additional layer of defense, but it should supplement - not replace - allowlisting, to help catch some commonly observed attacks or patterns without relying on it as the main validation method.
 
 ### Allowlist vs Denylist
@@ -349,7 +349,7 @@ Because it could allow users to register multiple accounts with a single email a
 
 - 少なくとも、すべての入力データに適用する。
 - 受け入れる文字の許可集合を定義する。
-- データの最小長と最大長を定義する (例: `&#123;1,25&#125;`)。
+- データの最小長と最大長を定義する (例: `{1,25}`)。
 
 ## 許可リスト正規表現の例
 
@@ -521,24 +521,13 @@ XSS 防止の詳細情報はこちら: [OWASP XSS Prevention Cheat Sheet](https:
 
 ## Introduction
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## はじめに
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 This article is focused on providing clear, simple, actionable guidance for providing Input Validation security functionality in your applications.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## はじめに
 
 この記事は、アプリケーションに入力検証のセキュリティ機能を提供するための、明確でシンプルかつ実行可能なガイダンスを示すことに焦点を当てています。
 
@@ -551,24 +540,13 @@ This article is focused on providing clear, simple, actionable guidance for prov
 
 ## Goals of Input Validation
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## 入力検証の目的
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Input validation is performed to ensure only properly formed data is entering the workflow in an information system, preventing malformed data from persisting in the database and triggering malfunction of various downstream components. Input validation should happen as early as possible in the data flow, preferably as soon as the data is received from the external party.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 入力検証の目的
 
 入力検証は、情報システム内のワークフローに正しく形成されたデータだけが入るようにするために実施します。これにより、不正な形式のデータがデータベースに残ったり、後続のさまざまなコンポーネントの誤動作を引き起こしたりすることを防ぎます。入力検証は、データフローのできるだけ早い段階、できれば外部の相手からデータを受け取った直後に行うべきです。
 
@@ -611,24 +589,13 @@ Input Validation should not be used as the *primary* method of preventing [XSS](
 
 ## Input Validation Strategies
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## 入力検証戦略
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Input validation should be applied at both syntactic and semantic levels:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 入力検証戦略
 
 入力検証は、構文レベルと意味レベルの両方で適用するべきです。
 
@@ -673,24 +640,13 @@ It is always recommended to prevent attacks as early as possible in the processi
 
 ## Implementing Input Validation
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## 入力検証の実装
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Input validation can be implemented using any programming technique that allows effective enforcement of syntactic and semantic correctness, for example:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 入力検証の実装
 
 入力検証は、構文的および意味的な正しさを効果的に強制できる任意のプログラミング技法で実装できます。たとえば次のようなものがあります。
 
@@ -706,7 +662,7 @@ Input validation can be implemented using any programming technique that allows 
 - Type conversion (e.g. `Integer.parseInt()` in Java, `int()` in Python) with strict exception handling
 - Minimum and maximum value range check for numerical parameters and dates, minimum and maximum length check for strings.
 - Array of allowed values for small sets of string parameters (e.g. days of week).
-- Regular expressions for any other structured data covering the whole input string `(^...$)` and **not** using "any character" wildcard (such as `.` or `\S`)
+- Regular expressions for any other structured data covering the whole input string `(^...$)` and **not** using "any character" wildcard (such as `.` or `\\S`)
 - Denylisting known dangerous patterns can be used as an additional layer of defense, but it should supplement - not replace - allowlisting, to help catch some commonly observed attacks or patterns without relying on it as the main validation method.
 
 </div>
@@ -730,24 +686,13 @@ Input validation can be implemented using any programming technique that allows 
 
 ### Allowlist vs Denylist
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### 許可リストと拒否リスト
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 It is a common mistake to use denylist validation in order to try to detect possibly dangerous characters and patterns like the apostrophe `'` character, the string `1=1`, or the `<script>` tag, but this is a massively flawed approach as it is trivial for an attacker to bypass such filters.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 許可リストと拒否リスト
 
 アポストロフィ `'`、文字列 `1=1`、`<script>` タグのような、危険かもしれない文字やパターンを検出しようとして拒否リスト検証を使うのはよくある誤りです。しかし、この方法は攻撃者が簡単に回避できるため、根本的に欠陥があります。
 
@@ -835,24 +780,13 @@ If the input field comes from a fixed set of options, like a drop down list or r
 
 ### Validating Free-form Unicode Text
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### 自由形式 Unicode テキストの検証
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Free-form text, especially with Unicode characters, is perceived as difficult to validate due to a relatively large space of characters that need to be allowed.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 自由形式 Unicode テキストの検証
 
 自由形式テキスト、とくに Unicode 文字を含むテキストは、許可する必要がある文字の範囲が比較的大きいため、検証が難しいと見なされます。
 
@@ -950,24 +884,13 @@ References:
 
 ### Regular Expressions (Regex)
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### 正規表現 (Regex)
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Developing regular expressions can be complicated, and is well beyond the scope of this cheat sheet.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 正規表現 (Regex)
 
 正規表現の作成は複雑になり得るため、このチートシートの範囲を大きく超えます。
 
@@ -1033,7 +956,7 @@ In summary, input validation should:
 
 - 少なくとも、すべての入力データに適用する。
 - 受け入れる文字の許可集合を定義する。
-- データの最小長と最大長を定義する (例: `&#123;1,25&#125;`)。
+- データの最小長と最大長を定義する (例: `{1,25}`)。
 
 </div>
 </div>
@@ -1044,24 +967,13 @@ In summary, input validation should:
 
 ## Allow List Regular Expression Examples
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## 許可リスト正規表現の例
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Validating a U.S. Zip Code (5 digits plus optional -4)
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 許可リスト正規表現の例
 
 米国 ZIP コード (5 桁と任意の -4) の検証
 
@@ -1070,7 +982,6 @@ Validating a U.S. Zip Code (5 digits plus optional -4)
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
 
 ```text
 ^\d{5}(-\d{4})?$
@@ -1095,7 +1006,6 @@ Validating U.S. State Selection From a Drop-Down Menu
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
 
 ```text
 ^(AA|AE|AP|AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|
@@ -1138,7 +1048,6 @@ Example validating the parameter "zip" using a regular expression.
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
 
 ```java
 private static final Pattern zipPattern = Pattern.compile("^\d{5}(-\d{4})?$");
@@ -1194,24 +1103,13 @@ Some Allowlist validators have also been predefined in various open source packa
 
 ## Client-side vs Server-side Validation
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## クライアント側検証とサーバー側検証
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Input validation **must** be implemented on the server-side before any data is processed by an application’s functions, as any JavaScript-based input validation performed on the client-side can be circumvented by an attacker who disables JavaScript or uses a web proxy. Implementing both client-side JavaScript-based validation for UX and server-side validation for security is the recommended approach, leveraging each for their respective strengths.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## クライアント側検証とサーバー側検証
 
 入力検証は、アプリケーション機能によってデータが処理される前に、サーバー側で実装することが**必須**です。クライアント側で実行される JavaScript ベースの入力検証は、攻撃者が JavaScript を無効にしたり Web プロキシを使用したりすることで回避できるためです。UX のためのクライアント側 JavaScript ベース検証と、セキュリティのためのサーバー側検証の両方を実装し、それぞれの強みを活用することが推奨されるアプローチです。
 
@@ -1224,24 +1122,13 @@ Input validation **must** be implemented on the server-side before any data is p
 
 ## Validating Rich User Content
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## リッチなユーザーコンテンツの検証
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 It is very difficult to validate rich content submitted by a user. For more information, please see the XSS cheat sheet on [Sanitizing HTML Markup with a Library Designed for the Job](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## リッチなユーザーコンテンツの検証
 
 ユーザーが送信するリッチコンテンツを検証することは非常に困難です。詳細については、XSS チートシートの [Sanitizing HTML Markup with a Library Designed for the Job](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) を参照してください。
 
@@ -1254,24 +1141,13 @@ It is very difficult to validate rich content submitted by a user. For more info
 
 ## Preventing XSS and Content Security Policy
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## XSS と Content Security Policy の防止
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 All user data controlled must be encoded when returned in the HTML page to prevent the execution of malicious data (e.g. XSS). For example `<script>` would be returned as `&lt;script&gt;`
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## XSS と Content Security Policy の防止
 
 悪意あるデータの実行 (例: XSS) を防ぐため、ユーザーが制御するすべてのデータは HTML ページに返す際にエンコードする必要があります。たとえば `<script>` は `&lt;script&gt;` として返されます。
 
@@ -1314,24 +1190,13 @@ XSS 防止の詳細情報はこちら: [OWASP XSS Prevention Cheat Sheet](https:
 
 ## File Upload Validation
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## ファイルアップロード検証
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Many websites allow users to upload files, such as a profile picture or more. This section helps provide that feature securely.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## ファイルアップロード検証
 
 多くの Web サイトでは、プロフィール画像などのファイルをユーザーがアップロードできます。このセクションでは、その機能を安全に提供するための支援をします。
 
@@ -1359,19 +1224,6 @@ Check the [File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatshee
 
 ### Upload Verification
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### アップロードの検証
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Use input validation to ensure the uploaded filename uses an expected extension type.
 - Ensure the uploaded file is not larger than a defined maximum file size.
 - If the website supports ZIP file upload, do a validation check before unzipping the file. The check includes the target path, level of compression, estimated unzip size.
@@ -1379,6 +1231,8 @@ Check the [File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatshee
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### アップロードの検証
 
 - 入力検証を使用して、アップロードされたファイル名が想定される拡張子タイプを使用していることを確認します。
 - アップロードされたファイルが、定義された最大ファイルサイズを超えていないことを確認します。
@@ -1393,19 +1247,6 @@ Check the [File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatshee
 
 ### Upload Storage
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### アップロードの保存
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Use a new filename to store the file on the OS. Do not use any user controlled text for this filename or for the temporary filename.
 - When the file is uploaded to web, it's suggested to rename the file on storage. For example, the uploaded filename is *test.JPG*, rename it to *JAI1287uaisdjhf.JPG* with a random filename. The purpose of doing it to prevent the risks of direct file access and ambiguous filename to evade the filter, such as `test.jpg;.asp or /../../../../../test.jpg`.
 - Uploaded files should be analyzed for malicious content (anti-malware, static analysis, etc).
@@ -1414,6 +1255,8 @@ Check the [File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatshee
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### アップロードの保存
 
 - OS 上でファイルを保存するには新しいファイル名を使用します。このファイル名や一時ファイル名に、ユーザーが制御するテキストを使用してはいけません。
 - ファイルが Web にアップロードされる場合、保存時にファイル名を変更することが推奨されます。たとえば、アップロードされたファイル名が *test.JPG* であれば、ランダムなファイル名で *JAI1287uaisdjhf.JPG* に変更します。これを行う目的は、直接ファイルアクセスのリスクや、`test.jpg;.asp or /../../../../../test.jpg` のようなフィルタ回避のための曖昧なファイル名のリスクを防ぐことです。
@@ -1429,24 +1272,13 @@ Check the [File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatshee
 
 ### Public Serving of Uploaded Content
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### アップロードコンテンツの公開配信
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Ensure uploaded images are served with the correct content-type (e.g. `image/jpeg`, `application/x-xpinstall`)
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### アップロードコンテンツの公開配信
 
 - アップロードされた画像が、正しい content-type (例: `image/jpeg`、`application/x-xpinstall`) で配信されることを確認します。
 
@@ -1459,24 +1291,13 @@ Check the [File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatshee
 
 ### Beware of Specific File Types
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### 特定のファイルタイプに注意
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 The upload feature should be using an allowlist approach to only allow specific file types and extensions. However, it is important to be aware of the following file types that, if allowed, could result in security vulnerabilities:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 特定のファイルタイプに注意
 
 アップロード機能では、特定のファイルタイプと拡張子だけを許可する許可リストアプローチを使用するべきです。ただし、許可するとセキュリティ脆弱性につながる可能性がある次のファイルタイプに注意することが重要です。
 
@@ -1508,19 +1329,6 @@ The upload feature should be using an allowlist approach to only allow specific 
 
 ### Image Upload Verification
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### 画像アップロード検証
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Use image rewriting libraries to verify the image is valid and to strip away extraneous content.
 - Set the extension of the stored image to be a valid image extension based on the detected content type of the image from image processing (e.g. do not just trust the header from the upload).
 - Ensure the detected content type of the image is within a list of defined image types (jpg, PNG, etc)
@@ -1528,6 +1336,8 @@ The upload feature should be using an allowlist approach to only allow specific 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 画像アップロード検証
 
 - 画像書き換えライブラリを使用して、画像が有効であることを確認し、余分なコンテンツを取り除きます。
 - 保存する画像の拡張子は、画像処理で検出された画像の content type に基づく有効な画像拡張子にします (例: アップロード時のヘッダーだけを信頼しない)。
@@ -1557,24 +1367,13 @@ The upload feature should be using an allowlist approach to only allow specific 
 
 ### Syntactic Validation
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### 構文検証
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 The format of email addresses is defined by [RFC 5321](https://tools.ietf.org/html/rfc5321#section-4.1.2), and is far more complicated than most people realise. As an example, the following are all considered to be valid email addresses:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 構文検証
 
 メールアドレスの形式は [RFC 5321](https://tools.ietf.org/html/rfc5321#section-4.1.2) で定義されており、多くの人が認識しているよりもはるかに複雑です。例として、次のものはすべて有効なメールアドレスと見なされます。
 
@@ -1680,24 +1479,13 @@ As such, the best way to validate email addresses is to perform some basic initi
 
 ### Semantic Validation
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### 意味検証
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Semantic validation is about determining whether the email address is correct and legitimate. The most common way to do this is to send an email to the user, and require that they click a link in the email, or enter a code that has been sent to them. This provides a basic level of assurance that:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 意味検証
 
 意味検証は、メールアドレスが正しく正当なものかを判断することです。これを行う最も一般的な方法は、ユーザーにメールを送信し、そのメール内のリンクをクリックさせるか、送信されたコードを入力させることです。これにより、次のことについて基本的な保証が得られます。
 
@@ -1780,24 +1568,13 @@ After validating the ownership of the email address, the user should then be req
 
 #### Disposable Email Addresses
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### 使い捨てメールアドレス
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 In some cases, users may not want to give their real email address when registering on the application, and will instead provide a disposable email address. These are publicly available addresses that do not require the user to authenticate, and are typically used to reduce the amount of spam received by users' primary email addresses.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 使い捨てメールアドレス
 
 場合によっては、ユーザーはアプリケーション登録時に実際のメールアドレスを提供したくないため、代わりに使い捨てメールアドレスを提供します。これらはユーザー認証を必要としない公開アドレスであり、通常、ユーザーの主要メールアドレスに届くスパム量を減らすために使用されます。
 
@@ -1855,24 +1632,13 @@ If it is essential that disposable email addresses are blocked, then registratio
 
 #### Sub-Addressing
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### サブアドレッシング
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Sub-addressing allows a user to specify a *tag* in the local part of the email address (before the `@` sign), which will be ignored by the mail server. For example, if that `example.org` domain supports sub-addressing, then the following email addresses are equivalent:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### サブアドレッシング
 
 サブアドレッシングでは、ユーザーがメールアドレスのローカル部 (`@` 記号の前) に*タグ*を指定できます。このタグはメールサーバーによって無視されます。たとえば、その `example.org` ドメインがサブアドレッシングに対応している場合、次のメールアドレスは同等です。
 
@@ -1968,6 +1734,6 @@ Because it could allow users to register multiple accounts with a single email a
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

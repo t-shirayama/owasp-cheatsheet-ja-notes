@@ -6,7 +6,7 @@ hide_title: true
 <div className="docHero" data-category="encoding-and-sanitization">
   <h1>セキュリティ用語チートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 15 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
@@ -276,8 +276,6 @@ OAuth2、SAML、OIDC を扱うとき、次の用語がよく使われます。
 | **Principal** | 認証されるエンティティ、つまり利用者、サービス、またはデバイスです。 | ログインする利用者 |
 
 </section>
-
-
 
 <section id="security-terminology-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -658,6 +656,19 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 
 ## Identity: Authentication and Authorization
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## Identity: Authentication and Authorization
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Authentication (AuthN)
 
 **Definition:** The process of verifying who a user is.
@@ -665,8 +676,6 @@ These terms relate to protecting the confidentiality, integrity, and authenticit
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## Identity: Authentication and Authorization
 
 ### Authentication (AuthN)
 
@@ -802,6 +811,6 @@ OAuth2、SAML、OIDC を扱うとき、次の用語がよく使われます。
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

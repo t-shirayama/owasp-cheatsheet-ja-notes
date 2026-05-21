@@ -6,11 +6,13 @@ hide_title: true
 <div className="docHero" data-category="asvs-v15">
   <h1>Mass Assignment チートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
-    <span className="docPill">読了時間: 約 6 分</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">読了時間: 準備中</span>
     <span className="docPill">カテゴリ: セキュアコーディングとアーキテクチャ</span>
   </div>
 </div>
+
+<p className="docLead">Mass Assignment チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="mass-assignment-view" id="mass-assignment-original" />
@@ -303,10 +305,6 @@ Take a look [here](http://json-lib.sourceforge.net/advanced.html) for the docume
 
 Take a look [here](http://flexjson.sourceforge.net/#Serialization) for the documentation.
 
-## References and future reading
-
-- [Mass Assignment, Rails and You](https://code.tutsplus.com/tutorials/mass-assignment-rails-and-you--net-31695)
-
 </section>
 
 <section id="mass-assignment-translation-panel" className="tabPanel translationPanel contentPanel">
@@ -589,6 +587,10 @@ class User extends Model
 
 ドキュメントは[こちら](http://flexjson.sourceforge.net/#Serialization)を参照してください。
 
+## 参考文献と今後の読み物
+
+- [Mass Assignment, Rails and You](https://code.tutsplus.com/tutorials/mass-assignment-rails-and-you--net-31695)
+
 </section>
 
 <section id="mass-assignment-bilingual-panel" className="tabPanel bilingualPanel">
@@ -599,25 +601,58 @@ class User extends Model
 
 ## Introduction
 
-### Definition
-
-Software frameworks sometimes allow developers to automatically bind HTTP request parameters into program code variables or objects to make using that framework easier on developers. This can sometimes cause harm.
-
-Attackers can sometimes use this methodology to create new parameters that the developer never intended which in turn creates or overwrites new variable or objects in program code that was not intended.
-
-This is called a **Mass Assignment** vulnerability.
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ## はじめに
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Definition
+
+Software frameworks sometimes allow developers to automatically bind HTTP request parameters into program code variables or objects to make using that framework easier on developers. This can sometimes cause harm.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 ### 定義
 
 ソフトウェアフレームワークは、開発者がそのフレームワークを使いやすくするため、HTTP リクエストパラメータをプログラムコード内の変数やオブジェクトへ自動的にバインドできることがあります。これは、ときに害をもたらす可能性があります。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Attackers can sometimes use this methodology to create new parameters that the developer never intended which in turn creates or overwrites new variable or objects in program code that was not intended.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 攻撃者はこの仕組みを使い、開発者が意図していない新しいパラメータを作成することがあります。その結果、プログラムコード内で意図されていない変数やオブジェクトが新規作成されたり、上書きされたりします。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+This is called a **Mass Assignment** vulnerability.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 これは **Mass Assignment** 脆弱性と呼ばれます。
 
@@ -632,10 +667,6 @@ This is called a **Mass Assignment** vulnerability.
 
 Depending on the language/framework in question, this vulnerability can have several [alternative names](https://cwe.mitre.org/data/definitions/915.html):
 
-- **Mass Assignment:** Ruby on Rails, NodeJS.
-- **Autobinding:** Spring MVC, ASP NET MVC.
-- **Object injection:** PHP.
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -643,6 +674,21 @@ Depending on the language/framework in question, this vulnerability can have sev
 ### 別名
 
 対象の言語やフレームワークによって、この脆弱性には複数の[別名](https://cwe.mitre.org/data/definitions/915.html)があります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- **Mass Assignment:** Ruby on Rails, NodeJS.
+- **Autobinding:** Spring MVC, ASP NET MVC.
+- **Object injection:** PHP.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - **Mass Assignment:** Ruby on Rails、NodeJS。
 - **Autobinding:** Spring MVC、ASP NET MVC。
@@ -657,7 +703,7 @@ Depending on the language/framework in question, this vulnerability can have sev
 
 ### Example
 
-Suppose there is a form for editing a user's account information.
+Suppose there is a form for editing a user's account information:
 
 </div>
 <div className="bilingualBlock japanese">
@@ -668,6 +714,8 @@ Suppose there is a form for editing a user's account information.
 ユーザーのアカウント情報を編集するフォームがあるとします。
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -681,13 +729,12 @@ Suppose there is a form for editing a user's account information.
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-Here is the object that the form is binding to.
+Here is the object that the form is binding to:
 
 </div>
 <div className="bilingualBlock japanese">
@@ -696,6 +743,8 @@ Here is the object that the form is binding to.
 このフォームがバインドされるオブジェクトは次のとおりです。
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -711,13 +760,12 @@ public class User {
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-Here is the controller handling the request.
+Here is the controller handling the request:
 
 </div>
 <div className="bilingualBlock japanese">
@@ -726,6 +774,8 @@ Here is the controller handling the request.
 リクエストを処理するコントローラーは次のとおりです。
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -738,13 +788,12 @@ public String submit(User user) {
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-Here is the typical request.
+Here is the typical request:
 
 </div>
 <div className="bilingualBlock japanese">
@@ -753,6 +802,8 @@ Here is the typical request.
 通常のリクエストは次のとおりです。
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -763,13 +814,12 @@ userid=bobbytables&password=hashedpass&email=bobby@tables.com
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-And here is the exploit in which we set the value of the attribute `isAdmin` of the instance of the class `User`.
+And here is the exploit in which we set the value of the attribute `isAdmin` of the instance of the class `User`:
 
 </div>
 <div className="bilingualBlock japanese">
@@ -778,6 +828,8 @@ And here is the exploit in which we set the value of the attribute `isAdmin` of 
 そして、クラス `User` のインスタンスの属性 `isAdmin` の値を設定する悪用例は次のとおりです。
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -788,7 +840,6 @@ userid=bobbytables&password=hashedpass&email=bobby@tables.com&isAdmin=true
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -798,10 +849,6 @@ userid=bobbytables&password=hashedpass&email=bobby@tables.com&isAdmin=true
 
 This functionality becomes exploitable when:
 
-- Attacker can guess common sensitive fields.
-- Attacker has access to source code and can review the models for sensitive fields.
-- AND the object with sensitive fields has an empty constructor.
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -809,6 +856,21 @@ This functionality becomes exploitable when:
 ### 悪用可能性
 
 この機能は、次の場合に悪用可能になります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Attacker can guess common sensitive fields.
+- Attacker has access to source code and can review the models for sensitive fields.
+- AND the object with sensitive fields has an empty constructor.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - 攻撃者が一般的な機密フィールドを推測できる。
 - 攻撃者がソースコードへアクセスでき、モデル内の機密フィールドを確認できる。
@@ -876,6 +938,8 @@ An architectural approach is to create Data Transfer Objects and avoid binding i
 アーキテクチャ上のアプローチとして、Data Transfer Object を作成し、入力をドメインオブジェクトへ直接バインドしないようにします。DTO には、ユーザーが編集することを意図したフィールドだけを含めます。
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -892,7 +956,6 @@ public class UserRegistrationFormDTO {
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -900,7 +963,33 @@ public class UserRegistrationFormDTO {
 
 ## Language & Framework specific solutions
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 言語およびフレームワーク固有の解決策
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Spring MVC
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### Spring MVC
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Allow-listing
 
@@ -908,13 +997,11 @@ public class UserRegistrationFormDTO {
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-## 言語およびフレームワーク固有の解決策
-
-### Spring MVC
-
 #### 許可リスト化
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -932,7 +1019,6 @@ public class UserController
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -940,17 +1026,30 @@ public class UserController
 
 Take a look [here](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/DataBinder.html#setAllowedFields-java.lang.String...-) for the documentation.
 
-#### Block-listing
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ドキュメントは[こちら](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/DataBinder.html#setAllowedFields-java.lang.String...-)を参照してください。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Block-listing
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 #### 禁止リスト化
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -968,7 +1067,6 @@ public class UserController
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -976,7 +1074,33 @@ public class UserController
 
 Take a look [here](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/DataBinder.html#setDisallowedFields-java.lang.String...-) for the documentation.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ドキュメントは[こちら](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/DataBinder.html#setDisallowedFields-java.lang.String...-)を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### NodeJS + Mongoose
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### NodeJS + Mongoose
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Allow-listing
 
@@ -984,13 +1108,11 @@ Take a look [here](https://docs.spring.io/spring/docs/current/javadoc-api/org/sp
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-ドキュメントは[こちら](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/DataBinder.html#setDisallowedFields-java.lang.String...-)を参照してください。
-
-### NodeJS + Mongoose
-
 #### 許可リスト化
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -1013,7 +1135,6 @@ var user = new User(_.pick(req.body, User.userCreateSafeFields));
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -1021,17 +1142,30 @@ var user = new User(_.pick(req.body, User.userCreateSafeFields));
 
 Take a look [here](http://underscorejs.org/#pick) for the documentation.
 
-#### Block-listing
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ドキュメントは[こちら](http://underscorejs.org/#pick)を参照してください。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Block-listing
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 #### 禁止リスト化
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -1062,7 +1196,6 @@ User.update({ '_id': someId }, { $set: User.massUpdate(input) }, console
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -1070,13 +1203,56 @@ User.update({ '_id': someId }, { $set: User.massUpdate(input) }, console
 
 Take a look [here](https://www.npmjs.com/package/mongoose-mass-assign) for the documentation.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ドキュメントは[こちら](https://www.npmjs.com/package/mongoose-mass-assign)を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Ruby On Rails
 
 Take a look [here](https://guides.rubyonrails.org/v3.2.9/security.html#mass-assignment) for the documentation.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### Ruby On Rails
+
+ドキュメントは[こちら](https://guides.rubyonrails.org/v3.2.9/security.html#mass-assignment)を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Django
 
 Take a look [here](https://coffeeonthekeyboard.com/mass-assignment-security-part-10-855/) for the documentation.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### Django
+
+ドキュメントは[こちら](https://coffeeonthekeyboard.com/mass-assignment-security-part-10-855/)を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ### ASP NET
 
@@ -1085,16 +1261,6 @@ Take a look [here](https://odetocode.com/Blogs/scott/archive/2012/03/11/complete
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-ドキュメントは[こちら](https://www.npmjs.com/package/mongoose-mass-assign)を参照してください。
-
-### Ruby On Rails
-
-ドキュメントは[こちら](https://guides.rubyonrails.org/v3.2.9/security.html#mass-assignment)を参照してください。
-
-### Django
-
-ドキュメントは[こちら](https://coffeeonthekeyboard.com/mass-assignment-security-part-10-855/)を参照してください。
 
 ### ASP NET
 
@@ -1109,17 +1275,30 @@ Take a look [here](https://odetocode.com/Blogs/scott/archive/2012/03/11/complete
 
 ### PHP Laravel + Eloquent
 
-#### Allow-listing
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### PHP Laravel + Eloquent
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Allow-listing
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 #### 許可リスト化
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -1142,7 +1321,6 @@ class User extends Model
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -1150,17 +1328,30 @@ class User extends Model
 
 Take a look [here](https://laravel.com/docs/5.2/eloquent#mass-assignment) for the documentation.
 
-#### Block-listing
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ドキュメントは[こちら](https://laravel.com/docs/5.2/eloquent#mass-assignment)を参照してください。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Block-listing
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 #### 禁止リスト化
 
 </div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
@@ -1183,7 +1374,6 @@ class User extends Model
 ```
 
 </div>
-</div>
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
@@ -1191,25 +1381,113 @@ class User extends Model
 
 Take a look [here](https://laravel.com/docs/5.2/eloquent#mass-assignment) for the documentation.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ドキュメントは[こちら](https://laravel.com/docs/5.2/eloquent#mass-assignment)を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Grails
 
 Take a look [here](http://spring.io/blog/2012/03/28/secure-data-binding-with-grails/) for the documentation.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### Grails
+
+ドキュメントは[こちら](http://spring.io/blog/2012/03/28/secure-data-binding-with-grails/)を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ### Play
 
 Take a look [here](https://www.playframework.com/documentation/1.4.x/controllers#nobinding) for the documentation.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### Play
+
+ドキュメントは[こちら](https://www.playframework.com/documentation/1.4.x/controllers#nobinding)を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Jackson (JSON Object Mapper)
 
 Take a look [here](https://www.baeldung.com/jackson-field-serializable-deserializable-or-not) and [here](http://lifelongprogrammer.blogspot.com/2015/09/using-jackson-view-to-protect-mass-assignment.html) for the documentation.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### Jackson (JSON Object Mapper)
+
+ドキュメントは[こちら](https://www.baeldung.com/jackson-field-serializable-deserializable-or-not)と[こちら](http://lifelongprogrammer.blogspot.com/2015/09/using-jackson-view-to-protect-mass-assignment.html)を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ### GSON (JSON Object Mapper)
 
 Take a look [here](https://sites.google.com/site/gson/gson-user-guide#TOC-Excluding-Fields-From-Serialization-and-Deserialization) and [here](https://stackoverflow.com/a/27986860) for the document.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### GSON (JSON Object Mapper)
+
+ドキュメントは[こちら](https://sites.google.com/site/gson/gson-user-guide#TOC-Excluding-Fields-From-Serialization-and-Deserialization)と[こちら](https://stackoverflow.com/a/27986860)を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### JSON-Lib (JSON Object Mapper)
 
 Take a look [here](http://json-lib.sourceforge.net/advanced.html) for the documentation.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### JSON-Lib (JSON Object Mapper)
+
+ドキュメントは[こちら](http://json-lib.sourceforge.net/advanced.html)を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ### Flexjson (JSON Object Mapper)
 
@@ -1219,28 +1497,6 @@ Take a look [here](http://flexjson.sourceforge.net/#Serialization) for the docum
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-ドキュメントは[こちら](https://laravel.com/docs/5.2/eloquent#mass-assignment)を参照してください。
-
-### Grails
-
-ドキュメントは[こちら](http://spring.io/blog/2012/03/28/secure-data-binding-with-grails/)を参照してください。
-
-### Play
-
-ドキュメントは[こちら](https://www.playframework.com/documentation/1.4.x/controllers#nobinding)を参照してください。
-
-### Jackson (JSON Object Mapper)
-
-ドキュメントは[こちら](https://www.baeldung.com/jackson-field-serializable-deserializable-or-not)と[こちら](http://lifelongprogrammer.blogspot.com/2015/09/using-jackson-view-to-protect-mass-assignment.html)を参照してください。
-
-### GSON (JSON Object Mapper)
-
-ドキュメントは[こちら](https://sites.google.com/site/gson/gson-user-guide#TOC-Excluding-Fields-From-Serialization-and-Deserialization)と[こちら](https://stackoverflow.com/a/27986860)を参照してください。
-
-### JSON-Lib (JSON Object Mapper)
-
-ドキュメントは[こちら](http://json-lib.sourceforge.net/advanced.html)を参照してください。
-
 ### Flexjson (JSON Object Mapper)
 
 ドキュメントは[こちら](http://flexjson.sourceforge.net/#Serialization)を参照してください。
@@ -1249,10 +1505,11 @@ Take a look [here](http://flexjson.sourceforge.net/#Serialization) for the docum
 </div>
 
 <div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
-## References and future reading
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 参考文献と今後の読み物
 
 - [Mass Assignment, Rails and You](https://code.tutsplus.com/tutorials/mass-assignment-rails-and-you--net-31695)
 
@@ -1261,6 +1518,15 @@ Take a look [here](http://flexjson.sourceforge.net/#Serialization) for the docum
 
 </section>
 </div>
+
+## References
+
+<div className="referenceFooter">
+
+- [Mass Assignment, Rails and You](https://code.tutsplus.com/tutorials/mass-assignment-rails-and-you--net-31695)
+
+</div>
+
 
 ## Attribution
 
@@ -1272,6 +1538,6 @@ Take a look [here](http://flexjson.sourceforge.net/#Serialization) for the docum
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

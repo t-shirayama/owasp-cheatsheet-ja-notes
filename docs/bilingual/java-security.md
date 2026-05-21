@@ -6,13 +6,13 @@ hide_title: true
 <div className="docHero" data-category="encoding-and-sanitization">
   <h1>Java セキュリティチートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
-    <span className="docPill">読了時間: 約 23 分</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">読了時間: 約 15 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
 </div>
 
-<p className="docLead">Java Security Cheat Sheet を、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
+<p className="docLead">Java セキュリティチートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="java-security-view" id="java-security-original" />
@@ -26,7 +26,6 @@ hide_title: true
   </div>
 
 <section id="java-security-original-panel" className="tabPanel originalPanel contentPanel">
-
 
 ## Injection Prevention in Java
 
@@ -116,10 +115,6 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
 }
 ```
 
-#### References
-
-- [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
-
 ### JPA
 
 #### Symptom
@@ -152,10 +147,6 @@ try {
 }
 ```
 
-#### References
-
-- [SQLi and JPA](https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-persistence-api-jpa)
-
 ### Operating System
 
 #### Symptom
@@ -175,10 +166,6 @@ Use technology stack **API** in order to prevent injection.
 InetAddress host = InetAddress.getByName("localhost");
 var reachable = host.isReachable(5000);
 ```
-
-#### References
-
-- [Command Injection](https://owasp.org/www-community/attacks/Command_Injection)
 
 ### XML: XPath Injection
 
@@ -255,10 +242,6 @@ Element book = (Element)nodesList.item(0);
 var containsRalls = book.getTextContent().contains("Ralls, Kim");
 ```
 
-#### References
-
-- [XPATH Injection](https://owasp.org/www-community/attacks/XPATH_Injection)
-
 ### HTML/JavaScript/CSS
 
 #### Symptom
@@ -322,13 +305,6 @@ if (!finalSafeOutputExpected.equals(safeOutput))
     return false;
 }
 ```
-
-#### References
-
-- [XSS](https://owasp.org/www-community/attacks/xss/)
-- [OWASP Java HTML Sanitizer](https://github.com/owasp/java-html-sanitizer)
-- [OWASP Java Encoder](https://github.com/owasp/owasp-java-encoder)
-- [Java RegEx](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
 
 ### LDAP
 
@@ -402,12 +378,6 @@ try(MongoClient mongoClient = new MongoClient()){
     });
 }
 ```
-
-#### References
-
-- [Testing for NoSQL injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05.6-Testing_for_NoSQL_Injection.html)
-- [SQL and NoSQL Injection](https://ckarande.gitbooks.io/owasp-nodegoat-tutorial/content/tutorial/a1_-_sql_and_nosql_injection.html)
-- [No SQL, No Injection?](https://arxiv.org/ftp/arxiv/papers/1506/1506.04082.pdf)
 
 ### Log Injection
 
@@ -545,15 +515,6 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
 ```
 
-#### References
-
-- [Log4j Core Configuration File](https://logging.apache.org/log4j/2.x/manual/configuration.html)
-- [Log4j JSON Template Layout](https://logging.apache.org/log4j/2.x/manual/json-template-layout.html)
-- [Log4j Appenders](https://logging.apache.org/log4j/2.x/manual/appenders.html)
-- [Logback Configuration File](https://logback.qos.ch/manual/configuration.html)
-- [Logback JsonEncoder](https://logback.qos.ch/manual/encoders.html#JsonEncoder)
-- [Logback Appenders](https://logback.qos.ch/manual/appenders.html)
-
 ## Cryptography
 
 ### General cryptography guidance
@@ -577,8 +538,8 @@ For example, this page (from Google's website) shows [how to perform simple symm
 
 The following code snippet shows an encapsulated use of this functionality:
 
-<details>
-  <summary>Click here to view the "Tink symmetric encryption" code snippet.</summary>
+&lt;details&gt;
+  &lt;summary&gt;Click here to view the "Tink symmetric encryption" code snippet.&lt;/summary&gt;
 
 ``` java
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -603,8 +564,6 @@ public class App {
 
         // Key securely generated using:
         // tinkey create-keyset --key-template AES128_GCM --out-format JSON --out aead_test_keyset.json
-
-
 
         // Register all AEAD key types with the Tink runtime.
         AeadConfig.register();
@@ -649,7 +608,7 @@ class AesGcmSimple {
 
 ```
 
-</details>
+&lt;/details&gt;
 
 #### Symmetric example using built-in JCA/JCE classes
 
@@ -663,8 +622,8 @@ A few constraints/pitfalls with this code:
 - It is important to use a different nonce for every encryption operation, especially if the same key is used. For more information, see [this answer on Cryptography Stack Exchange](https://crypto.stackexchange.com/a/66500).
 - The key will need to be stored securely.
 
-<details>
-  <summary>Click here to view the "JCA/JCE symmetric encryption" code snippet.</summary>
+&lt;details&gt;
+  &lt;summary&gt;Click here to view the "JCA/JCE symmetric encryption" code snippet.&lt;/summary&gt;
 
 ```java
 import java.nio.charset.StandardCharsets;
@@ -672,7 +631,6 @@ import java.security.SecureRandom;
 import javax.crypto.spec.*;
 import javax.crypto.*;
 import java.util.Base64;
-
 
 // AesGcmSimpleTest
 class Main {
@@ -728,7 +686,7 @@ class AesGcmSimple {
 }
 ```
 
-</details>
+&lt;/details&gt;
 
 ### Encryption for transmission
 
@@ -742,8 +700,8 @@ For example, this page (from Google's website) shows [how to perform a hybrid en
 
 The following code snippet shows how this functionality can be used to share secrets between Alice and Bob:
 
-<details>
-  <summary>Click here to view the "Tink hybrid encryption" code snippet.</summary>
+&lt;details&gt;
+  &lt;summary&gt;Click here to view the "Tink hybrid encryption" code snippet.&lt;/summary&gt;
 
 ``` java
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -816,7 +774,6 @@ class App {
         var cipherText = alice.encrypt(bobPublicKey, plaintext, metadata);
         System.out.println("Ciphertext being sent from Alice to Bob: " + Base64.getEncoder().encodeToString(cipherText));
 
-
         // Bob decrypts the message
         var decrypted = bob.decrypt(cipherText, metadata);
         System.out.println("Secret received by Bob from Alice: " + decrypted);
@@ -849,7 +806,6 @@ class HybridSimple {
     private KeysetHandle privateKey;
     private KeysetHandle publicKey;
 
-
     public HybridSimple(KeysetHandle privateKeyIn, KeysetHandle publicKeyIn) throws Exception {
         privateKey = privateKeyIn;
         publicKey = publicKeyIn;
@@ -874,11 +830,10 @@ class HybridSimple {
         return new String(decryptor.decrypt(ciphertext, metadata.getBytes(UTF_8)),UTF_8);
     }
 
-
 }
 ```
 
-</details>
+&lt;/details&gt;
 
 #### Asymmetric example using built-in JCA/JCE classes
 
@@ -896,8 +851,8 @@ A few constraints/pitfalls with this code:
 - The code does not consider the validation of public keys before use.
 - Overall, there is no verification of authenticity between the two sides.
 
-<details>
-  <summary>Click here to view the "JCA/JCE hybrid encryption" code snippet.</summary>
+&lt;details&gt;
+  &lt;summary&gt;Click here to view the "JCA/JCE hybrid encryption" code snippet.&lt;/summary&gt;
 
 ```java
 import java.nio.charset.StandardCharsets;
@@ -933,7 +888,6 @@ class Main {
         var cipherText = retPair.getValue();
 
         System.out.println("Both cipherText and nonce being sent from Alice to Bob: " + Base64.getEncoder().encodeToString(cipherText) + " " + Base64.getEncoder().encodeToString(nonce));
-
 
         // Bob decrypts the message
         var decrypted = bob.decrypt(alicePublicKey, cipherText, nonce);
@@ -1027,13 +981,11 @@ class ECDHSimple {
 }
 ```
 
-</details>
-
+&lt;/details&gt;
 
 </section>
 
 <section id="java-security-translation-panel" className="tabPanel translationPanel contentPanel">
-
 
 ## Java におけるインジェクション防止
 
@@ -1123,10 +1075,6 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
 }
 ```
 
-#### References
-
-- [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
-
 ### JPA
 
 #### 症状
@@ -1159,10 +1107,6 @@ try {
 }
 ```
 
-#### References
-
-- [SQLi and JPA](https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-persistence-api-jpa)
-
 ### オペレーティングシステム
 
 #### 症状
@@ -1182,10 +1126,6 @@ try {
 InetAddress host = InetAddress.getByName("localhost");
 var reachable = host.isReachable(5000);
 ```
-
-#### References
-
-- [Command Injection](https://owasp.org/www-community/attacks/Command_Injection)
 
 ### XML: XPath インジェクション
 
@@ -1262,10 +1202,6 @@ Element book = (Element)nodesList.item(0);
 var containsRalls = book.getTextContent().contains("Ralls, Kim");
 ```
 
-#### References
-
-- [XPATH Injection](https://owasp.org/www-community/attacks/XPATH_Injection)
-
 ### HTML/JavaScript/CSS
 
 #### 症状
@@ -1329,13 +1265,6 @@ if (!finalSafeOutputExpected.equals(safeOutput))
     return false;
 }
 ```
-
-#### References
-
-- [XSS](https://owasp.org/www-community/attacks/xss/)
-- [OWASP Java HTML Sanitizer](https://github.com/owasp/java-html-sanitizer)
-- [OWASP Java Encoder](https://github.com/owasp/owasp-java-encoder)
-- [Java RegEx](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
 
 ### LDAP
 
@@ -1409,12 +1338,6 @@ try(MongoClient mongoClient = new MongoClient()){
     });
 }
 ```
-
-#### References
-
-- [Testing for NoSQL injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05.6-Testing_for_NoSQL_Injection.html)
-- [SQL and NoSQL Injection](https://ckarande.gitbooks.io/owasp-nodegoat-tutorial/content/tutorial/a1_-_sql_and_nosql_injection.html)
-- [No SQL, No Injection?](https://arxiv.org/ftp/arxiv/papers/1506/1506.04082.pdf)
 
 ### ログインジェクション
 
@@ -1552,15 +1475,6 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
 ...
 ```
 
-#### References
-
-- [Log4j Core Configuration File](https://logging.apache.org/log4j/2.x/manual/configuration.html)
-- [Log4j JSON Template Layout](https://logging.apache.org/log4j/2.x/manual/json-template-layout.html)
-- [Log4j Appenders](https://logging.apache.org/log4j/2.x/manual/appenders.html)
-- [Logback Configuration File](https://logback.qos.ch/manual/configuration.html)
-- [Logback JsonEncoder](https://logback.qos.ch/manual/encoders.html#JsonEncoder)
-- [Logback Appenders](https://logback.qos.ch/manual/appenders.html)
-
 ## 暗号
 
 ### 暗号に関する一般的なガイダンス
@@ -1610,8 +1524,6 @@ public class App {
 
         // Key securely generated using:
         // tinkey create-keyset --key-template AES128_GCM --out-format JSON --out aead_test_keyset.json
-
-
 
         // Register all AEAD key types with the Tink runtime.
         AeadConfig.register();
@@ -1679,7 +1591,6 @@ import java.security.SecureRandom;
 import javax.crypto.spec.*;
 import javax.crypto.*;
 import java.util.Base64;
-
 
 // AesGcmSimpleTest
 class Main {
@@ -1823,7 +1734,6 @@ class App {
         var cipherText = alice.encrypt(bobPublicKey, plaintext, metadata);
         System.out.println("Ciphertext being sent from Alice to Bob: " + Base64.getEncoder().encodeToString(cipherText));
 
-
         // Bob decrypts the message
         var decrypted = bob.decrypt(cipherText, metadata);
         System.out.println("Secret received by Bob from Alice: " + decrypted);
@@ -1856,7 +1766,6 @@ class HybridSimple {
     private KeysetHandle privateKey;
     private KeysetHandle publicKey;
 
-
     public HybridSimple(KeysetHandle privateKeyIn, KeysetHandle publicKeyIn) throws Exception {
         privateKey = privateKeyIn;
         publicKey = publicKeyIn;
@@ -1880,7 +1789,6 @@ class HybridSimple {
         // return the encrypted value
         return new String(decryptor.decrypt(ciphertext, metadata.getBytes(UTF_8)),UTF_8);
     }
-
 
 }
 ```
@@ -1940,7 +1848,6 @@ class Main {
         var cipherText = retPair.getValue();
 
         System.out.println("Both cipherText and nonce being sent from Alice to Bob: " + Base64.getEncoder().encodeToString(cipherText) + " " + Base64.getEncoder().encodeToString(nonce));
-
 
         // Bob decrypts the message
         var decrypted = bob.decrypt(alicePublicKey, cipherText, nonce);
@@ -2036,7 +1943,6 @@ class ECDHSimple {
 
 </details>
 
-
 </section>
 
 <section id="java-security-bilingual-panel" className="tabPanel bilingualPanel">
@@ -2049,39 +1955,6 @@ class ECDHSimple {
 
 This section aims to provide tips to handle *Injection* in Java application code.
 
-Sample code used in tips is located [here](https://github.com/righettod/injection-cheat-sheets).
-
-### What is Injection
-
-[Injection](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A1-Injection) in OWASP Top 10 is defined as following:
-
-*Consider anyone who can send untrusted data to the system, including external users, internal users, and administrators.*
-
-### General advice to prevent Injection
-
-The following point can be applied, in a general way, to prevent *Injection* issue:
-
-1. Apply **Input Validation** (using allowlist approach) combined with **Output Sanitizing+Escaping** on user input/output.
-2. If you need to interact with system, try to use API features provided by your technology stack (Java / .Net / PHP...) instead of building command.
-
-Additional advice is provided on this [cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
-
-## Specific Injection types
-
-*Examples in this section will be provided in Java technology (see Maven project associated) but advice is applicable to others technologies like .Net / PHP / Ruby / Python...*
-
-### SQL
-
-#### Symptom
-
-Injection of this type occur when the application uses untrusted user input to build an SQL query using a String and execute it.
-
-#### How to prevent
-
-Use *Query Parameterization* in order to prevent injection.
-
-#### Example
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -2090,36 +1963,190 @@ Use *Query Parameterization* in order to prevent injection.
 
 このセクションでは、Java アプリケーションコードで *インジェクション (Injection)* を扱うためのヒントを提供します。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Sample code used in tips is located [here](https://github.com/righettod/injection-cheat-sheets).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 ヒントで使用しているサンプルコードは [こちら](https://github.com/righettod/injection-cheat-sheets) にあります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### What is Injection
+
+[Injection](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A1-Injection) in OWASP Top 10 is defined as following:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### インジェクションとは
 
 OWASP Top 10 における [インジェクション](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A1-Injection) は、次のように定義されています。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+*Consider anyone who can send untrusted data to the system, including external users, internal users, and administrators.*
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 *外部ユーザー、内部ユーザー、管理者を含め、信頼できないデータをシステムに送信できるすべての人を考慮します。*
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### General advice to prevent Injection
+
+The following point can be applied, in a general way, to prevent *Injection* issue:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### インジェクションを防止するための一般的な助言
 
 *インジェクション* の問題を防止するために、一般的には次の点を適用できます。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+1. Apply **Input Validation** (using allowlist approach) combined with **Output Sanitizing+Escaping** on user input/output.
+2. If you need to interact with system, try to use API features provided by your technology stack (Java / .Net / PHP...) instead of building command.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 1. ユーザーの入力/出力に対して、**入力検証** (許可リスト方式を使用) と **出力のサニタイズ + エスケープ** を組み合わせて適用します。
 2. システムとやり取りする必要がある場合は、コマンドを組み立てるのではなく、使用している技術スタック (Java / .Net / PHP など) が提供する API 機能を使用するようにします。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Additional advice is provided on this [cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 追加の助言は、この [チートシート](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html) で提供されています。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Specific Injection types
+
+*Examples in this section will be provided in Java technology (see Maven project associated) but advice is applicable to others technologies like .Net / PHP / Ruby / Python...*
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ## 特定のインジェクション種別
 
 *このセクションの例は Java 技術で示します (関連する Maven プロジェクトを参照) が、助言は .Net / PHP / Ruby / Python など他の技術にも適用できます。*
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### SQL
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### SQL
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Symptom
+
+Injection of this type occur when the application uses untrusted user input to build an SQL query using a String and execute it.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 #### 症状
 
 この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して String で SQL クエリを組み立て、それを実行する場合に発生します。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### How to prevent
+
+Use *Query Parameterization* in order to prevent injection.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 #### 防止方法
 
 インジェクションを防止するために、*クエリのパラメータ化 (Query Parameterization)* を使用します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Example
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 #### 例
 
@@ -2186,39 +2213,64 @@ try (Connection con = DriverManager.getConnection(jdbcUrl)) {
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
+### JPA
 
-- [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### JPA
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Symptom
 
 Injection of this type occur when the application uses untrusted user input to build a JPA query using a String and execute it. It's quite similar to SQL injection but here the altered language is not SQL but JPA QL.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 症状
+
+この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して String で JPA クエリを組み立て、それを実行する場合に発生します。SQL インジェクションとかなり似ていますが、ここで改変される言語は SQL ではなく JPA QL です。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### How to prevent
 
 Use Java Persistence Query Language **Query Parameterization** in order to prevent injection.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 防止方法
+
+インジェクションを防止するために、Java Persistence Query Language の **クエリのパラメータ化** を使用します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Example
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### References
-
-- [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
-
-### JPA
-
-#### 症状
-
-この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して String で JPA クエリを組み立て、それを実行する場合に発生します。SQL インジェクションとかなり似ていますが、ここで改変される言語は SQL ではなく JPA QL です。
-
-#### 防止方法
-
-インジェクションを防止するために、Java Persistence Query Language の **クエリのパラメータ化** を使用します。
 
 #### 例
 
@@ -2254,39 +2306,64 @@ try {
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
-
-- [SQLi and JPA](https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-persistence-api-jpa)
-
 ### Operating System
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### オペレーティングシステム
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Symptom
 
 Injection of this type occur when the application uses untrusted user input to build an Operating System command using a String and execute it.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 症状
+
+この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して String でオペレーティングシステムコマンドを組み立て、それを実行する場合に発生します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### How to prevent
 
 Use technology stack **API** in order to prevent injection.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 防止方法
+
+インジェクションを防止するために、技術スタックの **API** を使用します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Example
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### References
-
-- [SQLi and JPA](https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-persistence-api-jpa)
-
-### オペレーティングシステム
-
-#### 症状
-
-この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して String でオペレーティングシステムコマンドを組み立て、それを実行する場合に発生します。
-
-#### 防止方法
-
-インジェクションを防止するために、技術スタックの **API** を使用します。
 
 #### 例
 
@@ -2310,19 +2387,58 @@ var reachable = host.isReachable(5000);
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
-
-- [Command Injection](https://owasp.org/www-community/attacks/Command_Injection)
-
 ### XML: XPath Injection
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### XML: XPath インジェクション
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Symptom
 
 Injection of this type occur when the application uses untrusted user input to build a XPath query using a String and execute it.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 症状
+
+この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して String で XPath クエリを組み立て、それを実行する場合に発生します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### How to prevent
 
 Use **XPath Variable Resolver** in order to prevent injection.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 防止方法
+
+インジェクションを防止するために、**XPath Variable Resolver** を使用します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Example
 
@@ -2331,20 +2447,6 @@ Use **XPath Variable Resolver** in order to prevent injection.
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### References
-
-- [Command Injection](https://owasp.org/www-community/attacks/Command_Injection)
-
-### XML: XPath インジェクション
-
-#### 症状
-
-この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して String で XPath クエリを組み立て、それを実行する場合に発生します。
-
-#### 防止方法
-
-インジェクションを防止するために、**XPath Variable Resolver** を使用します。
 
 #### 例
 
@@ -2441,39 +2543,64 @@ var containsRalls = book.getTextContent().contains("Ralls, Kim");
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
+### HTML/JavaScript/CSS
 
-- [XPATH Injection](https://owasp.org/www-community/attacks/XPATH_Injection)
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### HTML/JavaScript/CSS
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Symptom
 
 Injection of this type occur when the application uses untrusted user input to build an HTTP response and sent it to browser.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 症状
+
+この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して HTTP レスポンスを組み立て、ブラウザに送信する場合に発生します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### How to prevent
 
 Either apply strict input validation (allowlist approach) or use output sanitizing+escaping if input validation is not possible (combine both every time is possible).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 防止方法
+
+厳格な入力検証 (許可リスト方式) を適用するか、入力検証ができない場合は出力のサニタイズ + エスケープを使用します (可能な場合は常に両方を組み合わせます)。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Example
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### References
-
-- [XPATH Injection](https://owasp.org/www-community/attacks/XPATH_Injection)
-
-### HTML/JavaScript/CSS
-
-#### 症状
-
-この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して HTTP レスポンスを組み立て、ブラウザに送信する場合に発生します。
-
-#### 防止方法
-
-厳格な入力検証 (許可リスト方式) を適用するか、入力検証ができない場合は出力のサニタイズ + エスケープを使用します (可能な場合は常に両方を組み合わせます)。
 
 #### 例
 
@@ -2541,53 +2668,83 @@ if (!finalSafeOutputExpected.equals(safeOutput))
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
-
-- [XSS](https://owasp.org/www-community/attacks/xss/)
-- [OWASP Java HTML Sanitizer](https://github.com/owasp/java-html-sanitizer)
-- [OWASP Java Encoder](https://github.com/owasp/owasp-java-encoder)
-- [Java RegEx](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
-
 ### LDAP
 
 A dedicated [cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html) has been created.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### LDAP
+
+専用の [チートシート](https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html) が作成されています。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### NoSQL
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### NoSQL
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Symptom
 
 Injection of this type occur when the application uses untrusted user input to build a NoSQL API call expression.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 症状
+
+この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して NoSQL API 呼び出し式を組み立てる場合に発生します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### How to prevent
 
 As there many NoSQL database system and each one use an API for call, it's important to ensure that user input received and used to build the API call expression does not contain any character that have a special meaning in the target API syntax. This in order to avoid that it will be used to escape the initial call expression in order to create another one based on crafted user input. It's also important to not use string concatenation to build API call expression but use the API to create the expression.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 防止方法
+
+NoSQL データベースシステムは数多くあり、それぞれが呼び出しに API を使用するため、API 呼び出し式を組み立てるために受け取り使用するユーザー入力に、対象 API 構文で特別な意味を持つ文字が含まれていないことを確認することが重要です。これは、細工されたユーザー入力に基づいて別の式を作成するために、初期の呼び出し式から抜け出す用途で使われることを避けるためです。また、API 呼び出し式を組み立てるために文字列連結を使わず、API を使用して式を作成することも重要です。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Example - MongoDB
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### References
-
-- [XSS](https://owasp.org/www-community/attacks/xss/)
-- [OWASP Java HTML Sanitizer](https://github.com/owasp/java-html-sanitizer)
-- [OWASP Java Encoder](https://github.com/owasp/owasp-java-encoder)
-- [Java RegEx](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
-
-### LDAP
-
-専用の [チートシート](https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html) が作成されています。
-
-### NoSQL
-
-#### 症状
-
-この種のインジェクションは、アプリケーションが信頼できないユーザー入力を使用して NoSQL API 呼び出し式を組み立てる場合に発生します。
-
-#### 防止方法
-
-NoSQL データベースシステムは数多くあり、それぞれが呼び出しに API を使用するため、API 呼び出し式を組み立てるために受け取り使用するユーザー入力に、対象 API 構文で特別な意味を持つ文字が含まれていないことを確認することが重要です。これは、細工されたユーザー入力に基づいて別の式を作成するために、初期の呼び出し式から抜け出す用途で使われることを避けるためです。また、API 呼び出し式を組み立てるために文字列連結を使わず、API を使用して式を作成することも重要です。
 
 #### 例 - MongoDB
 
@@ -2660,26 +2817,79 @@ try(MongoClient mongoClient = new MongoClient()){
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
-
-- [Testing for NoSQL injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05.6-Testing_for_NoSQL_Injection.html)
-- [SQL and NoSQL Injection](https://ckarande.gitbooks.io/owasp-nodegoat-tutorial/content/tutorial/a1_-_sql_and_nosql_injection.html)
-- [No SQL, No Injection?](https://arxiv.org/ftp/arxiv/papers/1506/1506.04082.pdf)
-
 ### Log Injection
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### ログインジェクション
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Symptom
 
 [Log Injection](https://owasp.org/www-community/attacks/Log_Injection) occurs when an application includes untrusted data in an application log message (e.g., an attacker can cause an additional log entry that looks like it came from a completely different user, if they can inject CRLF characters in the untrusted data). More information about this attack is available on the OWASP [Log Injection](https://owasp.org/www-community/attacks/Log_Injection) page.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 症状
+
+[ログインジェクション](https://owasp.org/www-community/attacks/Log_Injection) は、アプリケーションが信頼できないデータをアプリケーションログメッセージに含める場合に発生します (たとえば、攻撃者が信頼できないデータに CRLF 文字を注入できると、まったく別のユーザーから発生したように見える追加のログエントリを作成できます)。この攻撃の詳細は、OWASP の [Log Injection](https://owasp.org/www-community/attacks/Log_Injection) ページで確認できます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### How to prevent
 
 To prevent an attacker from writing malicious content into the application log, apply defenses such as:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 防止方法
+
+攻撃者がアプリケーションログに悪意のある内容を書き込むことを防ぐには、次のような防御策を適用します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 - Use structured log formats, such as JSON, instead of unstructured text formats.
   Unstructured formats are susceptible to **C**arriage **R**eturn (CR) and **L**ine **F**eed (LF) injection (see [CWE-93](https://cwe.mitre.org/data/definitions/93.html)).
 - Limit the size of the user input value used to create the log message.
 - Make sure [all XSS defenses](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) are applied when viewing log files in a web browser.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- 非構造化テキスト形式ではなく、JSON などの構造化ログ形式を使用します。
+  非構造化形式は、**C**arriage **R**eturn (CR) と **L**ine **F**eed (LF) のインジェクションを受けやすくなります ([CWE-93](https://cwe.mitre.org/data/definitions/93.html) を参照)。
+- ログメッセージの作成に使用するユーザー入力値のサイズを制限します。
+- Web ブラウザでログファイルを表示する場合は、[すべての XSS 防御策](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) が適用されていることを確認します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Example using Log4j Core 2
 
@@ -2693,27 +2903,6 @@ and limit the size of strings to 500 bytes using the
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### References
-
-- [Testing for NoSQL injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05.6-Testing_for_NoSQL_Injection.html)
-- [SQL and NoSQL Injection](https://ckarande.gitbooks.io/owasp-nodegoat-tutorial/content/tutorial/a1_-_sql_and_nosql_injection.html)
-- [No SQL, No Injection?](https://arxiv.org/ftp/arxiv/papers/1506/1506.04082.pdf)
-
-### ログインジェクション
-
-#### 症状
-
-[ログインジェクション](https://owasp.org/www-community/attacks/Log_Injection) は、アプリケーションが信頼できないデータをアプリケーションログメッセージに含める場合に発生します (たとえば、攻撃者が信頼できないデータに CRLF 文字を注入できると、まったく別のユーザーから発生したように見える追加のログエントリを作成できます)。この攻撃の詳細は、OWASP の [Log Injection](https://owasp.org/www-community/attacks/Log_Injection) ページで確認できます。
-
-#### 防止方法
-
-攻撃者がアプリケーションログに悪意のある内容を書き込むことを防ぐには、次のような防御策を適用します。
-
-- 非構造化テキスト形式ではなく、JSON などの構造化ログ形式を使用します。
-  非構造化形式は、**C**arriage **R**eturn (CR) と **L**ine **F**eed (LF) のインジェクションを受けやすくなります ([CWE-93](https://cwe.mitre.org/data/definitions/93.html) を参照)。
-- ログメッセージの作成に使用するユーザー入力値のサイズを制限します。
-- Web ブラウザでログファイルを表示する場合は、[すべての XSS 防御策](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) が適用されていることを確認します。
 
 #### Log4j Core 2 を使用する例
 
@@ -2766,8 +2955,6 @@ on
 [Log4j website](https://logging.apache.org/log4j/2.x/index.html)
 for more tips.
 
-Usage of the logger at code level:
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -2777,6 +2964,19 @@ Usage of the logger at code level:
 を
 [Log4j website](https://logging.apache.org/log4j/2.x/index.html)
 で参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Usage of the logger at code level:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 コードレベルでのロガーの使用方法です。
 
@@ -2815,6 +3015,21 @@ See
 [Log4j API Best Practices](https://logging.apache.org/log4j/2.x/manual/api.html#best-practice)
 for more information.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+詳細なヒントについては、
+[Log4j API Best Practices](https://logging.apache.org/log4j/2.x/manual/api.html#best-practice)
+を参照してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### Example using Logback
 
 The recommended logging policy for a production environment is using the structured
@@ -2826,10 +3041,6 @@ In the example below, Logback is configured to roll on 10 log files of 5 MiB eac
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-詳細なヒントについては、
-[Log4j API Best Practices](https://logging.apache.org/log4j/2.x/manual/api.html#best-practice)
-を参照してください。
 
 #### Logback を使用する例
 
@@ -2918,16 +3129,20 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-#### References
-
-- [Log4j Core Configuration File](https://logging.apache.org/log4j/2.x/manual/configuration.html)
-- [Log4j JSON Template Layout](https://logging.apache.org/log4j/2.x/manual/json-template-layout.html)
-- [Log4j Appenders](https://logging.apache.org/log4j/2.x/manual/appenders.html)
-- [Logback Configuration File](https://logback.qos.ch/manual/configuration.html)
-- [Logback JsonEncoder](https://logback.qos.ch/manual/encoders.html#JsonEncoder)
-- [Logback Appenders](https://logback.qos.ch/manual/appenders.html)
-
 ## Cryptography
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 暗号
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ### General cryptography guidance
 
@@ -2938,32 +3153,9 @@ logger.warn("Failure for user " + username + " and role {}.", role, ex);
 - Use your package manager wherever possible to keep all of your packages up to date. Watch the updates on your development setup, and plan updates to your applications accordingly.
 - We will show examples below based on Google Tink, which is a library created by cryptography experts for using cryptography safely (in the sense of minimizing common mistakes made when using standard cryptography libraries).
 
-### Encryption for storage
-
-Follow the algorithm guidance in the [OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms).
-
-#### Symmetric example using Google Tink
-
-Google Tink has documentation on performing common tasks.
-
-For example, this page (from Google's website) shows [how to perform simple symmetric encryption](https://developers.google.com/tink/encrypt-data).
-
-The following code snippet shows an encapsulated use of this functionality:
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### References
-
-- [Log4j Core Configuration File](https://logging.apache.org/log4j/2.x/manual/configuration.html)
-- [Log4j JSON Template Layout](https://logging.apache.org/log4j/2.x/manual/json-template-layout.html)
-- [Log4j Appenders](https://logging.apache.org/log4j/2.x/manual/appenders.html)
-- [Logback Configuration File](https://logback.qos.ch/manual/configuration.html)
-- [Logback JsonEncoder](https://logback.qos.ch/manual/encoders.html#JsonEncoder)
-- [Logback Appenders](https://logback.qos.ch/manual/appenders.html)
-
-## 暗号
 
 ### 暗号に関する一般的なガイダンス
 
@@ -2974,17 +3166,90 @@ The following code snippet shows an encapsulated use of this functionality:
 - 可能な限りパッケージマネージャを使用して、すべてのパッケージを最新に保ちます。開発環境で更新を監視し、それに応じてアプリケーションの更新を計画します。
 - 以下では Google Tink に基づく例を示します。Google Tink は、標準的な暗号ライブラリ使用時に起こりがちなミスを最小化するという意味で、安全に暗号を使用するために暗号専門家が作成したライブラリです。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### Encryption for storage
+
+Follow the algorithm guidance in the [OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 ### 保存のための暗号化
 
 [OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms) のアルゴリズムに関するガイダンスに従います。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Symmetric example using Google Tink
+
+Google Tink has documentation on performing common tasks.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 #### Google Tink を使用した対称暗号の例
 
 Google Tink には、一般的なタスクを実行するためのドキュメントがあります。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+For example, this page (from Google's website) shows [how to perform simple symmetric encryption](https://developers.google.com/tink/encrypt-data).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 たとえば、Google の Web サイトにあるこのページでは、[単純な対称暗号化を実行する方法](https://developers.google.com/tink/encrypt-data) が示されています。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The following code snippet shows an encapsulated use of this functionality:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 次のコードスニペットは、この機能をカプセル化して使用する方法を示しています。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+  &lt;summary&gt;Click here to view the "Tink symmetric encryption" code snippet.&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+<details>
+  <summary>「Tink symmetric encryption」コードスニペットを表示するにはここをクリックしてください。</summary>
 
 </div>
 </div>
@@ -3015,8 +3280,6 @@ public class App {
 
         // Key securely generated using:
         // tinkey create-keyset --key-template AES128_GCM --out-format JSON --out aead_test_keyset.json
-
-
 
         // Register all AEAD key types with the Tink runtime.
         AeadConfig.register();
@@ -3067,17 +3330,24 @@ class AesGcmSimple {
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+</details>
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### Symmetric example using built-in JCA/JCE classes
 
 If you absolutely cannot use a separate library, it is still possible to use the built JCA/JCE classes but it is strongly recommended to have a cryptography expert review the full design and code, as even the most trivial error can severely weaken your encryption.
-
-The following code snippet shows an example of using AES-GCM to perform encryption/decryption of data.
-
-A few constraints/pitfalls with this code:
-
-- It does not take into account key rotation or management which is a whole topic in itself.
-- It is important to use a different nonce for every encryption operation, especially if the same key is used. For more information, see [this answer on Cryptography Stack Exchange](https://crypto.stackexchange.com/a/66500).
-- The key will need to be stored securely.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -3087,13 +3357,71 @@ A few constraints/pitfalls with this code:
 
 別のライブラリをどうしても使用できない場合は、組み込みの JCA/JCE クラスを使用することも可能です。ただし、ごく些細な誤りでも暗号を深刻に弱体化させる可能性があるため、設計とコード全体を暗号専門家にレビューしてもらうことを強く推奨します。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The following code snippet shows an example of using AES-GCM to perform encryption/decryption of data.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 次のコードスニペットは、AES-GCM を使用してデータの暗号化/復号を実行する例を示しています。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+A few constraints/pitfalls with this code:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 このコードには、いくつかの制約/落とし穴があります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- It does not take into account key rotation or management which is a whole topic in itself.
+- It is important to use a different nonce for every encryption operation, especially if the same key is used. For more information, see [this answer on Cryptography Stack Exchange](https://crypto.stackexchange.com/a/66500).
+- The key will need to be stored securely.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - 鍵のローテーションや管理は、それ自体が大きなトピックですが、このコードでは考慮していません。
 - 暗号化操作ごとに異なる nonce を使用することが重要です。同じ鍵を使用する場合は特に重要です。詳細については、[Cryptography Stack Exchange のこの回答](https://crypto.stackexchange.com/a/66500) を参照してください。
 - 鍵は安全に保存する必要があります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+  &lt;summary&gt;Click here to view the "JCA/JCE symmetric encryption" code snippet.&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+<details>
+  <summary>「JCA/JCE symmetric encryption」コードスニペットを表示するにはここをクリックしてください。</summary>
 
 </div>
 </div>
@@ -3107,7 +3435,6 @@ import java.security.SecureRandom;
 import javax.crypto.spec.*;
 import javax.crypto.*;
 import java.util.Base64;
-
 
 // AesGcmSimpleTest
 class Main {
@@ -3169,17 +3496,24 @@ class AesGcmSimple {
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+</details>
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Encryption for transmission
 
 Again, follow the algorithm guidance in the [OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms).
-
-#### Asymmetric example using Google Tink
-
-Google Tink has documentation on performing common tasks.
-
-For example, this page (from Google's website) shows [how to perform a hybrid encryption process](https://developers.google.com/tink/exchange-data) where two parties want to share data based on their asymmetric key pair.
-
-The following code snippet shows how this functionality can be used to share secrets between Alice and Bob:
 
 </div>
 <div className="bilingualBlock japanese">
@@ -3189,13 +3523,71 @@ The following code snippet shows how this functionality can be used to share sec
 
 ここでも、[OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms) のアルゴリズムに関するガイダンスに従います。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Asymmetric example using Google Tink
+
+Google Tink has documentation on performing common tasks.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 #### Google Tink を使用した非対称暗号の例
 
 Google Tink には、一般的なタスクを実行するためのドキュメントがあります。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+For example, this page (from Google's website) shows [how to perform a hybrid encryption process](https://developers.google.com/tink/exchange-data) where two parties want to share data based on their asymmetric key pair.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 たとえば、Google の Web サイトにあるこのページでは、二者が非対称鍵ペアに基づいてデータを共有したい場合に、[ハイブリッド暗号化プロセスを実行する方法](https://developers.google.com/tink/exchange-data) が示されています。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The following code snippet shows how this functionality can be used to share secrets between Alice and Bob:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 次のコードスニペットは、この機能を使用して Alice と Bob の間でシークレットを共有する方法を示しています。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+  &lt;summary&gt;Click here to view the "Tink hybrid encryption" code snippet.&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+<details>
+  <summary>「Tink hybrid encryption」コードスニペットを表示するにはここをクリックしてください。</summary>
 
 </div>
 </div>
@@ -3274,7 +3666,6 @@ class App {
         var cipherText = alice.encrypt(bobPublicKey, plaintext, metadata);
         System.out.println("Ciphertext being sent from Alice to Bob: " + Base64.getEncoder().encodeToString(cipherText));
 
-
         // Bob decrypts the message
         var decrypted = bob.decrypt(cipherText, metadata);
         System.out.println("Secret received by Bob from Alice: " + decrypted);
@@ -3307,7 +3698,6 @@ class HybridSimple {
     private KeysetHandle privateKey;
     private KeysetHandle publicKey;
 
-
     public HybridSimple(KeysetHandle privateKeyIn, KeysetHandle publicKeyIn) throws Exception {
         privateKey = privateKeyIn;
         publicKey = publicKeyIn;
@@ -3332,10 +3722,24 @@ class HybridSimple {
         return new String(decryptor.decrypt(ciphertext, metadata.getBytes(UTF_8)),UTF_8);
     }
 
-
 }
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+</details>
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -3346,11 +3750,65 @@ class HybridSimple {
 
 If you absolutely cannot use a separate library, it is still possible to use the built JCA/JCE classes but it is strongly recommended to have a cryptography expert review the full design and code, as even the most trivial error can severely weaken your encryption.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 組み込み JCA/JCE クラスを使用した非対称暗号の例
+
+別のライブラリをどうしても使用できない場合は、組み込みの JCA/JCE クラスを使用することも可能です。ただし、ごく些細な誤りでも暗号を深刻に弱体化させる可能性があるため、設計とコード全体を暗号専門家にレビューしてもらうことを強く推奨します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 The following code snippet shows an example of using Elliptic Curve/Diffie Helman (ECDH) together with AES-GCM to perform encryption/decryption of data between two different sides without the need the transfer the symmetric key between the two sides. Instead, the sides exchange public keys and can then use ECDH to generate a shared secret which can be used for the symmetric encryption.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+次のコードスニペットは、Elliptic Curve/Diffie Helman (ECDH) と AES-GCM を組み合わせて、二者間で対称鍵を転送する必要なしにデータの暗号化/復号を実行する例を示しています。代わりに、双方が公開鍵を交換し、その後 ECDH を使用して対称暗号化に使用できる共有シークレットを生成できます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 Note that this code sample relies on the AesGcmSimple class from the [previous section](#symmetric-example-using-built-in-jcajce-classes).
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+このコードサンプルは、[前のセクション](#組み込み-jcajce-クラスを使用した対称暗号の例) の AesGcmSimple クラスに依存していることに注意してください。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 A few constraints/pitfalls with this code:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+このコードには、いくつかの制約/落とし穴があります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 - It does not take into account key rotation or management which is a whole topic in itself.
 - The code deliberately enforces a new nonce for every encryption operation but this must be managed as a separate data item alongside the ciphertext.
@@ -3362,21 +3820,28 @@ A few constraints/pitfalls with this code:
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-#### 組み込み JCA/JCE クラスを使用した非対称暗号の例
-
-別のライブラリをどうしても使用できない場合は、組み込みの JCA/JCE クラスを使用することも可能です。ただし、ごく些細な誤りでも暗号を深刻に弱体化させる可能性があるため、設計とコード全体を暗号専門家にレビューしてもらうことを強く推奨します。
-
-次のコードスニペットは、Elliptic Curve/Diffie Helman (ECDH) と AES-GCM を組み合わせて、二者間で対称鍵を転送する必要なしにデータの暗号化/復号を実行する例を示しています。代わりに、双方が公開鍵を交換し、その後 ECDH を使用して対称暗号化に使用できる共有シークレットを生成できます。
-
-このコードサンプルは、[前のセクション](#組み込み-jcajce-クラスを使用した対称暗号の例) の AesGcmSimple クラスに依存していることに注意してください。
-
-このコードには、いくつかの制約/落とし穴があります。
-
 - 鍵のローテーションや管理は、それ自体が大きなトピックですが、このコードでは考慮していません。
 - このコードは暗号化操作ごとに新しい nonce を意図的に強制しますが、これは暗号文とともに別個のデータ項目として管理する必要があります。
 - 秘密鍵は安全に保存する必要があります。
 - このコードは、使用前の公開鍵の検証を考慮していません。
 - 全体として、二者間の真正性検証はありません。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+  &lt;summary&gt;Click here to view the "JCA/JCE hybrid encryption" code snippet.&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+<details>
+  <summary>「JCA/JCE hybrid encryption」コードスニペットを表示するにはここをクリックしてください。</summary>
 
 </div>
 </div>
@@ -3418,7 +3883,6 @@ class Main {
         var cipherText = retPair.getValue();
 
         System.out.println("Both cipherText and nonce being sent from Alice to Bob: " + Base64.getEncoder().encodeToString(cipherText) + " " + Base64.getEncoder().encodeToString(nonce));
-
 
         // Bob decrypts the message
         var decrypted = bob.decrypt(alicePublicKey, cipherText, nonce);
@@ -3514,6 +3978,21 @@ class ECDHSimple {
 
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+</details>
+
+</div>
+</div>
+
 </section>
 </div>
 
@@ -3522,23 +4001,31 @@ class ECDHSimple {
 <div className="referenceFooter">
 
 - [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+
 - [SQLi and JPA](https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-persistence-api-jpa)
+
 - [Command Injection](https://owasp.org/www-community/attacks/Command_Injection)
+
 - [XPATH Injection](https://owasp.org/www-community/attacks/XPATH_Injection)
+
 - [XSS](https://owasp.org/www-community/attacks/xss/)
 - [OWASP Java HTML Sanitizer](https://github.com/owasp/java-html-sanitizer)
 - [OWASP Java Encoder](https://github.com/owasp/owasp-java-encoder)
 - [Java RegEx](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
+
 - [Testing for NoSQL injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05.6-Testing_for_NoSQL_Injection.html)
 - [SQL and NoSQL Injection](https://ckarande.gitbooks.io/owasp-nodegoat-tutorial/content/tutorial/a1_-_sql_and_nosql_injection.html)
 - [No SQL, No Injection?](https://arxiv.org/ftp/arxiv/papers/1506/1506.04082.pdf)
+
 - [Log4j Core Configuration File](https://logging.apache.org/log4j/2.x/manual/configuration.html)
 - [Log4j JSON Template Layout](https://logging.apache.org/log4j/2.x/manual/json-template-layout.html)
 - [Log4j Appenders](https://logging.apache.org/log4j/2.x/manual/appenders.html)
 - [Logback Configuration File](https://logback.qos.ch/manual/configuration.html)
 - [Logback JsonEncoder](https://logback.qos.ch/manual/encoders.html#JsonEncoder)
 - [Logback Appenders](https://logback.qos.ch/manual/appenders.html)
+
 </div>
+
 
 ## Attribution
 
@@ -3550,6 +4037,6 @@ class ECDHSimple {
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

@@ -6,11 +6,13 @@ hide_title: true
 <div className="docHero" data-category="asvs-v8">
   <h1>IDOR 防止チートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
-    <span className="docPill">読了時間: 約 4 分</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">読了時間: 準備中</span>
     <span className="docPill">カテゴリ: 認可</span>
   </div>
 </div>
+
+<p className="docLead">IDOR 防止チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="idor-prevention-view" id="idor-prevention-original" />
@@ -33,7 +35,7 @@ Insecure Direct Object Reference (IDOR) is a vulnerability that arises when atta
 
 For instance, when a user accesses their profile, the application might generate a URL like this:
 
-```text
+```
 https://example.org/users/123
 ```
 
@@ -41,7 +43,7 @@ The 123 in the URL is a direct reference to the user's record in the database, o
 
 In some cases, the identifier may not be in the URL, but rather in the POST body, as shown in the following example:
 
-```html
+```
 <form action="/update_profile" method="post">
   <!-- Other fields for updating name, email, etc. -->
   <input type="hidden" name="user_id" value="12345">
@@ -63,7 +65,7 @@ Avoid exposing identifiers in URLs and POST bodies if possible. Instead, determi
 
 When looking up objects based on primary keys, use datasets that users have access to. For example, in Ruby on Rails:
 
-```ruby
+```
 // vulnerable, searches all projects
 @project = Project.find(params[:id])
 // secure, searches projects related to the current user
@@ -172,6 +174,10 @@ For instance, when a user accesses their profile, the application might generate
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
+```
+https://example.org/users/123
+```
+
 ```text
 https://example.org/users/123
 ```
@@ -210,6 +216,14 @@ In some cases, the identifier may not be in the URL, but rather in the POST body
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
+```
+<form action="/update_profile" method="post">
+  <!-- Other fields for updating name, email, etc. -->
+  <input type="hidden" name="user_id" value="12345">
+  <button type="submit">Update Profile</button>
+</form>
+```
 
 ```html
 <form action="/update_profile" method="post">
@@ -307,6 +321,13 @@ When looking up objects based on primary keys, use datasets that users have acce
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
+```
+// vulnerable, searches all projects
+@project = Project.find(params[:id])
+// secure, searches projects related to the current user
+@project = @current_user.projects.find(params[:id])
+```
+
 ```ruby
 // vulnerable, searches all projects
 @project = Project.find(params[:id])
@@ -349,6 +370,8 @@ As an additional defense-in-depth measure, replace enumerable numeric identifier
 </section>
 </div>
 
+
+
 ## Attribution
 
 <div className="attributionFooter">
@@ -359,6 +382,6 @@ As an additional defense-in-depth measure, replace enumerable numeric identifier
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

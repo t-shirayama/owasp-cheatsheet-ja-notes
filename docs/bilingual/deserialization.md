@@ -6,7 +6,7 @@ hide_title: true
 <div className="docHero" data-category="encoding-and-sanitization">
   <h1>デシリアライゼーションチートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 15 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
@@ -94,7 +94,7 @@ Be aware of the following Java API uses for potential serialization vulnerabilit
 
 1. `XMLdecoder` with external user defined parameters
 
-2. `XStream` with `fromXML` method (xstream version `<= v1.4.6` is vulnerable to the serialization issue)
+2. `XStream` with `fromXML` method (xstream version &lt;= v1.4.6 is vulnerable to the serialization issue)
 
 3. `ObjectInputStream` with `readObject`
 
@@ -453,7 +453,7 @@ print(yaml.load(document))
 
 1. 外部のユーザー定義パラメータを伴う `XMLdecoder`
 
-2. `fromXML` メソッドを伴う `XStream` (xstream バージョン `<= v1.4.6` はシリアライゼーションの問題に対して脆弱です)
+2. `fromXML` メソッドを伴う `XStream` (xstream バージョン <= v1.4.6 はシリアライゼーションの問題に対して脆弱です)
 
 3. `readObject` を伴う `ObjectInputStream`
 
@@ -729,24 +729,13 @@ if (suspectObject is SomeDangerousObjectType)
 
 ## Introduction
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## はじめに
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 This article is focused on providing clear, actionable guidance for safely deserializing untrusted data in your applications.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## はじめに
 
 この記事は、アプリケーションで信頼できないデータを安全にデシリアライズするための、明確で実行可能なガイダンスを提供することに焦点を当てています。
 
@@ -759,24 +748,13 @@ This article is focused on providing clear, actionable guidance for safely deser
 
 ## What is Deserialization
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## デシリアライゼーションとは
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 **Serialization** is the process of turning some object into a data format that can be restored later. People often serialize objects in order to save them for storage, or to send as part of communications.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## デシリアライゼーションとは
 
 **シリアライゼーション**とは、何らかのオブジェクトを、後で復元できるデータ形式に変換するプロセスです。オブジェクトは、保存のため、または通信の一部として送信するためにシリアライズされることがよくあります。
 
@@ -834,24 +812,13 @@ Unfortunately, the features of these native deserialization mechanisms can somet
 
 ## Guidance on Deserializing Objects Safely
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## オブジェクトを安全にデシリアライズするためのガイダンス
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 The following language-specific guidance attempts to enumerate safe methodologies for deserializing data that can't be trusted.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## オブジェクトを安全にデシリアライズするためのガイダンス
 
 以下の言語別ガイダンスでは、信頼できないデータをデシリアライズするための安全な方法を列挙することを試みています。
 
@@ -864,15 +831,11 @@ The following language-specific guidance attempts to enumerate safe methodologie
 
 ### PHP
 
-#### Clear-box Review
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### PHP
-
-#### クリアボックスレビュー
 
 </div>
 </div>
@@ -881,11 +844,15 @@ The following language-specific guidance attempts to enumerate safe methodologie
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
+#### Clear-box Review
+
 Check the use of [`unserialize()`](https://www.php.net/manual/en/function.unserialize.php) function and review how the external parameters are accepted. Use a safe, standard data interchange format such as JSON (via `json_decode()` and `json_encode()`) if you need to pass serialized data to the user.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### クリアボックスレビュー
 
 [`unserialize()`](https://www.php.net/manual/en/function.unserialize.php) 関数の使用を確認し、外部パラメータがどのように受け入れられているかをレビューします。シリアライズされたデータをユーザーに渡す必要がある場合は、`json_decode()` と `json_encode()` を介した JSON など、安全で標準的なデータ交換形式を使用します。
 
@@ -898,15 +865,11 @@ Check the use of [`unserialize()`](https://www.php.net/manual/en/function.unseri
 
 ### Python
 
-#### Opaque-box Review
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### Python
-
-#### オペークボックスレビュー
 
 </div>
 </div>
@@ -915,11 +878,15 @@ Check the use of [`unserialize()`](https://www.php.net/manual/en/function.unseri
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
+#### Opaque-box Review
+
 If the traffic data contains the symbol dot `.` at the end, it's very likely that the data was sent in serialization. It will be only true if the data is not being encoded using Base64 or Hexadecimal schemas. If the data is being encoded, then it's best to check if the serialization is likely happening or not by looking at the starting characters of the parameter value. For example if data is Base64 encoded, then it will most likely start with `gASV`.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### オペークボックスレビュー
 
 トラフィックデータの末尾にドット記号 `.` が含まれる場合、そのデータはシリアライゼーションで送信された可能性が非常に高いです。これは、データが Base64 または Hexadecimal スキーマでエンコードされていない場合にのみ当てはまります。データがエンコードされている場合は、パラメータ値の先頭文字を見て、シリアライゼーションが行われている可能性があるかどうかを確認するのが最善です。たとえば、データが Base64 エンコードされている場合、ほとんどの場合 `gASV` で始まります。
 
@@ -932,24 +899,13 @@ If the traffic data contains the symbol dot `.` at the end, it's very likely tha
 
 #### Clear-box Review
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### クリアボックスレビュー
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 The following API in Python will be vulnerable to serialization attack. Search code for the pattern below.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### クリアボックスレビュー
 
 Python の以下の API はシリアライゼーション攻撃に対して脆弱になります。以下のパターンでコードを検索します。
 
@@ -1029,24 +985,13 @@ print(yaml.load(document))
 
 ### Java
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### Java
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 The following techniques are all good for preventing attacks against deserialization against [Java's Serializable format](https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html).
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### Java
 
 以下の手法はすべて、[Java の Serializable 形式](https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html)に対するデシリアライゼーション攻撃を防止するうえで有効です。
 
@@ -1091,24 +1036,13 @@ Implementation advice:
 
 #### Clear-box Review
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### クリアボックスレビュー
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Be aware of the following Java API uses for potential serialization vulnerability.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### クリアボックスレビュー
 
 潜在的なシリアライゼーション脆弱性として、以下の Java API の使用に注意してください。
 
@@ -1121,84 +1055,29 @@ Be aware of the following Java API uses for potential serialization vulnerabilit
 
 1. `XMLdecoder` with external user defined parameters
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-1. 外部のユーザー定義パラメータを伴う `XMLdecoder`
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-2. `XStream` with `fromXML` method (xstream version `<= v1.4.6` is vulnerable to the serialization issue)
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-2. `fromXML` メソッドを伴う `XStream` (xstream バージョン `<= v1.4.6` はシリアライゼーションの問題に対して脆弱です)
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
+2. `XStream` with `fromXML` method (xstream version &lt;= v1.4.6 is vulnerable to the serialization issue)
 
 3. `ObjectInputStream` with `readObject`
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-3. `readObject` を伴う `ObjectInputStream`
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 4. Uses of `readObject`, `readObjectNoData`, `readResolve` or `readExternal`
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-4. `readObject`、`readObjectNoData`、`readResolve` または `readExternal` の使用
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 5. `ObjectInputStream.readUnshared`
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-5. `ObjectInputStream.readUnshared`
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 6. `Serializable`
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+1. 外部のユーザー定義パラメータを伴う `XMLdecoder`
+
+2. `fromXML` メソッドを伴う `XStream` (xstream バージョン <= v1.4.6 はシリアライゼーションの問題に対して脆弱です)
+
+3. `readObject` を伴う `ObjectInputStream`
+
+4. `readObject`、`readObjectNoData`、`readResolve` または `readExternal` の使用
+
+5. `ObjectInputStream.readUnshared`
 
 6. `Serializable`
 
@@ -1211,24 +1090,13 @@ Be aware of the following Java API uses for potential serialization vulnerabilit
 
 #### Opaque-box Review
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### オペークボックスレビュー
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 If the captured traffic data includes the following patterns, it may suggest that the data was sent in Java serialization streams:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### オペークボックスレビュー
 
 キャプチャしたトラフィックデータに以下のパターンが含まれる場合、そのデータが Java シリアライゼーションストリームで送信されたことを示している可能性があります。
 
@@ -1260,24 +1128,13 @@ If the captured traffic data includes the following patterns, it may suggest tha
 
 #### Prevent Data Leakage and Trusted Field Clobbering
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### データ漏洩と信頼済みフィールドの上書きを防止する
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 If there are data members of an object that should never be controlled by end users during deserialization or exposed to users during serialization, they should be declared as [the `transient` keyword](https://docs.oracle.com/javase/7/docs/platform/serialization/spec/serial-arch.html#7231) (section *Protecting Sensitive Information*).
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### データ漏洩と信頼済みフィールドの上書きを防止する
 
 デシリアライゼーション中にエンドユーザーが制御してはならない、またはシリアライゼーション中にユーザーへ露出してはならないオブジェクトのデータメンバーがある場合、それらは [`transient` キーワード](https://docs.oracle.com/javase/7/docs/platform/serialization/spec/serial-arch.html#7231) (セクション *Protecting Sensitive Information*) として宣言する必要があります。
 
@@ -1334,24 +1191,13 @@ public class myAccount implements Serializable
 
 #### Prevent Deserialization of Domain Objects
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### ドメインオブジェクトのデシリアライゼーションを防止する
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Some of your application objects may be forced to implement `Serializable` due to their hierarchy. To guarantee that your application objects can't be deserialized, a `readObject()` method should be declared (with a `final` modifier) which always throws an exception:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### ドメインオブジェクトのデシリアライゼーションを防止する
 
 アプリケーションオブジェクトの一部は、その階層のために `Serializable` の実装を強制される場合があります。アプリケーションオブジェクトがデシリアライズされないことを保証するには、常に例外をスローする `readObject()` メソッドを `final` 修飾子付きで宣言する必要があります。
 
@@ -1375,24 +1221,13 @@ private final void readObject(ObjectInputStream in) throws java.io.IOException {
 
 #### Harden Your Own java.io.ObjectInputStream
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### 独自の java.io.ObjectInputStream を堅牢化する
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 The `java.io.ObjectInputStream` class is used to deserialize objects. It's possible to harden its behavior by subclassing it. This is the best solution if:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 独自の java.io.ObjectInputStream を堅牢化する
 
 `java.io.ObjectInputStream` クラスはオブジェクトをデシリアライズするために使用されます。このクラスをサブクラス化することで、その動作を堅牢化できます。これは、以下の場合に最善の解決策です。
 
@@ -1501,13 +1336,23 @@ More complete implementations of this approach have been proposed by various com
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 - [NibbleSec](https://github.com/ikkisoft/SerialKiller) - a library that allows creating lists of classes that are allowed to be deserialized
 - [IBM](https://www.ibm.com/developerworks/library/se-lookahead/) - the seminal protection, written years before the most devastating exploitation scenarios were envisioned.
 - [Apache Commons IO classes](https://commons.apache.org/proper/commons-io/javadocs/api-2.5/org/apache/commons/io/serialization/ValidatingObjectInputStream.html)
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- [NibbleSec](https://github.com/ikkisoft/SerialKiller) - デシリアライズを許可するクラスのリストを作成できるライブラリ
+- [IBM](https://www.ibm.com/developerworks/library/se-lookahead/) - 最も破壊的な悪用シナリオが想定される何年も前に書かれた、先駆的な防御策。
+- [Apache Commons IO classes](https://commons.apache.org/proper/commons-io/javadocs/api-2.5/org/apache/commons/io/serialization/ValidatingObjectInputStream.html)
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -1516,24 +1361,13 @@ More complete implementations of this approach have been proposed by various com
 
 #### Harden All java.io.ObjectInputStream Usage with an Agent
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### エージェントで java.io.ObjectInputStream のすべての使用を堅牢化する
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 As mentioned above, the `java.io.ObjectInputStream` class is used to deserialize objects. It's possible to harden its behavior by subclassing it. However, if you don't own the code or can't wait for a patch, using an agent to weave in hardening to `java.io.ObjectInputStream` is the best solution.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### エージェントで java.io.ObjectInputStream のすべての使用を堅牢化する
 
 前述のとおり、`java.io.ObjectInputStream` クラスはオブジェクトをデシリアライズするために使用されます。このクラスをサブクラス化することで、その動作を堅牢化できます。しかし、コードを所有していない場合やパッチを待てない場合は、エージェントを使用して `java.io.ObjectInputStream` に堅牢化を織り込むことが最善の解決策です。
 
@@ -1609,11 +1443,19 @@ Agents taking this approach have been released by various community members:
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 - [rO0 by Contrast Security](https://github.com/Contrast-Security-OSS/contrast-rO0)
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- [rO0 by Contrast Security](https://github.com/Contrast-Security-OSS/contrast-rO0)
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -1637,19 +1479,6 @@ A similar, but less scalable approach would be to manually patch and bootstrap y
 
 #### Other Deserialization Libraries and Formats
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### その他のデシリアライゼーションライブラリと形式
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 While the advice above is focused on [Java's Serializable format](https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html), there are a number of other libraries
 that use other formats for deserialization. Many of these libraries may have similar security
 issues if not configured correctly. This section lists some of these libraries and
@@ -1658,6 +1487,8 @@ recommended configuration options to avoid security issues when deserializing un
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### その他のデシリアライゼーションライブラリと形式
 
 上記の助言は [Java の Serializable 形式](https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html)に焦点を当てていますが、デシリアライゼーションに他の形式を使用するライブラリは多数あります。これらのライブラリの多くは、正しく構成されていない場合、同様のセキュリティ問題を抱える可能性があります。このセクションでは、信頼できないデータをデシリアライズする際のセキュリティ問題を避けるために、これらのライブラリの一部と推奨構成オプションを示します。
 
@@ -1854,15 +1685,11 @@ The following libraries are either no longer maintained or cannot be used safely
 
 ### .Net CSharp
 
-#### Clear-box Review
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### .Net CSharp
-
-#### クリアボックスレビュー
 
 </div>
 </div>
@@ -1871,11 +1698,15 @@ The following libraries are either no longer maintained or cannot be used safely
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
+#### Clear-box Review
+
 Search the source code for the following terms:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### クリアボックスレビュー
 
 以下の用語でソースコードを検索します。
 
@@ -1920,24 +1751,13 @@ Look for any serializers where the type is set by a user controlled variable.
 
 #### Opaque-box Review
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### オペークボックスレビュー
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Search for the following base64 encoded content that starts with:
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### オペークボックスレビュー
 
 以下で始まる base64 エンコードされたコンテンツを検索します。
 
@@ -1991,24 +1811,13 @@ Search for content with the following text:
 
 #### General Precautions
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### 一般的な予防策
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Microsoft has stated that the `BinaryFormatter` type is dangerous and cannot be secured. As such, it should not be used. Full details are in the [BinaryFormatter security guide](https://docs.microsoft.com/en-us/dotnet/standard/serialization/binaryformatter-security-guide).
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 一般的な予防策
 
 Microsoft は、`BinaryFormatter` 型は危険であり安全にできないと述べています。そのため、使用すべきではありません。詳細は [BinaryFormatter security guide](https://docs.microsoft.com/en-us/dotnet/standard/serialization/binaryformatter-security-guide) にあります。
 
@@ -2233,19 +2042,6 @@ Try to keep any code that might create potential gadgets separate from any code 
 
 #### Known .NET RCE Gadgets
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-#### 既知の .NET RCE Gadget
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - `System.Configuration.Install.AssemblyInstaller`
 - `System.Activities.Presentation.WorkflowDesigner`
 - `System.Windows.ResourceDictionary`
@@ -2258,6 +2054,8 @@ Try to keep any code that might create potential gadgets separate from any code 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 既知の .NET RCE Gadget
 
 - `System.Configuration.Install.AssemblyInstaller`
 - `System.Activities.Presentation.WorkflowDesigner`
@@ -2277,15 +2075,11 @@ Try to keep any code that might create potential gadgets separate from any code 
 
 ## Language-Agnostic Methods for Deserializing Safely
 
-### Using Alternative Data Formats
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ## 安全にデシリアライズするための言語非依存の方法
-
-### 代替データ形式の使用
 
 </div>
 </div>
@@ -2294,11 +2088,15 @@ Try to keep any code that might create potential gadgets separate from any code 
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
+### Using Alternative Data Formats
+
 A great reduction of risk is achieved by avoiding native (de)serialization formats. By switching to a pure data format like JSON or XML, you lessen the chance of custom deserialization logic being repurposed towards malicious ends.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 代替データ形式の使用
 
 ネイティブな (デ)シリアライゼーション形式を避けることで、リスクは大きく低減されます。JSON や XML のような純粋なデータ形式に切り替えることで、カスタムデシリアライゼーションロジックが悪意ある目的に転用される可能性を下げられます。
 
@@ -2326,24 +2124,13 @@ Many applications rely on a [data-transfer object pattern](https://en.wikipedia.
 
 ### Only Deserialize Signed Data
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### 署名済みデータのみをデシリアライズする
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 If the application knows before deserialization which messages will need to be processed, they could sign them as part of the serialization process. The application could then to choose not to deserialize any message which didn't have an authenticated signature.
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 署名済みデータのみをデシリアライズする
 
 アプリケーションが、どのメッセージを処理する必要があるかをデシリアライゼーション前に把握している場合、シリアライゼーションプロセスの一部としてそれらに署名できます。アプリケーションは、認証済み署名を持たないメッセージをデシリアライズしないことを選択できます。
 
@@ -2356,22 +2143,21 @@ If the application knows before deserialization which messages will need to be p
 
 ## Mitigation Tools/Libraries
 
+- [Java secure deserialization library](https://github.com/ikkisoft/SerialKiller)
+- [SWAT - tool for creating allowlists](https://github.com/cschneider4711/SWAT)
+- [NotSoSerial](https://github.com/kantega/notsoserial)
+
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ## 緩和ツール/ライブラリ
 
-</div>
-</div>
-
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
 - [Java secure deserialization library](https://github.com/ikkisoft/SerialKiller)
 - [SWAT - tool for creating allowlists](https://github.com/cschneider4711/SWAT)
 - [NotSoSerial](https://github.com/kantega/notsoserial)
 
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -2379,18 +2165,6 @@ If the application knows before deserialization which messages will need to be p
 <span className="bilingualLabel english">English (原文)</span>
 
 ## Detection Tools
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## 検出ツール
-
-</div>
-</div>
-
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 - [Java deserialization cheat sheet aimed at pen testers](https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet)
 - [A proof-of-concept tool for generating payloads that exploit unsafe Java object deserialization.](https://github.com/frohoff/ysoserial)
@@ -2409,6 +2183,30 @@ If the application knows before deserialization which messages will need to be p
     - [SuperSerial](https://github.com/DirectDefense/SuperSerial)
     - [SuperSerial-Active](https://github.com/DirectDefense/SuperSerial-Active)
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## 検出ツール
+
+- [Java deserialization cheat sheet aimed at pen testers](https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet)
+- [A proof-of-concept tool for generating payloads that exploit unsafe Java object deserialization.](https://github.com/frohoff/ysoserial)
+- [Java De-serialization toolkits](https://github.com/brianwrf/hackUtils)
+- [Java de-serialization tool](https://github.com/frohoff/ysoserial)
+- [.Net payload generator](https://github.com/pwntester/ysoserial.net)
+- [Burp Suite extension](https://github.com/federicodotta/Java-Deserialization-Scanner/releases)
+- [Java secure deserialization library](https://github.com/ikkisoft/SerialKiller)
+- [Serianalyzer is a static bytecode analyzer for deserialization](https://github.com/mbechler/serianalyzer)
+- [Payload generator](https://github.com/mbechler/marshalsec)
+- [Android Java Deserialization Vulnerability Tester](https://github.com/modzero/modjoda)
+- Burp Suite Extension
+    - [JavaSerialKiller](https://github.com/NetSPI/JavaSerialKiller)
+    - [Java Deserialization Scanner](https://github.com/federicodotta/Java-Deserialization-Scanner)
+    - [Burp-ysoserial](https://github.com/summitt/burp-ysoserial)
+    - [SuperSerial](https://github.com/DirectDefense/SuperSerial)
+    - [SuperSerial-Active](https://github.com/DirectDefense/SuperSerial-Active)
+
+</div>
 </div>
 
 </section>
@@ -2448,6 +2246,7 @@ If the application knows before deserialization which messages will need to be p
 
 </div>
 
+
 ## Attribution
 
 <div className="attributionFooter">
@@ -2458,6 +2257,6 @@ If the application knows before deserialization which messages will need to be p
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

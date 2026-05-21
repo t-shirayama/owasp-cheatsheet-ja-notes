@@ -6,12 +6,13 @@ hide_title: true
 <div className="docHero" data-category="cryptographic-storage">
   <h1>暗号化ストレージチートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
     <span className="docPill">読了時間: 約 9 分</span>
     <span className="docPill">カテゴリ: 暗号</span>
   </div>
 </div>
 
+<p className="docLead">暗号化ストレージチートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="cryptographic-storage-view" id="cryptographic-storage-original" />
@@ -411,8 +412,6 @@ KEK も DEK と少なくとも同等の強度を持つべきです。Google の 
 鍵導出関数（KDF）を使用して、ユーザーが入力したパスフレーズなどから KEK を生成し、それを使ってランダムに生成された DEK を暗号化することもできます。これにより、DEK は同じまま、ユーザーがパスフレーズを変更したときに KEK を容易に変更できます。
 
 </section>
-
-
 
 <section id="cryptographic-storage-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -956,6 +955,19 @@ Applications should be designed to still be secure even if cryptographic control
 
 ## Key Management
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## Key Management
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Processes
 
 Formal processes should be implemented (and tested) to cover all aspects of key management, including:
@@ -963,8 +975,6 @@ Formal processes should be implemented (and tested) to cover all aspects of key 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## Key Management
 
 ### Processes
 
@@ -1427,6 +1437,6 @@ A key derivation function (KDF) could be used to generate a KEK from user-suppli
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

@@ -3,14 +3,16 @@ title: Multi-Tenant Application Security Cheat Sheet
 hide_title: true
 ---
 
-<div className="docHero" data-category="authorization">
+<div className="docHero" data-category="asvs-v8">
   <h1>マルチテナントアプリケーションセキュリティチートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
-    <span className="docPill">読了時間: 約 16 分</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">読了時間: 準備中</span>
     <span className="docPill">カテゴリ: 認可</span>
   </div>
 </div>
+
+<p className="docLead">マルチテナントアプリケーションセキュリティチートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="multi-tenant-security-view" id="multi-tenant-security-original" />
@@ -24,8 +26,6 @@ hide_title: true
   </div>
 
 <section id="multi-tenant-security-original-panel" className="tabPanel originalPanel contentPanel">
-
-# Multi-Tenant Application Security Cheat Sheet
 
 ## Introduction
 
@@ -58,8 +58,8 @@ This cheat sheet provides best practices to secure multi-tenant applications, en
 - Bind tenant context to the authenticated user session.
 - Propagate tenant context securely through all application layers.
 
-<details>
-<summary>Bad example: Trusting client-supplied tenant ID</summary>
+&lt;details&gt;
+&lt;summary&gt;Bad example: Trusting client-supplied tenant ID&lt;/summary&gt;
 
 ```python
 # Dangerous: Tenant ID from request header without validation/query parameterization
@@ -68,10 +68,10 @@ def get_tenant_data(request):
     return db.execute("SELECT * FROM data WHERE tenant_id = :tid", {"tid": tenant_id})
 ```
 
-</details>
+&lt;/details&gt;
 
-<details>
-<summary>Good example: Deriving tenant from authenticated session</summary>
+&lt;details&gt;
+&lt;summary&gt;Good example: Deriving tenant from authenticated session&lt;/summary&gt;
 
 ```python
 from functools import wraps
@@ -130,7 +130,7 @@ def require_tenant(func):
     return wrapper
 ```
 
-</details>
+&lt;/details&gt;
 
 ### 2. Database Isolation Strategies
 
@@ -143,8 +143,8 @@ Choose an isolation strategy based on security requirements, compliance needs, a
 | Shared Tables (Row-Level) | Medium | Cost-sensitive, high tenant count |
 | Hybrid | Variable | Different tiers for different customers |
 
-<details>
-<summary>Row-Level Security Implementation (PostgreSQL)</summary>
+&lt;details&gt;
+&lt;summary&gt;Row-Level Security Implementation (PostgreSQL)&lt;/summary&gt;
 
 ```sql
 -- Enable RLS on tenant tables
@@ -165,10 +165,10 @@ ALTER TABLE orders FORCE ROW LEVEL SECURITY;
 ALTER TABLE customers FORCE ROW LEVEL SECURITY;
 ```
 
-</details>
+&lt;/details&gt;
 
-<details>
-<summary>Application-Level Enforcement (Python/SQLAlchemy)</summary>
+&lt;details&gt;
+&lt;summary&gt;Application-Level Enforcement (Python/SQLAlchemy)&lt;/summary&gt;
 
 ```python
 from sqlalchemy import event, Column, String
@@ -237,7 +237,7 @@ def tenant_session(tenant_id: str):
         session.close()
 ```
 
-</details>
+&lt;/details&gt;
 
 ### 3. Preventing Cross-Tenant Data Access (IDOR Prevention)
 
@@ -246,8 +246,8 @@ def tenant_session(tenant_id: str):
 - Implement authorization checks at the data access layer, not just API layer.
 - Avoid exposing sequential or guessable IDs.
 
-<details>
-<summary>Bad example: Direct object reference without tenant validation</summary>
+&lt;details&gt;
+&lt;summary&gt;Bad example: Direct object reference without tenant validation&lt;/summary&gt;
 
 ```python
 # Dangerous: Only checks resource_id, not tenant ownership
@@ -259,10 +259,10 @@ async def get_document(document_id: str):
     return doc  # Could return another tenant's document!
 ```
 
-</details>
+&lt;/details&gt;
 
-<details>
-<summary>Good example: Tenant-scoped resource access</summary>
+&lt;details&gt;
+&lt;summary&gt;Good example: Tenant-scoped resource access&lt;/summary&gt;
 
 ```python
 from uuid import UUID
@@ -326,7 +326,7 @@ async def get_document(document_id: UUID, db: Session = Depends(get_db)):
     return doc
 ```
 
-</details>
+&lt;/details&gt;
 
 ### 4. Cache & Session Isolation
 
@@ -335,8 +335,8 @@ async def get_document(document_id: UUID, db: Session = Depends(get_db)):
 - Implement cache key validation to prevent injection.
 - Set appropriate TTLs and validate tenant on cache retrieval.
 
-<details>
-<summary>Bad example: Shared cache without tenant isolation</summary>
+&lt;details&gt;
+&lt;summary&gt;Bad example: Shared cache without tenant isolation&lt;/summary&gt;
 
 ```python
 # Dangerous: Cache key collision between tenants
@@ -348,10 +348,10 @@ def get_user_preferences(user_id: str):
     # ...
 ```
 
-</details>
+&lt;/details&gt;
 
-<details>
-<summary>Good example: Tenant-isolated caching</summary>
+&lt;details&gt;
+&lt;summary&gt;Good example: Tenant-isolated caching&lt;/summary&gt;
 
 ```python
 import hashlib
@@ -442,7 +442,7 @@ async def get_user_preferences(user_id: str):
     return await db.fetch_preferences(user_id)
 ```
 
-</details>
+&lt;/details&gt;
 
 ### 5. API Security & Rate Limiting
 
@@ -452,8 +452,8 @@ async def get_user_preferences(user_id: str):
 - Use separate API keys per tenant.
 - Implement tenant-aware request signing for B2B APIs.
 
-<details>
-<summary>Tenant-Aware Rate Limiting</summary>
+&lt;details&gt;
+&lt;summary&gt;Tenant-Aware Rate Limiting&lt;/summary&gt;
 
 ```python
 import time
@@ -561,7 +561,7 @@ class RateLimitMiddleware:
         return response
 ```
 
-</details>
+&lt;/details&gt;
 
 ### 6. File Storage & Blob Isolation
 
@@ -571,8 +571,8 @@ class RateLimitMiddleware:
 - Use signed URLs with tenant context embedded.
 - Encrypt files at rest with tenant-specific keys (for high-security requirements).
 
-<details>
-<summary>Secure Multi-Tenant File Storage</summary>
+&lt;details&gt;
+&lt;summary&gt;Secure Multi-Tenant File Storage&lt;/summary&gt;
 
 ```python
 import boto3
@@ -676,7 +676,7 @@ class TenantFileStorage:
                 )
 ```
 
-</details>
+&lt;/details&gt;
 
 ### 7. Tenant Onboarding & Offboarding Security
 
@@ -686,8 +686,8 @@ class TenantFileStorage:
 - Maintain audit trail of provisioning/deprovisioning.
 - Implement data export for tenant portability.
 
-<details>
-<summary>Secure Tenant Lifecycle Management</summary>
+&lt;details&gt;
+&lt;summary&gt;Secure Tenant Lifecycle Management&lt;/summary&gt;
 
 ```python
 from dataclasses import dataclass
@@ -839,7 +839,7 @@ class TenantLifecycleManager:
         await self.audit.log("tenant_deletion_completed", {"tenant_id": tenant_id})
 ```
 
-</details>
+&lt;/details&gt;
 
 ### 8. Logging, Monitoring & Audit
 
@@ -849,8 +849,8 @@ class TenantLifecycleManager:
 - Set up alerts for tenant isolation violations.
 - Ensure compliance with tenant-specific retention policies.
 
-<details>
-<summary>Tenant-Aware Logging & Monitoring</summary>
+&lt;details&gt;
+&lt;summary&gt;Tenant-Aware Logging & Monitoring&lt;/summary&gt;
 
 ```python
 import structlog
@@ -977,7 +977,7 @@ class CrossTenantAccessMonitor:
             raise SecurityException("Access denied: resource belongs to different tenant")
 ```
 
-</details>
+&lt;/details&gt;
 
 ## Do's and Don'ts
 
@@ -1005,18 +1005,9 @@ class CrossTenantAccessMonitor:
 - Retain tenant data indefinitely after offboarding.
 - Log sensitive tenant data in plain text.
 
-## References
-
-- [OWASP Cloud Tenant Isolation](https://owasp.org/www-project-cloud-tenant-isolation/)
-- [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
-- [AWS SaaS Tenant Isolation Strategies](https://docs.aws.amazon.com/wellarchitected/latest/saas-lens/tenant-isolation.html)
-
-
 </section>
 
 <section id="multi-tenant-security-translation-panel" className="tabPanel translationPanel contentPanel">
-
-# マルチテナントアプリケーションセキュリティチートシート
 
 ## はじめに
 
@@ -1996,30 +1987,62 @@ class CrossTenantAccessMonitor:
 - オフボーディング後もテナントデータを無期限に保持すること。
 - 機微なテナントデータを平文でログに記録すること。
 
-## References
-
-- [OWASP Cloud Tenant Isolation](https://owasp.org/www-project-cloud-tenant-isolation/)
-- [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
-- [AWS SaaS Tenant Isolation Strategies](https://docs.aws.amazon.com/wellarchitected/latest/saas-lens/tenant-isolation.html)
-
-
 </section>
 
-<section id="multi-tenant-security-bilingual-panel" className="tabPanel bilingualPanel contentPanel">
+<section id="multi-tenant-security-bilingual-panel" className="tabPanel bilingualPanel">
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-# Multi-Tenant Application Security Cheat Sheet
-
 ## Introduction
 
 Multi-tenant applications serve multiple customers (tenants) from a shared infrastructure, codebase, and often shared databases. This architecture is the foundation of modern SaaS platforms, offering cost efficiency and simplified operations.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## はじめに
+
+マルチテナントアプリケーションは、共有インフラストラクチャ、コードベース、多くの場合は共有データベースから、複数の顧客 (テナント) にサービスを提供します。このアーキテクチャは現代的な SaaS プラットフォームの基盤であり、コスト効率と運用の簡素化をもたらします。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 However, multi-tenancy introduces critical security challenges: a single vulnerability can expose all tenants' data, misconfigurations can leak data across tenant boundaries, and resource contention can impact availability.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+しかし、マルチテナンシーは重大なセキュリティ課題をもたらします。単一の脆弱性によって全テナントのデータが露出する可能性があり、設定ミスによってテナント境界を越えたデータ漏えいが発生し、リソース競合によって可用性に影響が及ぶ可能性があります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 This cheat sheet provides best practices to secure multi-tenant applications, ensure tenant isolation, and prevent cross-tenant attacks.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+このチートシートでは、マルチテナントアプリケーションを保護し、テナント分離を確保し、クロステナント攻撃を防止するためのベストプラクティスを示します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ## Key Risks
 
@@ -2034,29 +2057,9 @@ This cheat sheet provides best practices to secure multi-tenant applications, en
 - **Insecure Tenant Onboarding/Offboarding**: Incomplete provisioning or data retention after deletion.
 - **Audit & Compliance Gaps**: Insufficient tenant-specific logging for regulatory requirements.
 
-## Best Practices
-
-### 1. Tenant Identification & Context Management
-
-- Establish tenant context early in the request lifecycle (middleware/interceptor).
-- Use cryptographically secure, non-guessable tenant identifiers.
-- Never trust client-supplied tenant IDs without validation.
-- Bind tenant context to the authenticated user session.
-- Propagate tenant context securely through all application layers.
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-# マルチテナントアプリケーションセキュリティチートシート
-
-## はじめに
-
-マルチテナントアプリケーションは、共有インフラストラクチャ、コードベース、多くの場合は共有データベースから、複数の顧客 (テナント) にサービスを提供します。このアーキテクチャは現代的な SaaS プラットフォームの基盤であり、コスト効率と運用の簡素化をもたらします。
-
-しかし、マルチテナンシーは重大なセキュリティ課題をもたらします。単一の脆弱性によって全テナントのデータが露出する可能性があり、設定ミスによってテナント境界を越えたデータ漏えいが発生し、リソース競合によって可用性に影響が及ぶ可能性があります。
-
-このチートシートでは、マルチテナントアプリケーションを保護し、テナント分離を確保し、クロステナント攻撃を防止するためのベストプラクティスを示します。
 
 ## 主なリスク
 
@@ -2071,7 +2074,39 @@ This cheat sheet provides best practices to secure multi-tenant applications, en
 - **安全でないテナントオンボーディング/オフボーディング**: プロビジョニングの不備や、削除後のデータ保持が残ること。
 - **監査とコンプライアンスのギャップ**: 規制要件に対するテナント固有のログ記録が不十分であること。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Best Practices
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 ## ベストプラクティス
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### 1. Tenant Identification & Context Management
+
+- Establish tenant context early in the request lifecycle (middleware/interceptor).
+- Use cryptographically secure, non-guessable tenant identifiers.
+- Never trust client-supplied tenant IDs without validation.
+- Bind tenant context to the authenticated user session.
+- Propagate tenant context securely through all application layers.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### 1. テナント識別とコンテキスト管理
 
@@ -2084,11 +2119,25 @@ This cheat sheet provides best practices to secure multi-tenant applications, en
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Bad example: Trusting client-supplied tenant ID&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 <details>
-<summary>Bad example: Trusting client-supplied tenant ID</summary>
+<summary>悪い例: クライアント提供のテナント ID を信頼する</summary>
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```python
 # Dangerous: Tenant ID from request header without validation/query parameterization
@@ -2097,15 +2146,42 @@ def get_tenant_data(request):
     return db.execute("SELECT * FROM data WHERE tenant_id = :tid", {"tid": tenant_id})
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Good example: Deriving tenant from authenticated session&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+<details>
+<summary>良い例: 認証済みセッションからテナントを導出する</summary>
+
+</div>
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
-<details>
-<summary>Good example: Deriving tenant from authenticated session</summary>
 
 ```python
 from functools import wraps
@@ -2164,8 +2240,21 @@ def require_tenant(func):
     return wrapper
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -2175,6 +2264,21 @@ def require_tenant(func):
 ### 2. Database Isolation Strategies
 
 Choose an isolation strategy based on security requirements, compliance needs, and operational complexity:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 2. データベース分離戦略
+
+セキュリティ要件、コンプライアンス上の必要性、運用の複雑さに基づいて分離戦略を選択します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 | Strategy | Isolation Level | Use Case |
 |----------|----------------|----------|
@@ -2187,10 +2291,6 @@ Choose an isolation strategy based on security requirements, compliance needs, a
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### 2. データベース分離戦略
-
-セキュリティ要件、コンプライアンス上の必要性、運用の複雑さに基づいて分離戦略を選択します。
-
 | 戦略 | 分離レベル | ユースケース |
 |----------|----------------|----------|
 | 個別データベース | 最高 | 規制対象業界、エンタープライズ顧客 |
@@ -2201,11 +2301,25 @@ Choose an isolation strategy based on security requirements, compliance needs, a
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Row-Level Security Implementation (PostgreSQL)&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 <details>
-<summary>Row-Level Security Implementation (PostgreSQL)</summary>
+<summary>行レベルセキュリティの実装 (PostgreSQL)</summary>
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```sql
 -- Enable RLS on tenant tables
@@ -2226,15 +2340,42 @@ ALTER TABLE orders FORCE ROW LEVEL SECURITY;
 ALTER TABLE customers FORCE ROW LEVEL SECURITY;
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Application-Level Enforcement (Python/SQLAlchemy)&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+<details>
+<summary>アプリケーションレベルの強制 (Python/SQLAlchemy)</summary>
+
+</div>
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
-<details>
-<summary>Application-Level Enforcement (Python/SQLAlchemy)</summary>
 
 ```python
 from sqlalchemy import event, Column, String
@@ -2303,8 +2444,21 @@ def tenant_session(tenant_id: str):
         session.close()
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -2332,11 +2486,25 @@ def tenant_session(tenant_id: str):
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Bad example: Direct object reference without tenant validation&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 <details>
-<summary>Bad example: Direct object reference without tenant validation</summary>
+<summary>悪い例: テナント検証のない直接オブジェクト参照</summary>
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```python
 # Dangerous: Only checks resource_id, not tenant ownership
@@ -2348,15 +2516,42 @@ async def get_document(document_id: str):
     return doc  # Could return another tenant's document!
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Good example: Tenant-scoped resource access&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+<details>
+<summary>良い例: テナントスコープのリソースアクセス</summary>
+
+</div>
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
-<details>
-<summary>Good example: Tenant-scoped resource access</summary>
 
 ```python
 from uuid import UUID
@@ -2420,8 +2615,21 @@ async def get_document(document_id: UUID, db: Session = Depends(get_db)):
     return doc
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -2449,11 +2657,25 @@ async def get_document(document_id: UUID, db: Session = Depends(get_db)):
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Bad example: Shared cache without tenant isolation&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 <details>
-<summary>Bad example: Shared cache without tenant isolation</summary>
+<summary>悪い例: テナント分離のない共有キャッシュ</summary>
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```python
 # Dangerous: Cache key collision between tenants
@@ -2465,15 +2687,42 @@ def get_user_preferences(user_id: str):
     # ...
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Good example: Tenant-isolated caching&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+<details>
+<summary>良い例: テナント分離されたキャッシュ</summary>
+
+</div>
 </div>
 
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
-
-<details>
-<summary>Good example: Tenant-isolated caching</summary>
 
 ```python
 import hashlib
@@ -2564,8 +2813,21 @@ async def get_user_preferences(user_id: str):
     return await db.fetch_preferences(user_id)
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -2595,11 +2857,25 @@ async def get_user_preferences(user_id: str):
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Tenant-Aware Rate Limiting&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 <details>
-<summary>Tenant-Aware Rate Limiting</summary>
+<summary>テナント対応レート制限</summary>
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```python
 import time
@@ -2707,8 +2983,21 @@ class RateLimitMiddleware:
         return response
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -2738,11 +3027,25 @@ class RateLimitMiddleware:
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Secure Multi-Tenant File Storage&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 <details>
-<summary>Secure Multi-Tenant File Storage</summary>
+<summary>安全なマルチテナントファイルストレージ</summary>
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```python
 import boto3
@@ -2846,8 +3149,21 @@ class TenantFileStorage:
                 )
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -2877,11 +3193,25 @@ class TenantFileStorage:
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Secure Tenant Lifecycle Management&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 <details>
-<summary>Secure Tenant Lifecycle Management</summary>
+<summary>安全なテナントライフサイクル管理</summary>
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```python
 from dataclasses import dataclass
@@ -3033,8 +3363,21 @@ class TenantLifecycleManager:
         await self.audit.log("tenant_deletion_completed", {"tenant_id": tenant_id})
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -3064,11 +3407,25 @@ class TenantLifecycleManager:
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;details&gt;
+&lt;summary&gt;Tenant-Aware Logging & Monitoring&lt;/summary&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 <details>
-<summary>Tenant-Aware Logging & Monitoring</summary>
+<summary>テナント対応のログ記録と監視</summary>
+
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
 
 ```python
 import structlog
@@ -3195,8 +3552,21 @@ class CrossTenantAccessMonitor:
             raise SecurityException("Access denied: resource belongs to different tenant")
 ```
 
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+&lt;/details&gt;
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 </details>
 
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -3206,6 +3576,21 @@ class CrossTenantAccessMonitor:
 ## Do's and Don'ts
 
 **Do:**
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## すべきこと・してはならないこと
+
+**すべきこと:**
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 - Derive tenant context from authenticated, verified tokens.
 - Use database-level isolation (RLS, schemas) as defense in depth.
@@ -3217,31 +3602,9 @@ class CrossTenantAccessMonitor:
 - Implement complete data deletion for offboarding.
 - Monitor and alert on cross-tenant access attempts.
 
-**Don't:**
-
-- Trust tenant IDs from client headers or request parameters.
-- Use shared cache keys without tenant prefixes.
-- Expose sequential or guessable tenant/resource IDs.
-- Allow queries without tenant filters (even for admins without explicit override).
-- Store tenant data without tenant_id columns.
-- Share API keys or credentials across tenants.
-- Skip tenant validation for "internal" services.
-- Retain tenant data indefinitely after offboarding.
-- Log sensitive tenant data in plain text.
-
-## References
-
-- [OWASP Cloud Tenant Isolation](https://owasp.org/www-project-cloud-tenant-isolation/)
-- [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
-- [AWS SaaS Tenant Isolation Strategies](https://docs.aws.amazon.com/wellarchitected/latest/saas-lens/tenant-isolation.html)
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## すべきこと・してはならないこと
-
-**すべきこと:**
 
 - 認証済みで検証済みのトークンからテナントコンテキストを導出します。
 - 多層防御として、データベースレベルの分離 (RLS、スキーマ) を使用します。
@@ -3253,7 +3616,41 @@ class CrossTenantAccessMonitor:
 - オフボーディングのために完全なデータ削除を実装します。
 - クロステナントアクセス試行を監視し、アラートを発します。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+**Don't:**
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 **してはならないこと:**
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Trust tenant IDs from client headers or request parameters.
+- Use shared cache keys without tenant prefixes.
+- Expose sequential or guessable tenant/resource IDs.
+- Allow queries without tenant filters (even for admins without explicit override).
+- Store tenant data without tenant_id columns.
+- Share API keys or credentials across tenants.
+- Skip tenant validation for "internal" services.
+- Retain tenant data indefinitely after offboarding.
+- Log sensitive tenant data in plain text.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 - クライアントヘッダーやリクエストパラメータのテナント ID を信頼すること。
 - テナントプレフィックスのない共有キャッシュキーを使用すること。
@@ -3265,17 +3662,22 @@ class CrossTenantAccessMonitor:
 - オフボーディング後もテナントデータを無期限に保持すること。
 - 機微なテナントデータを平文でログに記録すること。
 
+</div>
+</div>
+
+</section>
+</div>
+
 ## References
+
+<div className="referenceFooter">
 
 - [OWASP Cloud Tenant Isolation](https://owasp.org/www-project-cloud-tenant-isolation/)
 - [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
 - [AWS SaaS Tenant Isolation Strategies](https://docs.aws.amazon.com/wellarchitected/latest/saas-lens/tenant-isolation.html)
 
 </div>
-</div>
 
-</section>
-</div>
 
 ## Attribution
 
@@ -3287,6 +3689,6 @@ class CrossTenantAccessMonitor:
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

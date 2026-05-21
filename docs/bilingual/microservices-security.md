@@ -6,11 +6,13 @@ hide_title: true
 <div className="docHero" data-category="asvs-v11">
   <h1>マイクロサービスセキュリティチートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
-    <span className="docPill">読了時間: 約 22 分</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">読了時間: 準備中</span>
     <span className="docPill">カテゴリ: 検証とビジネスロジック</span>
   </div>
 </div>
+
+<p className="docLead">マイクロサービスセキュリティチートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="microservices-security-view" id="microservices-security-original" />
@@ -25,8 +27,6 @@ hide_title: true
 
 <section id="microservices-security-original-panel" className="tabPanel originalPanel contentPanel">
 
-# Microservices Security Cheat Sheet
-
 ## Introduction
 
 The microservice architecture is being increasingly used for designing and implementing application systems in both cloud-based and on-premise infrastructures, high-scale applications and services. There are many security challenges that need to be addressed in the application design and implementation phases. The fundamental security requirements that have to be addressed during design phase are authentication and authorization. Therefore, it is vital for applications security architects to understand and properly use existing architecture patterns to implement authentication and authorization in microservices-based systems. The goal of this cheat sheet is to identify such patterns and to do recommendations for applications security architects on possible ways to use them.
@@ -58,7 +58,6 @@ For further discussion, we will use terms and definitions according with [NIST S
 #### Decentralized pattern
 
 The development team implements PDP and PEP directly at the microservice code level. All the access control rules and attributes that need to implement that rule are defined and stored on each microservice (step 1). When a microservice receives a request along with some authorization metadata (e.g., end user context or requested resource ID), the microservice analyzes it (step 3) to generate an access control policy decision and then enforces authorization (step 4).
-
 ![Decentralized pattern HLD](https://cheatsheetseries.owasp.org/assets/Dec_pattern_HLD.png)
 
 Existing programming language frameworks allow development teams to implement authorization at the microservice layer. For example, [Spring Security allows](https://www.youtube.com/watch?v=v2J32nd0g24) developers to enable scopes checking (e.g., using scopes extracted from incoming JWT) in the resource server and use it to enforce authorization.
@@ -121,7 +120,6 @@ In this scenario, the recipient microservice has to trust the calling microservi
 #### Using a data structure signed by a trusted issuer
 
 In this pattern, after the external request is authenticated by the authentication service at the edge layer, a data structure representing the external entity identity (e.g., containing user ID, user roles/groups, or permissions) is generated, signed, or encrypted by the trusted issuer and propagated to internal microservices.
-
 ![Signed ID propagation](https://cheatsheetseries.owasp.org/assets/Signed_ID_propogation.png)
 
 [Netflix presented](https://www.infoq.com/presentations/netflix-user-identity/) a real-world case of using that pattern: a structure called “Passport” that contains the user ID and its attributes and which is HMAC protected at the edge level for each incoming request. This structure is propagated to internal microservices and never exposed outside.
@@ -133,7 +131,6 @@ In this pattern, after the external request is authenticated by the authenticati
 5. If necessary, internal service can propagate the “Passport” structure to downstream services in the call chain.
 
 ![Netflix ID propagation approach](https://cheatsheetseries.owasp.org/assets/Netflix_ID_prop.png)
-
 It should be mentioned that the pattern is external access token agnostic and allows for decoupling of external entities from their internal representations.
 
 ### Recommendation on how to implement identity propagation
@@ -154,7 +151,6 @@ With an mTLS approach, each microservice can legitimately identify who it talks 
 #### Token-based
 
 The token-based approach works at the application layer. A token is a container that may contain the caller ID (microservice ID) and its permissions (scopes). The caller microservice can obtain a signed token by invoking a special security token service using its own service ID and password and then attaches it to every outgoing request, e.g., via HTTP headers. The called microservice can extract the token and validate it online or offline.
-
 ![Signed ID propagation](https://cheatsheetseries.owasp.org/assets/Token_validation.png)
 
 1. Online scenario:
@@ -167,7 +163,6 @@ The token-based approach works at the application layer. A token is a container 
     - Revoked (compromised) tokens may not be detected.
     - Low latency.
     - Should be applied to non-critical requests.
-
 In most cases, token-based authentication works over TLS, which provides confidentiality and integrity of data in transit.
 
 ## Logging
@@ -177,7 +172,6 @@ Logging services in microservice-based systems aim to meet the principles of acc
 - Each microservice writes a log message to a local file using standard output (via stdout, stderr).
 - The logging agent periodically pulls log messages and sends (publishes) them to the message broker (e.g., NATS, Apache Kafka).
 - The central logging service subscribes to messages in the message broker, receives them, and processes them.
-
 ![Logging pattern](https://cheatsheetseries.owasp.org/assets/ms_logging_pattern.png)
 
 High-level recommendations to logging subsystem architecture with its rationales are listed below.
@@ -202,19 +196,11 @@ High-level recommendations to logging subsystem architecture with its rationales
 10. The logging agent shall append log messages with context data, e.g., platform context (hostname, container name), runtime context (class name, filename).
 
 For a comprehensive overview of events that should be logged and possible data format, please see the [OWASP Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html#which-events-to-log) and [Application Logging Vocabulary Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html)
-
-## References
-
-- [NIST Special Publication 800-204](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204.pdf) “Security Strategies for Microservices-based Application Systems”
-- [NIST Special Publication 800-204A](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204A.pdf) “Building Secure Microservices-based Applications Using Service-Mesh Architecture”
-- [Microservices Security in Action](https://www.manning.com/books/microservices-security-in-action), Prabath Siriwardena and Nuwan Dias, 2020, Manning
 
 </section>
 
 <section id="microservices-security-translation-panel" className="tabPanel translationPanel contentPanel">
 
-# マイクロサービスセキュリティチートシート
-
 ## はじめに
 
 マイクロサービスアーキテクチャは、クラウドベースおよびオンプレミスのインフラストラクチャ、高スケールのアプリケーションやサービスの両方で、アプリケーションシステムの設計と実装にますます使われるようになっています。アプリケーションの設計フェーズと実装フェーズでは、対処すべき多くのセキュリティ課題があります。設計フェーズで対処しなければならない基本的なセキュリティ要件は、認証と認可です。そのため、アプリケーションセキュリティアーキテクトが、マイクロサービスベースのシステムで認証と認可を実装する既存のアーキテクチャパターンを理解し、適切に使用することは重要です。このチートシートの目的は、そのようなパターンを特定し、アプリケーションセキュリティアーキテクトに対して、それらを利用する可能な方法を推奨することです。
@@ -391,21 +377,13 @@ mTLS アプローチでは、各マイクロサービスは、送信データの
 
 ログに記録すべきイベントと、可能なデータ形式の包括的な概要については、[OWASP Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html#which-events-to-log) および [Application Logging Vocabulary Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html) を参照してください。
 
-## References
-
-- [NIST Special Publication 800-204](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204.pdf) “Security Strategies for Microservices-based Application Systems”
-- [NIST Special Publication 800-204A](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204A.pdf) “Building Secure Microservices-based Applications Using Service-Mesh Architecture”
-- [Microservices Security in Action](https://www.manning.com/books/microservices-security-in-action), Prabath Siriwardena and Nuwan Dias, 2020, Manning
-
 </section>
 
-<section id="microservices-security-bilingual-panel" className="tabPanel bilingualPanel contentPanel">
+<section id="microservices-security-bilingual-panel" className="tabPanel bilingualPanel">
 
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
-
-# Microservices Security Cheat Sheet
 
 ## Introduction
 
@@ -414,8 +392,6 @@ The microservice architecture is being increasingly used for designing and imple
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-# マイクロサービスセキュリティチートシート
 
 ## はじめに
 
@@ -432,12 +408,6 @@ The microservice architecture is being increasingly used for designing and imple
 
 In simple scenarios, authorization can happen only at the edge level (API gateway). The API gateway can be leveraged to centralize enforcement of authorization for all downstream microservices, eliminating the need to provide authentication and access control for each of the individual services. In such cases, NIST recommends implementing mitigating controls such as mutual authentication to prevent direct, anonymous connections to the internal services (API gateway bypass). It should be noted that authorization at the edge layer has the [following limitations](https://www.youtube.com/watch?v=UnXjwCWgBKU):
 
-- Pushing all authorization decisions to the API gateway can quickly become hard to manage in complex ecosystems with many roles and access control rules.
-- The API gateway may become a single point of decision that may violate the “defense in depth” principle.
-- Operation teams typically own the API gateway, so development teams cannot directly make authorization changes, slowing down velocity due to additional communication and process overhead.
-
-In most cases, development teams implement authorization in both places – at the edge level at a coarse level of granularity, and at service level. To authenticate an external entity, the edge can use access tokens (referenced token or self-contained token) transmitted via HTTP headers (e.g., “Cookie” or “Authorization”) or use mTLS.
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -446,9 +416,37 @@ In most cases, development teams implement authorization in both places – at t
 
 単純なシナリオでは、認可はエッジレベル、つまり API ゲートウェイだけで行うことができます。API ゲートウェイを活用すると、すべての下流マイクロサービスに対する認可の強制を集中化でき、個々のサービスごとに認証とアクセス制御を用意する必要をなくせます。このような場合、NIST は、内部サービスへの直接かつ匿名の接続、つまり API ゲートウェイのバイパスを防ぐために、相互認証などの緩和策を実装することを推奨しています。エッジ層での認可には、[次の制限](https://www.youtube.com/watch?v=UnXjwCWgBKU)がある点に注意してください。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Pushing all authorization decisions to the API gateway can quickly become hard to manage in complex ecosystems with many roles and access control rules.
+- The API gateway may become a single point of decision that may violate the “defense in depth” principle.
+- Operation teams typically own the API gateway, so development teams cannot directly make authorization changes, slowing down velocity due to additional communication and process overhead.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 - すべての認可判断を API ゲートウェイに押し込むと、多数のロールやアクセス制御ルールを持つ複雑なエコシステムでは、すぐに管理が難しくなる可能性があります。
 - API ゲートウェイが単一の判断点となり、「多層防御」の原則に反する可能性があります。
 - 通常、API ゲートウェイは運用チームが所有しているため、開発チームは認可の変更を直接行えません。その結果、追加のコミュニケーションやプロセスのオーバーヘッドにより、開発速度が低下します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+In most cases, development teams implement authorization in both places – at the edge level at a coarse level of granularity, and at service level. To authenticate an external entity, the edge can use access tokens (referenced token or self-contained token) transmitted via HTTP headers (e.g., “Cookie” or “Authorization”) or use mTLS.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ほとんどの場合、開発チームは認可を二つの場所で実装します。粗い粒度ではエッジレベルで、さらにサービスレベルでも実装します。外部エンティティを認証するために、エッジは HTTP ヘッダー、たとえば `Cookie` や `Authorization` で送信されるアクセストークン、つまり参照トークンまたは自己完結型トークンを使用するか、mTLS を使用できます。
 
@@ -464,6 +462,21 @@ In most cases, development teams implement authorization in both places – at t
 Service-level authorization gives each microservice more control to enforce access control policies.
 For further discussion, we will use terms and definitions according with [NIST SP 800-162](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-162.pdf). The functional components of an access control system can be classified as follows:
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## サービスレベル認可
+
+サービスレベル認可により、各マイクロサービスはアクセス制御ポリシーを強制するためのより多くの制御を持てます。以降の説明では、[NIST SP 800-162](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-162.pdf) に従った用語と定義を使用します。アクセス制御システムの機能コンポーネントは、次のように分類できます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 - Policy Administration Point (PAP): Provides a user interface for creating, managing, testing, and debugging access control rules.
 - Policy Decision Point (PDP): Computes access decisions by evaluating the applicable access control policy.
 - Policy Enforcement Point (PEP): Enforces policy decisions in response to a request from a subject requesting access to a protected object.
@@ -472,10 +485,6 @@ For further discussion, we will use terms and definitions according with [NIST S
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## サービスレベル認可
-
-サービスレベル認可により、各マイクロサービスはアクセス制御ポリシーを強制するためのより多くの制御を持てます。以降の説明では、[NIST SP 800-162](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-162.pdf) に従った用語と定義を使用します。アクセス制御システムの機能コンポーネントは、次のように分類できます。
 
 - Policy Administration Point (PAP): アクセス制御ルールの作成、管理、テスト、デバッグのためのユーザーインターフェイスを提供します。
 - Policy Decision Point (PDP): 適用されるアクセス制御ポリシーを評価して、アクセス判断を計算します。
@@ -498,6 +507,19 @@ For further discussion, we will use terms and definitions according with [NIST S
 
 ### Service-level authorization: existing patterns
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### サービスレベル認可: 既存のパターン
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### Decentralized pattern
 
 The development team implements PDP and PEP directly at the microservice code level. All the access control rules and attributes that need to implement that rule are defined and stored on each microservice (step 1). When a microservice receives a request along with some authorization metadata (e.g., end user context or requested resource ID), the microservice analyzes it (step 3) to generate an access control policy decision and then enforces authorization (step 4).
@@ -506,11 +528,39 @@ The development team implements PDP and PEP directly at the microservice code le
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### サービスレベル認可: 既存のパターン
-
 #### 分散型パターン
 
 開発チームは、マイクロサービスのコードレベルで PDP と PEP を直接実装します。アクセス制御ルールと、そのルールの実装に必要なすべての属性は、各マイクロサービス上で定義され保存されます (ステップ 1)。マイクロサービスが、何らかの認可メタデータ、たとえばエンドユーザーコンテキストや要求されたリソース ID とともにリクエストを受け取ると、マイクロサービスはそれを分析し (ステップ 3)、アクセス制御ポリシー判断を生成して認可を強制します (ステップ 4)。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Existing programming language frameworks allow development teams to implement authorization at the microservice layer. For example, [Spring Security allows](https://www.youtube.com/watch?v=v2J32nd0g24) developers to enable scopes checking (e.g., using scopes extracted from incoming JWT) in the resource server and use it to enforce authorization.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+既存のプログラミング言語フレームワークにより、開発チームはマイクロサービス層で認可を実装できます。たとえば、[Spring Security](https://www.youtube.com/watch?v=v2J32nd0g24) では、開発者がリソースサーバー内でスコープチェック、たとえば受信 JWT から抽出したスコープを使用したチェックを有効化し、それを認可の強制に利用できます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Implementing authorization at the source code level means that the code must be updated whenever the development team wants to modify authorization logic.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ソースコードレベルで認可を実装するということは、開発チームが認可ロジックを変更したい場合には、常にコードを更新しなければならないことを意味します。
 
 </div>
 </div>
@@ -520,25 +570,6 @@ The development team implements PDP and PEP directly at the microservice code le
 
 ![Decentralized pattern HLD](https://cheatsheetseries.owasp.org/assets/Dec_pattern_HLD.png)
 
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-Existing programming language frameworks allow development teams to implement authorization at the microservice layer. For example, [Spring Security allows](https://www.youtube.com/watch?v=v2J32nd0g24) developers to enable scopes checking (e.g., using scopes extracted from incoming JWT) in the resource server and use it to enforce authorization.
-
-Implementing authorization at the source code level means that the code must be updated whenever the development team wants to modify authorization logic.
-
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-既存のプログラミング言語フレームワークにより、開発チームはマイクロサービス層で認可を実装できます。たとえば、[Spring Security](https://www.youtube.com/watch?v=v2J32nd0g24) では、開発者がリソースサーバー内でスコープチェック、たとえば受信 JWT から抽出したスコープを使用したチェックを有効化し、それを認可の強制に利用できます。
-
-ソースコードレベルで認可を実装するということは、開発チームが認可ロジックを変更したい場合には、常にコードを更新しなければならないことを意味します。
-
-</div>
 </div>
 
 <div className="bilingualPair">
@@ -560,20 +591,11 @@ In this pattern, access control rules are defined, stored, and evaluated central
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-![Centralized pattern with single policy decision point HLD](https://cheatsheetseries.owasp.org/assets/Single_PDP_HLD.png)
-
-</div>
-
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
 To define access control rules, development/operation teams have to use some language or notation. An example is Extensible Access Control Markup Language (XACML) and Next Generation Access Control (NGAC), which is a standard to describe policy rules.
-
-This pattern can cause latency issues due to additional network calls to the remote PDP endpoint, but it can be mitigated by caching authorization policy decisions at the microservice level. It should be mentioned that the PDP must be operated in high-availability mode to prevent resilience and availability issues. Application security architects should combine it with other patterns (e.g., authorization on API gateway level) to enforce the "defense in depth" principle.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -581,9 +603,29 @@ This pattern can cause latency issues due to additional network calls to the rem
 
 アクセス制御ルールを定義するには、開発チームや運用チームは何らかの言語または記法を使用しなければなりません。例として、ポリシールールを記述する標準である Extensible Access Control Markup Language (XACML) や Next Generation Access Control (NGAC) があります。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+This pattern can cause latency issues due to additional network calls to the remote PDP endpoint, but it can be mitigated by caching authorization policy decisions at the microservice level. It should be mentioned that the PDP must be operated in high-availability mode to prevent resilience and availability issues. Application security architects should combine it with other patterns (e.g., authorization on API gateway level) to enforce the "defense in depth" principle.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 このパターンは、リモート PDP エンドポイントへの追加のネットワーク呼び出しによってレイテンシの問題を引き起こす可能性があります。ただし、マイクロサービスレベルで認可ポリシー判断をキャッシュすることで緩和できます。PDP は、レジリエンスと可用性の問題を防ぐため、高可用性モードで運用しなければならない点に注意してください。アプリケーションセキュリティアーキテクトは、「多層防御」の原則を強制するために、このパターンを他のパターン、たとえば API ゲートウェイレベルでの認可と組み合わせるべきです。
 
 </div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+![Centralized pattern with single policy decision point HLD](https://cheatsheetseries.owasp.org/assets/Single_PDP_HLD.png)
+
 </div>
 
 <div className="bilingualPair">
@@ -605,20 +647,11 @@ In this pattern, access control rules are defined centrally but stored and evalu
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-![Centralized pattern with embedded policy decision point HLD](https://cheatsheetseries.owasp.org/assets/Embed_PDP_HLD.png)
-
-</div>
-
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
 The PDP code in this case, can be implemented as a microservice built-in library or sidecar in a service mesh architecture. Due to possible network/host failures and network latency, it is advisable to implement embedded PDP as a microservice library or sidecar on the same host as the microservice. Embedded PDP usually stores authorization policy and policy-related data in-memory to minimize external dependencies during authorization enforcement and get low latency. The main difference from the “Centralized pattern with single policy decision point” approach, is that authorization *decisions* do not store on the microservice side, up-to-date authorization *policy* is stored on the microservice side instead. It should be mentioned that caching authorization decisions may lead to applying outdated authorization rules and access control violations.
-
-Netflix presented ([link](https://www.youtube.com/watch?v=R6tUNpRpdnY), [link](https://conferences.oreilly.com/velocity/vl-ca-2018/public/schedule/detail/66606.html)) a real case of using “Centralized pattern with embedded PDP” pattern to implement authorization on the microservices level.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -626,16 +659,22 @@ Netflix presented ([link](https://www.youtube.com/watch?v=R6tUNpRpdnY), [link](h
 
 この場合の PDP コードは、マイクロサービス組み込みライブラリとして、またはサービスメッシュアーキテクチャにおけるサイドカーとして実装できます。ネットワークやホストの障害、およびネットワークレイテンシが発生する可能性があるため、埋め込み PDP はマイクロサービスと同じホスト上のマイクロサービスライブラリまたはサイドカーとして実装することが望ましいです。埋め込み PDP は通常、認可の強制中の外部依存を最小化し、低レイテンシを実現するために、認可ポリシーとポリシー関連データをメモリ内に保存します。「単一のポリシー判断点を持つ集中型パターン」アプローチとの主な違いは、認可の*判断*をマイクロサービス側に保存するのではなく、最新の認可*ポリシー*をマイクロサービス側に保存することです。認可判断のキャッシュは、古い認可ルールの適用やアクセス制御違反につながる可能性がある点に注意してください。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Netflix presented ([link](https://www.youtube.com/watch?v=R6tUNpRpdnY), [link](https://conferences.oreilly.com/velocity/vl-ca-2018/public/schedule/detail/66606.html)) a real case of using “Centralized pattern with embedded PDP” pattern to implement authorization on the microservices level.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 Netflix は、マイクロサービスレベルで認可を実装するために「埋め込み PDP を持つ集中型パターン」を使用した実例を発表しています ([link](https://www.youtube.com/watch?v=R6tUNpRpdnY), [link](https://conferences.oreilly.com/velocity/vl-ca-2018/public/schedule/detail/66606.html))。
 
 </div>
-</div>
-
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-![Centralized pattern with embedded policy decision point HLD](https://cheatsheetseries.owasp.org/assets/Netflix_AC.png)
-
 </div>
 
 <div className="bilingualPair">
@@ -657,6 +696,15 @@ Netflix は、マイクロサービスレベルで認可を実装するために
 - PDP (library) は、アクセス制御ルールとデータを非同期に取得し、最新状態に保ち、PEP コンポーネントによる認可の強制を可能にします。
 
 </div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+![Centralized pattern with embedded policy decision point HLD](https://cheatsheetseries.owasp.org/assets/Embed_PDP_HLD.png)
+
+![Centralized pattern with embedded policy decision point HLD](https://cheatsheetseries.owasp.org/assets/Netflix_AC.png)
+
 </div>
 
 <div className="bilingualPair">
@@ -725,10 +773,40 @@ To make fine-grained authorization decisions at the microservice level, a micros
 
 ### Identity propagation: existing patterns
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### アイデンティティ伝播: 既存のパターン
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### Sending the external entity identity as clear or self-signed data structures
 
 In this approach, the microservice extracts the external entity identity from the incoming request (e.g., by parsing the incoming access token), creates a data structure (e.g., JSON or self-signed JWT) with that context, and passes it on to an internal microservice.
 In this scenario, the recipient microservice has to trust the calling microservice. If the calling microservice wants to violate access control rules, it can do so by setting any user/client ID or user roles it wants in the HTTP header. This approach is suitable only in highly trusted environments where every microservice is developed by a trusted development team that applies secure software development practices.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 外部エンティティアイデンティティを平文または自己署名データ構造として送信する
+
+このアプローチでは、マイクロサービスが受信リクエストから外部エンティティアイデンティティを抽出し、たとえば受信アクセストークンを解析し、そのコンテキストを含むデータ構造、たとえば JSON または自己署名 JWT を作成して、内部マイクロサービスに渡します。
+
+このシナリオでは、受信側マイクロサービスは呼び出し元マイクロサービスを信頼しなければなりません。呼び出し元マイクロサービスがアクセス制御ルールに違反したい場合、HTTP ヘッダー内に任意のユーザー ID、クライアント ID、ユーザーロールを設定することで、それを実行できます。このアプローチは、すべてのマイクロサービスが、安全なソフトウェア開発プラクティスを適用する信頼済み開発チームによって開発されている、高度に信頼された環境でのみ適しています。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Using a data structure signed by a trusted issuer
 
@@ -738,14 +816,6 @@ In this pattern, after the external request is authenticated by the authenticati
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### アイデンティティ伝播: 既存のパターン
-
-#### 外部エンティティアイデンティティを平文または自己署名データ構造として送信する
-
-このアプローチでは、マイクロサービスが受信リクエストから外部エンティティアイデンティティを抽出し、たとえば受信アクセストークンを解析し、そのコンテキストを含むデータ構造、たとえば JSON または自己署名 JWT を作成して、内部マイクロサービスに渡します。
-
-このシナリオでは、受信側マイクロサービスは呼び出し元マイクロサービスを信頼しなければなりません。呼び出し元マイクロサービスがアクセス制御ルールに違反したい場合、HTTP ヘッダー内に任意のユーザー ID、クライアント ID、ユーザーロールを設定することで、それを実行できます。このアプローチは、すべてのマイクロサービスが、安全なソフトウェア開発プラクティスを適用する信頼済み開発チームによって開発されている、高度に信頼された環境でのみ適しています。
-
 #### 信頼済み発行者によって署名されたデータ構造を使用する
 
 このパターンでは、外部リクエストがエッジ層の認証サービスによって認証された後、外部エンティティアイデンティティを表すデータ構造、たとえばユーザー ID、ユーザーロールやグループ、権限を含むものが、信頼済み発行者によって生成、署名、または暗号化され、内部マイクロサービスに伝播されます。
@@ -753,18 +823,24 @@ In this pattern, after the external request is authenticated by the authenticati
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-![Signed ID propagation](https://cheatsheetseries.owasp.org/assets/Signed_ID_propogation.png)
-
-</div>
-
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
 [Netflix presented](https://www.infoq.com/presentations/netflix-user-identity/) a real-world case of using that pattern: a structure called “Passport” that contains the user ID and its attributes and which is HMAC protected at the edge level for each incoming request. This structure is propagated to internal microservices and never exposed outside.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+[Netflix は](https://www.infoq.com/presentations/netflix-user-identity/)、このパターンを使用した実例を発表しています。`Passport` と呼ばれる構造体で、ユーザー ID とその属性を含み、各受信リクエストについてエッジレベルで HMAC により保護されます。この構造体は内部マイクロサービスに伝播され、外部には決して公開されません。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 1. The Edge Authentication Service (EAS) obtains a secret key from the Key Management System.
 2. EAS receives an access token (e.g., in a cookie, JWT, OAuth2 token) from the incoming request.
@@ -776,8 +852,6 @@ In this pattern, after the external request is authenticated by the authenticati
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-[Netflix は](https://www.infoq.com/presentations/netflix-user-identity/)、このパターンを使用した実例を発表しています。`Passport` と呼ばれる構造体で、ユーザー ID とその属性を含み、各受信リクエストについてエッジレベルで HMAC により保護されます。この構造体は内部マイクロサービスに伝播され、外部には決して公開されません。
-
 1. Edge Authentication Service (EAS) は、Key Management System からシークレットキーを取得します。
 2. EAS は、受信リクエストからアクセストークン、たとえば cookie、JWT、OAuth2 token 内のトークンを受け取ります。
 3. EAS はアクセストークンを復号し、外部エンティティアイデンティティを解決し、署名済みの `Passport` 構造体で内部サービスに送信します。
@@ -787,8 +861,25 @@ In this pattern, after the external request is authenticated by the authenticati
 </div>
 </div>
 
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+It should be mentioned that the pattern is external access token agnostic and allows for decoupling of external entities from their internal representations.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+このパターンは外部アクセストークン非依存であり、外部エンティティと内部表現を分離できる点に注意してください。
+
+</div>
+</div>
+
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
+
+![Signed ID propagation](https://cheatsheetseries.owasp.org/assets/Signed_ID_propogation.png)
 
 ![Netflix ID propagation approach](https://cheatsheetseries.owasp.org/assets/Netflix_ID_prop.png)
 
@@ -797,8 +888,6 @@ In this pattern, after the external request is authenticated by the authenticati
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
-
-It should be mentioned that the pattern is external access token agnostic and allows for decoupling of external entities from their internal representations.
 
 ### Recommendation on how to implement identity propagation
 
@@ -810,8 +899,6 @@ It should be mentioned that the pattern is external access token agnostic and al
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-このパターンは外部アクセストークン非依存であり、外部エンティティと内部表現を分離できる点に注意してください。
 
 ### アイデンティティ伝播の実装に関する推奨事項
 
@@ -829,11 +916,52 @@ It should be mentioned that the pattern is external access token agnostic and al
 
 ## Service-to-service authentication
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## サービス間認証
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 ### Existing patterns
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### 既存のパターン
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Mutual transport layer security
 
 With an mTLS approach, each microservice can legitimately identify who it talks to, in addition to achieving confidentiality and integrity of the transmitted data. Each microservice in the deployment has to carry a public/private key pair and use that key pair to authenticate to the recipient microservices via mTLS. mTLS is usually implemented with a self-hosted Public Key Infrastructure. The main challenges of using mTLS are key provisioning and trust bootstrap, certificate revocation, and key rotation.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 相互トランスポート層セキュリティ
+
+mTLS アプローチでは、各マイクロサービスは、送信データの機密性と完全性を実現することに加えて、通信相手を正当に識別できます。デプロイ内の各マイクロサービスは、公開鍵と秘密鍵のペアを保持し、その鍵ペアを使用して mTLS により受信側マイクロサービスに対して認証しなければなりません。mTLS は通常、自己ホスト型の Public Key Infrastructure で実装されます。mTLS を使用する際の主な課題は、鍵プロビジョニングと信頼のブートストラップ、証明書失効、鍵ローテーションです。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Token-based
 
@@ -843,26 +971,11 @@ The token-based approach works at the application layer. A token is a container 
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-## サービス間認証
-
-### 既存のパターン
-
-#### 相互トランスポート層セキュリティ
-
-mTLS アプローチでは、各マイクロサービスは、送信データの機密性と完全性を実現することに加えて、通信相手を正当に識別できます。デプロイ内の各マイクロサービスは、公開鍵と秘密鍵のペアを保持し、その鍵ペアを使用して mTLS により受信側マイクロサービスに対して認証しなければなりません。mTLS は通常、自己ホスト型の Public Key Infrastructure で実装されます。mTLS を使用する際の主な課題は、鍵プロビジョニングと信頼のブートストラップ、証明書失効、鍵ローテーションです。
-
 #### トークンベース
 
 トークンベースアプローチは、アプリケーション層で機能します。トークンは、呼び出し元 ID、つまりマイクロサービス ID と、その権限、つまりスコープを含むことができるコンテナです。呼び出し元マイクロサービスは、自身のサービス ID とパスワードを使用して特別なセキュリティトークンサービスを呼び出すことで署名済みトークンを取得し、それをすべての送信リクエスト、たとえば HTTP ヘッダーに添付できます。呼び出されるマイクロサービスは、トークンを抽出し、オンラインまたはオフラインで検証できます。
 
 </div>
-</div>
-
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-![Signed ID propagation](https://cheatsheetseries.owasp.org/assets/Token_validation.png)
-
 </div>
 
 <div className="bilingualPair">
@@ -879,7 +992,6 @@ mTLS アプローチでは、各マイクロサービスは、送信データの
     - Revoked (compromised) tokens may not be detected.
     - Low latency.
     - Should be applied to non-critical requests.
-
 In most cases, token-based authentication works over TLS, which provides confidentiality and integrity of data in transit.
 
 </div>
@@ -902,6 +1014,13 @@ In most cases, token-based authentication works over TLS, which provides confide
 </div>
 </div>
 
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+![Signed ID propagation](https://cheatsheetseries.owasp.org/assets/Token_validation.png)
+
+</div>
+
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
@@ -909,10 +1028,6 @@ In most cases, token-based authentication works over TLS, which provides confide
 ## Logging
 
 Logging services in microservice-based systems aim to meet the principles of accountability and traceability and help detect security anomalies in operations via log analysis. Therefore, it is vital for application security architects to understand and adequately use existing architecture patterns to implement audit logging in microservices-based systems for security operations. A high-level architecture design is shown in the picture below and is based on the following principles:
-
-- Each microservice writes a log message to a local file using standard output (via stdout, stderr).
-- The logging agent periodically pulls log messages and sends (publishes) them to the message broker (e.g., NATS, Apache Kafka).
-- The central logging service subscribes to messages in the message broker, receives them, and processes them.
 
 </div>
 <div className="bilingualBlock japanese">
@@ -922,6 +1037,21 @@ Logging services in microservice-based systems aim to meet the principles of acc
 
 マイクロサービスベースシステムにおけるロギングサービスは、説明責任と追跡可能性の原則を満たし、ログ分析を通じて運用上のセキュリティ異常を検出することを目的としています。そのため、アプリケーションセキュリティアーキテクトが、セキュリティ運用のためにマイクロサービスベースシステムで監査ログを実装する既存のアーキテクチャパターンを理解し、適切に使用することは重要です。下図は高レベルのアーキテクチャ設計を示しており、次の原則に基づいています。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+- Each microservice writes a log message to a local file using standard output (via stdout, stderr).
+- The logging agent periodically pulls log messages and sends (publishes) them to the message broker (e.g., NATS, Apache Kafka).
+- The central logging service subscribes to messages in the message broker, receives them, and processes them.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 - 各マイクロサービスは、標準出力、つまり stdout や stderr を通じて、ローカルファイルにログメッセージを書き込みます。
 - ロギングエージェントは、定期的にログメッセージを取得し、メッセージブローカー、たとえば NATS や Apache Kafka に送信、つまり publish します。
 - 中央ロギングサービスは、メッセージブローカー内のメッセージを subscribe し、それらを受信して処理します。
@@ -929,18 +1059,24 @@ Logging services in microservice-based systems aim to meet the principles of acc
 </div>
 </div>
 
-<div className="bilingualCommon">
-<span className="bilingualLabel common">コード・画像 (共通)</span>
-
-![Logging pattern](https://cheatsheetseries.owasp.org/assets/ms_logging_pattern.png)
-
-</div>
-
 <div className="bilingualPair">
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
 High-level recommendations to logging subsystem architecture with its rationales are listed below.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ロギングサブシステムアーキテクチャに対する高レベルの推奨事項と、その根拠を以下に示します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 1. Microservice shall not send log messages directly to the central logging subsystem using network communication. Microservice shall write its log message to a local log file:
     - this allows to mitigate the threat of data loss due to logging service failure due to attack or in case of its flooding by legitimate microservice
@@ -964,8 +1100,6 @@ High-level recommendations to logging subsystem architecture with its rationales
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-ロギングサブシステムアーキテクチャに対する高レベルの推奨事項と、その根拠を以下に示します。
 
 1. マイクロサービスは、ネットワーク通信を使用して中央ロギングサブシステムにログメッセージを直接送信してはなりません。マイクロサービスは、ログメッセージをローカルログファイルに書き込まなければなりません。
     - これにより、攻撃によるロギングサービス障害、または正当なマイクロサービスによるフラッディングの場合に、データ損失の脅威を緩和できます。
@@ -995,29 +1129,35 @@ High-level recommendations to logging subsystem architecture with its rationales
 
 For a comprehensive overview of events that should be logged and possible data format, please see the [OWASP Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html#which-events-to-log) and [Application Logging Vocabulary Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html)
 
-## References
-
-- [NIST Special Publication 800-204](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204.pdf) “Security Strategies for Microservices-based Application Systems”
-- [NIST Special Publication 800-204A](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204A.pdf) “Building Secure Microservices-based Applications Using Service-Mesh Architecture”
-- [Microservices Security in Action](https://www.manning.com/books/microservices-security-in-action), Prabath Siriwardena and Nuwan Dias, 2020, Manning
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ログに記録すべきイベントと、可能なデータ形式の包括的な概要については、[OWASP Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html#which-events-to-log) および [Application Logging Vocabulary Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html) を参照してください。
 
+</div>
+</div>
+
+<div className="bilingualCommon">
+<span className="bilingualLabel common">コード・画像 (共通)</span>
+
+![Logging pattern](https://cheatsheetseries.owasp.org/assets/ms_logging_pattern.png)
+
+</div>
+
+</section>
+</div>
+
 ## References
+
+<div className="referenceFooter">
 
 - [NIST Special Publication 800-204](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204.pdf) “Security Strategies for Microservices-based Application Systems”
 - [NIST Special Publication 800-204A](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204A.pdf) “Building Secure Microservices-based Applications Using Service-Mesh Architecture”
 - [Microservices Security in Action](https://www.manning.com/books/microservices-security-in-action), Prabath Siriwardena and Nuwan Dias, 2020, Manning
 
 </div>
-</div>
 
-</section>
-</div>
 
 ## Attribution
 
@@ -1029,6 +1169,6 @@ For a comprehensive overview of events that should be logged and possible data f
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>

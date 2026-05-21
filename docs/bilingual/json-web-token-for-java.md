@@ -6,13 +6,13 @@ hide_title: true
 <div className="docHero" data-category="asvs-v9">
   <h1>Java 向け JSON Web Token チートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-21</span>
-    <span className="docPill">読了時間: 約 10 分</span>
+    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">読了時間: 準備中</span>
     <span className="docPill">カテゴリ: セルフコンテインドトークン</span>
   </div>
 </div>
 
-<p className="docLead">JSON Web Token Cheat Sheet for Java を、原文・翻訳・対比表示で確認できます。Java で JWT を扱う際の署名検証、サイドジャッキング対策、失効、情報漏えい、トークン保存、シークレット強度を整理しています。</p>
+<p className="docLead">Java 向け JSON Web Token チートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="json-web-token-for-java-view" id="json-web-token-for-java-original" />
@@ -27,8 +27,6 @@ hide_title: true
 
 <section id="json-web-token-for-java-original-panel" className="tabPanel originalPanel contentPanel">
 
-# JSON Web Token Cheat Sheet for Java
-
 ## Introduction
 
 Many applications use **JSON Web Tokens** (JWT) to allow the client to indicate its identity for further exchange after authentication.
@@ -300,7 +298,6 @@ public class TokenRevoker {
 
      return tokenIsPresent;
  }
-
 
  /**
   * Add a digest encoded in HEX of the ciphered token to the revocation token table
@@ -654,14 +651,12 @@ Alternatively, consider the use of tokens that are signed with RSA rather than u
 
 #### Further Reading
 
-- [`{JWT}.{Attack}.Playbook`](https://github.com/ticarpi/jwt_tool/wiki) - A project documents the known attacks and potential security vulnerabilities and misconfigurations of JSON Web Tokens.
+- [&#123;JWT&#125;.&#123;Attack&#125;.Playbook](https://github.com/ticarpi/jwt_tool/wiki) - A project documents the known attacks and potential security vulnerabilities and misconfigurations of JSON Web Tokens.
 - [JWT Best Practices Internet Draft](https://datatracker.ietf.org/doc/draft-ietf-oauth-jwt-bcp/)
 
 </section>
 
 <section id="json-web-token-for-java-translation-panel" className="tabPanel translationPanel contentPanel">
-
-# Java 向け JSON Web Token チートシート
 
 ## はじめに
 
@@ -934,7 +929,6 @@ public class TokenRevoker {
 
      return tokenIsPresent;
  }
-
 
  /**
   * Add a digest encoded in HEX of the ciphered token to the revocation token table
@@ -1285,11 +1279,6 @@ function makeRequest() {
 この攻撃を防ぐ最も単純な方法は、JWT の署名に使用するシークレットが強力かつ一意であることを保証し、攻撃者が解読しにくくすることです。このシークレットは人間が入力する必要がないため、少なくとも 64 文字以上とし、[安全なランダム性のソース](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#secure-random-number-generation)を使用して生成するべきです。
 
 代替として、HMAC と秘密鍵を使用するのではなく、RSA で署名されたトークンの使用を検討します。
-
-#### 参考資料
-
-- [`{JWT}.{Attack}.Playbook`](https://github.com/ticarpi/jwt_tool/wiki) - JSON Web Token の既知の攻撃、潜在的なセキュリティ脆弱性、設定ミスを文書化したプロジェクトです。
-- [JWT Best Practices Internet Draft](https://datatracker.ietf.org/doc/draft-ietf-oauth-jwt-bcp/)
 
 </section>
 
@@ -1299,47 +1288,109 @@ function makeRequest() {
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-# JSON Web Token Cheat Sheet for Java
-
 ## Introduction
 
 Many applications use **JSON Web Tokens** (JWT) to allow the client to indicate its identity for further exchange after authentication.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## はじめに
+
+多くのアプリケーションでは、認証後の以降のやり取りでクライアントが自身のアイデンティティを示せるようにするため、**JSON Web Token** (JWT) を使用します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 From [JWT.IO](https://jwt.io/introduction):
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+[JWT.IO](https://jwt.io/introduction) より:
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 > JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+> JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA.
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 JWTs are used to carry information related to the identity and characteristics (claims) of a client. This information is signed by the server to ensure it has not been tampered with after being sent to the client. This prevents an attacker from modifying the identity or characteristics — for example, changing the role from a simple user to an admin or altering the client's login.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+JWT は、クライアントのアイデンティティや特性 (クレーム) に関連する情報を運ぶために使用されます。この情報は、クライアントへ送信された後に改ざんされていないことを保証するため、サーバによって署名されます。これにより、攻撃者がアイデンティティや特性を変更すること、たとえばロールを一般ユーザーから管理者へ変更したり、クライアントのログイン名を変更したりすることを防ぎます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 The token is created during authentication (it is issued upon successful authentication) and is verified by the server before any processing. Applications use the token to allow a client to present what is essentially an "identity card" to the server. The server can then securely verify the token's validity and integrity. This approach is stateless and portable, meaning it works across different client and server technologies, and over various transport channels — although HTTP is the most commonly used.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+トークンは認証時、つまり認証成功時に作成され、処理を行う前にサーバによって検証されます。アプリケーションは、クライアントがサーバへ「身分証明書」のようなものを提示できるようにするためにトークンを使用します。サーバはその後、トークンの有効性と完全性を安全に検証できます。この方式はステートレスかつポータブルです。つまり、さまざまなクライアント技術やサーバ技術、さまざまな転送チャネルで機能します。ただし、最も一般的に使用されるのは HTTP です。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ## Token Structure
 
 Token structure example taken from [JWT.IO](https://jwt.io/#debugger):
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+## トークン構造
+
+トークン構造の例は [JWT.IO](https://jwt.io/#debugger) から引用しています。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 `[Base64(HEADER)].[Base64(PAYLOAD)].[Base64(SIGNATURE)]`
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-# Java 向け JSON Web Token チートシート
-
-## はじめに
-
-多くのアプリケーションでは、認証後の以降のやり取りでクライアントが自身のアイデンティティを示せるようにするため、**JSON Web Token** (JWT) を使用します。
-
-[JWT.IO](https://jwt.io/introduction) より:
-
-> JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA.
-
-JWT は、クライアントのアイデンティティや特性 (クレーム) に関連する情報を運ぶために使用されます。この情報は、クライアントへ送信された後に改ざんされていないことを保証するため、サーバによって署名されます。これにより、攻撃者がアイデンティティや特性を変更すること、たとえばロールを一般ユーザーから管理者へ変更したり、クライアントのログイン名を変更したりすることを防ぎます。
-
-トークンは認証時、つまり認証成功時に作成され、処理を行う前にサーバによって検証されます。アプリケーションは、クライアントがサーバへ「身分証明書」のようなものを提示できるようにするためにトークンを使用します。サーバはその後、トークンの有効性と完全性を安全に検証できます。この方式はステートレスかつポータブルです。つまり、さまざまなクライアント技術やサーバ技術、さまざまな転送チャネルで機能します。ただし、最も一般的に使用されるのは HTTP です。
-
-## トークン構造
-
-トークン構造の例は [JWT.IO](https://jwt.io/#debugger) から引用しています。
 
 `[Base64(HEADER)].[Base64(PAYLOAD)].[Base64(SIGNATURE)]`
 
@@ -1444,34 +1495,6 @@ HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), KEY )
 
 This cheatsheet provides tips to prevent common security issues when using JSON Web Tokens (JWT) with Java.
 
-The tips presented in this article are part of a Java project that was created to show the correct way to handle creation and validation of JSON Web Tokens.
-
-You can find the Java project [here](https://github.com/righettod/poc-jwt), it uses the official [JWT library](https://jwt.io/#libraries).
-
-In the rest of the article, the term **token** refers to the **JSON Web Tokens** (JWT).
-
-## Consideration about Using JWT
-
-Even if a JWT is "easy" to use and allow to expose services (mostly REST style) in a stateless way, it's not the solution that fits for all applications because it comes with some caveats, like for example the question of the storage of the token (tackled in this cheatsheet) and others...
-
-If your application does not need to be fully stateless, you can consider using traditional session system provided by all web frameworks and follow the advice from the dedicated [session management cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html). However, for stateless applications, when well implemented, it's a good candidate.
-
-## Issues
-
-### None Hashing Algorithm
-
-#### Symptom
-
-This attack, described [here](https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/), occurs when an attacker alters the token and changes the hashing algorithm to indicate, through the *none* keyword, that the integrity of the token has already been verified. As explained in the link above *some libraries treated tokens signed with the none algorithm as a valid token with a verified signature*, so an attacker can alter the token claims and the modified token will still be trusted by the application.
-
-#### How to Prevent
-
-First, use a JWT library that is not exposed to this vulnerability.
-
-Last, during token validation, explicitly request that the expected algorithm was used.
-
-#### Implementation Example
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -1480,31 +1503,180 @@ Last, during token validation, explicitly request that the expected algorithm wa
 
 このチートシートは、Java で JSON Web Token (JWT) を使用するときの一般的なセキュリティ問題を防ぐためのヒントを提供します。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+The tips presented in this article are part of a Java project that was created to show the correct way to handle creation and validation of JSON Web Tokens.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 この記事で示すヒントは、JSON Web Token の作成と検証を正しく扱う方法を示すために作成された Java プロジェクトの一部です。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+You can find the Java project [here](https://github.com/righettod/poc-jwt), it uses the official [JWT library](https://jwt.io/#libraries).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 Java プロジェクトは[こちら](https://github.com/righettod/poc-jwt)にあります。このプロジェクトは公式の [JWT ライブラリ](https://jwt.io/#libraries)を使用しています。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+In the rest of the article, the term **token** refers to the **JSON Web Tokens** (JWT).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 この記事の残りの部分では、**トークン**という用語は **JSON Web Token** (JWT) を指します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Consideration about Using JWT
+
+Even if a JWT is "easy" to use and allow to expose services (mostly REST style) in a stateless way, it's not the solution that fits for all applications because it comes with some caveats, like for example the question of the storage of the token (tackled in this cheatsheet) and others...
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ## JWT 使用に関する考慮事項
 
 JWT は「簡単」に使用でき、サービス (主に REST スタイル) をステートレスに公開できますが、すべてのアプリケーションに適した解決策ではありません。たとえばトークンの保存方法 (このチートシートで扱います) など、いくつかの注意点があるためです。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+If your application does not need to be fully stateless, you can consider using traditional session system provided by all web frameworks and follow the advice from the dedicated [session management cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html). However, for stateless applications, when well implemented, it's a good candidate.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 アプリケーションが完全にステートレスである必要がない場合は、すべての Web フレームワークが提供する従来のセッションシステムを使用し、専用の[セッション管理チートシート](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)の助言に従うことを検討できます。ただし、ステートレスアプリケーションでは、適切に実装されていれば JWT は有力な候補です。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+## Issues
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ## 問題
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+### None Hashing Algorithm
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 ### None ハッシュアルゴリズム
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Symptom
+
+This attack, described [here](https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/), occurs when an attacker alters the token and changes the hashing algorithm to indicate, through the *none* keyword, that the integrity of the token has already been verified. As explained in the link above *some libraries treated tokens signed with the none algorithm as a valid token with a verified signature*, so an attacker can alter the token claims and the modified token will still be trusted by the application.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 #### 症状
 
 この攻撃は[こちら](https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/)で説明されています。攻撃者がトークンを改変し、ハッシュアルゴリズムを変更して、*none* キーワードによりトークンの完全性がすでに検証済みであることを示す場合に発生します。上記リンクで説明されているように、*一部のライブラリは none アルゴリズムで署名されたトークンを、署名検証済みの有効なトークンとして扱っていました*。そのため攻撃者はトークンのクレームを改変でき、改変されたトークンがアプリケーションに信頼され続けます。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### How to Prevent
+
+First, use a JWT library that is not exposed to this vulnerability.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 #### 防止方法
 
 まず、この脆弱性にさらされていない JWT ライブラリを使用します。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Last, during token validation, explicitly request that the expected algorithm was used.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 最後に、トークン検証時に、期待されるアルゴリズムが使用されたことを明示的に要求します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Implementation Example
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 #### 実装例
 
@@ -1536,20 +1708,103 @@ DecodedJWT decodedToken = verifier.verify(token);
 
 ### Token Sidejacking
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### トークンのサイドジャッキング
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### Symptom
 
 This attack occurs when a token has been intercepted/stolen by an attacker and they use it to gain access to the system using targeted user identity.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 症状
+
+この攻撃は、攻撃者がトークンを傍受または窃取し、対象ユーザーのアイデンティティを使ってシステムへアクセスするときに発生します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### How to Prevent
 
 One way to prevent this is by adding a "user context" to the token. The user context should consist of the following:
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 防止方法
+
+これを防ぐ一つの方法は、トークンに「ユーザーコンテキスト」を追加することです。ユーザーコンテキストは次で構成するべきです。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 - A random string generated during the authentication phase. This string is sent to the client as a hardened cookie (with the following flags: [HttpOnly + Secure](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Secure_and_HttpOnly_cookies), [SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies), [Max-Age](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie), and [cookie prefixes](https://googlechrome.github.io/samples/cookie-prefixes/)). Avoid setting the *expires* header so the cookie is cleared when the browser is closed. Set *Max-Age* to a value equal to or less than the JWT's expiry time — never more.
 - A SHA256 hash of the random string will be stored in the token (instead of the raw value) in order to prevent any XSS issues allowing the attacker to read the random string value and setting the expected cookie.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- 認証フェーズで生成されるランダム文字列。この文字列は、強化された Cookie としてクライアントへ送信します。Cookie には [HttpOnly + Secure](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Secure_and_HttpOnly_cookies)、[SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies)、[Max-Age](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)、[cookie prefixes](https://googlechrome.github.io/samples/cookie-prefixes/) のフラグを付与します。ブラウザを閉じたときに Cookie が削除されるよう、*expires* ヘッダーの設定は避けます。*Max-Age* は JWT の有効期限以下の値に設定し、決して JWT より長くしてはいけません。
+- ランダム文字列の SHA256 ハッシュを、生の値の代わりにトークンへ保存します。これにより、攻撃者が XSS の問題を悪用してランダム文字列の値を読み取り、期待される Cookie を設定することを防ぎます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 Avoid using IP addresses as part of the context. IP addresses can change during a single session due to legitimate reasons — for example, when a user accesses the application on a mobile device and switches network providers. Additionally, IP tracking can raise concerns related to [GDPR compliance](https://gdpr.eu/) in the EU.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+コンテキストの一部として IP アドレスを使用することは避けます。IP アドレスは、正当な理由で単一セッション中に変化することがあります。たとえば、ユーザーがモバイルデバイスでアプリケーションへアクセスし、ネットワークプロバイダを切り替える場合です。さらに、IP 追跡は EU における [GDPR compliance](https://gdpr.eu/) に関連する懸念を生じさせる可能性があります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 During token validation, if the received token does not contain the correct context (e.g., if it is being replayed by an attacker), it must be rejected.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+トークン検証時に、受信したトークンが正しいコンテキストを含まない場合、たとえば攻撃者によって再利用されている場合は、拒否しなければなりません。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Implementation example
 
@@ -1558,23 +1813,6 @@ Code to create the token after successful authentication.
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### トークンのサイドジャッキング
-
-#### 症状
-
-この攻撃は、攻撃者がトークンを傍受または窃取し、対象ユーザーのアイデンティティを使ってシステムへアクセスするときに発生します。
-
-#### 防止方法
-
-これを防ぐ一つの方法は、トークンに「ユーザーコンテキスト」を追加することです。ユーザーコンテキストは次で構成するべきです。
-
-- 認証フェーズで生成されるランダム文字列。この文字列は、強化された Cookie としてクライアントへ送信します。Cookie には [HttpOnly + Secure](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Secure_and_HttpOnly_cookies)、[SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies)、[Max-Age](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)、[cookie prefixes](https://googlechrome.github.io/samples/cookie-prefixes/) のフラグを付与します。ブラウザを閉じたときに Cookie が削除されるよう、*expires* ヘッダーの設定は避けます。*Max-Age* は JWT の有効期限以下の値に設定し、決して JWT より長くしてはいけません。
-- ランダム文字列の SHA256 ハッシュを、生の値の代わりにトークンへ保存します。これにより、攻撃者が XSS の問題を悪用してランダム文字列の値を読み取り、期待される Cookie を設定することを防ぎます。
-
-コンテキストの一部として IP アドレスを使用することは避けます。IP アドレスは、正当な理由で単一セッション中に変化することがあります。たとえば、ユーザーがモバイルデバイスでアプリケーションへアクセスし、ネットワークプロバイダを切り替える場合です。さらに、IP 追跡は EU における [GDPR compliance](https://gdpr.eu/) に関連する懸念を生じさせる可能性があります。
-
-トークン検証時に、受信したトークンが正しいコンテキストを含まない場合、たとえば攻撃者によって再利用されている場合は、拒否しなければなりません。
 
 #### 実装例
 
@@ -1691,21 +1929,116 @@ DecodedJWT decodedToken = verifier.verify(token);
 
 ### No Built-In Token Revocation by the User
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### ユーザーによるトークン失効機能が組み込まれていない
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### Symptom
 
 This problem is inherent to JWT because a token only becomes invalid when it expires. The user has no built-in feature to explicitly revoke the validity of a token. This means that if it is stolen, a user cannot revoke the token itself thereby blocking the attacker.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 症状
+
+この問題は JWT に固有のものです。トークンは期限切れになるまで無効にならないためです。ユーザーには、トークンの有効性を明示的に取り消す組み込み機能がありません。つまりトークンが窃取された場合、ユーザーはトークン自体を失効させて攻撃者をブロックできません。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### How to Prevent
 
 Since JWTs are stateless, There is no session maintained on the server(s) serving client requests. As such, there is no session to invalidate on the server side. A well implemented Token Sidejacking solution (as explained above) should alleviate the need for maintaining denylist on server side. This is because a hardened cookie used in the Token Sidejacking can be considered as secure as a session ID used in the traditional session system, and unless both the cookie and the JWT are intercepted/stolen, the JWT is unusable. A logout can thus be 'simulated' by clearing the JWT from session storage. If the user chooses to close the browser instead, then both the cookie and sessionStorage are cleared automatically.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 防止方法
+
+JWT はステートレスであるため、クライアント要求を処理するサーバ側にはセッションが維持されません。そのため、サーバ側で無効化するセッションはありません。上記で説明した、適切に実装されたトークンのサイドジャッキング対策は、サーバ側で denylist を維持する必要性を軽減するはずです。これは、トークンのサイドジャッキング対策で使用する強化された Cookie は、従来のセッションシステムで使用されるセッション ID と同程度に安全と考えられ、Cookie と JWT の両方が傍受または窃取されない限り JWT は使用できないためです。したがって、session storage から JWT を削除することで「ログアウト」を模擬できます。ユーザーが代わりにブラウザを閉じることを選んだ場合、Cookie と sessionStorage の両方が自動的に削除されます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 Another way to protect against this is to implement a token denylist that will be used to mimic the "logout" feature that exists with traditional session management system.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+これに対する別の保護方法は、従来のセッション管理システムに存在する「ログアウト」機能を模倣するために使用するトークン denylist を実装することです。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 The denylist will keep a digest (SHA-256 encoded in HEX) of the token with a revocation date. This entry must endure at least until the expiration of the token.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+denylist は、トークンのダイジェスト (SHA-256 を HEX でエンコードしたもの) と失効日を保持します。このエントリは、少なくともトークンの有効期限まで保持されなければなりません。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 When the user wants to "logout" then it call a dedicated service that will add the provided user token to the denylist resulting in an immediate invalidation of the token for further usage in the application.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ユーザーが「ログアウト」したい場合、専用サービスを呼び出して、提供されたユーザートークンを denylist に追加します。その結果、そのトークンはアプリケーションでの以降の使用に対して即時に無効化されます。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### Implementation Example
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 実装例
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ##### Block List Storage
 
@@ -1714,24 +2047,6 @@ A database table with the following structure will be used as the central denyli
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### ユーザーによるトークン失効機能が組み込まれていない
-
-#### 症状
-
-この問題は JWT に固有のものです。トークンは期限切れになるまで無効にならないためです。ユーザーには、トークンの有効性を明示的に取り消す組み込み機能がありません。つまりトークンが窃取された場合、ユーザーはトークン自体を失効させて攻撃者をブロックできません。
-
-#### 防止方法
-
-JWT はステートレスであるため、クライアント要求を処理するサーバ側にはセッションが維持されません。そのため、サーバ側で無効化するセッションはありません。上記で説明した、適切に実装されたトークンのサイドジャッキング対策は、サーバ側で denylist を維持する必要性を軽減するはずです。これは、トークンのサイドジャッキング対策で使用する強化された Cookie は、従来のセッションシステムで使用されるセッション ID と同程度に安全と考えられ、Cookie と JWT の両方が傍受または窃取されない限り JWT は使用できないためです。したがって、session storage から JWT を削除することで「ログアウト」を模擬できます。ユーザーが代わりにブラウザを閉じることを選んだ場合、Cookie と sessionStorage の両方が自動的に削除されます。
-
-これに対する別の保護方法は、従来のセッション管理システムに存在する「ログアウト」機能を模倣するために使用するトークン denylist を実装することです。
-
-denylist は、トークンのダイジェスト (SHA-256 を HEX でエンコードしたもの) と失効日を保持します。このエントリは、少なくともトークンの有効期限まで保持されなければなりません。
-
-ユーザーが「ログアウト」したい場合、専用サービスを呼び出して、提供されたユーザートークンを denylist に追加します。その結果、そのトークンはアプリケーションでの以降の使用に対して即時に無効化されます。
-
-#### 実装例
 
 ##### ブロックリストストレージ
 
@@ -1818,7 +2133,6 @@ public class TokenRevoker {
      return tokenIsPresent;
  }
 
-
  /**
   * Add a digest encoded in HEX of the ciphered token to the revocation token table
   *
@@ -1863,37 +2177,92 @@ public class TokenRevoker {
 
 ### Token Information Disclosure
 
-#### Symptom
-
-This attack occurs when an attacker has access to a token (or a set of tokens) and extracts information stored in it (the contents of JWTs are base64 encoded, but is not encrypted by default) in order to obtain information about the system. Information can be for example the security roles, login format...
-
-#### How to Prevent
-
-A way to protect against this attack is to cipher the token using, for example, a symmetric algorithm.
-
-It's also important to protect the ciphered data against attack like [Padding Oracle](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/02-Testing_for_Padding_Oracle.html) or any other attack using cryptanalysis.
-
-In order to achieve all these goals, the *AES-[GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode)* algorithm is used which provides *Authenticated Encryption with Associated Data*.
-
-More details from [here](https://github.com/google/tink/blob/master/docs/PRIMITIVES.md#deterministic-authenticated-encryption-with-associated-data):
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### トークン情報の漏えい
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Symptom
+
+This attack occurs when an attacker has access to a token (or a set of tokens) and extracts information stored in it (the contents of JWTs are base64 encoded, but is not encrypted by default) in order to obtain information about the system. Information can be for example the security roles, login format...
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 #### 症状
 
 この攻撃は、攻撃者がトークン (または一連のトークン) にアクセスし、そこに保存された情報を抽出する場合に発生します。JWT の内容は base64 エンコードされていますが、デフォルトでは暗号化されていません。攻撃者はこれにより、システムに関する情報を取得します。情報には、たとえばセキュリティロールやログイン形式などがあります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### How to Prevent
+
+A way to protect against this attack is to cipher the token using, for example, a symmetric algorithm.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 #### 防止方法
 
 この攻撃から保護する方法の一つは、たとえば対称アルゴリズムを使用してトークンを暗号化することです。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+It's also important to protect the ciphered data against attack like [Padding Oracle](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/02-Testing_for_Padding_Oracle.html) or any other attack using cryptanalysis.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 暗号化されたデータを [Padding Oracle](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/02-Testing_for_Padding_Oracle.html) のような攻撃や、暗号解読を使うその他の攻撃から保護することも重要です。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+In order to achieve all these goals, the *AES-[GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode)* algorithm is used which provides *Authenticated Encryption with Associated Data*.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 これらすべての目的を達成するために、*Authenticated Encryption with Associated Data* を提供する *AES-[GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode)* アルゴリズムを使用します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+More details from [here](https://github.com/google/tink/blob/master/docs/PRIMITIVES.md#deterministic-authenticated-encryption-with-associated-data):
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 詳細は[こちら](https://github.com/google/tink/blob/master/docs/PRIMITIVES.md#deterministic-authenticated-encryption-with-associated-data)から引用します。
 
@@ -1926,9 +2295,48 @@ See RFC5116: https://tools.ietf.org/html/rfc5116
 
 **Note:**
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+**注記:**
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 Here ciphering is added mainly to hide internal information but it's very important to remember that the first protection against tampering of the JWT is the signature. So, the token signature and its verification must be always in place.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ここで暗号化を追加する主な目的は内部情報を隠すことです。ただし、JWT の改ざんに対する第一の保護は署名であることを忘れないことが非常に重要です。したがって、トークン署名とその検証は常に配置されていなければなりません。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### Implementation Example
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 実装例
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 ##### Token Ciphering
 
@@ -1937,12 +2345,6 @@ Code in charge of managing the ciphering. [Google Tink](https://github.com/googl
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-**注記:**
-
-ここで暗号化を追加する主な目的は内部情報を隠すことです。ただし、JWT の改ざんに対する第一の保護は署名であることを忘れないことが非常に重要です。したがって、トークン署名とその検証は常に配置されていなければなりません。
-
-#### 実装例
 
 ##### トークン暗号化
 
@@ -2032,8 +2434,6 @@ public class TokenCipher {
 
 Use the token ciphering handler during the creation and the validation of the token.
 
-Load keys (ciphering key was generated and stored using [Google Tink](https://github.com/google/tink/blob/master/docs/JAVA-HOWTO.md#generating-new-keysets)) and setup cipher.
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
@@ -2041,6 +2441,19 @@ Load keys (ciphering key was generated and stored using [Google Tink](https://gi
 ##### トークンの作成 / 検証
 
 トークンの作成と検証時に、トークン暗号化ハンドラを使用します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Load keys (ciphering key was generated and stored using [Google Tink](https://github.com/google/tink/blob/master/docs/JAVA-HOWTO.md#generating-new-keysets)) and setup cipher.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 鍵を読み込み (暗号化鍵は [Google Tink](https://github.com/google/tink/blob/master/docs/JAVA-HOWTO.md#generating-new-keysets) を使用して生成および保存)、暗号化をセットアップします。
 
@@ -2125,13 +2538,56 @@ String token = tokenCipher.decipherToken(cipheredToken, this.keyCiphering);
 
 ### Token Storage on Client Side
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+### クライアント側でのトークン保存
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 #### Symptom
 
 This occurs when an application stores the token in a manner exhibiting the following behavior:
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 症状
+
+これは、アプリケーションが次のような動作を示す方法でトークンを保存するときに発生します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 - Automatically sent by the browser (*Cookie* storage).
 - Retrieved even if the browser is restarted (Use of browser *localStorage* container).
 - Retrieved in case of [XSS](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) issue (Cookie accessible to JavaScript code or Token stored in browser local/session storage).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- ブラウザによって自動送信される (*Cookie* ストレージ)。
+- ブラウザを再起動しても取得される (ブラウザの *localStorage* コンテナの使用)。
+- [XSS](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) の問題がある場合に取得される (JavaScript コードからアクセス可能な Cookie、またはブラウザの local/session storage に保存されたトークン)。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### How to Prevent
 
@@ -2139,23 +2595,146 @@ This occurs when an application stores the token in a manner exhibiting the foll
 1. Add it as a *Bearer* HTTP `Authentication` header with JavaScript when calling services.
 1. Add [fingerprint](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html#token-sidejacking) information to the token.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+#### 防止方法
+
+1. ブラウザの *sessionStorage* コンテナを使用してトークンを保存するか、JavaScript の *closures* と *private* 変数を使用します。
+1. サービス呼び出し時に、JavaScript で *Bearer* HTTP `Authentication` ヘッダーとして追加します。
+1. トークンに [fingerprint](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html#token-sidejacking) 情報を追加します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 By storing the token in browser *sessionStorage* container it exposes the token to being stolen through an XSS attack. However, fingerprints added to the token prevent reuse of the stolen token by the attacker on their machine. To close a maximum of exploitation surfaces for an attacker, add a browser [Content Security Policy](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) to harden the execution context.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ブラウザの *sessionStorage* コンテナにトークンを保存すると、XSS 攻撃によってトークンが窃取される可能性にさらされます。ただし、トークンに追加された fingerprint により、攻撃者が自身のマシンで窃取したトークンを再利用することを防ぎます。攻撃者の悪用面を最大限に閉じるには、ブラウザの [Content Security Policy](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) を追加して実行コンテキストを強化します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 But, we know that *sessionStorage* is not always practical due to its per-tab scope, and the storage method for tokens should balance *security* and *usability*.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ただし、*sessionStorage* はタブ単位のスコープを持つため、常に実用的とは限りません。トークンの保存方法は、*security* と *usability* のバランスを取るべきです。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 *LocalStorage* is a better method than *sessionStorage* for usability because it allows the session to persist between browser restarts and across tabs, but you must use strict security controls:
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+*LocalStorage* は、ブラウザ再起動後やタブ間でセッションを維持できるため、ユーザビリティの面では *sessionStorage* より優れています。ただし、厳格なセキュリティ制御を使用しなければなりません。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 - Tokens stored in *localStorage* should have *short expiration times* (e.g., *15-30 minutes idle timeout, 8-hour absolute timeout*).
 - Implement mechanisms such as *token rotation* and *refresh tokens* to minimize risk.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- *localStorage* に保存するトークンは、*短い有効期限* (例: *15-30 分のアイドルタイムアウト、8 時間の絶対タイムアウト*) を持つべきです。
+- リスクを最小化するために、*token rotation* や *refresh tokens* などの仕組みを実装します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 If *session persistence across tabs* and *sessionStorage* are required, consider using *BroadcastChannel API* or *Single Sign-On (SSO)* to re-authenticate users automatically when they open new tabs.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+*タブ間のセッション永続性* と *sessionStorage* が必要な場合は、ユーザーが新しいタブを開いたときに自動的に再認証するため、*BroadcastChannel API* または *Single Sign-On (SSO)* の使用を検討します。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 An alternative to storing token in browser *sessionStorage* or in *localStorage* is to use JavaScript private variable or Closures. In this, access to all web requests are routed through a JavaScript module that encapsulates the token in a private variable which can not be accessed other than from within the module.
 
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+ブラウザの *sessionStorage* や *localStorage* にトークンを保存する代替策は、JavaScript の private 変数または Closures を使用することです。この方式では、すべての Web リクエストへのアクセスを JavaScript モジュール経由にし、そのモジュールがトークンを private 変数にカプセル化します。この変数はモジュール内部からしかアクセスできません。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
 *Note:*
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+*注記:*
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 - The remaining case is when an attacker uses the user's browsing context as a proxy to use the target application through the legitimate user but the Content Security Policy can prevent communication with non expected domains.
 - It's also possible to implement the authentication service in a way that the token is issued within a hardened cookie, but in this case, protection against a [Cross-Site Request Forgery](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) attack must be implemented.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
+- 残るケースは、攻撃者がユーザーのブラウジングコンテキストをプロキシとして使用し、正規ユーザーを通じて対象アプリケーションを利用する場合です。ただし Content Security Policy は、期待されないドメインとの通信を防止できます。
+- 認証サービスを、強化された Cookie 内でトークンを発行する形で実装することも可能です。ただしこの場合、[Cross-Site Request Forgery](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) 攻撃に対する保護を実装しなければなりません。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
 
 #### Implementation Example
 
@@ -2164,40 +2743,6 @@ JavaScript code to store the token after authentication.
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-### クライアント側でのトークン保存
-
-#### 症状
-
-これは、アプリケーションが次のような動作を示す方法でトークンを保存するときに発生します。
-
-- ブラウザによって自動送信される (*Cookie* ストレージ)。
-- ブラウザを再起動しても取得される (ブラウザの *localStorage* コンテナの使用)。
-- [XSS](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) の問題がある場合に取得される (JavaScript コードからアクセス可能な Cookie、またはブラウザの local/session storage に保存されたトークン)。
-
-#### 防止方法
-
-1. ブラウザの *sessionStorage* コンテナを使用してトークンを保存するか、JavaScript の *closures* と *private* 変数を使用します。
-1. サービス呼び出し時に、JavaScript で *Bearer* HTTP `Authentication` ヘッダーとして追加します。
-1. トークンに [fingerprint](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html#token-sidejacking) 情報を追加します。
-
-ブラウザの *sessionStorage* コンテナにトークンを保存すると、XSS 攻撃によってトークンが窃取される可能性にさらされます。ただし、トークンに追加された fingerprint により、攻撃者が自身のマシンで窃取したトークンを再利用することを防ぎます。攻撃者の悪用面を最大限に閉じるには、ブラウザの [Content Security Policy](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) を追加して実行コンテキストを強化します。
-
-ただし、*sessionStorage* はタブ単位のスコープを持つため、常に実用的とは限りません。トークンの保存方法は、*security* と *usability* のバランスを取るべきです。
-
-*LocalStorage* は、ブラウザ再起動後やタブ間でセッションを維持できるため、ユーザビリティの面では *sessionStorage* より優れています。ただし、厳格なセキュリティ制御を使用しなければなりません。
-
-- *localStorage* に保存するトークンは、*短い有効期限* (例: *15-30 分のアイドルタイムアウト、8 時間の絶対タイムアウト*) を持つべきです。
-- リスクを最小化するために、*token rotation* や *refresh tokens* などの仕組みを実装します。
-
-*タブ間のセッション永続性* と *sessionStorage* が必要な場合は、ユーザーが新しいタブを開いたときに自動的に再認証するため、*BroadcastChannel API* または *Single Sign-On (SSO)* の使用を検討します。
-
-ブラウザの *sessionStorage* や *localStorage* にトークンを保存する代替策は、JavaScript の private 変数または Closures を使用することです。この方式では、すべての Web リクエストへのアクセスを JavaScript モジュール経由にし、そのモジュールがトークンを private 変数にカプセル化します。この変数はモジュール内部からしかアクセスできません。
-
-*注記:*
-
-- 残るケースは、攻撃者がユーザーのブラウジングコンテキストをプロキシとして使用し、正規ユーザーを通じて対象アプリケーションを利用する場合です。ただし Content Security Policy は、期待されないドメインとの通信を防止できます。
-- 認証サービスを、強化された Cookie 内でトークンを発行する形で実装することも可能です。ただしこの場合、[Cross-Site Request Forgery](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) 攻撃に対する保護を実装しなければなりません。
 
 #### 実装例
 
@@ -2367,55 +2912,115 @@ function makeRequest() {
 
 ### Weak Token Secret
 
-#### Symptom
-
-When the token is protected using an HMAC based algorithm, the security of the token is entirely dependent on the strength of the secret used with the HMAC. If an attacker can obtain a valid JWT, they can then carry out an offline attack and attempt to crack the secret using tools such as [John the Ripper](https://github.com/magnumripper/JohnTheRipper) or [Hashcat](https://github.com/hashcat/hashcat).
-
-If they are successful, they would then be able to modify the token and re-sign it with the key they had obtained. This could let them escalate their privileges, compromise other users' accounts, or perform other actions depending on the contents of the JWT.
-
-There are a number of [guides](https://www.notsosecure.com/crafting-way-json-web-tokens/) that document this process in greater detail.
-
-#### How to Prevent
-
-The simplest way to prevent this attack is to ensure that the secret used to sign the JWTs is strong and unique, in order to make it harder for an attacker to crack. As this secret would never need to be typed by a human, it should be at least 64 characters, and generated using a [secure source of randomness](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#secure-random-number-generation).
-
-Alternatively, consider the use of tokens that are signed with RSA rather than using an HMAC and secret key.
-
-#### Further Reading
-
-- [`{JWT}.{Attack}.Playbook`](https://github.com/ticarpi/jwt_tool/wiki) - A project documents the known attacks and potential security vulnerabilities and misconfigurations of JSON Web Tokens.
-- [JWT Best Practices Internet Draft](https://datatracker.ietf.org/doc/draft-ietf-oauth-jwt-bcp/)
-
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 ### 弱いトークンシークレット
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Symptom
+
+When the token is protected using an HMAC based algorithm, the security of the token is entirely dependent on the strength of the secret used with the HMAC. If an attacker can obtain a valid JWT, they can then carry out an offline attack and attempt to crack the secret using tools such as [John the Ripper](https://github.com/magnumripper/JohnTheRipper) or [Hashcat](https://github.com/hashcat/hashcat).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 #### 症状
 
 トークンが HMAC ベースのアルゴリズムで保護されている場合、トークンのセキュリティは HMAC で使用されるシークレットの強度に完全に依存します。攻撃者が有効な JWT を取得できる場合、[John the Ripper](https://github.com/magnumripper/JohnTheRipper) や [Hashcat](https://github.com/hashcat/hashcat) などのツールを使ってオフライン攻撃を行い、シークレットの解読を試みることができます。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+If they are successful, they would then be able to modify the token and re-sign it with the key they had obtained. This could let them escalate their privileges, compromise other users' accounts, or perform other actions depending on the contents of the JWT.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 攻撃者が成功した場合、トークンを変更し、取得した鍵で再署名できるようになります。これにより、JWT の内容に応じて、権限昇格、他ユーザーアカウントの侵害、またはその他の操作が可能になる可能性があります。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+There are a number of [guides](https://www.notsosecure.com/crafting-way-json-web-tokens/) that document this process in greater detail.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 このプロセスをより詳しく記録した[ガイド](https://www.notsosecure.com/crafting-way-json-web-tokens/)がいくつかあります。
+
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### How to Prevent
+
+The simplest way to prevent this attack is to ensure that the secret used to sign the JWTs is strong and unique, in order to make it harder for an attacker to crack. As this secret would never need to be typed by a human, it should be at least 64 characters, and generated using a [secure source of randomness](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#secure-random-number-generation).
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
 #### 防止方法
 
 この攻撃を防ぐ最も単純な方法は、JWT の署名に使用するシークレットが強力かつ一意であることを保証し、攻撃者が解読しにくくすることです。このシークレットは人間が入力する必要がないため、少なくとも 64 文字以上とし、[安全なランダム性のソース](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#secure-random-number-generation)を使用して生成するべきです。
 
+</div>
+</div>
+
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+Alternatively, consider the use of tokens that are signed with RSA rather than using an HMAC and secret key.
+
+</div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
+
 代替として、HMAC と秘密鍵を使用するのではなく、RSA で署名されたトークンの使用を検討します。
 
-#### 参考資料
+</div>
+</div>
 
-- [`{JWT}.{Attack}.Playbook`](https://github.com/ticarpi/jwt_tool/wiki) - JSON Web Token の既知の攻撃、潜在的なセキュリティ脆弱性、設定ミスを文書化したプロジェクトです。
+<div className="bilingualPair">
+<div className="bilingualBlock english">
+<span className="bilingualLabel english">English (原文)</span>
+
+#### Further Reading
+
+- [&#123;JWT&#125;.&#123;Attack&#125;.Playbook](https://github.com/ticarpi/jwt_tool/wiki) - A project documents the known attacks and potential security vulnerabilities and misconfigurations of JSON Web Tokens.
 - [JWT Best Practices Internet Draft](https://datatracker.ietf.org/doc/draft-ietf-oauth-jwt-bcp/)
 
 </div>
+
 </div>
 
 </section>
 </div>
+
+
 
 ## Attribution
 
@@ -2427,6 +3032,6 @@ Alternatively, consider the use of tokens that are signed with RSA rather than u
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-21
+- Retrieved: 2026-05-20
 
 </div>
