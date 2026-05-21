@@ -150,7 +150,7 @@ As of ColdFusion 2018 Update 14 and ColdFusion 2021 Update 4, all native ColdFus
 
 From the [documentation for the XmlParse() function](https://helpx.adobe.com/coldfusion/cfml-reference/coldfusion-functions/functions-t-z/xmlparse.html), you can disable XXE with the code below:
 
-```cfscript
+```html
 <cfset parseroptions = structnew()>
 <cfset parseroptions.ALLOWEXTERNALENTITIES = false>
 <cfscript>
@@ -960,7 +960,7 @@ ColdFusion 2018 Update 14 および ColdFusion 2021 Update 4 以降、XML を処
 
 [XmlParse() 関数のドキュメント](https://helpx.adobe.com/coldfusion/cfml-reference/coldfusion-functions/functions-t-z/xmlparse.html)では、次のコードで XXE を無効化できます。
 
-```cfscript
+```html
 <cfset parseroptions = structnew()>
 <cfset parseroptions.ALLOWEXTERNALENTITIES = false>
 <cfscript>
@@ -2148,7 +2148,7 @@ From the [documentation for the XmlParse() function](https://helpx.adobe.com/col
 <div className="bilingualCommon">
 <span className="bilingualLabel common">コード・画像 (共通)</span>
 
-```cfscript
+```html
 <cfset parseroptions = structnew()>
 <cfset parseroptions.ALLOWEXTERNALENTITIES = false>
 <cfscript>

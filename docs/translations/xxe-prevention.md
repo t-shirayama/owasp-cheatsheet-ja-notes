@@ -137,7 +137,7 @@ ColdFusion 2018 Update 14 および ColdFusion 2021 Update 4 以降、XML を処
 
 [XmlParse() 関数のドキュメント](https://helpx.adobe.com/coldfusion/cfml-reference/coldfusion-functions/functions-t-z/xmlparse.html)では、次のコードで XXE を無効化できます。
 
-```cfscript
+```html
 <cfset parseroptions = structnew()>
 <cfset parseroptions.ALLOWEXTERNALENTITIES = false>
 <cfscript>

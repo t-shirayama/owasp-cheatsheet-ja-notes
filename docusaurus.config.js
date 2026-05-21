@@ -95,7 +95,6 @@ const config = {
       additionalLanguages: [
         'apacheconf',
         'bash',
-        'cfscript',
         'cpp',
         'csharp',
         'docker',
@@ -117,8 +116,6 @@ const config = {
         'twig',
         'typescript',
         'vbnet',
-        'xml',
-        'xslt',
         'yaml',
       ],
     },

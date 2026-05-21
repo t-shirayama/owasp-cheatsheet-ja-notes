@@ -137,7 +137,7 @@ As of ColdFusion 2018 Update 14 and ColdFusion 2021 Update 4, all native ColdFus
 
 From the [documentation for the XmlParse() function](https://helpx.adobe.com/coldfusion/cfml-reference/coldfusion-functions/functions-t-z/xmlparse.html), you can disable XXE with the code below:
 
-```cfscript
+```html
 <cfset parseroptions = structnew()>
 <cfset parseroptions.ALLOWEXTERNALENTITIES = false>
 <cfscript>

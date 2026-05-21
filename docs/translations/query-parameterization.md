@@ -126,7 +126,7 @@ $stmt->bindParam(':value', $value);
 
 #### Cold Fusion 組み込み機能の使用
 
-```cfscript
+```html
 <cfquery name = "getFirst" dataSource = "cfsnippets">
     SELECT * FROM #strDatabasePrefix#_courses WHERE intCourseID =
     <cfqueryparam value = #intCourseID# CFSQLType = "CF_SQL_INTEGER">
