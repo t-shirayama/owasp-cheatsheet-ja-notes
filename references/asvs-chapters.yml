@@ -1,0 +1,1002 @@
+{
+  "schemaVersion": 1,
+  "asvsChapters": [
+    {
+      "id": 1,
+      "title": "Encoding and Sanitization",
+      "sections": [
+        {
+          "id": "V1.1",
+          "title": "Encoding and Sanitization Architecture"
+        },
+        {
+          "id": "V1.2",
+          "title": "Injection Prevention"
+        },
+        {
+          "id": "V1.3",
+          "title": "Sanitization"
+        },
+        {
+          "id": "V1.4",
+          "title": "Memory, String, and Unmanaged Code"
+        },
+        {
+          "id": "V1.5",
+          "title": "Safe Deserialization"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Validation and Business Logic",
+      "sections": [
+        {
+          "id": "V2.1",
+          "title": "Validation and Business Logic Documentation"
+        },
+        {
+          "id": "V2.2",
+          "title": "Input Validation"
+        },
+        {
+          "id": "V2.3",
+          "title": "Business Logic Security"
+        },
+        {
+          "id": "V2.4",
+          "title": "Anti-automation"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Web Frontend Security",
+      "sections": [
+        {
+          "id": "V3.1",
+          "title": "Web Frontend Security Documentation"
+        },
+        {
+          "id": "V3.2",
+          "title": "Unintended Content Interpretation"
+        },
+        {
+          "id": "V3.3",
+          "title": "Cookie Setup"
+        },
+        {
+          "id": "V3.4",
+          "title": "Browser Security Mechanism Headers"
+        },
+        {
+          "id": "V3.5",
+          "title": "Browser Origin Separation"
+        },
+        {
+          "id": "V3.6",
+          "title": "External Resource Integrity"
+        },
+        {
+          "id": "V3.7",
+          "title": "Other Browser Security Considerations"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "API and Web Service",
+      "sections": [
+        {
+          "id": "V4.1",
+          "title": "Generic Web Service Security"
+        },
+        {
+          "id": "V4.2",
+          "title": "HTTP Message Structure Validation"
+        },
+        {
+          "id": "V4.3",
+          "title": "GraphQL"
+        },
+        {
+          "id": "V4.4",
+          "title": "WebSocket"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "File Handling",
+      "sections": [
+        {
+          "id": "V5.1",
+          "title": "File Handling Documentation"
+        },
+        {
+          "id": "V5.2",
+          "title": "File Upload and Content"
+        },
+        {
+          "id": "V5.3",
+          "title": "File Storage"
+        },
+        {
+          "id": "V5.4",
+          "title": "File Download"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Authentication",
+      "sections": [
+        {
+          "id": "V6.1",
+          "title": "Authentication Documentation"
+        },
+        {
+          "id": "V6.2",
+          "title": "Password Security"
+        },
+        {
+          "id": "V6.3",
+          "title": "General Authentication Security"
+        },
+        {
+          "id": "V6.4",
+          "title": "Authentication Factor Lifecycle and Recovery"
+        },
+        {
+          "id": "V6.5",
+          "title": "General Multi-factor authentication requirements"
+        },
+        {
+          "id": "V6.6",
+          "title": "Out-of-Band authentication mechanisms"
+        },
+        {
+          "id": "V6.7",
+          "title": "Cryptographic authentication mechanism"
+        },
+        {
+          "id": "V6.8",
+          "title": "Authentication with an Identity Provider"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Session Management",
+      "sections": [
+        {
+          "id": "V7.1",
+          "title": "Session Management Documentation"
+        },
+        {
+          "id": "V7.2",
+          "title": "Fundamental Session Management Security"
+        },
+        {
+          "id": "V7.3",
+          "title": "Session Timeout"
+        },
+        {
+          "id": "V7.4",
+          "title": "Session Termination"
+        },
+        {
+          "id": "V7.5",
+          "title": "Defenses Against Session Abuse"
+        },
+        {
+          "id": "V7.6",
+          "title": "Federated Re-authentication"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Authorization",
+      "sections": [
+        {
+          "id": "V8.1",
+          "title": "Authorization Documentation"
+        },
+        {
+          "id": "V8.2",
+          "title": "General Authorization Design"
+        },
+        {
+          "id": "V8.3",
+          "title": "Operation Level Authorization"
+        },
+        {
+          "id": "V8.4",
+          "title": "Other Authorization Considerations"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Self-contained Tokens",
+      "sections": [
+        {
+          "id": "V9.1",
+          "title": "Token source and integrity"
+        },
+        {
+          "id": "V9.2",
+          "title": "Token content"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "OAuth and OIDC",
+      "sections": [
+        {
+          "id": "V10.1",
+          "title": "Generic OAuth and OIDC Security"
+        },
+        {
+          "id": "V10.2",
+          "title": "OAuth Client"
+        },
+        {
+          "id": "V10.3",
+          "title": "OAuth Resource Server"
+        },
+        {
+          "id": "V10.4",
+          "title": "OAuth Authorization Server"
+        },
+        {
+          "id": "V10.5",
+          "title": "OIDC Client"
+        },
+        {
+          "id": "V10.6",
+          "title": "OpenID Provider"
+        },
+        {
+          "id": "V10.7",
+          "title": "Consent Management"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Cryptography",
+      "sections": [
+        {
+          "id": "V11.1",
+          "title": "Cryptographic Inventory and Documentation"
+        },
+        {
+          "id": "V11.2",
+          "title": "Secure Cryptography Implementation"
+        },
+        {
+          "id": "V11.3",
+          "title": "Encryption Algorithms"
+        },
+        {
+          "id": "V11.4",
+          "title": "Hashing and Hash-based Functions"
+        },
+        {
+          "id": "V11.5",
+          "title": "Random Values"
+        },
+        {
+          "id": "V11.6",
+          "title": "Public Key Cryptography"
+        },
+        {
+          "id": "V11.7",
+          "title": "In-Use Data Cryptography"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Secure Communication",
+      "sections": [
+        {
+          "id": "V12.1",
+          "title": "General TLS Security Guidance"
+        },
+        {
+          "id": "V12.2",
+          "title": "HTTPS Communication with External Facing Services"
+        },
+        {
+          "id": "V12.3",
+          "title": "General Service to Service Communication Security"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Configuration",
+      "sections": [
+        {
+          "id": "V13.1",
+          "title": "Configuration Documentation"
+        },
+        {
+          "id": "V13.2",
+          "title": "Backend Communication Configuration"
+        },
+        {
+          "id": "V13.3",
+          "title": "Secret Management"
+        },
+        {
+          "id": "V13.4",
+          "title": "Unintended Information Leakage"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Data Protection",
+      "sections": [
+        {
+          "id": "V14.1",
+          "title": "Data Protection Documentation"
+        },
+        {
+          "id": "V14.2",
+          "title": "General Data Protection"
+        },
+        {
+          "id": "V14.3",
+          "title": "Client-side Data Protection"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Secure Coding and Architecture",
+      "sections": [
+        {
+          "id": "V15.1",
+          "title": "Secure Coding and Architecture Documentation"
+        },
+        {
+          "id": "V15.2",
+          "title": "Security Architecture and Dependencies"
+        },
+        {
+          "id": "V15.3",
+          "title": "Defensive Coding"
+        },
+        {
+          "id": "V15.4",
+          "title": "Safe Concurrency"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Security Logging and Error Handling",
+      "sections": [
+        {
+          "id": "V16.1",
+          "title": "Security Logging Documentation"
+        },
+        {
+          "id": "V16.2",
+          "title": "General Logging"
+        },
+        {
+          "id": "V16.3",
+          "title": "Security Events"
+        },
+        {
+          "id": "V16.4",
+          "title": "Log Protection"
+        },
+        {
+          "id": "V16.5",
+          "title": "Error Handling"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "WebRTC",
+      "sections": [
+        {
+          "id": "V17.1",
+          "title": "TURN Server"
+        },
+        {
+          "id": "V17.2",
+          "title": "Media"
+        },
+        {
+          "id": "V17.3",
+          "title": "Signaling"
+        }
+      ]
+    }
+  ],
+  "asvsIndexSections": [
+    {
+      "id": "V1.1",
+      "slugs": [
+        "security-terminology",
+        "xss-prevention"
+      ]
+    },
+    {
+      "id": "V1.2",
+      "slugs": [
+        "bean-validation",
+        "xss-prevention",
+        "dom-based-xss-prevention",
+        "file-upload",
+        "injection-prevention",
+        "input-validation",
+        "java-security",
+        "ldap-injection-prevention",
+        "os-command-injection-defense",
+        "query-parameterization",
+        "sql-injection-prevention",
+        "xml-security",
+        "xss-filter-evasion",
+        "xxe-prevention"
+      ]
+    },
+    {
+      "id": "V1.3",
+      "slugs": [
+        "csrf-prevention",
+        "xss-prevention",
+        "dom-based-xss-prevention",
+        "injection-prevention",
+        "injection-prevention-in-java",
+        "input-validation",
+        "ldap-injection-prevention",
+        "ssrf-prevention",
+        "xxe-prevention"
+      ]
+    },
+    {
+      "id": "V1.4",
+      "slugs": []
+    },
+    {
+      "id": "V1.5",
+      "slugs": [
+        "deserialization",
+        "ssrf-prevention",
+        "xml-security",
+        "xxe-prevention"
+      ]
+    },
+    {
+      "id": "V2.1",
+      "slugs": [
+        "abuse-case"
+      ]
+    },
+    {
+      "id": "V2.2",
+      "slugs": [
+        "input-validation",
+        "microservices-security",
+        "web-service-security"
+      ]
+    },
+    {
+      "id": "V2.3",
+      "slugs": [
+        "abuse-case"
+      ]
+    },
+    {
+      "id": "V2.4",
+      "slugs": [
+        "denial-of-service"
+      ]
+    },
+    {
+      "id": "V3.1",
+      "slugs": [
+        "content-security-policy",
+        "csrf-prevention",
+        "http-strict-transport-security"
+      ]
+    },
+    {
+      "id": "V3.2",
+      "slugs": [
+        "csrf-prevention",
+        "dom-clobbering-prevention",
+        "html5-security",
+        "third-party-javascript-management"
+      ]
+    },
+    {
+      "id": "V3.3",
+      "slugs": [
+        "csrf-prevention",
+        "session-management",
+        "transport-layer-security"
+      ]
+    },
+    {
+      "id": "V3.4",
+      "slugs": [
+        "csrf-prevention",
+        "html5-security",
+        "http-strict-transport-security"
+      ]
+    },
+    {
+      "id": "V3.5",
+      "slugs": [
+        "csrf-prevention",
+        "html5-security"
+      ]
+    },
+    {
+      "id": "V3.6",
+      "slugs": [
+        "third-party-javascript-management"
+      ]
+    },
+    {
+      "id": "V3.7",
+      "slugs": [
+        "csrf-prevention",
+        "http-strict-transport-security",
+        "third-party-javascript-management",
+        "unvalidated-redirects-forwards"
+      ]
+    },
+    {
+      "id": "V4.1",
+      "slugs": [
+        "csrf-prevention",
+        "rest-assessment",
+        "rest-security",
+        "transport-layer-security",
+        "web-service-security"
+      ]
+    },
+    {
+      "id": "V4.2",
+      "slugs": [
+        "rest-security",
+        "web-service-security"
+      ]
+    },
+    {
+      "id": "V4.3",
+      "slugs": [
+        "graphql"
+      ]
+    },
+    {
+      "id": "V4.4",
+      "slugs": [
+        "websocket-security",
+        "transport-layer-security"
+      ]
+    },
+    {
+      "id": "V5.1",
+      "slugs": [
+        "input-validation",
+        "file-upload"
+      ]
+    },
+    {
+      "id": "V5.2",
+      "slugs": [
+        "input-validation",
+        "file-upload"
+      ]
+    },
+    {
+      "id": "V5.3",
+      "slugs": [
+        "input-validation",
+        "ssrf-prevention"
+      ]
+    },
+    {
+      "id": "V5.4",
+      "slugs": [
+        "file-upload"
+      ]
+    },
+    {
+      "id": "V6.1",
+      "slugs": [
+        "security-terminology",
+        "credential-stuffing-prevention"
+      ]
+    },
+    {
+      "id": "V6.2",
+      "slugs": [
+        "authentication"
+      ]
+    },
+    {
+      "id": "V6.3",
+      "slugs": [
+        "authentication",
+        "credential-stuffing-prevention",
+        "forgot-password"
+      ]
+    },
+    {
+      "id": "V6.4",
+      "slugs": [
+        "security-questions",
+        "forgot-password",
+        "multifactor-authentication"
+      ]
+    },
+    {
+      "id": "V6.5",
+      "slugs": [
+        "authentication",
+        "multifactor-authentication",
+        "password-storage",
+        "transaction-authorization"
+      ]
+    },
+    {
+      "id": "V6.6",
+      "slugs": [
+        "forgot-password",
+        "multifactor-authentication"
+      ]
+    },
+    {
+      "id": "V6.7",
+      "slugs": [
+        "authentication",
+        "multifactor-authentication"
+      ]
+    },
+    {
+      "id": "V6.8",
+      "slugs": [
+        "authentication"
+      ]
+    },
+    {
+      "id": "V7.1",
+      "slugs": [
+        "session-management"
+      ]
+    },
+    {
+      "id": "V7.2",
+      "slugs": [
+        "session-management"
+      ]
+    },
+    {
+      "id": "V7.3",
+      "slugs": [
+        "session-management"
+      ]
+    },
+    {
+      "id": "V7.4",
+      "slugs": [
+        "session-management"
+      ]
+    },
+    {
+      "id": "V7.5",
+      "slugs": [
+        "session-management"
+      ]
+    },
+    {
+      "id": "V7.6",
+      "slugs": [
+        "session-management"
+      ]
+    },
+    {
+      "id": "V8.1",
+      "slugs": [
+        "security-terminology",
+        "authorization",
+        "authorization-testing-automation"
+      ]
+    },
+    {
+      "id": "V8.2",
+      "slugs": [
+        "authorization",
+        "idor-prevention",
+        "session-management"
+      ]
+    },
+    {
+      "id": "V8.3",
+      "slugs": [
+        "transaction-authorization"
+      ]
+    },
+    {
+      "id": "V8.4",
+      "slugs": [
+        "authorization",
+        "multi-tenant-security"
+      ]
+    },
+    {
+      "id": "V9.1",
+      "slugs": [
+        "json-web-token-for-java",
+        "saml-security"
+      ]
+    },
+    {
+      "id": "V9.2",
+      "slugs": [
+        "rest-security"
+      ]
+    },
+    {
+      "id": "V10.1",
+      "slugs": [
+        "oauth2"
+      ]
+    },
+    {
+      "id": "V10.2",
+      "slugs": [
+        "oauth2"
+      ]
+    },
+    {
+      "id": "V10.3",
+      "slugs": [
+        "oauth2",
+        "transport-layer-security"
+      ]
+    },
+    {
+      "id": "V10.4",
+      "slugs": [
+        "oauth2",
+        "transport-layer-security",
+        "unvalidated-redirects-forwards"
+      ]
+    },
+    {
+      "id": "V10.5",
+      "slugs": [
+        "oauth2"
+      ]
+    },
+    {
+      "id": "V10.6",
+      "slugs": [
+        "oauth2"
+      ]
+    },
+    {
+      "id": "V10.7",
+      "slugs": [
+        "browser-extension-vulnerabilities",
+        "logging"
+      ]
+    },
+    {
+      "id": "V11.1",
+      "slugs": [
+        "security-terminology",
+        "cryptographic-storage",
+        "key-management"
+      ]
+    },
+    {
+      "id": "V11.2",
+      "slugs": [
+        "cryptographic-storage"
+      ]
+    },
+    {
+      "id": "V11.3",
+      "slugs": [
+        "cryptographic-storage",
+        "key-management"
+      ]
+    },
+    {
+      "id": "V11.4",
+      "slugs": [
+        "password-storage"
+      ]
+    },
+    {
+      "id": "V11.5",
+      "slugs": [
+        "cryptographic-storage"
+      ]
+    },
+    {
+      "id": "V11.6",
+      "slugs": [
+        "transport-layer-security"
+      ]
+    },
+    {
+      "id": "V11.7",
+      "slugs": [
+        "key-management",
+        "microservices-security",
+        "secrets-management"
+      ]
+    },
+    {
+      "id": "V12.1",
+      "slugs": [
+        "transport-layer-security"
+      ]
+    },
+    {
+      "id": "V12.2",
+      "slugs": [
+        "transport-layer-security"
+      ]
+    },
+    {
+      "id": "V12.3",
+      "slugs": [
+        "transport-layer-security"
+      ]
+    },
+    {
+      "id": "V13.1",
+      "slugs": [
+        "ssrf-prevention"
+      ]
+    },
+    {
+      "id": "V13.2",
+      "slugs": [
+        "docker-security",
+        "ssrf-prevention"
+      ]
+    },
+    {
+      "id": "V13.3",
+      "slugs": [
+        "cryptographic-storage",
+        "key-management"
+      ]
+    },
+    {
+      "id": "V13.4",
+      "slugs": [
+        "django-security",
+        "graphql",
+        "laravel-security",
+        "npm-security",
+        "symfony"
+      ]
+    },
+    {
+      "id": "V14.1",
+      "slugs": [
+        "abuse-case",
+        "cryptographic-storage",
+        "user-privacy-protection"
+      ]
+    },
+    {
+      "id": "V14.2",
+      "slugs": [
+        "html5-security",
+        "user-privacy-protection"
+      ]
+    },
+    {
+      "id": "V14.3",
+      "slugs": [
+        "html5-security"
+      ]
+    },
+    {
+      "id": "V15.1",
+      "slugs": [
+        "security-terminology",
+        "abuse-case",
+        "attack-surface-analysis",
+        "dependency-graph-sbom",
+        "software-supply-chain-security",
+        "third-party-javascript-management",
+        "threat-modeling"
+      ]
+    },
+    {
+      "id": "V15.2",
+      "slugs": [
+        "software-supply-chain-security",
+        "third-party-javascript-management",
+        "virtual-patching",
+        "vulnerable-dependency-management"
+      ]
+    },
+    {
+      "id": "V15.3",
+      "slugs": [
+        "mass-assignment",
+        "prototype-pollution-prevention",
+        "unvalidated-redirects-forwards"
+      ]
+    },
+    {
+      "id": "V15.4",
+      "slugs": [
+        "secure-code-review",
+        "transaction-authorization"
+      ]
+    },
+    {
+      "id": "V16.1",
+      "slugs": [
+        "logging",
+        "logging-vocabulary"
+      ]
+    },
+    {
+      "id": "V16.2",
+      "slugs": [
+        "logging",
+        "session-management"
+      ]
+    },
+    {
+      "id": "V16.3",
+      "slugs": [
+        "authorization",
+        "logging",
+        "logging-vocabulary"
+      ]
+    },
+    {
+      "id": "V16.4",
+      "slugs": [
+        "logging"
+      ]
+    },
+    {
+      "id": "V16.5",
+      "slugs": [
+        "error-handling"
+      ]
+    },
+    {
+      "id": "V17.1",
+      "slugs": []
+    },
+    {
+      "id": "V17.2",
+      "slugs": [
+        "transport-layer-security"
+      ]
+    },
+    {
+      "id": "V17.3",
+      "slugs": []
+    }
+  ]
+}
