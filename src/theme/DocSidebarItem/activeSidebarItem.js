@@ -36,6 +36,23 @@ function hasActiveSelectionForPath(activeSelection, activePath) {
   );
 }
 
+export function rememberActiveSidebarSelection(selection) {
+  if (
+    !selection?.href ||
+    !selection?.occurrence ||
+    typeof window === 'undefined'
+  ) {
+    return;
+  }
+
+  try {
+    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(selection));
+    window.dispatchEvent(new CustomEvent(CHANGE_EVENT));
+  } catch {
+    // Ignore storage failures; the sidebar still falls back to URL matching.
+  }
+}
+
 export function readActiveSidebarSelection() {
   if (typeof window === 'undefined') {
     return undefined;
@@ -51,16 +68,7 @@ export function readActiveSidebarSelection() {
 
 export function rememberActiveSidebarItem(item) {
   const selection = getSelectionForItem(item);
-  if (!selection || typeof window === 'undefined') {
-    return;
-  }
-
-  try {
-    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(selection));
-    window.dispatchEvent(new CustomEvent(CHANGE_EVENT));
-  } catch {
-    // Ignore storage failures; the sidebar still falls back to URL matching.
-  }
+  rememberActiveSidebarSelection(selection);
 }
 
 export function useActiveSidebarSelection() {

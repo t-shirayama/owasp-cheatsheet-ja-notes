@@ -1,6 +1,17 @@
 import React, {useEffect} from 'react';
+import {rememberActiveSidebarSelection} from '@theme/DocSidebarItem/activeSidebarItem';
 
 const SEARCH_PLACEHOLDER = 'XSS、JWT、CSRF などで検索';
+
+function getAsvsSectionId(pathname) {
+  const match = pathname.match(/\/asvs\/v(\d+)-(\d+)\/?$/);
+  return match ? `V${match[1]}.${match[2]}` : undefined;
+}
+
+function getCheatsheetSlug(pathname) {
+  const match = pathname.match(/\/([^/]+)\/?$/);
+  return match?.[1];
+}
 
 function updateSearchInputs() {
   document.querySelectorAll('.navbar__search-input').forEach((input) => {
@@ -101,11 +112,35 @@ function enhanceDocumentUi() {
   updateContentTabs();
 }
 
+function handleAsvsListingClick(event) {
+  const link = event.target.closest?.('a[href]');
+  if (!link) {
+    return;
+  }
+
+  const sectionId = getAsvsSectionId(window.location.pathname);
+  if (!sectionId) {
+    return;
+  }
+
+  const target = new URL(link.href, window.location.href);
+  const slug = getCheatsheetSlug(target.pathname);
+  if (!slug || target.pathname.includes('/asvs/')) {
+    return;
+  }
+
+  rememberActiveSidebarSelection({
+    href: target.pathname,
+    occurrence: `${sectionId}:${slug}`,
+  });
+}
+
 export default function Root({children}) {
   useEffect(() => {
     enhanceDocumentUi();
 
     document.addEventListener('change', updateContentTabs);
+    document.addEventListener('click', handleAsvsListingClick);
     document.addEventListener('keydown', handleTabKeyDown);
 
     const observer = new MutationObserver(enhanceDocumentUi);
@@ -114,6 +149,7 @@ export default function Root({children}) {
     return () => {
       observer.disconnect();
       document.removeEventListener('change', updateContentTabs);
+      document.removeEventListener('click', handleAsvsListingClick);
       document.removeEventListener('keydown', handleTabKeyDown);
     };
   }, []);
