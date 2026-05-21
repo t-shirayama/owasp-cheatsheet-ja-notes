@@ -37,7 +37,7 @@
 - [x] [docs/translations/logging.md](../docs/translations/logging.md): 完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/cryptographic-storage.md](../docs/translations/cryptographic-storage.md): Cryptographic Storage Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳へ拡張。
 - [x] [docs/translations/key-management.md](../docs/translations/key-management.md): Key Management Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
-- [ ] [docs/translations/secrets-management.md](../docs/translations/secrets-management.md): Secrets Management Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.01, 見出し 0/70。
+- [x] [docs/translations/secrets-management.md](../docs/translations/secrets-management.md): 完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/django-security.md](../docs/translations/django-security.md): Django Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/docker-security.md](../docs/translations/docker-security.md): 完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/user-privacy-protection.md](../docs/translations/user-privacy-protection.md): User Privacy Protection Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
