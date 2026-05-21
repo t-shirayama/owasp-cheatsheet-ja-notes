@@ -27,7 +27,7 @@ Attribution には少なくとも次を含めます。
 - 翻訳、英語原文保持、英日対訳化などの変更内容
 - 原文を確認した日付
 
-コード、設定ファイル、スクリプトなど、OWASP 文書の翻案ではない成果物を追加する場合は、別ライセンスにするか、このリポジトリ全体のライセンス方針を明示してください。
+コード、設定ファイル、スクリプトなど、OWASP 文書の翻案ではない成果物は [MIT License](LICENSE) として扱います。OWASP 由来の原文、翻訳、対訳ページ、画像、Attribution の扱いは [NOTICE.md](NOTICE.md) と [references/license-notes.md](references/license-notes.md) を確認してください。
 
 ## フォルダ構成
 
