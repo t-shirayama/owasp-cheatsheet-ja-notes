@@ -3,9 +3,16 @@ import {rememberActiveSidebarSelection} from '@theme/DocSidebarItem/activeSideba
 
 const SEARCH_PLACEHOLDER = 'XSS、JWT、CSRF などで検索';
 
-function getAsvsSectionId(pathname) {
+function getAsvsSection(pathname) {
   const match = pathname.match(/\/asvs\/v(\d+)-(\d+)\/?$/);
-  return match ? `V${match[1]}.${match[2]}` : undefined;
+  if (!match) {
+    return undefined;
+  }
+
+  return {
+    id: `V${match[1]}.${match[2]}`,
+    docsRoot: pathname.slice(0, match.index + 1),
+  };
 }
 
 function getCheatsheetSlug(pathname) {
@@ -118,20 +125,28 @@ function handleAsvsListingClick(event) {
     return;
   }
 
-  const sectionId = getAsvsSectionId(window.location.pathname);
-  if (!sectionId) {
+  const section = getAsvsSection(window.location.pathname);
+  if (!section) {
     return;
   }
 
   const target = new URL(link.href, window.location.href);
+  if (target.origin !== window.location.origin) {
+    return;
+  }
+
   const slug = getCheatsheetSlug(target.pathname);
-  if (!slug || target.pathname.includes('/asvs/')) {
+  if (
+    !slug ||
+    !target.pathname.startsWith(section.docsRoot) ||
+    target.pathname.includes('/asvs/')
+  ) {
     return;
   }
 
   rememberActiveSidebarSelection({
     href: target.pathname,
-    occurrence: `${sectionId}:${slug}`,
+    occurrence: `${section.id}:${slug}`,
   });
 }
 
