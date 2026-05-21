@@ -654,7 +654,7 @@ Alternatively, consider the use of tokens that are signed with RSA rather than u
 
 #### Further Reading
 
-- [{JWT}.{Attack}.Playbook](https://github.com/ticarpi/jwt_tool/wiki) - A project documents the known attacks and potential security vulnerabilities and misconfigurations of JSON Web Tokens.
+- [`{JWT}.{Attack}.Playbook`](https://github.com/ticarpi/jwt_tool/wiki) - A project documents the known attacks and potential security vulnerabilities and misconfigurations of JSON Web Tokens.
 - [JWT Best Practices Internet Draft](https://datatracker.ietf.org/doc/draft-ietf-oauth-jwt-bcp/)
 
 </section>
@@ -1288,7 +1288,7 @@ function makeRequest() {
 
 #### 参考資料
 
-- [{JWT}.{Attack}.Playbook](https://github.com/ticarpi/jwt_tool/wiki) - JSON Web Token の既知の攻撃、潜在的なセキュリティ脆弱性、設定ミスを文書化したプロジェクトです。
+- [`{JWT}.{Attack}.Playbook`](https://github.com/ticarpi/jwt_tool/wiki) - JSON Web Token の既知の攻撃、潜在的なセキュリティ脆弱性、設定ミスを文書化したプロジェクトです。
 - [JWT Best Practices Internet Draft](https://datatracker.ietf.org/doc/draft-ietf-oauth-jwt-bcp/)
 
 </section>
@@ -2383,7 +2383,7 @@ Alternatively, consider the use of tokens that are signed with RSA rather than u
 
 #### Further Reading
 
-- [{JWT}.{Attack}.Playbook](https://github.com/ticarpi/jwt_tool/wiki) - A project documents the known attacks and potential security vulnerabilities and misconfigurations of JSON Web Tokens.
+- [`{JWT}.{Attack}.Playbook`](https://github.com/ticarpi/jwt_tool/wiki) - A project documents the known attacks and potential security vulnerabilities and misconfigurations of JSON Web Tokens.
 - [JWT Best Practices Internet Draft](https://datatracker.ietf.org/doc/draft-ietf-oauth-jwt-bcp/)
 
 </div>
@@ -2408,7 +2408,7 @@ Alternatively, consider the use of tokens that are signed with RSA rather than u
 
 #### 参考資料
 
-- [{JWT}.{Attack}.Playbook](https://github.com/ticarpi/jwt_tool/wiki) - JSON Web Token の既知の攻撃、潜在的なセキュリティ脆弱性、設定ミスを文書化したプロジェクトです。
+- [`{JWT}.{Attack}.Playbook`](https://github.com/ticarpi/jwt_tool/wiki) - JSON Web Token の既知の攻撃、潜在的なセキュリティ脆弱性、設定ミスを文書化したプロジェクトです。
 - [JWT Best Practices Internet Draft](https://datatracker.ietf.org/doc/draft-ietf-oauth-jwt-bcp/)
 
 </div>

@@ -472,7 +472,7 @@ As an attacker, I attack an organization and the logs, monitoring systems, and t
 
 ## Sources of the schemas
 
-All figures were created using <https://www.draw.io/> site and exported (as PNG image) for integration into this article.
+All figures were created using [https://www.draw.io/](https://www.draw.io/) site and exported (as PNG image) for integration into this article.
 
 All XML descriptor files for each schema are available below (using XML description, modification of the schema is possible using DRAW.IO site):
 
@@ -926,7 +926,7 @@ _悪用ケース:_
 
 ## 図のソース
 
-すべての図は <https://www.draw.io/> サイトを使用して作成され、この記事に統合するために (PNG 画像として) エクスポートされました。
+すべての図は [https://www.draw.io/](https://www.draw.io/) サイトを使用して作成され、この記事に統合するために (PNG 画像として) エクスポートされました。
 
 各図のすべての XML 記述子ファイルは以下で入手できます (XML 記述を使用し、DRAW.IO サイトで図を変更できます)。
 
@@ -1383,7 +1383,7 @@ As an attacker, I attack an organization and the logs, monitoring systems, and t
 
 ## Sources of the schemas
 
-All figures were created using <https://www.draw.io/> site and exported (as PNG image) for integration into this article.
+All figures were created using [https://www.draw.io/](https://www.draw.io/) site and exported (as PNG image) for integration into this article.
 
 All XML descriptor files for each schema are available below (using XML description, modification of the schema is possible using DRAW.IO site):
 
@@ -1837,7 +1837,7 @@ _悪用ケース:_
 
 ## 図のソース
 
-すべての図は <https://www.draw.io/> サイトを使用して作成され、この記事に統合するために (PNG 画像として) エクスポートされました。
+すべての図は [https://www.draw.io/](https://www.draw.io/) サイトを使用して作成され、この記事に統合するために (PNG 画像として) エクスポートされました。
 
 各図のすべての XML 記述子ファイルは以下で入手できます (XML 記述を使用し、DRAW.IO サイトで図を変更できます)。
 

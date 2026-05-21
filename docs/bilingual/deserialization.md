@@ -94,7 +94,7 @@ Be aware of the following Java API uses for potential serialization vulnerabilit
 
 1. `XMLdecoder` with external user defined parameters
 
-2. `XStream` with `fromXML` method (xstream version <= v1.4.6 is vulnerable to the serialization issue)
+2. `XStream` with `fromXML` method (xstream version `<= v1.4.6` is vulnerable to the serialization issue)
 
 3. `ObjectInputStream` with `readObject`
 
@@ -453,7 +453,7 @@ print(yaml.load(document))
 
 1. 外部のユーザー定義パラメータを伴う `XMLdecoder`
 
-2. `fromXML` メソッドを伴う `XStream` (xstream バージョン <= v1.4.6 はシリアライゼーションの問題に対して脆弱です)
+2. `fromXML` メソッドを伴う `XStream` (xstream バージョン `<= v1.4.6` はシリアライゼーションの問題に対して脆弱です)
 
 3. `readObject` を伴う `ObjectInputStream`
 
@@ -1134,13 +1134,13 @@ Be aware of the following Java API uses for potential serialization vulnerabilit
 <div className="bilingualBlock english">
 <span className="bilingualLabel english">English (原文)</span>
 
-2. `XStream` with `fromXML` method (xstream version <= v1.4.6 is vulnerable to the serialization issue)
+2. `XStream` with `fromXML` method (xstream version `<= v1.4.6` is vulnerable to the serialization issue)
 
 </div>
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-2. `fromXML` メソッドを伴う `XStream` (xstream バージョン <= v1.4.6 はシリアライゼーションの問題に対して脆弱です)
+2. `fromXML` メソッドを伴う `XStream` (xstream バージョン `<= v1.4.6` はシリアライゼーションの問題に対して脆弱です)
 
 </div>
 </div>
