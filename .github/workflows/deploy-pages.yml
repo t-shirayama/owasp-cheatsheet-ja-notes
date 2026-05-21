@@ -32,12 +32,10 @@ jobs:
         run: npm ci
 
       - name: Markdown lint
-        shell: pwsh
-        run: ./tools/Invoke-MarkdownLint.ps1
+        run: npm run lint:md
 
       - name: Link check
-        shell: pwsh
-        run: ./tools/Invoke-LinkCheck.ps1
+        run: npm run check:links
 
       - name: Build site
         run: npm run build
