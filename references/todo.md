@@ -62,7 +62,7 @@
 - [x] [docs/translations/html5-security.md](../docs/translations/html5-security.md): HTML5 Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/http-strict-transport-security.md](../docs/translations/http-strict-transport-security.md): HTTP Strict Transport Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/third-party-javascript-management.md](../docs/translations/third-party-javascript-management.md): Third Party Javascript Management Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/23。
-- [ ] [docs/translations/transport-layer-security.md](../docs/translations/transport-layer-security.md): Transport Layer Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.03, 見出し 0/26。
+- [x] [docs/translations/transport-layer-security.md](../docs/translations/transport-layer-security.md): Transport Layer Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/graphql.md](../docs/translations/graphql.md): GraphQL Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/27。
 - [x] [docs/translations/rest-assessment.md](../docs/translations/rest-assessment.md): REST Assessment Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/rest-security.md](../docs/translations/rest-security.md): REST Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.22, 見出し 16/22。
