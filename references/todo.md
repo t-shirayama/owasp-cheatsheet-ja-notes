@@ -21,7 +21,7 @@
 - [ ] [docs/translations/dom-based-xss-prevention.md](../docs/translations/dom-based-xss-prevention.md): DOM based XSS Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.05, 見出し 0/34。
 - [x] [docs/translations/file-upload.md](../docs/translations/file-upload.md): File Upload Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/injection-prevention.md](../docs/translations/injection-prevention.md): Injection Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/21。
-- [ ] [docs/translations/input-validation.md](../docs/translations/input-validation.md): Input Validation Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/23。
+- [x] [docs/translations/input-validation.md](../docs/translations/input-validation.md): Input Validation Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/java-security.md](../docs/translations/java-security.md): Java Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/49。
 - [x] [docs/translations/ldap-injection-prevention.md](../docs/translations/ldap-injection-prevention.md): LDAP Injection Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/os-command-injection-defense.md](../docs/translations/os-command-injection-defense.md): OS Command Injection Defense Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.02, 見出し 1/19。
