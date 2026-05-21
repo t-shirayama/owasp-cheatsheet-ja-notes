@@ -220,9 +220,11 @@ html[data-theme="dark"] .docPill {
 }
 
 .heroActions .button {
+  min-width: 248px;
   border-radius: 6px;
   padding: 0.74rem 1.1rem;
   font-weight: 800;
+  text-align: center;
 }
 
 .heroBilingualVisual {
