@@ -42,7 +42,7 @@
 - [ ] [docs/translations/docker-security.md](../docs/translations/docker-security.md): Docker Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/20。
 - [x] [docs/translations/user-privacy-protection.md](../docs/translations/user-privacy-protection.md): User Privacy Protection Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/attack-surface-analysis.md](../docs/translations/attack-surface-analysis.md): Attack Surface Analysis Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
-- [ ] [docs/translations/dependency-graph-sbom.md](../docs/translations/dependency-graph-sbom.md): Dependency Graph and SBOM Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.11, 見出し 0/15。
+- [x] [docs/translations/dependency-graph-sbom.md](../docs/translations/dependency-graph-sbom.md): Dependency Graph and SBOM Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/mass-assignment.md](../docs/translations/mass-assignment.md): Mass Assignment Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.08, 見出し 0/28。
 - [ ] [docs/translations/npm-security.md](../docs/translations/npm-security.md): NPM Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.03, 見出し 0/27。
 - [x] [docs/translations/prototype-pollution-prevention.md](../docs/translations/prototype-pollution-prevention.md): Prototype Pollution Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
