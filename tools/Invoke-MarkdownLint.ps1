@@ -5,12 +5,11 @@ param(
 $ErrorActionPreference = "Stop"
 
 $resolvedRoot = (Resolve-Path -LiteralPath $Root).Path
+$ignoredDirectoryPattern = '[/\\](\.git|node_modules|build|\.docusaurus)[/\\]'
+$sourceDocumentPattern = '[/\\]docs[/\\](translations|originals)[/\\]'
 $markdownFiles = Get-ChildItem -LiteralPath $resolvedRoot -Recurse -File -Filter "*.md" |
     Where-Object {
-        $_.FullName -notmatch "\\.git\\" -and
-        $_.FullName -notmatch "\\node_modules\\" -and
-        $_.FullName -notmatch "\\build\\" -and
-        $_.FullName -notmatch "\\.docusaurus\\"
+        $_.FullName -notmatch $ignoredDirectoryPattern
     }
 
 $issues = New-Object System.Collections.Generic.List[string]
@@ -111,7 +110,7 @@ foreach ($file in $markdownFiles) {
         }
     }
 
-    if ($file.Name -ne "README.md" -and $file.FullName -match "\\docs\\(translations|originals)\\") {
+    if ($file.Name -ne "README.md" -and $file.FullName -match $sourceDocumentPattern) {
         $requiredFields = @(
             "## Attribution",
             "- Original:",
