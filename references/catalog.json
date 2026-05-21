@@ -1155,15 +1155,15 @@
       "sourceUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Laravel_Cheat_Sheet.html",
       "bilingualPath": "docs/bilingual/laravel-security.md",
       "originalPath": "docs/originals/laravel-security.md",
-      "translationPath": null,
+      "translationPath": "docs/translations/laravel-security.md",
       "bilingual": {
         "asvs": "V13.4",
-        "status": "Shell"
+        "status": "Full"
       },
       "source": {
         "asvs": "V13.4",
-        "status": "未作成",
-        "notes": "bilingual catalog entry"
+        "status": "詳細化済み",
+        "notes": "ASVS Index coverage"
       }
     },
     {
@@ -1172,15 +1172,15 @@
       "sourceUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Symfony_Cheat_Sheet.html",
       "bilingualPath": "docs/bilingual/symfony.md",
       "originalPath": "docs/originals/symfony.md",
-      "translationPath": null,
+      "translationPath": "docs/translations/symfony.md",
       "bilingual": {
         "asvs": "V13.4",
-        "status": "Shell"
+        "status": "Full"
       },
       "source": {
         "asvs": "V13.4",
-        "status": "未作成",
-        "notes": "bilingual catalog entry"
+        "status": "詳細化済み",
+        "notes": "ASVS Index coverage"
       }
     },
     {
@@ -1189,15 +1189,15 @@
       "sourceUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html",
       "bilingualPath": "docs/bilingual/unvalidated-redirects-forwards.md",
       "originalPath": "docs/originals/unvalidated-redirects-forwards.md",
-      "translationPath": null,
+      "translationPath": "docs/translations/unvalidated-redirects-forwards.md",
       "bilingual": {
         "asvs": "V3.7, V10.4, V15.3",
-        "status": "Shell"
+        "status": "Full"
       },
       "source": {
         "asvs": "V3.7, V10.4, V15.3",
-        "status": "未作成",
-        "notes": "bilingual catalog entry"
+        "status": "詳細化済み",
+        "notes": "ASVS Index coverage"
       }
     },
     {
@@ -1206,15 +1206,15 @@
       "sourceUrl": "https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html",
       "bilingualPath": "docs/bilingual/websocket-security.md",
       "originalPath": "docs/originals/websocket-security.md",
-      "translationPath": null,
+      "translationPath": "docs/translations/websocket-security.md",
       "bilingual": {
         "asvs": "V4.4",
-        "status": "Shell"
+        "status": "Full"
       },
       "source": {
         "asvs": "V4.4",
-        "status": "未作成",
-        "notes": "bilingual catalog entry"
+        "status": "詳細化済み",
+        "notes": "ASVS Index coverage"
       }
     }
   ]

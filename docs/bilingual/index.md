@@ -45,7 +45,7 @@ OWASP Cheat Sheet Series の ASVS Index 対応ページを、日本語訳と英�
 - [Java Security Cheat Sheet](java-security.md) - V1.2 - Full
 - [JSON Web Token Cheat Sheet for Java](json-web-token-for-java.md) - V9.1 - Full
 - [Key Management Cheat Sheet](key-management.md) - V11.1, V11.3, V11.7, V13.3 - Full
-- [Laravel Cheat Sheet](laravel-security.md) - V13.4 - Shell
+- [Laravel Cheat Sheet](laravel-security.md) - V13.4 - Full
 - [LDAP Injection Prevention Cheat Sheet](ldap-injection-prevention.md) - V1.2, V1.3 - Full
 - [Logging Cheat Sheet](logging.md) - V10.7, V16.1, V16.2, V16.3, V16.4 - Full
 - [Logging Vocabulary Cheat Sheet](logging-vocabulary.md) - V16.1, V16.3 - Full
@@ -69,17 +69,17 @@ OWASP Cheat Sheet Series の ASVS Index 対応ページを、日本語訳と英�
 - [Session Management Cheat Sheet](session-management.md) - V3.3, V7.1, V7.2, V7.3, V7.4, V7.5, V7.6, V8.2, V16.2 - Full
 - [Software Supply Chain Security Cheat Sheet](software-supply-chain-security.md) - V15.1, V15.2 - Full
 - [SQL Injection Prevention Cheat Sheet](sql-injection-prevention.md) - V1.2 - Full
-- [Symfony Cheat Sheet](symfony.md) - V13.4 - Shell
+- [Symfony Cheat Sheet](symfony.md) - V13.4 - Full
 - [Third Party Javascript Management Cheat Sheet](third-party-javascript-management.md) - V3.2, V3.6, V3.7, V15.1, V15.2 - Full
 - [Threat Modeling Cheat Sheet](threat-modeling.md) - V15.1 - Full
 - [Transaction Authorization Cheat Sheet](transaction-authorization.md) - V6.5, V8.3, V15.4 - Full
 - [Transport Layer Security Cheat Sheet](transport-layer-security.md) - V3.3, V4.1, V4.4, V10.3, V10.4, V11.6, V12.1, V12.2, V12.3, V17.2 - Full
-- [Unvalidated Redirects and Forwards Cheat Sheet](unvalidated-redirects-forwards.md) - V3.7, V10.4, V15.3 - Shell
+- [Unvalidated Redirects and Forwards Cheat Sheet](unvalidated-redirects-forwards.md) - V3.7, V10.4, V15.3 - Full
 - [User Privacy Protection Cheat Sheet](user-privacy-protection.md) - V14.1, V14.2 - Full
 - [Virtual Patching Cheat Sheet](virtual-patching.md) - V15.2 - Full
 - [Vulnerable Dependency Management Cheat Sheet](vulnerable-dependency-management.md) - V15.2 - Full
 - [Web Service Security Cheat Sheet](web-service-security.md) - V2.2, V4.1, V4.2 - Full
-- [WebSocket Security Cheat Sheet](websocket-security.md) - V4.4 - Shell
+- [WebSocket Security Cheat Sheet](websocket-security.md) - V4.4 - Full
 - [XML External Entity Prevention Cheat Sheet](xxe-prevention.md) - V1.2, V1.3, V1.5 - Full
 - [XML Security Cheat Sheet](xml-security.md) - V1.2, V1.5 - Full
 - [XSS Filter Evasion Cheat Sheet](xss-filter-evasion.md) - V1.2 - Full

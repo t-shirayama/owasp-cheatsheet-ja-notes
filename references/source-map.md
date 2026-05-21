@@ -82,6 +82,10 @@ ASVS 項目、公式 Cheat Sheet、ローカルの翻訳ファイルの対応表
 | V1.2, V3.2 | XSS Filter Evasion Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html | [docs/translations/xss-filter-evasion.md](../docs/translations/xss-filter-evasion.md) | 詳細化済み | XSS priority review V2 |
 | V1.2, V1.3, V3.2, V3.4 | Cross Site Scripting Prevention Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html | [docs/translations/xss-prevention.md](../docs/translations/xss-prevention.md) | 詳細化済み | XSS priority review V1 |
 | V1 | XML External Entity Prevention Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html | [docs/translations/xxe-prevention.md](../docs/translations/xxe-prevention.md) | 詳細化済み | ASVS Index coverage |
+| V13.4 | Laravel Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Laravel_Cheat_Sheet.html | [docs/translations/laravel-security.md](../docs/translations/laravel-security.md) | 詳細化済み | ASVS Index coverage |
+| V13.4 | Symfony Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Symfony_Cheat_Sheet.html | [docs/translations/symfony.md](../docs/translations/symfony.md) | 詳細化済み | ASVS Index coverage |
+| V3.7, V10.4, V15.3 | Unvalidated Redirects and Forwards Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html | [docs/translations/unvalidated-redirects-forwards.md](../docs/translations/unvalidated-redirects-forwards.md) | 詳細化済み | ASVS Index coverage |
+| V4.4 | WebSocket Security Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html | [docs/translations/websocket-security.md](../docs/translations/websocket-security.md) | 詳細化済み | ASVS Index coverage |
 
 ## 参考資料
 

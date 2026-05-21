@@ -10,6 +10,10 @@ const { pages, sheetCatalog } = await readDataFile('cheatsheet-catalog.yml');
 const { asvsChapters, asvsIndexSections } = await readDataFile('asvs-chapters.yml');
 const catalogStatusBySlug = readCatalogStatusBySlug();
 
+function hasLocalTranslation(slug) {
+  return fsSync.existsSync(mdPath('docs', 'translations', `${slug}.md`));
+}
+
 async function readDataFile(fileName) {
   const content = await fs.readFile(mdPath('references', fileName), 'utf8');
   // The .yml data files are kept as JSON-compatible YAML so generation has no extra dependency.
@@ -1179,7 +1183,7 @@ async function main() {
   const originalTargetPages = originalsOnly
     ? indexedPages
     : localSources
-      ? indexedPages.filter((page) => (catalogStatusBySlug.get(page.slug) ?? page.status) !== 'Shell')
+      ? indexedPages.filter((page) => (catalogStatusBySlug.get(page.slug) ?? page.status) !== 'Shell' || hasLocalTranslation(page.slug))
       : pages;
   const generatedSlugs = new Set(originalTargetPages.map((page) => page.slug));
 
