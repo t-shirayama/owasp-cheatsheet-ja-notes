@@ -541,7 +541,7 @@ Directive URL scheme. This attack method is nice because it also doesn't have an
 
 #### META with Additional URL Parameter
 
-If the target website attempts to see if the URL contains `[http://](http://);` at the beginning you can evade this filter rule with the following technique:
+If the target website attempts to see if the URL contains `[http://]%28http://);` at the beginning you can evade this filter rule with the following technique:
 
 ```html
 <META HTTP-EQUIV="refresh" CONTENT="0; URL=http://;URL=javascript:alert%28'XSS');">
@@ -1608,7 +1608,7 @@ Directive URL scheme。この攻撃手法は、SCRIPT という語や JavaScript
 
 #### 追加 URL パラメータを持つ META
 
-対象サイトが URL の先頭に `[http://](http://);` が含まれているか確認しようとする場合、次の手法でそのフィルタ規則を回避できる。
+対象サイトが URL の先頭に `[http://]%28http://);` が含まれているか確認しようとする場合、次の手法でそのフィルタ規則を回避できる。
 
 ```html
 <META HTTP-EQUIV="refresh" CONTENT="0; URL=http://;URL=javascript:alert%28'XSS');">
@@ -4015,7 +4015,7 @@ Directive URL scheme. This attack method is nice because it also doesn't have an
 
 #### META with Additional URL Parameter
 
-If the target website attempts to see if the URL contains `[http://](http://);` at the beginning you can evade this filter rule with the following technique:
+If the target website attempts to see if the URL contains `[http://]%28http://);` at the beginning you can evade this filter rule with the following technique:
 
 </div>
 <div className="bilingualBlock japanese">
@@ -4113,7 +4113,7 @@ IFrames and most other elements can use event based mayhem like the following:
 
 #### 追加 URL パラメータを持つ META
 
-対象サイトが URL の先頭に `[http://](http://);` が含まれているか確認しようとする場合、次の手法でそのフィルタ規則を回避できる。
+対象サイトが URL の先頭に `[http://]%28http://);` が含まれているか確認しようとする場合、次の手法でそのフィルタ規則を回避できる。
 
 </div>
 </div>

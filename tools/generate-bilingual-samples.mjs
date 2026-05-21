@@ -429,7 +429,6 @@ function sanitizeMarkdown(text) {
         .replace(/\\/g, '\\\\')
         .replace(/\{/g, '&#123;')
         .replace(/\}/g, '&#125;')
-        .replace(/<((?:https?|mailto):[^>]+)>/g, '[$1]($1)')
         .replace(/<=/g, '&lt;=')
         .replace(/<details\b([^>]*)>/gi, '&lt;details$1&gt;')
         .replace(/<\/details>/gi, '&lt;/details&gt;')
@@ -442,7 +441,10 @@ function sanitizeMarkdown(text) {
 }
 
 function encodeUrlParens(text) {
-  const angleEncoded = text.replace(/<https?:\/\/[^>]+>/g, (url) =>
+  const angleLinks = text.replace(/(^|[^\(])<((?:https?|mailto):[^>]+)>/gm, (match, prefix, url) =>
+    `${prefix}[${url}](${url})`,
+  );
+  const angleEncoded = angleLinks.replace(/<https?:\/\/[^>]+>/g, (url) =>
     url.replace(/\(/g, '%28').replace(/\)/g, '%29'),
   );
   return angleEncoded.replace(/https?:\/\/[^\s<>)]+(?:\([^\s<>)]*\)[^\s<>)]*)*/g, (url) =>
