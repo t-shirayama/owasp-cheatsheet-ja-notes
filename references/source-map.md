@@ -13,7 +13,7 @@ ASVS 項目、公式 Cheat Sheet、ローカルの翻訳ファイルの対応表
 
 | ASVS 項目 | 公式 Cheat Sheet | 公式 URL | 翻訳 | 状態 | 備考 |
 | --- | --- | --- | --- | --- | --- |
-| V2.1, V2.3, V14.1, V15.1 | Abuse Case Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Abuse_Case_Cheat_Sheet.html | [docs/translations/abuse-case.md](../docs/translations/abuse-case.md) | 作成済み | ASVS Index coverage |
+| V2.1, V2.3, V14.1, V15.1 | Abuse Case Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Abuse_Case_Cheat_Sheet.html | [docs/translations/abuse-case.md](../docs/translations/abuse-case.md) | 詳細化済み | ASVS Index coverage |
 | V15.1, V2.1 | Attack Surface Analysis Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Attack_Surface_Analysis_Cheat_Sheet.html | [docs/translations/attack-surface-analysis.md](../docs/translations/attack-surface-analysis.md) | 詳細化済み | Supply chain priority review V2 |
 | V6.2, V6.3, V6.5, V6.7, V6.8 | Authentication Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html | [docs/translations/authentication.md](../docs/translations/authentication.md) | 詳細化済み | Authentication priority review V1 |
 | V8.1, V8.2, V8.4, V16.3 | Authorization Cheat Sheet | https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html | [docs/translations/authorization.md](../docs/translations/authorization.md) | 詳細化済み | Authorization priority review V1 |
