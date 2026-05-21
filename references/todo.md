@@ -78,7 +78,7 @@
 - [x] [docs/translations/authorization.md](../docs/translations/authorization.md): Authorization Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/idor-prevention.md](../docs/translations/idor-prevention.md): Insecure Direct Object Reference Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/multi-tenant-security.md](../docs/translations/multi-tenant-security.md): 完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
-- [ ] [docs/translations/json-web-token-for-java.md](../docs/translations/json-web-token-for-java.md): JSON Web Token for Java Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/29。
+- [x] [docs/translations/json-web-token-for-java.md](../docs/translations/json-web-token-for-java.md): 完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/saml-security.md](../docs/translations/saml-security.md): SAML Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 
 ## 完了判定の目安
