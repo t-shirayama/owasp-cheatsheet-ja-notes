@@ -180,7 +180,7 @@ When working with OAuth2, SAML, or OIDC, these terms are frequently used:
 
 - **目的:** インタプリタがデータをコードやコマンドではなくテキストとして扱うようにすることです。
 
-- **例:** SQL での `\\'`、文字列での `\\n`、HTML での `&lt;`。
+- **例:** SQL での `\\\\'`、文字列での `\\\\n`、HTML での `&lt;`。
 
 - **セキュリティ上の文脈:** XSS や SQL インジェクションなどのインジェクション攻撃を防ぐために不可欠です。
 
@@ -424,7 +424,7 @@ These terms relate to how data is transformed for transport, storage, or display
 
 - **目的:** インタプリタがデータをコードやコマンドではなくテキストとして扱うようにすることです。
 
-- **例:** SQL での `\\'`、文字列での `\\n`、HTML での `&lt;`。
+- **例:** SQL での `\\\\'`、文字列での `\\\\n`、HTML での `&lt;`。
 
 - **セキュリティ上の文脈:** XSS や SQL インジェクションなどのインジェクション攻撃を防ぐために不可欠です。
 

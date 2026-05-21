@@ -603,7 +603,7 @@ dependency confusion から保護するには、次を行います。
 
 - **弱い鍵導出**: 広く使われている暗号化ライブラリの README 例では、MD5 と 1 回の反復 (EVP_BytesToKey) を使用してパスフレーズから AES 鍵を導出しており、GPU が 1 秒あたり数十億の候補パスフレーズを試せるようになります。ライブラリ自身の PBKDF2 モジュールはより強いデフォルトを使用していますが、目立つ AES 例ではそれを使用していません。
 - **リダイレクト時の認証情報露出**: ある HTTP クライアントライブラリの README は、プロトコルダウングレード (HTTPS から HTTP) 中にライブラリがすでに削除した authorization ヘッダーを、`beforeRedirect` コールバックで再注入する例を示しています。これは実質的にライブラリ自身のセキュリティ機構を迂回します。
-- **Regex anchoring**: 検証用の regex パターンを受け取るライブラリ (JWT audience matching、CORS origin matching など) が、`/example\.com/` のような anchor されていないパターンを例として示すことがあります。これは `malicious-example.com` にも一致します。修正は `^https:\/\/example\.com$` ですが、ドキュメントは anchoring を示していません。
+- **Regex anchoring**: 検証用の regex パターンを受け取るライブラリ (JWT audience matching、CORS origin matching など) が、`/example\\.com/` のような anchor されていないパターンを例として示すことがあります。これは `malicious-example.com` にも一致します。修正は `^https:\\/\\/example\\.com$` ですが、ドキュメントは anchoring を示していません。
 - **安全でないランダム性**: ファイルアップロードライブラリの README が `Math.random()` でファイル名を生成している一方で、ライブラリ自身のデフォルトは `crypto.randomBytes(16)` を使用しています。README 例に従ってファイル名をカスタマイズした開発者は、暗号学的なランダム性から予測可能なランダム性へダウングレードしてしまいます。
 
 ### 自分を守る方法
@@ -2017,7 +2017,7 @@ This pattern has been documented across popular npm packages with combined weekl
 
 - **弱い鍵導出**: 広く使われている暗号化ライブラリの README 例では、MD5 と 1 回の反復 (EVP_BytesToKey) を使用してパスフレーズから AES 鍵を導出しており、GPU が 1 秒あたり数十億の候補パスフレーズを試せるようになります。ライブラリ自身の PBKDF2 モジュールはより強いデフォルトを使用していますが、目立つ AES 例ではそれを使用していません。
 - **リダイレクト時の認証情報露出**: ある HTTP クライアントライブラリの README は、プロトコルダウングレード (HTTPS から HTTP) 中にライブラリがすでに削除した authorization ヘッダーを、`beforeRedirect` コールバックで再注入する例を示しています。これは実質的にライブラリ自身のセキュリティ機構を迂回します。
-- **Regex anchoring**: 検証用の regex パターンを受け取るライブラリ (JWT audience matching、CORS origin matching など) が、`/example\.com/` のような anchor されていないパターンを例として示すことがあります。これは `malicious-example.com` にも一致します。修正は `^https:\/\/example\.com$` ですが、ドキュメントは anchoring を示していません。
+- **Regex anchoring**: 検証用の regex パターンを受け取るライブラリ (JWT audience matching、CORS origin matching など) が、`/example\\.com/` のような anchor されていないパターンを例として示すことがあります。これは `malicious-example.com` にも一致します。修正は `^https:\\/\\/example\\.com$` ですが、ドキュメントは anchoring を示していません。
 - **安全でないランダム性**: ファイルアップロードライブラリの README が `Math.random()` でファイル名を生成している一方で、ライブラリ自身のデフォルトは `crypto.randomBytes(16)` を使用しています。README 例に従ってファイル名をカスタマイズした開発者は、暗号学的なランダム性から予測可能なランダム性へダウングレードしてしまいます。
 
 </div>

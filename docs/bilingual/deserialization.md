@@ -453,7 +453,7 @@ print(yaml.load(document))
 
 1. 外部のユーザー定義パラメータを伴う `XMLdecoder`
 
-2. `fromXML` メソッドを伴う `XStream` (xstream バージョン <= v1.4.6 はシリアライゼーションの問題に対して脆弱です)
+2. `fromXML` メソッドを伴う `XStream` (xstream バージョン &lt;= v1.4.6 はシリアライゼーションの問題に対して脆弱です)
 
 3. `readObject` を伴う `ObjectInputStream`
 
@@ -1071,7 +1071,7 @@ Be aware of the following Java API uses for potential serialization vulnerabilit
 
 1. 外部のユーザー定義パラメータを伴う `XMLdecoder`
 
-2. `fromXML` メソッドを伴う `XStream` (xstream バージョン <= v1.4.6 はシリアライゼーションの問題に対して脆弱です)
+2. `fromXML` メソッドを伴う `XStream` (xstream バージョン &lt;= v1.4.6 はシリアライゼーションの問題に対して脆弱です)
 
 3. `readObject` を伴う `ObjectInputStream`
 

@@ -237,7 +237,7 @@ DNは次のような形式になります。
 
 許可リストを使って、入力を有効な文字の一覧に制限できます。許可リストから除外する必要がある文字および文字シーケンスには、Java Naming and Directory Interface (JNDI) のメタ文字やLDAP特殊文字が含まれます。これらは以下のリストに示されています。
 
-[完全なリスト](https://ldapwiki.com/wiki/Wiki.jsp?page=DN%20Escape%20Values) は、`\ # + < > , ; " =` と、先頭または末尾のスペースです。
+[完全なリスト](https://ldapwiki.com/wiki/Wiki.jsp?page=DN%20Escape%20Values) は、`\\ # + < > , ; " =` と、先頭または末尾のスペースです。
 
 識別名で許可され、エスケープする必要がない「特殊」文字には、次のものがあります。
 
@@ -314,9 +314,9 @@ NamingEnumeration<SearchResult> results =
 
 [.NET AntiXSS](https://blogs.msdn.microsoft.com/securitytools/2010/09/30/antixss-4-0-released/) (現在はEncoderクラス) には、`Encoder.LdapFilterEncode(string)`、`Encoder.LdapDistinguishedNameEncode(string)`、`Encoder.LdapDistinguishedNameEncode(string, bool, bool)` などのLDAPエンコーディング関数があります。
 
-`Encoder.LdapFilterEncode` は [RFC4515](https://datatracker.ietf.org/doc/html/rfc4515) に従って入力をエンコードします。安全でない値は `\XX` に変換され、`XX` は安全でない文字の表現です。
+`Encoder.LdapFilterEncode` は [RFC4515](https://datatracker.ietf.org/doc/html/rfc4515) に従って入力をエンコードします。安全でない値は `\\XX` に変換され、`XX` は安全でない文字の表現です。
 
-`Encoder.LdapDistinguishedNameEncode` は [RFC2253](https://tools.ietf.org/html/rfc2253) に従って入力をエンコードします。安全でない文字は `#XX` に変換され、`XX` は安全でない文字の表現です。また、カンマ、プラス、引用符、スラッシュ、小なり記号、大なり記号はスラッシュ記法 (`\X`) を使ってエスケープされます。これに加えて、入力文字列の先頭にあるスペースまたはオクトソープ (`#`) は `\` でエスケープされ、文字列末尾のスペースも同様にエスケープされます。
+`Encoder.LdapDistinguishedNameEncode` は [RFC2253](https://tools.ietf.org/html/rfc2253) に従って入力をエンコードします。安全でない文字は `#XX` に変換され、`XX` は安全でない文字の表現です。また、カンマ、プラス、引用符、スラッシュ、小なり記号、大なり記号はスラッシュ記法 (`\\X`) を使ってエスケープされます。これに加えて、入力文字列の先頭にあるスペースまたはオクトソープ (`#`) は `\\` でエスケープされ、文字列末尾のスペースも同様にエスケープされます。
 
 `LdapDistinguishedNameEncode(string, bool, bool)` も提供されており、たとえばエスケープ済みの識別名フラグメントを完全な識別名の途中に連結する場合などに、先頭文字または末尾文字のエスケープルールを無効にできます。
 
@@ -636,7 +636,7 @@ The [exhaustive list](https://ldapwiki.com/wiki/Wiki.jsp?page=DN%20Escape%20Valu
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-[完全なリスト](https://ldapwiki.com/wiki/Wiki.jsp?page=DN%20Escape%20Values) は、`\ # + < > , ; " =` と、先頭または末尾のスペースです。
+[完全なリスト](https://ldapwiki.com/wiki/Wiki.jsp?page=DN%20Escape%20Values) は、`\\ # + < > , ; " =` と、先頭または末尾のスペースです。
 
 </div>
 </div>
@@ -920,7 +920,7 @@ NamingEnumeration<SearchResult> results =
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-`Encoder.LdapFilterEncode` は [RFC4515](https://datatracker.ietf.org/doc/html/rfc4515) に従って入力をエンコードします。安全でない値は `\XX` に変換され、`XX` は安全でない文字の表現です。
+`Encoder.LdapFilterEncode` は [RFC4515](https://datatracker.ietf.org/doc/html/rfc4515) に従って入力をエンコードします。安全でない値は `\\XX` に変換され、`XX` は安全でない文字の表現です。
 
 </div>
 </div>
@@ -935,7 +935,7 @@ NamingEnumeration<SearchResult> results =
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-`Encoder.LdapDistinguishedNameEncode` は [RFC2253](https://tools.ietf.org/html/rfc2253) に従って入力をエンコードします。安全でない文字は `#XX` に変換され、`XX` は安全でない文字の表現です。また、カンマ、プラス、引用符、スラッシュ、小なり記号、大なり記号はスラッシュ記法 (`\X`) を使ってエスケープされます。これに加えて、入力文字列の先頭にあるスペースまたはオクトソープ (`#`) は `\` でエスケープされ、文字列末尾のスペースも同様にエスケープされます。
+`Encoder.LdapDistinguishedNameEncode` は [RFC2253](https://tools.ietf.org/html/rfc2253) に従って入力をエンコードします。安全でない文字は `#XX` に変換され、`XX` は安全でない文字の表現です。また、カンマ、プラス、引用符、スラッシュ、小なり記号、大なり記号はスラッシュ記法 (`\\X`) を使ってエスケープされます。これに加えて、入力文字列の先頭にあるスペースまたはオクトソープ (`#`) は `\\` でエスケープされ、文字列末尾のスペースも同様にエスケープされます。
 
 </div>
 </div>

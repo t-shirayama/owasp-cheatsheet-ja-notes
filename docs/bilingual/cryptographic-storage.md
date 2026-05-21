@@ -286,7 +286,7 @@ GCM または CCM が利用できない場合は、[CTR](https://en.wikipedia.or
 
 RSA では Random Padding を有効にすることが不可欠です。Random Padding は OAEP、つまり Optimal Asymmetric Encryption Padding とも呼ばれます。この防御は、ペイロードの先頭にランダム性を追加することで、既知平文攻撃から保護します。
 
-通常、この場合は [PKCS#1](https://wikipedia.org/wiki/RSA_(cryptosystem)#Padding_schemes) の Padding Schema が使用されます。
+通常、この場合は [PKCS#1](https://wikipedia.org/wiki/RSA_%28cryptosystem)#Padding_schemes) の Padding Schema が使用されます。
 
 ### Secure Random Number Generation
 
@@ -304,7 +304,7 @@ RSA では Random Padding を有効にすることが不可欠です。Random Pa
 | --- | --- | --- |
 | C | `random()`, `rand()` | [getrandom(2)](http://man7.org/linux/man-pages/man2/getrandom.2.html) |
 | Java | `Math.random()`, `StrictMath.random()`, `java.util.Random`, `java.util.SplittableRandom`, `java.util.concurrent.ThreadLocalRandom` | [java.security.SecureRandom](https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html), [java.util.UUID.randomUUID()](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#randomUUID--) |
-| PHP | `array_rand()`, `lcg_value()`, `mt_rand()`, `rand()`, `uniqid()` | [random_bytes()](https://www.php.net/manual/en/function.random-bytes.php), [Random\Engine\Secure](https://www.php.net/manual/en/class.random-engine-secure.php), [random_int()](https://www.php.net/manual/en/function.random-int.php), [openssl_random_pseudo_bytes()](https://www.php.net/manual/en/function.openssl-random-pseudo-bytes.php) |
+| PHP | `array_rand()`, `lcg_value()`, `mt_rand()`, `rand()`, `uniqid()` | [random_bytes()](https://www.php.net/manual/en/function.random-bytes.php), [Random\\Engine\\Secure](https://www.php.net/manual/en/class.random-engine-secure.php), [random_int()](https://www.php.net/manual/en/function.random-int.php), [openssl_random_pseudo_bytes()](https://www.php.net/manual/en/function.openssl-random-pseudo-bytes.php) |
 | .NET/C# | `Random()` | [RandomNumberGenerator](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.randomnumbergenerator?view=net-6.0) |
 | Objective-C | `arc4random()`/`arc4random_uniform()`、`GKRandomSource` のサブクラス、`rand()`、`random()` | [SecRandomCopyBytes](https://developer.apple.com/documentation/security/1399291-secrandomcopybytes?language=objc) |
 | Python | `random()` | [secrets()](https://docs.python.org/3/library/secrets.html#module-secrets) |
@@ -775,7 +775,7 @@ The Padding Schema of [PKCS#1](https://wikipedia.org/wiki/RSA_%28cryptosystem)#P
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-通常、この場合は [PKCS#1](https://wikipedia.org/wiki/RSA_(cryptosystem)#Padding_schemes) の Padding Schema が使用されます。
+通常、この場合は [PKCS#1](https://wikipedia.org/wiki/RSA_%28cryptosystem)#Padding_schemes) の Padding Schema が使用されます。
 
 </div>
 </div>
@@ -884,7 +884,7 @@ The table below shows the recommended algorithms for each language, as well as i
 | --- | --- | --- |
 | C | `random()`, `rand()` | [getrandom(2)](http://man7.org/linux/man-pages/man2/getrandom.2.html) |
 | Java | `Math.random()`, `StrictMath.random()`, `java.util.Random`, `java.util.SplittableRandom`, `java.util.concurrent.ThreadLocalRandom` | [java.security.SecureRandom](https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html), [java.util.UUID.randomUUID()](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#randomUUID--) |
-| PHP | `array_rand()`, `lcg_value()`, `mt_rand()`, `rand()`, `uniqid()` | [random_bytes()](https://www.php.net/manual/en/function.random-bytes.php), [Random\Engine\Secure](https://www.php.net/manual/en/class.random-engine-secure.php), [random_int()](https://www.php.net/manual/en/function.random-int.php), [openssl_random_pseudo_bytes()](https://www.php.net/manual/en/function.openssl-random-pseudo-bytes.php) |
+| PHP | `array_rand()`, `lcg_value()`, `mt_rand()`, `rand()`, `uniqid()` | [random_bytes()](https://www.php.net/manual/en/function.random-bytes.php), [Random\\Engine\\Secure](https://www.php.net/manual/en/class.random-engine-secure.php), [random_int()](https://www.php.net/manual/en/function.random-int.php), [openssl_random_pseudo_bytes()](https://www.php.net/manual/en/function.openssl-random-pseudo-bytes.php) |
 | .NET/C# | `Random()` | [RandomNumberGenerator](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.randomnumbergenerator?view=net-6.0) |
 | Objective-C | `arc4random()`/`arc4random_uniform()`、`GKRandomSource` のサブクラス、`rand()`、`random()` | [SecRandomCopyBytes](https://developer.apple.com/documentation/security/1399291-secrandomcopybytes?language=objc) |
 | Python | `random()` | [secrets()](https://docs.python.org/3/library/secrets.html#module-secrets) |

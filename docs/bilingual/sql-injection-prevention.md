@@ -355,7 +355,7 @@ pstmt.setString( 1, custname);
 ResultSet results = pstmt.executeQuery( );
 ```
 
-#### 安全なC\# .NETプリペアドステートメントの例
+#### 安全なC\\# .NETプリペアドステートメントの例
 
 .NETでは、クエリの作成と実行は変わりません。以下に示すように、`Parameters.Add()`呼び出しを使ってパラメータをクエリに渡すだけです。
 
@@ -805,7 +805,7 @@ In .NET, the creation and execution of the query doesn't change. Just pass the p
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-#### 安全なC\# .NETプリペアドステートメントの例
+#### 安全なC\\# .NETプリペアドステートメントの例
 
 .NETでは、クエリの作成と実行は変わりません。以下に示すように、`Parameters.Add()`呼び出しを使ってパラメータをクエリに渡すだけです。
 

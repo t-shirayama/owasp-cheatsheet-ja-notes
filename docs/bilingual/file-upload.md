@@ -238,7 +238,7 @@ The application should set proper request limits as well for the download servic
 
 検証はファイル名をデコードした後に行い、以下のような既知のバイパスを避けるため、適切なフィルターを設定してください。
 
-- 二重拡張子。例: `.jpg.php`。これは正規表現 `\.jpg` を容易に回避します。
+- 二重拡張子。例: `.jpg.php`。これは正規表現 `\\.jpg` を容易に回避します。
 - Null バイト。例: `.php%00.jpg`。`.jpg` が切り捨てられ、`.php` が新しい拡張子になります。
 - 十分にテスト・レビューされていない一般的に悪い正規表現。このトピックに十分な知識がない限り、独自ロジックの構築は避けてください。
 
@@ -570,7 +570,7 @@ Ensure that the validation occurs after decoding the filename, and that a proper
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- 二重拡張子。例: `.jpg.php`。これは正規表現 `\.jpg` を容易に回避します。
+- 二重拡張子。例: `.jpg.php`。これは正規表現 `\\.jpg` を容易に回避します。
 - Null バイト。例: `.php%00.jpg`。`.jpg` が切り捨てられ、`.php` が新しい拡張子になります。
 - 十分にテスト・レビューされていない一般的に悪い正規表現。このトピックに十分な知識がない限り、独自ロジックの構築は避けてください。
 

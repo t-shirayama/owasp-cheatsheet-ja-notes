@@ -569,7 +569,7 @@ GraphQL リクエストでは、オブジェクトを取得または変更する
 
 この場合にリクエスト元のアクセス権を検証しないことは、[Broken Object Level Authorization](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md)、別名 [IDOR](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) と呼ばれます。
 
-GraphQL API が、意図していなくても ID を使ったオブジェクトへのアクセスをサポートしている可能性があります。Query オブジェクトに `node` または `nodes`、あるいはその両方のフィールドが存在することがあり、これらを使って `ID` によりオブジェクトへ直接アクセスできます。スキーマにこれらのフィールドがあるかどうかは、コマンドラインで次を実行して確認できます (`schema.json` に GraphQL スキーマが含まれていると仮定します): `cat schema.json | jq ".data.__schema.types[] | select(.name==\"Query\") | .fields[] | .name" | grep node`。
+GraphQL API が、意図していなくても ID を使ったオブジェクトへのアクセスをサポートしている可能性があります。Query オブジェクトに `node` または `nodes`、あるいはその両方のフィールドが存在することがあり、これらを使って `ID` によりオブジェクトへ直接アクセスできます。スキーマにこれらのフィールドがあるかどうかは、コマンドラインで次を実行して確認できます (`schema.json` に GraphQL スキーマが含まれていると仮定します): `cat schema.json | jq ".data.__schema.types[] | select(.name==\\"Query\\") | .fields[] | .name" | grep node`。
 
 これらのフィールドをスキーマから削除すると機能は無効化されるはずですが、呼び出し元が要求しているオブジェクトにアクセスできることを検証するため、常に適切な認可チェックを適用すべきです。
 
@@ -693,7 +693,7 @@ app.use('/graphql', graphqlHTTP({
 ### GraphQL セキュリティベストプラクティス + ドキュメント
 
 - [Protecting GraphQL APIs from security threats - blog post](https://medium.com/swlh/protecting-your-graphql-api-from-security-vulnerabilities-e8afdfa6fbe4)
-- [https://nordicapis.com/security-points-to-consider-before-implementing-graphql/](https://nordicapis.com/security-points-to-consider-before-implementing-graphql/)
+- [https://nordicapis.com/security-points-to-consider-before-implementing-graphql/]%28https://nordicapis.com/security-points-to-consider-before-implementing-graphql/)
 - [Limiting resource usage to prevent DoS (timeouts, throttling, complexity management, depth limiting, etc.)](https://developer.github.com/v4/guides/resource-limitations/)
 - [GraphQL Security Perspectives](https://www.abhaybhargav.com/from-the-trenches-diy-security-perspectives-of-graphql/)
 - [A developer's security perspective of GraphQL](https://planes.studio/blog/how-to-survive-a-penetration-test-as-a-graph-ql-developer)
@@ -1580,7 +1580,7 @@ It's possible for a GraphQL API to support access to objects using their ID even
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-GraphQL API が、意図していなくても ID を使ったオブジェクトへのアクセスをサポートしている可能性があります。Query オブジェクトに `node` または `nodes`、あるいはその両方のフィールドが存在することがあり、これらを使って `ID` によりオブジェクトへ直接アクセスできます。スキーマにこれらのフィールドがあるかどうかは、コマンドラインで次を実行して確認できます (`schema.json` に GraphQL スキーマが含まれていると仮定します): `cat schema.json | jq ".data.__schema.types[] | select(.name==\"Query\") | .fields[] | .name" | grep node`。
+GraphQL API が、意図していなくても ID を使ったオブジェクトへのアクセスをサポートしている可能性があります。Query オブジェクトに `node` または `nodes`、あるいはその両方のフィールドが存在することがあり、これらを使って `ID` によりオブジェクトへ直接アクセスできます。スキーマにこれらのフィールドがあるかどうかは、コマンドラインで次を実行して確認できます (`schema.json` に GraphQL スキーマが含まれていると仮定します): `cat schema.json | jq ".data.__schema.types[] | select(.name==\\"Query\\") | .fields[] | .name" | grep node`。
 
 これらのフィールドをスキーマから削除すると機能は無効化されるはずですが、呼び出し元が要求しているオブジェクトにアクセスできることを検証するため、常に適切な認可チェックを適用すべきです。
 
@@ -2056,7 +2056,7 @@ GraphQL APIs in production shouldn't return stack traces or be in debug mode. Do
 ### GraphQL セキュリティベストプラクティス + ドキュメント
 
 - [Protecting GraphQL APIs from security threats - blog post](https://medium.com/swlh/protecting-your-graphql-api-from-security-vulnerabilities-e8afdfa6fbe4)
-- [https://nordicapis.com/security-points-to-consider-before-implementing-graphql/](https://nordicapis.com/security-points-to-consider-before-implementing-graphql/)
+- [https://nordicapis.com/security-points-to-consider-before-implementing-graphql/]%28https://nordicapis.com/security-points-to-consider-before-implementing-graphql/)
 - [Limiting resource usage to prevent DoS (timeouts, throttling, complexity management, depth limiting, etc.)](https://developer.github.com/v4/guides/resource-limitations/)
 - [GraphQL Security Perspectives](https://www.abhaybhargav.com/from-the-trenches-diy-security-perspectives-of-graphql/)
 - [A developer's security perspective of GraphQL](https://planes.studio/blog/how-to-survive-a-penetration-test-as-a-graph-ql-developer)

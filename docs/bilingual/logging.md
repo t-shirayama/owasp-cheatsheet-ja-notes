@@ -571,7 +571,7 @@ Who is responsible for harm?
     - ユーザー ID (認証済みまたはその他の方法で既知の場合)。ユーザーデータベーステーブルの主キー値、ユーザー名、ライセンス番号など
 - 何を
     - イベント種別 `Note B`
-    - イベント重大度 `Note B`。例: `{0=emergency, 1=alert, ..., 7=debug}, {fatal, error, warning, info, debug, trace}`
+    - イベント重大度 `Note B`。例: `&#123;0=emergency, 1=alert, ..., 7=debug&#125;, &#123;fatal, error, warning, info, debug, trace&#125;`
     - セキュリティ関連イベントフラグ (ログに非セキュリティイベントデータも含まれる場合)
     - 説明
 
@@ -1464,7 +1464,7 @@ The properties for these will be different depending on the architecture, class 
     - ユーザー ID (認証済みまたはその他の方法で既知の場合)。ユーザーデータベーステーブルの主キー値、ユーザー名、ライセンス番号など
 - 何を
     - イベント種別 `Note B`
-    - イベント重大度 `Note B`。例: `{0=emergency, 1=alert, ..., 7=debug}, {fatal, error, warning, info, debug, trace}`
+    - イベント重大度 `Note B`。例: `&#123;0=emergency, 1=alert, ..., 7=debug&#125;, &#123;fatal, error, warning, info, debug, trace&#125;`
     - セキュリティ関連イベントフラグ (ログに非セキュリティイベントデータも含まれる場合)
     - 説明
 

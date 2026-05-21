@@ -324,7 +324,7 @@ REST アプリケーションのもう一つの重要な特徴は、[HATEOAS ま
 
 セキュリティトークンの形式として [JSON Web Tokens](https://tools.ietf.org/html/rfc7519) (JWT) を使用する方向に収束しているようです。JWT は、アクセス制御判断に使用できる一連のクレームを含む JSON データ構造です。JWT の完全性を保護するために、暗号署名またはメッセージ認証コード (MAC) を使用できます。
 
-- JWT が署名または MAC のいずれかで完全性保護されていることを確認してください。保護されていない JWT `{"alg":"none"}` を許可してはいけません。
+- JWT が署名または MAC のいずれかで完全性保護されていることを確認してください。保護されていない JWT `&#123;"alg":"none"&#125;` を許可してはいけません。
   - [こちら](https://tools.ietf.org/html/rfc7519#section-6.1)を参照してください。
 - 一般に、JWT の完全性保護には MAC より署名を優先すべきです。
 
@@ -796,7 +796,7 @@ There seems to be a convergence towards using [JSON Web Tokens](https://tools.ie
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-- JWT が署名または MAC のいずれかで完全性保護されていることを確認してください。保護されていない JWT `{"alg":"none"}` を許可してはいけません。
+- JWT が署名または MAC のいずれかで完全性保護されていることを確認してください。保護されていない JWT `&#123;"alg":"none"&#125;` を許可してはいけません。
   - [こちら](https://tools.ietf.org/html/rfc7519#section-6.1)を参照してください。
 - 一般に、JWT の完全性保護には MAC より署名を優先すべきです。
 

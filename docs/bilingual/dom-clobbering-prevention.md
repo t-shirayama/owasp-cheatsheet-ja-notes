@@ -282,23 +282,23 @@ document.body.appendChild(s);
 
 |    | **ガイドライン** | 説明 |
 |----|------------------|------|
-| \# 1 | HTML サニタイザを使用する | [link](#1-html-sanitization) |
-| \# 2 | Content-Security Policy を使用する | [link](#2-content-security-policy) |
-| \# 3 | 機微な DOM オブジェクトを freeze する | [link](#3-freezing-sensitive-dom-objects) |
-| \# 4 | DOM ツリーへのすべての入力を検証する | [link](#4-validate-all-inputs-to-dom-tree) |
-| \# 5 | 明示的な変数宣言を使用する | [link](#5-use-explicit-variable-declarations) |
-| \# 6 | グローバル変数に Document と Window を使用しない | [link](#6-do-not-use-document-and-window-for-global-variables) |
-| \# 7 | 検証前に Document の組み込み API を信頼しない | [link](#7-do-not-trust-document-built-in-apis-before-validation) |
-| \# 8 | 型チェックを強制する | [link](#8-enforce-type-checking) |
-| \# 9 | strict mode を使用する | [link](#9-use-strict-mode) |
-| \# 10 | ブラウザの機能検出を適用する | [link](#10-apply-browser-feature-detection) |
-| \# 11 | 変数をローカルスコープに制限する | [link](#11-limit-variables-to-local-scope) |
-| \# 12 | 本番環境では一意の変数名を使用する | [link](#12-use-unique-variable-names-in-production) |
-| \# 13 | カプセル化などのオブジェクト指向プログラミング技法を使用する | [link](#13-use-object-oriented-programming-techniques-like-encapsulation) |
+| \\# 1 | HTML サニタイザを使用する | [link](#1-html-sanitization) |
+| \\# 2 | Content-Security Policy を使用する | [link](#2-content-security-policy) |
+| \\# 3 | 機微な DOM オブジェクトを freeze する | [link](#3-freezing-sensitive-dom-objects) |
+| \\# 4 | DOM ツリーへのすべての入力を検証する | [link](#4-validate-all-inputs-to-dom-tree) |
+| \\# 5 | 明示的な変数宣言を使用する | [link](#5-use-explicit-variable-declarations) |
+| \\# 6 | グローバル変数に Document と Window を使用しない | [link](#6-do-not-use-document-and-window-for-global-variables) |
+| \\# 7 | 検証前に Document の組み込み API を信頼しない | [link](#7-do-not-trust-document-built-in-apis-before-validation) |
+| \\# 8 | 型チェックを強制する | [link](#8-enforce-type-checking) |
+| \\# 9 | strict mode を使用する | [link](#9-use-strict-mode) |
+| \\# 10 | ブラウザの機能検出を適用する | [link](#10-apply-browser-feature-detection) |
+| \\# 11 | 変数をローカルスコープに制限する | [link](#11-limit-variables-to-local-scope) |
+| \\# 12 | 本番環境では一意の変数名を使用する | [link](#12-use-unique-variable-names-in-production) |
+| \\# 13 | カプセル化などのオブジェクト指向プログラミング技法を使用する | [link](#13-use-object-oriented-programming-techniques-like-encapsulation) |
 
 ## 緩和手法
 
-### \#1: HTML サニタイズ
+### \\#1: HTML サニタイズ
 
 堅牢な HTML サニタイザは、DOM Clobbering のリスクを防止または制限できます。これには複数の方法があります。たとえば、次のような方法です。
 
@@ -334,13 +334,13 @@ const sanitizerInstance = new Sanitizer({
 containerDOMElement.setHTML(input, {sanitizer: sanitizerInstance});
 ```
 
-### \#2: Content-Security Policy
+### \\#2: Content-Security Policy
 
 [Content-Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) は、Web ページ上で読み込みを許可するリソースをブラウザに伝えるルールセットです。JavaScript ファイルの取得元を制限することで (たとえば [script-src](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src) ディレクティブを使用します)、CSP は悪意のあるコードがページに注入されることを防止できます。
 
 **注:** CSP が緩和できるのは DOM Clobbering 攻撃の**一部のバリアント**だけです。たとえば、攻撃者がスクリプトソースを clobbering して新しいスクリプトを読み込ませようとする場合です。一方で、すでに存在するコードがコード実行に悪用できる場合、たとえば `eval()` のようなコード評価構文のパラメータを clobbering する場合には緩和できません。
 
-### \#3: 機微な DOM オブジェクトの freeze
+### \\#3: 機微な DOM オブジェクトの freeze
 
 個別のオブジェクトに対する DOM Clobbering を緩和する簡単な方法として、[Object.freeze()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) メソッドなどにより、機微な DOM オブジェクトとそのプロパティを freeze する方法があります。
 
@@ -350,51 +350,51 @@ containerDOMElement.setHTML(input, {sanitizer: sanitizerInstance});
 
 DOM Clobbering は、防御的プログラミングといくつかのコーディングパターンおよびガイドラインの遵守によって回避できます。
 
-### \#4: DOM ツリーへのすべての入力を検証する
+### \\#4: DOM ツリーへのすべての入力を検証する
 
 Web ページの DOM ツリーにマークアップを挿入する前に、`id` 属性と `name` 属性をサニタイズします ([HTML サニタイズ](#1-html-sanitization)を参照してください)。
 
-### \#5: 明示的な変数宣言を使用する
+### \\#5: 明示的な変数宣言を使用する
 
 変数を初期化するときは、常に `var`、`let`、`const` などの変数宣言子を使用します。これにより、その変数の clobbering を防止できます。
 
 **注:** `let` で変数を宣言しても、`var` とは異なり `window` 上にプロパティは作成されません。そのため、`window.VARNAME` は引き続き clobbering される可能性があります (`VARNAME` が変数名であると仮定します)。
 
-### \#6: グローバル変数に Document と Window を使用しない
+### \\#6: グローバル変数に Document と Window を使用しない
 
 `document` や `window` のようなオブジェクトをグローバル変数の保存に使用することは避けます。これらは容易に操作される可能性があります (例として[こちら](https://domclob.xyz/domc_wiki/indicators/patterns.html#do-not-use-document-for-global-variables)を参照してください)。
 
-### \#7: 検証前に Document の組み込み API を信頼しない
+### \\#7: 検証前に Document の組み込み API を信頼しない
 
 組み込みのものを含む Document プロパティは、値を代入した直後であっても、常に DOM Clobbering によって覆い隠されます。
 
 **ヒント:** これは、いわゆる[名前付きプロパティ可視性アルゴリズム](https://webidl.spec.whatwg.org/#legacy-platform-object-abstract-ops)によるものです。このアルゴリズムでは、名前付き HTML 要素への参照が、`document` 上の組み込み API やその他の属性の検索よりも先に扱われます。
 
-### \#8: 型チェックを強制する
+### \\#8: 型チェックを強制する
 
 機微な操作で使用する前に、必ず `document` と `window` のプロパティの型をチェックします。たとえば、[`instanceof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) 演算子を使用します。
 
 **ヒント:** オブジェクトが clobbering されると、その参照先は [`Element`](https://developer.mozilla.org/en-US/docs/Web/API/Element) インスタンスになり、期待する型ではない可能性があります。
 
-### \#9: strict mode を使用する
+### \\#9: strict mode を使用する
 
 `strict` mode を使用して、意図しないグローバル変数の作成を防止し、読み取り専用プロパティが上書きされようとした場合に[エラーを発生](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Read-only)させます。
 
-### \#10: ブラウザの機能検出を適用する
+### \\#10: ブラウザの機能検出を適用する
 
 ブラウザ固有の機能やプロパティに依存するのではなく、使用前にその機能がサポートされているかを判断するために機能検出を使用します。これにより、サポートされていないブラウザでそれらの機能を使用したときに生じる可能性があるエラーや DOM Clobbering を防止しやすくなります。
 
 **ヒント:** サポートされていない機能 API は、サポートされていないブラウザでは未定義の変数またはプロパティとして振る舞うことがあり、clobbering 可能になります。
 
-### \#11: 変数をローカルスコープに制限する
+### \\#11: 変数をローカルスコープに制限する
 
 グローバル変数は、DOM Clobbering によって上書きされやすくなります。可能な限り、ローカル変数とオブジェクトプロパティを使用します。
 
-### \#12: 本番環境では一意の変数名を使用する
+### \\#12: 本番環境では一意の変数名を使用する
 
 一意の変数名を使用すると、意図しない上書きにつながり得る名前衝突を防止しやすくなります。
 
-### \#13: カプセル化などのオブジェクト指向プログラミング技法を使用する
+### \\#13: カプセル化などのオブジェクト指向プログラミング技法を使用する
 
 変数や関数をオブジェクトまたはクラス内にカプセル化すると、それらが上書きされることを防止しやすくなります。private にすることで、オブジェクトの外部からアクセスできなくなり、DOM Clobbering の影響を受けにくくなります。
 
@@ -716,19 +716,19 @@ For quick reference, below is the summary of guidelines discussed next.
 
 |    | **ガイドライン** | 説明 |
 |----|------------------|------|
-| \# 1 | HTML サニタイザを使用する | [link](#1-html-sanitization) |
-| \# 2 | Content-Security Policy を使用する | [link](#2-content-security-policy) |
-| \# 3 | 機微な DOM オブジェクトを freeze する | [link](#3-freezing-sensitive-dom-objects) |
-| \# 4 | DOM ツリーへのすべての入力を検証する | [link](#4-validate-all-inputs-to-dom-tree) |
-| \# 5 | 明示的な変数宣言を使用する | [link](#5-use-explicit-variable-declarations) |
-| \# 6 | グローバル変数に Document と Window を使用しない | [link](#6-do-not-use-document-and-window-for-global-variables) |
-| \# 7 | 検証前に Document の組み込み API を信頼しない | [link](#7-do-not-trust-document-built-in-apis-before-validation) |
-| \# 8 | 型チェックを強制する | [link](#8-enforce-type-checking) |
-| \# 9 | strict mode を使用する | [link](#9-use-strict-mode) |
-| \# 10 | ブラウザの機能検出を適用する | [link](#10-apply-browser-feature-detection) |
-| \# 11 | 変数をローカルスコープに制限する | [link](#11-limit-variables-to-local-scope) |
-| \# 12 | 本番環境では一意の変数名を使用する | [link](#12-use-unique-variable-names-in-production) |
-| \# 13 | カプセル化などのオブジェクト指向プログラミング技法を使用する | [link](#13-use-object-oriented-programming-techniques-like-encapsulation) |
+| \\# 1 | HTML サニタイザを使用する | [link](#1-html-sanitization) |
+| \\# 2 | Content-Security Policy を使用する | [link](#2-content-security-policy) |
+| \\# 3 | 機微な DOM オブジェクトを freeze する | [link](#3-freezing-sensitive-dom-objects) |
+| \\# 4 | DOM ツリーへのすべての入力を検証する | [link](#4-validate-all-inputs-to-dom-tree) |
+| \\# 5 | 明示的な変数宣言を使用する | [link](#5-use-explicit-variable-declarations) |
+| \\# 6 | グローバル変数に Document と Window を使用しない | [link](#6-do-not-use-document-and-window-for-global-variables) |
+| \\# 7 | 検証前に Document の組み込み API を信頼しない | [link](#7-do-not-trust-document-built-in-apis-before-validation) |
+| \\# 8 | 型チェックを強制する | [link](#8-enforce-type-checking) |
+| \\# 9 | strict mode を使用する | [link](#9-use-strict-mode) |
+| \\# 10 | ブラウザの機能検出を適用する | [link](#10-apply-browser-feature-detection) |
+| \\# 11 | 変数をローカルスコープに制限する | [link](#11-limit-variables-to-local-scope) |
+| \\# 12 | 本番環境では一意の変数名を使用する | [link](#12-use-unique-variable-names-in-production) |
+| \\# 13 | カプセル化などのオブジェクト指向プログラミング技法を使用する | [link](#13-use-object-oriented-programming-techniques-like-encapsulation) |
 
 </div>
 </div>
@@ -760,7 +760,7 @@ Robust HTML sanitizers can prevent or restrict the risk of DOM Clobbering. They 
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#1: HTML サニタイズ
+### \\#1: HTML サニタイズ
 
 堅牢な HTML サニタイザは、DOM Clobbering のリスクを防止または制限できます。これには複数の方法があります。たとえば、次のような方法です。
 
@@ -905,7 +905,7 @@ containerDOMElement.setHTML(input, {sanitizer: sanitizerInstance});
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#2: Content-Security Policy
+### \\#2: Content-Security Policy
 
 [Content-Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) は、Web ページ上で読み込みを許可するリソースをブラウザに伝えるルールセットです。JavaScript ファイルの取得元を制限することで (たとえば [script-src](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src) ディレクティブを使用します)、CSP は悪意のあるコードがページに注入されることを防止できます。
 
@@ -939,7 +939,7 @@ A simple way to mitigate DOM Clobbering against individual objects could be to f
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#3: 機微な DOM オブジェクトの freeze
+### \\#3: 機微な DOM オブジェクトの freeze
 
 個別のオブジェクトに対する DOM Clobbering を緩和する簡単な方法として、[Object.freeze()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) メソッドなどにより、機微な DOM オブジェクトとそのプロパティを freeze する方法があります。
 
@@ -992,7 +992,7 @@ Before inserting any markup into the webpage's DOM tree, sanitize `id` and `name
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#4: DOM ツリーへのすべての入力を検証する
+### \\#4: DOM ツリーへのすべての入力を検証する
 
 Web ページの DOM ツリーにマークアップを挿入する前に、`id` 属性と `name` 属性をサニタイズします ([HTML サニタイズ](#1-html-sanitization)を参照してください)。
 
@@ -1011,7 +1011,7 @@ When initializing variables, always use a variable declarator like `var`, `let` 
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#5: 明示的な変数宣言を使用する
+### \\#5: 明示的な変数宣言を使用する
 
 変数を初期化するときは、常に `var`、`let`、`const` などの変数宣言子を使用します。これにより、その変数の clobbering を防止できます。
 
@@ -1045,7 +1045,7 @@ Avoid using objects like `document` and `window` for storing global variables, b
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#6: グローバル変数に Document と Window を使用しない
+### \\#6: グローバル変数に Document と Window を使用しない
 
 `document` や `window` のようなオブジェクトをグローバル変数の保存に使用することは避けます。これらは容易に操作される可能性があります (例として[こちら](https://domclob.xyz/domc_wiki/indicators/patterns.html#do-not-use-document-for-global-variables)を参照してください)。
 
@@ -1064,7 +1064,7 @@ Document properties, including built-in ones, are always overshadowed by DOM Clo
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#7: 検証前に Document の組み込み API を信頼しない
+### \\#7: 検証前に Document の組み込み API を信頼しない
 
 組み込みのものを含む Document プロパティは、値を代入した直後であっても、常に DOM Clobbering によって覆い隠されます。
 
@@ -1098,7 +1098,7 @@ Always check the type of `document` and `window` properties before using them in
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#8: 型チェックを強制する
+### \\#8: 型チェックを強制する
 
 機微な操作で使用する前に、必ず `document` と `window` のプロパティの型をチェックします。たとえば、[`instanceof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) 演算子を使用します。
 
@@ -1132,7 +1132,7 @@ Use `strict` mode to prevent unintended global variable creation, and to [raise 
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#9: strict mode を使用する
+### \\#9: strict mode を使用する
 
 `strict` mode を使用して、意図しないグローバル変数の作成を防止し、読み取り専用プロパティが上書きされようとした場合に[エラーを発生](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Read-only)させます。
 
@@ -1151,7 +1151,7 @@ Instead of relying on browser-specific features or properties, use feature detec
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#10: ブラウザの機能検出を適用する
+### \\#10: ブラウザの機能検出を適用する
 
 ブラウザ固有の機能やプロパティに依存するのではなく、使用前にその機能がサポートされているかを判断するために機能検出を使用します。これにより、サポートされていないブラウザでそれらの機能を使用したときに生じる可能性があるエラーや DOM Clobbering を防止しやすくなります。
 
@@ -1185,7 +1185,7 @@ Global variables are more prone to being overwritten by DOM Clobbering. Whenever
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#11: 変数をローカルスコープに制限する
+### \\#11: 変数をローカルスコープに制限する
 
 グローバル変数は、DOM Clobbering によって上書きされやすくなります。可能な限り、ローカル変数とオブジェクトプロパティを使用します。
 
@@ -1204,7 +1204,7 @@ Using unique variable names may help prevent naming collisions that could lead t
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#12: 本番環境では一意の変数名を使用する
+### \\#12: 本番環境では一意の変数名を使用する
 
 一意の変数名を使用すると、意図しない上書きにつながり得る名前衝突を防止しやすくなります。
 
@@ -1223,7 +1223,7 @@ Encapsulating variables and functions within objects or classes can help prevent
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-### \#13: カプセル化などのオブジェクト指向プログラミング技法を使用する
+### \\#13: カプセル化などのオブジェクト指向プログラミング技法を使用する
 
 変数や関数をオブジェクトまたはクラス内にカプセル化すると、それらが上書きされることを防止しやすくなります。private にすることで、オブジェクトの外部からアクセスできなくなり、DOM Clobbering の影響を受けにくくなります。
 

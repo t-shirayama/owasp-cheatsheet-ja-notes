@@ -429,6 +429,7 @@ function sanitizeMarkdown(text) {
         .replace(/\\/g, '\\\\')
         .replace(/\{/g, '&#123;')
         .replace(/\}/g, '&#125;')
+        .replace(/<((?:https?|mailto):[^>]+)>/g, '[$1]($1)')
         .replace(/<=/g, '&lt;=')
         .replace(/<details\b([^>]*)>/gi, '&lt;details$1&gt;')
         .replace(/<\/details>/gi, '&lt;/details&gt;')
@@ -861,7 +862,7 @@ async function localOfficialMarkdown(page) {
 
 async function localJapanese(page) {
   const translation = await readIfExists(mdPath('docs', 'translations', `${page.slug}.md`));
-  const translationBody = smoothHeadings(stripLeadingTitle(extractSection(translation, '日本語訳', ['ASVS との対応']) || stripAttributionSections(translation)));
+  const translationBody = smoothHeadings(sanitizeMarkdown(rewriteOfficialLinks(stripLeadingTitle(extractSection(translation, '日本語訳', ['ASVS との対応']) || stripAttributionSections(translation)))));
 
   if (localSources) {
     return translationBody;

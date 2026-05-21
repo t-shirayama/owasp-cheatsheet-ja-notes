@@ -373,7 +373,7 @@ Django はデフォルトでは組み込みの Content Security Policy (CSP) サ
 ## クロスサイトリクエストフォージェリ (CSRF)
 
 - 応答に CSRF 関連ヘッダーを追加するため、プロジェクトの `settings.py` の `MIDDLEWARE` 設定に `django.middleware.csrf.CsrfViewMiddleware` モジュールを含めます。
-- フォームでは、CSRF トークンを含めるために `{% csrf_token %}` テンプレートタグを使用します。以下にサンプルを示します。
+- フォームでは、CSRF トークンを含めるために `&#123;% csrf_token %&#125;` テンプレートタグを使用します。以下にサンプルを示します。
 
   ```html
   <form method="post">
@@ -892,7 +892,7 @@ For more details:
 ## クロスサイトリクエストフォージェリ (CSRF)
 
 - 応答に CSRF 関連ヘッダーを追加するため、プロジェクトの `settings.py` の `MIDDLEWARE` 設定に `django.middleware.csrf.CsrfViewMiddleware` モジュールを含めます。
-- フォームでは、CSRF トークンを含めるために `{% csrf_token %}` テンプレートタグを使用します。以下にサンプルを示します。
+- フォームでは、CSRF トークンを含めるために `&#123;% csrf_token %&#125;` テンプレートタグを使用します。以下にサンプルを示します。
 
 </div>
 </div>

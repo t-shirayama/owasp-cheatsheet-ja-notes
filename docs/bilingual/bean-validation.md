@@ -563,7 +563,7 @@ Bean Validation 1.1 では、さらに次の場所にも適用できます。
 
 簡潔にするため、以下のすべての例ではフィールド制約を使用し、すべての検証はコントローラによってトリガーされます。例の完全な一覧については Bean Validation のドキュメントを参照してください。
 
-エラーハンドリングについては、Hibernate Validator は `List<ObjectError>` を含む `BindingResult` オブジェクトを返します。以下の例では単純化したエラーハンドリングを示しますが、本番対応のアプリケーションでは、ログ記録とエラーページへのリダイレクトを考慮した、より丁寧な設計が必要です。
+エラーハンドリングについては、Hibernate Validator は `List&lt;ObjectError>` を含む `BindingResult` オブジェクトを返します。以下の例では単純化したエラーハンドリングを示しますが、本番対応のアプリケーションでは、ログ記録とエラーページへのリダイレクトを考慮した、より丁寧な設計が必要です。
 
 ## Predefined Constraints
 
@@ -1274,7 +1274,7 @@ When it comes to error handling, the Hibernate Validator returns a `BindingResul
 <div className="bilingualBlock japanese">
 <span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-エラーハンドリングについては、Hibernate Validator は `List<ObjectError>` を含む `BindingResult` オブジェクトを返します。以下の例では単純化したエラーハンドリングを示しますが、本番対応のアプリケーションでは、ログ記録とエラーページへのリダイレクトを考慮した、より丁寧な設計が必要です。
+エラーハンドリングについては、Hibernate Validator は `List&lt;ObjectError>` を含む `BindingResult` オブジェクトを返します。以下の例では単純化したエラーハンドリングを示しますが、本番対応のアプリケーションでは、ログ記録とエラーページへのリダイレクトを考慮した、より丁寧な設計が必要です。
 
 </div>
 </div>
