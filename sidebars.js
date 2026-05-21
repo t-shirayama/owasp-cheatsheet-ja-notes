@@ -1,3 +1,6 @@
+// Generated from references/asvs-chapters.yml and references/cheatsheet-catalog.yml.
+// Do not edit manually. Run: npm run navigation
+
 const sidebars = {
   cheatsheetSidebar: [
     'index',

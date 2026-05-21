@@ -8,6 +8,7 @@
     "build": "docusaurus build",
     "catalog": "node tools/generate-catalog.mjs",
     "catalog:check": "node tools/generate-catalog.mjs --check",
+    "navigation": "node tools/generate-bilingual-samples.mjs --navigation-only",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear"
   },
