@@ -67,7 +67,7 @@
 - [x] [docs/translations/rest-assessment.md](../docs/translations/rest-assessment.md): REST Assessment Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/rest-security.md](../docs/translations/rest-security.md): REST Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.22, 見出し 16/22。
 - [ ] [docs/translations/authentication.md](../docs/translations/authentication.md): Authentication Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.18, 見出し 14/40。
-- [ ] [docs/translations/credential-stuffing-prevention.md](../docs/translations/credential-stuffing-prevention.md): Credential Stuffing Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.11, 見出し 0/16。
+- [x] [docs/translations/credential-stuffing-prevention.md](../docs/translations/credential-stuffing-prevention.md): Credential Stuffing Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/forgot-password.md](../docs/translations/forgot-password.md): Forgot Password Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/multifactor-authentication.md](../docs/translations/multifactor-authentication.md): Multifactor Authentication Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.06, 見出し 1/68。
 - [ ] [docs/translations/password-storage.md](../docs/translations/password-storage.md): Password Storage Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.09, 見出し 0/23。
