@@ -33,7 +33,7 @@ Symfony を初めて使う開発者にも、セキュリティ実践を強化し
 
 Symfony はデフォルトで Twig テンプレートを備えており、`{{ }}` 文で変数を囲むことで、特殊文字を含む変数を変換する **出力エスケープ** により、アプリケーションを XSS 攻撃から自動的に保護します。
 
-```twig
+```html
 <p>Hello {{name}}</p>
 {# if 'name' is '<script>alert('hello!')</script>', Twig will output this:
 '<p>Hello &lt;script&gt;alert(&#39;hello!&#39;)&lt;/script&gt;</p>' #}
@@ -41,7 +41,7 @@ Symfony はデフォルトで Twig テンプレートを備えており、`{{ }}
 
 信頼できる HTML コンテンツを含む変数をレンダリングする場合は、*Twig raw filter* を使用して出力エスケープを無効化できます。
 
-```twig
+```html
 <p>{{ product.title|raw }}</p>
 {# if 'product.title' is 'Lorem <strong>Ipsum</strong>', Twig will output
 exactly that instead of 'Lorem &lt;strong&gt;Ipsum&lt;/strong&gt;' #}
@@ -93,7 +93,7 @@ framework:
 
 次に、`csrf_token()` Twig 関数で CSRF トークンを生成する次の HTML Twig テンプレートを考えます。
 
-```twig
+```html
 <form action="{{ url('delete_post', { id: post.id }) }}" method="post">
     <input type="hidden" name="token" value="{{ csrf_token('delete-post') }}">
     <button type="submit">Delete post</button>

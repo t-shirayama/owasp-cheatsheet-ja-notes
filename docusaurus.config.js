@@ -114,7 +114,6 @@ const config = {
         'ruby',
         'rust',
         'sql',
-        'twig',
         'typescript',
         'vbnet',
         'yaml',
