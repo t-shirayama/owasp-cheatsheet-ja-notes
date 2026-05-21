@@ -461,7 +461,7 @@ function officialLinkTarget(target) {
   let resolved = raw;
 
   if (pathPart.startsWith('/img/')) {
-    return wrapped ? `<${raw}>` : raw;
+    return raw;
   }
 
   if (!/^(https?|mailto):/.test(pathPart) && pathPart.length > 0) {
@@ -478,7 +478,7 @@ function officialLinkTarget(target) {
   }
 
   const encoded = resolved.replace(/\(/g, '%28').replace(/\)/g, '%29');
-  return wrapped ? `<${encoded}>` : encoded;
+  return encoded;
 }
 
 function rewriteOfficialLinks(text) {

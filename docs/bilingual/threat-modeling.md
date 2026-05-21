@@ -999,7 +999,7 @@ An alphabetical list of techniques:
 
 - [LINDDUN](https://linddun.org/)
 - [PASTA](https://cdn2.hubspot.net/hubfs/4598121/Content%20PDFs/VerSprite-PASTA-Threat-Modeling-Process-for-Attack-Simulation-Threat-Analysis.pdf)
-- [STRIDE](<https://learn.microsoft.com/en-us/previous-versions/commerce-server/ee823878%28v=cs.20%29?redirectedfrom=MSDN>)
+- [STRIDE](https://learn.microsoft.com/en-us/previous-versions/commerce-server/ee823878%28v=cs.20%29?redirectedfrom=MSDN)
 - [OCTAVE](https://insights.sei.cmu.edu/library/introduction-to-the-octave-approach/)
 - [VAST](https://go.threatmodeler.com/vast-methodology-data-sheet)
 
