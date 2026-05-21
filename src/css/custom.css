@@ -362,8 +362,6 @@ html[data-theme="dark"] .docPill {
 }
 
 .homeExplorer {
-  display: grid;
-  grid-template-columns: 292px minmax(0, 1fr);
   border-top: 1px solid #e5ebf5;
 }
 
@@ -429,7 +427,7 @@ html[data-theme="dark"] .homeRail a.active {
 
 .homeContent {
   min-width: 0;
-  padding: 30px max(32px, calc((100vw - 1280px) / 2 + 32px)) 78px 32px;
+  padding: 30px max(32px, calc((100vw - 1280px) / 2 + 32px)) 78px;
 }
 
 .homeSection {

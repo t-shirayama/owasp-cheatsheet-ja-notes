@@ -39,17 +39,6 @@ const recommendedSheets = [
   },
 ];
 
-const sectionLinks = [
-  {label: 'おすすめ', href: '/'},
-  {label: 'ASVS対応カテゴリ', href: '/cheatsheets/'},
-  {label: '認証', href: '/cheatsheets/asvs/v6'},
-  {label: 'セッション管理', href: '/cheatsheets/asvs/v7'},
-  {label: 'アクセス制御', href: '/cheatsheets/asvs/v8'},
-  {label: '入力検証', href: '/cheatsheets/asvs/v1'},
-  {label: '暗号化', href: '/cheatsheets/asvs/v11'},
-  {label: 'エラーハンドリング', href: '/cheatsheets/asvs/v16'},
-];
-
 export default function Home() {
   return (
     <Layout
@@ -102,24 +91,6 @@ export default function Home() {
         </section>
 
         <section className="homeExplorer" aria-label="Cheat Sheet navigation">
-          <aside className="homeRail">
-            <strong>セクション</strong>
-            <nav>
-              {sectionLinks.map((item, index) => (
-                <Link
-                  className={index === 0 ? 'active' : undefined}
-                  to={item.href}
-                  key={item.label}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link className="homeRailAll" to="/cheatsheets/">
-                すべての Cheat Sheet を見る
-              </Link>
-            </nav>
-          </aside>
-
           <div className="homeContent">
             <section className="homeSection" id="recommended">
               <div className="sectionHeading">
