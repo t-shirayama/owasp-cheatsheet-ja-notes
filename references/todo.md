@@ -27,7 +27,7 @@
 - [ ] [docs/translations/os-command-injection-defense.md](../docs/translations/os-command-injection-defense.md): OS Command Injection Defense Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.02, 見出し 1/19。
 - [x] [docs/translations/query-parameterization.md](../docs/translations/query-parameterization.md): Query Parameterization Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/security-terminology.md](../docs/translations/security-terminology.md): Security Terminology Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳・公開対訳ページを確認。
-- [ ] [docs/translations/sql-injection-prevention.md](../docs/translations/sql-injection-prevention.md): SQL Injection Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/27。
+- [x] [docs/translations/sql-injection-prevention.md](../docs/translations/sql-injection-prevention.md): SQL Injection Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/ssrf-prevention.md](../docs/translations/ssrf-prevention.md): Server Side Request Forgery Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/15。
 - [ ] [docs/translations/xml-security.md](../docs/translations/xml-security.md): XML Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/30。
 - [ ] [docs/translations/xss-filter-evasion.md](../docs/translations/xss-filter-evasion.md): XSS Filter Evasion Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.02, 見出し 0/105。
