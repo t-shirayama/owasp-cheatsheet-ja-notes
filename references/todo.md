@@ -50,7 +50,7 @@
 - [x] [docs/translations/software-supply-chain-security.md](../docs/translations/software-supply-chain-security.md): Software Supply Chain Security Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/threat-modeling.md](../docs/translations/threat-modeling.md): Threat Modeling Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/virtual-patching.md](../docs/translations/virtual-patching.md): Virtual Patching Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
-- [ ] [docs/translations/vulnerable-dependency-management.md](../docs/translations/vulnerable-dependency-management.md): Vulnerable Dependency Management Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.03, 見出し 0/24。
+- [x] [docs/translations/vulnerable-dependency-management.md](../docs/translations/vulnerable-dependency-management.md): Vulnerable Dependency Management Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/error-handling.md](../docs/translations/error-handling.md): Error Handling Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.33, 見出し 8/10。
 - [ ] [docs/translations/logging-vocabulary.md](../docs/translations/logging-vocabulary.md): Logging Vocabulary Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.09, 見出し 6/75。
 - [ ] [docs/translations/abuse-case.md](../docs/translations/abuse-case.md): Abuse Case Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/26。
