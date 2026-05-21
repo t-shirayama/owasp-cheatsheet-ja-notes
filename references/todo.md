@@ -17,7 +17,7 @@
 
 - [x] [docs/translations/bean-validation.md](../docs/translations/bean-validation.md): Bean Validation Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳へ拡張。
 - [ ] [docs/translations/csrf-prevention.md](../docs/translations/csrf-prevention.md): Cross-Site Request Forgery Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0, 見出し 1/46。
-- [ ] [docs/translations/deserialization.md](../docs/translations/deserialization.md): Deserialization Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 作成済み, 本文量比 約 0.01, 見出し 1/27。
+- [x] [docs/translations/deserialization.md](../docs/translations/deserialization.md): 完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [ ] [docs/translations/dom-based-xss-prevention.md](../docs/translations/dom-based-xss-prevention.md): DOM based XSS Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。現状: 詳細化済み, 本文量比 約 0.05, 見出し 0/34。
 - [x] [docs/translations/file-upload.md](../docs/translations/file-upload.md): File Upload Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
 - [x] [docs/translations/injection-prevention.md](../docs/translations/injection-prevention.md): Injection Prevention Cheat Sheet を原文全文と照合し、不足している日本語訳を追加する。完了: 2026-05-21, 公式原文と照合し全文訳と公開対訳ページへ拡張。
