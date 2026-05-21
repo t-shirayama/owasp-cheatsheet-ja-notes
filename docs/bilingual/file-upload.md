@@ -6,13 +6,13 @@ hide_title: true
 <div className="docHero" data-category="encoding-and-sanitization">
   <h1>ファイルアップロードチートシート</h1>
   <div className="docMeta">
-    <span className="docPill">最終更新: 2026-05-20</span>
+    <span className="docPill">最終更新: 2026-05-21</span>
     <span className="docPill">読了時間: 約 15 分</span>
     <span className="docPill">カテゴリ: 入力検証とサニタイズ</span>
   </div>
 </div>
 
-<p className="docLead">ファイルアップロードチートシートを、原文・翻訳・対比表示で確認できます。ASVS Index 対応の文脈で、公式原文と日本語訳を確認しやすく整理しています。</p>
+<p className="docLead">ファイルアップロードチートシートを、原文・翻訳・対比表示で確認できます。これは OWASP 公式翻訳ではなく、ASVS Index 対応の文脈で公式原文と日本語訳を確認しやすく整理した非公式ページです。</p>
 
 <div className="tabbedContent">
   <input className="tabInput" type="radio" name="file-upload-view" id="file-upload-original" />
@@ -77,7 +77,7 @@ There is no silver bullet in validating user content. Implementing a defense in 
 
 Ensure that the validation occurs after decoding the filename, and that a proper filter is set in place in order to avoid certain known bypasses, such as the following:
 
-- Double extensions, _e.g._ `.jpg.php`, where it circumvents easily the regex `\\.jpg`
+- Double extensions, _e.g._ `.jpg.php`, where it circumvents easily the regex `\.jpg`
 - Null bytes, _e.g._ `.php%00.jpg`, where `.jpg` gets truncated and `.php` becomes the new extension
 - Generic bad regex that isn't properly tested and well reviewed. Refrain from building your own logic unless you have enough knowledge on this topic.
 
@@ -96,8 +96,7 @@ Based on the needs of the application, ensure the **least harmful** and the **lo
 
 Identify potentially harmful file types and block extensions that you regard harmful to your service.
 
-Please be aware that blocking specific extensions is a weak protection method on its own. The [Unrestricted File Upload vulnerability](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) article describes how attackers may attempt
-to bypass such a check.
+Please be aware that blocking specific extensions is a weak protection method on its own. The [Unrestricted File Upload vulnerability](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) article describes how attackers may attempt to bypass such a check.
 
 ### Content-Type Validation
 
@@ -188,17 +187,163 @@ The application should set proper request limits as well for the download servic
 
 <section id="file-upload-translation-panel" className="tabPanel translationPanel contentPanel">
 
-ファイルアップロードは、マルウェア、パストラバーサル、拡張子偽装、巨大ファイル、公開ディレクトリ配置、処理系脆弱性を招きます。検証、保存、配信、スキャンを分けて設計します。
+## はじめに
 
-## 主要な観点
+ファイルアップロードは、ユーザーが写真、履歴書、または取り組んでいるプロジェクトを紹介する動画をアップロードできるようにするなど、あらゆるアプリケーションでますます重要な機能になっています。アプリケーションは、アプリケーションとユーザーの安全を保つために、偽装されたファイルや悪意のあるファイルを防御できる必要があります。
 
-- 許可するファイル種別を明示する。
-- 保存名と保存場所をユーザー入力から分離する。
-- アップロード後の公開と実行を制御する。
+要するに、安全なファイルアップロード実装に到達するには、以下の原則に従うべきです。
+
+- **許可する拡張子を列挙します。業務機能に必要で安全な重要拡張子だけを許可します。**
+    - **拡張子を検証する前に、[入力検証](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#file-upload-validation) が適用されていることを確認します。**
+- **ファイル種別を検証します。[Content-Type ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) は偽装できるため信頼しません。**
+- **ファイル名をアプリケーションが生成したものに変更します。**
+- **ファイル名の長さ制限を設定します。可能であれば、許可する文字を制限します。**
+- **ファイルサイズ制限を設定します。**
+- **認可されたユーザーだけにファイルアップロードを許可します。**
+- **ファイルは別サーバーに保存します。それが不可能な場合は、webroot の外側に保存します。**
+    - **ファイルへの公開アクセスが必要な場合は、アプリケーション内で ID をファイル名に対応付けるハンドラーを使用します (`someid -> file.ext`)。**
+- **利用可能であれば、ファイルをアンチウイルスまたはサンドボックスに通し、悪意のあるデータが含まれていないことを検証します。**
+- **対象種別に適用できる場合は、ファイルを CDR (Content Disarm & Reconstruct) に通します (PDF、DOCX など)。**
+- **使用するライブラリが安全に設定され、最新に保たれていることを確認します。**
+- **ファイルアップロードを [CSRF](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) 攻撃から保護します。**
+
+## ファイルアップロードの脅威
+
+実装すべき制御を評価し正確に把握するには、何に直面しているかを知ることが、資産を保護するうえで不可欠です。以下のセクションでは、ファイルアップロード機能に伴うリスクを示します。
+
+### 悪意のあるファイル
+
+攻撃者は、以下のような悪意を持ってファイルを送り込みます。
+
+1. ファイルパーサーや処理モジュールの脆弱性を悪用する (例: [ImageTrick Exploit](https://imagetragick.com/)、[XXE](https://owasp.org/www-community/vulnerabilities/XML_External_Entity_%28XXE%29_Processing))
+2. ファイルをフィッシングに使用する (例: 採用フォーム)
+3. ZIP ボム、XML ボム (billion laughs attack とも呼ばれます)、または単に巨大なファイルを送信し、サーバーストレージを埋めてサーバーの可用性を阻害・損傷する
+4. システム上の既存ファイルを上書きする
+5. ファイルが公開取得可能な場合に他のユーザーを危険にさらす可能性がある、クライアント側のアクティブコンテンツ (XSS、CSRF など) を含める
+
+### 公開ファイル取得
+
+アップロードされたファイルが公開取得可能な場合、追加の脅威に対処できます。
+
+1. 他のファイルの公開漏えい
+2. 大量のファイルを要求して DoS 攻撃を開始すること。リクエストは小さい一方で、レスポンスははるかに大きくなります。
+3. 違法、不快、または危険とみなされる可能性があるファイル内容 (例: 個人データ、著作権で保護されたデータなど)。これにより、そのような悪意のあるファイルのホストになってしまいます。
+
+## ファイルアップロードの保護
+
+ユーザーコンテンツの検証に万能策はありません。アップロードプロセスをより困難にし、サービスのニーズと要件に合わせてより厳格に制限するには、多層防御アプローチの実装が重要です。単一の手法だけではサービスを保護するのに十分ではないため、複数の手法を実装することが重要であり推奨されます。
+
+### 拡張子検証
+
+検証はファイル名をデコードした後に行い、以下のような既知のバイパスを避けるため、適切なフィルターを設定してください。
+
+- 二重拡張子。例: `.jpg.php`。これは正規表現 `\.jpg` を容易に回避します。
+- Null バイト。例: `.php%00.jpg`。`.jpg` が切り捨てられ、`.php` が新しい拡張子になります。
+- 十分にテスト・レビューされていない一般的に悪い正規表現。このトピックに十分な知識がない限り、独自ロジックの構築は避けてください。
+
+拡張子を適切に解析・処理するには、[Input Validation CS](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html) を参照してください。
+
+#### 許可する拡張子を列挙する
+
+不要な拡張子を許可せず、業務上重要な拡張子だけを使用するようにします。たとえば、システムが以下を必要とする場合です。
+
+- 画像アップロードでは、業務要件に合うことが合意された 1 種類を許可します。
+- 履歴書アップロードでは、`docx` と `pdf` 拡張子を許可します。
+
+アプリケーションのニーズに基づき、**最も害が少なく**、**最もリスクが低い**ファイル種別を使用するようにします。
+
+#### 拡張子をブロックする
+
+潜在的に有害なファイル種別を特定し、サービスにとって有害とみなす拡張子をブロックします。
+
+特定の拡張子をブロックすることは、それ単体では弱い保護方法である点に注意してください。[Unrestricted File Upload vulnerability](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) の記事では、攻撃者がこのようなチェックを回避しようとする方法が説明されています。
+
+### Content-Type 検証
+
+_アップロードされたファイルの Content-Type はユーザーから提供されるため、容易に偽装でき、信頼できません。セキュリティ目的で依存すべきではありませんが、ユーザーが誤った種別のファイルを意図せずアップロードすることを防ぐ簡易チェックにはなります。_
+
+アップロードされたファイルの拡張子を定義する以外に、その MIME type を確認することで、単純なファイルアップロード攻撃に対する簡易的な保護にできます。
+
+これは、できれば許可リスト方式で行います。そうでない場合は、拒否リスト方式で行うこともできます。
+
+### ファイルシグネチャ検証
+
+[content-type validation](#content-type-検証) と組み合わせて、ファイルのシグネチャを検証し、受信すべき期待ファイルと照合できます。
+
+> これは単独で使用すべきではありません。回避は非常に一般的で容易だからです。
+
+### ファイル名の安全性
+
+ファイル名は、許容されない文字の使用や、特殊または制限されたファイル名の使用により、複数の方法でシステムを危険にさらす可能性があります。Windows については、次の [MSDN guide](https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file?redirectedfrom=MSDN#naming-conventions) を参照してください。さまざまなファイルシステムがファイルをどのように扱うかの広い概要については、[Wikipedia's Filename page](https://en.wikipedia.org/wiki/Filename) を参照してください。
+
+上記の脅威を避けるため、UUID/GUID の生成など、**ランダム文字列**をファイル名として作成することが不可欠です。業務上のニーズによりファイル名が必要な場合は、クライアント側 (例: XSS や CSRF 攻撃につながるアクティブコンテンツ) とバックエンド側 (例: 特殊ファイルの上書きまたは作成) の攻撃ベクトルに対して、適切な入力検証を実施する必要があります。ファイルを保存するシステムごとに独自のファイル名長制限があるため、ファイル名長の制限も考慮する必要があります。ユーザー指定のファイル名が必要な場合は、以下の実装を検討してください。
+
+- 最大長を実装します。
+- 英数字、ハイフン、スペース、ピリオドなど、明示的に許可されたサブセットに文字を制限します。
+    - 許容されるファイル名が何かをユーザーに伝えることを検討します。
+    - 先頭のピリオド (隠しファイル) と連続するピリオド (ディレクトリトラバーサル) の使用を制限します。
+    - ファイル処理にシェルスクリプトを使う際の安全性を高めるため、先頭のハイフンやスペースの使用を制限します。
+    - これが不可能な場合は、ファイルを保存・使用するフレームワークやシステムを危険にさらし得る危険な文字をブロックリスト化します。
+
+### ファイル内容検証
+
+[公開ファイル取得](#公開ファイル取得) セクションで述べたように、ファイル内容には悪意のあるデータ、不適切なデータ、または違法なデータが含まれる可能性があります。
+
+期待される種別に基づいて、特別なファイル内容検証を適用できます。
+
+- **画像**では、画像書き換え技術を適用すると、画像に注入されたあらゆる種類の悪意のあるコンテンツを破壊できます。これは [randomization](https://security.stackexchange.com/a/8625/118367) によって実施できます。
+- **Microsoft documents** では、[Apache POI](https://poi.apache.org/) の使用が、アップロードされたドキュメントの検証に役立ちます。
+- **ZIP files** は、あらゆる種類のファイルを含む可能性があり、それらに関する攻撃ベクトルが多数あるため、推奨されません。
+
+File Upload サービスでは、ユーザーが違法コンテンツを報告でき、著作権者が不正利用を報告できるようにするべきです。
+
+十分なリソースがある場合は、ファイルを公開する前に、サンドボックス化された環境で手動レビューを実施するべきです。
+
+レビューにある程度の自動化を加えることは役立つ可能性がありますが、これは厳しいプロセスであり、使用前に十分に検討する必要があります。一部のサービス (例: Virus Total) は、既知の悪意のあるファイルハッシュに対してファイルをスキャンする API を提供しています。一部のフレームワークでは、[ASP.NET Drawing Library](https://docs.microsoft.com/en-us/dotnet/api/system.drawing.imaging.imageformat) のように、生のコンテンツ種別を確認し、定義済みファイル種別と照合して検証できます。公開サービスによるデータ漏えいの脅威や情報収集に注意してください。
+
+### ファイル保存場所
+
+ファイルを保存する場所は、セキュリティ要件と業務要件に基づいて選択する必要があります。以下の点はセキュリティ優先度順であり、包含的です。
+
+1. ファイルを**別ホスト**に保存します。これにより、ユーザーにサービスを提供するアプリケーションと、ファイルアップロードおよび保存を扱うホストとの間で、職務の完全な分離が可能になります。
+2. ファイルを **webroot の外側**に保存し、管理アクセスだけを許可します。
+3. ファイルを **webroot の内側**に保存し、書き込み権限だけを設定します。
+   - 読み取りアクセスが必要な場合は、適切な制御の設定が必須です (例: 内部 IP、認可されたユーザーなど)。
+
+データベース内に検討済みの方法でファイルを保存することも追加の手法です。これは、自動バックアッププロセス、非ファイルシステム攻撃、権限問題に対して使用されることがあります。一方で、パフォーマンス問題 (場合による)、データベースとそのバックアップのストレージ考慮事項、SQLi 攻撃への入口も生みます。これは、チームに DBA がいて、このプロセスがファイルシステム上に保存するより改善であると示される場合にのみ推奨されます。
+
+> 一部のファイルは、アップロード後にメール送信または処理され、サーバーには保存されません。それらに何らかの操作を行う前に、このチートシートで説明したセキュリティ対策を実施することが不可欠です。
+
+### ユーザー権限
+
+ファイルアップロードサービスにアクセスする前に、ファイルをアップロードするユーザーに対して、2 つのレベルで適切な検証を行う必要があります。
+
+- 認証レベル
+    - ユーザーのアップロード能力に制限や制約を設定するため、ユーザーは登録済みユーザー、または識別可能なユーザーであるべきです。
+- 認可レベル
+    - ユーザーはファイルにアクセスまたは変更するための適切な権限を持つべきです。
+
+### ファイルシステム権限
+
+> 最小権限の原則に基づいてファイル権限を設定します。
+
+ファイルは、以下を保証する方法で保存されるべきです。
+
+- 許可されたシステムユーザーだけがファイルを読み取れること
+- 必要なモードだけがファイルに設定されていること
+    - 実行が必要な場合は、セキュリティベストプラクティスとして、実行前にファイルをスキャンし、マクロや隠しスクリプトが存在しないことを確認する必要があります。
+
+### アップロードとダウンロードの制限
+
+アプリケーションは、ファイルストレージ容量を保護するため、アップロードサービスに適切なサイズ制限を設定するべきです。システムがファイルを展開または処理する場合、ファイルサイズ制限はファイル展開後に考慮し、ZIP ファイルサイズを計算する安全な方法を使用する必要があります。詳細は、ZIP ファイルを扱う Java の入力ストリームである [Safely extract files from ZipInputStream](https://wiki.sei.cmu.edu/confluence/display/java/IDS04-J.+Safely+extract+files+from+ZipInputStream) を参照してください。
+
+ダウンロードサービスが利用可能な場合、アプリケーションは DoS 攻撃からサーバーを保護するため、ダウンロードサービスにも適切なリクエスト制限を設定するべきです。
+
+## Java コードスニペット
+
+Java の特定のドキュメント種別向けに Dominique が作成した [Document Upload Protection](https://github.com/righettod/document-upload-protection) リポジトリがあります。
 
 </section>
-
-
 
 <section id="file-upload-bilingual-panel" className="tabPanel bilingualPanel">
 
@@ -210,28 +355,7 @@ The application should set proper request limits as well for the download servic
 
 File upload is becoming a more and more essential part of any application, where the user is able to upload their photo, their CV, or a video showcasing a project they are working on. The application should be able to fend off bogus and malicious files in a way to keep the application and the users safe.
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-ファイルアップロードは、マルウェア、パストラバーサル、拡張子偽装、巨大ファイル、公開ディレクトリ配置、処理系脆弱性を招きます。検証、保存、配信、スキャンを分けて設計します。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 In short, the following principles should be followed to reach a secure file upload implementation:
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 - **List allowed extensions. Only allow safe and critical extensions for business functionality**
     - **Ensure that [input validation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#file-upload-validation) is applied before validating the extensions.**
@@ -248,7 +372,30 @@ In short, the following principles should be followed to reach a secure file upl
 - **Protect the file upload from [CSRF](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) attacks**
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+## はじめに
+
+ファイルアップロードは、ユーザーが写真、履歴書、または取り組んでいるプロジェクトを紹介する動画をアップロードできるようにするなど、あらゆるアプリケーションでますます重要な機能になっています。アプリケーションは、アプリケーションとユーザーの安全を保つために、偽装されたファイルや悪意のあるファイルを防御できる必要があります。
+
+要するに、安全なファイルアップロード実装に到達するには、以下の原則に従うべきです。
+
+- **許可する拡張子を列挙します。業務機能に必要で安全な重要拡張子だけを許可します。**
+    - **拡張子を検証する前に、[入力検証](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#file-upload-validation) が適用されていることを確認します。**
+- **ファイル種別を検証します。[Content-Type ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) は偽装できるため信頼しません。**
+- **ファイル名をアプリケーションが生成したものに変更します。**
+- **ファイル名の長さ制限を設定します。可能であれば、許可する文字を制限します。**
+- **ファイルサイズ制限を設定します。**
+- **認可されたユーザーだけにファイルアップロードを許可します。**
+- **ファイルは別サーバーに保存します。それが不可能な場合は、webroot の外側に保存します。**
+    - **ファイルへの公開アクセスが必要な場合は、アプリケーション内で ID をファイル名に対応付けるハンドラーを使用します (`someid -> file.ext`)。**
+- **利用可能であれば、ファイルをアンチウイルスまたはサンドボックスに通し、悪意のあるデータが含まれていないことを検証します。**
+- **対象種別に適用できる場合は、ファイルを CDR (Content Disarm & Reconstruct) に通します (PDF、DOCX など)。**
+- **使用するライブラリが安全に設定され、最新に保たれていることを確認します。**
+- **ファイルアップロードを [CSRF](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) 攻撃から保護します。**
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -259,34 +406,9 @@ In short, the following principles should be followed to reach a secure file upl
 
 In order to assess and know exactly what controls to implement, knowing what you're facing is essential to protect your assets. The following sections will hopefully showcase the risks accompanying the file upload functionality.
 
-</div>
-<div className="bilingualBlock japanese">
-<span className="bilingualLabel japanese">日本語 (翻訳)</span>
-
-## 主要な観点
-
-- 許可するファイル種別を明示する。
-- 保存名と保存場所をユーザー入力から分離する。
-- アップロード後の公開と実行を制御する。
-
-</div>
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ### Malicious Files
 
 The attacker delivers a file for malicious intent, such as:
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 1. Exploit vulnerabilities in the file parser or processing module (_e.g._ [ImageTrick Exploit](https://imagetragick.com/), [XXE](https://owasp.org/www-community/vulnerabilities/XML_External_Entity_%28XXE%29_Processing))
 2. Use the file for phishing (_e.g._ careers form)
@@ -294,32 +416,41 @@ The attacker delivers a file for malicious intent, such as:
 4. Overwrite an existing file on the system
 5. Client-side active content (XSS, CSRF, etc.) that could endanger other users if the files are publicly retrievable.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ### Public File Retrieval
 
 If the file uploaded is publicly retrievable, additional threats can be addressed:
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 1. Public disclosure of other files
 2. Initiate a DoS attack by requesting lots of files. Requests are small, yet responses are much larger
 3. File content that could be deemed as illegal, offensive, or dangerous (_e.g._ personal data, copyrighted data, etc.) which will make you a host for such malicious files.
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+## ファイルアップロードの脅威
+
+実装すべき制御を評価し正確に把握するには、何に直面しているかを知ることが、資産を保護するうえで不可欠です。以下のセクションでは、ファイルアップロード機能に伴うリスクを示します。
+
+### 悪意のあるファイル
+
+攻撃者は、以下のような悪意を持ってファイルを送り込みます。
+
+1. ファイルパーサーや処理モジュールの脆弱性を悪用する (例: [ImageTrick Exploit](https://imagetragick.com/)、[XXE](https://owasp.org/www-community/vulnerabilities/XML_External_Entity_%28XXE%29_Processing))
+2. ファイルをフィッシングに使用する (例: 採用フォーム)
+3. ZIP ボム、XML ボム (billion laughs attack とも呼ばれます)、または単に巨大なファイルを送信し、サーバーストレージを埋めてサーバーの可用性を阻害・損傷する
+4. システム上の既存ファイルを上書きする
+5. ファイルが公開取得可能な場合に他のユーザーを危険にさらす可能性がある、クライアント側のアクティブコンテンツ (XSS、CSRF など) を含める
+
+### 公開ファイル取得
+
+アップロードされたファイルが公開取得可能な場合、追加の脅威に対処できます。
+
+1. 他のファイルの公開漏えい
+2. 大量のファイルを要求して DoS 攻撃を開始すること。リクエストは小さい一方で、レスポンスははるかに大きくなります。
+3. 違法、不快、または危険とみなされる可能性があるファイル内容 (例: 個人データ、著作権で保護されたデータなど)。これにより、そのような悪意のあるファイルのホストになってしまいます。
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -330,98 +461,65 @@ If the file uploaded is publicly retrievable, additional threats can be addresse
 
 There is no silver bullet in validating user content. Implementing a defense in depth approach is key to make the upload process harder and more locked down to the needs and requirements for the service. Implementing multiple techniques is key and recommended, as no one technique is enough to secure the service.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ### Extension Validation
 
 Ensure that the validation occurs after decoding the filename, and that a proper filter is set in place in order to avoid certain known bypasses, such as the following:
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
-- Double extensions, _e.g._ `.jpg.php`, where it circumvents easily the regex `\\.jpg`
+- Double extensions, _e.g._ `.jpg.php`, where it circumvents easily the regex `\.jpg`
 - Null bytes, _e.g._ `.php%00.jpg`, where `.jpg` gets truncated and `.php` becomes the new extension
 - Generic bad regex that isn't properly tested and well reviewed. Refrain from building your own logic unless you have enough knowledge on this topic.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Refer to the [Input Validation CS](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html) to properly parse and process the extension.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 #### List Allowed Extensions
 
 Ensure the usage of _business-critical_ extensions only, without allowing any type of _non-required_ extensions. For example if the system requires:
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - image upload, allow one type that is agreed upon to fit the business requirement;
 - cv upload, allow `docx` and `pdf` extensions.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Based on the needs of the application, ensure the **least harmful** and the **lowest risk** file types to be used.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 #### Block Extensions
 
 Identify potentially harmful file types and block extensions that you regard harmful to your service.
 
-</div>
+Please be aware that blocking specific extensions is a weak protection method on its own. The [Unrestricted File Upload vulnerability](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) article describes how attackers may attempt to bypass such a check.
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
+## ファイルアップロードの保護
 
-Please be aware that blocking specific extensions is a weak protection method on its own. The [Unrestricted File Upload vulnerability](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) article describes how attackers may attempt
-to bypass such a check.
+ユーザーコンテンツの検証に万能策はありません。アップロードプロセスをより困難にし、サービスのニーズと要件に合わせてより厳格に制限するには、多層防御アプローチの実装が重要です。単一の手法だけではサービスを保護するのに十分ではないため、複数の手法を実装することが重要であり推奨されます。
+
+### 拡張子検証
+
+検証はファイル名をデコードした後に行い、以下のような既知のバイパスを避けるため、適切なフィルターを設定してください。
+
+- 二重拡張子。例: `.jpg.php`。これは正規表現 `\.jpg` を容易に回避します。
+- Null バイト。例: `.php%00.jpg`。`.jpg` が切り捨てられ、`.php` が新しい拡張子になります。
+- 十分にテスト・レビューされていない一般的に悪い正規表現。このトピックに十分な知識がない限り、独自ロジックの構築は避けてください。
+
+拡張子を適切に解析・処理するには、[Input Validation CS](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html) を参照してください。
+
+#### 許可する拡張子を列挙する
+
+不要な拡張子を許可せず、業務上重要な拡張子だけを使用するようにします。たとえば、システムが以下を必要とする場合です。
+
+- 画像アップロードでは、業務要件に合うことが合意された 1 種類を許可します。
+- 履歴書アップロードでは、`docx` と `pdf` 拡張子を許可します。
+
+アプリケーションのニーズに基づき、**最も害が少なく**、**最もリスクが低い**ファイル種別を使用するようにします。
+
+#### 拡張子をブロックする
+
+潜在的に有害なファイル種別を特定し、サービスにとって有害とみなす拡張子をブロックします。
+
+特定の拡張子をブロックすることは、それ単体では弱い保護方法である点に注意してください。[Unrestricted File Upload vulnerability](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) の記事では、攻撃者がこのようなチェックを回避しようとする方法が説明されています。
 
 </div>
-
 </div>
 
 <div className="bilingualPair">
@@ -432,77 +530,21 @@ to bypass such a check.
 
 _The Content-Type for uploaded files is provided by the user, and as such cannot be trusted, as it is trivial to spoof. Although it should not be relied upon for security, it provides a quick check to prevent users from unintentionally uploading files with the incorrect type._
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Other than defining the extension of the uploaded file, its MIME-type can be checked for a quick protection against simple file upload attacks.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 This can be done preferably in an allowlist approach; otherwise, this can be done in a denylist approach.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 ### File Signature Validation
 
 In conjunction with [content-type validation](#content-type-validation), validating the file's signature can be checked and verified against the expected file that should be received.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 > This should not be used on its own, as bypassing it is pretty common and easy.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 ### Filename Safety
 
 Filenames can endanger the system in multiple ways, either by using non acceptable characters, or by using special and restricted filenames. For Windows, refer to the following [MSDN guide](https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file?redirectedfrom=MSDN#naming-conventions). For a wider overview on different filesystems and how they treat files, refer to [Wikipedia's Filename page](https://en.wikipedia.org/wiki/Filename).
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 In order to avoid the above mentioned threat, creating a **random string** as a filename, such as generating a UUID/GUID, is essential. If the filename is required by the business needs, proper input validation should be done for client-side (_e.g._ active content that results in XSS and CSRF attacks) and back-end side (_e.g._ special files overwrite or creation) attack vectors. Filename length limits should be taken into consideration based on the system storing the files, as each system has its own filename length limit. If user filenames are required, consider implementing the following:
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 - Implement a maximum length
 - Restrict characters to an allowed subset specifically, such as alphanumeric characters, hyphen, spaces, and periods
@@ -512,7 +554,37 @@ In order to avoid the above mentioned threat, creating a **random string** as a 
     - If this is not possible, block-list dangerous characters that could endanger the framework and system that is storing and using the files.
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+### Content-Type 検証
+
+_アップロードされたファイルの Content-Type はユーザーから提供されるため、容易に偽装でき、信頼できません。セキュリティ目的で依存すべきではありませんが、ユーザーが誤った種別のファイルを意図せずアップロードすることを防ぐ簡易チェックにはなります。_
+
+アップロードされたファイルの拡張子を定義する以外に、その MIME type を確認することで、単純なファイルアップロード攻撃に対する簡易的な保護にできます。
+
+これは、できれば許可リスト方式で行います。そうでない場合は、拒否リスト方式で行うこともできます。
+
+### ファイルシグネチャ検証
+
+[content-type validation](#content-type-検証) と組み合わせて、ファイルのシグネチャを検証し、受信すべき期待ファイルと照合できます。
+
+> これは単独で使用すべきではありません。回避は非常に一般的で容易だからです。
+
+### ファイル名の安全性
+
+ファイル名は、許容されない文字の使用や、特殊または制限されたファイル名の使用により、複数の方法でシステムを危険にさらす可能性があります。Windows については、次の [MSDN guide](https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file?redirectedfrom=MSDN#naming-conventions) を参照してください。さまざまなファイルシステムがファイルをどのように扱うかの広い概要については、[Wikipedia's Filename page](https://en.wikipedia.org/wiki/Filename) を参照してください。
+
+上記の脅威を避けるため、UUID/GUID の生成など、**ランダム文字列**をファイル名として作成することが不可欠です。業務上のニーズによりファイル名が必要な場合は、クライアント側 (例: XSS や CSRF 攻撃につながるアクティブコンテンツ) とバックエンド側 (例: 特殊ファイルの上書きまたは作成) の攻撃ベクトルに対して、適切な入力検証を実施する必要があります。ファイルを保存するシステムごとに独自のファイル名長制限があるため、ファイル名長の制限も考慮する必要があります。ユーザー指定のファイル名が必要な場合は、以下の実装を検討してください。
+
+- 最大長を実装します。
+- 英数字、ハイフン、スペース、ピリオドなど、明示的に許可されたサブセットに文字を制限します。
+    - 許容されるファイル名が何かをユーザーに伝えることを検討します。
+    - 先頭のピリオド (隠しファイル) と連続するピリオド (ディレクトリトラバーサル) の使用を制限します。
+    - ファイル処理にシェルスクリプトを使う際の安全性を高めるため、先頭のハイフンやスペースの使用を制限します。
+    - これが不可能な場合は、ファイルを保存・使用するフレームワークやシステムを危険にさらし得る危険な文字をブロックリスト化します。
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -523,60 +595,39 @@ In order to avoid the above mentioned threat, creating a **random string** as a 
 
 As mentioned in the [Public File Retrieval](#public-file-retrieval) section, file content can contain malicious, inappropriate, or illegal data.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Based on the expected type, special file content validation can be applied:
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 - For **images**, applying image rewriting techniques destroys any kind of malicious content injected in an image; this could be done through [randomization](https://security.stackexchange.com/a/8625/118367).
 - For **Microsoft documents**, the usage of [Apache POI](https://poi.apache.org/) helps validating the uploaded documents.
 - **ZIP files** are not recommended since they can contain all types of files, and the attack vectors pertaining to them are numerous.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 The File Upload service should allow users to report illegal content, and copyright owners to report abuse.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 If there are enough resources, manual file review should be conducted in a sandboxed environment before releasing the files to the public.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 Adding some automation to the review could be helpful, which is a harsh process and should be well studied before its usage. Some services (_e.g._ Virus Total) provide APIs to scan files against well known malicious file hashes. Some frameworks can check and validate the raw content type and validating it against predefined file types, such as in [ASP.NET Drawing Library](https://docs.microsoft.com/en-us/dotnet/api/system.drawing.imaging.imageformat). Beware of data leakage threats and information gathering by public services.
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+### ファイル内容検証
+
+[公開ファイル取得](#公開ファイル取得) セクションで述べたように、ファイル内容には悪意のあるデータ、不適切なデータ、または違法なデータが含まれる可能性があります。
+
+期待される種別に基づいて、特別なファイル内容検証を適用できます。
+
+- **画像**では、画像書き換え技術を適用すると、画像に注入されたあらゆる種類の悪意のあるコンテンツを破壊できます。これは [randomization](https://security.stackexchange.com/a/8625/118367) によって実施できます。
+- **Microsoft documents** では、[Apache POI](https://poi.apache.org/) の使用が、アップロードされたドキュメントの検証に役立ちます。
+- **ZIP files** は、あらゆる種類のファイルを含む可能性があり、それらに関する攻撃ベクトルが多数あるため、推奨されません。
+
+File Upload サービスでは、ユーザーが違法コンテンツを報告でき、著作権者が不正利用を報告できるようにするべきです。
+
+十分なリソースがある場合は、ファイルを公開する前に、サンドボックス化された環境で手動レビューを実施するべきです。
+
+レビューにある程度の自動化を加えることは役立つ可能性がありますが、これは厳しいプロセスであり、使用前に十分に検討する必要があります。一部のサービス (例: Virus Total) は、既知の悪意のあるファイルハッシュに対してファイルをスキャンする API を提供しています。一部のフレームワークでは、[ASP.NET Drawing Library](https://docs.microsoft.com/en-us/dotnet/api/system.drawing.imaging.imageformat) のように、生のコンテンツ種別を確認し、定義済みファイル種別と照合して検証できます。公開サービスによるデータ漏えいの脅威や情報収集に注意してください。
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -587,41 +638,33 @@ Adding some automation to the review could be helpful, which is a harsh process 
 
 The location where the files should be stored must be chosen based on security and business requirements. The following points are set by security priority, and are inclusive:
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 1. Store the files on a **different host**, which allows for complete segregation of duties between the application serving the user, and the host handling file uploads and their storage.
 2. Store the files **outside the webroot**, where only administrative access is allowed.
 3. Store the files **inside the webroot**, and set them in write permissions only.
    - If read access is required, setting proper controls is a must (_e.g._ internal IP, authorized user, etc.)
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Storing files in a studied manner in databases is one additional technique. This is sometimes used for automatic backup processes, non file-system attacks, and permissions issues. In return, this opens up the door to performance issues (in some cases), storage considerations for the database and its backups, and this opens up the door to SQLi attack. This is advised only when a DBA is on the team and that this process shows to be an improvement on storing them on the file-system.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 > Some files are emailed or processed once they are uploaded, and are not stored on the server. It is essential to conduct the security measures discussed in this sheet before doing any actions on them.
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+### ファイル保存場所
+
+ファイルを保存する場所は、セキュリティ要件と業務要件に基づいて選択する必要があります。以下の点はセキュリティ優先度順であり、包含的です。
+
+1. ファイルを**別ホスト**に保存します。これにより、ユーザーにサービスを提供するアプリケーションと、ファイルアップロードおよび保存を扱うホストとの間で、職務の完全な分離が可能になります。
+2. ファイルを **webroot の外側**に保存し、管理アクセスだけを許可します。
+3. ファイルを **webroot の内側**に保存し、書き込み権限だけを設定します。
+   - 読み取りアクセスが必要な場合は、適切な制御の設定が必須です (例: 内部 IP、認可されたユーザーなど)。
+
+データベース内に検討済みの方法でファイルを保存することも追加の手法です。これは、自動バックアッププロセス、非ファイルシステム攻撃、権限問題に対して使用されることがあります。一方で、パフォーマンス問題 (場合による)、データベースとそのバックアップのストレージ考慮事項、SQLi 攻撃への入口も生みます。これは、チームに DBA がいて、このプロセスがファイルシステム上に保存するより改善であると示される場合にのみ推奨されます。
+
+> 一部のファイルは、アップロード後にメール送信または処理され、サーバーには保存されません。それらに何らかの操作を行う前に、このチートシートで説明したセキュリティ対策を実施することが不可欠です。
+
+</div>
 </div>
 
 <div className="bilingualPair">
@@ -632,95 +675,69 @@ Storing files in a studied manner in databases is one additional technique. This
 
 Before any file upload service is accessed, proper validation should occur on two levels for the user uploading a file:
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 - Authentication level
     - The user should be a registered user, or an identifiable user, in order to set restrictions and limitations for their upload capabilities
 - Authorization level
     - The user should have appropriate permissions to access or modify the files
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ### Filesystem Permissions
 
 > Set the files permissions on the principle of least privilege.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 Files should be stored in a way that ensures:
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 - Allowed system users are the only ones capable of reading the files
 - Required modes only are set for the file
     - If execution is required, scanning the file before running it is required as a security best practice, to ensure that no macros or hidden scripts are available.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 ### Upload and Download Limits
 
 The application should set proper size limits for the upload service in order to protect the file storage capacity. If the system is going to extract the files or process them, the file size limit should be considered after file decompression is conducted and by using secure methods to calculate zip files size. For more on this, see how to [Safely extract files from ZipInputStream](https://wiki.sei.cmu.edu/confluence/display/java/IDS04-J.+Safely+extract+files+from+ZipInputStream), Java's input stream to handle ZIP files.
 
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
-
 The application should set proper request limits as well for the download service if available to protect the server from DoS attacks.
-
-</div>
-
-</div>
-
-<div className="bilingualPair">
-<div className="bilingualBlock english">
-<span className="bilingualLabel english">English (原文)</span>
 
 ## Java Code Snippets
 
 [Document Upload Protection](https://github.com/righettod/document-upload-protection) repository written by Dominique for certain document types in Java.
 
 </div>
+<div className="bilingualBlock japanese">
+<span className="bilingualLabel japanese">日本語 (翻訳)</span>
 
+### ユーザー権限
+
+ファイルアップロードサービスにアクセスする前に、ファイルをアップロードするユーザーに対して、2 つのレベルで適切な検証を行う必要があります。
+
+- 認証レベル
+    - ユーザーのアップロード能力に制限や制約を設定するため、ユーザーは登録済みユーザー、または識別可能なユーザーであるべきです。
+- 認可レベル
+    - ユーザーはファイルにアクセスまたは変更するための適切な権限を持つべきです。
+
+### ファイルシステム権限
+
+> 最小権限の原則に基づいてファイル権限を設定します。
+
+ファイルは、以下を保証する方法で保存されるべきです。
+
+- 許可されたシステムユーザーだけがファイルを読み取れること
+- 必要なモードだけがファイルに設定されていること
+    - 実行が必要な場合は、セキュリティベストプラクティスとして、実行前にファイルをスキャンし、マクロや隠しスクリプトが存在しないことを確認する必要があります。
+
+### アップロードとダウンロードの制限
+
+アプリケーションは、ファイルストレージ容量を保護するため、アップロードサービスに適切なサイズ制限を設定するべきです。システムがファイルを展開または処理する場合、ファイルサイズ制限はファイル展開後に考慮し、ZIP ファイルサイズを計算する安全な方法を使用する必要があります。詳細は、ZIP ファイルを扱う Java の入力ストリームである [Safely extract files from ZipInputStream](https://wiki.sei.cmu.edu/confluence/display/java/IDS04-J.+Safely+extract+files+from+ZipInputStream) を参照してください。
+
+ダウンロードサービスが利用可能な場合、アプリケーションは DoS 攻撃からサーバーを保護するため、ダウンロードサービスにも適切なリクエスト制限を設定するべきです。
+
+## Java コードスニペット
+
+Java の特定のドキュメント種別向けに Dominique が作成した [Document Upload Protection](https://github.com/righettod/document-upload-protection) リポジトリがあります。
+
+</div>
 </div>
 
 </section>
 </div>
-
-
 
 ## Attribution
 
@@ -732,6 +749,6 @@ The application should set proper request limits as well for the download servic
 - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 - License URL: https://creativecommons.org/licenses/by-sa/4.0/
 - Changes: English original retained for comparison. Japanese translation added. Bilingual display generated from official source and local Japanese translation.
-- Retrieved: 2026-05-20
+- Retrieved: 2026-05-21
 
 </div>
