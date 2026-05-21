@@ -10,7 +10,7 @@ ASVS 章別の入口です。
 
 ## 入口
 
-- [ASVS 全章索引](index.md)
+- [OWASP ASVS チートシート索引 日本語版](index.md)
 
 ## ページ方針
 

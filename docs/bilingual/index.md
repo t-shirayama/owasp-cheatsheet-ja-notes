@@ -1,6 +1,6 @@
-# ASVS Index 対応 Cheat Sheet 英日対訳
+# OWASP ASVS チートシート索引 日本語版
 
-OWASP Cheat Sheet Series の ASVS Index 対応ページを、日本語訳と英日対比表示で確認するための Docusaurus 公開用ドキュメントです。
+OWASP Cheat Sheet Series の ASVS Index 対応ページを、日本語訳と英日対比表示で確認するための非公式日本語版です。
 
 ## 表示方針
 

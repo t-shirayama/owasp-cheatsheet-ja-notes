@@ -1,4 +1,4 @@
-# OWASP ASVS Cheat Sheet Japanese Notes
+# OWASP ASVS チートシート索引 日本語版
 
 このリポジトリは、[OWASP Cheat Sheet Series - Index ASVS](https://cheatsheetseries.owasp.org/IndexASVS.html) を起点に、ASVS 項目に対応する OWASP Cheat Sheet Series を日本語で読みやすくする非公式ドキュメント集です。
 

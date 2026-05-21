@@ -61,11 +61,10 @@ export default function Home() {
           <div className="heroCopy">
             <span className="versionPill">ASVS Index focused</span>
             <h1>
-              ASVS Index 対応
-              <span>{SITE_TITLE}</span>
+              {SITE_TITLE}
             </h1>
             <p>
-              OWASP Cheat Sheet Series の ASVS Index に対応する原文と日本語訳を、パラグラフ単位で比較しながら読める非公式の日本語訳サイトです。
+              OWASP Cheat Sheet Series の ASVS Index に対応する原文と日本語訳を、パラグラフ単位で比較しながら読める非公式の日本語版です。
             </p>
             <div className="heroActions">
               <Link className="button button--primary" to="/cheatsheets/">
@@ -166,7 +165,7 @@ export default function Home() {
             <section className="homeSection homeSectionCompact">
               <div className="sectionHeading">
                 <div>
-                  <h2>ASVS Index 対応 Cheat Sheets</h2>
+                  <h2>ASVS Index 対応チートシート</h2>
                   <p>更新済みの対訳ページから直接開けます。</p>
                 </div>
               </div>

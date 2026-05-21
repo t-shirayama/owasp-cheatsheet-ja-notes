@@ -1,6 +1,6 @@
 const config = {
-  title: 'OWASP ASVS Cheat Sheet 日本語訳',
-  tagline: 'Unofficial Japanese ASVS-focused notes and bilingual views for OWASP Cheat Sheet Series',
+  title: 'OWASP ASVS チートシート索引 日本語版',
+  tagline: 'OWASP Cheat Sheet Series を ASVS 索引から参照できる非公式日本語版',
   favicon: 'img/logo.svg',
 
   url: 'https://t-shirayama.github.io',
@@ -62,9 +62,9 @@ const config = {
       },
     },
     navbar: {
-      title: 'OWASP ASVS Cheat Sheet 日本語訳',
+      title: 'OWASP ASVS チートシート索引 日本語版',
       logo: {
-        alt: 'OWASP Cheat Sheet Japanese Notes',
+        alt: 'OWASP ASVS チートシート索引 日本語版',
         src: 'img/logo.svg',
       },
       items: [

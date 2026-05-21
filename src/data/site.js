@@ -1,13 +1,13 @@
-export const SITE_TITLE = 'OWASP ASVS Cheat Sheet 日本語訳';
+export const SITE_TITLE = 'OWASP ASVS チートシート索引 日本語版';
 
 export const SITE_DESCRIPTION =
-  'Unofficial Japanese ASVS-focused bilingual notes for OWASP Cheat Sheet Series';
+  'OWASP Cheat Sheet Series を ASVS 索引から参照できる非公式日本語版';
 
 export const REPOSITORY_URL =
   'https://github.com/t-shirayama/owasp-cheatsheet-ja-notes';
 
 export const OFFICIAL_NOTICE =
-  'This is an unofficial Japanese notes site. OWASP content is attributed on each page and reused under CC BY-SA 4.0 where applicable.';
+  'This is an unofficial Japanese edition of an ASVS-focused OWASP Cheat Sheet index. OWASP content is attributed on each page and reused under CC BY-SA 4.0 where applicable.';
 
 export const FOOTER_LINK_GROUPS = [
   {
