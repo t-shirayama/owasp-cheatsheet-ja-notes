@@ -1105,6 +1105,17 @@ html[data-theme="dark"] .bilingualCommon {
     padding-top: 48px;
   }
 
+  .heroCopy h1 {
+    margin: 16px 0 14px;
+    font-size: clamp(2rem, 7vw, 3rem);
+    line-height: 1.16;
+  }
+
+  .heroCopy p {
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+
   .heroBilingualVisual {
     min-height: 320px;
   }
@@ -1148,6 +1159,16 @@ html[data-theme="dark"] .bilingualCommon {
   .homeHero {
     width: calc(100% - 28px);
     padding-top: 34px;
+  }
+
+  .heroCopy h1 {
+    font-size: clamp(1.72rem, 9vw, 2.35rem);
+    line-height: 1.18;
+  }
+
+  .heroCopy p {
+    font-size: 0.94rem;
+    line-height: 1.68;
   }
 
   .heroActions .button {
@@ -2205,6 +2226,71 @@ div[class^="codeBlockContainer_"] code,
   .navbar__search-input,
   .navbar__search-input:focus {
     width: clamp(260px, 21vw, 340px) !important;
+  }
+
+  .homeHero {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.76fr);
+    gap: clamp(28px, 4vw, 58px);
+    width: min(1180px, calc(100% - 48px));
+    padding: 42px 0 28px;
+  }
+
+  .heroCopy h1 {
+    margin: 16px 0 14px;
+    font-size: clamp(2.4rem, 3.6vw, 3.25rem);
+    line-height: 1.16;
+  }
+
+  .heroCopy p {
+    max-width: 640px;
+    font-size: 0.98rem;
+    line-height: 1.72;
+  }
+
+  .heroActions {
+    margin-top: 22px;
+  }
+
+  .heroBilingualVisual {
+    min-height: 260px;
+    padding: 22px 24px;
+  }
+
+  .visualHeader {
+    margin-bottom: 18px;
+  }
+
+  .comparisonStack {
+    width: min(320px, 100%);
+  }
+
+  .comparisonBlock {
+    padding: 12px 14px;
+  }
+
+  .comparisonBlock p {
+    font-size: 0.9rem;
+    line-height: 1.58;
+  }
+
+  .visualLock {
+    right: 26px;
+    bottom: 48px;
+    width: 98px;
+    height: 72px;
+  }
+
+  .visualLock::before {
+    left: 25px;
+    top: -48px;
+    width: 50px;
+    height: 60px;
+  }
+
+  .visualLock::after {
+    right: 64px;
+    width: 54px;
+    height: 46px;
   }
 
   .theme-doc-sidebar-container .menu {
